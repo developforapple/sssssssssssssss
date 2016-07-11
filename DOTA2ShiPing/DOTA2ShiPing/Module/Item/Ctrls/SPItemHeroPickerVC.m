@@ -206,7 +206,7 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
 - (void)updateHistoryList
 {
     SPItemHeroListVC *vc = [self.listVCs firstObject];
-    if (vc != [NSNull null]) {
+    if ([vc isKindOfClass:[NSNull class]]) {
         vc.history = self.historyList;
         [vc reloadData];
         [self updateUI];

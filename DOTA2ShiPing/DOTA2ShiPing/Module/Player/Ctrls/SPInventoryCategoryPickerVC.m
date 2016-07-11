@@ -44,8 +44,9 @@ static NSString *const kSPInventoryCategoryCell = @"SPInventoryCategoryCell";
 
 - (void)show
 {
-    self.visible = YES;
+    if (self.visible) return;
     
+    self.visible = YES;
     [UIView animateWithDuration:.4f animations:^{
         self.effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         self.view.userInteractionEnabled = YES;
@@ -58,6 +59,8 @@ static NSString *const kSPInventoryCategoryCell = @"SPInventoryCategoryCell";
 
 - (void)dismiss
 {
+    if (!self.visible) return;
+    
     [UIView animateWithDuration:.4f animations:^{
         self.effectView.effect = nil;
         self.view.userInteractionEnabled = NO;

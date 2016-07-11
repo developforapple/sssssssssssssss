@@ -12,6 +12,7 @@
 #import "SPConstant.h"
 #import "SPItemListContainer.h"
 #import "SPInventoryCategoryPickerVC.h"
+#import "SPInventorySegmentPickerVC.h"
 #import "DDSegmentScrollView.h"
 #import "SPInventoryFilter.h"
 #import "SPItemCommon.h"
@@ -20,6 +21,7 @@
 #import "ReactiveCocoa.h"
 
 static NSString *const kYGInventoryCategoryPickerSegueID = @"YGInventoryCategoryPickerSegueID";
+static NSString *const kYGInventorySegmentPickerSegueID = @"YGInventorySegmentPickerSegueID";
 static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 @interface SPPlayerInventoryVC ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
@@ -30,7 +32,9 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 @property (weak, nonatomic) IBOutlet DDSegmentScrollView *segmentView;
 
 @property (weak, nonatomic) IBOutlet UIView *categoryContainer;
+@property (weak, nonatomic) IBOutlet UIView *segmentPickerContainer;
 @property (strong, nonatomic) SPInventoryCategoryPickerVC *categoryPicker;
+@property (strong, nonatomic) SPInventorySegmentPickerVC *segmentPicker;
 @property (strong, nonatomic) UIPageViewController *pageVC;
 @property (strong, nonatomic) NSMutableDictionary<NSNumber *,SPItemListContainer *> *vcs;
 
@@ -61,31 +65,23 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     NSLog(@"%@释放！！！",class);
 }
 
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    self.navigationController.hidesBarsOnTap = YES;
-//    self.navigationController.hidesBarsOnSwipe = YES;
-//}
-//
-//- (void)viewDidDisappear:(BOOL)animated
-//{
-//    [super viewDidDisappear:animated];
-//    self.navigationController.hidesBarsOnTap = NO;
-//    self.navigationController.hidesBarsOnSwipe = NO;
-//}
-
 - (void)initUI
 {
     self.segmentView.backgroundColor = [UIColor clearColor];
     self.segmentView.highlightColor = AppBarColor;
     self.pageVC.delegate = self;
     self.pageVC.dataSource = self;
-    [self updateTitle];
     SPItemListMode mode = [[NSUserDefaults standardUserDefaults] integerForKey:kSPItemListModeKey];
     self.mode = mode;
     
     self.categoryIndicator.layer.anchorPoint = CGPointMake(.5f, .5f);
+    
+    spweakify(self);
+    [self.segmentView setShowChoiceBtn:YES];
+    [self.segmentView setWillChoiceSegment:^{
+        spstrongify(self);
+        [self setSegmentPickerVisible:!self.segmentPicker.isVisible];
+    }];
 }
 
 - (void)initData
@@ -119,27 +115,24 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
              [self.categoryContainer setHidden:YES animated:YES];
          }
      }];
+    [RACObserve(self.segmentPicker, visible)
+     subscribeNext:^(id x) {
+         spstrongify(self);
+         if ([x boolValue]) {
+             [self.segmentPickerContainer setHidden:NO animated:YES];
+         }else{
+             [self.segmentPickerContainer setHidden:YES animated:YES];
+         }
+     }];
 }
 
 - (void)update
 {
     RunOnMain(^{
-        [self updateTitle];
         self.segmentView.titles = self.filter.titles;
         SPItemListContainer *vc = [self viewControllerAtIndex:0];
         [self.pageVC setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     });
-}
-
-- (void)updateTitle
-{
-//    NSString *baseTitle = self.filter.filterTitle;
-//    
-//    if (self.filter.items.count != 0) {
-//        self.navigationItem.title = [NSString stringWithFormat:@"%@（%lu）",baseTitle,self.filter.items.count];
-//    }else{
-//        self.navigationItem.title = baseTitle;
-//    }
 }
 
 #pragma mark - Update
@@ -147,6 +140,26 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 {
     [self.categoryBtn setTitle:[self.categoryPicker titleForCategory:type] forState:UIControlStateNormal];
     [self.filter updateWithCategory:type];
+}
+
+- (void)setCategoryPickerVisible:(BOOL)visible
+{
+    if (visible) {
+        [self setSegmentPickerVisible:NO];
+        [self.categoryPicker show];
+    }else{
+        [self.categoryPicker dismiss];
+    }
+}
+
+- (void)setSegmentPickerVisible:(BOOL)visible
+{
+    if (visible) {
+        [self setCategoryPickerVisible:NO];
+        [self.segmentPicker show];
+    }else{
+        [self.categoryPicker dismiss];
+    }
 }
 
 #pragma mark - Action
@@ -164,12 +177,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 - (IBAction)changeCategory:(UIButton *)sender
 {
-    BOOL visible = !self.categoryPicker.isVisible;
-    if (visible) {
-        [self.categoryPicker show];
-    }else{
-        [self.categoryPicker dismiss];
-    }
+    [self setCategoryPickerVisible:!self.categoryPicker.isVisible];
 }
 
 - (IBAction)changeMode:(UIBarButtonItem *)sender

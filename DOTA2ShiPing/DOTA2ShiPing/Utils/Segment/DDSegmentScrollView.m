@@ -34,6 +34,9 @@
 
 @property (strong, nonatomic) CALayer *lineLayer;
 
+// 右侧的选择按钮
+@property (strong, nonatomic) UIButton *choiceBtn;
+
 @end
 
 @implementation DDSegmentScrollView
@@ -129,6 +132,26 @@
     return _indicatorView;
 }
 
+- (UIButton *)choiceBtn
+{
+    if (!_choiceBtn) {
+        _choiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_choiceBtn setImage:[UIImage imageNamed:@"icon_title_more"] forState:UIControlStateNormal];
+        [_choiceBtn setBackgroundColor:AppBarColor];
+        [self addSubview:_choiceBtn];
+        [self bringSubviewToFront:_choiceBtn];
+        
+        _choiceBtn.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":_choiceBtn}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view(==32)]-0-|" options:kNilOptions metrics:nil views:@{@"view":_choiceBtn}]];
+        _choiceBtn.hidden = YES;
+        
+        [_choiceBtn addTarget:self action:@selector(choiceBtnSelected:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _choiceBtn;
+}
+
+
 - (UILabel *)unitAtIndex:(NSUInteger)index
 {
     if (index < self.unitList.count) {
@@ -163,7 +186,20 @@
     [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
+- (void)choiceBtnSelected:(UIButton *)btn
+{
+    if (self.willChoiceSegment) {
+        self.willChoiceSegment();
+    }
+}
+
 #pragma mark - Update
+- (void)setShowChoiceBtn:(BOOL)showChoiceBtn
+{
+    _showChoiceBtn = showChoiceBtn;
+    self.choiceBtn.hidden = !showChoiceBtn;
+}
+
 - (void)setTitles:(NSArray<NSString *> *)titles
 {
     self.titleList = [titles mutableCopy];

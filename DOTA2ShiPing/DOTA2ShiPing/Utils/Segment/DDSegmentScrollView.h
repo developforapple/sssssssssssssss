@@ -25,4 +25,8 @@
 
 @property (strong, nonatomic) NSArray <NSString *>*titles;
 
+@property (assign, nonatomic) BOOL showChoiceBtn;
+
+@property (copy, nonatomic) void (^willChoiceSegment)(void);
+
 @end
