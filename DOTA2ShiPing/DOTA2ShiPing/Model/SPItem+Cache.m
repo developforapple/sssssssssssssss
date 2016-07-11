@@ -58,7 +58,7 @@ typedef NS_ENUM(NSUInteger, SPImageType) {
 {
     NSString *name = [self imageIconName];
     
-    NSString *url = [[self cache] objectForKey:name];
+    NSString *url = (NSString *)[[self cache] objectForKey:name];
     if (url) {
         completion(url);
         return;

@@ -96,7 +96,7 @@
 {
     if (!steamid) return;
     
-    BOOL suc = [self.db executeUpdate:@"UPDATE player SET star=0 WHERE steam_id=?",steamid];
+    [self.db executeUpdate:@"UPDATE player SET star=0 WHERE steam_id=?",steamid];
     [self callStarredUpdate];
 }
 
@@ -110,7 +110,7 @@
     NSDictionary *playerDict = [player yy_modelToJSONObject];
     
     NSString *sql = @"INSERT OR REPLACE INTO player VALUES(:steam_id,:avatar_url,:name,:star)";
-    BOOL suc = [self.db executeUpdate:sql withParameterDictionary:playerDict];
+    [self.db executeUpdate:sql withParameterDictionary:playerDict];
     [self callStarredUpdate];
 }
 
@@ -222,7 +222,7 @@
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:player.inventory];
     
     NSError *error;
-    BOOL suc2 = [data writeToFile:inventoryPath options:NSDataWritingAtomic error:&error];
+    [data writeToFile:inventoryPath options:NSDataWritingAtomic error:&error];
     NSLog(@"保存库存归档成功");
 }
 

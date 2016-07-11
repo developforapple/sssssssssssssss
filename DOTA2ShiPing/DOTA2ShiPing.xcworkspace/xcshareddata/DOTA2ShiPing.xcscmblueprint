@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "26E84BCEBE1457001B1CA552F14ADD3A759F117E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "26E84BCEBE1457001B1CA552F14ADD3A759F117E" : 0,
+    "6C7A2CCB8BB66DAA56E17FFFD0BDD95D25F578D6" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "08F3EC0A-583D-4A4B-BE0E-93577341B073",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "26E84BCEBE1457001B1CA552F14ADD3A759F117E" : "sssssssssssssss\/",
+    "6C7A2CCB8BB66DAA56E17FFFD0BDD95D25F578D6" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DOTA2ShiPing",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DOTA2ShiPing\/DOTA2ShiPing.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/developforapple\/sssssssssssssss.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "26E84BCEBE1457001B1CA552F14ADD3A759F117E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/alcatraz\/Alcatraz",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6C7A2CCB8BB66DAA56E17FFFD0BDD95D25F578D6"
+    }
+  ]
+}

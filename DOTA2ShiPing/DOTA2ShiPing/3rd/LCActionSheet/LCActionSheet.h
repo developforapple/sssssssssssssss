@@ -33,7 +33,7 @@ typedef void(^LCActionSheetBlock)(NSInteger buttonIndex);
 
 @interface LCActionSheet : UIViewController
 
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *sheetTitle;
 
 @property (nonatomic, assign) NSInteger redButtonIndex;
 

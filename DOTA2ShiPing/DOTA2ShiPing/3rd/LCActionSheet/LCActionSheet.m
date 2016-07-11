@@ -108,7 +108,7 @@
     
     if (self = [super init]) {
         
-        self.title = title;
+        self.sheetTitle = title;
         self.buttonTitles = [[NSMutableArray alloc] initWithArray:buttonTitles];
         self.redButtonIndex = redButtonIndex;
         self.delegate = delegate;
@@ -124,7 +124,7 @@
     
     if (self = [super init]) {
         
-        self.title = title;
+        self.sheetTitle = title;
         self.buttonTitles = [[NSMutableArray alloc] initWithArray:buttonTitles];
         self.redButtonIndex = redButtonIndex;
         self.clickedBlock = clicked;
@@ -149,10 +149,10 @@
     [bottomView setBackgroundColor:LCColor(233, 233, 238)];
     _bottomView = bottomView;
     
-    if (self.title) {
+    if (self.sheetTitle) {
         
         CGFloat vSpace = 0;
-        CGSize titleSize = [self.title sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13.0f]}];
+        CGSize titleSize = [self.sheetTitle sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13.0f]}];
         if (titleSize.width > SCREEN_SIZE.width - 30.0f) {
             vSpace = 15.0f;
         }
@@ -164,7 +164,7 @@
         
         // 标题
         UILabel *label = [[UILabel alloc] init];
-        [label setText:self.title];
+        [label setText:self.sheetTitle];
         [label setNumberOfLines:2.0f];
         [label setTextColor:LCColor(111, 111, 111)];
         [label setTextAlignment:NSTextAlignmentCenter];
@@ -203,7 +203,7 @@
             [btn setBackgroundImage:bgImage forState:UIControlStateHighlighted];
             [btn addTarget:self action:@selector(didClickBtn:) forControlEvents:UIControlEventTouchUpInside];
             
-            CGFloat btnY = BUTTON_H * (i + (self.title ? 1 : 0));
+            CGFloat btnY = BUTTON_H * (i + (self.sheetTitle ? 1 : 0));
             [btn setFrame:CGRectMake(0, btnY, SCREEN_SIZE.width, BUTTON_H)];
             [bottomView addSubview:btn];
         }
@@ -217,7 +217,7 @@
             UIImageView *line = [[UIImageView alloc] init];
             [line setImage:lineImage];
             [line setContentMode:UIViewContentModeTop];
-            CGFloat lineY = (i + (self.title ? 1 : 0)) * BUTTON_H;
+            CGFloat lineY = (i + (self.sheetTitle ? 1 : 0)) * BUTTON_H;
             [line setFrame:CGRectMake(0, lineY, SCREEN_SIZE.width, 1.0f)];
             [bottomView addSubview:line];
         }
@@ -236,11 +236,11 @@
     [cancelBtn setBackgroundImage:bgImage forState:UIControlStateHighlighted];
     [cancelBtn addTarget:self action:@selector(didClickCancelBtn) forControlEvents:UIControlEventTouchUpInside];
     
-    CGFloat btnY = BUTTON_H * (self.buttonTitles.count + (self.title ? 1 : 0)) + 5.0f;
+    CGFloat btnY = BUTTON_H * (self.buttonTitles.count + (self.sheetTitle ? 1 : 0)) + 5.0f;
     [cancelBtn setFrame:CGRectMake(0, btnY, SCREEN_SIZE.width, BUTTON_H)];
     [bottomView addSubview:cancelBtn];
     
-    CGFloat bottomH = (self.title ? BUTTON_H : 0) + BUTTON_H * self.buttonTitles.count + BUTTON_H + 5.0f;
+    CGFloat bottomH = (self.sheetTitle ? BUTTON_H : 0) + BUTTON_H * self.buttonTitles.count + BUTTON_H + 5.0f;
     [bottomView setFrame:CGRectMake(0, SCREEN_SIZE.height, SCREEN_SIZE.width, bottomH)];
     
     [self.view setFrame:(CGRect){0, 0, SCREEN_SIZE}];

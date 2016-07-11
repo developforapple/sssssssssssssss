@@ -8,94 +8,221 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>0</integer>
 		</dict>
 		<key>DGActivityIndicatorView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>IAPHelper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>JZNavigationExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>PinYin4Objc.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>Pods-DOTA2ShiPing.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>ReactiveCocoa.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>YYCache.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>13</integer>
 		</dict>
 		<key>YYCategories.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>14</integer>
 		</dict>
 		<key>YYImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>15</integer>
 		</dict>
 		<key>YYModel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>16</integer>
 		</dict>
 		<key>YYWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>17</integer>
 		</dict>
 		<key>hpple.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>sqlite3.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>05FBE5985053C36D9629C5D274D41C7F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0CCBBF4BAA3FA48F98623D8875DC1DA7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>12AC35F9C569FA2A4543EFEDD802D2C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3F134348DE520EF73EFBFC323E1026DE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3F76AD823738DA0DAA277317D790F4EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>44F5CBA0AE53C6FBC97DFAA3A96E5CD1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5941E81163C941DBCAA48FD9353746F2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B38D856A54046A05C2B47BFB0A74D25</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>70BC44266C6FFE30D2C57129458E070B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>736E57AD5AEFAAF68D47AE4E8FCB8F68</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>928353533005A4198EBDA5B700D37B64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9CD6DBE0EDCFD074DFDBC0955080E45A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9CFFBDB90AE662F446324E491D858BF7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BA250BDE05647A8E5AE0B5FB0421E3CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE55F21505CFA3B73E30BCB373E7F644</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DBB17756FBA89F483E1118B1947DE043</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA62C505B43C44F23A80CB1F00A66E3B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FE2F1D7B9D9FCEA148517E4657B243F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

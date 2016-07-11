@@ -98,7 +98,7 @@ static NSString *const kUsersKey = @"users";
 
 - (NSArray<NSString *> *)itemNamesSearchHistory
 {
-    NSArray *names = [self.itemNamesHistory objectForKey:kItemNamesKey];
+    NSArray *names = (NSArray *)[self.itemNamesHistory objectForKey:kItemNamesKey];
     return names;
 }
 

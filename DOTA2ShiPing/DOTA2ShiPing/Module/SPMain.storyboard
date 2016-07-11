@@ -23,7 +23,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u7Y-YS-8Sq">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="688"/>
                                 <connections>
-                                    <segue destination="4cc-Op-c3n" kind="embed" id="vnM-uo-0yh"/>
+                                    <segue destination="4cc-Op-c3n" kind="embed" identifier="__undefined" id="vnM-uo-0yh"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WMQ-7R-IIf">
@@ -268,7 +268,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hH6-mK-BiO">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="_____sadsfads" id="hH6-mK-BiO">
                                 <rect key="frame" x="0.0" y="92" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hH6-mK-BiO" id="glM-16-hTi">
@@ -606,7 +606,7 @@
                     <navigationItem key="navigationItem" title="饰品" id="36a-ae-NTD">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="IVx-aV-xI4">
                             <connections>
-                                <segue destination="pg1-rs-7yI" kind="show" id="evA-De-KHw"/>
+                                <segue destination="pg1-rs-7yI" kind="show" identifier="SPItemSearchSegueID" id="evA-De-KHw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -614,7 +614,7 @@
                         <outlet property="collectionView" destination="uDV-6b-DBy" id="alh-ca-ecR"/>
                         <outlet property="flowlayout" destination="of4-sz-SH9" id="5ec-WY-OFF"/>
                         <segue destination="Iwm-Xr-Cq5" kind="show" identifier="SPItemOffPriceSegueID" id="u3j-bd-doe"/>
-                        <segue destination="8US-dM-s8u" kind="show" id="tfD-AW-7Zg"/>
+                        <segue destination="8US-dM-s8u" kind="show" identifier="SPItemHeroPickerSegueID" id="tfD-AW-7Zg"/>
                         <segue destination="bjg-Ke-yRr" kind="show" identifier="SPItemItemListSegueID" id="jzi-1V-qq1"/>
                     </connections>
                 </viewController>
@@ -841,14 +841,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvK-EV-3Cg">
-                                <rect key="frame" x="0.0" y="84" width="414" height="652"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rvK-EV-3Cg">
+                                <rect key="frame" x="0.0" y="104" width="414" height="632"/>
                                 <connections>
                                     <segue destination="0h5-AL-c0G" kind="embed" identifier="SPItemListPageVCSegueID" id="qGk-Lb-LGy"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iAg-R5-kld" customClass="DDSegmentScrollView">
-                                <rect key="frame" x="0.0" y="44" width="414" height="40"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAg-R5-kld" customClass="DDSegmentScrollView">
+                                <rect key="frame" x="0.0" y="64" width="414" height="40"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="pdf-lO-r3x"/>
@@ -1578,7 +1578,7 @@
                                     <action selector="changeMode:" destination="pIa-ra-Hi6" id="sqT-Tm-WyM"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem style="plain" systemItem="search" id="bIq-wi-5Kj">
+                            <barButtonItem systemItem="search" id="bIq-wi-5Kj">
                                 <inset key="imageInsets" minX="8" minY="0.0" maxX="-8" maxY="0.0"/>
                                 <connections>
                                     <action selector="search:" destination="pIa-ra-Hi6" id="efR-VF-yrv"/>
@@ -1616,7 +1616,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="PYM-pX-Nwc">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="____unknown" id="PYM-pX-Nwc">
                                 <rect key="frame" x="0.0" y="92" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PYM-pX-Nwc" id="Q8V-XA-rVa">
@@ -1929,8 +1929,8 @@
         <image name="icon_title_more" width="22" height="5"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="xxb-Qf-zZj"/>
         <segue reference="Nbi-AR-hdo"/>
-        <segue reference="b8f-RE-pTr"/>
-        <segue reference="Dwu-r4-PL6"/>
+        <segue reference="Qj8-wX-kEP"/>
     </inferredMetricsTieBreakers>
 </document>

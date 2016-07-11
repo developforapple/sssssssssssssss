@@ -346,7 +346,10 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
         
         SEL sel = @selector(setFilter:);
         if ([vc respondsToSelector:sel]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             [vc performSelector:sel withObject:sender];
+#pragma clang diagnostic pop
         }
     }
 }
