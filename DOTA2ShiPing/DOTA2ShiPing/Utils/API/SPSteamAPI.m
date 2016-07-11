@@ -232,7 +232,9 @@
     }
     __block NSMutableArray *inventories = [NSMutableArray array];
     
-    void (^Recursion)(NSUInteger idx) = ^(NSUInteger idx){
+    static void (^Recursion)(NSUInteger idx);
+
+    Recursion = ^(NSUInteger idx){
         
         NSLog(@"准备请求：第 %lld 页",theProgress.completedUnitCount);
         

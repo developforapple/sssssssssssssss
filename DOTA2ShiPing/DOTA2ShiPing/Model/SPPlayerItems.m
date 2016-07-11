@@ -87,8 +87,9 @@ YYModelCopyingCodingCode
         if (!rgDescriptionDict) {
             // 这里需要考虑多页的情况。如果多页的条件下 k 对应的 rgDescription 在其他页，就需要重写了。
             NSLog(@"123123123");
+        }else{
+            [tmp addEntriesFromDictionary:rgDescriptionDict];
         }
-        [tmp addEntriesFromDictionary:rgDescriptionDict];
         
         [items addObject:tmp];
     }
