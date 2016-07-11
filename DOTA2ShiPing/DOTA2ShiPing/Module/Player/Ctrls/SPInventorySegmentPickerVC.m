@@ -31,36 +31,43 @@ static NSUInteger kInconclusivePriority = 900;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.closeBtn.tintColor = AppBarColor;
+    self.layout.maximumInteritemSpacing = 16.f;
 }
 
 - (void)show
 {
     self.visible = YES;
+    
     [self.collectionView reloadData];
-    
-    [self.titleView setHidden:NO animated:YES];
-    
-    [UIView animateWithDuration:.4f animations:^{
+    [self.collectionView performBatchUpdates:^{
         
-        self.effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        self.collectionViewBottomConstraint.priority = kConclusivePriority;
-        self.collectionViewHeightConstraint.priority = kInconclusivePriority;
-        [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
-        
+        [self.titleView setHidden:NO animated:YES];
+        [UIView animateWithDuration:.4f animations:^{
+            self.effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+            self.collectionViewBottomConstraint.priority = kConclusivePriority;
+            self.collectionViewHeightConstraint.priority = kInconclusivePriority;
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            
+        }];
     }];
 }
 
 - (void)dismiss
 {
     [self.titleView setHidden:YES animated:YES];
+    [self.collectionView setHidden:YES animated:YES];
     [UIView animateWithDuration:.4f animations:^{
         self.effectView.effect = nil;
+    } completion:^(BOOL finished) {
+        self.visible = NO;
+        [self.collectionView setHidden:NO animated:NO];
         self.collectionViewBottomConstraint.priority = kInconclusivePriority;
         self.collectionViewHeightConstraint.priority = kConclusivePriority;
         [self.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-        self.visible = NO;
     }];
 }
 
@@ -102,7 +109,7 @@ static NSUInteger kInconclusivePriority = 900;
     NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:14]};
     NSString *text = self.titles[indexPath.item];
     CGSize size = [text sizeWithAttributes:attribute];
-    return CGSizeMake(ceilf(size.width) + 16.f, 32.f);
+    return CGSizeMake(ceilf(size.width) + 24.f, 28.f);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

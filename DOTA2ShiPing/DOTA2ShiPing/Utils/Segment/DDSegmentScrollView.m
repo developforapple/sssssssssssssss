@@ -84,10 +84,11 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
     [self resetUnitsIfNeed];
-    
     self.lineLayer.frame = CGRectMake(0, CGRectGetHeight(self.frame)-.5f, CGRectGetWidth(self.frame), .5f);
+    if (self.showChoiceBtn) {
+        [self bringSubviewToFront:self.choiceBtn];
+    }
 }
 
 - (UIScrollView *)scrollView
@@ -143,7 +144,7 @@
         
         _choiceBtn.translatesAutoresizingMaskIntoConstraints = NO;
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":_choiceBtn}]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view(==32)]-0-|" options:kNilOptions metrics:nil views:@{@"view":_choiceBtn}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view(==36)]-0-|" options:kNilOptions metrics:nil views:@{@"view":_choiceBtn}]];
         _choiceBtn.hidden = YES;
         
         [_choiceBtn addTarget:self action:@selector(choiceBtnSelected:) forControlEvents:UIControlEventTouchUpInside];

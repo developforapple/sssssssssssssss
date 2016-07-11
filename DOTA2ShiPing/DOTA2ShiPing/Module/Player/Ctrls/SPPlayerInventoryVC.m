@@ -21,7 +21,6 @@
 #import "ReactiveCocoa.h"
 
 static NSString *const kYGInventoryCategoryPickerSegueID = @"YGInventoryCategoryPickerSegueID";
-static NSString *const kYGInventorySegmentPickerSegueID = @"YGInventorySegmentPickerSegueID";
 static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 @interface SPPlayerInventoryVC ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
@@ -32,9 +31,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 @property (weak, nonatomic) IBOutlet DDSegmentScrollView *segmentView;
 
 @property (weak, nonatomic) IBOutlet UIView *categoryContainer;
-@property (weak, nonatomic) IBOutlet UIView *segmentPickerContainer;
 @property (strong, nonatomic) SPInventoryCategoryPickerVC *categoryPicker;
-@property (strong, nonatomic) SPInventorySegmentPickerVC *segmentPicker;
 @property (strong, nonatomic) UIPageViewController *pageVC;
 @property (strong, nonatomic) NSMutableDictionary<NSNumber *,SPItemListContainer *> *vcs;
 
@@ -75,13 +72,6 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     self.mode = mode;
     
     self.categoryIndicator.layer.anchorPoint = CGPointMake(.5f, .5f);
-    
-    spweakify(self);
-    [self.segmentView setShowChoiceBtn:YES];
-    [self.segmentView setWillChoiceSegment:^{
-        spstrongify(self);
-        [self setSegmentPickerVisible:!self.segmentPicker.isVisible];
-    }];
 }
 
 - (void)initData
@@ -115,15 +105,6 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
              [self.categoryContainer setHidden:YES animated:YES];
          }
      }];
-    [RACObserve(self.segmentPicker, visible)
-     subscribeNext:^(id x) {
-         spstrongify(self);
-         if ([x boolValue]) {
-             [self.segmentPickerContainer setHidden:NO animated:YES];
-         }else{
-             [self.segmentPickerContainer setHidden:YES animated:YES];
-         }
-     }];
 }
 
 - (void)update
@@ -145,18 +126,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 - (void)setCategoryPickerVisible:(BOOL)visible
 {
     if (visible) {
-        [self setSegmentPickerVisible:NO];
         [self.categoryPicker show];
-    }else{
-        [self.categoryPicker dismiss];
-    }
-}
-
-- (void)setSegmentPickerVisible:(BOOL)visible
-{
-    if (visible) {
-        [self setCategoryPickerVisible:NO];
-        [self.segmentPicker show];
     }else{
         [self.categoryPicker dismiss];
     }
@@ -193,7 +163,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     
     UISearchController *vc = [[UISearchController alloc] initWithSearchResultsController:resutVC];
     vc.searchResultsUpdater = resutVC;
-    vc.searchBar.placeholder = @"可搜索：名称/品质/英雄";
+    vc.searchBar.placeholder = @"搜索关键词：名称/品质/英雄";
     vc.searchBar.translucent = YES;
     [vc.searchBar setBackgroundImage:nil];
     vc.searchBar.barTintColor = AppBarColor;
@@ -220,9 +190,9 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    spweakify(self);
     if ([segue.identifier isEqualToString:kYGInventoryCategoryPickerSegueID]) {
         self.categoryPicker = segue.destinationViewController;
-        spweakify(self);
         [self.categoryPicker setDidSelectedCategory:^(SPInventoryCategory type) {
             spstrongify(self);
             [self didChangedCategory:type];
