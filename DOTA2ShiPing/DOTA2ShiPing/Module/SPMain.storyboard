@@ -344,12 +344,31 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="57P-EW-VaL" kind="relationship" relationship="rootViewController" id="E3Y-34-mx8"/>
+                        <segue destination="qcG-wv-Gbf" kind="relationship" relationship="rootViewController" id="VmS-7S-0Ax"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cmo-y8-4ZC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="636" y="3113"/>
+        </scene>
+        <!--创意工坊-->
+        <scene sceneID="8Y7-dM-U0Q">
+            <objects>
+                <viewController storyboardIdentifier="SPWorkshopVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qcG-wv-Gbf" userLabel="创意工坊" customClass="SPWorkshopVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V56-8T-xIH"/>
+                        <viewControllerLayoutGuide type="bottom" id="38z-IF-KcL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6vr-vx-8Cf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MTY-0Z-zJt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5te-i2-as3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1282" y="3113"/>
         </scene>
         <!--搜索-->
         <scene sceneID="XvY-pq-7LP">

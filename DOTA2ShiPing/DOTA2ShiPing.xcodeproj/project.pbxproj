@@ -48,6 +48,7 @@
 		2D3CAC901D327DDA001932E4 /* SPPlayerInventoryFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CAC8F1D327DDA001932E4 /* SPPlayerInventoryFilterVC.m */; };
 		2D3CAC931D32870D001932E4 /* SPPlayerInventorySearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CAC921D32870D001932E4 /* SPPlayerInventorySearchResultVC.m */; };
 		2D3CAC961D32A130001932E4 /* SPItemQuality.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CAC951D32A130001932E4 /* SPItemQuality.m */; };
+		2D3CAC9D1D33C747001932E4 /* SPWorkshopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CAC9C1D33C747001932E4 /* SPWorkshopVC.m */; };
 		2D48D2981CDE20D700190F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D2971CDE20D700190F0C /* main.m */; };
 		2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D29A1CDE20D700190F0C /* AppDelegate.m */; };
 		2D48D2A61CDE20D700190F0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2A51CDE20D700190F0C /* Assets.xcassets */; };
@@ -168,6 +169,8 @@
 		2D3CAC921D32870D001932E4 /* SPPlayerInventorySearchResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventorySearchResultVC.m; sourceTree = "<group>"; };
 		2D3CAC941D32A130001932E4 /* SPItemQuality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemQuality.h; sourceTree = "<group>"; };
 		2D3CAC951D32A130001932E4 /* SPItemQuality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemQuality.m; sourceTree = "<group>"; };
+		2D3CAC9B1D33C747001932E4 /* SPWorkshopVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWorkshopVC.h; sourceTree = "<group>"; };
+		2D3CAC9C1D33C747001932E4 /* SPWorkshopVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWorkshopVC.m; sourceTree = "<group>"; };
 		2D48D2931CDE20D600190F0C /* DOTA2ShiPing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOTA2ShiPing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D48D2971CDE20D700190F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D48D2991CDE20D700190F0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -426,6 +429,36 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2D3CAC971D33C721001932E4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		2D3CAC981D33C721001932E4 /* Ctrls */ = {
+			isa = PBXGroup;
+			children = (
+				2D3CAC9B1D33C747001932E4 /* SPWorkshopVC.h */,
+				2D3CAC9C1D33C747001932E4 /* SPWorkshopVC.m */,
+			);
+			path = Ctrls;
+			sourceTree = "<group>";
+		};
+		2D3CAC991D33C721001932E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2D3CAC9A1D33C721001932E4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2D48D28A1CDE20D600190F0C = {
 			isa = PBXGroup;
 			children = (
@@ -528,8 +561,8 @@
 				2D0FB49E1CEB10B0004A300D /* Search */,
 				2D48D2BB1CDE21A500190F0C /* Main */,
 				2D48D2BE1CDE21A500190F0C /* Player */,
-				2D48D2BF1CDE21A500190F0C /* Setting */,
 				2D48D2C01CDE21A500190F0C /* Workshop */,
+				2D48D2BF1CDE21A500190F0C /* Setting */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -596,6 +629,10 @@
 		2D48D2C01CDE21A500190F0C /* Workshop */ = {
 			isa = PBXGroup;
 			children = (
+				2D3CAC981D33C721001932E4 /* Ctrls */,
+				2D3CAC971D33C721001932E4 /* Common */,
+				2D3CAC991D33C721001932E4 /* Model */,
+				2D3CAC9A1D33C721001932E4 /* View */,
 			);
 			path = Workshop;
 			sourceTree = "<group>";
@@ -1030,6 +1067,7 @@
 				2DF28B8E1D312B95003762DA /* UIView+More.m in Sources */,
 				2D3CAC931D32870D001932E4 /* SPPlayerInventorySearchResultVC.m in Sources */,
 				2D0A824B1CDE362E00F26BD1 /* UIImage+ImageEffects.m in Sources */,
+				2D3CAC9D1D33C747001932E4 /* SPWorkshopVC.m in Sources */,
 				2D0A826A1CDEEF1400F26BD1 /* SPDataManager.m in Sources */,
 				2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */,
 				2D3CAC901D327DDA001932E4 /* SPPlayerInventoryFilterVC.m in Sources */,
