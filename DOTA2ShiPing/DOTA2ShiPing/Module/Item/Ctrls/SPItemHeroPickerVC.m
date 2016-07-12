@@ -173,6 +173,8 @@
 
 @end
 
+#pragma mark - SPItemHeroPickerVC
+
 static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
 
 @interface SPItemHeroPickerVC () <UIPageViewControllerDelegate,UIPageViewControllerDataSource>
@@ -227,8 +229,13 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
 - (void)didSelectedHero:(SPHero *)hero
 {
     [self addHeroToHistory:hero];
-    SPItemFilter *filter = [SPItemFilter filterWithHero:hero];
-    [self performSegueWithIdentifier:kSPItemHeroItemsListSegue sender:filter];
+    
+    if (self.didSelectedHero) {
+        self.didSelectedHero(hero);
+    }else{
+        SPItemFilter *filter = [SPItemFilter filterWithHero:hero];
+        [self performSegueWithIdentifier:kSPItemHeroItemsListSegue sender:filter];
+    }
 }
 
 #pragma mark - UI

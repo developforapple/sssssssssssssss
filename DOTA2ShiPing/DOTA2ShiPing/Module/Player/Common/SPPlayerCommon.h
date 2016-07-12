@@ -20,12 +20,13 @@ typedef NS_ENUM(NSUInteger, SPInventoryCategory) {
     SPInventoryCategoryTreasure ,   //珍藏
     SPInventoryCategoryOther,      //其他
     SPInventoryCategoryTradableSaleable,    //可交易或可出售
+    SPInventoryCategoryFilter,      //使用筛选器
 };
 
-// 选项
+// 选项 中间是未指定 左边是假 右边是真
 typedef NS_ENUM(NSInteger, SPConditionOption) {
-    SPConditionOptionUndefined = -1,    //未指定
-    SPConditionOptionTrue = 1,          //真
+    SPConditionOptionUndefined = 1,    //未指定
+    SPConditionOptionTrue = 2,          //真
     SPConditionOptionFalse = 0,         //假
 };
 

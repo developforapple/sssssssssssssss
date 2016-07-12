@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "SPInventoryFilter.h"
+
+@class SPInventoryFilterCondition;
 
 // 筛选项
 @interface SPPlayerInventorySearchFilterVC : UITableViewController
 
 @property (strong, nonatomic) SPInventoryFilter *filter;
+
+@property (copy, nonatomic) void (^willFilterWithCondition)(void);
 
 @end

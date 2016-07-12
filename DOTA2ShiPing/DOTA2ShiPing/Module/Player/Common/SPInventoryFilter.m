@@ -13,8 +13,10 @@
 // 库存数据
 @property (strong, nonatomic) NSArray<SPPlayerItemDetail *> *baseItems;
 
-// 筛选排序过后的items
+// 分类排序过后的items
 @property (strong, readwrite, nonatomic) NSArray<NSArray<SPPlayerItemDetail *> *> *items;
+// 使用筛选条件进行筛选过后的items。没有进行分类和排序。
+@property (strong, nonatomic) NSArray<SPPlayerItemDetail *> *filteredItems;
 // 筛选排序过后的标题
 @property (strong, readwrite, nonatomic) NSArray<NSString *> *titles;
 
@@ -28,6 +30,7 @@
     if (self) {
         self->_player = player;
         self.baseItems = self.player.inventory.items;
+        self.condition = [[SPInventoryFilterCondition alloc] init];
     }
     return self;
 }
@@ -60,7 +63,94 @@
             [self showTradableSaleableItems];
             break;
         }
+        case SPInventoryCategoryFilter:{
+            [self showFilteredItems];
+            break;
+        }
     }
+}
+
+- (NSInteger)updateWithCondition:(SPInventoryFilterCondition *)condition
+{
+    self.condition = condition;
+    
+    if (!condition) {
+        [self updateWithCategory:self.category];
+        return 0;
+    }
+
+    // 算法1
+    BOOL testTradeable  = condition.tradeable!=SPConditionOptionUndefined;  //是否检查交易类型
+    BOOL isTradeable    = condition.tradeable==SPConditionOptionTrue;       //条件是否是可交易
+    BOOL testMarketable = condition.markedable!=SPConditionOptionUndefined; //是否检查市场类型
+    BOOL isMarketable   = condition.markedable==SPConditionOptionTrue;      //条件是否是可出售
+    BOOL testQuality    = nil!=condition.quality;   //是否检查品质
+    BOOL testHero       = nil!=condition.hero;      //是否检查英雄
+    BOOL testRarity     = nil!=condition.rarity;    //是否检查稀有度
+    
+    NSIndexSet *indexSet =
+    [self.baseItems indexesOfObjectsWithOptions:NSEnumerationConcurrent passingTest:^BOOL(SPPlayerItemDetail *obj, NSUInteger idx, BOOL *stop) {
+        return  (testTradeable  ?   (isTradeable?obj.tradable.boolValue:!obj.tradable.boolValue)            :YES) &&
+                (testMarketable ?   (isMarketable?obj.marketable.boolValue:!obj.marketable.boolValue)       :YES) &&
+                (testQuality    ?   [[obj qualityTag].internal_name isEqualToString:condition.quality.name] :YES) &&
+                (testHero       ?   [[obj heroTag].internal_name isEqualToString:condition.hero.name]       :YES) &&
+                (testRarity     ?   [[obj rarityTag].internal_name isEqualToString:condition.rarity.name]   :YES);
+    }];
+    self.filteredItems = [self.baseItems objectsAtIndexes:indexSet];
+    return self.filteredItems.count;
+    
+    
+    // 算法2
+    
+//    //开始筛选
+//    if (condition.tradeable != SPConditionOptionUndefined) {
+//        // 可交易
+//        NSIndexSet *indexSet = [items indexesOfObjectsWithOptions:NSEnumerationConcurrent passingTest:^BOOL(SPPlayerItemDetail *obj, NSUInteger idx, BOOL *stop) {
+//            return !obj.tradable.boolValue;
+//        }];
+//        [items removeObjectsAtIndexes:indexSet];
+//    }
+//    
+//    if (condition.markedable != SPConditionOptionUndefined) {
+//        // 可出售
+//        
+//        NSIndexSet *indexSet = [items indexesOfObjectsWithOptions:NSEnumerationConcurrent passingTest:^BOOL(SPPlayerItemDetail *obj, NSUInteger idx, BOOL *stop) {
+//            return !obj.marketable.boolValue;
+//        }];
+//        [items removeObjectsAtIndexes:indexSet];
+//    }
+//    
+//    if (condition.quality) {
+//        // 品质可以去掉大多数饰品
+//        NSIndexSet *indexSet = [items indexesOfObjectsWithOptions:NSEnumerationConcurrent passingTest:^BOOL(SPPlayerItemDetail *obj, NSUInteger idx, BOOL *stop) {
+//            SPPlayerInvertoryItemTag *tag = [obj qualityTag];
+//            return ![tag.internal_name isEqualToString:condition.quality.name];
+//        }];
+//        [items removeObjectsAtIndexes:indexSet];
+//    }
+//    
+//    if (condition.hero) {
+//        // 英雄
+//        NSIndexSet *indexSet = [items indexesOfObjectsWithOptions:NSEnumerationConcurrent passingTest:^BOOL(SPPlayerItemDetail *obj, NSUInteger idx, BOOL *stop) {
+//            SPPlayerInvertoryItemTag *tag = [obj heroTag];
+//            return ![tag.internal_name isEqualToString:condition.hero.name];
+//        }];
+//        [items removeObjectsAtIndexes:indexSet];
+//    }
+//    
+//    if (condition.rarity) {
+//        //稀有度
+//        NSIndexSet *indexSet = [items indexesOfObjectsWithOptions:NSEnumerationConcurrent passingTest:^BOOL(SPPlayerItemDetail *obj, NSUInteger idx, BOOL *stop) {
+//            SPPlayerInvertoryItemTag *tag = [obj heroTag];
+//            return ![tag.internal_name isEqualToString:condition.rarity.name];
+//        }];
+//        [items removeObjectsAtIndexes:indexSet];
+//    }
+//    
+//    // 这里不更新UI 只临时保存结果 所以不回调
+//    // 如果要更新UI 需要使用 SPInventoryCategoryFilter 这个类别来更新
+//    self.filteredItems = items;
+//    return items.count;
 }
 
 // 全部饰品
@@ -239,6 +329,7 @@
         case SPInventoryCategoryEvent:
         case SPInventoryCategoryHero:
         case SPInventoryCategoryTradableSaleable:
+        case SPInventoryCategoryFilter:
             break;
         case SPInventoryCategoryCourier: {
             return @[@"courier",@"courier_wearable",@"modifier"];
@@ -320,6 +411,42 @@
     return array;
 }
 
+- (void)showFilteredItems
+{
+    NSArray *items = self.filteredItems;
+    
+    //在这里进行分类排序
+    if (self.condition.hero) {
+        // 有英雄这个条件 就根据英雄的部位来分类
+        
+        //TODO
+        
+    }else{
+        // 其他情况下 只有一个分类
+        
+        NSMutableArray *tmp = [NSMutableArray array];
+        if (self.condition.quality) {
+            NSString *name = self.condition.quality.name_cn;
+            [tmp addObject:name];
+        }
+        if (self.condition.rarity){
+            [tmp addObject:self.condition.rarity.name_cn];
+        }
+        if (self.condition.tradeable != SPConditionOptionUndefined) {
+            [tmp addObject:[self.condition tradeableLocalString]];
+        }
+        if (self.condition.markedable != SPConditionOptionUndefined) {
+            [tmp addObject:[self.condition marketableLocalString]];
+        }
+        NSString *title = [tmp componentsJoinedByString:@" + "];
+        self.titles = @[title];
+        self.items = @[items];
+    }
+    if (self.updateCallback) {
+        self.updateCallback();
+    }
+}
+
 @end
 
 @implementation SPInventoryFilterCondition
@@ -332,6 +459,44 @@
         self.markedable = SPConditionOptionUndefined;
     }
     return self;
+}
+
+- (NSString *)tradeableLocalString
+{
+    switch (self.tradeable) {
+        case SPConditionOptionUndefined: {
+            return @"不限制";
+            break;
+        }
+        case SPConditionOptionTrue: {
+            return @"可交易";
+            break;
+        }
+        case SPConditionOptionFalse: {
+            return @"不可交易";
+            break;
+        }
+    }
+    return nil;
+}
+
+- (NSString *)marketableLocalString
+{
+    switch (self.markedable) {
+        case SPConditionOptionUndefined: {
+            return @"不限制";
+            break;
+        }
+        case SPConditionOptionTrue: {
+            return @"可出售";
+            break;
+        }
+        case SPConditionOptionFalse: {
+            return @"不可出售";
+            break;
+        }
+    }
+    return nil;
 }
 
 @end

@@ -8,6 +8,11 @@
 
 #import "SPBaseViewController.h"
 
+@class SPHero;
+
 @interface SPItemHeroPickerVC : SPBaseViewController
+
+// 如果为NULL，则打开英雄饰品列表页。否则，使用block回调
+@property (copy, nonatomic) void (^didSelectedHero)(SPHero *hero);
 
 @end

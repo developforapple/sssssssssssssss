@@ -10,7 +10,7 @@
 #import "SPMacro.h"
 #import "SPItemListContainer.h"
 #import "SPInventoryFilter.h"
-#import "SPPlayerInventoryFilterVC.h"
+#import "SPPlayerInventorySearchFilterVC.h"
 #import "UIView+More.h"
 #import <ReactiveCocoa.h>
 
@@ -20,7 +20,7 @@ static NSString *const kSPPlayerInventoryFilterSegueID = @"SPPlayerInventoryFilt
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *effectView;
 @property (strong, nonatomic) SPItemListContainer *container;
 @property (weak, nonatomic) IBOutlet UIView *filterContainer;
-@property (strong, nonatomic) SPPlayerInventoryFilterVC *filterVC;
+@property (strong, nonatomic) SPPlayerInventorySearchFilterVC *filterVC;
 
 @end
 
@@ -91,6 +91,7 @@ static NSString *const kSPPlayerInventoryFilterSegueID = @"SPPlayerInventoryFilt
 {
     if ([segue.identifier isEqualToString:kSPPlayerInventoryFilterSegueID]) {
         self.filterVC = segue.destinationViewController;
+        self.filterVC.filter = self.filter;
     }
 }
 
