@@ -12,6 +12,7 @@
 FOUNDATION_EXTERN NSString *const kSPInventoryConditionCell;
 
 @interface SPInventoryConditionCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIView *imageContainer;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *closeBtn;

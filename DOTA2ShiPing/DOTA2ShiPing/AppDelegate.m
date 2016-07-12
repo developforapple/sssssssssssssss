@@ -40,10 +40,6 @@
     [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:AppBarItemColor];
     
     [[UISearchBar appearance] setBackgroundImage:[UIImage imageWithColor:AppBarColor] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
-//    [[UISearchBar appearance] setBarTintColor:AppBarColor];
-//    [[UISearchBar appearance] setTintColor:AppBarColor];
-    
-    [[UIToolbar appearance] setBarTintColor:AppBarColor];
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:AppBarItemColor,NSFontAttributeName:[UIFont boldSystemFontOfSize:16]}];
     [[UINavigationBar appearance] setBarTintColor:AppBarColor];

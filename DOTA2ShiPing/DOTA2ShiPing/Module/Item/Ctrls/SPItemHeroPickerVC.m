@@ -192,11 +192,24 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
 
 @implementation SPItemHeroPickerVC
 
++ (void)presentFrom:(UIViewController *)vc selectedCallback:(SPHeroPickerCallbackBlock)callback
+{
+    SPItemHeroPickerVC *picker = [[self class] instanceFromStoryboard];
+    picker.didSelectedHero = callback;
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:picker];
+    [vc presentViewController:navi animated:YES completion:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self loadHistoryList];
     [self initUI];
+}
+
+- (void)dealloc
+{
+    NSLog(@"%@ dealloc",[self class]);
 }
 
 - (void)loadHistoryList
@@ -232,6 +245,7 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
     
     if (self.didSelectedHero) {
         self.didSelectedHero(hero);
+        [self cancel];
     }else{
         SPItemFilter *filter = [SPItemFilter filterWithHero:hero];
         [self performSegueWithIdentifier:kSPItemHeroItemsListSegue sender:filter];
@@ -258,6 +272,10 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
     self.pageVC.delegate = self;
     self.pageVC.dataSource = self;
     [self.pageVC setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    
+    if ([self.navigationController.viewControllers firstObject] == self) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+    }
 }
 
 - (void)updateUI
@@ -292,7 +310,9 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
             if (index == 0) {
                 [(SPItemHeroListVC *)vc setHistory:self.historyList];
             }
+            spweakify(self);
             [(SPItemHeroListVC *)vc setDidSelectedHero:^(SPHero *hero) {
+                spstrongify(self);
                 [self didSelectedHero:hero];
             }];
             [self.listVCs replaceObjectAtIndex:index withObject:vc];
@@ -314,6 +334,11 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
     [self.historyList removeAllObjects];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kHeroHistorySaveKey];
     [self updateHistoryList];
+}
+
+- (void)cancel
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIPageViewController
@@ -344,7 +369,6 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString *pageVCSegueID = @"SPHeroPickerPageVCSegueID";
-    
     
     if ([segue.identifier isEqualToString:pageVCSegueID]) {
         self.pageVC = [segue destinationViewController];

@@ -81,6 +81,9 @@
 		2DA452421CE0E0E1004BD185 /* SPItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA452411CE0E0E1004BD185 /* SPItemCell.m */; };
 		2DA452451CE0ED35004BD185 /* SPItemColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA452441CE0ED35004BD185 /* SPItemColor.m */; };
 		2DA452521CE0FF4C004BD185 /* SPLogoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA452511CE0FF4C004BD185 /* SPLogoHeader.m */; };
+		2DA9F7711D35490200F87053 /* RWDropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA9F76C1D35490200F87053 /* RWDropdownMenu.m */; };
+		2DA9F7721D35490200F87053 /* RWDropdownMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA9F76E1D35490200F87053 /* RWDropdownMenuCell.m */; };
+		2DA9F7731D35490200F87053 /* RWDropdownMenuTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA9F7701D35490200F87053 /* RWDropdownMenuTransitionController.m */; };
 		2DB174861D14FBDE0042417D /* SPDotabuffAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB174851D14FBDE0042417D /* SPDotabuffAPI.m */; };
 		2DB174891D14FBE70042417D /* SPSteamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB174881D14FBE70042417D /* SPSteamAPI.m */; };
 		2DF28B7B1D30B1A6003762DA /* SPPlayerAliasesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B7A1D30B1A6003762DA /* SPPlayerAliasesVC.m */; };
@@ -233,6 +236,12 @@
 		2DA452441CE0ED35004BD185 /* SPItemColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemColor.m; sourceTree = "<group>"; };
 		2DA452501CE0FF4C004BD185 /* SPLogoHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLogoHeader.h; sourceTree = "<group>"; };
 		2DA452511CE0FF4C004BD185 /* SPLogoHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLogoHeader.m; sourceTree = "<group>"; };
+		2DA9F76B1D35490200F87053 /* RWDropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWDropdownMenu.h; sourceTree = "<group>"; };
+		2DA9F76C1D35490200F87053 /* RWDropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWDropdownMenu.m; sourceTree = "<group>"; };
+		2DA9F76D1D35490200F87053 /* RWDropdownMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWDropdownMenuCell.h; sourceTree = "<group>"; };
+		2DA9F76E1D35490200F87053 /* RWDropdownMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWDropdownMenuCell.m; sourceTree = "<group>"; };
+		2DA9F76F1D35490200F87053 /* RWDropdownMenuTransitionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWDropdownMenuTransitionController.h; sourceTree = "<group>"; };
+		2DA9F7701D35490200F87053 /* RWDropdownMenuTransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWDropdownMenuTransitionController.m; sourceTree = "<group>"; };
 		2DB174841D14FBDE0042417D /* SPDotabuffAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDotabuffAPI.h; sourceTree = "<group>"; };
 		2DB174851D14FBDE0042417D /* SPDotabuffAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDotabuffAPI.m; sourceTree = "<group>"; };
 		2DB174871D14FBE70042417D /* SPSteamAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSteamAPI.h; sourceTree = "<group>"; };
@@ -508,6 +517,7 @@
 		2D48D2B01CDE21A500190F0C /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				2DA9F76A1D35490200F87053 /* RWDropdownMenu */,
 				2D9C8B6B1D154EBC00F217AE /* LCActionSheet */,
 				2D0A826E1CDF303500F26BD1 /* BaiduAD */,
 			);
@@ -788,6 +798,19 @@
 			path = UIViewController;
 			sourceTree = "<group>";
 		};
+		2DA9F76A1D35490200F87053 /* RWDropdownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				2DA9F76B1D35490200F87053 /* RWDropdownMenu.h */,
+				2DA9F76C1D35490200F87053 /* RWDropdownMenu.m */,
+				2DA9F76D1D35490200F87053 /* RWDropdownMenuCell.h */,
+				2DA9F76E1D35490200F87053 /* RWDropdownMenuCell.m */,
+				2DA9F76F1D35490200F87053 /* RWDropdownMenuTransitionController.h */,
+				2DA9F7701D35490200F87053 /* RWDropdownMenuTransitionController.m */,
+			);
+			path = RWDropdownMenu;
+			sourceTree = "<group>";
+		};
 		2DF28B8B1D312B82003762DA /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -1044,6 +1067,7 @@
 				2D86C0F41CF9CA13008E1C5D /* SPSearchBar.m in Sources */,
 				2DF28B7B1D30B1A6003762DA /* SPPlayerAliasesVC.m in Sources */,
 				2DA452521CE0FF4C004BD185 /* SPLogoHeader.m in Sources */,
+				2DA9F7711D35490200F87053 /* RWDropdownMenu.m in Sources */,
 				2D86C0FF1CFAF8B2008E1C5D /* SPMaxPlusAPI.m in Sources */,
 				2D0FB4A41CEB10F1004A300D /* SPSearchVC.m in Sources */,
 				44399A0B1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m in Sources */,
@@ -1060,11 +1084,13 @@
 				2DA452451CE0ED35004BD185 /* SPItemColor.m in Sources */,
 				44C71DA11D3360DD00D2E06F /* SPInventorySegmentPickerVC.m in Sources */,
 				2D0A82471CDE32F500F26BD1 /* SPItemEntranceCell.m in Sources */,
+				2DA9F7721D35490200F87053 /* RWDropdownMenuCell.m in Sources */,
 				2D6AACAE1CE76F3300A7D610 /* SPItemSets.m in Sources */,
 				2D6E24381D3020EA00995045 /* SPLeftAlignmentLayout.m in Sources */,
 				2DF28B8A1D30FE95003762DA /* SPInventoryFilter.m in Sources */,
 				2D86C0FA1CFAEECA008E1C5D /* SPBaseViewController.m in Sources */,
 				2DF28B8E1D312B95003762DA /* UIView+More.m in Sources */,
+				2DA9F7731D35490200F87053 /* RWDropdownMenuTransitionController.m in Sources */,
 				2D3CAC931D32870D001932E4 /* SPPlayerInventorySearchResultVC.m in Sources */,
 				2D0A824B1CDE362E00F26BD1 /* UIImage+ImageEffects.m in Sources */,
 				2D3CAC9D1D33C747001932E4 /* SPWorkshopVC.m in Sources */,

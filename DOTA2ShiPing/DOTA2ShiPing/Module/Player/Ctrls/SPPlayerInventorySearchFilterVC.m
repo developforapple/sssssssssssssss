@@ -9,6 +9,9 @@
 #import "SPPlayerInventorySearchFilterVC.h"
 #import "SPMacro.h"
 #import "SPInventoryConditionCell.h"
+#import "SPItemHeroPickerVC.h"
+#import "RWDropdownMenu.h"
+#import <YYCategories.h>
 
 @interface SPPlayerInventorySearchFilterVC () <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -70,6 +73,21 @@
 - (void)removeConditionType:(SPConditionType)type
 {
     [self.view.window endEditing:YES];
+    switch (type) {
+        case SPConditionTypeHero: {
+            self.condition.hero = nil;
+            break;
+        }
+        case SPConditionTypeQuality: {
+            self.condition.quality = nil;
+            break;
+        }
+        case SPConditionTypeRarity: {
+            self.condition.rarity = nil;
+            break;
+        }
+    }
+    [self update];
 }
 
 #pragma mark - Action
@@ -89,6 +107,53 @@
     [self.view.window endEditing:YES];
 }
 
+- (void)showQualityOptions
+{
+    NSArray *qualities = [[SPDataManager shared] qualities];
+    
+    spweakify(self);
+    void (^action)(SPItemQuality *q) = ^(SPItemQuality *q){
+        spstrongify(self);
+        self.condition.quality = q;
+        [self update];
+    };
+    
+    NSMutableArray *array = [NSMutableArray array];
+    for (SPItemQuality *q in qualities) {
+        UIColor *color = [UIColor colorWithHexString:q.hexcolor];
+        UIImage *image = [UIImage imageWithColor:color size:CGSizeMake(20, 20)];
+        RWDropdownMenuItem *item = [RWDropdownMenuItem itemWithText:q.name_cn image:image action:^{
+            action(q);
+        }];
+        [array addObject:item];
+    } 
+    
+    [RWDropdownMenu presentFromViewController:self.parentViewController withItems:array align:RWDropdownMenuCellAlignmentLeft style:RWDropdownMenuStyleTranslucent navBarImage:nil completion:nil];
+}
+
+- (void)showRarityOptions
+{
+    NSArray *rarities = [[SPDataManager shared] rarities];
+    
+    spweakify(self);
+    void (^action)(SPItemRarity *r) = ^(SPItemRarity *r){
+        spstrongify(self);
+        self.condition.rarity = r;
+        [self update];
+    };
+    
+    NSMutableArray *array = [NSMutableArray array];
+    for (SPItemRarity *r in rarities) {
+        SPItemColor *color = [[SPDataManager shared] colorOfName:r.color];
+        UIImage *image = [UIImage imageWithColor:color.color size:CGSizeMake(20, 20)];
+        RWDropdownMenuItem *item = [RWDropdownMenuItem itemWithText:r.name_cn image:image action:^{
+            action(r);
+        }];
+        [array addObject:item];
+    }
+    [RWDropdownMenu presentFromViewController:self.parentViewController withItems:array align:RWDropdownMenuCellAlignmentRight style:RWDropdownMenuStyleTranslucent navBarImage:nil completion:nil];
+}
+
 #pragma mark - UICollectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -100,7 +165,9 @@
     SPInventoryConditionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSPInventoryConditionCell forIndexPath:indexPath];
     cell.type = indexPath.item;
     [cell configureWithCondition:self.condition];
+    spweakify(self);
     [cell setWillRemoveCondition:^(SPConditionType type) {
+        spstrongify(self);
         [self removeConditionType:type];
     }];
     return cell;
@@ -112,15 +179,20 @@
     SPConditionType type = indexPath.item;
     switch (type) {
         case SPConditionTypeHero: {
-            
+            spweakify(self);
+            [SPItemHeroPickerVC presentFrom:self.parentViewController selectedCallback:^(SPHero *hero) {
+                spstrongify(self);
+                self.condition.hero = hero;
+                [self update];
+            }];
             break;
         }
         case SPConditionTypeQuality: {
-            
+            [self showQualityOptions];
             break;
         }
         case SPConditionTypeRarity: {
-            
+            [self showRarityOptions];
             break;
         }
     }
