@@ -11,6 +11,7 @@
 
 @class SPInventoryFilter;
 
+// 显示搜索结果
 @interface SPPlayerInventorySearchResultVC : UIViewController <UISearchControllerDelegate,UISearchResultsUpdating,UISearchBarDelegate>
 
 @property (strong, nonatomic) SPInventoryFilter *filter;

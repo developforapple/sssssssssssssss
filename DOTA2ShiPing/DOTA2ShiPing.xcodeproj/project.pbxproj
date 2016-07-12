@@ -88,6 +88,8 @@
 		2DF28B871D30E9AF003762DA /* SPInventoryCategoryPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B861D30E9AF003762DA /* SPInventoryCategoryPickerVC.m */; };
 		2DF28B8A1D30FE95003762DA /* SPInventoryFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B891D30FE95003762DA /* SPInventoryFilter.m */; };
 		2DF28B8E1D312B95003762DA /* UIView+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B8D1D312B95003762DA /* UIView+More.m */; };
+		44399A0B1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A0A1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m */; };
+		44399A0E1D3494D0006F0F16 /* SPInventoryConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A0D1D3494D0006F0F16 /* SPInventoryConditionCell.m */; };
 		44C71DA11D3360DD00D2E06F /* SPInventorySegmentPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C71DA01D3360DD00D2E06F /* SPInventorySegmentPickerVC.m */; };
 /* End PBXBuildFile section */
 
@@ -244,6 +246,10 @@
 		2DF28B891D30FE95003762DA /* SPInventoryFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInventoryFilter.m; sourceTree = "<group>"; };
 		2DF28B8C1D312B95003762DA /* UIView+More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+More.h"; sourceTree = "<group>"; };
 		2DF28B8D1D312B95003762DA /* UIView+More.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+More.m"; sourceTree = "<group>"; };
+		44399A091D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventorySearchFilterVC.h; sourceTree = "<group>"; };
+		44399A0A1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventorySearchFilterVC.m; sourceTree = "<group>"; };
+		44399A0C1D3494D0006F0F16 /* SPInventoryConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInventoryConditionCell.h; sourceTree = "<group>"; };
+		44399A0D1D3494D0006F0F16 /* SPInventoryConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInventoryConditionCell.m; sourceTree = "<group>"; };
 		44C71D9F1D3360DD00D2E06F /* SPInventorySegmentPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInventorySegmentPickerVC.h; sourceTree = "<group>"; };
 		44C71DA01D3360DD00D2E06F /* SPInventorySegmentPickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInventorySegmentPickerVC.m; sourceTree = "<group>"; };
 		939CCEAA439897D1DEE60C3E /* libPods-DOTA2ShiPing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DOTA2ShiPing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -686,6 +692,8 @@
 				2D3CAC8F1D327DDA001932E4 /* SPPlayerInventoryFilterVC.m */,
 				2D3CAC911D32870D001932E4 /* SPPlayerInventorySearchResultVC.h */,
 				2D3CAC921D32870D001932E4 /* SPPlayerInventorySearchResultVC.m */,
+				44399A091D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.h */,
+				44399A0A1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m */,
 			);
 			path = Ctrls;
 			sourceTree = "<group>";
@@ -695,6 +703,8 @@
 			children = (
 				2D925F971D28C05100CF70BE /* SPPlayerCell.h */,
 				2D925F981D28C05100CF70BE /* SPPlayerCell.m */,
+				44399A0C1D3494D0006F0F16 /* SPInventoryConditionCell.h */,
+				44399A0D1D3494D0006F0F16 /* SPInventoryConditionCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -999,10 +1009,12 @@
 				2DA452521CE0FF4C004BD185 /* SPLogoHeader.m in Sources */,
 				2D86C0FF1CFAF8B2008E1C5D /* SPMaxPlusAPI.m in Sources */,
 				2D0FB4A41CEB10F1004A300D /* SPSearchVC.m in Sources */,
+				44399A0B1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m in Sources */,
 				2D86C10D1CFB13C7008E1C5D /* SPSearchCell.m in Sources */,
 				2D494BBC1CE0C15100491A20 /* SPItem.m in Sources */,
 				2D1CA5A81D15705400B169E0 /* SPPlayerItems.m in Sources */,
 				2D0A82651CDEEEA600F26BD1 /* SPItemSlot.m in Sources */,
+				44399A0E1D3494D0006F0F16 /* SPInventoryConditionCell.m in Sources */,
 				2D86C10A1CFB0F30008E1C5D /* SPPlayerListVC.m in Sources */,
 				2D86C1041CFB00E3008E1C5D /* SPPlayer.m in Sources */,
 				2D0A82A21CDF3A7700F26BD1 /* SPLaunchADVC.m in Sources */,

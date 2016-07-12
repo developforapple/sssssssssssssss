@@ -22,5 +22,18 @@ typedef NS_ENUM(NSUInteger, SPInventoryCategory) {
     SPInventoryCategoryTradableSaleable,    //可交易或可出售
 };
 
+// 选项
+typedef NS_ENUM(NSInteger, SPConditionOption) {
+    SPConditionOptionUndefined = -1,    //未指定
+    SPConditionOptionTrue = 1,          //真
+    SPConditionOptionFalse = 0,         //假
+};
+
+typedef NS_ENUM(NSUInteger, SPConditionType) {
+    SPConditionTypeHero,
+    SPConditionTypeQuality,
+    SPConditionTypeRarity,
+};
+
 #endif /* SPPlayerCommn_h */
 

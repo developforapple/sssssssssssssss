@@ -10,11 +10,18 @@
 #import "SPMacro.h"
 #import "SPItemListContainer.h"
 #import "SPInventoryFilter.h"
+#import "SPPlayerInventoryFilterVC.h"
+#import "UIView+More.h"
 #import <ReactiveCocoa.h>
+
+static NSString *const kSPPlayerInventoryFilterSegueID = @"SPPlayerInventoryFilterSegueID";
 
 @interface SPPlayerInventorySearchResultVC ()
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *effectView;
 @property (strong, nonatomic) SPItemListContainer *container;
+@property (weak, nonatomic) IBOutlet UIView *filterContainer;
+@property (strong, nonatomic) SPPlayerInventoryFilterVC *filterVC;
+
 @end
 
 @implementation SPPlayerInventorySearchResultVC
@@ -22,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    self.effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     
     self.container = [SPItemListContainer instanceFromStoryboard];
     self.container.mode = self.mode;
@@ -42,19 +49,49 @@
          if ([x boolValue]) {
              spstrongify(self);
              self.view.hidden = NO;
+             
+             [self setFilterVisible:YES];
          }
      }];
+}
+
+- (void)setSearchResultListVisible:(BOOL)visible
+{
+    [self.container.view setHidden:!visible animated:YES];
+    if (visible) {
+        [self setFilterVisible:NO];
+    }
+}
+
+- (void)setFilterVisible:(BOOL)visible
+{
+    [self.filterContainer setHidden:!visible animated:YES];
+    if (visible) {
+        [self setSearchResultListVisible:NO];
+    }
 }
 
 #pragma mark - UISearchController
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
+    NSString *text = searchController.searchBar.text;
+    if (self.container.view.hidden && text.length != 0) {
+        [self setSearchResultListVisible:YES];
+    }
     NSArray *items = [self.filter itemsWithKeywords:searchController.searchBar.text];
     self.container.items = items;
 }
 
 - (void)presentSearchController:(UISearchController *)searchController
 {
+}
+
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kSPPlayerInventoryFilterSegueID]) {
+        self.filterVC = segue.destinationViewController;
+    }
 }
 
 @end

@@ -22,6 +22,16 @@
 #define DeviceWidth CGRectGetWidth([UIScreen mainScreen].bounds)
 #define DeviceHeight CGRectGetHeight([UIScreen mainScreen].bounds)
 
+#define IS_3_5_INCH_SCREEN ((UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone) && ((int)MAX(DeviceWidth, DeviceHeight)<568))
+#define IS_4_0_INCH_SCREEN ((UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone) && ((int)MAX(DeviceWidth, DeviceHeight)==568))
+#define IS_4_7_INCH_SCREEN ((UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone) && ((int)MAX(DeviceWidth, DeviceHeight)==667))
+#define IS_5_5_INCH_SCREEN ((UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone) && ((int)MAX(DeviceWidth, DeviceHeight)>667))
+
+#define iOS7    (Device_SysVersion >= 7.0f)
+#define iOS8    (Device_SysVersion >= 8.0f)
+#define iOS9    (Device_SysVersion >= 9.0f)
+#define iOS10   (Device_SysVersion >= 10.0f)
+
 #import "DDMainTBC.h"
 #import "DDProgressHUD.h"
 #import "SPDataManager.h"

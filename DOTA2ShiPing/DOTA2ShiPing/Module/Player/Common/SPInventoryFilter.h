@@ -37,7 +37,14 @@
 
 @end
 
+#import "SPHero.h"
+#import "SPItemRarity.h"
+#import "SPItemQuality.h"
 
 @interface SPInventoryFilterCondition : NSObject
-@property (strong, nonatomic) NSString *keywords;
+@property (strong, nonatomic) SPHero *hero;
+@property (strong, nonatomic) SPItemRarity *rarity;
+@property (strong, nonatomic) SPItemQuality *quality;
+@property (assign, nonatomic) SPConditionOption tradeable;  //默认-1
+@property (assign, nonatomic) SPConditionOption markedable; //默认-1
 @end

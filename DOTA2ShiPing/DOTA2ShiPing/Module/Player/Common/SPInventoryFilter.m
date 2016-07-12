@@ -322,4 +322,16 @@
 
 @end
 
+@implementation SPInventoryFilterCondition
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.tradeable = SPConditionOptionUndefined;
+        self.markedable = SPConditionOptionUndefined;
+    }
+    return self;
+}
+
+@end
