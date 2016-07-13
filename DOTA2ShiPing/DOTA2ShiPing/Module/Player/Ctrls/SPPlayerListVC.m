@@ -142,6 +142,12 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
     
 }
 
+#pragma mark - PopTips
+- (void)showUpdatePopTips
+{
+    
+}
+
 #pragma mark - Actions
 - (IBAction)add:(id)sender
 {

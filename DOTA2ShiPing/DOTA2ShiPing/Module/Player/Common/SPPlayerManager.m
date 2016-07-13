@@ -228,7 +228,7 @@
 
 @end
 
-@implementation SPPlayerManager (Info)
+@implementation SPPlayerManager (Update)
 
 
 @end

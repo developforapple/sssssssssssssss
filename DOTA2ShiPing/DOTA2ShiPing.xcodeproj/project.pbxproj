@@ -94,6 +94,7 @@
 		44399A0E1D3494D0006F0F16 /* SPInventoryConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A0D1D3494D0006F0F16 /* SPInventoryConditionCell.m */; };
 		44399A141D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A131D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m */; };
 		44399A181D361504006F0F16 /* SPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A171D361504006F0F16 /* SPPopoverView.m */; };
+		44399A1C1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A1B1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -261,6 +262,8 @@
 		44399A131D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventorySearchAllPlayerVC.m; sourceTree = "<group>"; };
 		44399A161D361504006F0F16 /* SPPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPopoverView.h; sourceTree = "<group>"; };
 		44399A171D361504006F0F16 /* SPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPopoverView.m; sourceTree = "<group>"; };
+		44399A1A1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventoryUpdateVC.h; sourceTree = "<group>"; };
+		44399A1B1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventoryUpdateVC.m; sourceTree = "<group>"; };
 		939CCEAA439897D1DEE60C3E /* libPods-DOTA2ShiPing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DOTA2ShiPing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -719,6 +722,7 @@
 		2D86C1061CFB0F0C008E1C5D /* Ctrls */ = {
 			isa = PBXGroup;
 			children = (
+				44399A191D362D57006F0F16 /* Update */,
 				2D86C1081CFB0F30008E1C5D /* SPPlayerListVC.h */,
 				2D86C1091CFB0F30008E1C5D /* SPPlayerListVC.m */,
 				2D57A3001D29028300D36150 /* SPPlayerDetailInfoVC.h */,
@@ -821,6 +825,15 @@
 				44399A171D361504006F0F16 /* SPPopoverView.m */,
 			);
 			path = Popover;
+			sourceTree = "<group>";
+		};
+		44399A191D362D57006F0F16 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				44399A1A1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.h */,
+				44399A1B1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m */,
+			);
+			path = Update;
 			sourceTree = "<group>";
 		};
 		9DF9275624812581C6DA2B9C /* Frameworks */ = {
@@ -1118,6 +1131,7 @@
 				2D6AACAA1CE738B200A7D610 /* SPItem+Cache.m in Sources */,
 				2D86C0F71CFAA0D9008E1C5D /* SPSearchEngine.m in Sources */,
 				2DB174861D14FBDE0042417D /* SPDotabuffAPI.m in Sources */,
+				44399A1C1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m in Sources */,
 				2D57A3021D29028300D36150 /* SPPlayerDetailInfoVC.m in Sources */,
 				2D0A82501CDE4CAB00F26BD1 /* SPItemOffPriceVC.m in Sources */,
 				2D494BB61CE0BE9700491A20 /* SPItemFilter.m in Sources */,

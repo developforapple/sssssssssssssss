@@ -9,13 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SPPlayer.h"
 
-//typedef NS_ENUM(NSUInteger, SPPlayerItemsStatus) {
-//    SPPlayerItemsStatusNotRecord,
-//    SPPlayerItemsStatusLatest,
-//    SPPlayerItemsStatusLoading,
-//    SPPlayerItemsStatus
-//};
-
 @interface SPPlayerManager : NSObject
 
 + (instancetype)shared;
@@ -49,6 +42,7 @@ typedef void(^SPCompletion)(BOOL suc, NSString *msg);
 
 // 库存数据更新日期。返回nil表示没有数据
 - (NSDate *)archivedPlayerInventoryUpdateDate:(SPPlayer *)player;
+
 // 读取
 - (void)readArchivedPlayerInventory:(SPPlayer *)player;
 // 保存
@@ -56,5 +50,8 @@ typedef void(^SPCompletion)(BOOL suc, NSString *msg);
 
 @end
 
-@interface SPPlayerManager (Info)
+@interface SPPlayerManager (Update)
+
+@property (assign, readonly, nonatomic) BOOL check
+
 @end

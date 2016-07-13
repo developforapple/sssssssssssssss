@@ -36,5 +36,13 @@ typedef NS_ENUM(NSUInteger, SPConditionType) {
     SPConditionTypeRarity,
 };
 
+typedef NS_ENUM(NSUInteger, SPPlayerInventoryStatus) {
+    SPPlayerInventoryStatusNoData,      //没有数据
+    SPPlayerInventoryStatusNormal,      //正常
+    SPPlayerInventoryStatusNeedUpdate,  //需要更新
+    SPPlayerInventoryStatusUpdating,    //更新中
+    SPPlayerInventoryStatusFailed,      //失败
+};
+
 #endif /* SPPlayerCommn_h */
 
