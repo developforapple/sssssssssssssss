@@ -20,6 +20,9 @@
 // 筛选排序过后的标题
 @property (strong, readwrite, nonatomic) NSArray<NSString *> *titles;
 
+@property (strong, readwrite, nonatomic) SPPlayer *player;
+@property (assign, readwrite, nonatomic) SPInventoryCategory category;
+@property (strong, readwrite, nonatomic) SPInventoryFilterCondition *condition;
 @end
 
 @implementation SPInventoryFilter
@@ -30,43 +33,49 @@
     if (self) {
         self->_player = player;
         self.baseItems = self.player.inventory.items;
-        self.condition = [[SPInventoryFilterCondition alloc] init];
     }
     return self;
 }
 
 - (void)updateWithCategory:(SPInventoryCategory)category
 {
-    switch (category) {
-        case SPInventoryCategoryAll: {
-            [self showAllItems];
-            break;
+    @try {
+        self.category = category;
+        switch (category) {
+            case SPInventoryCategoryAll: {
+                [self showAllItems];
+                break;
+            }
+            case SPInventoryCategoryEvent: {
+                [self showEventItems];
+                break;
+            }
+            case SPInventoryCategoryHero: {
+                [self showHeroItems];
+                break;
+            }
+            case SPInventoryCategoryCourier:
+            case SPInventoryCategoryWorld:
+            case SPInventoryCategoryHud:
+            case SPInventoryCategoryAudio:
+            case SPInventoryCategoryTreasure:
+            case SPInventoryCategoryOther: {
+                [self filterItemsWithCategory:category];
+                break;
+            }
+            case SPInventoryCategoryTradableSaleable:{
+                [self showTradableSaleableItems];
+                break;
+            }
+            case SPInventoryCategoryFilter:{
+                [self showFilteredItems];
+                break;
+            }
         }
-        case SPInventoryCategoryEvent: {
-            [self showEventItems];
-            break;
-        }
-        case SPInventoryCategoryHero: {
-            [self showHeroItems];
-            break;
-        }
-        case SPInventoryCategoryCourier:
-        case SPInventoryCategoryWorld:
-        case SPInventoryCategoryHud:
-        case SPInventoryCategoryAudio:
-        case SPInventoryCategoryTreasure:
-        case SPInventoryCategoryOther: {
-            [self filterItemsWithCategory:category];
-            break;
-        }
-        case SPInventoryCategoryTradableSaleable:{
-            [self showTradableSaleableItems];
-            break;
-        }
-        case SPInventoryCategoryFilter:{
-            [self showFilteredItems];
-            break;
-        }
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
     }
 }
 
@@ -88,13 +97,15 @@
     BOOL testHero       = nil!=condition.hero;      //是否检查英雄
     BOOL testRarity     = nil!=condition.rarity;    //是否检查稀有度
     
+    NSString *rarityName = [NSString stringWithFormat:@"Rarity_%@",condition.rarity.name.capitalizedString];
+    
     NSIndexSet *indexSet =
     [self.baseItems indexesOfObjectsWithOptions:NSEnumerationConcurrent passingTest:^BOOL(SPPlayerItemDetail *obj, NSUInteger idx, BOOL *stop) {
         return  (testTradeable  ?   (isTradeable?obj.tradable.boolValue:!obj.tradable.boolValue)            :YES) &&
                 (testMarketable ?   (isMarketable?obj.marketable.boolValue:!obj.marketable.boolValue)       :YES) &&
                 (testQuality    ?   [[obj qualityTag].internal_name isEqualToString:condition.quality.name] :YES) &&
                 (testHero       ?   [[obj heroTag].internal_name isEqualToString:condition.hero.name]       :YES) &&
-                (testRarity     ?   [[obj rarityTag].internal_name isEqualToString:condition.rarity.name]   :YES);
+                (testRarity     ?   [[obj rarityTag].internal_name isEqualToString:rarityName]   :YES);
     }];
     self.filteredItems = [self.baseItems objectsAtIndexes:indexSet];
     return self.filteredItems.count;
@@ -159,6 +170,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     for (SPPlayerItemDetail *item in self.baseItems) {
         SPPlayerInvertoryItemTag *tag = [item rarityTag];
+        if (!tag) continue;
         NSString *name = tag.name;
         NSMutableArray *tmp = dict[name];
         if (!tmp) {
@@ -232,6 +244,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     for (SPPlayerItemDetail *item in self.baseItems) {
         SPPlayerInvertoryItemTag *tag = [item heroTag];
+        if (!tag) continue;
         NSString *name = tag.name;
         NSMutableArray *tmp = dict[name];
         if (!tmp) {
@@ -270,6 +283,7 @@
     
     for (SPPlayerItemDetail *item in self.baseItems) {
         SPPlayerInvertoryItemTag *tag = [item typeTag];
+        if (!tag) continue;
         
         NSString *internal_name = tag.internal_name;
         NSString *name = tag.name;
@@ -392,14 +406,14 @@
     for (SPPlayerItemDetail *item in self.baseItems) {
         if (quality) {
             SPPlayerInvertoryItemTag *tag = item.qualityTag;
-            if ([tag.internal_name isEqualToString:quality.name]) {
+            if (!tag && [tag.internal_name isEqualToString:quality.name]) {
                 [array addObject:item];
                 continue;
             }
         }
         if (hero){
             SPPlayerInvertoryItemTag *tag = item.heroTag;
-            if ([tag.internal_name isEqualToString:hero.name]) {
+            if (!tag && [tag.internal_name isEqualToString:hero.name]) {
                 [array addObject:item];
                 continue;
             }
@@ -413,13 +427,52 @@
 
 - (void)showFilteredItems
 {
-    NSArray *items = self.filteredItems;
+    if (!self.condition ) {
+        if (self.updateCallback) {
+            self.updateCallback();
+        }
+        return;
+    }
+    
+    NSArray<SPPlayerItemDetail *> *items = self.filteredItems;
+    if (!items || items.count == 0) {
+        self.items = @[];
+        self.titles = @[];
+        if (self.updateCallback) {
+            self.updateCallback();
+        }
+        return;
+    }
     
     //在这里进行分类排序
     if (self.condition.hero) {
         // 有英雄这个条件 就根据英雄的部位来分类
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        for (SPPlayerItemDetail *item in items) {
+            SPPlayerInvertoryItemTag *tag = [item slotTag];
+            if (!tag) continue;
+            NSString *name = tag.name;
+            NSMutableArray *array = dict[name];
+            if (!array) {
+                array = [NSMutableArray array];
+                dict[name] = array;
+            }
+            [array addObject:item];
+        }
         
-        //TODO
+        NSArray *titles = [dict allKeys];
+        NSArray *values = [dict objectsForKeys:titles notFoundMarker:@[]];
+        
+        NSMutableArray *fullTitles = [NSMutableArray array];
+        for (NSUInteger idx = 0; idx < values.count; idx ++ ) {
+            NSString *t = titles[idx];
+            NSUInteger c = [values[idx] count];
+            NSString *title = [NSString stringWithFormat:@"%@ %lu",t,(unsigned long)c];
+            [fullTitles addObject:title];
+        }
+        
+        self.titles = fullTitles;
+        self.items = values;
         
     }else{
         // 其他情况下 只有一个分类

@@ -120,6 +120,7 @@ YYModelCopyingCodingCode
 @property (strong, nonatomic) SPPlayerInvertoryItemTag *heroTag;
 @property (strong, nonatomic) SPPlayerInvertoryItemTag *typeTag;
 @property (strong, nonatomic) SPPlayerInvertoryItemTag *qualityTag;
+@property (strong, nonatomic) SPPlayerInvertoryItemTag *slotTag;
 @end
 
 @implementation SPPlayerItemDetail
@@ -177,6 +178,14 @@ YYModelCopyingCodingCode
         _qualityTag = [self tagOfName:@"Quality"];
     }
     return _qualityTag;
+}
+
+- (SPPlayerInvertoryItemTag *)slotTag
+{
+    if (!_slotTag) {
+        _slotTag = [self tagOfName:@"Slot"];
+    }
+    return _slotTag;
 }
 
 YYModelCopyingCodingCode

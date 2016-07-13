@@ -238,6 +238,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="用户" id="DnA-A9-vVW">
+                        <barButtonItem key="leftBarButtonItem" title="更新" id="1sM-ks-FU6"/>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="FZD-Xf-P78">
                                 <connections>
@@ -250,7 +251,10 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addBtnItem" destination="FZD-Xf-P78" id="k2r-dh-tdj"/>
                         <outlet property="tableView" destination="gZX-5x-m8A" id="xUc-9H-pxR"/>
+                        <outlet property="tagBtnItem" destination="M4D-0k-kil" id="bpI-QP-Acv"/>
+                        <outlet property="updateBtnItem" destination="1sM-ks-FU6" id="Ux1-AQ-7FR"/>
                         <segue destination="pg1-rs-7yI" kind="show" identifier="SPPlayerSearchSegueID" id="Nbi-AR-hdo"/>
                         <segue destination="6Km-P9-x2X" kind="show" identifier="SPPlayerDetailSegueID" id="b8f-RE-pTr"/>
                     </connections>
@@ -1089,10 +1093,10 @@
             </objects>
             <point key="canvasLocation" x="4294" y="-323"/>
         </scene>
-        <!--Search Player ItemsVC-->
+        <!--Player Inventory Search All PlayerVC-->
         <scene sceneID="GJ0-sn-hKW">
             <objects>
-                <viewController storyboardIdentifier="SPSearchPlayerItemsVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wO4-57-lcv" customClass="SPSearchPlayerItemsVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SPPlayerInventorySearchAllPlayerVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wO4-57-lcv" customClass="SPPlayerInventorySearchAllPlayerVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VRo-x1-CWn"/>
                         <viewControllerLayoutGuide type="bottom" id="Lcz-cI-ynF"/>
@@ -1101,22 +1105,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5JI-IG-2aS">
-                                <rect key="frame" x="186" y="357.5" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKa-cW-b2d" customClass="UIVisualEffectView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5JI-IG-2aS" firstAttribute="centerY" secondItem="2xg-W0-Ocr" secondAttribute="centerY" id="Cst-0I-4nz"/>
-                            <constraint firstItem="5JI-IG-2aS" firstAttribute="centerX" secondItem="2xg-W0-Ocr" secondAttribute="centerX" id="aDC-V3-Qy6"/>
+                            <constraint firstAttribute="trailing" secondItem="OKa-cW-b2d" secondAttribute="trailing" id="28l-xb-ysn"/>
+                            <constraint firstItem="Lcz-cI-ynF" firstAttribute="top" secondItem="OKa-cW-b2d" secondAttribute="bottom" id="SRM-mS-977"/>
+                            <constraint firstItem="OKa-cW-b2d" firstAttribute="top" secondItem="2xg-W0-Ocr" secondAttribute="top" id="TUp-2L-Cgt"/>
+                            <constraint firstItem="OKa-cW-b2d" firstAttribute="leading" secondItem="2xg-W0-Ocr" secondAttribute="leading" id="xuw-9J-5jQ"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="label" destination="5JI-IG-2aS" id="18E-VM-8bY"/>
+                        <outlet property="effectView" destination="OKa-cW-b2d" id="OAV-yV-AVK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qak-dc-DoP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1685,7 +1689,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </view>
                         <view key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="UuN-O1-UMe">
-                            <rect key="frame" x="0.0" y="388" width="414" height="1"/>
+                            <rect key="frame" x="0.0" y="408" width="414" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -1794,8 +1798,8 @@
                                                         <outlet property="delegate" destination="Cke-jp-Ddu" id="RcS-fz-IFg"/>
                                                     </connections>
                                                 </collectionView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8888 条结果" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHd-Ew-aqX">
-                                                    <rect key="frame" x="161" y="20" width="92" height="19.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHd-Ew-aqX">
+                                                    <rect key="frame" x="207" y="20" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1877,50 +1881,25 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="DKv-y0-bhW">
-                                        <rect key="frame" x="0.0" y="344" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="64" id="DKv-y0-bhW">
+                                        <rect key="frame" x="0.0" y="344" width="414" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DKv-y0-bhW" id="4Y8-uz-ayW">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="63.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLO-xf-Qrl">
-                                                    <rect key="frame" x="111" y="0.0" width="64" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="64" id="epn-3U-qfp"/>
-                                                    </constraints>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGO-66-HGA">
+                                                    <rect key="frame" x="175" y="16" width="64" height="32"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <state key="normal" title="清  除"/>
+                                                    <state key="normal" title="显示结果"/>
                                                     <connections>
-                                                        <action selector="startFilter:" destination="Cke-jp-Ddu" eventType="touchUpInside" id="bTe-6o-xGa"/>
+                                                        <action selector="showResult:" destination="Cke-jp-Ddu" eventType="touchUpInside" id="KJu-aj-NXY"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGO-66-HGA">
-                                                    <rect key="frame" x="239" y="0.0" width="64" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="64" id="PTm-dF-XkD"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <state key="normal" title="完  成"/>
-                                                </button>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mro-vQ-QVt">
-                                                    <rect key="frame" x="207" y="0.0" width="0.0" height="43.5"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" id="ILo-AQ-I0b"/>
-                                                    </constraints>
-                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Mro-vQ-QVt" firstAttribute="top" secondItem="4Y8-uz-ayW" secondAttribute="top" id="05d-P5-ogc"/>
-                                                <constraint firstItem="FGO-66-HGA" firstAttribute="top" secondItem="4Y8-uz-ayW" secondAttribute="top" id="9O2-Dw-TKe"/>
-                                                <constraint firstItem="Mro-vQ-QVt" firstAttribute="centerX" secondItem="4Y8-uz-ayW" secondAttribute="centerX" id="GeT-7R-fad"/>
-                                                <constraint firstItem="aLO-xf-Qrl" firstAttribute="top" secondItem="4Y8-uz-ayW" secondAttribute="top" id="WY0-j0-YoL"/>
-                                                <constraint firstAttribute="bottom" secondItem="FGO-66-HGA" secondAttribute="bottom" id="XJg-VS-SWE"/>
-                                                <constraint firstItem="FGO-66-HGA" firstAttribute="leading" secondItem="Mro-vQ-QVt" secondAttribute="trailing" constant="32" id="dyc-S6-rHM"/>
-                                                <constraint firstAttribute="bottom" secondItem="Mro-vQ-QVt" secondAttribute="bottom" id="jI6-6m-MgG"/>
-                                                <constraint firstItem="Mro-vQ-QVt" firstAttribute="leading" secondItem="aLO-xf-Qrl" secondAttribute="trailing" constant="32" id="oZX-F0-EXW"/>
-                                                <constraint firstAttribute="bottom" secondItem="aLO-xf-Qrl" secondAttribute="bottom" id="wCk-ta-xuC"/>
+                                                <constraint firstItem="FGO-66-HGA" firstAttribute="centerY" secondItem="4Y8-uz-ayW" secondAttribute="centerY" id="MJR-Qe-oSC"/>
+                                                <constraint firstItem="FGO-66-HGA" firstAttribute="centerX" secondItem="4Y8-uz-ayW" secondAttribute="centerX" id="jCH-S2-P8j"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1938,6 +1917,7 @@
                         <outlet property="filterResultCountLabel" destination="OHd-Ew-aqX" id="O2q-MZ-5Tg"/>
                         <outlet property="flowlayout" destination="M3l-EG-oK5" id="XgB-gx-fdf"/>
                         <outlet property="marketSegment" destination="m0e-2T-Wli" id="ErQ-eM-Qyq"/>
+                        <outlet property="resultBtn" destination="FGO-66-HGA" id="nIX-7i-C74"/>
                         <outlet property="tradeSegment" destination="vSr-ez-nhY" id="uoK-cR-bJc"/>
                     </connections>
                 </tableViewController>
@@ -2184,8 +2164,8 @@
         <image name="icon_title_more" width="22" height="5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xxb-Qf-zZj"/>
         <segue reference="Nbi-AR-hdo"/>
+        <segue reference="b8f-RE-pTr"/>
         <segue reference="Qj8-wX-kEP"/>
     </inferredMetricsTieBreakers>
 </document>

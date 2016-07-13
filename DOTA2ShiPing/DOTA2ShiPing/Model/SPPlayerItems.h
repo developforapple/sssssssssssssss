@@ -97,6 +97,7 @@ typedef NS_ENUM(NSUInteger, SPPlayerItemsListStatus) {
 - (SPPlayerInvertoryItemTag *)heroTag;
 - (SPPlayerInvertoryItemTag *)typeTag;
 - (SPPlayerInvertoryItemTag *)qualityTag;
+- (SPPlayerInvertoryItemTag *)slotTag;
 
 @end
 

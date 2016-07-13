@@ -12,10 +12,14 @@
 @class SPInventoryFilter;
 
 // 显示搜索结果
-@interface SPPlayerInventorySearchResultVC : UIViewController <UISearchControllerDelegate,UISearchResultsUpdating,UISearchBarDelegate>
+@interface SPPlayerInventorySearchResultVC : UIViewController <UISearchResultsUpdating,UISearchBarDelegate>
 
 @property (strong, nonatomic) SPInventoryFilter *filter;
 
 @property (assign, nonatomic) SPItemListMode mode;
+
+@property (weak, nonatomic) UISearchController *searchCtrl;
+
+@property (copy, nonatomic) void (^willShowFilteredResult)(void);
 
 @end

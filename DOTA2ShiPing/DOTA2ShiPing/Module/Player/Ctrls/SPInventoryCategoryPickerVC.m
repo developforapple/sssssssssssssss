@@ -33,7 +33,7 @@ static NSString *const kSPInventoryCategoryCell = @"SPInventoryCategoryCell";
     
     _index = SPInventoryCategoryAll;
     
-    self.categoryTitles = @[@"全部",@"特殊事件",@"英雄",@"信使",@"世界",@"界面",@"音频",@"珍藏",@"其他",@"可交易或可出售"];
+    self.categoryTitles = @[@"全部",@"特殊事件",@"英雄",@"信使",@"世界",@"界面",@"音频",@"珍藏",@"其他",@"可交易或可出售",@"自定义条件"];
 }
 
 - (void)dealloc

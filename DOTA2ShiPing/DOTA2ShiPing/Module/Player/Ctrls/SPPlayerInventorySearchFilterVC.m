@@ -19,7 +19,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *filterResultCountLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tradeSegment;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *marketSegment;
+@property (weak, nonatomic) IBOutlet UIButton *resultBtn;
 @property (strong, nonatomic) SPInventoryFilterCondition *condition;
+@property (assign, nonatomic) NSUInteger resultCount;   //结果数量
 @end
 
 @implementation SPPlayerInventorySearchFilterVC
@@ -54,19 +56,30 @@
     
     if (self.filter.condition) {
         self.condition = self.filter.condition;
+        [self.filter updateWithCondition:self.condition];
     }else{
         self.condition = [[SPInventoryFilterCondition alloc] init];
     }
     self.tradeSegment.selectedSegmentIndex = self.condition.tradeable;
     self.marketSegment.selectedSegmentIndex = self.condition.markedable;
+    
+    spweakify(self);
+    [RACObserve(self, resultCount)
+     subscribeNext:^(NSNumber *x) {
+         spstrongify(self);
+         NSUInteger count = x.integerValue;
+         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"匹配到 %lu 个结果",(unsigned long)count] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:RGBColor(85, 85, 85, 1)}];
+         [string addAttribute:NSForegroundColorAttributeName value:AppBarColor range:NSMakeRange(3, string.length-6)];
+         self.filterResultCountLabel.attributedText = string;
+         self.resultBtn.enabled = count!=0;
+     }];
 }
 
 #pragma mark - Update
 - (void)update
 {
-    NSUInteger count = [self.filter updateWithCondition:self.condition];
+    self.resultCount = [self.filter updateWithCondition:self.condition];
     [self.collectionView reloadData];
-    self.filterResultCountLabel.text = [NSString stringWithFormat:@"匹配到 %lu 个结果",(unsigned long)count];
 }
 
 #pragma mark 
@@ -102,9 +115,12 @@
     [self update];
 }
 
-- (IBAction)startFilter:(UIButton *)sender
+- (IBAction)showResult:(UIButton *)btn
 {
     [self.view.window endEditing:YES];
+    if (self.willShowFilterResult) {
+        self.willShowFilterResult();
+    }
 }
 
 - (void)showQualityOptions
@@ -126,9 +142,8 @@
             action(q);
         }];
         [array addObject:item];
-    } 
-    
-    [RWDropdownMenu presentFromViewController:self.parentViewController withItems:array align:RWDropdownMenuCellAlignmentLeft style:RWDropdownMenuStyleTranslucent navBarImage:nil completion:nil];
+    }
+    [RWDropdownMenu presentFromViewController:self.parentViewController withItems:array align:arc4random_uniform(3) style:RWDropdownMenuStyleTranslucent navBarImage:nil completion:nil];
 }
 
 - (void)showRarityOptions
@@ -151,7 +166,7 @@
         }];
         [array addObject:item];
     }
-    [RWDropdownMenu presentFromViewController:self.parentViewController withItems:array align:RWDropdownMenuCellAlignmentRight style:RWDropdownMenuStyleTranslucent navBarImage:nil completion:nil];
+    [RWDropdownMenu presentFromViewController:self.parentViewController withItems:array align:arc4random_uniform(3) style:RWDropdownMenuStyleTranslucent navBarImage:nil completion:nil];
 }
 
 #pragma mark - UICollectionView

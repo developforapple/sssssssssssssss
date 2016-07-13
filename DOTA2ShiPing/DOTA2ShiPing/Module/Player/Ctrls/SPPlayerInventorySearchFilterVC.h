@@ -16,6 +16,6 @@
 
 @property (strong, nonatomic) SPInventoryFilter *filter;
 
-@property (copy, nonatomic) void (^willFilterWithCondition)(void);
+@property (copy, nonatomic) void (^willShowFilterResult)(void);
 
 @end

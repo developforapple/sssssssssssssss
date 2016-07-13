@@ -82,16 +82,20 @@ static NSString *const kSPPlayerInventoryFilterSegueID = @"SPPlayerInventoryFilt
     self.container.items = items;
 }
 
-- (void)presentSearchController:(UISearchController *)searchController
-{
-}
-
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kSPPlayerInventoryFilterSegueID]) {
         self.filterVC = segue.destinationViewController;
         self.filterVC.filter = self.filter;
+        spweakify(self);
+        [self.filterVC setWillShowFilterResult:^{
+            spstrongify(self);
+            [self.searchCtrl setActive:NO];
+            if (self.willShowFilteredResult) {
+                self.willShowFilteredResult();
+            }
+        }];
     }
 }
 

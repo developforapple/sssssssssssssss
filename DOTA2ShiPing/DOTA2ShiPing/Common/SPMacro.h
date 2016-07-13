@@ -13,7 +13,8 @@
 
 #define AppBarItemColor [UIColor whiteColor]
 //#define AppBarColor RGBColor(0,23,46,1)// RGBColor(27,40,56,1)
-#define AppBarColor RGBColor(198,55,39,1)
+#define AppBarColor RGBColor(198,55,39,1)   //主红色
+#define AppBarColor2 RGBColor(205,84,71,1)  //和导航栏带透明模糊效果时的效果一致的红色
 #define AppBackColor RGBColor(30,30,30,1)
 #define AppTextFocusColor RGBColor(209,57,227,1)
 

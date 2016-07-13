@@ -57,7 +57,7 @@ UIImage *placeholderImage(){
     
     if ([item.prefab isEqualToString:@"bundle"]) {
         
-        NSArray *sets = [[SPDataManager shared] querySetsWithCondition:@"store_bundle=?" values:@[item.name]];
+        NSArray *sets = [[SPDataManager shared] querySetsWithCondition:@"store_bundle=?" values:@[item.name?:@""]];
         SPItemSets *theSet = [sets firstObject];
         if (theSet) {
             self.itemTypeLabel.text = [NSString stringWithFormat:@"包含“%@”",theSet.name_cn];
@@ -123,6 +123,15 @@ UIImage *placeholderImage(){
                            (id)[self.mainColor blendColorWithAlpha:.1f baseColor:nil].CGColor];
     }
     return _gLayer;
+}
+
+- (SPItemColor *)mainColor
+{
+    if (!_mainColor) {
+        _mainColor = [SPItemColor new];
+        _mainColor.hex_color = @"#ffffff";
+    }
+    return _mainColor;
 }
 
 - (void)loadImage

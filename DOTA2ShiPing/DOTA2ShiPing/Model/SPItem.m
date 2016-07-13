@@ -39,7 +39,13 @@
 }
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic
-{    
+{
+    if (!self.name) {
+        self.name = @"";
+    }
+    if (!self.item_name) {
+        self.item_name = @"";
+    }
     return YES;
 }
 

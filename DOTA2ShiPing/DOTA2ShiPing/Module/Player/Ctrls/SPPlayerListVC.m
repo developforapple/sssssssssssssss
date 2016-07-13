@@ -13,18 +13,23 @@
 #import "LCActionSheet.h"
 #import "SPPlayerCell.h"
 #import "SPLogoHeader.h"
-#import "SPSearchPlayerItemsVC.h"
+#import "SPPlayerInventorySearchAllPlayerVC.h"
 #import "SPPlayerDetailInfoVC.h"
 #import "SPPlayer+More.h"
 #import "PinYin4Objc.h"
 #import "UIImage+YYAdd.h"
+#import "RWDropdownMenu.h"
+#import "SPPopoverView.h"
 
 // 搜索用户
 static NSString *const kSPPlayerSearchSegueID = @"SPPlayerSearchSegueID";
 // 用户个人信息详情
 static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
 
-@interface SPPlayerListVC () <UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating,UISearchControllerDelegate>
+@interface SPPlayerListVC () <UITableViewDelegate,UITableViewDataSource,UISearchControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addBtnItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *tagBtnItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *updateBtnItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UISearchController *searchCtrl;
 @property (strong, nonatomic) NSMutableArray<NSMutableDictionary<NSString *,NSMutableArray<SPPlayer *>*> *> *playerList;
@@ -46,15 +51,17 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
     
     [SPLogoHeader setLogoHeaderInScrollView:self.tableView];
     
-    self.searchCtrl = [[UISearchController alloc] initWithSearchResultsController:[SPSearchPlayerItemsVC instanceFromStoryboard]];
-    self.searchCtrl.searchResultsUpdater = self;
+    SPPlayerInventorySearchAllPlayerVC *vc = [SPPlayerInventorySearchAllPlayerVC instanceFromStoryboard];
+    self.searchCtrl = [[UISearchController alloc] initWithSearchResultsController:vc];
+    vc.searchCtrl = self.searchCtrl;
+    self.searchCtrl.searchResultsUpdater = vc;
     self.searchCtrl.delegate = self;
     
     self.definesPresentationContext = YES;
     
     [self.searchCtrl.searchBar sizeToFit];
     [self.searchCtrl.searchBar setBackgroundImage:[UIImage imageWithColor:RGBColor(247, 247, 247, 1)]];
-    self.searchCtrl.searchBar.placeholder = @"搜索库存";
+    self.searchCtrl.searchBar.placeholder = @"在所有库存中搜索";
     self.tableView.tableHeaderView = self.searchCtrl.searchBar;
     
     spweakify(self);
@@ -138,27 +145,49 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
 #pragma mark - Actions
 - (IBAction)add:(id)sender
 {
-    // 如果配置了搜索方式，使用这个搜索方式。否则，让用户选择搜索方式。
-    SPSearchType type = UserSearchType();
-    if (IsSearchPlayer(type)) {
-        [self segueToSearchWithType:type];
-    }else{
-        LCActionSheet *sheet = [[LCActionSheet alloc] initWithTitle:@"数据来源\n你可以在设置内配置默认来源站点" buttonTitles:@[@"DotaMax",@"Dotabuff",@"Steam Community"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
-            SPSearchType theType = -1;
-            if (buttonIndex == 0) {
-                theType = SPSearchTypeMaxPlusPlayer;
-            }else if (buttonIndex == 1){
-                theType = SPSearchTypeDotabuffPlayer;
-            }else if (buttonIndex == 2){
-                theType = SPSearchTypeSteamCommunityPlayer;
-            }
-            if (IsSearchPlayer(theType)) {
-                [self segueToSearchWithType:theType];
-            }
-        }];
-        sheet.textFont = [UIFont systemFontOfSize:16];
-        [sheet show];
-    }
+    spweakify(self);
+    void (^action)(SPSearchType type) = ^(SPSearchType type){
+        spstrongify(self);
+        if (IsSearchPlayer(type)) {
+            [self segueToSearchWithType:type];
+        }
+    };
+    
+    PopoverView *view = [[PopoverView alloc] init];
+    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:16],
+                                NSForegroundColorAttributeName:[UIColor whiteColor]};
+    view.attributedMenuTitles = @[  [[NSAttributedString alloc] initWithString:@"DotaMax" attributes:attribute],
+                                    [[NSAttributedString alloc] initWithString:@"Dotabuff" attributes:attribute],
+                                    [[NSAttributedString alloc] initWithString:@"Steam" attributes:attribute]];
+    view.popoverBackgroundColor = AppBarColor2;
+    view.borderHidden = YES;
+    
+    [view showFromRectOfScreen:CGRectMake(DeviceWidth-8-40, 27, 40, 30) selected:^(NSInteger index) {
+        action(index);
+    }];
+    return;
+
+//    // 如果配置了搜索方式，使用这个搜索方式。否则，让用户选择搜索方式。
+//    SPSearchType type = UserSearchType();
+//    if (IsSearchPlayer(type)) {
+//        [self segueToSearchWithType:type];
+//    }else{
+//        LCActionSheet *sheet = [[LCActionSheet alloc] initWithTitle:@"数据来源\n你可以在设置内配置默认来源站点" buttonTitles:@[@"DotaMax",@"Dotabuff",@"Steam Community"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+//            SPSearchType theType = -1;
+//            if (buttonIndex == 0) {
+//                theType = SPSearchTypeMaxPlusPlayer;
+//            }else if (buttonIndex == 1){
+//                theType = SPSearchTypeDotabuffPlayer;
+//            }else if (buttonIndex == 2){
+//                theType = SPSearchTypeSteamCommunityPlayer;
+//            }
+//            if (IsSearchPlayer(theType)) {
+//                [self segueToSearchWithType:theType];
+//            }
+//        }];
+//        sheet.textFont = [UIFont systemFontOfSize:16];
+//        [sheet show];
+//    }
 }
 
 - (void)segueToSearchWithType:(SPSearchType)type
@@ -221,12 +250,6 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
 }
 
 #pragma mark - UISearchController
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
-{
-    SPSearchPlayerItemsVC *vc = (SPSearchPlayerItemsVC *)searchController.searchResultsController;
-    [vc search:searchController.searchBar.text];
-}
-
 - (void)willPresentSearchController:(UISearchController *)searchController
 {
     NSLog(@"%@",NSStringFromSelector(_cmd));

@@ -10,10 +10,10 @@
 #define SPSearchCommon_h
 
 typedef NS_ENUM(NSUInteger, SPSearchType) {
-    SPSearchTypeItemName,            //搜索饰品名称
     SPSearchTypeMaxPlusPlayer,       //搜索max+的用户
     SPSearchTypeDotabuffPlayer,      //搜索Dotabuff的用户
     SPSearchTypeSteamCommunityPlayer,//搜索steam社区的用户
+    SPSearchTypeItemName,            //搜索饰品名称
 };
 
 #define kSPUserSearchTypeSettingKey @"SPUserSearchType"

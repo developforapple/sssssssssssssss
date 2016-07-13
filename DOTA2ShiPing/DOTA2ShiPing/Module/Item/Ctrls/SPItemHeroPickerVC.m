@@ -184,7 +184,7 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
 @property (strong, nonatomic) NSMutableArray<NSNumber *> *historyList;
 @property (strong, nonatomic) UIPageViewController *pageVC;
 
-@property (strong, nonatomic) NSMutableArray<SPItemHeroListVC *> *listVCs;
+@property (strong, nonatomic) NSArray<SPItemHeroListVC *> *listVCs;
 
 @property (assign, nonatomic) NSUInteger currentIndex;
 
@@ -220,12 +220,11 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
 
 - (void)updateHistoryList
 {
-    SPItemHeroListVC *vc = [self.listVCs firstObject];
-    if ([vc isKindOfClass:[NSNull class]]) {
-        vc.history = self.historyList;
-        [vc reloadData];
-        [self updateUI];
-    }
+    SPItemHeroListVC *vc = [self viewControllerAtIndex:0];
+    vc.history = self.historyList;
+    [vc reloadData];
+    [self updateUI];
+
 }
 
 - (void)addHeroToHistory:(SPHero *)hero
@@ -255,15 +254,10 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
 #pragma mark - UI
 - (void)initUI
 {
-    self.listVCs = @[[NSNull null],[NSNull null],[NSNull null],[NSNull null]].mutableCopy;
-    SPItemHeroListVC *vc;
-    
     if (self.historyList.count > 0) {
         _currentIndex = 0;
-        vc = [self viewControllerAtIndex:_currentIndex];
     }else{
         _currentIndex = 1;
-        vc = [self viewControllerAtIndex:_currentIndex];
     }
     
     [self updateUI];
@@ -271,6 +265,7 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
     
     self.pageVC.delegate = self;
     self.pageVC.dataSource = self;
+    SPItemHeroListVC *vc = [self viewControllerAtIndex:_currentIndex];
     [self.pageVC setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     
     if ([self.navigationController.viewControllers firstObject] == self) {
@@ -302,22 +297,31 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
 
 - (SPItemHeroListVC *)viewControllerAtIndex:(NSInteger)index
 {
+    if (!self.listVCs) {
+        spweakify(self);
+        void (^selectedHeroCallback)(SPHero *hero) = ^(SPHero *hero){
+            spstrongify(self);
+            [self didSelectedHero:hero];
+        };
+        
+        SPItemHeroListVC *vc0 = [SPItemHeroListVC instanceFromStoryboard];
+        vc0.type = SPHeroTypeHistory;
+        vc0.history = self.historyList;
+        vc0.didSelectedHero = [selectedHeroCallback copy];
+        SPItemHeroListVC *vc1 = [SPItemHeroListVC instanceFromStoryboard];
+        vc1.type = SPHeroTypePow;
+        vc1.didSelectedHero = [selectedHeroCallback copy];
+        SPItemHeroListVC *vc2 = [SPItemHeroListVC instanceFromStoryboard];
+        vc2.type = SPHeroTypeDex;
+        vc2.didSelectedHero = [selectedHeroCallback copy];
+        SPItemHeroListVC *vc3 = [SPItemHeroListVC instanceFromStoryboard];
+        vc3.type = SPHeroTypeWit;
+        vc3.didSelectedHero = [selectedHeroCallback copy];
+        self.listVCs = @[vc0,vc1,vc2,vc3];
+    }
+    
     if (index >= 0 && index < self.listVCs.count) {
-        id vc = self.listVCs[index];
-        if (vc == [NSNull null]) {
-            vc = [SPItemHeroListVC instanceFromStoryboard];
-            [(SPItemHeroListVC *)vc setType:index-1];
-            if (index == 0) {
-                [(SPItemHeroListVC *)vc setHistory:self.historyList];
-            }
-            spweakify(self);
-            [(SPItemHeroListVC *)vc setDidSelectedHero:^(SPHero *hero) {
-                spstrongify(self);
-                [self didSelectedHero:hero];
-            }];
-            [self.listVCs replaceObjectAtIndex:index withObject:vc];
-        }
-        return vc;
+        return self.listVCs[index];
     }
     return nil;
 }

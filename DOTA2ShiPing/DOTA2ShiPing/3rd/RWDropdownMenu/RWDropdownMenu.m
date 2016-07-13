@@ -10,6 +10,19 @@
 #import "RWDropdownMenuCell.h"
 #import "RWDropdownMenuTransitionController.h"
 
+@interface UIPopoverController (overrides)
++(BOOL)_popoversDisabled;
+@end
+
+@implementation UIPopoverController (overrides)
+
++(BOOL)_popoversDisabled
+{
+    return NO;
+}
+
+@end
+
 @interface RWDropdownMenuBackgroundView : UIView
 
 @end
@@ -419,6 +432,7 @@ static NSString * const CellId = @"RWDropdownMenuCell";
     
     helper.popover = [[UIPopoverController alloc] initWithContentViewController:menu];
     helper.popover.delegate = helper;
+    helper.popover.popoverContentSize = CGSizeMake(200, 200);
     [helper.popover presentPopoverFromBarButtonItem:barButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{

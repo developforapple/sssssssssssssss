@@ -19,10 +19,10 @@
 @property (strong, readonly, nonatomic) SPPlayer *player;
 
 // 分类
-@property (assign, nonatomic) SPInventoryCategory category;
+@property (assign, readonly, nonatomic) SPInventoryCategory category;
 
 // 条件
-@property (strong, nonatomic) SPInventoryFilterCondition *condition;
+@property (strong, readonly, nonatomic) SPInventoryFilterCondition *condition;
 
 // 内容更新了的回调
 @property (copy, nonatomic) void (^updateCallback)(void);

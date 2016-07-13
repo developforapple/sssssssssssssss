@@ -19,3 +19,4 @@ pod 'hpple', '~> 0.2.0'             #https://github.com/topfunky/hpple
 pod 'DGActivityIndicatorView', '~> 2.0' #https://github.com/gontovnik/DGActivityIndicatorView
 pod 'PinYin4Objc', '~> 1.1.1'       #https://github.com/kimziv/PinYin4Obj
 pod 'JZNavigationExtension', '~> 1.5.0.1' #https://github.com/JazysYu/JZNavigationExtension
+pod 'AMPopTip', '~> 1.1.1'          #https://github.com/andreamazz/AMPopTip

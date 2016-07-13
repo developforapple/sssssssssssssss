@@ -45,7 +45,6 @@
 		2D0A82A61CDF4AAA00F26BD1 /* DDSegmentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A82A51CDF4AAA00F26BD1 /* DDSegmentScrollView.m */; };
 		2D0FB4A41CEB10F1004A300D /* SPSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0FB4A31CEB10F1004A300D /* SPSearchVC.m */; };
 		2D1CA5A81D15705400B169E0 /* SPPlayerItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1CA5A71D15705400B169E0 /* SPPlayerItems.m */; };
-		2D3CAC901D327DDA001932E4 /* SPPlayerInventoryFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CAC8F1D327DDA001932E4 /* SPPlayerInventoryFilterVC.m */; };
 		2D3CAC931D32870D001932E4 /* SPPlayerInventorySearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CAC921D32870D001932E4 /* SPPlayerInventorySearchResultVC.m */; };
 		2D3CAC961D32A130001932E4 /* SPItemQuality.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CAC951D32A130001932E4 /* SPItemQuality.m */; };
 		2D3CAC9D1D33C747001932E4 /* SPWorkshopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CAC9C1D33C747001932E4 /* SPWorkshopVC.m */; };
@@ -60,7 +59,6 @@
 		2D494BBC1CE0C15100491A20 /* SPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D494BBB1CE0C15100491A20 /* SPItem.m */; };
 		2D494BC21CE0D28B00491A20 /* DDProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D494BC11CE0D28B00491A20 /* DDProgressHUD.m */; };
 		2D494BC51CE0D51800491A20 /* SPItemPrefab.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D494BC41CE0D51800491A20 /* SPItemPrefab.m */; };
-		2D57A2FF1D28F37B00D36150 /* SPSearchPlayerItemsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D57A2FE1D28F37B00D36150 /* SPSearchPlayerItemsVC.m */; };
 		2D57A3021D29028300D36150 /* SPPlayerDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D57A3011D29028300D36150 /* SPPlayerDetailInfoVC.m */; };
 		2D6AACAA1CE738B200A7D610 /* SPItem+Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AACA91CE738B200A7D610 /* SPItem+Cache.m */; };
 		2D6AACAE1CE76F3300A7D610 /* SPItemSets.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AACAD1CE76F3300A7D610 /* SPItemSets.m */; };
@@ -94,7 +92,8 @@
 		2DF28B8E1D312B95003762DA /* UIView+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B8D1D312B95003762DA /* UIView+More.m */; };
 		44399A0B1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A0A1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m */; };
 		44399A0E1D3494D0006F0F16 /* SPInventoryConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A0D1D3494D0006F0F16 /* SPInventoryConditionCell.m */; };
-		44C71DA11D3360DD00D2E06F /* SPInventorySegmentPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C71DA01D3360DD00D2E06F /* SPInventorySegmentPickerVC.m */; };
+		44399A141D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A131D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m */; };
+		44399A181D361504006F0F16 /* SPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A171D361504006F0F16 /* SPPopoverView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,8 +165,6 @@
 		2D1CA5A21D1557CF00B169E0 /* SPPlayerCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPlayerCommon.h; sourceTree = "<group>"; };
 		2D1CA5A61D15705400B169E0 /* SPPlayerItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerItems.h; sourceTree = "<group>"; };
 		2D1CA5A71D15705400B169E0 /* SPPlayerItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerItems.m; sourceTree = "<group>"; };
-		2D3CAC8E1D327DDA001932E4 /* SPPlayerInventoryFilterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventoryFilterVC.h; sourceTree = "<group>"; };
-		2D3CAC8F1D327DDA001932E4 /* SPPlayerInventoryFilterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventoryFilterVC.m; sourceTree = "<group>"; };
 		2D3CAC911D32870D001932E4 /* SPPlayerInventorySearchResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventorySearchResultVC.h; sourceTree = "<group>"; };
 		2D3CAC921D32870D001932E4 /* SPPlayerInventorySearchResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventorySearchResultVC.m; sourceTree = "<group>"; };
 		2D3CAC941D32A130001932E4 /* SPItemQuality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemQuality.h; sourceTree = "<group>"; };
@@ -194,8 +191,6 @@
 		2D494BC11CE0D28B00491A20 /* DDProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDProgressHUD.m; sourceTree = "<group>"; };
 		2D494BC31CE0D51800491A20 /* SPItemPrefab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemPrefab.h; sourceTree = "<group>"; };
 		2D494BC41CE0D51800491A20 /* SPItemPrefab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemPrefab.m; sourceTree = "<group>"; };
-		2D57A2FD1D28F37B00D36150 /* SPSearchPlayerItemsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSearchPlayerItemsVC.h; sourceTree = "<group>"; };
-		2D57A2FE1D28F37B00D36150 /* SPSearchPlayerItemsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSearchPlayerItemsVC.m; sourceTree = "<group>"; };
 		2D57A3001D29028300D36150 /* SPPlayerDetailInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerDetailInfoVC.h; sourceTree = "<group>"; };
 		2D57A3011D29028300D36150 /* SPPlayerDetailInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerDetailInfoVC.m; sourceTree = "<group>"; };
 		2D6AACA81CE738B200A7D610 /* SPItem+Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPItem+Cache.h"; sourceTree = "<group>"; };
@@ -262,8 +257,10 @@
 		44399A0A1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventorySearchFilterVC.m; sourceTree = "<group>"; };
 		44399A0C1D3494D0006F0F16 /* SPInventoryConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInventoryConditionCell.h; sourceTree = "<group>"; };
 		44399A0D1D3494D0006F0F16 /* SPInventoryConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInventoryConditionCell.m; sourceTree = "<group>"; };
-		44C71D9F1D3360DD00D2E06F /* SPInventorySegmentPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInventorySegmentPickerVC.h; sourceTree = "<group>"; };
-		44C71DA01D3360DD00D2E06F /* SPInventorySegmentPickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInventorySegmentPickerVC.m; sourceTree = "<group>"; };
+		44399A121D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventorySearchAllPlayerVC.h; sourceTree = "<group>"; };
+		44399A131D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventorySearchAllPlayerVC.m; sourceTree = "<group>"; };
+		44399A161D361504006F0F16 /* SPPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPopoverView.h; sourceTree = "<group>"; };
+		44399A171D361504006F0F16 /* SPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPopoverView.m; sourceTree = "<group>"; };
 		939CCEAA439897D1DEE60C3E /* libPods-DOTA2ShiPing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DOTA2ShiPing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -517,6 +514,7 @@
 		2D48D2B01CDE21A500190F0C /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				44399A151D3614D3006F0F16 /* Popover */,
 				2DA9F76A1D35490200F87053 /* RWDropdownMenu */,
 				2D9C8B6B1D154EBC00F217AE /* LCActionSheet */,
 				2D0A826E1CDF303500F26BD1 /* BaiduAD */,
@@ -723,8 +721,6 @@
 			children = (
 				2D86C1081CFB0F30008E1C5D /* SPPlayerListVC.h */,
 				2D86C1091CFB0F30008E1C5D /* SPPlayerListVC.m */,
-				2D57A2FD1D28F37B00D36150 /* SPSearchPlayerItemsVC.h */,
-				2D57A2FE1D28F37B00D36150 /* SPSearchPlayerItemsVC.m */,
 				2D57A3001D29028300D36150 /* SPPlayerDetailInfoVC.h */,
 				2D57A3011D29028300D36150 /* SPPlayerDetailInfoVC.m */,
 				2DF28B791D30B1A6003762DA /* SPPlayerAliasesVC.h */,
@@ -733,14 +729,12 @@
 				2DF28B831D30DF46003762DA /* SPPlayerInventoryVC.m */,
 				2DF28B851D30E9AF003762DA /* SPInventoryCategoryPickerVC.h */,
 				2DF28B861D30E9AF003762DA /* SPInventoryCategoryPickerVC.m */,
-				44C71D9F1D3360DD00D2E06F /* SPInventorySegmentPickerVC.h */,
-				44C71DA01D3360DD00D2E06F /* SPInventorySegmentPickerVC.m */,
-				2D3CAC8E1D327DDA001932E4 /* SPPlayerInventoryFilterVC.h */,
-				2D3CAC8F1D327DDA001932E4 /* SPPlayerInventoryFilterVC.m */,
 				2D3CAC911D32870D001932E4 /* SPPlayerInventorySearchResultVC.h */,
 				2D3CAC921D32870D001932E4 /* SPPlayerInventorySearchResultVC.m */,
 				44399A091D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.h */,
 				44399A0A1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m */,
+				44399A121D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.h */,
+				44399A131D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m */,
 			);
 			path = Ctrls;
 			sourceTree = "<group>";
@@ -818,6 +812,15 @@
 				2DF28B8D1D312B95003762DA /* UIView+More.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		44399A151D3614D3006F0F16 /* Popover */ = {
+			isa = PBXGroup;
+			children = (
+				44399A161D361504006F0F16 /* SPPopoverView.h */,
+				44399A171D361504006F0F16 /* SPPopoverView.m */,
+			);
+			path = Popover;
 			sourceTree = "<group>";
 		};
 		9DF9275624812581C6DA2B9C /* Frameworks */ = {
@@ -1072,6 +1075,7 @@
 				2D0FB4A41CEB10F1004A300D /* SPSearchVC.m in Sources */,
 				44399A0B1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m in Sources */,
 				2D86C10D1CFB13C7008E1C5D /* SPSearchCell.m in Sources */,
+				44399A181D361504006F0F16 /* SPPopoverView.m in Sources */,
 				2D494BBC1CE0C15100491A20 /* SPItem.m in Sources */,
 				2D1CA5A81D15705400B169E0 /* SPPlayerItems.m in Sources */,
 				2D0A82651CDEEEA600F26BD1 /* SPItemSlot.m in Sources */,
@@ -1080,15 +1084,14 @@
 				2D86C1041CFB00E3008E1C5D /* SPPlayer.m in Sources */,
 				2D0A82A21CDF3A7700F26BD1 /* SPLaunchADVC.m in Sources */,
 				2D0A823C1CDE2E1A00F26BD1 /* SPItemEntranceVC.m in Sources */,
-				2D57A2FF1D28F37B00D36150 /* SPSearchPlayerItemsVC.m in Sources */,
 				2DA452451CE0ED35004BD185 /* SPItemColor.m in Sources */,
-				44C71DA11D3360DD00D2E06F /* SPInventorySegmentPickerVC.m in Sources */,
 				2D0A82471CDE32F500F26BD1 /* SPItemEntranceCell.m in Sources */,
 				2DA9F7721D35490200F87053 /* RWDropdownMenuCell.m in Sources */,
 				2D6AACAE1CE76F3300A7D610 /* SPItemSets.m in Sources */,
 				2D6E24381D3020EA00995045 /* SPLeftAlignmentLayout.m in Sources */,
 				2DF28B8A1D30FE95003762DA /* SPInventoryFilter.m in Sources */,
 				2D86C0FA1CFAEECA008E1C5D /* SPBaseViewController.m in Sources */,
+				44399A141D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m in Sources */,
 				2DF28B8E1D312B95003762DA /* UIView+More.m in Sources */,
 				2DA9F7731D35490200F87053 /* RWDropdownMenuTransitionController.m in Sources */,
 				2D3CAC931D32870D001932E4 /* SPPlayerInventorySearchResultVC.m in Sources */,
@@ -1096,7 +1099,6 @@
 				2D3CAC9D1D33C747001932E4 /* SPWorkshopVC.m in Sources */,
 				2D0A826A1CDEEF1400F26BD1 /* SPDataManager.m in Sources */,
 				2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */,
-				2D3CAC901D327DDA001932E4 /* SPPlayerInventoryFilterVC.m in Sources */,
 				2D494BC51CE0D51800491A20 /* SPItemPrefab.m in Sources */,
 				2DF28B7E1D30B4E3003762DA /* SPPlayer+More.m in Sources */,
 				2D48D2981CDE20D700190F0C /* main.m in Sources */,

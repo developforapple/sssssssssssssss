@@ -12,7 +12,6 @@
 #import "SPConstant.h"
 #import "SPItemListContainer.h"
 #import "SPInventoryCategoryPickerVC.h"
-#import "SPInventorySegmentPickerVC.h"
 #import "DDSegmentScrollView.h"
 #import "SPInventoryFilter.h"
 #import "SPItemCommon.h"
@@ -80,8 +79,13 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     self.filter = [[SPInventoryFilter alloc] initWithPlayer:self.player];
     [self.filter setUpdateCallback:^{
         spstrongify(self);
-        [self update];
         
+        if (self.filter.category == SPInventoryCategoryFilter &&
+            self.filter.condition == nil) {
+            [self search:self.searchBtn];
+        }else{
+            [self update];
+        }
     }];
     [self.filter updateWithCategory:SPInventoryCategoryAll];
 }
@@ -157,11 +161,19 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 - (IBAction)search:(UIBarButtonItem *)sender
 {
+    [self setCategoryPickerVisible:NO];
+    
+    spweakify(self);
     SPPlayerInventorySearchResultVC *resutVC = [SPPlayerInventorySearchResultVC instanceFromStoryboard];
     resutVC.filter = self.filter;
     resutVC.mode = self.mode;
+    [resutVC setWillShowFilteredResult:^{
+        spstrongify(self);
+        [self didChangedCategory:SPInventoryCategoryFilter];
+    }];
     
     UISearchController *vc = [[UISearchController alloc] initWithSearchResultsController:resutVC];
+    resutVC.searchCtrl = vc;
     vc.searchResultsUpdater = resutVC;
     vc.searchBar.placeholder = @"搜索关键词：名称/品质/英雄";
     vc.searchBar.translucent = YES;

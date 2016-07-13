@@ -27,7 +27,9 @@
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
         
         if (!data) {
-            completion(NO,nil,@"网络错误");
+            RunOnMain(^{
+                completion(NO,nil,@"网络错误");
+            });
             return ;
         }
         
@@ -35,7 +37,9 @@
         NSArray *divNodes = [hpple searchWithXPathQuery:@"//div[@class='result result-player']"];
         
         if (!divNodes) {
-            completion(NO,nil,@"出错了!");
+            RunOnMain(^{
+                completion(NO,nil,@"出错了!");
+            });
             return;
         }
         
