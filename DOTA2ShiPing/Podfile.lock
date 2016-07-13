@@ -28,7 +28,7 @@ PODS:
   - IAPHelper (1.0.8.1)
   - JZNavigationExtension (1.5.0.1)
   - MBProgressHUD (0.9.2)
-  - MJRefresh (3.1.10)
+  - MJRefresh (3.1.9)
   - PinYin4Objc (1.1.1)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
@@ -42,6 +42,7 @@ PODS:
   - sqlite3/common (3.13.0)
   - sqlite3/fts (3.13.0):
     - sqlite3/common
+  - SSKeychain (1.4.0)
   - YYCache (1.0.3)
   - YYCategories (1.0.3):
     - YYCategories/no-arc (= 1.0.3)
@@ -64,9 +65,10 @@ DEPENDENCIES:
   - IAPHelper (~> 1.0.8.1)
   - JZNavigationExtension (~> 1.5.0.1)
   - MBProgressHUD (~> 0.9.2)
-  - MJRefresh (~> 3.1.9)
+  - MJRefresh
   - PinYin4Objc (~> 1.1.1)
   - ReactiveCocoa (= 2.5)
+  - SSKeychain
   - YYCategories
   - YYModel (~> 1.0.4)
   - YYWebImage (~> 1.0.4)
@@ -81,16 +83,17 @@ SPEC CHECKSUMS:
   IAPHelper: fbed593436838c3d40753ded319062b68c00cc38
   JZNavigationExtension: 7b95d2b1c48846b8bedcb40d767448f14cb9a0b7
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  MJRefresh: bb72948c985914b0b5cecac573a2c69a8915fb02
+  MJRefresh: c5f1f1653e5a1b932c90f78074f2bc86f3f9bd5e
   PinYin4Objc: 3fa9673610368330e2dfb688b1d19a35c3930a78
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   sqlite3: c8b1b937fe823ab46411e471cdc1aa92d1b106ce
+  SSKeychain: c71293fa57216a40ab06c23f4085387583293de4
   YYCache: 282f35b5b0990833d0b7a06d864a87141a021da2
   YYCategories: 0fd4d9eb0994d8d0e355beb4081c8f7202a82b7b
   YYImage: 2cc79ed49b9549b71c6715cefe7b0f5ab3d33abf
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYWebImage: 0431ed108e104527669b86f75efd58958425cca2
 
-PODFILE CHECKSUM: 0a5c3079a18da21bc293cf519cd6d6e46fa8bbae
+PODFILE CHECKSUM: 4b86bdef5c0393dd4e3933b11b5c7450c855d266
 
 COCOAPODS: 1.0.1

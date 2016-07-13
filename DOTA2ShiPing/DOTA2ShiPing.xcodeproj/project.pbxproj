@@ -48,6 +48,7 @@
 		2D3CAC931D32870D001932E4 /* SPPlayerInventorySearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CAC921D32870D001932E4 /* SPPlayerInventorySearchResultVC.m */; };
 		2D3CAC961D32A130001932E4 /* SPItemQuality.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CAC951D32A130001932E4 /* SPItemQuality.m */; };
 		2D3CAC9D1D33C747001932E4 /* SPWorkshopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CAC9C1D33C747001932E4 /* SPWorkshopVC.m */; };
+		2D4506D41D3684B0000971B9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D4506D31D3684B0000971B9 /* CloudKit.framework */; };
 		2D48D2981CDE20D700190F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D2971CDE20D700190F0C /* main.m */; };
 		2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D29A1CDE20D700190F0C /* AppDelegate.m */; };
 		2D48D2A61CDE20D700190F0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2A51CDE20D700190F0C /* Assets.xcassets */; };
@@ -172,6 +173,8 @@
 		2D3CAC951D32A130001932E4 /* SPItemQuality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemQuality.m; sourceTree = "<group>"; };
 		2D3CAC9B1D33C747001932E4 /* SPWorkshopVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWorkshopVC.h; sourceTree = "<group>"; };
 		2D3CAC9C1D33C747001932E4 /* SPWorkshopVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWorkshopVC.m; sourceTree = "<group>"; };
+		2D4506D21D3683C4000971B9 /* DOTA2ShiPing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DOTA2ShiPing.entitlements; sourceTree = "<group>"; };
+		2D4506D31D3684B0000971B9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2D48D2931CDE20D600190F0C /* DOTA2ShiPing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOTA2ShiPing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D48D2971CDE20D700190F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D48D2991CDE20D700190F0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D0A82991CDF329A00F26BD1 /* CoreGraphics.framework in Frameworks */,
+				2D4506D41D3684B0000971B9 /* CloudKit.framework in Frameworks */,
 				2D0A82971CDF328E00F26BD1 /* SystemConfiguration.framework in Frameworks */,
 				2D0A82951CDF328900F26BD1 /* CoreTelephony.framework in Frameworks */,
 				2D0A82931CDF327F00F26BD1 /* CoreLocation.framework in Frameworks */,
@@ -489,6 +493,7 @@
 		2D48D2951CDE20D700190F0C /* DOTA2ShiPing */ = {
 			isa = PBXGroup;
 			children = (
+				2D4506D21D3683C4000971B9 /* DOTA2ShiPing.entitlements */,
 				2D86C0F01CF99DB0008E1C5D /* item.db */,
 				2D0A82661CDEEEE500F26BD1 /* data.json */,
 				2D48D2B01CDE21A500190F0C /* 3rd */,
@@ -839,6 +844,7 @@
 		9DF9275624812581C6DA2B9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D4506D31D3684B0000971B9 /* CloudKit.framework */,
 				2D0A82981CDF329A00F26BD1 /* CoreGraphics.framework */,
 				2D0A82961CDF328E00F26BD1 /* SystemConfiguration.framework */,
 				2D0A82941CDF328900F26BD1 /* CoreTelephony.framework */,
@@ -876,15 +882,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D48D2AD1CDE20D700190F0C /* Build configuration list for PBXNativeTarget "DOTA2ShiPing" */;
 			buildPhases = (
-				E262330E9DF75363014C9BB9 /* [CP] Check Pods Manifest.lock */,
-				88E74CE1F8E71C406CFFA065 /* [CP] Check Pods Manifest.lock */,
-				A29B211BCBD441417F6BE818 /* [CP] Check Pods Manifest.lock */,
-				2C2B8A069469C93A874F0CD8 /* [CP] Check Pods Manifest.lock */,
 				2D48D28F1CDE20D600190F0C /* Sources */,
 				2D48D2901CDE20D600190F0C /* Frameworks */,
 				2D48D2911CDE20D600190F0C /* Resources */,
-				101FA0CFE02D18C82BEB8FCD /* [CP] Embed Pods Frameworks */,
-				7D5B34B511A6E868C6E92C54 /* [CP] Copy Pods Resources */,
 				A52B809E02EAF2FCBDDFB959 /* 📦 Embed Pods Frameworks */,
 				3F0A27494A6243F91DBDB826 /* 📦 Copy Pods Resources */,
 			);
@@ -910,6 +910,17 @@
 					2D48D2921CDE20D600190F0C = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 8QP3ZT6EXM;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -950,36 +961,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		101FA0CFE02D18C82BEB8FCD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2C2B8A069469C93A874F0CD8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		3F0A27494A6243F91DBDB826 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -995,51 +976,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7D5B34B511A6E868C6E92C54 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		88E74CE1F8E71C406CFFA065 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		A29B211BCBD441417F6BE818 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		A52B809E02EAF2FCBDDFB959 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1053,21 +989,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E262330E9DF75363014C9BB9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1249,6 +1170,7 @@
 			baseConfigurationReference = 112F9D57D42D37A148B12842 /* Pods-DOTA2ShiPing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DOTA2ShiPing/Info.plist;
@@ -1302,6 +1224,7 @@
 			baseConfigurationReference = 23D6142664BEC9BAEB40BFC9 /* Pods-DOTA2ShiPing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DOTA2ShiPing/Info.plist;
