@@ -96,6 +96,7 @@
 		44399A141D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A131D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m */; };
 		44399A181D361504006F0F16 /* SPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A171D361504006F0F16 /* SPPopoverView.m */; };
 		44399A1C1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A1B1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m */; };
+		44FDF0191D37538D007710B1 /* SPPlayerSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDF0181D37538D007710B1 /* SPPlayerSelectedVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -267,6 +268,8 @@
 		44399A171D361504006F0F16 /* SPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPopoverView.m; sourceTree = "<group>"; };
 		44399A1A1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventoryUpdateVC.h; sourceTree = "<group>"; };
 		44399A1B1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventoryUpdateVC.m; sourceTree = "<group>"; };
+		44FDF0171D37538D007710B1 /* SPPlayerSelectedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerSelectedVC.h; sourceTree = "<group>"; };
+		44FDF0181D37538D007710B1 /* SPPlayerSelectedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerSelectedVC.m; sourceTree = "<group>"; };
 		939CCEAA439897D1DEE60C3E /* libPods-DOTA2ShiPing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DOTA2ShiPing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -837,6 +840,8 @@
 			children = (
 				44399A1A1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.h */,
 				44399A1B1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m */,
+				44FDF0171D37538D007710B1 /* SPPlayerSelectedVC.h */,
+				44FDF0181D37538D007710B1 /* SPPlayerSelectedVC.m */,
 			);
 			path = Update;
 			sourceTree = "<group>";
@@ -1030,6 +1035,7 @@
 				2DA9F7731D35490200F87053 /* RWDropdownMenuTransitionController.m in Sources */,
 				2D3CAC931D32870D001932E4 /* SPPlayerInventorySearchResultVC.m in Sources */,
 				2D0A824B1CDE362E00F26BD1 /* UIImage+ImageEffects.m in Sources */,
+				44FDF0191D37538D007710B1 /* SPPlayerSelectedVC.m in Sources */,
 				2D3CAC9D1D33C747001932E4 /* SPWorkshopVC.m in Sources */,
 				2D0A826A1CDEEF1400F26BD1 /* SPDataManager.m in Sources */,
 				2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */,

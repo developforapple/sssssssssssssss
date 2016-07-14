@@ -10,6 +10,7 @@
 #import "SPSteamAPI.h"
 #import "FMDB.h"
 #import "YYCategories.h"
+#import <YYCache.h>
 
 @interface SPPlayerManager ()
 @property (copy, nonatomic) void (^callback)(void);
@@ -228,7 +229,35 @@
 
 @end
 
+static NSString *const kSPPlayerUpdateListSaveKey = @"kSPPlayerUpdateListSaveKey";
+
 @implementation SPPlayerManager (Update)
 
+- (NSArray<NSNumber *> *)updateListPlayers
+{
+    id object = [[NSUserDefaults standardUserDefaults] objectForKey:kSPPlayerUpdateListSaveKey];
+    if (object) {
+        if (![object isKindOfClass:[NSArray class]]) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSPPlayerUpdateListSaveKey];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            return nil;
+        }else{
+            return object;
+        }
+    }
+    return nil;
+}
+
+- (void)setUpdateListPlayers:(NSArray<NSNumber *> *)players
+{
+    [[NSUserDefaults standardUserDefaults] setObject:players forKey:kSPPlayerUpdateListSaveKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSUInteger)supportAccountCount
+{
+    //TODO
+    return 5;
+}
 
 @end

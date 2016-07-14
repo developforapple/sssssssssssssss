@@ -52,6 +52,11 @@ typedef void(^SPCompletion)(BOOL suc, NSString *msg);
 
 @interface SPPlayerManager (Update)
 
+// 在自动更新列表中的用户id列表
+- (NSArray<NSNumber *> *)updateListPlayers;
+- (void)setUpdateListPlayers:(NSArray<NSNumber *> *)players;
+
+
 // cloudKit 是否可用
 // 不可用时，无法进行同步。
 - (BOOL)cloudKitAvaliable;

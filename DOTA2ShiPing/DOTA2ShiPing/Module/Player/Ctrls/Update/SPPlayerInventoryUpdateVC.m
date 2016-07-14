@@ -7,6 +7,7 @@
 //
 
 #import "SPPlayerInventoryUpdateVC.h"
+#import <AMPopTip.h>
 
 @interface SPPlayerInventoryUpdateVC ()
 
@@ -17,6 +18,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     
 }
 
