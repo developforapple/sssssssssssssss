@@ -124,12 +124,12 @@
 @end
 
 #define kDefaultInventoryFileName @"inventory.dat"
-#define kEigenvalueSaveKey @"SPEigenvalueList"
+#define kEigenvalueSaveKey @"SPEigenvalueListV2"
 
 @implementation SPPlayerManager (Inventory)
 
 #pragma mark  Eigenvalue
-- (void)setItemsEigenvalue:(NSNumber *)value forPlayer:(NSNumber *)steamid
+- (void)setItemsEigenvalue:(NSString *)value forPlayer:(NSNumber *)steamid
 {
     if (!steamid) return;
 
@@ -140,17 +140,17 @@
     }else{
         dict = [NSMutableDictionary dictionary];
     }
-    dict[steamid.description] = value.description;
+    dict[steamid.stringValue] = value;
     [[NSUserDefaults standardUserDefaults] setObject:dict forKey:kEigenvalueSaveKey];
 }
 
-- (NSNumber *)itemsEigenvalueOfPlayer:(NSNumber *)steamid
+- (NSString *)itemsEigenvalueOfPlayer:(NSNumber *)steamid
 {
     if (!steamid) return nil;
     
     NSDictionary *objc = [[NSUserDefaults standardUserDefaults] objectForKey:kEigenvalueSaveKey];
     if (objc && [objc isKindOfClass:[NSDictionary class]]) {
-        return @([objc[steamid.description] longLongValue]);
+        return objc[steamid.stringValue] ;
     }
     return nil;
 }

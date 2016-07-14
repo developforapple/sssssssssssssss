@@ -351,11 +351,14 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
     HUD.progress = 0;
     HUD.labelText = @"正在获取...";
     
-    NSNumber *newValue = self.itemsList.eigenvalue;
-    NSNumber *oldValue = [[SPPlayerManager shared] itemsEigenvalueOfPlayer:self.player.steam_id];
+    NSString *newMD5 = self.itemsList.MD5;
+    NSString *oldMD5 = [[SPPlayerManager shared] itemsEigenvalueOfPlayer:self.player.steam_id];
+    
+//    NSNumber *newValue = self.itemsList.eigenvalue;
+//    NSNumber *oldValue = [[SPPlayerManager shared] itemsEigenvalueOfPlayer:self.player.steam_id];
     [[SPPlayerManager shared] readArchivedPlayerInventory:self.player];
     
-    BOOL notNeedUpdate = newValue && oldValue && [newValue isEqualToNumber:oldValue] && nil!=self.player.inventory;
+    BOOL notNeedUpdate = newMD5 && oldMD5 && [oldMD5 isEqualToString:newMD5] && nil!=self.player.inventory;
     if (notNeedUpdate) {
         NSLog(@"不需要更新库存");
         [HUD hide:YES];
@@ -386,7 +389,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
                                            [self.player.inventory infuseItemList:self.itemsList];
                                            
                                            [[SPPlayerManager shared] saveArchivedPlayerInventory:self.player];
-                                           [[SPPlayerManager shared] setItemsEigenvalue:newValue forPlayer:self.player.steam_id];
+                                           [[SPPlayerManager shared] setItemsEigenvalue:newMD5 forPlayer:self.player.steam_id];
         
                                            [HUD hide:YES];
                                            [self performSegueWithIdentifier:kSPPlayerInventorySegueID sender:self.player];

@@ -30,7 +30,8 @@ typedef NS_ENUM(NSUInteger, SPPlayerItemsListStatus) {
 @property (assign, nonatomic) SPPlayerItemsListStatus status;
 @property (strong, nonatomic) NSArray<SPPlayerItem *> *items;
 
-@property (strong, nonatomic) NSNumber *eigenvalue;
+@property (strong, nonatomic) NSNumber *eigenvalue NS_DEPRECATED_IOS(7_0,8_0, "asdfasdfasdf");
+@property (strong, nonatomic) NSString *MD5;
 
 // 根据id查找defindex。不用考虑效率
 - (NSNumber *)defindexOfItemID:(NSNumber *)itemid;

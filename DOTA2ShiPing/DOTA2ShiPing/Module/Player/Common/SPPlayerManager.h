@@ -37,8 +37,8 @@ typedef void(^SPCompletion)(BOOL suc, NSString *msg);
 // 为一个用户的饰品列表设定一个特征值。
 // 下次获取到饰品列表时计算特征值，与旧值相比较，不一致时代表饰品列表已过期
 // 特征值一般为获取饰品列表时服务器响应头中返回的数据长度
-- (void)setItemsEigenvalue:(NSNumber *)value forPlayer:(NSNumber *)steamid;
-- (NSNumber *)itemsEigenvalueOfPlayer:(NSNumber *)steamid;
+- (void)setItemsEigenvalue:(NSString *)value forPlayer:(NSNumber *)steamid;
+- (NSString *)itemsEigenvalueOfPlayer:(NSNumber *)steamid;
 
 // 库存数据更新日期。返回nil表示没有数据
 - (NSDate *)archivedPlayerInventoryUpdateDate:(SPPlayer *)player;

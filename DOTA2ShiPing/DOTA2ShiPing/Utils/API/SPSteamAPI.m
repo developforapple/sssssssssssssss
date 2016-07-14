@@ -14,6 +14,28 @@
 #import "SPPlayerItems.h"
 #import "YYCategories.h"
 
+@interface SPJsonSerializer : AFJSONResponseSerializer
+@end
+
+@interface NSURLResponse (MD5)
+// 数据 NSData 的MD5值
+@property (strong, nonatomic) NSString *MD5;
+@end
+
+static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
+
+@implementation NSURLResponse (MD5)
+- (NSString *)MD5
+{
+    return objc_getAssociatedObject(self, kNSURLResponseMD5Key);
+}
+
+- (void)setMD5:(NSString *)MD5
+{
+    objc_setAssociatedObject(self, kNSURLResponseMD5Key, MD5, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+@end
+
 @interface SPSteamAPI ()
 @property (strong, nonatomic) AFHTTPSessionManager *manager;
 @property (strong, nonatomic) NSURL *cookieRequestURL;
@@ -41,6 +63,7 @@
         
         NSURL *webapiBaseURL = [NSURL URLWithString:@"http://api.steampowered.com"];
         AFHTTPSessionManager *webapiManager = [[AFHTTPSessionManager alloc] initWithBaseURL:webapiBaseURL];
+        [webapiManager setResponseSerializer:[SPJsonSerializer new]];
         shared.webAPIManager = webapiManager;
     });
     return shared;
@@ -163,16 +186,17 @@
         completion(list);
     };
     
+    [self.webAPIManager setResponseSerializer:[[SPJsonSerializer alloc] init]];
     [self.webAPIManager GET:@"IEconItems_570/GetPlayerItems/v0001" parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             NSDictionary *result = responseObject[@"result"];
             SPPlayerItemsList *list = [SPPlayerItemsList yy_modelWithDictionary:result];
             
-            NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
-            NSString *length = response.allHeaderFields[@"Content-Length"];
-            list.eigenvalue = @(length.longLongValue);
-            
+//            NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+//            NSString *length = response.allHeaderFields[@"Content-Length"];
+//            list.eigenvalue = @(length.longLongValue);
+            list.MD5 = task.response.MD5;
             completion(list);
         }else{
             failure();
@@ -367,4 +391,19 @@
 @end
 
 @implementation SPLocation
+@end
+
+#pragma mark - SPJsonSerializer
+@interface SPJsonSerializer ()
+@end
+
+@implementation SPJsonSerializer
+- (id)responseObjectForResponse:(NSURLResponse *)response
+                           data:(NSData *)data
+                          error:(NSError *__autoreleasing *)error
+{
+    id object = [super responseObjectForResponse:response data:data error:error];
+    response.MD5 = data.md5String;
+    return object;
+}
 @end
