@@ -20,7 +20,6 @@
 		2D0A825F1CDEEDD000F26BD1 /* SPHeroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A825E1CDEEDD000F26BD1 /* SPHeroCell.m */; };
 		2D0A82621CDEEE8500F26BD1 /* SPHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A82611CDEEE8500F26BD1 /* SPHero.m */; };
 		2D0A82651CDEEEA600F26BD1 /* SPItemSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A82641CDEEEA600F26BD1 /* SPItemSlot.m */; };
-		2D0A82671CDEEEE500F26BD1 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D0A82661CDEEEE500F26BD1 /* data.json */; };
 		2D0A826A1CDEEF1400F26BD1 /* SPDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A82691CDEEF1400F26BD1 /* SPDataManager.m */; };
 		2D0A826D1CDF1EF300F26BD1 /* SPItemListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A826C1CDF1EF300F26BD1 /* SPItemListVC.m */; };
 		2D0A827A1CDF303500F26BD1 /* baidumobadsdk.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2D0A82731CDF303500F26BD1 /* baidumobadsdk.bundle */; };
@@ -51,7 +50,6 @@
 		2D4506D41D3684B0000971B9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D4506D31D3684B0000971B9 /* CloudKit.framework */; };
 		2D48D2981CDE20D700190F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D2971CDE20D700190F0C /* main.m */; };
 		2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D29A1CDE20D700190F0C /* AppDelegate.m */; };
-		2D48D2A61CDE20D700190F0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2A51CDE20D700190F0C /* Assets.xcassets */; };
 		2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2A71CDE20D700190F0C /* LaunchScreen.storyboard */; };
 		2D48D2C61CDE21F400190F0C /* SPMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2C51CDE21F400190F0C /* SPMain.storyboard */; };
 		2D48D2C91CDE22B800190F0C /* DDMainTBC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D2C81CDE22B800190F0C /* DDMainTBC.m */; };
@@ -60,11 +58,18 @@
 		2D494BBC1CE0C15100491A20 /* SPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D494BBB1CE0C15100491A20 /* SPItem.m */; };
 		2D494BC21CE0D28B00491A20 /* DDProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D494BC11CE0D28B00491A20 /* DDProgressHUD.m */; };
 		2D494BC51CE0D51800491A20 /* SPItemPrefab.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D494BC41CE0D51800491A20 /* SPItemPrefab.m */; };
+		2D504EA91D3A758500D43B07 /* SPWorkshopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D504EA81D3A758500D43B07 /* SPWorkshopModel.m */; };
+		2D504EB01D3AA36D00D43B07 /* heroMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D504EAF1D3AA36D00D43B07 /* heroMap.json */; };
+		2D504EB21D3AA3E500D43B07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D504EB11D3AA3E500D43B07 /* Assets.xcassets */; };
+		2D504EB41D3AA48200D43B07 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D504EB31D3AA48200D43B07 /* data.json */; };
+		2D504EB61D3AA49500D43B07 /* item.db in Resources */ = {isa = PBXBuildFile; fileRef = 2D504EB51D3AA49500D43B07 /* item.db */; };
+		2D504EB91D3AAA2200D43B07 /* SPWorkshopTagVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D504EB81D3AAA2200D43B07 /* SPWorkshopTagVC.m */; };
+		2D504EBB1D3B6AA500D43B07 /* workshoptags.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D504EBA1D3B6AA500D43B07 /* workshoptags.json */; };
+		2D504EBF1D3BE21E00D43B07 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D504EBE1D3BE21E00D43B07 /* JavaScriptCore.framework */; };
 		2D57A3021D29028300D36150 /* SPPlayerDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D57A3011D29028300D36150 /* SPPlayerDetailInfoVC.m */; };
 		2D6AACAA1CE738B200A7D610 /* SPItem+Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AACA91CE738B200A7D610 /* SPItem+Cache.m */; };
 		2D6AACAE1CE76F3300A7D610 /* SPItemSets.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AACAD1CE76F3300A7D610 /* SPItemSets.m */; };
 		2D6E24381D3020EA00995045 /* SPLeftAlignmentLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E24371D3020EA00995045 /* SPLeftAlignmentLayout.m */; };
-		2D86C0F11CF99DB0008E1C5D /* item.db in Resources */ = {isa = PBXBuildFile; fileRef = 2D86C0F01CF99DB0008E1C5D /* item.db */; };
 		2D86C0F41CF9CA13008E1C5D /* SPSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D86C0F31CF9CA13008E1C5D /* SPSearchBar.m */; };
 		2D86C0F71CFAA0D9008E1C5D /* SPSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D86C0F61CFAA0D9008E1C5D /* SPSearchEngine.m */; };
 		2D86C0FA1CFAEECA008E1C5D /* SPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D86C0F91CFAEECA008E1C5D /* SPBaseViewController.m */; };
@@ -74,6 +79,10 @@
 		2D86C10D1CFB13C7008E1C5D /* SPSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D86C10C1CFB13C7008E1C5D /* SPSearchCell.m */; };
 		2D86C1101CFB1EBE008E1C5D /* SPPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D86C10F1CFB1EBE008E1C5D /* SPPlayerManager.m */; };
 		2D925F991D28C05100CF70BE /* SPPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D925F981D28C05100CF70BE /* SPPlayerCell.m */; };
+		2D9B87F21D39436D00C05F95 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9B87F11D39436D00C05F95 /* SafariServices.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		2D9B87FC1D395E4C00C05F95 /* SPWorkshop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B87FB1D395E4C00C05F95 /* SPWorkshop.m */; };
+		2D9B87FF1D39E74400C05F95 /* SPHTMLSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B87FE1D39E74400C05F95 /* SPHTMLSerializer.m */; };
+		2D9B88031D3A075800C05F95 /* SPWorkshopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B88021D3A075800C05F95 /* SPWorkshopCell.m */; };
 		2D9C8B6F1D154EBC00F217AE /* LCActionSheet.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2D9C8B6C1D154EBC00F217AE /* LCActionSheet.bundle */; };
 		2D9C8B701D154EBC00F217AE /* LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C8B6E1D154EBC00F217AE /* LCActionSheet.m */; };
 		2DA4523F1CE0DDF6004BD185 /* SPItemListContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4523E1CE0DDF6004BD185 /* SPItemListContainer.m */; };
@@ -126,7 +135,6 @@
 		2D0A82611CDEEE8500F26BD1 /* SPHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHero.m; sourceTree = "<group>"; };
 		2D0A82631CDEEEA600F26BD1 /* SPItemSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemSlot.h; sourceTree = "<group>"; };
 		2D0A82641CDEEEA600F26BD1 /* SPItemSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemSlot.m; sourceTree = "<group>"; };
-		2D0A82661CDEEEE500F26BD1 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		2D0A82681CDEEF1400F26BD1 /* SPDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDataManager.h; sourceTree = "<group>"; };
 		2D0A82691CDEEF1400F26BD1 /* SPDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDataManager.m; sourceTree = "<group>"; };
 		2D0A826B1CDF1EF300F26BD1 /* SPItemListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemListVC.h; sourceTree = "<group>"; };
@@ -180,7 +188,6 @@
 		2D48D2971CDE20D700190F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D48D2991CDE20D700190F0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2D48D29A1CDE20D700190F0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2D48D2A51CDE20D700190F0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D48D2A81CDE20D700190F0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D48D2AA1CDE20D700190F0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D48D2C51CDE21F400190F0C /* SPMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SPMain.storyboard; sourceTree = "<group>"; };
@@ -196,6 +203,17 @@
 		2D494BC11CE0D28B00491A20 /* DDProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDProgressHUD.m; sourceTree = "<group>"; };
 		2D494BC31CE0D51800491A20 /* SPItemPrefab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemPrefab.h; sourceTree = "<group>"; };
 		2D494BC41CE0D51800491A20 /* SPItemPrefab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemPrefab.m; sourceTree = "<group>"; };
+		2D504EA71D3A758500D43B07 /* SPWorkshopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWorkshopModel.h; sourceTree = "<group>"; };
+		2D504EA81D3A758500D43B07 /* SPWorkshopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWorkshopModel.m; sourceTree = "<group>"; };
+		2D504EAF1D3AA36D00D43B07 /* heroMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heroMap.json; sourceTree = "<group>"; };
+		2D504EB11D3AA3E500D43B07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2D504EB31D3AA48200D43B07 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		2D504EB51D3AA49500D43B07 /* item.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = item.db; sourceTree = "<group>"; };
+		2D504EB71D3AAA2200D43B07 /* SPWorkshopTagVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWorkshopTagVC.h; sourceTree = "<group>"; };
+		2D504EB81D3AAA2200D43B07 /* SPWorkshopTagVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWorkshopTagVC.m; sourceTree = "<group>"; };
+		2D504EBA1D3B6AA500D43B07 /* workshoptags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = workshoptags.json; sourceTree = "<group>"; };
+		2D504EBC1D3BDED200D43B07 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		2D504EBE1D3BE21E00D43B07 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		2D57A3001D29028300D36150 /* SPPlayerDetailInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerDetailInfoVC.h; sourceTree = "<group>"; };
 		2D57A3011D29028300D36150 /* SPPlayerDetailInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerDetailInfoVC.m; sourceTree = "<group>"; };
 		2D6AACA81CE738B200A7D610 /* SPItem+Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPItem+Cache.h"; sourceTree = "<group>"; };
@@ -205,7 +223,6 @@
 		2D6AACAD1CE76F3300A7D610 /* SPItemSets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemSets.m; sourceTree = "<group>"; };
 		2D6E24361D3020EA00995045 /* SPLeftAlignmentLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLeftAlignmentLayout.h; sourceTree = "<group>"; };
 		2D6E24371D3020EA00995045 /* SPLeftAlignmentLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLeftAlignmentLayout.m; sourceTree = "<group>"; };
-		2D86C0F01CF99DB0008E1C5D /* item.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = item.db; sourceTree = "<group>"; };
 		2D86C0F21CF9CA13008E1C5D /* SPSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSearchBar.h; sourceTree = "<group>"; };
 		2D86C0F31CF9CA13008E1C5D /* SPSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSearchBar.m; sourceTree = "<group>"; };
 		2D86C0F51CFAA0D9008E1C5D /* SPSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSearchEngine.h; sourceTree = "<group>"; };
@@ -225,6 +242,13 @@
 		2D86C10F1CFB1EBE008E1C5D /* SPPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerManager.m; sourceTree = "<group>"; };
 		2D925F971D28C05100CF70BE /* SPPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerCell.h; sourceTree = "<group>"; };
 		2D925F981D28C05100CF70BE /* SPPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerCell.m; sourceTree = "<group>"; };
+		2D9B87F11D39436D00C05F95 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		2D9B87FA1D395B2D00C05F95 /* SPWorkshop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPWorkshop.h; sourceTree = "<group>"; };
+		2D9B87FB1D395E4C00C05F95 /* SPWorkshop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWorkshop.m; sourceTree = "<group>"; };
+		2D9B87FD1D39E74400C05F95 /* SPHTMLSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHTMLSerializer.h; sourceTree = "<group>"; };
+		2D9B87FE1D39E74400C05F95 /* SPHTMLSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHTMLSerializer.m; sourceTree = "<group>"; };
+		2D9B88011D3A075800C05F95 /* SPWorkshopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWorkshopCell.h; sourceTree = "<group>"; };
+		2D9B88021D3A075800C05F95 /* SPWorkshopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWorkshopCell.m; sourceTree = "<group>"; };
 		2D9C8B6C1D154EBC00F217AE /* LCActionSheet.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LCActionSheet.bundle; sourceTree = "<group>"; };
 		2D9C8B6D1D154EBC00F217AE /* LCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCActionSheet.h; sourceTree = "<group>"; };
 		2D9C8B6E1D154EBC00F217AE /* LCActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCActionSheet.m; sourceTree = "<group>"; };
@@ -278,6 +302,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D504EBF1D3BE21E00D43B07 /* JavaScriptCore.framework in Frameworks */,
+				2D9B87F21D39436D00C05F95 /* SafariServices.framework in Frameworks */,
 				2D0A82991CDF329A00F26BD1 /* CoreGraphics.framework in Frameworks */,
 				2D4506D41D3684B0000971B9 /* CloudKit.framework in Frameworks */,
 				2D0A82971CDF328E00F26BD1 /* SystemConfiguration.framework in Frameworks */,
@@ -445,34 +471,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		2D3CAC971D33C721001932E4 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		2D3CAC981D33C721001932E4 /* Ctrls */ = {
 			isa = PBXGroup;
 			children = (
 				2D3CAC9B1D33C747001932E4 /* SPWorkshopVC.h */,
 				2D3CAC9C1D33C747001932E4 /* SPWorkshopVC.m */,
+				2D504EB71D3AAA2200D43B07 /* SPWorkshopTagVC.h */,
+				2D504EB81D3AAA2200D43B07 /* SPWorkshopTagVC.m */,
 			);
 			path = Ctrls;
-			sourceTree = "<group>";
-		};
-		2D3CAC991D33C721001932E4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		2D3CAC9A1D33C721001932E4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		2D48D28A1CDE20D600190F0C = {
@@ -496,9 +503,8 @@
 		2D48D2951CDE20D700190F0C /* DOTA2ShiPing */ = {
 			isa = PBXGroup;
 			children = (
+				2D504EAA1D3AA32C00D43B07 /* Resource */,
 				2D4506D21D3683C4000971B9 /* DOTA2ShiPing.entitlements */,
-				2D86C0F01CF99DB0008E1C5D /* item.db */,
-				2D0A82661CDEEEE500F26BD1 /* data.json */,
 				2D48D2B01CDE21A500190F0C /* 3rd */,
 				2D48D2C11CDE21A500190F0C /* Utils */,
 				2D48D2B71CDE21A500190F0C /* Common */,
@@ -506,7 +512,6 @@
 				2D48D2B91CDE21A500190F0C /* Module */,
 				2D48D2991CDE20D700190F0C /* AppDelegate.h */,
 				2D48D29A1CDE20D700190F0C /* AppDelegate.m */,
-				2D48D2A51CDE20D700190F0C /* Assets.xcassets */,
 				2D48D2A71CDE20D700190F0C /* LaunchScreen.storyboard */,
 				2D48D2AA1CDE20D700190F0C /* Info.plist */,
 				2D48D2961CDE20D700190F0C /* Supporting Files */,
@@ -649,9 +654,9 @@
 			isa = PBXGroup;
 			children = (
 				2D3CAC981D33C721001932E4 /* Ctrls */,
-				2D3CAC971D33C721001932E4 /* Common */,
-				2D3CAC991D33C721001932E4 /* Model */,
-				2D3CAC9A1D33C721001932E4 /* View */,
+				2D504EA61D3A757500D43B07 /* Model */,
+				2D9B87F61D395AD400C05F95 /* Common */,
+				2D9B88001D3A073E00C05F95 /* View */,
 			);
 			path = Workshop;
 			sourceTree = "<group>";
@@ -682,6 +687,27 @@
 			path = HUD;
 			sourceTree = "<group>";
 		};
+		2D504EA61D3A757500D43B07 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2D504EA71D3A758500D43B07 /* SPWorkshopModel.h */,
+				2D504EA81D3A758500D43B07 /* SPWorkshopModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2D504EAA1D3AA32C00D43B07 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2D504EB11D3AA3E500D43B07 /* Assets.xcassets */,
+				2D504EB51D3AA49500D43B07 /* item.db */,
+				2D504EB31D3AA48200D43B07 /* data.json */,
+				2D504EAF1D3AA36D00D43B07 /* heroMap.json */,
+				2D504EBA1D3B6AA500D43B07 /* workshoptags.json */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		2D6E24351D3020BD00995045 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
@@ -700,6 +726,8 @@
 				2DB174851D14FBDE0042417D /* SPDotabuffAPI.m */,
 				2DB174871D14FBE70042417D /* SPSteamAPI.h */,
 				2DB174881D14FBE70042417D /* SPSteamAPI.m */,
+				2D9B87FD1D39E74400C05F95 /* SPHTMLSerializer.h */,
+				2D9B87FE1D39E74400C05F95 /* SPHTMLSerializer.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -767,6 +795,24 @@
 			children = (
 			);
 			path = ActionSheet;
+			sourceTree = "<group>";
+		};
+		2D9B87F61D395AD400C05F95 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2D9B87FA1D395B2D00C05F95 /* SPWorkshop.h */,
+				2D9B87FB1D395E4C00C05F95 /* SPWorkshop.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		2D9B88001D3A073E00C05F95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2D9B88011D3A075800C05F95 /* SPWorkshopCell.h */,
+				2D9B88021D3A075800C05F95 /* SPWorkshopCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2D9C8B6B1D154EBC00F217AE /* LCActionSheet */ = {
@@ -849,6 +895,9 @@
 		9DF9275624812581C6DA2B9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D504EBE1D3BE21E00D43B07 /* JavaScriptCore.framework */,
+				2D504EBC1D3BDED200D43B07 /* AVKit.framework */,
+				2D9B87F11D39436D00C05F95 /* SafariServices.framework */,
 				2D4506D31D3684B0000971B9 /* CloudKit.framework */,
 				2D0A82981CDF329A00F26BD1 /* CoreGraphics.framework */,
 				2D0A82961CDF328E00F26BD1 /* SystemConfiguration.framework */,
@@ -887,11 +936,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D48D2AD1CDE20D700190F0C /* Build configuration list for PBXNativeTarget "DOTA2ShiPing" */;
 			buildPhases = (
+				A7643A51540CEFB61A4BF435 /* [CP] Check Pods Manifest.lock */,
 				2D48D28F1CDE20D600190F0C /* Sources */,
 				2D48D2901CDE20D600190F0C /* Frameworks */,
 				2D48D2911CDE20D600190F0C /* Resources */,
-				A52B809E02EAF2FCBDDFB959 /* 📦 Embed Pods Frameworks */,
-				3F0A27494A6243F91DBDB826 /* 📦 Copy Pods Resources */,
+				A52B809E02EAF2FCBDDFB959 /* [CP] Embed Pods Frameworks */,
+				3F0A27494A6243F91DBDB826 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -953,12 +1003,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D0A827A1CDF303500F26BD1 /* baidumobadsdk.bundle in Resources */,
-				2D86C0F11CF99DB0008E1C5D /* item.db in Resources */,
+				2D504EB21D3AA3E500D43B07 /* Assets.xcassets in Resources */,
+				2D504EB41D3AA48200D43B07 /* data.json in Resources */,
 				2D9C8B6F1D154EBC00F217AE /* LCActionSheet.bundle in Resources */,
 				2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */,
 				2D48D2C61CDE21F400190F0C /* SPMain.storyboard in Resources */,
-				2D48D2A61CDE20D700190F0C /* Assets.xcassets in Resources */,
-				2D0A82671CDEEEE500F26BD1 /* data.json in Resources */,
+				2D504EB01D3AA36D00D43B07 /* heroMap.json in Resources */,
+				2D504EBB1D3B6AA500D43B07 /* workshoptags.json in Resources */,
+				2D504EB61D3AA49500D43B07 /* item.db in Resources */,
 				2D0A823F1CDE2FE300F26BD1 /* SPItemEntranceConfigure in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -966,14 +1018,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3F0A27494A6243F91DBDB826 /* 📦 Copy Pods Resources */ = {
+		3F0A27494A6243F91DBDB826 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -981,19 +1033,34 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A52B809E02EAF2FCBDDFB959 /* 📦 Embed Pods Frameworks */ = {
+		A52B809E02EAF2FCBDDFB959 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7643A51540CEFB61A4BF435 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1004,6 +1071,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D0A826D1CDF1EF300F26BD1 /* SPItemListVC.m in Sources */,
+				2D504EB91D3AAA2200D43B07 /* SPWorkshopTagVC.m in Sources */,
 				2D86C1101CFB1EBE008E1C5D /* SPPlayerManager.m in Sources */,
 				2D0A829C1CDF32EC00F26BD1 /* DDMainADVC.m in Sources */,
 				2D86C0F41CF9CA13008E1C5D /* SPSearchBar.m in Sources */,
@@ -1019,6 +1087,7 @@
 				2D1CA5A81D15705400B169E0 /* SPPlayerItems.m in Sources */,
 				2D0A82651CDEEEA600F26BD1 /* SPItemSlot.m in Sources */,
 				44399A0E1D3494D0006F0F16 /* SPInventoryConditionCell.m in Sources */,
+				2D504EA91D3A758500D43B07 /* SPWorkshopModel.m in Sources */,
 				2D86C10A1CFB0F30008E1C5D /* SPPlayerListVC.m in Sources */,
 				2D86C1041CFB00E3008E1C5D /* SPPlayer.m in Sources */,
 				2D0A82A21CDF3A7700F26BD1 /* SPLaunchADVC.m in Sources */,
@@ -1036,6 +1105,7 @@
 				2D3CAC931D32870D001932E4 /* SPPlayerInventorySearchResultVC.m in Sources */,
 				2D0A824B1CDE362E00F26BD1 /* UIImage+ImageEffects.m in Sources */,
 				44FDF0191D37538D007710B1 /* SPPlayerSelectedVC.m in Sources */,
+				2D9B87FC1D395E4C00C05F95 /* SPWorkshop.m in Sources */,
 				2D3CAC9D1D33C747001932E4 /* SPWorkshopVC.m in Sources */,
 				2D0A826A1CDEEF1400F26BD1 /* SPDataManager.m in Sources */,
 				2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */,
@@ -1044,6 +1114,8 @@
 				2D48D2981CDE20D700190F0C /* main.m in Sources */,
 				2D0A82581CDED9B700F26BD1 /* SPItemHeroPickerVC.m in Sources */,
 				2D0A82621CDEEE8500F26BD1 /* SPHero.m in Sources */,
+				2D9B87FF1D39E74400C05F95 /* SPHTMLSerializer.m in Sources */,
+				2D9B88031D3A075800C05F95 /* SPWorkshopCell.m in Sources */,
 				2D3CAC961D32A130001932E4 /* SPItemQuality.m in Sources */,
 				2DF28B841D30DF46003762DA /* SPPlayerInventoryVC.m in Sources */,
 				2D9C8B701D154EBC00F217AE /* LCActionSheet.m in Sources */,

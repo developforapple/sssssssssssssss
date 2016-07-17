@@ -389,4 +389,9 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
     }
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 @end

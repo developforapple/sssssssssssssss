@@ -7,11 +7,12 @@
 //
 
 #import "SPPlayerInventorySearchAllPlayerVC.h"
+#import "SPMacro.h"
 #import <ReactiveCocoa.h>
+#import <UIScrollView+EmptyDataSet.h>
 
-@interface SPPlayerInventorySearchAllPlayerVC ()
+@interface SPPlayerInventorySearchAllPlayerVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *effectView;
-
 @end
 
 @implementation SPPlayerInventorySearchAllPlayerVC
@@ -20,6 +21,16 @@
 {
     [super viewDidLoad];
     
+    spweakify(self);
+    [RACObserve(self.view, hidden)
+     subscribeNext:^(id x) {
+         spstrongify(self);
+         if ([x boolValue]) {
+             self.view.hidden = NO;
+         }
+     }];
+    
+    self.effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
 }
 
 #pragma mark - UISearchController
@@ -27,6 +38,8 @@
 {
     NSLog(@"%@",searchController.searchBar.text);
 }
+
+#pragma mark - UITableView
 
 
 @end

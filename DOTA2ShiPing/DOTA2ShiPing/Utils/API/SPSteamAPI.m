@@ -13,6 +13,7 @@
 #import "SPMacro.h"
 #import "SPPlayerItems.h"
 #import "YYCategories.h"
+#import "SPHTMLSerializer.h"
 
 @interface SPJsonSerializer : AFJSONResponseSerializer
 @end
@@ -23,7 +24,6 @@
 @end
 
 static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
-
 @implementation NSURLResponse (MD5)
 - (NSString *)MD5
 {
@@ -41,6 +41,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
 @property (strong, nonatomic) NSURL *cookieRequestURL;
 
 @property (strong, nonatomic) AFHTTPSessionManager *webAPIManager;
+@property (strong, nonatomic) AFHTTPSessionManager *workshopManager;
 @end
 
 @implementation SPSteamAPI
@@ -67,6 +68,20 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
         shared.webAPIManager = webapiManager;
     });
     return shared;
+}
+
+- (AFHTTPSessionManager *)workshopManager
+{
+    if (!_workshopManager) {
+        NSURL *baseURL = [NSURL URLWithString:@"http://steamcommunity.com"];
+        _workshopManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
+        _workshopManager.responseSerializer = [[SPHTMLSerializer alloc] init];
+        
+        [_workshopManager.requestSerializer setValue:@"Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E188a Safari/601.1" forHTTPHeaderField:@"User-Agent"];
+        [_workshopManager.requestSerializer setValue:@"zh-cn" forHTTPHeaderField:@"Accept-Language"];
+        [_workshopManager.requestSerializer setValue:@"http://steamcommunity.com/app/570/workshop/" forHTTPHeaderField:@"Referer"];
+    }
+    return _workshopManager;
 }
 
 - (NSDictionary *)defaultWebAPIParams
@@ -379,12 +394,42 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             NSArray *friendsJson = responseObject[@"friendslist"][@"friends"];
             NSArray *friends = [NSArray yy_modelArrayWithClass:[SPPlayerFriend class] json:friendsJson];
-            completion(friends,friends);
+            completion(nil!=friends,friends);
         }else{
             completion(NO,@"数据错误");
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         completion(NO,@"网络错误");
+    }];
+}
+
+- (NSURLSessionDataTask *)fetchWorkShopContent:(NSDictionary *)query
+                                      progress:(void (^)(NSProgress *progress))progress
+                                    completion:(SPSteamFetchCompletion2)completion
+{
+    if (!completion) return nil;
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:query];
+    params[@"appid"] = @570;
+    
+    return
+    [self.workshopManager GET:@"workshop/browse" parameters:params progress:progress success:^(NSURLSessionDataTask *task, id responseObject) {
+        completion(nil!=responseObject,responseObject,task.taskDescription);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        completion(NO,@"网络错误",task.taskDescription);
+    }];
+}
+
+- (NSURLSessionDataTask *)fetchWorkshopDetail:(NSNumber *)itemid
+                                   completion:(SPSteamFetchCompletion2)completion
+{
+    if (!completion || !itemid) return nil;
+    
+    return
+    [self.workshopManager GET:@"sharedfiles/filedetails" parameters:@{@"id":itemid} progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        completion(nil!=responseObject,responseObject,task.taskDescription);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        completion(NO,@"网络错误",task.taskDescription);
     }];
 }
 
@@ -407,3 +452,5 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
     return object;
 }
 @end
+
+

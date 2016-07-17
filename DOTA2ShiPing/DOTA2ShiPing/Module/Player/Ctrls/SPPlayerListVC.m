@@ -20,6 +20,7 @@
 #import "UIImage+YYAdd.h"
 #import "RWDropdownMenu.h"
 #import "SPPopoverView.h"
+#import <SafariServices/SafariServices.h>
 
 // 搜索用户
 static NSString *const kSPPlayerSearchSegueID = @"SPPlayerSearchSegueID";
@@ -51,18 +52,19 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
     
     [SPLogoHeader setLogoHeaderInScrollView:self.tableView];
     
-    SPPlayerInventorySearchAllPlayerVC *vc = [SPPlayerInventorySearchAllPlayerVC instanceFromStoryboard];
-    self.searchCtrl = [[UISearchController alloc] initWithSearchResultsController:vc];
-    vc.searchCtrl = self.searchCtrl;
-    self.searchCtrl.searchResultsUpdater = vc;
-    self.searchCtrl.delegate = self;
-    
-    self.definesPresentationContext = YES;
-    
-    [self.searchCtrl.searchBar sizeToFit];
-    [self.searchCtrl.searchBar setBackgroundImage:[UIImage imageWithColor:RGBColor(247, 247, 247, 1)]];
-    self.searchCtrl.searchBar.placeholder = @"在所有库存中搜索";
-    self.tableView.tableHeaderView = self.searchCtrl.searchBar;
+//    SPPlayerInventorySearchAllPlayerVC *vc = [SPPlayerInventorySearchAllPlayerVC instanceFromStoryboard];
+//    self.searchCtrl = [[UISearchController alloc] initWithSearchResultsController:vc];
+//    vc.searchCtrl = self.searchCtrl;
+//    self.searchCtrl.searchResultsUpdater = vc;
+//    self.searchCtrl.delegate = self;
+//    self.searchCtrl.dimsBackgroundDuringPresentation = NO;
+//    
+//    self.definesPresentationContext = YES;
+//    
+//    [self.searchCtrl.searchBar sizeToFit];
+//    [self.searchCtrl.searchBar setBackgroundImage:[UIImage imageWithColor:RGBColor(247, 247, 247, 1)]];
+//    self.searchCtrl.searchBar.placeholder = @"在所有库存中搜索";
+//    self.tableView.tableHeaderView = self.searchCtrl.searchBar;
     
     spweakify(self);
     [[SPPlayerManager shared] setStarredUpdatedCallback:^{

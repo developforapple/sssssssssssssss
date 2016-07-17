@@ -13,6 +13,7 @@
 
 typedef void (^SPSteamSearchUserCompletion)(BOOL suc, NSArray *list, NSString *msg);
 typedef void (^SPSteamFetchCompletion)(BOOL suc, id object);
+typedef void (^SPSteamFetchCompletion2)(BOOL suc, id object, NSString *taskDesc);
 
 @interface SPSteamAPI : NSObject
 
@@ -55,6 +56,15 @@ typedef void (^SPSteamFetchCompletion)(BOOL suc, id object);
 // 获取用户的好友列表
 - (void)fetchPlayerFriends:(NSNumber *)steamid17
                 completion:(SPSteamFetchCompletion)completion;
+
+#pragma mark - Workshop
+// 获取创意工坊内容
+- (NSURLSessionDataTask *)fetchWorkShopContent:(NSDictionary *)query
+                                      progress:(void (^)(NSProgress *progress))progress
+                                    completion:(SPSteamFetchCompletion2)completion;
+// 获取创意工坊详情
+- (NSURLSessionDataTask *)fetchWorkshopDetail:(NSNumber *)itemid
+                                   completion:(SPSteamFetchCompletion2)completion;
 
 @end
 

@@ -17,6 +17,8 @@
 #import "SPPlayerManager.h"
 #import "SPPlayer+More.h"
 #import "YYWebImage.h"
+#import <SafariServices/SafariServices.h>
+#import <DZNWebViewController.h>
 
 static NSString *SPPlayerDetailItemsTagCell = @"SPPlayerDetailItemsTagCell";
 
@@ -127,6 +129,15 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
     }];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.navigationController.hidesBarsOnTap = NO;
+    self.navigationController.hidesBarsOnSwipe = NO;
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)dealloc
 {
     NSString *class = NSStringFromClass([self class]);
@@ -234,7 +245,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
         SPPlayerItemsListStatus status = self.itemsList.status;
         switch (status) {
             case SPPlayerItemsListStatusFailure: {
-                self.itemTitleLabel.text = @"获取数据失败";
+                self.itemTitleLabel.text = @"服务不可用";
                 break;
             }
             case SPPlayerItemsListStatusSuccess: {
@@ -400,11 +411,59 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
                                    }];
 }
 
-- (IBAction)gotoSteam:(id)sender {
+- (IBAction)gotoSteam:(id)sender
+{
+    [self openURL:self.player.steamProfile];
 }
-- (IBAction)gotoDotamax:(id)sender {
+
+- (IBAction)gotoDotamax:(id)sender
+{
+    [self openURL:self.player.dotamaxProfile];
 }
-- (IBAction)gotoDotabuff:(id)sender {
+
+- (IBAction)gotoDotabuff:(id)sender
+{
+    [self openURL:self.player.dotabuffProfile];
+}
+
+- (void)openURL:(NSURL *)URL
+{
+    static NSString *k = @".SPOpenURLAlertMessage";
+    BOOL willAlert = ![[NSUserDefaults standardUserDefaults] boolForKey:k];
+    
+    Class safari = NSClassFromString(@"SFSafariViewController");
+    if (safari) {
+        void (^open)(void) = ^{
+            SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:URL entersReaderIfAvailable:YES];
+            [self presentViewController:vc animated:YES completion:nil];
+        };
+        if (willAlert) {
+            NSString *message = [NSString stringWithFormat:@"您即将使用Safari浏览器在应用中打开目标网址。现在，您可以安全的进行登录。\n\n%@",URL.absoluteString];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"安全提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                open();
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:k];
+            }]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }else{
+            open();
+        }
+    }else{
+        void (^open)(void) = ^{
+            DZNWebViewController *vc = [[DZNWebViewController alloc] initWithURL:URL];
+            [self.navigationController pushViewController:vc animated:YES];
+        };
+        if (willAlert) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"建议更新至iOS9" message:@"在iOS9及以上系统，我们将使用Safari浏览器在应用内打开目标网址。您可以安全的进行登录，登录状态不会丢失。推荐使用。" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                open();
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:k];
+            }]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }else{
+            open();
+        }
+    }
 }
 
 #pragma mark - UITableView

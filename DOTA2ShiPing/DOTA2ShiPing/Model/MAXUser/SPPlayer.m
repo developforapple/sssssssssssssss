@@ -27,6 +27,21 @@
     return @(self.steam_id.longLongValue + BaseSteamID());
 }
 
+- (NSURL *)steamProfile
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"https://steamcommunity.com/profiles/%@",self.steamid17]];
+}
+
+- (NSURL *)dotamaxProfile
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://dotamax.com/player/detail/%@",self.steam_id]];
+}
+
+- (NSURL *)dotabuffProfile
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.dotabuff.com/players/%@",self.steam_id]];
+}
+
 YYModelCopyingCodingCode
 @end
 

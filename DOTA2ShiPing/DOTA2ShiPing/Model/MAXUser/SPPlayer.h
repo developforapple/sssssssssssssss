@@ -22,6 +22,10 @@
 // 库存详细数据
 @property (strong, nonatomic) SPPlayerInventory *inventory;
 
+- (NSURL *)steamProfile;
+- (NSURL *)dotamaxProfile;
+- (NSURL *)dotabuffProfile;
+
 @end
 
 // 用户的steam社区资料可见性

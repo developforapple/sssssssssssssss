@@ -24,3 +24,4 @@ pod 'JZNavigationExtension', '~> 1.5.0.1' #https://github.com/JazysYu/JZNavigati
 pod 'AMPopTip', '~> 1.1.1'          #https://github.com/andreamazz/AMPopTip
 
 pod 'SSKeychain'                    #https://github.com/soffes/SSKeychain
+pod 'DZNWebViewController'          #https://github.com/dzenbot/DZNWebViewController
