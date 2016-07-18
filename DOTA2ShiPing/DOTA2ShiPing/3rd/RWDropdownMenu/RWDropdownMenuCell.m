@@ -29,7 +29,7 @@ static CGFloat margin = 20.f;
         
         self.textLabel = [UILabel new];
         self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        self.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+        self.textLabel.font = [UIFont systemFontOfSize:15];
         self.textLabel.backgroundColor = [UIColor clearColor];
         [self.container addSubview:self.textLabel];
         self.imageView = [UIImageView new];
@@ -61,8 +61,7 @@ static CGFloat margin = 20.f;
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
-    if (selected)
-    {
+    if (selected){
         self.imageView.tintColor = [self inversedTintColor];
         NSUInteger len = [self.textLabel.attributedText length];
         if (len > 0) {
@@ -70,9 +69,7 @@ static CGFloat margin = 20.f;
             [attrStr addAttribute:NSForegroundColorAttributeName value:[self inversedTintColor] range:NSMakeRange(0, len)];
             [self.textLabel setAttributedText:attrStr];
         }
-    }
-    else
-    {
+    }else{
         self.imageView.tintColor = self.tintColor;
     }
 }
@@ -104,7 +101,8 @@ static CGFloat margin = 20.f;
     NSDictionary *views = @{@"text":self.textLabel, @"image":self.imageView,@"container":self.container};
     
     // 垂直
-    [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[image]-0-|" options:kNilOptions metrics:nil views:views]];
+    [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=0)-[image]-(>=0)-|" options:kNilOptions metrics:nil views:views]];
+    [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=0)-[text]-(>=0)-|" options:kNilOptions metrics:nil views:views]];
     [self.container addConstraint:[NSLayoutConstraint constraintWithItem:self.textLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.container attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.container attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     
@@ -113,26 +111,29 @@ static CGFloat margin = 20.f;
         margin = 25.f;
     }
     
-    NSDictionary *metrics = @{@"m":@(margin)};
+    CGFloat spacing = self.imageView.image?15.f:0.f;
+    
+    NSDictionary *metrics = @{@"m":@(margin),
+                              @"s":@(spacing)};
     
     switch (self.alignment) {
         case RWDropdownMenuCellAlignmentLeft: {
             
-            [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[image(>=0@750)]-15-[text(>=0@700)]-0-|" options:kNilOptions metrics:nil views:views]];
+            [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[image(>=0@750)]-s-[text(>=0@700)]-0-|" options:kNilOptions metrics:metrics views:views]];
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-m-[container]" options:kNilOptions metrics:metrics views:views]];
             
             break;
         }
         case RWDropdownMenuCellAlignmentCenter: {
             
-            [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[image(>=0@750)]-15-[text(>=0@700)]-0-|" options:kNilOptions metrics:nil views:views]];
+            [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[image(>=0@750)]-s-[text(>=0@700)]-0-|" options:kNilOptions metrics:metrics views:views]];
             [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.container attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
             
             break;
         }
         case RWDropdownMenuCellAlignmentRight: {
             
-            [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[text(>=0@700)]-15-[image(>=0@750)]-0-|" options:kNilOptions metrics:nil views:views]];
+            [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[text(>=0@700)]-s-[image(>=0@750)]-0-|" options:kNilOptions metrics:metrics views:views]];
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[container]-m-|" options:kNilOptions metrics:metrics views:views]];
             
             break;

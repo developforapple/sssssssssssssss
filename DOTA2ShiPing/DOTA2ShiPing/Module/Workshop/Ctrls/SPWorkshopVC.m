@@ -18,6 +18,7 @@
 #import <MJRefresh.h>
 #import "RWDropdownMenu.h"
 #import "SPWebHelper.h"
+#import "SPFocusVisualEffectVC.h"
 #import <ReactiveCocoa.h>
 #import <UIScrollView+EmptyDataSet.h>
 #import <AVKit/AVKit.h>
@@ -138,7 +139,12 @@ static NSString *const kSPWorkshopFilterSegueID = @"SPWorkshopFilterSegueID";
         NSUInteger idx = [items indexOfObject:item];
         [item setValue:^{action(idx);} forKey:@"action"];
     }
-    [RWDropdownMenu presentFromViewController:self withItems:items align:RWDropdownMenuCellAlignmentCenter style:RWDropdownMenuStyleTranslucent navBarImage:nil completion:nil];
+    [RWDropdownMenu presentInPopoverFromView:btn
+                                   direction:UIPopoverArrowDirectionAny
+                                       align:RWDropdownMenuCellAlignmentCenter
+                              presentingFrom:self
+                                   withItems:items
+                                  completion:nil];
 }
 
 - (IBAction)filter:(UIBarButtonItem *)item
@@ -148,11 +154,6 @@ static NSString *const kSPWorkshopFilterSegueID = @"SPWorkshopFilterSegueID";
 
 - (IBAction)sort:(UIBarButtonItem *)item
 {
-
-//    SFSafariViewController *safari = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"https://www.youtube.com/embed/MfW-EMU6LJ4"]];
-//    [self presentViewController:safari animated:YES completion:nil];
-//    return;
-    
     spweakify(self);
     void (^action)(SPWorkshopSort *sort) = ^(SPWorkshopSort *sort){
         spstrongify(self);
@@ -169,12 +170,12 @@ static NSString *const kSPWorkshopFilterSegueID = @"SPWorkshopFilterSegueID";
         }];
         [items addObject:item];
     }
-    [RWDropdownMenu presentFromViewController:self withItems:items align:RWDropdownMenuCellAlignmentCenter style:RWDropdownMenuStyleTranslucent navBarImage:nil completion:nil];
+    [RWDropdownMenu presentInPopoverFromBarButtonItem:item presentingFrom:self withItems:items completion:nil];
 }
 
 - (IBAction)search:(UIBarButtonItem *)item
 {
-    
+    //TODO
 }
 
 - (void)navigationBarChangedOnSwip:(UIPanGestureRecognizer *)gr
@@ -233,27 +234,48 @@ static NSString *const kSPWorkshopFilterSegueID = @"SPWorkshopFilterSegueID";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     spweakify(self);
-    SPWorkshopUnit *unit = self.workshop.units[indexPath.item];
-    NSArray *items = @[[RWDropdownMenuItem itemWithText:@"" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"查看视频和图片资源" image:nil action:^{
-                           self.HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
-                           [self.workshop fetchResource:unit completion:^(BOOL suc, SPWorkshopUnit *unit) {
+    NSArray *items = @[
+                       [RWDropdownMenuItem itemWithText:@"查看视频和图片" image:nil action:^{
+                           RunAfter(kSPFocusAnimationDurtaion, ^{
                                spstrongify(self);
-                               [self.HUD hide:YES];
-                               [self showResources:unit];
-                           }];
+                               self.HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
+                               SPWorkshopUnit *unit = self.workshop.units[indexPath.item];
+                               [self.workshop fetchResource:unit completion:^(BOOL suc, SPWorkshopUnit *unit) {
+                                   spstrongify(self);
+                                   [self.HUD hide:YES];
+                                   [self showResources:unit];
+                               }];
+                           });
                        }],
                        [RWDropdownMenuItem itemWithText:@"打开原始链接" image:nil action:^{
-                           [SPWebHelper openURL:unit.detailURL from:self];
-                       }]];
-    RWDropdownMenu *menu = [RWDropdownMenu presentFromViewController:self
-                                                           withItems:items
-                                                               align:RWDropdownMenuCellAlignmentCenter
-                                                               style:RWDropdownMenuStyleTranslucent
-                                                         navBarImage:nil
-                                                          completion:nil];
-    menu.navigationItem.title = unit.title;
+                           RunAfter(kSPFocusAnimationDurtaion, ^{
+                               SPWorkshopUnit *unit = self.workshop.units[indexPath.item];
+                               [SPWebHelper openURL:unit.detailURL from:self];
+                           });
+                       }]
+                       ];
+    
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    BOOL isLeftItem = indexPath.row%2==0;
+    CGRect rect = CGRectZero;
+    if (isLeftItem) {
+        rect.origin.x = CGRectGetWidth(cell.frame);
+        rect.origin.y = CGRectGetHeight(cell.frame)/2;
+    }else{
+        rect.origin.y = CGRectGetHeight(cell.frame)/2;
+    }
+    
+    SPFocusVisualEffectVC *vc = [SPFocusVisualEffectVC instanceFromStoryboard];
+    [vc showFocusView:cell completion:^(SPFocusVisualEffectVC *focusVC,UIView *focusView) {
+        UIPopoverArrowDirection direction = isLeftItem?UIPopoverArrowDirectionLeft:UIPopoverArrowDirectionRight;
+        RWDropdownMenuCellAlignment algin = isLeftItem?RWDropdownMenuCellAlignmentLeft:RWDropdownMenuCellAlignmentRight;
+
+        __weak typeof(focusVC) weakVC = focusVC;
+        [RWDropdownMenu presentInPopoverFromView:focusView position:rect direction:direction align:algin presentingFrom:focusVC withItems:items completion:nil dismiss:^{
+            __strong typeof(weakVC) strongVC = weakVC;
+            [strongVC dismiss];
+        }];
+    }];
 }
 
 #pragma mark - Empty

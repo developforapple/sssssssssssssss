@@ -66,6 +66,7 @@
 		2D504EB91D3AAA2200D43B07 /* SPWorkshopTagVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D504EB81D3AAA2200D43B07 /* SPWorkshopTagVC.m */; };
 		2D504EBB1D3B6AA500D43B07 /* workshoptags.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D504EBA1D3B6AA500D43B07 /* workshoptags.json */; };
 		2D504EBF1D3BE21E00D43B07 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D504EBE1D3BE21E00D43B07 /* JavaScriptCore.framework */; };
+		2D504EC21D3D265B00D43B07 /* SPFocusVisualEffectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D504EC11D3D265B00D43B07 /* SPFocusVisualEffectVC.m */; };
 		2D57A3021D29028300D36150 /* SPPlayerDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D57A3011D29028300D36150 /* SPPlayerDetailInfoVC.m */; };
 		2D6AACAA1CE738B200A7D610 /* SPItem+Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AACA91CE738B200A7D610 /* SPItem+Cache.m */; };
 		2D6AACAE1CE76F3300A7D610 /* SPItemSets.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AACAD1CE76F3300A7D610 /* SPItemSets.m */; };
@@ -215,6 +216,8 @@
 		2D504EBA1D3B6AA500D43B07 /* workshoptags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = workshoptags.json; sourceTree = "<group>"; };
 		2D504EBC1D3BDED200D43B07 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		2D504EBE1D3BE21E00D43B07 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		2D504EC01D3D265B00D43B07 /* SPFocusVisualEffectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFocusVisualEffectVC.h; sourceTree = "<group>"; };
+		2D504EC11D3D265B00D43B07 /* SPFocusVisualEffectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFocusVisualEffectVC.m; sourceTree = "<group>"; };
 		2D57A3001D29028300D36150 /* SPPlayerDetailInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerDetailInfoVC.h; sourceTree = "<group>"; };
 		2D57A3011D29028300D36150 /* SPPlayerDetailInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerDetailInfoVC.m; sourceTree = "<group>"; };
 		2D6AACA81CE738B200A7D610 /* SPItem+Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPItem+Cache.h"; sourceTree = "<group>"; };
@@ -481,6 +484,8 @@
 				2D3CAC9C1D33C747001932E4 /* SPWorkshopVC.m */,
 				2D504EB71D3AAA2200D43B07 /* SPWorkshopTagVC.h */,
 				2D504EB81D3AAA2200D43B07 /* SPWorkshopTagVC.m */,
+				2D504EC01D3D265B00D43B07 /* SPFocusVisualEffectVC.h */,
+				2D504EC11D3D265B00D43B07 /* SPFocusVisualEffectVC.m */,
 			);
 			path = Ctrls;
 			sourceTree = "<group>";
@@ -1138,6 +1143,7 @@
 				44FDF0451D3CA893007710B1 /* SPWebHelper.m in Sources */,
 				2D925F991D28C05100CF70BE /* SPPlayerCell.m in Sources */,
 				2D0A825F1CDEEDD000F26BD1 /* SPHeroCell.m in Sources */,
+				2D504EC21D3D265B00D43B07 /* SPFocusVisualEffectVC.m in Sources */,
 				2DA4523F1CE0DDF6004BD185 /* SPItemListContainer.m in Sources */,
 				2DF28B871D30E9AF003762DA /* SPInventoryCategoryPickerVC.m in Sources */,
 				2D48D2C91CDE22B800190F0C /* DDMainTBC.m in Sources */,

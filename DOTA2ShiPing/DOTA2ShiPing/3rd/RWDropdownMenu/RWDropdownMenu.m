@@ -10,21 +10,7 @@
 #import "RWDropdownMenuCell.h"
 #import "RWDropdownMenuTransitionController.h"
 
-@interface UIPopoverController (overrides)
-+(BOOL)_popoversDisabled;
-@end
-
-@implementation UIPopoverController (overrides)
-
-+(BOOL)_popoversDisabled
-{
-    return NO;
-}
-
-@end
-
 @interface RWDropdownMenuBackgroundView : UIView
-
 @end
 
 @implementation RWDropdownMenuBackgroundView
@@ -48,85 +34,7 @@
     }
     return self;
 }
-
 @end
-
-
-
-@interface RWDropdownMenuItem ()
-
-@property (nonatomic, copy) NSString *text;
-@property (nonatomic, copy) NSAttributedString *attributedText;
-@property (nonatomic, copy) void (^action)(void);
-@property (nonatomic, strong) UIImage *image;
-
-@end
-
-@implementation RWDropdownMenuItem
-
-+ (instancetype)itemWithText:(NSString *)text image:(UIImage *)image action:(void (^)(void))action
-{
-    RWDropdownMenuItem *item = [self new];
-    item.text = text;
-    item.image = image;
-    item.action = action;
-    return item;
-}
-
-+ (instancetype)itemWithAttributedText:(NSAttributedString *)attributedText image:(UIImage *)image action:(void (^)(void))action {
-    RWDropdownMenuItem *item = [self new];
-    item.attributedText = attributedText;
-    item.image = image;
-    item.action = action;
-    return item;
-}
-
-@end
-
-
-@interface RWDropdownMenuPopoverHelper : NSObject <UIPopoverControllerDelegate,UIPopoverPresentationControllerDelegate,UIAdaptivePresentationControllerDelegate>
-
-+ (instancetype)sharedInstance;
-
-@property (nonatomic, strong) UIPopoverController *popover;
-@property (nonatomic, strong) UIPopoverPresentationController *popoverPresentation;
-
-@end
-
-@implementation RWDropdownMenuPopoverHelper
-
-+ (instancetype)sharedInstance
-{
-    static RWDropdownMenuPopoverHelper *instance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [RWDropdownMenuPopoverHelper new];
-    });
-    return instance;
-}
-
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    self.popover = nil;
-}
-
-- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
-{
-    self.popoverPresentation = nil;
-}
-
-- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
-{
-    return UIModalPresentationNone;
-}
-
-//- (UIViewController *)presentationController:(UIPresentationController *)controller viewControllerForAdaptivePresentationStyle:(UIModalPresentationStyle)style
-//{
-//    
-//}
-
-@end
-
 
 static NSString * const CellId = @"RWDropdownMenuCell";
 
@@ -149,7 +57,92 @@ static NSString * const CellId = @"RWDropdownMenuCell";
 - (void)enterTheStageWithCompletion:(void (^)(void))completion;
 - (void)leaveTheStageWithCompletion:(void (^)(void))completion;
 
+- (void)dismiss:(id)sender;
+
 @end
+
+@interface RWDropdownMenuItem ()
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic, copy) NSAttributedString *attributedText;
+@property (nonatomic, copy) void (^action)(void);
+@property (nonatomic, strong) UIImage *image;
+@end
+
+@implementation RWDropdownMenuItem
++ (instancetype)itemWithText:(NSString *)text image:(UIImage *)image action:(void (^)(void))action
+{
+    RWDropdownMenuItem *item = [self new];
+    item.text = text;
+    item.image = image;
+    item.action = action;
+    return item;
+}
+
++ (instancetype)itemWithAttributedText:(NSAttributedString *)attributedText image:(UIImage *)image action:(void (^)(void))action {
+    RWDropdownMenuItem *item = [self new];
+    item.attributedText = attributedText;
+    item.image = image;
+    item.action = action;
+    return item;
+}
+@end
+
+@interface RWDropdownMenuPopoverHelper : NSObject <UIPopoverControllerDelegate,UIPopoverPresentationControllerDelegate,UIAdaptivePresentationControllerDelegate>
+
++ (instancetype)sharedInstance;
+
+@property (nonatomic, strong) UIPopoverController *popover;
+@property (nonatomic, strong) UIPopoverPresentationController *popoverPresentation;
+@property (nonatomic, copy) void (^dismisscallback)(void);
+
+@end
+
+@implementation RWDropdownMenuPopoverHelper
+
++ (instancetype)sharedInstance
+{
+    static RWDropdownMenuPopoverHelper *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [RWDropdownMenuPopoverHelper new];
+    });
+    return instance;
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.popover = nil;
+}
+
+- (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    RWDropdownMenu *menu = (RWDropdownMenu *)popoverPresentationController.presentedViewController;
+    [menu leaveTheStageWithCompletion:nil];
+    
+    return YES;
+}
+
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    self.popoverPresentation = nil;
+    [self didDismiss];
+}
+
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
+{
+    return UIModalPresentationNone;
+}
+
+- (void)didDismiss
+{
+    if (self.dismisscallback) {
+        self.dismisscallback();
+    }
+    self.dismisscallback = nil;
+}
+
+@end
+
 
 @implementation RWDropdownMenu
 
@@ -187,8 +180,7 @@ static NSString * const CellId = @"RWDropdownMenuCell";
             
         case RWDropdownMenuStyleWhite:
             return self.whiteBackground;
-            
-        default:
+        case RWDropdownMenuStyleClear:
             return nil;
     }
 }
@@ -227,10 +219,22 @@ static NSString * const CellId = @"RWDropdownMenuCell";
     [super loadView];
     
     self.view.backgroundColor = [UIColor clearColor];
-    if (self.style != RWDropdownMenuStyleWhite) {
-        self.view.tintColor = [UIColor whiteColor];
-    } else {
-        self.view.tintColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+    
+    if (self.menuTintColor) {
+        self.view.tintColor = self.menuTintColor;
+    }else{
+        switch (self.style) {
+            case RWDropdownMenuStyleBlackGradient:
+            case RWDropdownMenuStyleTranslucent: {
+                self.view.tintColor = [UIColor whiteColor];
+                break;
+            }
+            case RWDropdownMenuStyleWhite:
+            case RWDropdownMenuStyleClear: {
+                self.view.tintColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+                break;
+            }
+        }
     }
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[UICollectionViewFlowLayout new]];
@@ -267,6 +271,12 @@ static NSString * const CellId = @"RWDropdownMenuCell";
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+}
+
+- (void)setMenuTintColor:(UIColor *)menuTintColor
+{
+    _menuTintColor = menuTintColor;
+    self.view.tintColor = menuTintColor;
 }
 
 - (void)prepareNavigationItem
@@ -335,8 +345,7 @@ static NSString * const CellId = @"RWDropdownMenuCell";
     RWDropdownMenuItem *item = self.items[indexPath.row];
     if (item.text && item.text.length > 0) {
         cell.textLabel.text = item.text;
-    }
-    else if (item.attributedText && item.attributedText.length > 0) {
+    }else if (item.attributedText && item.attributedText.length > 0) {
         cell.textLabel.attributedText = item.attributedText;
     }
     cell.imageView.image = item.image;
@@ -351,24 +360,36 @@ static NSString * const CellId = @"RWDropdownMenuCell";
     RWDropdownMenuItem *item = self.items[indexPath.row];
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        if (self.isInPopover)
-        {
-            [[RWDropdownMenuPopoverHelper sharedInstance].popover dismissPopoverAnimated:YES];
-            if (item.action)
-            {
-                item.action();
-            }
-        }
-        [self dismissViewControllerAnimated:YES completion:^{
-            if (item.action)
-            {
-                double delayInSeconds = 0.15;
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (self.isInPopover){
+            RWDropdownMenuPopoverHelper *helper = [RWDropdownMenuPopoverHelper sharedInstance];
+            if (helper.popover) {
+                [helper.popover dismissPopoverAnimated:YES];
+                if (item.action){
                     item.action();
+                }
+            }else if(helper.popoverPresentation){
+                [self leaveTheStageWithCompletion:nil];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.15f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        helper.popoverPresentation = nil;
+                        [helper didDismiss];
+                    }];
+                    if (item.action){
+                        item.action();
+                    }
                 });
             }
-        }];
+        }else{
+            [self dismissViewControllerAnimated:YES completion:^{
+                if (item.action){
+                    double delayInSeconds = 0.15;
+                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                        item.action();
+                    });
+                }
+            }];
+        }
     });
 }
 
@@ -467,22 +488,22 @@ static NSString * const CellId = @"RWDropdownMenuCell";
     }];
 }
 
-+ (void)presentInPopoverFromBarButtonItem:(UIBarButtonItem *)barButtonItem
-                           presentingFrom:(UIViewController *)presentingViewController
-                                withItems:(NSArray *)items
-                               completion:(void (^)(void))completion
++ (instancetype)presentInPopoverFromBarButtonItem:(UIBarButtonItem *)barButtonItem
+                                   presentingFrom:(UIViewController *)presentingViewController
+                                        withItems:(NSArray *)items
+                                       completion:(void (^)(void))completion
 {
     RWDropdownMenuPopoverHelper *helper = [RWDropdownMenuPopoverHelper sharedInstance];
     if (helper.popoverPresentation)
     {
         [helper.popoverPresentation.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         helper.popoverPresentation = nil;
-        return;
+        return nil;
     }
     
     RWDropdownMenu *menu = [[RWDropdownMenu alloc] initWithNibName:nil bundle:nil];
-    menu.style = RWDropdownMenuStyleWhite;
-    menu.alignment = RWDropdownMenuCellAlignmentRight;
+    menu.style = RWDropdownMenuStyleClear;
+    menu.alignment = RWDropdownMenuCellAlignmentLeft;
     menu.items = items;
     menu.navBarImage = nil;
     menu.isInPopover = YES;
@@ -498,6 +519,62 @@ static NSString * const CellId = @"RWDropdownMenuCell";
     [presentingViewController presentViewController:menu animated:YES completion:^{
         [menu enterTheStageWithCompletion:completion];
     }];
+    return menu;
+}
+
++ (instancetype)presentInPopoverFromView:(UIView *)view
+                               direction:(UIPopoverArrowDirection)direction
+                                   align:(RWDropdownMenuCellAlignment)align
+                          presentingFrom:(UIViewController *)presentingViewController
+                               withItems:(NSArray *)items
+                              completion:(void (^)(void))completion
+{
+    CGRect rect = view.bounds;
+    rect.origin.x = rect.size.width/2;
+    rect.origin.y = rect.size.height+8.f;
+    rect.size.width = 0.f;
+    rect.size.height = 0.f;
+    return [self presentInPopoverFromView:view position:rect direction:direction align:align presentingFrom:presentingViewController withItems:items completion:completion dismiss:nil];
+}
+
++ (instancetype)presentInPopoverFromView:(UIView *)view
+                                position:(CGRect)position
+                               direction:(UIPopoverArrowDirection)direction
+                                   align:(RWDropdownMenuCellAlignment)align
+                          presentingFrom:(UIViewController *)presentingViewController
+                               withItems:(NSArray *)items
+                              completion:(void (^)(void))completion
+                                 dismiss:(void (^)(void))dismisscallback
+{
+    RWDropdownMenuPopoverHelper *helper = [RWDropdownMenuPopoverHelper sharedInstance];
+    if (helper.popoverPresentation)
+    {
+        [helper.popoverPresentation.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        helper.popoverPresentation = nil;
+        return nil;
+    }
+    
+    RWDropdownMenu *menu = [[RWDropdownMenu alloc] initWithNibName:nil bundle:nil];
+    menu.style = RWDropdownMenuStyleClear;
+    menu.alignment = align;
+    menu.items = items;
+    menu.navBarImage = nil;
+    menu.isInPopover = YES;
+    menu.modalPresentationStyle = UIModalPresentationPopover;
+    
+    UIPopoverPresentationController *popover = menu.popoverPresentationController;
+    popover.delegate = helper;
+    popover.sourceView = view;
+    popover.sourceRect = position;
+    popover.permittedArrowDirections = direction;
+    
+    helper.popoverPresentation = popover;
+    helper.dismisscallback = dismisscallback;
+    
+    [presentingViewController presentViewController:menu animated:YES completion:^{
+        [menu enterTheStageWithCompletion:completion];
+    }];
+    return menu;
 }
 
 #pragma mark - transition

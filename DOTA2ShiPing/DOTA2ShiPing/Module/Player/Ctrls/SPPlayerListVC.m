@@ -139,9 +139,6 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
     self.playerList = list;
     self.sectionTitles = sectionTitles;
     [self.tableView reloadData];
-    
-    
-    
 }
 
 #pragma mark - PopTips
@@ -162,12 +159,9 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
     };
     NSArray *items = @[
     [RWDropdownMenuItem itemWithText:@"DotaMax" image:nil action:^{action(SPSearchTypeMaxPlusPlayer);}],
-    [RWDropdownMenuItem itemWithText:@"Dotabuff" image:nil action:^{action(SPSearchTypeMaxPlusPlayer);}],
-    [RWDropdownMenuItem itemWithText:@"Steam" image:nil action:^{action(SPSearchTypeMaxPlusPlayer);}]];
-    
+    [RWDropdownMenuItem itemWithText:@"Dotabuff" image:nil action:^{action(SPSearchTypeDotabuffPlayer);}],
+    [RWDropdownMenuItem itemWithText:@"Steam" image:nil action:^{action(SPSearchTypeSteamCommunityPlayer);}]];
     [RWDropdownMenu presentInPopoverFromBarButtonItem:btnItem presentingFrom:self withItems:items completion: nil];
-    
-    
     return;
     
     

@@ -24,7 +24,9 @@ typedef NS_ENUM(NSInteger, RWDropdownMenuStyle) {
     /**
      *  Pure white, used only when presenting inside a popover on iPad.
      */
-    RWDropdownMenuStyleWhite
+    RWDropdownMenuStyleWhite,
+    
+    RWDropdownMenuStyleClear,   //背景为空
 };
 
 
@@ -73,6 +75,8 @@ typedef NS_ENUM(NSInteger, RWDropdownMenuStyle) {
  */
 @property (nonatomic, strong, readonly) UIView *backgroundView;
 
+@property (nonatomic, strong) UIColor *menuTintColor;
+
 /**
  *  Collection view for displaying item cells.
  */
@@ -108,9 +112,23 @@ typedef NS_ENUM(NSInteger, RWDropdownMenuStyle) {
                                 withItems:(NSArray *)items
                                completion:(void (^)(void))completion;
 
-+ (void)presentInPopoverFromBarButtonItem:(UIBarButtonItem *)barButtonItem
-                           presentingFrom:(UIViewController *)presentingViewController
-                                withItems:(NSArray *)items
-                               completion:(void (^)(void))completion;
++ (instancetype)presentInPopoverFromBarButtonItem:(UIBarButtonItem *)barButtonItem
+                                   presentingFrom:(UIViewController *)presentingViewController
+                                        withItems:(NSArray *)items
+                                       completion:(void (^)(void))completion;
++ (instancetype)presentInPopoverFromView:(UIView *)view
+                               direction:(UIPopoverArrowDirection)direction
+                                   align:(RWDropdownMenuCellAlignment)align
+                          presentingFrom:(UIViewController *)presentingViewController
+                               withItems:(NSArray *)items
+                              completion:(void (^)(void))completion;
++ (instancetype)presentInPopoverFromView:(UIView *)view
+                                position:(CGRect)position
+                               direction:(UIPopoverArrowDirection)direction
+                                   align:(RWDropdownMenuCellAlignment)align
+                          presentingFrom:(UIViewController *)presentingViewController
+                               withItems:(NSArray *)items
+                              completion:(void (^)(void))completion
+                                 dismiss:(void (^)(void))dismisscallback;
 
 @end

@@ -73,14 +73,21 @@
 #endif
 
 #pragma mark - Function
-NS_INLINE void RunOnMain(void(^codeblock)(void)){
+typedef void(^BlockType)(void);
+
+NS_INLINE void RunOnMain(BlockType codeblock){
     if (!codeblock)return;
     if([NSThread isMainThread]){codeblock();}else{dispatch_async(dispatch_get_main_queue(),codeblock);}
 }
 
-NS_INLINE void RunOnSubThread(void(^codeblock)(void)){
+NS_INLINE void RunOnSubThread(BlockType codeblock){
     if (!codeblock)return;
     if(![NSThread isMainThread]){codeblock();}else{dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), codeblock);}
+}
+
+NS_INLINE void RunAfter(NSTimeInterval sec,BlockType codeblock){
+    if (!codeblock || (sec = MAX(0, sec))<.0001f) return;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(sec * NSEC_PER_SEC)), dispatch_get_main_queue(), codeblock);
 }
 
 #endif /* SPMacro_h */
