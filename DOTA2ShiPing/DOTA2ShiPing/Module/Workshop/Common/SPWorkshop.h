@@ -86,7 +86,8 @@
 + (NSMutableArray<NSDictionary<NSString *, NSArray<SPWorkshopTag *> *> *> *)tagsOfSection:(SPWorkshopSection)section;
 
 #pragma mark - Detail
-- (void)fetchDetail:(SPWorkshopUnit *)unit;
+- (void)fetchResource:(SPWorkshopUnit *)unit
+           completion:(void(^)(BOOL suc, SPWorkshopUnit *unit))completion;
 
 @end
 

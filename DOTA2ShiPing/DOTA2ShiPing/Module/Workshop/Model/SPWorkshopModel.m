@@ -262,6 +262,12 @@ YYModelCopyingCodingCode
 YYModelCopyingCodingCode
 @end
 
+#pragma mark - Resource Mode
+@implementation SPWorkshopResource
+YYModelCopyingCodingCode
+@end
+
+#pragma mark - Constant
 // section
 NSString *const kSPQueryKeySection = @"section";
 NSString *const kSPSectionValueItem = @"mtxitems";

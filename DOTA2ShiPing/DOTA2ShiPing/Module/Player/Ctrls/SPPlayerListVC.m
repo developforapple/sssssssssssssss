@@ -151,7 +151,7 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
 }
 
 #pragma mark - Actions
-- (IBAction)add:(id)sender
+- (IBAction)add:(UIBarButtonItem *)btnItem
 {
     spweakify(self);
     void (^action)(SPSearchType type) = ^(SPSearchType type){
@@ -160,20 +160,39 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
             [self segueToSearchWithType:type];
         }
     };
+    NSArray *items = @[
+    [RWDropdownMenuItem itemWithText:@"DotaMax" image:nil action:^{action(SPSearchTypeMaxPlusPlayer);}],
+    [RWDropdownMenuItem itemWithText:@"Dotabuff" image:nil action:^{action(SPSearchTypeMaxPlusPlayer);}],
+    [RWDropdownMenuItem itemWithText:@"Steam" image:nil action:^{action(SPSearchTypeMaxPlusPlayer);}]];
     
-    PopoverView *view = [[PopoverView alloc] init];
-    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:16],
-                                NSForegroundColorAttributeName:[UIColor whiteColor]};
-    view.attributedMenuTitles = @[  [[NSAttributedString alloc] initWithString:@"DotaMax" attributes:attribute],
-                                    [[NSAttributedString alloc] initWithString:@"Dotabuff" attributes:attribute],
-                                    [[NSAttributedString alloc] initWithString:@"Steam" attributes:attribute]];
-    view.popoverBackgroundColor = AppBarColor2;
-    view.borderHidden = YES;
+    [RWDropdownMenu presentInPopoverFromBarButtonItem:btnItem presentingFrom:self withItems:items completion: nil];
     
-    [view showFromRectOfScreen:CGRectMake(DeviceWidth-8-40, 27, 40, 30) selected:^(NSInteger index) {
-        action(index);
-    }];
+    
     return;
+    
+    
+    
+//    spweakify(self);
+//    void (^action)(SPSearchType type) = ^(SPSearchType type){
+//        spstrongify(self);
+//        if (IsSearchPlayer(type)) {
+//            [self segueToSearchWithType:type];
+//        }
+//    };
+//    
+//    PopoverView *view = [[PopoverView alloc] init];
+//    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:16],
+//                                NSForegroundColorAttributeName:[UIColor whiteColor]};
+//    view.attributedMenuTitles = @[  [[NSAttributedString alloc] initWithString:@"DotaMax" attributes:attribute],
+//                                    [[NSAttributedString alloc] initWithString:@"Dotabuff" attributes:attribute],
+//                                    [[NSAttributedString alloc] initWithString:@"Steam" attributes:attribute]];
+//    view.popoverBackgroundColor = AppBarColor2;
+//    view.borderHidden = YES;
+//    
+//    [view showFromRectOfScreen:CGRectMake(DeviceWidth-8-40, 27, 40, 30) selected:^(NSInteger index) {
+//        action(index);
+//    }];
+//    return;
 
 //    // 如果配置了搜索方式，使用这个搜索方式。否则，让用户选择搜索方式。
 //    SPSearchType type = UserSearchType();

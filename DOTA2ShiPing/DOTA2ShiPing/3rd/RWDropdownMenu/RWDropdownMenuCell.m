@@ -8,6 +8,12 @@
 
 #import "RWDropdownMenuCell.h"
 
+static CGFloat margin = 20.f;
+
+@interface RWDropdownMenuCell ()
+@property (strong, nonatomic) UIView *container;
+@end
+
 @implementation RWDropdownMenuCell
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -15,14 +21,20 @@
     self = [super initWithFrame:frame];
     if (self)
     {
+        self.container = [UIView new];
+        self.container.backgroundColor = [UIColor clearColor];
+        self.container.clipsToBounds = NO;
+        self.container.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.contentView addSubview:self.container];
+        
         self.textLabel = [UILabel new];
         self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
         self.textLabel.backgroundColor = [UIColor clearColor];
-        [self.contentView addSubview:self.textLabel];
+        [self.container addSubview:self.textLabel];
         self.imageView = [UIImageView new];
         self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.contentView addSubview:self.imageView];
+        [self.container addSubview:self.imageView];
         self.backgroundColor = [UIColor clearColor];
         self.imageView.image = nil;
         self.selectedBackgroundView = [UIView new];
@@ -89,45 +101,93 @@
 {
     [super updateConstraints];
     [self.contentView removeConstraints:self.contentView.constraints];
-    NSDictionary *views = @{@"text":self.textLabel, @"image":self.imageView};
+    NSDictionary *views = @{@"text":self.textLabel, @"image":self.imageView,@"container":self.container};
     
-    // vertical centering
-    for (UIView *v in [views allValues])
-    {
-        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:v attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+    // 垂直
+    [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[image]-0-|" options:kNilOptions metrics:nil views:views]];
+    [self.container addConstraint:[NSLayoutConstraint constraintWithItem:self.textLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.container attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.container attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
+    //水平
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        margin = 25.f;
     }
     
-    CGFloat margin = 20;
+    NSDictionary *metrics = @{@"m":@(margin)};
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        margin = 25;
-    }
-    
-    // horizontal
-    NSString *vfs = nil;
     switch (self.alignment) {
-        case RWDropdownMenuCellAlignmentCenter:
-            vfs = @"H:|[text]|";
-            break;
+        case RWDropdownMenuCellAlignmentLeft: {
             
-        case RWDropdownMenuCellAlignmentLeft:
-            vfs = @"H:[image]-(15)-[text]|";
-            [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:margin]];
-            break;
+            [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[image(>=0@750)]-15-[text(>=0@700)]-0-|" options:kNilOptions metrics:nil views:views]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-m-[container]" options:kNilOptions metrics:metrics views:views]];
             
-        case RWDropdownMenuCellAlignmentRight:
-            vfs = @"H:|[text]-(15)-[image]";
-            [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-margin]];
             break;
+        }
+        case RWDropdownMenuCellAlignmentCenter: {
             
-        default:
+            [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[image(>=0@750)]-15-[text(>=0@700)]-0-|" options:kNilOptions metrics:nil views:views]];
+            [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.container attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+            
             break;
+        }
+        case RWDropdownMenuCellAlignmentRight: {
+            
+            [self.container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[text(>=0@700)]-15-[image(>=0@750)]-0-|" options:kNilOptions metrics:nil views:views]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[container]-m-|" options:kNilOptions metrics:metrics views:views]];
+            
+            break;
+        }
     }
     
-    [self.imageView setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfs options:0 metrics:nil views:views]];
+    
+    
+    
+    
+//    // vertical centering
+//    for (UIView *v in [views allValues])
+//    {
+//        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:v attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+//    }
+//    
+//    CGFloat margin = 20;
+//    
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//    {
+//        margin = 25;
+//    }
+//    
+//    // horizontal
+//    NSString *vfs = nil;
+//    switch (self.alignment) {
+//        case RWDropdownMenuCellAlignmentCenter:
+//            vfs = @"H:|[text]|";
+//            break;
+//            
+//        case RWDropdownMenuCellAlignmentLeft:
+//            vfs = @"H:[image]-(15)-[text]-(>=0)-|";
+//            [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:margin]];
+//            break;
+//            
+//        case RWDropdownMenuCellAlignmentRight:
+//            vfs = @"H:|-(>=0)-[text]-(15)-[image]";
+//            [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-margin]];
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    
+//    [self.imageView setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+//    
+//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfs options:0 metrics:nil views:views]];
+}
+
+- (CGFloat)optimumWidth
+{
+    [self updateConstraints];
+    CGFloat w = [self.container systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].width;
+    return w + margin * 2;
 }
 
 @end

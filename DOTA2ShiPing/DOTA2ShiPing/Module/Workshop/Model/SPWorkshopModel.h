@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class SPWorkshopSort;
 @class SPHero;
 @class SPItemSlot;
+@class SPWorkshopResource;
 
 typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
     SPWorkshopSectionItem,
@@ -76,8 +77,19 @@ typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
 @property (strong, nonatomic) NSString *title;      //标题
 @property (strong, nonatomic) NSString *desc;       //描述
 @property (strong, nonatomic) NSArray<NSString *>*authors;     //作者们
+
+@property (strong, nonatomic) NSArray<SPWorkshopResource *> *resources; //资源
+
 - (NSURL *)detailURL;
 - (NSURL *)imageURLForSize:(CGSize)size;
+@end
+
+#pragma mark - Resource Model
+
+@interface SPWorkshopResource : NSObject <NSCopying, NSCoding>
+@property (strong, nonatomic) NSNumber *id;
+@property (assign, nonatomic) BOOL isVideo;
+@property (strong, nonatomic) NSString *resource;
 @end
 
 #pragma mark - Constant

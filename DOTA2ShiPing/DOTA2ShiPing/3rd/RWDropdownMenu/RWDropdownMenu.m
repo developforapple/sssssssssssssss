@@ -84,11 +84,12 @@
 @end
 
 
-@interface RWDropdownMenuPopoverHelper : NSObject <UIPopoverControllerDelegate>
+@interface RWDropdownMenuPopoverHelper : NSObject <UIPopoverControllerDelegate,UIPopoverPresentationControllerDelegate,UIAdaptivePresentationControllerDelegate>
 
 + (instancetype)sharedInstance;
 
 @property (nonatomic, strong) UIPopoverController *popover;
+@property (nonatomic, strong) UIPopoverPresentationController *popoverPresentation;
 
 @end
 
@@ -108,6 +109,21 @@
 {
     self.popover = nil;
 }
+
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    self.popoverPresentation = nil;
+}
+
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
+{
+    return UIModalPresentationNone;
+}
+
+//- (UIViewController *)presentationController:(UIPresentationController *)controller viewControllerForAdaptivePresentationStyle:(UIModalPresentationStyle)style
+//{
+//    
+//}
 
 @end
 
@@ -286,6 +302,15 @@ static NSString * const CellId = @"RWDropdownMenuCell";
         size.height += insets.top + insets.bottom;
     }
     
+    CGFloat maxWidth = 0.f;
+    for (NSInteger i = 0; i < self.items.count; i++) {
+        RWDropdownMenuCell *cell = (RWDropdownMenuCell *)[self collectionView:self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
+        CGFloat w = [cell optimumWidth];
+        if (maxWidth < w) {
+            maxWidth = w;
+        }
+    }
+    size.width = maxWidth;
     return size;
 }
 
@@ -429,7 +454,7 @@ static NSString * const CellId = @"RWDropdownMenuCell";
     menu.items = items;
     menu.navBarImage = nil;
     menu.isInPopover = YES;
-    
+
     helper.popover = [[UIPopoverController alloc] initWithContentViewController:menu];
     helper.popover.delegate = helper;
     helper.popover.popoverContentSize = CGSizeMake(200, 200);
@@ -439,6 +464,39 @@ static NSString * const CellId = @"RWDropdownMenuCell";
             [menu enterTheStageWithCompletion:^{
             }];
         }];
+    }];
+}
+
++ (void)presentInPopoverFromBarButtonItem:(UIBarButtonItem *)barButtonItem
+                           presentingFrom:(UIViewController *)presentingViewController
+                                withItems:(NSArray *)items
+                               completion:(void (^)(void))completion
+{
+    RWDropdownMenuPopoverHelper *helper = [RWDropdownMenuPopoverHelper sharedInstance];
+    if (helper.popoverPresentation)
+    {
+        [helper.popoverPresentation.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        helper.popoverPresentation = nil;
+        return;
+    }
+    
+    RWDropdownMenu *menu = [[RWDropdownMenu alloc] initWithNibName:nil bundle:nil];
+    menu.style = RWDropdownMenuStyleWhite;
+    menu.alignment = RWDropdownMenuCellAlignmentRight;
+    menu.items = items;
+    menu.navBarImage = nil;
+    menu.isInPopover = YES;
+    menu.modalPresentationStyle = UIModalPresentationPopover;
+    
+    UIPopoverPresentationController *popover = menu.popoverPresentationController;
+    popover.delegate = helper;
+    popover.barButtonItem = barButtonItem;
+    popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    
+    helper.popoverPresentation = popover;
+    
+    [presentingViewController presentViewController:menu animated:YES completion:^{
+        [menu enterTheStageWithCompletion:completion];
     }];
 }
 

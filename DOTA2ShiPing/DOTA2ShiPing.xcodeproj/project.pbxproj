@@ -106,6 +106,7 @@
 		44399A181D361504006F0F16 /* SPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A171D361504006F0F16 /* SPPopoverView.m */; };
 		44399A1C1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A1B1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m */; };
 		44FDF0191D37538D007710B1 /* SPPlayerSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDF0181D37538D007710B1 /* SPPlayerSelectedVC.m */; };
+		44FDF0451D3CA893007710B1 /* SPWebHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDF0441D3CA893007710B1 /* SPWebHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -294,6 +295,8 @@
 		44399A1B1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventoryUpdateVC.m; sourceTree = "<group>"; };
 		44FDF0171D37538D007710B1 /* SPPlayerSelectedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerSelectedVC.h; sourceTree = "<group>"; };
 		44FDF0181D37538D007710B1 /* SPPlayerSelectedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerSelectedVC.m; sourceTree = "<group>"; };
+		44FDF0431D3CA893007710B1 /* SPWebHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWebHelper.h; sourceTree = "<group>"; };
+		44FDF0441D3CA893007710B1 /* SPWebHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWebHelper.m; sourceTree = "<group>"; };
 		939CCEAA439897D1DEE60C3E /* libPods-DOTA2ShiPing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DOTA2ShiPing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -664,6 +667,7 @@
 		2D48D2C11CDE21A500190F0C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				44FDF0421D3CA886007710B1 /* Web */,
 				2DF28B8B1D312B82003762DA /* Category */,
 				2D6E24351D3020BD00995045 /* Layout */,
 				2D86C1111CFB2B33008E1C5D /* ActionSheet */,
@@ -890,6 +894,15 @@
 				44FDF0181D37538D007710B1 /* SPPlayerSelectedVC.m */,
 			);
 			path = Update;
+			sourceTree = "<group>";
+		};
+		44FDF0421D3CA886007710B1 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				44FDF0431D3CA893007710B1 /* SPWebHelper.h */,
+				44FDF0441D3CA893007710B1 /* SPWebHelper.m */,
+			);
+			path = Web;
 			sourceTree = "<group>";
 		};
 		9DF9275624812581C6DA2B9C /* Frameworks */ = {
@@ -1122,6 +1135,7 @@
 				2D494BC21CE0D28B00491A20 /* DDProgressHUD.m in Sources */,
 				2D0A825C1CDEE6F800F26BD1 /* UIViewController+Storyboard.m in Sources */,
 				2DA452421CE0E0E1004BD185 /* SPItemCell.m in Sources */,
+				44FDF0451D3CA893007710B1 /* SPWebHelper.m in Sources */,
 				2D925F991D28C05100CF70BE /* SPPlayerCell.m in Sources */,
 				2D0A825F1CDEEDD000F26BD1 /* SPHeroCell.m in Sources */,
 				2DA4523F1CE0DDF6004BD185 /* SPItemListContainer.m in Sources */,

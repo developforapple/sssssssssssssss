@@ -108,4 +108,9 @@ typedef NS_ENUM(NSInteger, RWDropdownMenuStyle) {
                                 withItems:(NSArray *)items
                                completion:(void (^)(void))completion;
 
++ (void)presentInPopoverFromBarButtonItem:(UIBarButtonItem *)barButtonItem
+                           presentingFrom:(UIViewController *)presentingViewController
+                                withItems:(NSArray *)items
+                               completion:(void (^)(void))completion;
+
 @end

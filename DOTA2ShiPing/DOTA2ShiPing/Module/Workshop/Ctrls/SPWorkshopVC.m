@@ -17,6 +17,7 @@
 #import "SPWorkshopTagVC.h"
 #import <MJRefresh.h>
 #import "RWDropdownMenu.h"
+#import "SPWebHelper.h"
 #import <ReactiveCocoa.h>
 #import <UIScrollView+EmptyDataSet.h>
 #import <AVKit/AVKit.h>
@@ -191,6 +192,11 @@ static NSString *const kSPWorkshopFilterSegueID = @"SPWorkshopFilterSegueID";
     }
 }
 
+- (void)showResources:(SPWorkshopUnit *)unit
+{
+    NSLog(@"一共%lu个资源",(unsigned long)unit.resources.count);
+}
+
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -226,9 +232,28 @@ static NSString *const kSPWorkshopFilterSegueID = @"SPWorkshopFilterSegueID";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    spweakify(self);
     SPWorkshopUnit *unit = self.workshop.units[indexPath.item];
-    [self.workshop fetchDetail:unit];
-    NSLog(@"%@",unit.id);
+    NSArray *items = @[[RWDropdownMenuItem itemWithText:@"" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"查看视频和图片资源" image:nil action:^{
+                           self.HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
+                           [self.workshop fetchResource:unit completion:^(BOOL suc, SPWorkshopUnit *unit) {
+                               spstrongify(self);
+                               [self.HUD hide:YES];
+                               [self showResources:unit];
+                           }];
+                       }],
+                       [RWDropdownMenuItem itemWithText:@"打开原始链接" image:nil action:^{
+                           [SPWebHelper openURL:unit.detailURL from:self];
+                       }]];
+    RWDropdownMenu *menu = [RWDropdownMenu presentFromViewController:self
+                                                           withItems:items
+                                                               align:RWDropdownMenuCellAlignmentCenter
+                                                               style:RWDropdownMenuStyleTranslucent
+                                                         navBarImage:nil
+                                                          completion:nil];
+    menu.navigationItem.title = unit.title;
 }
 
 #pragma mark - Empty

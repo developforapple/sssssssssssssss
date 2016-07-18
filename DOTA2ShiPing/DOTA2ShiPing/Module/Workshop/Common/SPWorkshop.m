@@ -306,11 +306,12 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
 }
 
 #pragma mark - Detail
-- (void)fetchDetail:(SPWorkshopUnit *)unit
+- (void)fetchResource:(SPWorkshopUnit *)unit
+           completion:(void(^)(BOOL suc, SPWorkshopUnit *unit))completion
 {
+    if (!unit || !completion) return;
+    
     [[SPSteamAPI shared] fetchWorkshopDetail:unit.id completion:^(BOOL suc, id object, NSString *taskDesc) {
-        
-        NSLog(@"");
         if (suc){
             TFHpple *root = object;
             TFHppleElement *jsNode = [[root searchWithXPathQuery:@"//div[@id='highlight_player_area']/script"] firstObject];
@@ -318,23 +319,59 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
             if ([jsNode hasChildren]) {
                 TFHppleElement *js = [jsNode firstChild];
                 NSString *jsCode = js.content;
-                
-                
+
                 JSContext *ctx = [[JSContext alloc] init];
                 [ctx evaluateScript:jsCode];
                 
-                JSValue *movie = [ctx evaluateScript:@"this.rgMovieFlashvars"];
-                JSValue *image = [ctx evaluateScript:@"this.rgScreenshotURLs"];
-                JSValue *flash = [ctx evaluateScript:@"this.rgCommonFlashVars"];
+                JSValue *videoV = [ctx evaluateScript:@"this.rgMovieFlashvars"];
+                JSValue *imageV = [ctx evaluateScript:@"this.rgScreenshotURLs"];
+//                JSValue *flashV = [ctx evaluateScript:@"this.rgCommonFlashVars"];
                 
-                NSDictionary *movieObject = [movie toDictionary];
-                NSDictionary *imageObject = [image toDictionary];
-                NSDictionary *flashObject = [flash toDictionary];
+                NSDictionary *videoObject = [videoV toDictionary];
+                NSDictionary *imageObject = [imageV toDictionary];
+//                NSDictionary *flashObject = [flashV toDictionary];
+
+                NSMutableArray *resource = [NSMutableArray array];
+
+                // video source
+                for (NSString *aVideoK in videoObject) {
+                    NSDictionary *aVideoV = videoObject[aVideoK];
+                    if ([aVideoV isKindOfClass:[NSDictionary class]]) {
+                        
+                        NSString *steamVideoID = [[aVideoK componentsSeparatedByString:@"_"] lastObject];
+    
+                        for (NSString *k in aVideoV) {
+                            if ([k isEqualToString:@"YOUTUBE_VIDEO_ID"]) {
+                                NSString *youtobeId = aVideoV[k];
+                                NSString *youtobeURL = [NSString stringWithFormat:@"https://www.youtube.com/embed/%@?autoplay=1",youtobeId];                                
+                                [resource addObject:@{@"id":steamVideoID,
+                                                      @"isVideo":@YES,
+                                                      @"resource":youtobeURL}];
+                                break;
+                            }
+                        }
+                    }
+                }
                 
-                NSLog(@"");
+                // images
+                for (NSString *aImageK in imageObject) {
+                    NSString *aImageURL = imageObject[aImageK];
+                    if (aImageK.length != 0 && aImageURL.length != 0) {
+                        [resource addObject:@{@"id":aImageK,
+                                              @"isVideo":@NO,
+                                              @"resource":aImageURL}];
+                    }
+                }
+                
+                NSArray *result = [NSArray yy_modelArrayWithClass:[SPWorkshopResource class] json:resource];
+                unit.resources = result;
+                completion(YES, unit);
+            }else{
+                completion(NO,unit);
             }
+        }else{
+            completion(NO,unit);
         }
-        
     }];
 }
 

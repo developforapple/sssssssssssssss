@@ -23,4 +23,6 @@ typedef NS_ENUM(NSInteger, RWDropdownMenuCellAlignment) {
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, assign) RWDropdownMenuCellAlignment alignment;
 
+- (CGFloat)optimumWidth;
+
 @end
