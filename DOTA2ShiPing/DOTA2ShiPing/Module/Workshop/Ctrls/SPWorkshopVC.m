@@ -19,6 +19,7 @@
 #import "RWDropdownMenu.h"
 #import "SPWebHelper.h"
 #import "SPFocusVisualEffectVC.h"
+#import "SPWorkshopResourcesVC.h"
 #import <ReactiveCocoa.h>
 #import <UIScrollView+EmptyDataSet.h>
 #import <AVKit/AVKit.h>
@@ -26,6 +27,7 @@
 #import <SafariServices/SafariServices.h>
 
 static NSString *const kSPWorkshopFilterSegueID = @"SPWorkshopFilterSegueID";
+static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueID";
 
 @interface SPWorkshopVC ()<UICollectionViewDataSource,UICollectionViewDelegate,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource>
 
@@ -196,6 +198,7 @@ static NSString *const kSPWorkshopFilterSegueID = @"SPWorkshopFilterSegueID";
 - (void)showResources:(SPWorkshopUnit *)unit
 {
     NSLog(@"一共%lu个资源",(unsigned long)unit.resources.count);
+    [self performSegueWithIdentifier:kSPWorkshopResourcesSegueID sender:unit];
 }
 
 #pragma mark - Segue
@@ -210,6 +213,9 @@ static NSString *const kSPWorkshopFilterSegueID = @"SPWorkshopFilterSegueID";
                 [self handleQueryTags:tags];
             }
         }];
+    }else if ([segue.identifier isEqualToString:kSPWorkshopResourcesSegueID]){
+        SPWorkshopResourcesVC *vc = segue.destinationViewController;
+        vc.unit = sender;
     }
 }
 
@@ -236,7 +242,7 @@ static NSString *const kSPWorkshopFilterSegueID = @"SPWorkshopFilterSegueID";
     spweakify(self);
     NSArray *items = @[
                        [RWDropdownMenuItem itemWithText:@"查看视频和图片" image:nil action:^{
-                           RunAfter(kSPFocusAnimationDurtaion, ^{
+                           RunAfter(.6f, ^{
                                spstrongify(self);
                                self.HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
                                SPWorkshopUnit *unit = self.workshop.units[indexPath.item];
@@ -248,7 +254,7 @@ static NSString *const kSPWorkshopFilterSegueID = @"SPWorkshopFilterSegueID";
                            });
                        }],
                        [RWDropdownMenuItem itemWithText:@"打开原始链接" image:nil action:^{
-                           RunAfter(kSPFocusAnimationDurtaion, ^{
+                           RunAfter(.6f, ^{
                                SPWorkshopUnit *unit = self.workshop.units[indexPath.item];
                                [SPWebHelper openURL:unit.detailURL from:self];
                            });

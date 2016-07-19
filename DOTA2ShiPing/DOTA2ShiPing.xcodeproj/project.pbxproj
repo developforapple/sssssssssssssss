@@ -101,6 +101,7 @@
 		2DF28B871D30E9AF003762DA /* SPInventoryCategoryPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B861D30E9AF003762DA /* SPInventoryCategoryPickerVC.m */; };
 		2DF28B8A1D30FE95003762DA /* SPInventoryFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B891D30FE95003762DA /* SPInventoryFilter.m */; };
 		2DF28B8E1D312B95003762DA /* UIView+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B8D1D312B95003762DA /* UIView+More.m */; };
+		440FCB971D3E1B6900CCBB03 /* SPWorkshopResourcesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 440FCB961D3E1B6900CCBB03 /* SPWorkshopResourcesVC.m */; };
 		44399A0B1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A0A1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m */; };
 		44399A0E1D3494D0006F0F16 /* SPInventoryConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A0D1D3494D0006F0F16 /* SPInventoryConditionCell.m */; };
 		44399A141D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A131D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m */; };
@@ -286,6 +287,8 @@
 		2DF28B891D30FE95003762DA /* SPInventoryFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInventoryFilter.m; sourceTree = "<group>"; };
 		2DF28B8C1D312B95003762DA /* UIView+More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+More.h"; sourceTree = "<group>"; };
 		2DF28B8D1D312B95003762DA /* UIView+More.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+More.m"; sourceTree = "<group>"; };
+		440FCB951D3E1B6900CCBB03 /* SPWorkshopResourcesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWorkshopResourcesVC.h; sourceTree = "<group>"; };
+		440FCB961D3E1B6900CCBB03 /* SPWorkshopResourcesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWorkshopResourcesVC.m; sourceTree = "<group>"; };
 		44399A091D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventorySearchFilterVC.h; sourceTree = "<group>"; };
 		44399A0A1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventorySearchFilterVC.m; sourceTree = "<group>"; };
 		44399A0C1D3494D0006F0F16 /* SPInventoryConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInventoryConditionCell.h; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 				2D504EB81D3AAA2200D43B07 /* SPWorkshopTagVC.m */,
 				2D504EC01D3D265B00D43B07 /* SPFocusVisualEffectVC.h */,
 				2D504EC11D3D265B00D43B07 /* SPFocusVisualEffectVC.m */,
+				440FCB951D3E1B6900CCBB03 /* SPWorkshopResourcesVC.h */,
+				440FCB961D3E1B6900CCBB03 /* SPWorkshopResourcesVC.m */,
 			);
 			path = Ctrls;
 			sourceTree = "<group>";
@@ -1099,6 +1104,7 @@
 				2D86C0FF1CFAF8B2008E1C5D /* SPMaxPlusAPI.m in Sources */,
 				2D0FB4A41CEB10F1004A300D /* SPSearchVC.m in Sources */,
 				44399A0B1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m in Sources */,
+				440FCB971D3E1B6900CCBB03 /* SPWorkshopResourcesVC.m in Sources */,
 				2D86C10D1CFB13C7008E1C5D /* SPSearchCell.m in Sources */,
 				44399A181D361504006F0F16 /* SPPopoverView.m in Sources */,
 				2D494BBC1CE0C15100491A20 /* SPItem.m in Sources */,

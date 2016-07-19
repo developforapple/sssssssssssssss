@@ -288,7 +288,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PDC-iZ-AAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1290" y="4288"/>
+            <point key="canvasLocation" x="1258" y="5395"/>
         </scene>
         <!--设置-->
         <scene sceneID="T7b-MW-yar">
@@ -305,7 +305,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Gg-JY-ocC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="636" y="4299"/>
+            <point key="canvasLocation" x="600" y="5395"/>
         </scene>
         <!--创意工坊-->
         <scene sceneID="t2Y-97-rqn">
@@ -322,7 +322,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cmo-y8-4ZC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="636" y="3113"/>
+            <point key="canvasLocation" x="636" y="3417"/>
         </scene>
         <!--创意工坊-->
         <scene sceneID="8Y7-dM-U0Q">
@@ -445,11 +445,12 @@
                         <outlet property="searchBtnItem" destination="NX5-Kq-qB8" id="qQO-gY-sqe"/>
                         <outlet property="sectionBtn" destination="Z9F-5w-UQf" id="Dbq-qL-IHL"/>
                         <outlet property="sortBtnItem" destination="kIP-KY-dSt" id="Exo-rg-mff"/>
+                        <segue destination="iew-s0-niq" kind="show" identifier="SPWorkshopResourcesSegueID" id="yFy-vy-QmB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5te-i2-as3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1282" y="3113"/>
+            <point key="canvasLocation" x="1282" y="3417"/>
         </scene>
         <!--Workshop TagTVC-->
         <scene sceneID="DeX-wt-F4b">
@@ -513,7 +514,53 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XOj-8C-U9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2312" y="3596"/>
+            <point key="canvasLocation" x="2312" y="3900"/>
+        </scene>
+        <!--Workshop ResourcesVC-->
+        <scene sceneID="rOB-0K-8AR">
+            <objects>
+                <collectionViewController storyboardIdentifier="SPWorkshopResourcesVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iew-s0-niq" customClass="SPWorkshopResourcesVC" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="aZ4-qS-9eE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="1wL-Tj-3bk">
+                            <size key="itemSize" width="414" height="200"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SPWorkshopResourceCell" id="dxH-jO-4O9">
+                                <rect key="frame" x="0.0" y="64" width="414" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="10086" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lgh-58-FyQ" customClass="YYAnimatedImageView">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="lgh-58-FyQ" secondAttribute="bottom" id="6LQ-T4-GkF"/>
+                                    <constraint firstAttribute="trailing" secondItem="lgh-58-FyQ" secondAttribute="trailing" id="6kd-Jt-SND"/>
+                                    <constraint firstItem="lgh-58-FyQ" firstAttribute="leading" secondItem="dxH-jO-4O9" secondAttribute="leading" id="6nx-J7-eQE"/>
+                                    <constraint firstItem="lgh-58-FyQ" firstAttribute="top" secondItem="dxH-jO-4O9" secondAttribute="top" id="O3R-dp-2Xd"/>
+                                </constraints>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="iew-s0-niq" id="8mr-JR-mQD"/>
+                            <outlet property="delegate" destination="iew-s0-niq" id="IKe-X7-8uv"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Gq-VG-MP0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3299" y="3417"/>
         </scene>
         <!--Workshop TagVC-->
         <scene sceneID="VJM-N7-hZA">
@@ -530,7 +577,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="go7-gC-iSd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1810" y="3596"/>
+            <point key="canvasLocation" x="1810" y="3900"/>
         </scene>
         <!--搜索-->
         <scene sceneID="XvY-pq-7LP">
