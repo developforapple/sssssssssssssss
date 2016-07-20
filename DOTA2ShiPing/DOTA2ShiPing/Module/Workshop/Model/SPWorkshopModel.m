@@ -264,6 +264,75 @@ YYModelCopyingCodingCode
 
 #pragma mark - Resource Mode
 @implementation SPWorkshopResource
+
+- (BOOL)isGif
+{
+    if ([self.resource hasPrefix:@"http://cloud-"] || [self.resource hasPrefix:@"https://cloud-"]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (NSURL *)createURLWith:(NSUInteger)quality
+               imageSize:(CGSize)imageSize
+              canvasSize:(CGSize)canvasSize
+               backColor:(NSString *)colorName
+{
+    NSURLComponents *components = [NSURLComponents componentsWithString:[self.resource stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    if (self.isVideo) {
+        return components.URL;
+    }
+    
+    if (quality == 0) {
+        
+        components.queryItems = nil;
+        NSURL *URL = components.URL;
+        
+        return URL;
+    }
+    
+    NSURLQueryItem *item1 = [NSURLQueryItem queryItemWithName:@"interpolation" value:@"lanczos-none"];
+    NSURLQueryItem *item2 = [NSURLQueryItem queryItemWithName:@"output-format" value:@"webP"];
+    NSURLQueryItem *item3 = [NSURLQueryItem queryItemWithName:@"output-quality" value:[@(quality) stringValue]];
+    
+    NSMutableArray *items = [NSMutableArray arrayWithObjects:item1,item2,item3, nil];
+    if (!CGSizeEqualToSize(imageSize, CGSizeZero)) {
+        NSString *v = [NSString stringWithFormat:@"inside|%ld:%ld",(long)imageSize.width,(long)imageSize.height];
+        NSURLQueryItem *item4 = [NSURLQueryItem queryItemWithName:@"fit" value:v];
+        [items addObject:item4];
+    }
+    if (!CGSizeEqualToSize(canvasSize, CGSizeZero)) {
+        NSString *v = [NSString stringWithFormat:@"*,*|%ld:%ld",(long)canvasSize.width,(long)canvasSize.height];
+        NSURLQueryItem *item5 = [NSURLQueryItem queryItemWithName:@"composite-to" value:v];
+        [items addObject:item5];
+    }
+    if (colorName.length != 0) {
+        NSURLQueryItem *item6 = [NSURLQueryItem queryItemWithName:@"background-color" value:colorName];
+        [items addObject:item6];
+    }
+    
+    components.queryItems = items;
+    NSURL *URL = [components URL];
+    return URL;
+}
+
+- (NSURL *)testURL
+{
+    return [self createURLWith:1 imageSize:CGSizeZero canvasSize:CGSizeZero backColor:nil];
+}
+
+- (NSURL *)thumbURL
+{
+    CGSize size = CGSizeMake(DeviceWidth*2, DeviceWidth*2*0.618f);
+    return [self createURLWith:75 imageSize:size canvasSize:size backColor:@"black"];
+}
+
+- (NSURL *)fullURL
+{
+    return [self createURLWith:0 imageSize:CGSizeZero canvasSize:CGSizeZero backColor:nil];
+}
+
 YYModelCopyingCodingCode
 @end
 

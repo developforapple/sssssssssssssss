@@ -244,17 +244,13 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
                        [RWDropdownMenuItem itemWithText:@"查看视频和图片" image:nil action:^{
                            RunAfter(.6f, ^{
                                spstrongify(self);
-                               self.HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
                                SPWorkshopUnit *unit = self.workshop.units[indexPath.item];
-                               [self.workshop fetchResource:unit completion:^(BOOL suc, SPWorkshopUnit *unit) {
-                                   spstrongify(self);
-                                   [self.HUD hide:YES];
-                                   [self showResources:unit];
-                               }];
+                               [self showResources:unit];
                            });
                        }],
                        [RWDropdownMenuItem itemWithText:@"打开原始链接" image:nil action:^{
                            RunAfter(.6f, ^{
+                               spstrongify(self);
                                SPWorkshopUnit *unit = self.workshop.units[indexPath.item];
                                [SPWebHelper openURL:unit.detailURL from:self];
                            });

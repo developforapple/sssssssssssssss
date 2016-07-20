@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GDj-Ya-DFG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GDj-Ya-DFG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -459,7 +459,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="32" sectionHeaderHeight="1" sectionFooterHeight="1" id="lGZ-kE-9q3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SPWorkshopTagCell" textLabel="fGD-ta-T7T" style="IBUITableViewCellStyleDefault" id="FF9-0R-hgV">
                                 <rect key="frame" x="0.0" y="113.5" width="414" height="32"/>
@@ -516,10 +516,10 @@
             </objects>
             <point key="canvasLocation" x="2312" y="3900"/>
         </scene>
-        <!--Workshop ResourcesVC-->
+        <!--创意工坊资源-->
         <scene sceneID="rOB-0K-8AR">
             <objects>
-                <collectionViewController storyboardIdentifier="SPWorkshopResourcesVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iew-s0-niq" customClass="SPWorkshopResourcesVC" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="SPWorkshopResourcesVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iew-s0-niq" userLabel="创意工坊资源" customClass="SPWorkshopResourcesVC" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="aZ4-qS-9eE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -531,16 +531,23 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SPWorkshopResourceCell" id="dxH-jO-4O9">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SPWorkshopResourceCell" id="dxH-jO-4O9" customClass="SPWorkshopResourceCell">
                                 <rect key="frame" x="0.0" y="64" width="414" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="10086" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lgh-58-FyQ" customClass="YYAnimatedImageView">
+                                        <imageView userInteractionEnabled="NO" tag="10086" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="lgh-58-FyQ" customClass="YYAnimatedImageView">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                         </imageView>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="10010" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2n-Ja-4YK">
+                                            <rect key="frame" x="192" y="133" width="30.5" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -549,14 +556,23 @@
                                     <constraint firstAttribute="trailing" secondItem="lgh-58-FyQ" secondAttribute="trailing" id="6kd-Jt-SND"/>
                                     <constraint firstItem="lgh-58-FyQ" firstAttribute="leading" secondItem="dxH-jO-4O9" secondAttribute="leading" id="6nx-J7-eQE"/>
                                     <constraint firstItem="lgh-58-FyQ" firstAttribute="top" secondItem="dxH-jO-4O9" secondAttribute="top" id="O3R-dp-2Xd"/>
+                                    <constraint firstItem="g2n-Ja-4YK" firstAttribute="centerY" secondItem="dxH-jO-4O9" secondAttribute="centerY" constant="40" id="Zny-dx-YbP"/>
+                                    <constraint firstItem="g2n-Ja-4YK" firstAttribute="centerX" secondItem="dxH-jO-4O9" secondAttribute="centerX" id="vaQ-0Q-DK2"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="lgh-58-FyQ" id="dVA-dk-hsx"/>
+                                    <outlet property="progressLabel" destination="g2n-Ja-4YK" id="9Xm-G5-5ff"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
                             <outlet property="dataSource" destination="iew-s0-niq" id="8mr-JR-mQD"/>
                             <outlet property="delegate" destination="iew-s0-niq" id="IKe-X7-8uv"/>
+                            <outlet property="emptyDataSetDelegate" destination="iew-s0-niq" id="1OE-gp-Sqe"/>
+                            <outlet property="emptyDataSetSource" destination="iew-s0-niq" id="rwn-Rf-S6e"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="视频与图片资源" id="fIp-Up-gcK"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Gq-VG-MP0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1727,7 +1743,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOW-5U-0Sc">
                                                             <rect key="frame" x="76" y="8" width="45" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steamid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUC-Du-vBO">
@@ -1789,7 +1805,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="hgL-Nl-gri">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="gi1-SE-YQU">
                             <rect key="frame" x="0.0" y="158.5" width="414" height="88"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1841,7 +1857,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQu-h1-RLU">
                                             <rect key="frame" x="52" y="13" width="35.5" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" verticalCompressionResistancePriority="800" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ka1-T7-tlj">
@@ -2455,6 +2471,7 @@
         <image name="icon_tab_workshop" width="32" height="25"/>
         <image name="icon_tab_workshop_pressed" width="32" height="25"/>
         <image name="icon_title_more" width="22" height="5"/>
+        <image name="logo" width="40" height="40"/>
         <image name="sort" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>

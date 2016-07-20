@@ -86,10 +86,64 @@ typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
 
 #pragma mark - Resource Model
 
+/**
+ *  创意工坊物品的视频和图片资源。
+ */
 @interface SPWorkshopResource : NSObject <NSCopying, NSCoding>
 @property (strong, nonatomic) NSNumber *id;
+
+/**
+ *  是否是视频。在创建时即可确定。
+ */
 @property (assign, nonatomic) BOOL isVideo;
+
+/**
+ *  从详情页得到的原始链接。根据需要可以创建不同的图片链接。
+ */
 @property (strong, nonatomic) NSString *resource;
+
+/**
+ *  是否是GIF图片。根据图片链接判断。images.akamai.steamusercontent.com 为普通图片 cloud-1231456.steamusercontent.com为GIF图片
+ */
+@property (assign, nonatomic) BOOL isGif;
+
+/**
+ *  创建资源图片URL。如果是视频，返回视频连接。如果是GIF，返回原始链接。如果还不知道是不是gif，根据规则返回webP格式的图片链接。
+ *
+ *  @param quality    图片质量。为0时为全尺寸的大图。
+ *  @param imageSize  图片尺寸。指内部显示的内容尺寸。
+ *  @param canvasSize 画布尺寸。指整个图片的尺寸。
+ *  @param colorName  背景颜色。当画布尺寸大于图片尺寸时，画布的其余部分显示的颜色。
+ *  @warning canvasSize 需要不小于imageSize 或者为Zero 否则图片会显示不完整
+ *
+ *  @return URL
+ */
+- (NSURL *)createURLWith:(NSUInteger)quality
+               imageSize:(CGSize)imageSize
+              canvasSize:(CGSize)canvasSize
+               backColor:(nullable NSString *)colorName;
+
+/**
+ *  测试图片的链接。图片质量为1，尺寸为原始尺寸。图片格式为webP
+ *  用于确定链接的真实尺寸。如果是GIF判断真实尺寸代价太大因此建议用一个固定尺寸。
+ *
+ *  @return URL
+ */
+- (NSURL *)testURL;
+
+/**
+ *  缩略图链接。返回设备宽的正方形图片。空白区域填充黑色。图片格式为webP
+ *
+ *  @return URL
+ */
+- (NSURL *)thumbURL;
+/**
+ *  原始链接。图片质量为95。尺寸为原始尺寸。图片格式为webP
+ *
+ *  @return URL
+ */
+- (NSURL *)fullURL;
+
 @end
 
 #pragma mark - Constant

@@ -65,6 +65,9 @@ typedef void (^SPSteamFetchCompletion2)(BOOL suc, id object, NSString *taskDesc)
 // 获取创意工坊详情
 - (NSURLSessionDataTask *)fetchWorkshopDetail:(NSNumber *)itemid
                                    completion:(SPSteamFetchCompletion2)completion;
+// 测试创意工坊资源图片 获取其大小
+- (void)workshopImageTest:(NSURL *)imageURL
+               completion:(void (^)(BOOL suc, NSUInteger size))completion;
 
 @end
 

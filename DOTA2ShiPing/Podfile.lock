@@ -51,6 +51,8 @@ PODS:
   - YYImage (1.0.2):
     - YYImage/Core (= 1.0.2)
   - YYImage/Core (1.0.2)
+  - YYImage/WebP (1.0.2):
+    - YYImage/Core
   - YYModel (1.0.4)
   - YYWebImage (1.0.4):
     - YYCache
@@ -72,6 +74,7 @@ DEPENDENCIES:
   - ReactiveCocoa (= 2.5)
   - SSKeychain
   - YYCategories
+  - YYImage/WebP
   - YYModel (~> 1.0.4)
   - YYWebImage (~> 1.0.4)
 
@@ -97,6 +100,6 @@ SPEC CHECKSUMS:
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYWebImage: 0431ed108e104527669b86f75efd58958425cca2
 
-PODFILE CHECKSUM: 42b6f7278a2ac18ee393115246375bd3ec6125c1
+PODFILE CHECKSUM: 8e170943b8d9f76b049950e9b1116776bb60c24a
 
 COCOAPODS: 1.0.1

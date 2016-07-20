@@ -306,7 +306,7 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
 }
 
 #pragma mark - Detail
-- (void)fetchResource:(SPWorkshopUnit *)unit
++ (void)fetchResource:(SPWorkshopUnit *)unit
            completion:(void(^)(BOOL suc, SPWorkshopUnit *unit))completion
 {
     if (!unit || !completion) return;
@@ -355,7 +355,7 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
                 
                 // images
                 for (NSString *aImageK in imageObject) {
-                    NSString *aImageURL = imageObject[aImageK];
+                    NSString *aImageURL = [[imageObject[aImageK] componentsSeparatedByString:@"?"] firstObject];
                     if (aImageK.length != 0 && aImageURL.length != 0) {
                         [resource addObject:@{@"id":aImageK,
                                               @"isVideo":@NO,

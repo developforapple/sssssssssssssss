@@ -10,6 +10,7 @@ pod 'IAPHelper', '~> 1.0.8.1'       #https://github.com/saturngod/IAPHelper
 pod 'YYModel', '~> 1.0.4'           #https://github.com/ibireme/YYModel
 pod 'YYCategories'
 #pod 'YYCache'                       #https://github.com/ibireme/YYCache
+pod 'YYImage/WebP'
 pod 'YYWebImage', '~> 1.0.4'        #https://github.com/ibireme/YYWebImage
 pod 'AFNetworking', '~> 3.1.0'      #https://github.com/AFNetworking/AFNetworking
 pod 'MBProgressHUD', '~> 0.9.2'     #http://www.bukovinski.com

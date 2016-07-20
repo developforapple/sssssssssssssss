@@ -95,6 +95,7 @@
 		2DA9F7731D35490200F87053 /* RWDropdownMenuTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA9F7701D35490200F87053 /* RWDropdownMenuTransitionController.m */; };
 		2DB174861D14FBDE0042417D /* SPDotabuffAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB174851D14FBDE0042417D /* SPDotabuffAPI.m */; };
 		2DB174891D14FBE70042417D /* SPSteamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB174881D14FBE70042417D /* SPSteamAPI.m */; };
+		2DE475891D3FC5F3006E6A66 /* SPWorkshopResourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE475881D3FC5F2006E6A66 /* SPWorkshopResourceCell.m */; };
 		2DF28B7B1D30B1A6003762DA /* SPPlayerAliasesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B7A1D30B1A6003762DA /* SPPlayerAliasesVC.m */; };
 		2DF28B7E1D30B4E3003762DA /* SPPlayer+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B7D1D30B4E3003762DA /* SPPlayer+More.m */; };
 		2DF28B841D30DF46003762DA /* SPPlayerInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B831D30DF46003762DA /* SPPlayerInventoryVC.m */; };
@@ -275,6 +276,8 @@
 		2DB174851D14FBDE0042417D /* SPDotabuffAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDotabuffAPI.m; sourceTree = "<group>"; };
 		2DB174871D14FBE70042417D /* SPSteamAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSteamAPI.h; sourceTree = "<group>"; };
 		2DB174881D14FBE70042417D /* SPSteamAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSteamAPI.m; sourceTree = "<group>"; };
+		2DE475871D3FC5F2006E6A66 /* SPWorkshopResourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWorkshopResourceCell.h; sourceTree = "<group>"; };
+		2DE475881D3FC5F2006E6A66 /* SPWorkshopResourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWorkshopResourceCell.m; sourceTree = "<group>"; };
 		2DF28B791D30B1A6003762DA /* SPPlayerAliasesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerAliasesVC.h; sourceTree = "<group>"; };
 		2DF28B7A1D30B1A6003762DA /* SPPlayerAliasesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerAliasesVC.m; sourceTree = "<group>"; };
 		2DF28B7C1D30B4E3003762DA /* SPPlayer+More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPPlayer+More.h"; sourceTree = "<group>"; };
@@ -825,6 +828,8 @@
 			children = (
 				2D9B88011D3A075800C05F95 /* SPWorkshopCell.h */,
 				2D9B88021D3A075800C05F95 /* SPWorkshopCell.m */,
+				2DE475871D3FC5F2006E6A66 /* SPWorkshopResourceCell.h */,
+				2DE475881D3FC5F2006E6A66 /* SPWorkshopResourceCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1120,6 +1125,7 @@
 				2D0A82471CDE32F500F26BD1 /* SPItemEntranceCell.m in Sources */,
 				2DA9F7721D35490200F87053 /* RWDropdownMenuCell.m in Sources */,
 				2D6AACAE1CE76F3300A7D610 /* SPItemSets.m in Sources */,
+				2DE475891D3FC5F3006E6A66 /* SPWorkshopResourceCell.m in Sources */,
 				2D6E24381D3020EA00995045 /* SPLeftAlignmentLayout.m in Sources */,
 				2DF28B8A1D30FE95003762DA /* SPInventoryFilter.m in Sources */,
 				2D86C0FA1CFAEECA008E1C5D /* SPBaseViewController.m in Sources */,

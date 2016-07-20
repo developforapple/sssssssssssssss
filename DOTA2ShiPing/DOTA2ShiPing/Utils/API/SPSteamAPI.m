@@ -433,6 +433,23 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
     }];
 }
 
+- (void)workshopImageTest:(NSURL *)imageURL
+               completion:(void (^)(BOOL suc, NSUInteger size))completion
+{
+    if (!completion) return;
+    
+    [[AFHTTPSessionManager manager] HEAD:imageURL.absoluteString parameters:nil success:^(NSURLSessionDataTask *task) {
+        
+        NSHTTPURLResponse *response = task.response;
+        
+        NSUInteger len = response.expectedContentLength;
+        
+        completion(YES,len);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        completion(NO,-1);
+    }];
+}
+
 @end
 
 @implementation SPLocation
