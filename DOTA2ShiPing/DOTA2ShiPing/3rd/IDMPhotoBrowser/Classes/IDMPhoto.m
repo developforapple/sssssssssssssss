@@ -8,6 +8,7 @@
 
 #import "IDMPhoto.h"
 #import "IDMPhotoBrowser.h"
+#import "YYWebImage+Add.h"
 
 @interface IDMPhoto ()
 @property (nonatomic, strong) UIImage *underlyingImage;
@@ -134,7 +135,7 @@
             
             __weak typeof(self) weakSelf = self;
             self.operation =
-            [manager requestImageWithURL:_photoURL options:YYWebImageOptionAllowBackgroundTask progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+            [manager requestImageWithURL:_photoURL options:YYWebImageOptionAllowBackgroundTask | YYWebImageOptionProgressiveBlur | YYWebImageOptionNotBeCanceled progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                 __strong typeof(weakSelf) strongSelf = weakSelf;
                 CGFloat progress = ((CGFloat)receivedSize)/((CGFloat)expectedSize);
                 if (strongSelf.progressUpdateBlock) {

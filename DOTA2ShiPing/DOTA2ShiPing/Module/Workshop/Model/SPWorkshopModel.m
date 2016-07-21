@@ -10,6 +10,7 @@
 #import "SPWorkshop.h"
 #import "SPMacro.h"
 #import <YYModel.h>
+#import "IDMPhoto.h"
 
 @implementation SPWorkshopQuery
 
@@ -259,12 +260,12 @@ YYModelCopyingCodingCode
     return URL;
 }
 
-- (NSArray *)imageResourceURLs
+- (NSArray<IDMPhoto *> *)imageResourceIDMPhotos
 {
     NSMutableArray *tmp = [NSMutableArray array];
     for (SPWorkshopResource *resource in self.resources) {
         if (![resource isVideo]) {
-            [tmp addObject:[resource fullURL]];
+            [tmp addObject:resource.photo];
         }
     }
     return tmp;
@@ -287,6 +288,15 @@ YYModelCopyingCodingCode
 #pragma mark - Resource Mode
 @implementation SPWorkshopResource
 
+- (IDMPhoto *)photo
+{
+    if (!_photo) {
+        _photo = [IDMPhoto photoWithURL:[self fullURL]];
+    }
+    _photo.placeholderImage = [[YYWebImageManager sharedManager].cache getImageForKey:[[YYWebImageManager sharedManager] cacheKeyForURL:[self thumbURL]]];
+    return _photo;
+}
+
 - (BOOL)isGif
 {
     if ([self.resource hasPrefix:@"http://cloud-"] || [self.resource hasPrefix:@"https://cloud-"]) {
@@ -306,18 +316,15 @@ YYModelCopyingCodingCode
         return components.URL;
     }
     
+    NSURLQueryItem *item1 = [NSURLQueryItem queryItemWithName:@"interpolation" value:@"lanczos-none"];
+    NSURLQueryItem *item2 = [NSURLQueryItem queryItemWithName:@"output-format" value:@"webP"];
     if (quality == 0) {
-        
-        components.queryItems = nil;
+        components.queryItems = @[item1,item2];
         NSURL *URL = components.URL;
-        
         return URL;
     }
     
-    NSURLQueryItem *item1 = [NSURLQueryItem queryItemWithName:@"interpolation" value:@"lanczos-none"];
-    NSURLQueryItem *item2 = [NSURLQueryItem queryItemWithName:@"output-format" value:@"webP"];
     NSURLQueryItem *item3 = [NSURLQueryItem queryItemWithName:@"output-quality" value:[@(quality) stringValue]];
-    
     NSMutableArray *items = [NSMutableArray arrayWithObjects:item1,item2,item3, nil];
     if (!CGSizeEqualToSize(imageSize, CGSizeZero)) {
         NSString *v = [NSString stringWithFormat:@"inside|%ld:%ld",(long)imageSize.width,(long)imageSize.height];

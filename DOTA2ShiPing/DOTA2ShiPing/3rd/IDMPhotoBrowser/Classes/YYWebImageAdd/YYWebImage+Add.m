@@ -26,7 +26,7 @@ DDSwizzleMethod
 - (void)add_cancel
 {
     if (self.options&YYWebImageOptionNotBeCanceled) {
-        [self setupOptions:self.options progress:nil transform:nil completion:nil];
+        [self setupOptions:self.options progress:nil transform:nil completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {}];
     }else{
         [self add_cancel];
     }
@@ -43,16 +43,23 @@ DDSwizzleMethod
         [self setValue:transform forKey:@"transform"];
         [self setValue:completion forKey:@"completion"];
     } @catch (NSException *exception) {
-        
     }
 }
-
 @end
-
 
 @implementation YYWebImageManager (Add)
 
-DDSwizzleMethod
++ (void)swizzleInstanceSelector:(SEL)originalSelector withNewSelector:(SEL)newSelector
+{
+    Method originalMethod = class_getInstanceMethod(self, originalSelector);
+    Method newMethod = class_getInstanceMethod(self, newSelector);
+    BOOL methodAdded = class_addMethod([self class],originalSelector,method_getImplementation(newMethod),method_getTypeEncoding(newMethod));
+    if (methodAdded){
+        class_replaceMethod([self class],newSelector,method_getImplementation(originalMethod),method_getTypeEncoding(originalMethod));
+    }else{
+        method_exchangeImplementations(originalMethod, newMethod);
+    }
+}
 
 + (void)load
 {

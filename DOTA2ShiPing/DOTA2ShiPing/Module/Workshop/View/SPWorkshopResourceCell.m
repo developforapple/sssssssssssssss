@@ -10,6 +10,7 @@
 #import "SPWorkshopModel.h"
 #import "SPMacro.h"
 #import "SPSteamAPI.h"
+#import "YYWebImage+Add.h"
 #import <YYWebImage.h>
 
 @implementation SPWorkshopResourceCell
@@ -28,7 +29,7 @@
     }else if (resource.isGif){
         
         self.imageView.contentMode = UIViewContentModeCenter;
-        [self.imageView yy_setImageWithURL:[resource fullURL] placeholder:[UIImage imageNamed:@"logo"] options:YYWebImageOptionProgressive | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation manager:nil progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        [self.imageView yy_setImageWithURL:[resource fullURL] placeholder:[UIImage imageNamed:@"logo"] options:YYWebImageOptionProgressive | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation | YYWebImageOptionNotBeCanceled manager:nil progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             spstrongify(self);
             
             CGFloat received = receivedSize/1024.f;
@@ -48,7 +49,7 @@
             spstrongify(self);
             CGFloat p = receivedSize/(CGFloat)expectedSize;
             self.progressLabel.hidden = NO;
-            self.progressLabel.text = [NSString stringWithFormat:@"%.2f%%",p];
+            self.progressLabel.text = [NSString stringWithFormat:@"%.1f%%",p*100];
         } transform:nil completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
             spstrongify(self);
             self.progressLabel.hidden = YES;

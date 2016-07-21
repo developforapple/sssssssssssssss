@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class SPHero;
 @class SPItemSlot;
 @class SPWorkshopResource;
+@class IDMPhoto;
 
 typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
     SPWorkshopSectionItem,
@@ -83,7 +84,7 @@ typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
 - (NSURL *)detailURL;
 - (NSURL *)imageURLForSize:(CGSize)size;
 
-- (NSArray<NSURL *> *)imageResourceURLs;
+- (NSArray<IDMPhoto *> *)imageResourceIDMPhotos;
 
 // 图片资源在所有资源中的图片资源的index
 - (NSUInteger)indexInImageResourcesOfResource:(SPWorkshopResource *)resource;
@@ -91,12 +92,12 @@ typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
 @end
 
 #pragma mark - Resource Model
-
 /**
  *  创意工坊物品的视频和图片资源。
  */
 @interface SPWorkshopResource : NSObject <NSCopying, NSCoding>
 @property (strong, nonatomic) NSNumber *id;
+@property (strong, nonatomic) IDMPhoto *photo;
 
 /**
  *  是否是视频。在创建时即可确定。

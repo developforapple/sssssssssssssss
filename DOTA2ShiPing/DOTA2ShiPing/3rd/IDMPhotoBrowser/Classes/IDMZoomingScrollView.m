@@ -104,13 +104,12 @@
 		self.zoomScale = 1;
         
 		self.contentSize = CGSizeMake(0, 0);
+        
+        _progressView.hidden = nil!=[_photo underlyingImage];
 		
 		// Get image from browser as it handles ordering of fetching
 		UIImage *img = [self.photoBrowser imageForPhoto:_photo];
 		if (img) {
-            // Hide ProgressView
-            //_progressView.alpha = 0.0f;
-            [_progressView removeFromSuperview];
             
             // Set image
 			_photoImageView.image = img;

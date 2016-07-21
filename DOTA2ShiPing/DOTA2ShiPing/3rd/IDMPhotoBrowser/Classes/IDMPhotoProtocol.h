@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "IDMPBConstants.h"
 
+@class UIImage;
+
 // Name of notification used when a photo has completed loading process
 // Used to notify browser display the image
 #define IDMPhoto_LOADING_DID_END_NOTIFICATION @"IDMPhoto_LOADING_DID_END_NOTIFICATION"

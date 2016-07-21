@@ -96,6 +96,17 @@
 		2DB174861D14FBDE0042417D /* SPDotabuffAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB174851D14FBDE0042417D /* SPDotabuffAPI.m */; };
 		2DB174891D14FBE70042417D /* SPSteamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB174881D14FBE70042417D /* SPSteamAPI.m */; };
 		2DE475891D3FC5F3006E6A66 /* SPWorkshopResourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE475881D3FC5F2006E6A66 /* SPWorkshopResourceCell.m */; };
+		2DE9ACED1D410D0F000F9F57 /* IDMCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9ACD91D410D0F000F9F57 /* IDMCaptionView.m */; };
+		2DE9ACEE1D410D0F000F9F57 /* IDMPBLocalizations.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DE9ACDB1D410D0F000F9F57 /* IDMPBLocalizations.bundle */; };
+		2DE9ACEF1D410D0F000F9F57 /* IDMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9ACDD1D410D0F000F9F57 /* IDMPhoto.m */; };
+		2DE9ACF01D410D0F000F9F57 /* IDMPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DE9ACDE1D410D0F000F9F57 /* IDMPhotoBrowser.bundle */; };
+		2DE9ACF11D410D0F000F9F57 /* IDMPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9ACE01D410D0F000F9F57 /* IDMPhotoBrowser.m */; };
+		2DE9ACF21D410D0F000F9F57 /* IDMTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9ACE31D410D0F000F9F57 /* IDMTapDetectingImageView.m */; };
+		2DE9ACF31D410D0F000F9F57 /* IDMTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9ACE51D410D0F000F9F57 /* IDMTapDetectingView.m */; };
+		2DE9ACF41D410D0F000F9F57 /* IDMZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9ACE71D410D0F000F9F57 /* IDMZoomingScrollView.m */; };
+		2DE9ACF51D410D0F000F9F57 /* YYWebImage+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9ACEA1D410D0F000F9F57 /* YYWebImage+Add.m */; };
+		2DE9ACF61D410D0F000F9F57 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2DE9ACEB1D410D0F000F9F57 /* LICENSE.txt */; };
+		2DE9ACF71D410D0F000F9F57 /* README.markdown in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9ACEC1D410D0F000F9F57 /* README.markdown */; };
 		2DF28B7B1D30B1A6003762DA /* SPPlayerAliasesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B7A1D30B1A6003762DA /* SPPlayerAliasesVC.m */; };
 		2DF28B7E1D30B4E3003762DA /* SPPlayer+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B7D1D30B4E3003762DA /* SPPlayer+More.m */; };
 		2DF28B841D30DF46003762DA /* SPPlayerInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF28B831D30DF46003762DA /* SPPlayerInventoryVC.m */; };
@@ -108,7 +119,6 @@
 		44399A141D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A131D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m */; };
 		44399A181D361504006F0F16 /* SPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A171D361504006F0F16 /* SPPopoverView.m */; };
 		44399A1C1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A1B1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m */; };
-		44B9BDA51D408ED800F0B0D4 /* YYWebImage+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B9BDA41D408ED800F0B0D4 /* YYWebImage+Add.m */; };
 		44FDF0191D37538D007710B1 /* SPPlayerSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDF0181D37538D007710B1 /* SPPlayerSelectedVC.m */; };
 		44FDF0451D3CA893007710B1 /* SPWebHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDF0441D3CA893007710B1 /* SPWebHelper.m */; };
 /* End PBXBuildFile section */
@@ -279,6 +289,26 @@
 		2DB174881D14FBE70042417D /* SPSteamAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSteamAPI.m; sourceTree = "<group>"; };
 		2DE475871D3FC5F2006E6A66 /* SPWorkshopResourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWorkshopResourceCell.h; sourceTree = "<group>"; };
 		2DE475881D3FC5F2006E6A66 /* SPWorkshopResourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWorkshopResourceCell.m; sourceTree = "<group>"; };
+		2DE9ACD81D410D0F000F9F57 /* IDMCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMCaptionView.h; sourceTree = "<group>"; };
+		2DE9ACD91D410D0F000F9F57 /* IDMCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMCaptionView.m; sourceTree = "<group>"; };
+		2DE9ACDA1D410D0F000F9F57 /* IDMPBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPBConstants.h; sourceTree = "<group>"; };
+		2DE9ACDB1D410D0F000F9F57 /* IDMPBLocalizations.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IDMPBLocalizations.bundle; sourceTree = "<group>"; };
+		2DE9ACDC1D410D0F000F9F57 /* IDMPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPhoto.h; sourceTree = "<group>"; };
+		2DE9ACDD1D410D0F000F9F57 /* IDMPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMPhoto.m; sourceTree = "<group>"; };
+		2DE9ACDE1D410D0F000F9F57 /* IDMPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IDMPhotoBrowser.bundle; sourceTree = "<group>"; };
+		2DE9ACDF1D410D0F000F9F57 /* IDMPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPhotoBrowser.h; sourceTree = "<group>"; };
+		2DE9ACE01D410D0F000F9F57 /* IDMPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMPhotoBrowser.m; sourceTree = "<group>"; };
+		2DE9ACE11D410D0F000F9F57 /* IDMPhotoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPhotoProtocol.h; sourceTree = "<group>"; };
+		2DE9ACE21D410D0F000F9F57 /* IDMTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMTapDetectingImageView.h; sourceTree = "<group>"; };
+		2DE9ACE31D410D0F000F9F57 /* IDMTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMTapDetectingImageView.m; sourceTree = "<group>"; };
+		2DE9ACE41D410D0F000F9F57 /* IDMTapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMTapDetectingView.h; sourceTree = "<group>"; };
+		2DE9ACE51D410D0F000F9F57 /* IDMTapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMTapDetectingView.m; sourceTree = "<group>"; };
+		2DE9ACE61D410D0F000F9F57 /* IDMZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMZoomingScrollView.h; sourceTree = "<group>"; };
+		2DE9ACE71D410D0F000F9F57 /* IDMZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMZoomingScrollView.m; sourceTree = "<group>"; };
+		2DE9ACE91D410D0F000F9F57 /* YYWebImage+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYWebImage+Add.h"; sourceTree = "<group>"; };
+		2DE9ACEA1D410D0F000F9F57 /* YYWebImage+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYWebImage+Add.m"; sourceTree = "<group>"; };
+		2DE9ACEB1D410D0F000F9F57 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		2DE9ACEC1D410D0F000F9F57 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 		2DF28B791D30B1A6003762DA /* SPPlayerAliasesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerAliasesVC.h; sourceTree = "<group>"; };
 		2DF28B7A1D30B1A6003762DA /* SPPlayerAliasesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerAliasesVC.m; sourceTree = "<group>"; };
 		2DF28B7C1D30B4E3003762DA /* SPPlayer+More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPPlayer+More.h"; sourceTree = "<group>"; };
@@ -303,8 +333,6 @@
 		44399A171D361504006F0F16 /* SPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPopoverView.m; sourceTree = "<group>"; };
 		44399A1A1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventoryUpdateVC.h; sourceTree = "<group>"; };
 		44399A1B1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventoryUpdateVC.m; sourceTree = "<group>"; };
-		44B9BDA31D408ED800F0B0D4 /* YYWebImage+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYWebImage+Add.h"; sourceTree = "<group>"; };
-		44B9BDA41D408ED800F0B0D4 /* YYWebImage+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYWebImage+Add.m"; sourceTree = "<group>"; };
 		44FDF0171D37538D007710B1 /* SPPlayerSelectedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerSelectedVC.h; sourceTree = "<group>"; };
 		44FDF0181D37538D007710B1 /* SPPlayerSelectedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerSelectedVC.m; sourceTree = "<group>"; };
 		44FDF0431D3CA893007710B1 /* SPWebHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWebHelper.h; sourceTree = "<group>"; };
@@ -549,6 +577,7 @@
 		2D48D2B01CDE21A500190F0C /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				2DE9ACD61D410D0F000F9F57 /* IDMPhotoBrowser */,
 				44399A151D3614D3006F0F16 /* Popover */,
 				2DA9F76A1D35490200F87053 /* RWDropdownMenu */,
 				2D9C8B6B1D154EBC00F217AE /* LCActionSheet */,
@@ -683,7 +712,6 @@
 		2D48D2C11CDE21A500190F0C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				44B9BDA21D408ED800F0B0D4 /* YYWebImageAdd */,
 				44FDF0421D3CA886007710B1 /* Web */,
 				2DF28B8B1D312B82003762DA /* Category */,
 				2D6E24351D3020BD00995045 /* Layout */,
@@ -886,6 +914,49 @@
 			path = RWDropdownMenu;
 			sourceTree = "<group>";
 		};
+		2DE9ACD61D410D0F000F9F57 /* IDMPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				2DE9ACD71D410D0F000F9F57 /* Classes */,
+				2DE9ACEB1D410D0F000F9F57 /* LICENSE.txt */,
+				2DE9ACEC1D410D0F000F9F57 /* README.markdown */,
+			);
+			path = IDMPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		2DE9ACD71D410D0F000F9F57 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2DE9ACD81D410D0F000F9F57 /* IDMCaptionView.h */,
+				2DE9ACD91D410D0F000F9F57 /* IDMCaptionView.m */,
+				2DE9ACDA1D410D0F000F9F57 /* IDMPBConstants.h */,
+				2DE9ACDB1D410D0F000F9F57 /* IDMPBLocalizations.bundle */,
+				2DE9ACDC1D410D0F000F9F57 /* IDMPhoto.h */,
+				2DE9ACDD1D410D0F000F9F57 /* IDMPhoto.m */,
+				2DE9ACDE1D410D0F000F9F57 /* IDMPhotoBrowser.bundle */,
+				2DE9ACDF1D410D0F000F9F57 /* IDMPhotoBrowser.h */,
+				2DE9ACE01D410D0F000F9F57 /* IDMPhotoBrowser.m */,
+				2DE9ACE11D410D0F000F9F57 /* IDMPhotoProtocol.h */,
+				2DE9ACE21D410D0F000F9F57 /* IDMTapDetectingImageView.h */,
+				2DE9ACE31D410D0F000F9F57 /* IDMTapDetectingImageView.m */,
+				2DE9ACE41D410D0F000F9F57 /* IDMTapDetectingView.h */,
+				2DE9ACE51D410D0F000F9F57 /* IDMTapDetectingView.m */,
+				2DE9ACE61D410D0F000F9F57 /* IDMZoomingScrollView.h */,
+				2DE9ACE71D410D0F000F9F57 /* IDMZoomingScrollView.m */,
+				2DE9ACE81D410D0F000F9F57 /* YYWebImageAdd */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		2DE9ACE81D410D0F000F9F57 /* YYWebImageAdd */ = {
+			isa = PBXGroup;
+			children = (
+				2DE9ACE91D410D0F000F9F57 /* YYWebImage+Add.h */,
+				2DE9ACEA1D410D0F000F9F57 /* YYWebImage+Add.m */,
+			);
+			path = YYWebImageAdd;
+			sourceTree = "<group>";
+		};
 		2DF28B8B1D312B82003762DA /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -913,15 +984,6 @@
 				44FDF0181D37538D007710B1 /* SPPlayerSelectedVC.m */,
 			);
 			path = Update;
-			sourceTree = "<group>";
-		};
-		44B9BDA21D408ED800F0B0D4 /* YYWebImageAdd */ = {
-			isa = PBXGroup;
-			children = (
-				44B9BDA31D408ED800F0B0D4 /* YYWebImage+Add.h */,
-				44B9BDA41D408ED800F0B0D4 /* YYWebImage+Add.m */,
-			);
-			path = YYWebImageAdd;
 			sourceTree = "<group>";
 		};
 		44FDF0421D3CA886007710B1 /* Web */ = {
@@ -1045,8 +1107,11 @@
 			files = (
 				2D0A827A1CDF303500F26BD1 /* baidumobadsdk.bundle in Resources */,
 				2D504EB21D3AA3E500D43B07 /* Assets.xcassets in Resources */,
+				2DE9ACF01D410D0F000F9F57 /* IDMPhotoBrowser.bundle in Resources */,
 				2D504EB41D3AA48200D43B07 /* data.json in Resources */,
 				2D9C8B6F1D154EBC00F217AE /* LCActionSheet.bundle in Resources */,
+				2DE9ACF61D410D0F000F9F57 /* LICENSE.txt in Resources */,
+				2DE9ACEE1D410D0F000F9F57 /* IDMPBLocalizations.bundle in Resources */,
 				2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */,
 				2D48D2C61CDE21F400190F0C /* SPMain.storyboard in Resources */,
 				2D504EB01D3AA36D00D43B07 /* heroMap.json in Resources */,
@@ -1119,10 +1184,12 @@
 				2DF28B7B1D30B1A6003762DA /* SPPlayerAliasesVC.m in Sources */,
 				2DA452521CE0FF4C004BD185 /* SPLogoHeader.m in Sources */,
 				2DA9F7711D35490200F87053 /* RWDropdownMenu.m in Sources */,
+				2DE9ACF11D410D0F000F9F57 /* IDMPhotoBrowser.m in Sources */,
 				2D86C0FF1CFAF8B2008E1C5D /* SPMaxPlusAPI.m in Sources */,
 				2D0FB4A41CEB10F1004A300D /* SPSearchVC.m in Sources */,
 				44399A0B1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m in Sources */,
 				440FCB971D3E1B6900CCBB03 /* SPWorkshopResourcesVC.m in Sources */,
+				2DE9ACF71D410D0F000F9F57 /* README.markdown in Sources */,
 				2D86C10D1CFB13C7008E1C5D /* SPSearchCell.m in Sources */,
 				44399A181D361504006F0F16 /* SPPopoverView.m in Sources */,
 				2D494BBC1CE0C15100491A20 /* SPItem.m in Sources */,
@@ -1130,6 +1197,7 @@
 				2D0A82651CDEEEA600F26BD1 /* SPItemSlot.m in Sources */,
 				44399A0E1D3494D0006F0F16 /* SPInventoryConditionCell.m in Sources */,
 				2D504EA91D3A758500D43B07 /* SPWorkshopModel.m in Sources */,
+				2DE9ACF41D410D0F000F9F57 /* IDMZoomingScrollView.m in Sources */,
 				2D86C10A1CFB0F30008E1C5D /* SPPlayerListVC.m in Sources */,
 				2D86C1041CFB00E3008E1C5D /* SPPlayer.m in Sources */,
 				2D0A82A21CDF3A7700F26BD1 /* SPLaunchADVC.m in Sources */,
@@ -1150,7 +1218,9 @@
 				44FDF0191D37538D007710B1 /* SPPlayerSelectedVC.m in Sources */,
 				2D9B87FC1D395E4C00C05F95 /* SPWorkshop.m in Sources */,
 				2D3CAC9D1D33C747001932E4 /* SPWorkshopVC.m in Sources */,
+				2DE9ACED1D410D0F000F9F57 /* IDMCaptionView.m in Sources */,
 				2D0A826A1CDEEF1400F26BD1 /* SPDataManager.m in Sources */,
+				2DE9ACF31D410D0F000F9F57 /* IDMTapDetectingView.m in Sources */,
 				2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */,
 				2D494BC51CE0D51800491A20 /* SPItemPrefab.m in Sources */,
 				2DF28B7E1D30B4E3003762DA /* SPPlayer+More.m in Sources */,
@@ -1172,16 +1242,18 @@
 				2DA4523F1CE0DDF6004BD185 /* SPItemListContainer.m in Sources */,
 				2DF28B871D30E9AF003762DA /* SPInventoryCategoryPickerVC.m in Sources */,
 				2D48D2C91CDE22B800190F0C /* DDMainTBC.m in Sources */,
+				2DE9ACF51D410D0F000F9F57 /* YYWebImage+Add.m in Sources */,
 				2D6AACAA1CE738B200A7D610 /* SPItem+Cache.m in Sources */,
 				2D86C0F71CFAA0D9008E1C5D /* SPSearchEngine.m in Sources */,
 				2DB174861D14FBDE0042417D /* SPDotabuffAPI.m in Sources */,
 				44399A1C1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m in Sources */,
-				44B9BDA51D408ED800F0B0D4 /* YYWebImage+Add.m in Sources */,
 				2D57A3021D29028300D36150 /* SPPlayerDetailInfoVC.m in Sources */,
 				2D0A82501CDE4CAB00F26BD1 /* SPItemOffPriceVC.m in Sources */,
 				2D494BB61CE0BE9700491A20 /* SPItemFilter.m in Sources */,
 				2D494BB91CE0BF5D00491A20 /* SPItemRarity.m in Sources */,
 				2D0A82431CDE312500F26BD1 /* SPItemEntranceConfig.m in Sources */,
+				2DE9ACEF1D410D0F000F9F57 /* IDMPhoto.m in Sources */,
+				2DE9ACF21D410D0F000F9F57 /* IDMTapDetectingImageView.m in Sources */,
 				2DB174891D14FBE70042417D /* SPSteamAPI.m in Sources */,
 				2D0A82A61CDF4AAA00F26BD1 /* DDSegmentScrollView.m in Sources */,
 			);
@@ -1337,6 +1409,7 @@
 					"-framework",
 					"\"UIKit\"",
 					"-lstdc++",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = wwwbbat.DOTA2ShiPing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1391,6 +1464,7 @@
 					"-framework",
 					"\"UIKit\"",
 					"-lstdc++",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = wwwbbat.DOTA2ShiPing;
 				PRODUCT_NAME = "$(TARGET_NAME)";

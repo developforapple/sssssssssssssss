@@ -1,6 +1,6 @@
-source 'https://github.com/CocoaPods/Specs.git'
+#source 'https://github.com/CocoaPods/Specs.git'
 
-#source 'https://coding.net/u/hging/p/Specs/git'
+source 'https://coding.net/u/hging/p/Specs/git'
 
 inhibit_all_warnings!
 
@@ -30,4 +30,3 @@ pod 'DZNWebViewController'          #https://github.com/dzenbot/DZNWebViewContro
 
 pod 'DACircularProgress'
 pod 'pop'
-pod 'IDMPhotoBrowser', :git => 'https://github.com/developforapple/IDMPhotoBrowser.git'

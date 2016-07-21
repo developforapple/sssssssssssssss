@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IDMPhotoProtocol.h"
 #import "IDMTapDetectingImageView.h"
 #import "IDMTapDetectingView.h"
+#import "IDMPhoto.h"
 
 #import <DACircularProgress/DACircularProgressView.h>
 

@@ -14,7 +14,7 @@
 #import "SPWorkshopResourceCell.h"
 #import "SPWorkshop.h"
 #import "SPWebHelper.h"
-#import <IDMPhotoBrowser.h>
+#import "IDMPhotoBrowser.h"
 
 @interface SPWorkshopResourcesVC () <UICollectionViewDelegateFlowLayout>
 @end
@@ -76,12 +76,25 @@
         
         SPWorkshopResourceCell *cell = (SPWorkshopResourceCell *)[collectionView cellForItemAtIndexPath:indexPath];
         
-        NSArray *URLs = [self.unit imageResourceURLs];
-        IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:URLs animatedFromView:cell.imageView];
+        NSArray *IDMPhotos = [self.unit imageResourceIDMPhotos];
+        IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:IDMPhotos animatedFromView:cell.imageView];
         browser.currentPageIndex = [self.unit indexInImageResourcesOfResource:resource];
         
         [self presentViewController:browser animated:YES completion:nil];
     }
+    
+//    cloud-3.steamusercontent.com/ugc/273975149326586147/9752B4EEB17EFF8CBB1053F9C30F6CD2AA42012D/?interpolation=lanczos-none&output-format=webP
+//    cloud-3.steamusercontent.com/ugc/273975149326580359/9752B4EEB17EFF8CBB1053F9C30F6CD2AA42012D/?interpolation=lanczos-none&output-format=webP
+//    cloud-3.steamusercontent.com/ugc/273975149325218490/9752B4EEB17EFF8CBB1053F9C30F6CD2AA42012D/?interpolation=lanczos-none&output-format=webP
+//    cloud-3.steamusercontent.com/ugc/273975149326594401/9752B4EEB17EFF8CBB1053F9C30F6CD2AA42012D
+//    
+//    images.akamai.steamusercontent.com/ugc/273975149325226713/52485AE7598F55FCEF312F78007A2E9750CD41FE
+//    images.akamai.steamusercontent.com/ugc/273975149325224668/52485AE7598F55FCEF312F78007A2E9750CD41FE
+//    images.akamai.steamusercontent.com/ugc/273975149325224668/52485AE7598F55FCEF312F78007A2E9750CD41FE/?interpolation=lanczos-none&output-format=webP
+//    
+//    images.akamai.steamusercontent.com/ugc/273975149325211791/C1646A247DCEA590F40FABD3CAB58F0D0888D096/
+//    images.akamai.steamusercontent.com/ugc/273975149326592985/5A4E02E489BF6D56FAE450EB45254C2318B97766
+//    images.akamai.steamusercontent.com/ugc/273975149326592985/5A4E02E489BF6D56FAE450EB45254C2318B97766/?interpolation=lanczos-none&output-format=webP
 }
 
 #pragma mark <UICollectionViewDelegate>
