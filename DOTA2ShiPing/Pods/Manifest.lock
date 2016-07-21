@@ -91,7 +91,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   IDMPhotoBrowser:
-    :commit: 1077310ff1a17558fdf5e2ff19dbfa182f0e0161
+    :commit: 724ae25e5116937846d112d6f001721eceb5c030
     :git: https://github.com/developforapple/IDMPhotoBrowser.git
 
 SPEC CHECKSUMS:

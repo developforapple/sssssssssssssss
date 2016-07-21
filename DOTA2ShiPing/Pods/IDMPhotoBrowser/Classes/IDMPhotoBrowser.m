@@ -18,128 +18,43 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 #endif
 
 // Private
-@interface IDMPhotoBrowser () {
-	// Data
-    NSMutableArray *_photos;
-
-	// Views
-	UIScrollView *_pagingScrollView;
-
-    // Gesture
-    UIPanGestureRecognizer *_panGesture;
-
-	// Paging
-    NSMutableSet *_visiblePages, *_recycledPages;
-    NSUInteger _pageIndexBeforeRotation;
-    NSUInteger _currentPageIndex;
-
-    // Buttons
-    UIButton *_doneButton;
-
-	// Toolbar
-	UIToolbar *_toolbar;
-	UIBarButtonItem *_previousButton, *_nextButton, *_actionButton;
-    UIBarButtonItem *_counterButton;
-    UILabel *_counterLabel;
-
-    // Actions
-    UIActionSheet *_actionsSheet;
-    UIActivityViewController *activityViewController;
-
-    // Control
-    NSTimer *_controlVisibilityTimer;
-
-    // Appearance
-    //UIStatusBarStyle _previousStatusBarStyle;
-	BOOL _statusBarOriginallyHidden;
-
-    // Present
-    UIView *_senderViewForAnimation;
-
-    // Misc
-    BOOL _performingLayout;
-	BOOL _rotating;
-    BOOL _viewIsActive; // active as in it's in the view heirarchy
-    BOOL _autoHide;
-    NSInteger _initalPageIndex;
-
-    BOOL _isdraggingPhoto;
-
-    CGRect _senderViewOriginalFrame;
-    //UIImage *_backgroundScreenshot;
-
-    UIWindow *_applicationWindow;
-
-	// iOS 7
-    UIViewController *_applicationTopViewController;
-    int _previousModalPresentationStyle;
-}
+@interface IDMPhotoBrowser ()
 
 // Private Properties
+@property (nonatomic, strong) NSMutableArray *photos;
+@property (nonatomic, strong) UIScrollView *pagingScrollView;
+@property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
+@property (nonatomic, strong) NSMutableSet *visiblePages;
+@property (nonatomic, strong) NSMutableSet *recycledPages;
+@property (nonatomic, assign) NSUInteger pageIndexBeforeRotation;
+@property (nonatomic, assign) NSUInteger currentPageIndex;
+@property (nonatomic, strong) UIButton *doneButton;
+@property (nonatomic, strong) UIToolbar *toolbar;
+@property (nonatomic, strong) UIBarButtonItem *previousButton;
+@property (nonatomic, strong) UIBarButtonItem *nextButton;
+@property (nonatomic, strong) UIBarButtonItem *actionButton;
+@property (nonatomic, strong) UIBarButtonItem *counterButton;
+@property (nonatomic, strong) UILabel *counterLabel;
+@property (nonatomic, strong) NSTimer *controlVisibilityTimer;
+@property (nonatomic, assign) BOOL statusBarOriginallyHidden;
+@property (nonatomic, strong) UIView *senderViewForAnimation;
+@property (nonatomic, assign) BOOL performingLayout;
+@property (nonatomic, assign) BOOL rotating;
+@property (nonatomic, assign) BOOL viewIsActive; // active as in it's in the view heirarchy
+@property (nonatomic, assign) BOOL autoHide;
+@property (nonatomic, assign) NSInteger initalPageIndex;
+@property (nonatomic, assign) BOOL isdraggingPhoto;
+@property (nonatomic, assign) CGRect senderViewOriginalFrame;
+@property (nonatomic, strong) UIWindow *applicationWindow;
+@property (nonatomic, strong) UIViewController *applicationTopViewController;
+@property (nonatomic, assign) int previousModalPresentationStyle;
 @property (nonatomic, strong) UIActionSheet *actionsSheet;
 @property (nonatomic, strong) UIActivityViewController *activityViewController;
-
-// Private Methods
-
-// Layout
-- (void)performLayout;
-
-// Paging
-- (void)tilePages;
-- (BOOL)isDisplayingPageForIndex:(NSUInteger)index;
-- (IDMZoomingScrollView *)pageDisplayedAtIndex:(NSUInteger)index;
-- (IDMZoomingScrollView *)pageDisplayingPhoto:(id<IDMPhoto>)photo;
-- (IDMZoomingScrollView *)dequeueRecycledPage;
-- (void)configurePage:(IDMZoomingScrollView *)page forIndex:(NSUInteger)index;
-- (void)didStartViewingPageAtIndex:(NSUInteger)index;
-
-// Frames
-- (CGRect)frameForPagingScrollView;
-- (CGRect)frameForPageAtIndex:(NSUInteger)index;
-- (CGSize)contentSizeForPagingScrollView;
-- (CGPoint)contentOffsetForPageAtIndex:(NSUInteger)index;
-- (CGRect)frameForToolbarAtOrientation:(UIInterfaceOrientation)orientation;
-- (CGRect)frameForDoneButtonAtOrientation:(UIInterfaceOrientation)orientation;
-- (CGRect)frameForCaptionView:(IDMCaptionView *)captionView atIndex:(NSUInteger)index;
-
-// Toolbar
-- (void)updateToolbar;
-
-// Navigation
-- (void)jumpToPageAtIndex:(NSUInteger)index;
-- (void)gotoPreviousPage;
-- (void)gotoNextPage;
-
-// Controls
-- (void)cancelControlHiding;
-- (void)hideControlsAfterDelay;
-- (void)setControlsHidden:(BOOL)hidden animated:(BOOL)animated permanent:(BOOL)permanent;
-- (void)toggleControls;
-- (BOOL)areControlsHidden;
-
-// Data
-- (NSUInteger)numberOfPhotos;
-- (id<IDMPhoto>)photoAtIndex:(NSUInteger)index;
-- (UIImage *)imageForPhoto:(id<IDMPhoto>)photo;
-- (void)loadAdjacentPhotosIfNecessary:(id<IDMPhoto>)photo;
-- (void)releaseAllUnderlyingPhotos;
 
 @end
 
 // IDMPhotoBrowser
 @implementation IDMPhotoBrowser
-
-// Properties
-@synthesize displayDoneButton = _displayDoneButton, displayToolbar = _displayToolbar, displayActionButton = _displayActionButton, displayCounterLabel = _displayCounterLabel, useWhiteBackgroundColor = _useWhiteBackgroundColor, doneButtonImage = _doneButtonImage;
-@synthesize leftArrowImage = _leftArrowImage, rightArrowImage = _rightArrowImage, leftArrowSelectedImage = _leftArrowSelectedImage, rightArrowSelectedImage = _rightArrowSelectedImage;
-@synthesize displayArrowButton = _displayArrowButton, actionButtonTitles = _actionButtonTitles;
-@synthesize arrowButtonsChangePhotosAnimated = _arrowButtonsChangePhotosAnimated;
-@synthesize forceHideStatusBar = _forceHideStatusBar;
-@synthesize usePopAnimation = _usePopAnimation;
-@synthesize disableVerticalSwipe = _disableVerticalSwipe;
-@synthesize actionsSheet = _actionsSheet, activityViewController = _activityViewController;
-@synthesize trackTintColor = _trackTintColor, progressTintColor = _progressTintColor;
-@synthesize delegate = _delegate;
 
 #pragma mark - NSObject
 
@@ -183,8 +98,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
         _isdraggingPhoto = NO;
 
-        if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)])
-            self.automaticallyAdjustsScrollViewInsets = NO;
+        self.automaticallyAdjustsScrollViewInsets = NO;
 
         _applicationWindow = [[[UIApplication sharedApplication] delegate] window];
 
@@ -193,9 +107,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 			self.modalPresentationStyle = UIModalPresentationCustom;
 			self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             self.modalPresentationCapturesStatusBarAppearance = YES;
-		}
-		else
-		{
+		}else{
 			_applicationTopViewController = [self topviewController];
 			_previousModalPresentationStyle = _applicationTopViewController.modalPresentationStyle;
 			_applicationTopViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
@@ -214,14 +126,11 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     return self;
 }
 
-- (id)initWithPhotos:(NSArray *)photosArray {
-    if ((self = [self init])) {
-		_photos = [[NSMutableArray alloc] initWithArray:photosArray];
-	}
-	return self;
+- (instancetype)initWithPhotos:(NSArray *)photosArray {
+    return [self initWithPhotos:photosArray animatedFromView:nil];
 }
 
-- (id)initWithPhotos:(NSArray *)photosArray animatedFromView:(UIView*)view {
+- (instancetype)initWithPhotos:(NSArray *)photosArray animatedFromView:(UIView*)view {
     if ((self = [self init])) {
 		_photos = [[NSMutableArray alloc] initWithArray:photosArray];
         _senderViewForAnimation = view;
@@ -229,21 +138,12 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 	return self;
 }
 
-- (id)initWithPhotoURLs:(NSArray *)photoURLsArray {
-    if ((self = [self init])) {
-        NSArray *photosArray = [IDMPhoto photosWithURLs:photoURLsArray];
-		_photos = [[NSMutableArray alloc] initWithArray:photosArray];
-	}
-	return self;
+- (instancetype)initWithPhotoURLs:(NSArray *)photoURLsArray {
+    return [self initWithPhotos:[IDMPhoto photosWithURLs:photoURLsArray] animatedFromView:nil];
 }
 
-- (id)initWithPhotoURLs:(NSArray *)photoURLsArray animatedFromView:(UIView*)view {
-    if ((self = [self init])) {
-        NSArray *photosArray = [IDMPhoto photosWithURLs:photoURLsArray];
-		_photos = [[NSMutableArray alloc] initWithArray:photosArray];
-        _senderViewForAnimation = view;
-	}
-	return self;
+- (instancetype)initWithPhotoURLs:(NSArray *)photoURLsArray animatedFromView:(UIView*)view {
+    return [self initWithPhotos:[IDMPhoto photosWithURLs:photoURLsArray] animatedFromView:view];
 }
 
 - (void)dealloc {
@@ -370,7 +270,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     fadeView.backgroundColor = [UIColor clearColor];
     [_applicationWindow addSubview:fadeView];
 
-    UIImageView *resizableImageView = [[UIImageView alloc] initWithImage:imageFromView];
+    YYAnimatedImageView *resizableImageView = [[YYAnimatedImageView alloc] initWithImage:imageFromView];
+//    UIImageView *resizableImageView = [[UIImageView alloc] initWithImage:imageFromView];
     resizableImageView.frame = _senderViewOriginalFrame;
     resizableImageView.clipsToBounds = YES;
     resizableImageView.contentMode = _senderViewForAnimation ? _senderViewForAnimation.contentMode : UIViewContentModeScaleAspectFill;
@@ -428,7 +329,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
     CGRect imageViewFrame = [self animationFrameForImage:imageFromView presenting:NO scrollView:scrollView];
 
-    UIImageView *resizableImageView = [[UIImageView alloc] initWithImage:imageFromView];
+    YYAnimatedImageView *resizableImageView = [[YYAnimatedImageView alloc] initWithImage:imageFromView];
+//    UIImageView *resizableImageView = [[UIImageView alloc] initWithImage:imageFromView];
     resizableImageView.frame = imageViewFrame;
     resizableImageView.contentMode = _senderViewForAnimation ? _senderViewForAnimation.contentMode : UIViewContentModeScaleAspectFill;
     resizableImageView.backgroundColor = [UIColor clearColor];

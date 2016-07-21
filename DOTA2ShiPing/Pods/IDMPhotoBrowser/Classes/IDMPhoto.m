@@ -9,37 +9,17 @@
 #import "IDMPhoto.h"
 #import "IDMPhotoBrowser.h"
 
-// Private
-@interface IDMPhoto () {
-    // Image Sources
-    NSString *_photoPath;
-
-    // Image
-    UIImage *_underlyingImage;
-
-    // Other
-    NSString *_caption;
-    BOOL _loadingInProgress;
-}
-
-// Properties
+@interface IDMPhoto ()
 @property (nonatomic, strong) UIImage *underlyingImage;
+@property (nonatomic, strong) NSString *photoPath;
+@property (nonatomic, assign) BOOL loadingInProgress;
 
-// Methods
-- (void)imageLoadingComplete;
-
+@property (nonatomic, strong) YYWebImageOperation *operation;
 @end
 
-// IDMPhoto
 @implementation IDMPhoto
 
-// Properties
-@synthesize underlyingImage = _underlyingImage, 
-photoURL = _photoURL,
-caption = _caption;
-
 #pragma mark Class Methods
-
 + (IDMPhoto *)photoWithImage:(UIImage *)image {
 	return [[IDMPhoto alloc] initWithImage:image];
 }
@@ -132,20 +112,41 @@ caption = _caption;
         [self imageLoadingComplete];
     } else {
         if (_photoPath) {
-            // Load async from file
-            [self performSelectorInBackground:@selector(loadImageFromFileAsync) withObject:nil];
+            YYImage *image = [YYImage imageWithContentsOfFile:_photoPath];
+            self.underlyingImage = image;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self imageLoadingComplete];
+            });
         } else if (_photoURL) {
-            // Load async from web (using SDWebImageManager)
-            SDWebImageManager *manager = [SDWebImageManager sharedManager];
-            [manager downloadImageWithURL:_photoURL options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+            
+            YYWebImageManager *manager = [YYWebImageManager sharedManager];
+            
+            // 检查缓存
+            NSString *cacheKey = [manager cacheKeyForURL:_photoURL];
+            UIImage *image = [manager.cache getImageForKey:cacheKey];
+            if (image) {
+                self.underlyingImage = image;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self imageLoadingComplete];
+                });
+                return;
+            }
+            
+            __weak typeof(self) weakSelf = self;
+            self.operation =
+            [manager requestImageWithURL:_photoURL options:YYWebImageOptionAllowBackgroundTask progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                __strong typeof(weakSelf) strongSelf = weakSelf;
                 CGFloat progress = ((CGFloat)receivedSize)/((CGFloat)expectedSize);
-                if (self.progressUpdateBlock) {
-                    self.progressUpdateBlock(progress);
+                if (strongSelf.progressUpdateBlock) {
+                    strongSelf.progressUpdateBlock(progress);
                 }
-            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            } transform:nil completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
                 if (image) {
-                    self.underlyingImage = image;
-                    [self performSelectorOnMainThread:@selector(imageLoadingComplete) withObject:nil waitUntilDone:NO];
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    strongSelf.underlyingImage = image;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [strongSelf imageLoadingComplete];
+                    });
                 }
             }];
 
@@ -157,7 +158,6 @@ caption = _caption;
     }
 }
 
-// Release if we can get it again from path or url
 - (void)unloadUnderlyingImage {
     _loadingInProgress = NO;
 
@@ -167,115 +167,6 @@ caption = _caption;
 }
 
 #pragma mark - Async Loading
-
-/*- (UIImage *)decodedImageWithImage:(UIImage *)image {
-    CGImageRef imageRef = image.CGImage;
-    // System only supports RGB, set explicitly and prevent context error
-    // if the downloaded image is not the supported format
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    
-    CGContextRef context = CGBitmapContextCreate(NULL,
-                                                 CGImageGetWidth(imageRef),
-                                                 CGImageGetHeight(imageRef),
-                                                 8,
-                                                 // width * 4 will be enough because are in ARGB format, don't read from the image
-                                                 CGImageGetWidth(imageRef) * 4,
-                                                 colorSpace,
-                                                 // kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Little
-                                                 // makes system don't need to do extra conversion when displayed.
-                                                 kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Little);
-    CGColorSpaceRelease(colorSpace);
-    
-    if ( ! context) {
-        return nil;
-    }
-    
-    CGRect rect = (CGRect){CGPointZero, CGImageGetWidth(imageRef), CGImageGetHeight(imageRef)};
-    CGContextDrawImage(context, rect, imageRef);
-    CGImageRef decompressedImageRef = CGBitmapContextCreateImage(context);
-    CGContextRelease(context);
-    
-    UIImage *decompressedImage = [[UIImage alloc] initWithCGImage:decompressedImageRef];
-    CGImageRelease(decompressedImageRef);
-    return decompressedImage;
-}*/
-
-- (UIImage *)decodedImageWithImage:(UIImage *)image {
-    if (image.images)
-    {
-        // Do not decode animated images
-        return image;
-    }
-    
-    CGImageRef imageRef = image.CGImage;
-    CGSize imageSize = CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
-    CGRect imageRect = (CGRect){.origin = CGPointZero, .size = imageSize};
-    
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
-    
-    int infoMask = (bitmapInfo & kCGBitmapAlphaInfoMask);
-    BOOL anyNonAlpha = (infoMask == kCGImageAlphaNone ||
-                        infoMask == kCGImageAlphaNoneSkipFirst ||
-                        infoMask == kCGImageAlphaNoneSkipLast);
-    
-    // CGBitmapContextCreate doesn't support kCGImageAlphaNone with RGB.
-    // https://developer.apple.com/library/mac/#qa/qa1037/_index.html
-    if (infoMask == kCGImageAlphaNone && CGColorSpaceGetNumberOfComponents(colorSpace) > 1)
-    {
-        // Unset the old alpha info.
-        bitmapInfo &= ~kCGBitmapAlphaInfoMask;
-        
-        // Set noneSkipFirst.
-        bitmapInfo |= kCGImageAlphaNoneSkipFirst;
-    }
-    // Some PNGs tell us they have alpha but only 3 components. Odd.
-    else if (!anyNonAlpha && CGColorSpaceGetNumberOfComponents(colorSpace) == 3)
-    {
-        // Unset the old alpha info.
-        bitmapInfo &= ~kCGBitmapAlphaInfoMask;
-        bitmapInfo |= kCGImageAlphaPremultipliedFirst;
-    }
-    
-    // It calculates the bytes-per-row based on the bitsPerComponent and width arguments.
-    CGContextRef context = CGBitmapContextCreate(NULL,
-                                                 imageSize.width,
-                                                 imageSize.height,
-                                                 CGImageGetBitsPerComponent(imageRef),
-                                                 0,
-                                                 colorSpace,
-                                                 bitmapInfo);
-    CGColorSpaceRelease(colorSpace);
-    
-    // If failed, return undecompressed image
-    if (!context) return image;
-	
-    CGContextDrawImage(context, imageRect, imageRef);
-    CGImageRef decompressedImageRef = CGBitmapContextCreateImage(context);
-	
-    CGContextRelease(context);
-	
-    UIImage *decompressedImage = [UIImage imageWithCGImage:decompressedImageRef scale:image.scale orientation:image.imageOrientation];
-    CGImageRelease(decompressedImageRef);
-    return decompressedImage;
-}
-
-// Called in background
-// Load image in background from local file
-- (void)loadImageFromFileAsync {
-    @autoreleasepool {
-        @try {
-            self.underlyingImage = [UIImage imageWithContentsOfFile:_photoPath];
-            if (!_underlyingImage) {
-                //IDMLog(@"Error loading photo from path: %@", _photoPath);
-            }
-        } @finally {
-            self.underlyingImage = [self decodedImageWithImage: self.underlyingImage];
-            [self performSelectorOnMainThread:@selector(imageLoadingComplete) withObject:nil waitUntilDone:NO];
-        }
-    }
-}
-
 // Called on main
 - (void)imageLoadingComplete {
     NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
