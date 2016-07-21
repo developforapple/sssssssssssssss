@@ -25,7 +25,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "373"
             endingLineNumber = "373"
-            landmarkName = "-fetchResource:completion:"
+            landmarkName = "+fetchResource:completion:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
