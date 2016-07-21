@@ -1,7 +1,7 @@
 {
   "name": "IDMPhotoBrowser",
   "summary": "Photo Browser / Viewer inspired by Facebook's and Tweetbot's with ARC support, swipe-to-dismiss, image progress and more.",
-  "version": "1.8.4",
+  "version": "1.8.5",
   "homepage": "https://github.com/ideaismobile/IDMPhotoBrowser",
   "license": {
     "type": "MIT",
@@ -11,8 +11,8 @@
     "Eduardo Callado": "eduardo_tasker@hotmail.com"
   },
   "source": {
-    "git": "https://github.com/ideaismobile/IDMPhotoBrowser.git",
-    "tag": "1.8.4"
+    "git": "https://github.com/developforapple/IDMPhotoBrowser.git",
+    "tag": "1.8.5"
   },
   "platforms": {
     "ios": "7.0"

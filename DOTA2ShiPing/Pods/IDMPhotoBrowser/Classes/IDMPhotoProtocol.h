@@ -61,4 +61,6 @@
 // Return nil if there is no placeholder
 - (UIImage *)placeholderImage;
 
+- (id)shareImageContent;
+
 @end

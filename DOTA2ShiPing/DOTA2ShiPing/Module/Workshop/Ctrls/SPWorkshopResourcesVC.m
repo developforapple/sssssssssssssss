@@ -14,6 +14,7 @@
 #import "SPWorkshopResourceCell.h"
 #import "SPWorkshop.h"
 #import "SPWebHelper.h"
+#import <IDMPhotoBrowser.h>
 
 @interface SPWorkshopResourcesVC () <UICollectionViewDelegateFlowLayout>
 @end
@@ -70,21 +71,50 @@
 {
     SPWorkshopResource *resource = self.unit.resources[indexPath.item];
     if ([resource isVideo]) {
-        
         [SPWebHelper openURL:resource.fullURL from:self];
-        
     }else{
         
+        SPWorkshopResourceCell *cell = (SPWorkshopResourceCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        
+        NSArray *URLs = [self.unit imageResourceURLs];
+        IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:URLs animatedFromView:cell.imageView];
+        browser.currentPageIndex = [self.unit indexInImageResourcesOfResource:resource];
+        
+        [self presentViewController:browser animated:YES completion:nil];
     }
 }
 
 #pragma mark <UICollectionViewDelegate>
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(SPWorkshopResourceCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self updateCellTransform:cell];
+}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat w = DeviceWidth;
     CGFloat h = w * 0.618f;
     return CGSizeMake(w, ceilf(h));
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    for (SPWorkshopResourceCell *cell in [self.collectionView visibleCells]) {
+        [self updateCellTransform:cell];
+    }
+}
+
+- (void)updateCellTransform:(SPWorkshopResourceCell *)cell
+{
+    CGFloat height = CGRectGetHeight(self.collectionView.frame);
+    CGFloat viewHeight = height + self.collectionView.contentInset.top;
+    CGFloat centerY = CGRectGetMidY(cell.frame);
+    CGFloat y = centerY - self.collectionView.contentOffset.y;
+    CGFloat p = y - viewHeight / 2;
+    CGFloat scale = cos(p / viewHeight * 1);
+    [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
+        cell.imageView.transform = CGAffineTransformMakeScale(scale, scale);
+    } completion:NULL];
 }
 
 @end

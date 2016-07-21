@@ -27,7 +27,6 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 @property (nonatomic, strong) NSMutableSet *visiblePages;
 @property (nonatomic, strong) NSMutableSet *recycledPages;
 @property (nonatomic, assign) NSUInteger pageIndexBeforeRotation;
-@property (nonatomic, assign) NSUInteger currentPageIndex;
 @property (nonatomic, strong) UIButton *doneButton;
 @property (nonatomic, strong) UIToolbar *toolbar;
 @property (nonatomic, strong) UIBarButtonItem *previousButton;
@@ -1192,25 +1191,27 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
         if(!_actionButtonTitles)
         {
             // Activity view
-            NSMutableArray *activityItems = [NSMutableArray arrayWithObject:[photo underlyingImage]];
+            NSMutableArray *activityItems = [NSMutableArray arrayWithObject:[photo shareImageContent]];
             if (photo.caption) [activityItems addObject:photo.caption];
 
             self.activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
 
-            __typeof__(self) __weak selfBlock = self;
+            __weak typeof(self) weakSelf = self;
 
 			if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
 			{
 				[self.activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
-					[selfBlock hideControlsAfterDelay];
-					selfBlock.activityViewController = nil;
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+					[strongSelf hideControlsAfterDelay];
+					strongSelf.activityViewController = nil;
 				}];
 			}
 			else
 			{
 				[self.activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
-					[selfBlock hideControlsAfterDelay];
-					selfBlock.activityViewController = nil;
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+					[strongSelf hideControlsAfterDelay];
+					strongSelf.activityViewController = nil;
 				}];
 			}
 

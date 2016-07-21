@@ -259,6 +259,28 @@ YYModelCopyingCodingCode
     return URL;
 }
 
+- (NSArray *)imageResourceURLs
+{
+    NSMutableArray *tmp = [NSMutableArray array];
+    for (SPWorkshopResource *resource in self.resources) {
+        if (![resource isVideo]) {
+            [tmp addObject:[resource fullURL]];
+        }
+    }
+    return tmp;
+}
+
+- (NSUInteger)indexInImageResourcesOfResource:(SPWorkshopResource *)resource
+{
+    NSMutableArray *tmp = [NSMutableArray array];
+    for (SPWorkshopResource *resource in self.resources) {
+        if (![resource isVideo]) {
+            [tmp addObject:resource];
+        }
+    }
+    return [tmp indexOfObject:resource];
+}
+
 YYModelCopyingCodingCode
 @end
 

@@ -28,7 +28,7 @@ PODS:
     - sqlite3/fts
   - hpple (0.2.0)
   - IAPHelper (1.0.8.1)
-  - IDMPhotoBrowser (1.8.4):
+  - IDMPhotoBrowser (1.8.5):
     - DACircularProgress
     - pop
     - YYWebImage
@@ -67,6 +67,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - AMPopTip (~> 1.1.1)
+  - DACircularProgress
   - DGActivityIndicatorView (~> 2.0)
   - DZNEmptyDataSet (~> 1.8.1)
   - DZNWebViewController
@@ -78,6 +79,7 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9.2)
   - MJRefresh
   - PinYin4Objc (~> 1.1.1)
+  - pop
   - ReactiveCocoa (= 2.5)
   - SSKeychain
   - YYCategories
@@ -91,7 +93,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   IDMPhotoBrowser:
-    :commit: 724ae25e5116937846d112d6f001721eceb5c030
+    :commit: 645b369b641a998067df1db103514f48923496ef
     :git: https://github.com/developforapple/IDMPhotoBrowser.git
 
 SPEC CHECKSUMS:
@@ -104,7 +106,7 @@ SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
   IAPHelper: fbed593436838c3d40753ded319062b68c00cc38
-  IDMPhotoBrowser: 3d6f3d9a37e7698533364461bd39425489ca18c3
+  IDMPhotoBrowser: 128bbb6f97bc855b7b1aff859a6cffaf8cbe18f6
   JZNavigationExtension: 7b95d2b1c48846b8bedcb40d767448f14cb9a0b7
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJRefresh: bb72948c985914b0b5cecac573a2c69a8915fb02
@@ -119,6 +121,6 @@ SPEC CHECKSUMS:
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYWebImage: 0431ed108e104527669b86f75efd58958425cca2
 
-PODFILE CHECKSUM: 1fbbb585fb82b7f3e52b7427312e70b36ecb3cd5
+PODFILE CHECKSUM: 7e1559df79c260a2d23638011101b2a88bf90586
 
 COCOAPODS: 1.0.1

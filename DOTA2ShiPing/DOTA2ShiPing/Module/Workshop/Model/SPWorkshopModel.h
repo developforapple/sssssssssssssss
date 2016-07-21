@@ -82,6 +82,12 @@ typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
 
 - (NSURL *)detailURL;
 - (NSURL *)imageURLForSize:(CGSize)size;
+
+- (NSArray<NSURL *> *)imageResourceURLs;
+
+// 图片资源在所有资源中的图片资源的index
+- (NSUInteger)indexInImageResourcesOfResource:(SPWorkshopResource *)resource;
+
 @end
 
 #pragma mark - Resource Model

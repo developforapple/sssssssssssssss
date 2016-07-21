@@ -166,6 +166,18 @@
 	}
 }
 
+- (id)shareImageContent
+{
+    if (self.underlyingImage) {
+        NSData *data = [self.underlyingImage yy_imageDataRepresentation];
+        return data;
+    }else if (self.photoPath){
+        return self.photoPath;
+    }else{
+        return self.photoURL;
+    }
+}
+
 #pragma mark - Async Loading
 // Called on main
 - (void)imageLoadingComplete {

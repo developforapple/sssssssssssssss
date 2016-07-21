@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <YYAnimatedImageView.h>
 
-@class YYAnimatedImageView;
 @class SPWorkshopResource;
 
 UIKIT_EXTERN NSString *const kSPWorkshopResourceCell;
