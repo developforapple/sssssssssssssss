@@ -119,6 +119,14 @@
 		44399A141D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A131D3603BD006F0F16 /* SPPlayerInventorySearchAllPlayerVC.m */; };
 		44399A181D361504006F0F16 /* SPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A171D361504006F0F16 /* SPPopoverView.m */; };
 		44399A1C1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44399A1B1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m */; };
+		443B14591D4217A400A47B29 /* SPSettingTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 443B14581D4217A400A47B29 /* SPSettingTableVC.m */; };
+		443B145C1D42180900A47B29 /* SPSettingUpgradeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 443B145B1D42180900A47B29 /* SPSettingUpgradeVC.m */; };
+		443B145F1D42181D00A47B29 /* SPSettingAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 443B145E1D42181D00A47B29 /* SPSettingAboutVC.m */; };
+		443B14621D42183700A47B29 /* SPSettingFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 443B14611D42183700A47B29 /* SPSettingFeedbackVC.m */; };
+		443B14651D42185300A47B29 /* SPSettingDiskCacheVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 443B14641D42185300A47B29 /* SPSettingDiskCacheVC.m */; };
+		443B14681D42186800A47B29 /* SPItemUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 443B14671D42186800A47B29 /* SPItemUpdateVC.m */; };
+		443B146B1D42189E00A47B29 /* SPLastestItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 443B146A1D42189E00A47B29 /* SPLastestItemVC.m */; };
+		443B146E1D4218BC00A47B29 /* SPMyStarredItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 443B146D1D4218BC00A47B29 /* SPMyStarredItemVC.m */; };
 		44FDF0191D37538D007710B1 /* SPPlayerSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDF0181D37538D007710B1 /* SPPlayerSelectedVC.m */; };
 		44FDF0451D3CA893007710B1 /* SPWebHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDF0441D3CA893007710B1 /* SPWebHelper.m */; };
 /* End PBXBuildFile section */
@@ -333,6 +341,22 @@
 		44399A171D361504006F0F16 /* SPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPopoverView.m; sourceTree = "<group>"; };
 		44399A1A1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventoryUpdateVC.h; sourceTree = "<group>"; };
 		44399A1B1D362D76006F0F16 /* SPPlayerInventoryUpdateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventoryUpdateVC.m; sourceTree = "<group>"; };
+		443B14571D4217A400A47B29 /* SPSettingTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingTableVC.h; sourceTree = "<group>"; };
+		443B14581D4217A400A47B29 /* SPSettingTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingTableVC.m; sourceTree = "<group>"; };
+		443B145A1D42180900A47B29 /* SPSettingUpgradeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingUpgradeVC.h; sourceTree = "<group>"; };
+		443B145B1D42180900A47B29 /* SPSettingUpgradeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingUpgradeVC.m; sourceTree = "<group>"; };
+		443B145D1D42181D00A47B29 /* SPSettingAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingAboutVC.h; sourceTree = "<group>"; };
+		443B145E1D42181D00A47B29 /* SPSettingAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingAboutVC.m; sourceTree = "<group>"; };
+		443B14601D42183700A47B29 /* SPSettingFeedbackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingFeedbackVC.h; sourceTree = "<group>"; };
+		443B14611D42183700A47B29 /* SPSettingFeedbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingFeedbackVC.m; sourceTree = "<group>"; };
+		443B14631D42185300A47B29 /* SPSettingDiskCacheVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingDiskCacheVC.h; sourceTree = "<group>"; };
+		443B14641D42185300A47B29 /* SPSettingDiskCacheVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingDiskCacheVC.m; sourceTree = "<group>"; };
+		443B14661D42186800A47B29 /* SPItemUpdateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemUpdateVC.h; sourceTree = "<group>"; };
+		443B14671D42186800A47B29 /* SPItemUpdateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemUpdateVC.m; sourceTree = "<group>"; };
+		443B14691D42189E00A47B29 /* SPLastestItemVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLastestItemVC.h; sourceTree = "<group>"; };
+		443B146A1D42189E00A47B29 /* SPLastestItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLastestItemVC.m; sourceTree = "<group>"; };
+		443B146C1D4218BC00A47B29 /* SPMyStarredItemVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMyStarredItemVC.h; sourceTree = "<group>"; };
+		443B146D1D4218BC00A47B29 /* SPMyStarredItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMyStarredItemVC.m; sourceTree = "<group>"; };
 		44FDF0171D37538D007710B1 /* SPPlayerSelectedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerSelectedVC.h; sourceTree = "<group>"; };
 		44FDF0181D37538D007710B1 /* SPPlayerSelectedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerSelectedVC.m; sourceTree = "<group>"; };
 		44FDF0431D3CA893007710B1 /* SPWebHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWebHelper.h; sourceTree = "<group>"; };
@@ -634,7 +658,7 @@
 				2D48D2BB1CDE21A500190F0C /* Main */,
 				2D48D2BE1CDE21A500190F0C /* Player */,
 				2D48D2C01CDE21A500190F0C /* Workshop */,
-				2D48D2BF1CDE21A500190F0C /* Setting */,
+				443B14541D42178400A47B29 /* Setting */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -689,13 +713,6 @@
 				2D86C1071CFB0F0C008E1C5D /* View */,
 			);
 			path = Player;
-			sourceTree = "<group>";
-		};
-		2D48D2BF1CDE21A500190F0C /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Setting;
 			sourceTree = "<group>";
 		};
 		2D48D2C01CDE21A500190F0C /* Workshop */ = {
@@ -986,6 +1003,45 @@
 			path = Update;
 			sourceTree = "<group>";
 		};
+		443B14541D42178400A47B29 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				443B14551D42178400A47B29 /* Ctrls */,
+				443B14561D42178400A47B29 /* View */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		443B14551D42178400A47B29 /* Ctrls */ = {
+			isa = PBXGroup;
+			children = (
+				443B14571D4217A400A47B29 /* SPSettingTableVC.h */,
+				443B14581D4217A400A47B29 /* SPSettingTableVC.m */,
+				443B145A1D42180900A47B29 /* SPSettingUpgradeVC.h */,
+				443B145B1D42180900A47B29 /* SPSettingUpgradeVC.m */,
+				443B145D1D42181D00A47B29 /* SPSettingAboutVC.h */,
+				443B145E1D42181D00A47B29 /* SPSettingAboutVC.m */,
+				443B14601D42183700A47B29 /* SPSettingFeedbackVC.h */,
+				443B14611D42183700A47B29 /* SPSettingFeedbackVC.m */,
+				443B14631D42185300A47B29 /* SPSettingDiskCacheVC.h */,
+				443B14641D42185300A47B29 /* SPSettingDiskCacheVC.m */,
+				443B14661D42186800A47B29 /* SPItemUpdateVC.h */,
+				443B14671D42186800A47B29 /* SPItemUpdateVC.m */,
+				443B14691D42189E00A47B29 /* SPLastestItemVC.h */,
+				443B146A1D42189E00A47B29 /* SPLastestItemVC.m */,
+				443B146C1D4218BC00A47B29 /* SPMyStarredItemVC.h */,
+				443B146D1D4218BC00A47B29 /* SPMyStarredItemVC.m */,
+			);
+			path = Ctrls;
+			sourceTree = "<group>";
+		};
+		443B14561D42178400A47B29 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		44FDF0421D3CA886007710B1 /* Web */ = {
 			isa = PBXGroup;
 			children = (
@@ -1185,6 +1241,7 @@
 				2DA452521CE0FF4C004BD185 /* SPLogoHeader.m in Sources */,
 				2DA9F7711D35490200F87053 /* RWDropdownMenu.m in Sources */,
 				2DE9ACF11D410D0F000F9F57 /* IDMPhotoBrowser.m in Sources */,
+				443B145F1D42181D00A47B29 /* SPSettingAboutVC.m in Sources */,
 				2D86C0FF1CFAF8B2008E1C5D /* SPMaxPlusAPI.m in Sources */,
 				2D0FB4A41CEB10F1004A300D /* SPSearchVC.m in Sources */,
 				44399A0B1D34919C006F0F16 /* SPPlayerInventorySearchFilterVC.m in Sources */,
@@ -1217,10 +1274,12 @@
 				2D0A824B1CDE362E00F26BD1 /* UIImage+ImageEffects.m in Sources */,
 				44FDF0191D37538D007710B1 /* SPPlayerSelectedVC.m in Sources */,
 				2D9B87FC1D395E4C00C05F95 /* SPWorkshop.m in Sources */,
+				443B14591D4217A400A47B29 /* SPSettingTableVC.m in Sources */,
 				2D3CAC9D1D33C747001932E4 /* SPWorkshopVC.m in Sources */,
 				2DE9ACED1D410D0F000F9F57 /* IDMCaptionView.m in Sources */,
 				2D0A826A1CDEEF1400F26BD1 /* SPDataManager.m in Sources */,
 				2DE9ACF31D410D0F000F9F57 /* IDMTapDetectingView.m in Sources */,
+				443B14621D42183700A47B29 /* SPSettingFeedbackVC.m in Sources */,
 				2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */,
 				2D494BC51CE0D51800491A20 /* SPItemPrefab.m in Sources */,
 				2DF28B7E1D30B4E3003762DA /* SPPlayer+More.m in Sources */,
@@ -1229,15 +1288,20 @@
 				2D0A82621CDEEE8500F26BD1 /* SPHero.m in Sources */,
 				2D9B87FF1D39E74400C05F95 /* SPHTMLSerializer.m in Sources */,
 				2D9B88031D3A075800C05F95 /* SPWorkshopCell.m in Sources */,
+				443B14651D42185300A47B29 /* SPSettingDiskCacheVC.m in Sources */,
 				2D3CAC961D32A130001932E4 /* SPItemQuality.m in Sources */,
 				2DF28B841D30DF46003762DA /* SPPlayerInventoryVC.m in Sources */,
+				443B146B1D42189E00A47B29 /* SPLastestItemVC.m in Sources */,
 				2D9C8B701D154EBC00F217AE /* LCActionSheet.m in Sources */,
+				443B145C1D42180900A47B29 /* SPSettingUpgradeVC.m in Sources */,
 				2D494BC21CE0D28B00491A20 /* DDProgressHUD.m in Sources */,
 				2D0A825C1CDEE6F800F26BD1 /* UIViewController+Storyboard.m in Sources */,
 				2DA452421CE0E0E1004BD185 /* SPItemCell.m in Sources */,
 				44FDF0451D3CA893007710B1 /* SPWebHelper.m in Sources */,
 				2D925F991D28C05100CF70BE /* SPPlayerCell.m in Sources */,
 				2D0A825F1CDEEDD000F26BD1 /* SPHeroCell.m in Sources */,
+				443B146E1D4218BC00A47B29 /* SPMyStarredItemVC.m in Sources */,
+				443B14681D42186800A47B29 /* SPItemUpdateVC.m in Sources */,
 				2D504EC21D3D265B00D43B07 /* SPFocusVisualEffectVC.m in Sources */,
 				2DA4523F1CE0DDF6004BD185 /* SPItemListContainer.m in Sources */,
 				2DF28B871D30E9AF003762DA /* SPInventoryCategoryPickerVC.m in Sources */,

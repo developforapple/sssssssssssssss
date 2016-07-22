@@ -44,11 +44,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>IDMPhotoBrowser.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>JZNavigationExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -80,6 +75,11 @@
 			<false/>
 		</dict>
 		<key>SSKeychain.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -147,17 +147,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1D9989893C11EF2D80A010D9E37B5D3E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2C96A31FE7CF9EF519AAC8E4D9DC882E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3003A5F6F85CC9FAAA63FD83478B141A</key>
+		<key>15A78CE01EE4057D94546038A9076D0B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,12 +157,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>52DC85BB3E2C64A131110AF464E0712D</key>
+		<key>5B38D856A54046A05C2B47BFB0A74D25</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B38D856A54046A05C2B47BFB0A74D25</key>
+		<key>6125E0DB3D69AD11257181E56395EAF3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6C1CE325AF72D45C1501E65D7310B43C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -187,7 +182,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>82717BA82FB41AB985EB1C68817F22D9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>82BAC662B1C488194604D49789C5324C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9532EBB1EEF6817FCC8E420134E801F1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -202,12 +212,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A5319F2B2EFC228EE308FC78B805A36E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AC213E6CFFF26D6D85A84518609FEAFE</key>
+		<key>A9AAB94E1C549B1FD648FAD0592FA1CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -217,22 +222,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C080CFD882CA70609D42E11CCC079822</key>
+		<key>DF5C722C75819D4B6E8F4FFC40317868</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C34BF01BCD806C96BD9A40633F6E7FA6</key>
+		<key>DFDE555AFB44AC0552D90442E428282D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E8BC1E7FE225AF57AEF84C044615FF9A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EFD3B3D75053236EA4ED8921BA30465B</key>
+		<key>E7504D6D02598E06D672965C3BAFB519</key>
 		<dict>
 			<key>primary</key>
 			<true/>

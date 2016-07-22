@@ -21,7 +21,7 @@
     
     if (resource.isVideo) {
         
-        self.imageView.contentMode = UIStackViewAlignmentCenter;
+        self.imageView.contentMode = UIViewContentModeCenter;
         self.imageView.image = [UIImage imageNamed:@"icon_video_play"];
         self.progressLabel.hidden = NO;
         self.progressLabel.text = @"点击播放视频";
@@ -29,7 +29,7 @@
     }else if (resource.isGif){
         
         self.imageView.contentMode = UIViewContentModeCenter;
-        [self.imageView yy_setImageWithURL:[resource fullURL] placeholder:[UIImage imageNamed:@"logo"] options:YYWebImageOptionProgressive | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation | YYWebImageOptionNotBeCanceled manager:nil progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        [self.imageView yy_setImageWithURL:[resource fullURL] placeholder:[UIImage imageNamed:@"logo"] options:YYWebImageOptionProgressive | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation | YYWebImageOptionNotBeCanceled manager:self.manager progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             spstrongify(self);
             
             CGFloat received = receivedSize/1024.f;
@@ -40,12 +40,14 @@
         } transform:nil completion:^(UIImage *  image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
             spstrongify(self);
             self.progressLabel.hidden = YES;
-            self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+            if (image) {
+                self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            }
         }];
         
     }else{
         self.imageView.contentMode = UIViewContentModeCenter;
-        [self.imageView yy_setImageWithURL:[resource thumbURL] placeholder:[UIImage imageNamed:@"logo"] options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        [self.imageView yy_setImageWithURL:[resource thumbURL] placeholder:[UIImage imageNamed:@"logo"] options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation manager:self.manager progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             spstrongify(self);
             CGFloat p = receivedSize/(CGFloat)expectedSize;
             self.progressLabel.hidden = NO;
@@ -53,7 +55,9 @@
         } transform:nil completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
             spstrongify(self);
             self.progressLabel.hidden = YES;
-            self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            if (image) {
+                self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            }
         }];
     }
 }

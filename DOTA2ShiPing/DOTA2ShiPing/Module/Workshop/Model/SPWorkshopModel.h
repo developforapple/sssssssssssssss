@@ -151,6 +151,15 @@ typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
  */
 - (NSURL *)fullURL;
 
+/*!
+ *  @brief URL对应的图片key
+ *
+ *  @param URL URL
+ *
+ *  @return key
+ */
++ (NSString *)cacheKeyOfURL:(NSURL *)URL;
+
 @end
 
 #pragma mark - Constant

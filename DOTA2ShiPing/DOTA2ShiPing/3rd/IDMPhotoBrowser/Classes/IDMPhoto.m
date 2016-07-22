@@ -9,6 +9,7 @@
 #import "IDMPhoto.h"
 #import "IDMPhotoBrowser.h"
 #import "YYWebImage+Add.h"
+#import <SVProgressHUD.h>
 
 @interface IDMPhoto ()
 @property (nonatomic, strong) UIImage *underlyingImage;
@@ -120,7 +121,7 @@
             });
         } else if (_photoURL) {
             
-            YYWebImageManager *manager = [YYWebImageManager sharedManager];
+            YYWebImageManager *manager = self.manager?:[YYWebImageManager sharedManager];
             
             // 检查缓存
             NSString *cacheKey = [manager cacheKeyForURL:_photoURL];
@@ -148,6 +149,8 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [strongSelf imageLoadingComplete];
                     });
+                }else{
+                    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
                 }
             }];
 

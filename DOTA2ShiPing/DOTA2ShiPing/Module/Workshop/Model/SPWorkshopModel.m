@@ -362,6 +362,14 @@ YYModelCopyingCodingCode
     return [self createURLWith:0 imageSize:CGSizeZero canvasSize:CGSizeZero backColor:nil];
 }
 
++ (NSString *)cacheKeyOfURL:(NSURL *)URL
+{
+    NSString *MD5 = URL.lastPathComponent;
+    NSString *query = URL.query;
+    NSString *k = [NSString stringWithFormat:@"%@/?%@",MD5,query];
+    return k;
+}
+
 YYModelCopyingCodingCode
 @end
 

@@ -25,6 +25,8 @@ typedef void (^IDMProgressUpdateBlock)(CGFloat progress);
 @property (nonatomic, strong) IDMProgressUpdateBlock progressUpdateBlock;
 @property (nonatomic, strong) UIImage *placeholderImage;
 
+@property (nonatomic, strong) YYWebImageManager *manager;
+
 // Class
 + (IDMPhoto *)photoWithImage:(UIImage *)image;
 + (IDMPhoto *)photoWithFilePath:(NSString *)path;
