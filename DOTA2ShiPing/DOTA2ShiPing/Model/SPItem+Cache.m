@@ -40,7 +40,7 @@ typedef NS_ENUM(NSUInteger, SPImageType) {
         _kQiniuUnuploadItemsCache = [[YYCache alloc] initWithPath:path];
         
         // 上传没有图片的token记录
-        
+        // TODO
         
         
     });

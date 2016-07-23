@@ -12,9 +12,6 @@
 #pragma mark - Workshop
 @interface SPWorkshop : NSObject
 
-+ (NSInteger)cachedDataSize;
-+ (void)clearCachedData:(void (^)(void))completion;
-
 @property (strong, readonly, nonatomic) NSArray<SPWorkshopUnit *> *units;     //当前内容
 @property (assign, readonly, nonatomic) BOOL isCacheData;   //当前是否是缓存数据
 @property (assign, readonly, nonatomic) BOOL noMoreData;    //当前是否还有更多数据

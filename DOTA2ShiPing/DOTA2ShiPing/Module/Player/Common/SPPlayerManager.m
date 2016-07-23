@@ -10,7 +10,6 @@
 #import "SPSteamAPI.h"
 #import "FMDB.h"
 #import "YYCategories.h"
-#import <YYCache.h>
 
 @interface SPPlayerManager ()
 @property (copy, nonatomic) void (^callback)(void);

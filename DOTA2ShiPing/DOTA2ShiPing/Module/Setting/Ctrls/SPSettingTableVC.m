@@ -7,92 +7,108 @@
 //
 
 #import "SPSettingTableVC.h"
+#import "SPDiskCacheControl.h"
+#import "SPMacro.h"
+#import "DDProgressHUD.h"
+#import "UMCommunity.h"
+#import <StoreKit/StoreKit.h>
 
-@interface SPSettingTableVC ()
+@interface SPSettingTableVC () <SKStoreProductViewControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableViewCell *communityCell;
+@property (weak, nonatomic) IBOutlet UILabel *diskCacheLabel;
+@property (weak, nonatomic) IBOutlet UITableViewCell *appStoreCell;
 
 @end
 
 @implementation SPSettingTableVC
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadDiskCacheCost];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.navigationController.navigationBar.barTintColor = AppBarColor;
+}
+
+#pragma mark - Cache Cost
+- (void)loadDiskCacheCost
+{
+    __block long long totalCost = 0;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [SPDiskCacheControl workshopImageCacheCost:^(NSInteger cost) {
+        totalCost += cost;
+        
+        [SPDiskCacheControl workshopDataCacheCost:^(NSInteger cost) {
+            totalCost += cost;
+            
+            [SPDiskCacheControl itemImageCacheCost:^(NSInteger cost) {
+                totalCost += cost;
+                
+                [self loadDiskCacheCostCompleted:totalCost];
+            }];
+            
+        }];
+    }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (void)loadDiskCacheCostCompleted:(long long)cost
+{
+    CGFloat kb = cost/1000.f;
+    CGFloat mb = kb/1000.f;
     
-    // Configure the cell...
+    if (mb < 1) {
+        self.diskCacheLabel.text = [NSString stringWithFormat:@"%.0fkb",kb];
+    }else{
+        self.diskCacheLabel.text = [NSString stringWithFormat:@"%.1fMb",mb];
+    }
     
-    return cell;
+    RunOnMain(^{
+        [self.tableView reloadData];
+    });
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark - UITableView
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell == self.appStoreCell) {
+        
+        DDProgressHUD *HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
+        
+        SKStoreProductViewController *skstore = [SKStoreProductViewController new];
+        skstore.delegate = self;
+        [skstore loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:APPIDNum}
+                           completionBlock:^(BOOL result, NSError *error) {
+                               if (result && !error) {
+                                   [HUD hide:YES];
+                                   [self presentViewController:skstore animated:YES completion:nil];
+                               }else{
+                                   [HUD showAutoHiddenHUDWithMessage:error.localizedDescription];
+                               }
+                           }];
+    }else if (cell == self.communityCell){
+//        UIViewController *community = [UMCommunity getFeedsModalViewController];
+//        [self.navigationController presentViewController:community animated:YES completion:nil];
+        
+        UIViewController *community = [UMCommunity getFeedsViewController];
+        community.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:community animated:YES];
+    }
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+#pragma mark - SKStore
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
+{
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"123");
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

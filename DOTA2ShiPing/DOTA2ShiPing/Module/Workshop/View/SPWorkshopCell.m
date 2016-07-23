@@ -10,6 +10,7 @@
 #import "SPMacro.h"
 #import "SPWorkshop.h"
 #import "UIView+More.h"
+#import "SPDiskCacheControl.h"
 #import <YYWebImage.h>
 
 @interface SPWorkshopCell ()
@@ -32,7 +33,8 @@
     });
     self.imageView.contentMode = UIViewContentModeCenter;
     spweakify(self);
-    [self.imageView yy_setImageWithURL:URL placeholder:placeholder options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+    
+    [self.imageView yy_setImageWithURL:URL placeholder:placeholder options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation manager:[SPDiskCacheControl workshopImageManager] progress:nil transform:nil completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
         spstrongify(self);
         if (image) {
             self.imageView.contentMode = UIViewContentModeScaleAspectFill;

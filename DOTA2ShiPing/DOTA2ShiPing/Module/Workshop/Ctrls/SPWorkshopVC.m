@@ -20,6 +20,7 @@
 #import "SPWebHelper.h"
 #import "SPFocusVisualEffectVC.h"
 #import "SPWorkshopResourcesVC.h"
+#import "SPDiskCacheControl.h"
 #import <ReactiveCocoa.h>
 #import <UIScrollView+EmptyDataSet.h>
 #import <AVKit/AVKit.h>
@@ -50,6 +51,8 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     
     [self initSignal];
     

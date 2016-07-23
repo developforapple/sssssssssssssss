@@ -15,9 +15,7 @@
 #import "SPWorkshop.h"
 #import "SPWebHelper.h"
 #import "IDMPhotoBrowser.h"
-#import <YYWebImage.h>
-
-static YYWebImageManager *manager;
+#import "SPDiskCacheControl.h"
 
 @interface SPWorkshopResourcesVC () <UICollectionViewDelegateFlowLayout>
 @end
@@ -40,19 +38,6 @@ static YYWebImageManager *manager;
     }else{
         self.navigationItem.title = [NSString stringWithFormat:@"视频和图片资源(%lu)",(unsigned long)self.unit.resources.count];
     }
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        YYImageCache *cache = [YYImageCache sharedCache];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        if ([queue respondsToSelector:@selector(setQualityOfService:)]) {
-            queue.qualityOfService = NSQualityOfServiceBackground;
-        }
-        manager = [[YYWebImageManager alloc] initWithCache:cache queue:queue];
-        [manager setCacheKeyFilter:^NSString *(NSURL *URL) {
-            return [SPWorkshopResource cacheKeyOfURL:URL];
-        }];
-    });
 }
 
 - (void)mjrefresh:(MJRefreshComponent *)mj
@@ -76,7 +61,6 @@ static YYWebImageManager *manager;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SPWorkshopResourceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSPWorkshopResourceCell forIndexPath:indexPath];
-    cell.manager = manager;
     [cell configureWithResource:self.unit.resources[indexPath.item]];
     return cell;
 }
@@ -92,7 +76,7 @@ static YYWebImageManager *manager;
         
         NSArray *IDMPhotos = [self.unit imageResourceIDMPhotos];
         for (IDMPhoto *p in IDMPhotos) {
-            p.manager = manager;
+            p.manager = [SPDiskCacheControl workshopImageManager];
         }
         IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:IDMPhotos animatedFromView:cell.imageView];
         browser.currentPageIndex = [self.unit indexInImageResourcesOfResource:resource];

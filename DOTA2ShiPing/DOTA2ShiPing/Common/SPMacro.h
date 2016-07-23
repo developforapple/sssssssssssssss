@@ -33,6 +33,18 @@
 #define iOS9    (Device_SysVersion >= 9.0f)
 #define iOS10   (Device_SysVersion >= 10.0f)
 
+#define APPIDStr @"767324842" // 饰品总汇
+#define APPIDNum @([APPIDStr longLongValue])
+
+#import <IAPShare.h>
+#define IAP [IAPShare sharedHelper].iap
+#define APPIAPProductID_pro @"com.itemofdota2.proversion"
+#define APPISPROVERSION [IAP isPurchasedProductsIdentifier:APPIAPProductID_pro]
+
+
+#define UMengCommunityKey @"579326bde0f55a6200001e28"
+#define UMengCommunityScret @"fb400f35b2d9707aa4b77758d983a5f5"
+
 #import "DDMainTBC.h"
 #import "DDProgressHUD.h"
 #import "SPDataManager.h"

@@ -9,13 +9,13 @@
 #include "SPWorkshop.h"
 #import "SPSteamAPI.h"
 #import "SPMacro.h"
+#import "SPDiskCacheControl.h"
 #import <TFHpple.h>
 #import <YYCache.h>
 #import <YYModel.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
 // 缓存
-static NSString *const kSPWorkshopCacheName = @"SPWorkshopCache";
 static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
 
 @interface SPWorkshop ()
@@ -32,23 +32,11 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
 
 @implementation SPWorkshop
 
-+ (NSInteger)cachedDataSize
-{
-    YYCache *cache = [YYCache cacheWithName:kSPWorkshopCacheName];
-    return [cache.diskCache totalCost];
-}
-
-+ (void)clearCachedData:(void (^)(void))completion
-{
-    YYCache *cache = [YYCache cacheWithName:kSPWorkshopCacheName];
-    [cache removeAllObjectsWithBlock:completion];
-}
-
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        self.cache = [YYCache cacheWithName:kSPWorkshopCacheName];
+        self.cache = [SPDiskCacheControl workshopDataCache];
         self.cache.diskCache.ageLimit = kSPWorkshopExpirTime;
         self.isCacheData = NO;
         self.noMoreData = NO;

@@ -29,6 +29,11 @@
     self.gLayer = layer;
     
     [self.blurView bringSubviewToFront:self.titleLabel];
+    
+    NSArray *releaseLog =
+    @[@{@"version":@"1.0",
+        @"build":@"1.0.65",
+        @"desc":@"“饰品总汇”重生！\n\n全新的设计，重新Coding，一切推倒重来只为情怀。"}];
 }
 
 - (void)layoutSubviews

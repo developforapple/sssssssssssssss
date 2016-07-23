@@ -59,17 +59,6 @@ static NSString *const kUsersKey = @"users";
         return nil;
     }
     
-//    // lo
-//    static NSTimeInterval minimumInterval = .2f;    //最小搜索间隔
-//    static BOOL locker = NO;
-//    if (locker) {
-//        return nil;
-//    }
-//    locker = YES;
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(minimumInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        locker = NO;
-//    });
-    
     static NSString *words = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     NSString *prefix = [keyward substringToIndex:1];
     BOOL isEnglish = [words containsString:prefix]; //iOS8

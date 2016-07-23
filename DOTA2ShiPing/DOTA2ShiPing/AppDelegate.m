@@ -14,6 +14,9 @@
 #import "SPSteamAPI.h"
 #import "JZNavigationExtension.h"
 
+#import "UMCommunity.h"
+#import "UMComSession.h"
+
 @interface AppDelegate ()<BaiduMobAdSplashDelegate>
 @property (strong, nonatomic) BaiduMobAdSplash *splash;
 @property (strong, nonatomic) SPLaunchADVC *adVC;
@@ -29,15 +32,19 @@
     [self _setupUIAppearance];
     [self _setupADSplash];
     
+    
+    [UMComSession openLog:YES];
+    [UMCommunity setAppKey:UMengCommunityKey withAppSecret:UMengCommunityScret];
+    
     return YES;
 }
 
 - (void)_setupUIAppearance
 {
-    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:AppBarItemColor,NSFontAttributeName:[UIFont systemFontOfSize:16]} forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} forState:UIControlStateNormal];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setTintColor:AppBarItemColor];
-    [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:AppBarItemColor];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:AppBarColor];
     
     [[UISearchBar appearance] setBackgroundImage:[UIImage imageWithColor:AppBarColor] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
     

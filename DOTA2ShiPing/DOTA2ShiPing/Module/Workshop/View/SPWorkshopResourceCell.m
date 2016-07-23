@@ -11,6 +11,7 @@
 #import "SPMacro.h"
 #import "SPSteamAPI.h"
 #import "YYWebImage+Add.h"
+#import "SPDiskCacheControl.h"
 #import <YYWebImage.h>
 
 @implementation SPWorkshopResourceCell
@@ -29,7 +30,7 @@
     }else if (resource.isGif){
         
         self.imageView.contentMode = UIViewContentModeCenter;
-        [self.imageView yy_setImageWithURL:[resource fullURL] placeholder:[UIImage imageNamed:@"logo"] options:YYWebImageOptionProgressive | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation | YYWebImageOptionNotBeCanceled manager:self.manager progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        [self.imageView yy_setImageWithURL:[resource fullURL] placeholder:[UIImage imageNamed:@"logo"] options:YYWebImageOptionProgressive | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation | YYWebImageOptionNotBeCanceled manager:[SPDiskCacheControl workshopImageManager] progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             spstrongify(self);
             
             CGFloat received = receivedSize/1024.f;
@@ -47,7 +48,7 @@
         
     }else{
         self.imageView.contentMode = UIViewContentModeCenter;
-        [self.imageView yy_setImageWithURL:[resource thumbURL] placeholder:[UIImage imageNamed:@"logo"] options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation manager:self.manager progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        [self.imageView yy_setImageWithURL:[resource thumbURL] placeholder:[UIImage imageNamed:@"logo"] options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation manager:[SPDiskCacheControl workshopImageManager] progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             spstrongify(self);
             CGFloat p = receivedSize/(CGFloat)expectedSize;
             self.progressLabel.hidden = NO;
