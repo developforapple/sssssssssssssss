@@ -7,8 +7,7 @@
 //
 
 #import "SPItem+Cache.h"
-#import "SPMacro.h"
-#import "SPConstant.h"
+
 #import "AFNetworking.h"
 #import "YYCache.h"
 

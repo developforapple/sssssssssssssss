@@ -7,7 +7,7 @@
 //
 
 #import "SPHeroCell.h"
-#import "SPMacro.h"
+
 #import "YYWebImage.h"
 
 @interface SPHeroCell ()

@@ -10,7 +10,7 @@
 #import "AFNetworking.h"
 #import "TFHpple.h"
 #import "SPPlayer.h"
-#import "SPMacro.h"
+
 #import "SPPlayerItems.h"
 #import "YYCategories.h"
 #import "SPHTMLSerializer.h"
@@ -161,7 +161,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
 - (void)searchUser:(NSString *)keywords
         completion:(SPSteamSearchUserCompletion) completion
 {
-    spweakify(self);
+    ygweakify(self);
     [self getCookiesWithComletion:^(NSArray *cookies) {
         
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -175,12 +175,12 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
             params[name] = value;
         }
         
-        spstrongify(self);
+        ygstrongify(self);
         [self.manager GET:@"search/SearchCommunityAjax" parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            spstrongify(self);
+            ygstrongify(self);
             [self handleSearchResult:responseObject completion:completion];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            spstrongify(self);
+            ygstrongify(self);
             [self handleSearchResult:nil completion:completion];
         }];
     }];
@@ -304,7 +304,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
                 
                 NSLog(@"第 %lld 页 请求完成",theProgress.completedUnitCount);
                 
-                RunOnMain(^{
+                RunOnMainQueue(^{
                     // 进度回调
                     if (p && theProgress) {
                         [theProgress setCompletedUnitCount:theProgress.completedUnitCount+1];

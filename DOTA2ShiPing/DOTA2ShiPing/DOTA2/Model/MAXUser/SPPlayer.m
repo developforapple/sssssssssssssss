@@ -8,8 +8,8 @@
 
 #import "SPPlayer.h"
 #import "YYModel.h"
-#import "SPMacro.h"
-#import "SPConstant.h"
+
+
 
 @interface SPPlayer () <YYModel>
 
@@ -42,11 +42,11 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.dotabuff.com/players/%@",self.steam_id]];
 }
 
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
 
 @implementation SPPlayerDetailInfo
-YYModelCopyingCodingCode;
+YYModelDefaultCode;
 
 - (SPPlayer *)toPlayer
 {
@@ -60,9 +60,9 @@ YYModelCopyingCodingCode;
 @end
 
 @implementation SPPlayerAliase
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
 
 @implementation SPPlayerFriend
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end

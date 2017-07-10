@@ -7,7 +7,7 @@
 //
 
 #import "SPPlayerSelectedVC.h"
-#import "SPMacro.h"
+
 #import "SPPlayerManager.h"
 #import "SPPlayerCell.h"
 

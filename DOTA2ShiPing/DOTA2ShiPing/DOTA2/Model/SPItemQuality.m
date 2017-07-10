@@ -8,8 +8,8 @@
 
 #import "SPItemQuality.h"
 #import "YYModel.h"
-#import "SPMacro.h"
+
 
 @implementation SPItemQuality
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end

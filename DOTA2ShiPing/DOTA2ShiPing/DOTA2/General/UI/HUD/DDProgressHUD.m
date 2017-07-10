@@ -7,7 +7,7 @@
 //
 
 #import "DDProgressHUD.h"
-#import "SPMacro.h"
+
 #import "DGActivityIndicatorView.h"
 
 @implementation DDProgressHUD
@@ -46,7 +46,7 @@
 
 + (instancetype)showAnimatedLoadingInView:(UIView *)view
 {
-    DGActivityIndicatorView *indicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeDoubleBounce tintColor:AppBarColor size:32.f];
+    DGActivityIndicatorView *indicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeDoubleBounce tintColor:kRedColor size:32.f];
     [indicator startAnimating];
     
     DDProgressHUD *HUD = [DDProgressHUD showHUDAddedTo:view animated:YES];

@@ -7,7 +7,6 @@
 //
 
 @import Foundation;
-#import "CDTUserCNT.h"
 
 @interface CDTUser : NSObject <NSCoding,NSCopying>
 
@@ -56,7 +55,6 @@
 @property (copy,    nonatomic)  NSString *  wxRefreshToken;
 @property (nonatomic, copy) NSString *wxGZHOpenId;
 @property (nonatomic, copy) NSString *wxUnionid;
-@property (strong,  nonatomic)  CDTUserCNT* cnt;
 @property (nonatomic, assign) BOOL isFollow;
 @property (nonatomic, assign) BOOL isLoginApp;
 

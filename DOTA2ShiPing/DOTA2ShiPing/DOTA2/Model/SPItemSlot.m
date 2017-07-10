@@ -8,9 +8,8 @@
 
 #import "SPItemSlot.h"
 #import "YYModel.h"
-#import "SPMacro.h"
+
 
 @implementation SPItemSlot
-
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end

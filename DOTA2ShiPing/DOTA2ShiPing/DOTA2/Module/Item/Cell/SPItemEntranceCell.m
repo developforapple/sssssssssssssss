@@ -7,7 +7,7 @@
 //
 
 #import "SPItemEntranceCell.h"
-#import "SPMacro.h"
+
 #import "YYWebImage.h"
 
 @implementation SPItemEntranceCell

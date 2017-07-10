@@ -59,4 +59,7 @@
 // 高德
 #define GaodeSDK_Enabled    YG_SDK_ENABLED     (AMapFoundationKit/AMapFoundationKit.h)
 
+// 谷歌AdMob
+#define AdMobSDK_Enabled    YG_SDK_ENABLED     (GoogleMobileAds/GoogleMobileAds.h)
+
 #endif /* ThirdParty_h */

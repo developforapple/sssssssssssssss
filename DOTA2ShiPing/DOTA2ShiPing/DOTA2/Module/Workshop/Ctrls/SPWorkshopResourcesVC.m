@@ -8,7 +8,7 @@
 
 #import "SPWorkshopResourcesVC.h"
 #import "SPWorkshopModel.h"
-#import "SPMacro.h"
+
 #import "DDProgressHUD.h"
 #import "SPLogoHeader.h"
 #import "SPWorkshopResourceCell.h"
@@ -93,7 +93,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat w = DeviceWidth;
+    CGFloat w = Device_Width;
     CGFloat h = w * 0.618f;
     return CGSizeMake(w, ceilf(h));
 }

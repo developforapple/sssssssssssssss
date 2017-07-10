@@ -7,12 +7,10 @@
 //
 
 #import "SPPlayerInventorySearchResultVC.h"
-#import "SPMacro.h"
 #import "SPItemListContainer.h"
 #import "SPInventoryFilter.h"
 #import "SPPlayerInventorySearchFilterVC.h"
-#import "UIView+More.h"
-#import <ReactiveCocoa.h>
+#import <ReactiveObjC.h>
 
 static NSString *const kSPPlayerInventoryFilterSegueID = @"SPPlayerInventoryFilterSegueID";
 
@@ -41,13 +39,13 @@ static NSString *const kSPPlayerInventoryFilterSegueID = @"SPPlayerInventoryFilt
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":self.container.view}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":self.container.view}]];
     
-    self.container.emptyDataNote = [[NSAttributedString alloc] initWithString:@"没有结果" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:AppBarColor}];
+    self.container.emptyDataNote = [[NSAttributedString alloc] initWithString:@"没有结果" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:kTextColor}];
     
-    spweakify(self);
+    ygweakify(self);
     [RACObserve(self.view, hidden)
      subscribeNext:^(id x) {
          if ([x boolValue]) {
-             spstrongify(self);
+             ygstrongify(self);
              self.view.hidden = NO;
              
              [self setFilterVisible:YES];
@@ -88,9 +86,9 @@ static NSString *const kSPPlayerInventoryFilterSegueID = @"SPPlayerInventoryFilt
     if ([segue.identifier isEqualToString:kSPPlayerInventoryFilterSegueID]) {
         self.filterVC = segue.destinationViewController;
         self.filterVC.filter = self.filter;
-        spweakify(self);
+        ygweakify(self);
         [self.filterVC setWillShowFilterResult:^{
-            spstrongify(self);
+            ygstrongify(self);
             [self.searchCtrl setActive:NO];
             if (self.willShowFilteredResult) {
                 self.willShowFilteredResult();

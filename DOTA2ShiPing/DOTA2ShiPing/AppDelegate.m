@@ -8,34 +8,29 @@
 
 #import "AppDelegate.h"
 #import "UIImage+ImageEffects.h"
-#import "SPMacro.h"
-#import "BaiduMobAdSplash.h"
 #import "SPLaunchADVC.h"
 #import "SPSteamAPI.h"
 #import "JZNavigationExtension.h"
 
-#import "UMCommunity.h"
-#import "UMComSession.h"
+#if AdMobSDK_Enabled
+#import <GoogleMobileAds/GoogleMobileAds.h>
+#endif
 
-@interface AppDelegate ()<BaiduMobAdSplashDelegate>
-@property (strong, nonatomic) BaiduMobAdSplash *splash;
+@interface AppDelegate ()
 @property (strong, nonatomic) SPLaunchADVC *adVC;
-
 @property (strong, nonatomic) UIView *test;
-
 @end
 
 @implementation AppDelegate
 
++ (instancetype)instance
+{
+    return [UIApplication sharedApplication].delegate;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     [self _setupUIAppearance];
     [self _setupADSplash];
-    
-    
-    [UMComSession openLog:YES];
-    [UMCommunity setAppKey:UMengCommunityKey withAppSecret:UMengCommunityScret];
-    
     return YES;
 }
 
@@ -43,20 +38,20 @@
 {
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} forState:UIControlStateNormal];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setTintColor:AppBarItemColor];
-    [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:AppBarColor];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:kRedColor];
     
-    [[UISearchBar appearance] setBackgroundImage:[UIImage imageWithColor:AppBarColor] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
+    [[UISearchBar appearance] setBackgroundImage:[UIImage imageWithColor:kRedColor] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:AppBarItemColor,NSFontAttributeName:[UIFont boldSystemFontOfSize:16]}];
-    [[UINavigationBar appearance] setBarTintColor:AppBarColor];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:16]}];
+    [[UINavigationBar appearance] setBarTintColor:kRedColor];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:AppBarColor] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:kRedColor] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     
     [[UISegmentedControl appearance] setTintColor:[UIColor whiteColor]];
     
-    [[UITextField appearance] setTintColor:AppTextFocusColor];
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:AppBarColor];
+//    [[UITextField appearance] setTintColor:[UIColor]];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:kRedColor];
 }
 
 - (void)_setupADSplash
@@ -64,30 +59,11 @@
     self.test = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 414, 414)];
     [self.window addSubview:self.test];
     
-    self.splash = [[BaiduMobAdSplash alloc] init];
-    self.splash.delegate = self;
-    self.splash.AdUnitTag = @"2058492";
-    [self.splash loadAndDisplayUsingContainerView:self.test];
-    
-//    self.adVC = [SPLaunchADVC instanceFromStoryboard];
-//    [self.adVC displayInWindow:self.window];
-    
-//    BaiduMobAdSplash *splash = [[BaiduMobAdSplash alloc] init];
-//    splash.delegate = self;
-//    splash.AdUnitTag = @"2523963";
-//    [splash loadAndDisplayUsingKeyWindow:self.window];
-//    self.splash = splash;
+    [GADMobileAds configureWithApplicationID:kAdMobAppID];
 }
 
-- (NSString *)publisherId
-{
-//    return @"10045f01";
-    return @"ccb60059";
-}
+- (void)uploadPushToken
+{}
 
-- (void)splashlFailPresentScreen:(BaiduMobAdSplash *)splash withError:(BaiduMobFailReason) reason
-{
-    NSLog(@"");
-}
 
 @end

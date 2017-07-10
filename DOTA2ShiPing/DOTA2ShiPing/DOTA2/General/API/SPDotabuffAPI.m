@@ -7,7 +7,7 @@
 //
 
 #import "SPDotabuffAPI.h"
-#import "SPMacro.h"
+
 #import "SPPlayer.h"
 #import "TFHpple.h"
 
@@ -22,12 +22,12 @@
     
     NSString *url = [NSString stringWithFormat:@"http://zh.dotabuff.com/search?utf8=✓&q=%@",keywords];
     
-    RunOnSubThread(^{
+    RunOnGlobalQueue(^{
     
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
         
         if (!data) {
-            RunOnMain(^{
+            RunOnMainQueue(^{
                 completion(NO,nil,@"网络错误");
             });
             return ;
@@ -37,7 +37,7 @@
         NSArray *divNodes = [hpple searchWithXPathQuery:@"//div[@class='result result-player']"];
         
         if (!divNodes) {
-            RunOnMain(^{
+            RunOnMainQueue(^{
                 completion(NO,nil,@"出错了!");
             });
             return;
@@ -63,7 +63,7 @@
             [result addObject:player];
         }
         
-        RunOnMain(^{
+        RunOnMainQueue(^{
            completion(YES,result,nil); 
         });
     });

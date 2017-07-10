@@ -11,6 +11,7 @@
 #include "Defines.h"
 #include "ConfigDefines.h"
 
+YG_EXTERN NSString *const kAppAppleID;
 // 渠道
 YG_EXTERN NSString *const kAppChannel;
 // 渠道id。AppStore：1 InHouse：0

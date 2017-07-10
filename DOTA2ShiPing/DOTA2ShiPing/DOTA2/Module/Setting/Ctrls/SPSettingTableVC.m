@@ -8,9 +8,7 @@
 
 #import "SPSettingTableVC.h"
 #import "SPDiskCacheControl.h"
-#import "SPMacro.h"
 #import "DDProgressHUD.h"
-#import "UMCommunity.h"
 #import <StoreKit/StoreKit.h>
 
 @interface SPSettingTableVC () <SKStoreProductViewControllerDelegate>
@@ -32,8 +30,6 @@
 {
     [super viewWillAppear:animated];
     [self loadDiskCacheCost];
-    
-    self.navigationController.navigationBar.barTintColor = AppBarColor;
 }
 
 #pragma mark - Cache Cost
@@ -67,8 +63,8 @@
     }else{
         self.diskCacheLabel.text = [NSString stringWithFormat:@"%.1fMb",mb];
     }
-    
-    RunOnMain(^{
+        
+    RunOnMainQueue(^{
         [self.tableView reloadData];
     });
 }
@@ -83,9 +79,11 @@
         
         DDProgressHUD *HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
         
+        NSNumber *AppleID = @([kAppAppleID longLongValue]);
+        
         SKStoreProductViewController *skstore = [SKStoreProductViewController new];
         skstore.delegate = self;
-        [skstore loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:APPIDNum}
+        [skstore loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:AppleID}
                            completionBlock:^(BOOL result, NSError *error) {
                                if (result && !error) {
                                    [HUD hide:YES];
@@ -95,12 +93,8 @@
                                }
                            }];
     }else if (cell == self.communityCell){
-//        UIViewController *community = [UMCommunity getFeedsModalViewController];
-//        [self.navigationController presentViewController:community animated:YES completion:nil];
+
         
-        UIViewController *community = [UMCommunity getFeedsViewController];
-        community.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:community animated:YES];
     }
 }
 

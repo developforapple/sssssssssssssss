@@ -7,9 +7,13 @@
 //
 
 #import "SPSettingUpgradeVC.h"
-#import "SPMacro.h"
+
 #import "DDProgressHUD.h"
 #import <IAPShare.h>
+
+#define IAP [IAPShare sharedHelper].iap
+#define APPIAPProductID_pro @"com.itemofdota2.proversion"
+#define APPISPROVERSION [IAP isPurchasedProductsIdentifier:APPIAPProductID_pro]
 
 static NSString *const kSPUpgradeCell = @"SPUpgradeCell";
 
@@ -28,22 +32,22 @@ static NSString *const kSPUpgradeCell = @"SPUpgradeCell";
 {
     [super viewDidLoad];
     
-    self.flowLayout.itemSize = CGSizeMake(DeviceWidth, CGRectGetHeight(self.collectionView.frame));
+    self.flowLayout.itemSize = CGSizeMake(Device_Width, CGRectGetHeight(self.collectionView.frame));
     
-    self.buyBtnItem.tintColor = AppBarColor;
-    self.restoreBtnItem.tintColor = AppBarColor;
+    self.buyBtnItem.tintColor = kRedColor;
+    self.restoreBtnItem.tintColor = kRedColor;
     
-    self.pageControl.currentPageIndicatorTintColor = AppBarColor;
+    self.pageControl.currentPageIndicatorTintColor = kRedColor;
     self.pageControl.tintColor = [UIColor lightGrayColor];
     self.pageControl.numberOfPages = 3;
     
     if (!IAP) {
         IAP = [[IAPHelper alloc] initWithProductIdentifiers:[NSSet setWithObject:APPIAPProductID_pro]];
-        spweakify(self);
+        ygweakify(self);
         self.buyBtnItem.enabled = NO;
         [IAP requestProductsWithCompletion:^(SKProductsRequest *request, SKProductsResponse *response) {
             
-            spstrongify(self);
+            ygstrongify(self);
             if (IAP.products.count != 0) {
                 self.buyBtnItem.enabled = YES;
             }else{

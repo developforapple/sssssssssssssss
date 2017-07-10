@@ -7,7 +7,7 @@
 //
 
 #import "SPWorkshopTagVC.h"
-#import "SPMacro.h"
+
 #import "SPItemHeroPickerVC.h"
 #import <AMPopTip.h>
 
@@ -198,9 +198,9 @@ static NSString *const kSPWorkshopTagCell = @"SPWorkshopTagCell";
     NSUInteger secion = indexPath.section;
     if (self.isHeroSegment) {
         if (secion == 0) {
-            spweakify(self);
+            ygweakify(self);
             [SPItemHeroPickerVC presentFrom:self selectedCallback:^(SPHero *hero) {
-                spstrongify(self);
+                ygstrongify(self);
                 [self setupHero:hero];
                 [self.tableView reloadData];
                 [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];

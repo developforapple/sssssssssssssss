@@ -6,8 +6,13 @@
 //
 
 #import "YGBaseWebViewCtrl.h"
-#import "BingoJSInterface.h"
 #import "YGRefreshComponent.h"
+
+#define JSInterfaceEnabled __has_include("BingoJSInterface.h")
+
+#if JSInterfaceEnabled
+#import "BingoJSInterface.h"
+#endif
 
 static void *kEstimatedProgressCtx = &kEstimatedProgressCtx;
 static NSString *const kEstimatedProgressKey = @"estimatedProgress";
@@ -19,7 +24,9 @@ static NSString *const kEstimatedProgressKey = @"estimatedProgress";
 @property (strong, readwrite, nonatomic) WKWebView *webView;
 @property (strong, nonatomic) UIView *progressView;
 @property (strong, nonatomic) CAShapeLayer *progressLayer;
+#if JSInterfaceEnabled
 @property (strong, nonatomic) BingoJSInterface *jsInterface;
+#endif
 @end
 
 @implementation YGBaseWebViewCtrl
@@ -97,9 +104,11 @@ static NSString *const kEstimatedProgressKey = @"estimatedProgress";
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:kNilOptions metrics:nil views:dict]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:kNilOptions metrics:nil views:dict]];
     
+#if JSInterfaceEnabled
     self.jsInterface = [[BingoJSInterface alloc] initWithWebView:self.webView delegate:self];
     self.jsInterface.viewController = self;
     [self.jsInterface registerAllHander];
+#endif
     
     [self.webView addObserver:self forKeyPath:kEstimatedProgressKey options:NSKeyValueObservingOptionNew context:kEstimatedProgressCtx];
 }

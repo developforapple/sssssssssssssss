@@ -7,13 +7,15 @@
 //
 
 #import "DDMainADVC.h"
-#import "BaiduMobAdView.h"
-#import "SPMacro.h"
 
-@interface DDMainADVC () <BaiduMobAdViewDelegate>
+#if AdMobSDK_Enabled
+#import <GoogleMobileAds/GoogleMobileAds.h>
+#endif
+
+@interface DDMainADVC () <GADBannerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *adContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *adContainerHeightConstraint;
-@property (strong, nonatomic) BaiduMobAdView *adView;
+@property (strong, nonatomic) GADBannerView *adView;
 
 @end
 
@@ -22,53 +24,55 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.adView = [[BaiduMobAdView alloc] init];
-    self.adView.AdUnitTag = @"2523930";
-    self.adView.AdType = BaiduMobAdViewTypeBanner;
+    self.adView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    self.adView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner origin:CGPointZero];
+    self.adView.adUnitID = @"ca-app-pub-3317628345096940/6074502516";
+    self.adView.rootViewController = self;
     self.adView.delegate = self;
-    self.adView.frame = CGRectMake(0, 0, DeviceWidth, CGRectGetHeight(self.adContainer.bounds));
+    self.adView.autoloadEnabled = YES;
     [self.adContainer addSubview:self.adView];
-    [self.adView start];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
+- (void)adViewDidReceiveAd:(GADBannerView *)bannerView
 {
-    return UIStatusBarStyleLightContent;
+    NSLog(@"收到了ad");
 }
 
-- (NSString *)publisherId
+/// Tells the delegate that an ad request failed. The failure is normally due to network
+/// connectivity or ad availablility (i.e., no fill).
+- (void)adView:(GADBannerView *)bannerView didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    return @"10045f01";
+    NSLog(@"接收ad失败：%@",error);
 }
 
--(BOOL) enableLocation
+#pragma mark Click-Time Lifecycle Notifications
+
+/// Tells the delegate that a full screen view will be presented in response to the user clicking on
+/// an ad. The delegate may want to pause animations and time sensitive interactions.
+- (void)adViewWillPresentScreen:(GADBannerView *)bannerView
 {
-    return NO;
+    NSLog(@"AD即将全屏");
 }
 
-- (void)willDisplayAd:(BaiduMobAdView *)adview
+/// Tells the delegate that the full screen view will be dismissed.
+- (void)adViewWillDismissScreen:(GADBannerView *)bannerView
 {
-    NSLog(@"展示横幅广告");
+    NSLog(@"AD即将退出全屏");
 }
 
-- (void)failedDisplayAd:(BaiduMobFailReason) reason
+/// Tells the delegate that the full screen view has been dismissed. The delegate should restart
+/// anything paused while handling adViewWillPresentScreen:.
+- (void)adViewDidDismissScreen:(GADBannerView *)bannerView
 {
-    NSLog(@"横幅广告展示失败：%d",reason);
+    NSLog(@"AD已经退出全屏");
 }
 
--(void) didAdImpressed
+/// Tells the delegate that the user click will open another app, backgrounding the current
+/// application. The standard UIApplicationDelegate methods, like applicationDidEnterBackground:,
+/// are called immediately before this method is called.
+- (void)adViewWillLeaveApplication:(GADBannerView *)bannerView
 {
-     NSLog(@"展示横幅广告成功");
-}
-
--(void) didAdClicked
-{
-    NSLog(@"点击了横幅广告");
-}
-
--(void) didDismissLandingPage
-{
-    NSLog(@"点击横幅广告后关闭了广告");
+    NSLog(@"点击AD即将离开应用");
 }
 
 @end

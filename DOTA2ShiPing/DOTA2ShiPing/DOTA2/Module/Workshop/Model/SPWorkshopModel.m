@@ -8,7 +8,7 @@
 
 #import "SPWorkshopModel.h"
 #import "SPWorkshop.h"
-#import "SPMacro.h"
+#import "SPHero.h"
 #import <YYModel.h>
 #import "IDMPhoto.h"
 
@@ -86,7 +86,7 @@
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
 
 #pragma mark - Tag
@@ -144,7 +144,7 @@ YYModelCopyingCodingCode
     return tmp;
 }
 
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
 
 #pragma mark - Sort
@@ -214,7 +214,7 @@ YYModelCopyingCodingCode
     return [sorts mutableArrayValueForKeyPath:@"name"];
 }
 
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
 
 #pragma mark - Unit
@@ -282,7 +282,7 @@ YYModelCopyingCodingCode
     return [tmp indexOfObject:resource];
 }
 
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
 
 #pragma mark - Resource Mode
@@ -353,7 +353,7 @@ YYModelCopyingCodingCode
 
 - (NSURL *)thumbURL
 {
-    CGSize size = CGSizeMake(DeviceWidth*2, DeviceWidth*2*0.618f);
+    CGSize size = CGSizeMake(Device_Width*2, Device_Width*2*0.618f);
     return [self createURLWith:75 imageSize:size canvasSize:size backColor:@"black"];
 }
 
@@ -370,7 +370,7 @@ YYModelCopyingCodingCode
     return k;
 }
 
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
 
 #pragma mark - Constant

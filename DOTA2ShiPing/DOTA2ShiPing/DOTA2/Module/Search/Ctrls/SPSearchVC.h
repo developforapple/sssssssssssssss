@@ -6,10 +6,10 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import "SPBaseViewController.h"
+#import "YGBaseViewCtrl.h"
 #import "SPSearchCommon.h"
 
-@interface SPSearchVC : SPBaseViewController
+@interface SPSearchVC : YGBaseViewCtrl
 
 @property (assign, nonatomic) SPSearchType type;
 

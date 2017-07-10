@@ -8,7 +8,7 @@
 
 #import "SPItemSets.h"
 #import "YYModel.h"
-#import "SPMacro.h"
+
 
 @interface SPItemSets () <YYModel>
 
@@ -34,5 +34,5 @@
     return YES;
 }
 
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end

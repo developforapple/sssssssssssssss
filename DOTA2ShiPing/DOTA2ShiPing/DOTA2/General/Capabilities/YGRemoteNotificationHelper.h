@@ -86,7 +86,7 @@ typedef NS_ENUM(NSUInteger, YGNotificaitonForegroundStyle) {
 
 @end
 
-@interface CDTAppDelegate (YGNotification)
+@interface AppDelegate (YGNotification)
 @end
 
 NS_ASSUME_NONNULL_END

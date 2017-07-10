@@ -8,7 +8,7 @@
 
 #import "SPItemHeroPickerVC.h"
 #import "SPItemCommon.h"
-#import "SPMacro.h"
+#import "SPDataManager.h"
 #import "SPHeroCell.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "SPLogoHeader.h"
@@ -54,7 +54,7 @@
     insetL = .5f;
     insetR = .5f;
     sp = .5f;
-    width = (DeviceWidth - 5 * .5f)/4.f;
+    width = (Device_Width - 5 * .5f)/4.f;
     height = ceilf(width *144.f / 256.f);
     
     self.flowlayout.itemSize = CGSizeMake(width, height);
@@ -298,9 +298,9 @@ static NSString *const kHeroHistorySaveKey = @"com.wwwbbat.herohistory";
 - (SPItemHeroListVC *)viewControllerAtIndex:(NSInteger)index
 {
     if (!self.listVCs) {
-        spweakify(self);
+        ygweakify(self);
         void (^selectedHeroCallback)(SPHero *hero) = ^(SPHero *hero){
-            spstrongify(self);
+            ygstrongify(self);
             [self didSelectedHero:hero];
         };
         

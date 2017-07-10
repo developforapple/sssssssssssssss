@@ -14,7 +14,7 @@
 #import "UIViewController+Storyboard.h"
 #import "DDProgressHUD.h"
 #import "SPSteamAPI.h"
-#import "SPMacro.h"
+
 #import "SPPlayer+More.h"
 
 @interface SPSearchCell ()
@@ -79,9 +79,9 @@
 //{
 //    DDProgressHUD *HUD = [DDProgressHUD showHUDAddedTo:self.window animated:YES];
 //    
-//    spweakify(self);
+//    ygweakify(self);
 //    [[SPPlayerManager shared] fetchItemList:self.user completion:^(BOOL suc, NSString *msg) {
-//        spstrongify(self);
+//        ygstrongify(self);
 //        if (suc) {
 //            [self loadLatestInventoryData];
 //        }else{

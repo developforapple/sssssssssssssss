@@ -7,8 +7,8 @@
 //
 
 #import "SPPlayerInventorySearchAllPlayerVC.h"
-#import "SPMacro.h"
-#import <ReactiveCocoa.h>
+
+#import <ReactiveObjC.h>
 #import <UIScrollView+EmptyDataSet.h>
 
 @interface SPPlayerInventorySearchAllPlayerVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
@@ -21,10 +21,10 @@
 {
     [super viewDidLoad];
     
-    spweakify(self);
+    ygweakify(self);
     [RACObserve(self.view, hidden)
      subscribeNext:^(id x) {
-         spstrongify(self);
+         ygstrongify(self);
          if ([x boolValue]) {
              self.view.hidden = NO;
          }

@@ -7,7 +7,7 @@
 //
 
 #import "SPSearchBar.h"
-#import "SPMacro.h"
+
 
 @implementation SPSearchBar
 
@@ -23,7 +23,7 @@
         if ([view isKindOfClass:[class class]]) {
             view.alpha = 0.f;
         }else if([view isKindOfClass:[UITextField class]]){
-            [(UITextField *)view setTintColor:AppBarColor];
+            [(UITextField *)view setTintColor:kRedColor];
         }
     }
 }

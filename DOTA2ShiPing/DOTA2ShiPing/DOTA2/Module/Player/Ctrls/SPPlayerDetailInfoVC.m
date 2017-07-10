@@ -10,8 +10,8 @@
 #import "SPSteamAPI.h"
 #import "SPPlayer.h"
 #import "DDProgressHUD.h"
-#import "SPMacro.h"
-#import "SPConstant.h"
+#import "SPDataManager.h"
+
 #import "SPPlayerAliasesVC.h"
 #import "SPPlayerInventoryVC.h"
 #import "SPPlayerManager.h"
@@ -94,7 +94,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
     self.avatarImageView.layer.masksToBounds = YES;
     self.avatarImageView.layer.cornerRadius = 4.f;
     
-    [self.itemLoadingIndicator setTintColor:AppBarColor];
+    [self.itemLoadingIndicator setTintColor:kRedColor];
     
     _itemsTagCellHeight = 50.f;
     
@@ -255,7 +255,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
                 self.itemTitleLabel.textAlignment = NSTextAlignmentLeft;
                 
                 CGRect frame = self.itemTagCollectionView.frame;
-                frame.size.width = DeviceWidth;
+                frame.size.width = Device_Width;
                 self.itemTagCollectionView.frame = frame;
                 [self.itemTagCollectionView reloadData];
                 
@@ -286,14 +286,14 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
         self.itemTitleLabel.hidden = NO;
         [self.itemLoadingIndicator stopAnimating];
         if (status != SPPlayerItemsListStatusSuccess) {
-            self.itemTitleLabel.textColor = AppBarColor;
+            self.itemTitleLabel.textColor = kRedColor;
         }
     }
 }
 
 - (void)computeItemTags:(SPPlayerItemsList *)list
 {
-    RunOnSubThread(^{
+    RunOnGlobalQueue(^{
         SPDataManager *m = [SPDataManager shared];
         FMDatabase *db = m.db;
         
@@ -336,7 +336,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
             return [[obj1 lastObject] compare:[obj2 lastObject]];
         }];
         
-        RunOnMain(^{
+        RunOnMainQueue(^{
             self.itemsList = list;
             self.tagList = tags;
             [self updateItemsList];

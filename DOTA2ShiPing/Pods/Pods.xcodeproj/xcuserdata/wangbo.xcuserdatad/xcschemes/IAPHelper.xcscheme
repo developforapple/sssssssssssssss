@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '05FBE5985053C36D9629C5D274D41C7F'
+               BlueprintIdentifier = 'F2A05175C94354EBE1FE79F7B70A579F'
                BlueprintName = 'IAPHelper'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libIAPHelper.a'>

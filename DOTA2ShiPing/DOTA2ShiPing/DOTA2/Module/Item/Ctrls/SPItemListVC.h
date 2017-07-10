@@ -6,10 +6,10 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import "SPBaseViewController.h"
+#import "YGBaseViewCtrl.h"
 #import "SPItemFilter.h"
 
-@interface SPItemListVC : SPBaseViewController
+@interface SPItemListVC : YGBaseViewCtrl
 
 @property (strong, nonatomic) SPItemFilter *filter;
 

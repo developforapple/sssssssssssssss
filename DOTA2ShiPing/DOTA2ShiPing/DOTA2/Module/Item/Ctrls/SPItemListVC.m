@@ -9,7 +9,7 @@
 #import "SPItemListVC.h"
 #import "DDSegmentScrollView.h"
 #import "SPItemFilter.h"
-#import "SPMacro.h"
+
 #import "SPItemListContainer.h"
 
 @interface SPItemListVC () <UIPageViewControllerDelegate,UIPageViewControllerDataSource>
@@ -53,7 +53,7 @@
 
 - (void)initUI
 {
-    self.segmentView.highlightColor = AppBarColor;
+    self.segmentView.highlightColor = kRedColor;
     
     self.pageVC.delegate = self;
     self.pageVC.dataSource = self;
@@ -66,9 +66,9 @@
 
 - (void)loadData
 {
-    spweakify(self);
+    ygweakify(self);
     [self.filter asyncUpdateItems:^(BOOL suc, NSArray *items) {
-        spstrongify(self);
+        ygstrongify(self);
         if (suc) {
             [self update];
         }else{
@@ -86,7 +86,7 @@
 
 - (void)reloadData
 {
-    RunOnMain(^{
+    RunOnMainQueue(^{
         [self updateTitle];
         self.segmentView.titles = self.segmentTitles;
         UIViewController *vc = [self viewControllerAtIndex:0];

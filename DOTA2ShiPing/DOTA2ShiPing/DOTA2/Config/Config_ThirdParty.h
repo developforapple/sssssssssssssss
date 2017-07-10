@@ -63,5 +63,7 @@ YG_EXTERN NSString *const kPingppAppID;
 // 高德地图
 YG_EXTERN NSString *const kGaodeMapKey;
 
+// 谷歌AdMob
+YG_EXTERN NSString *const kAdMobAppID;
 
 #endif /* Config_ThirdParty_h */

@@ -7,17 +7,16 @@
 //
 
 #import "SPPlayerInventoryVC.h"
-#import "SPMacro.h"
+
 #import "SPPlayer.h"
-#import "SPConstant.h"
+
 #import "SPItemListContainer.h"
 #import "SPInventoryCategoryPickerVC.h"
 #import "DDSegmentScrollView.h"
 #import "SPInventoryFilter.h"
 #import "SPItemCommon.h"
-#import "UIView+More.h"
 #import "SPPlayerInventorySearchResultVC.h"
-#import "ReactiveCocoa.h"
+#import <ReactiveObjC.h>
 
 static NSString *const kYGInventoryCategoryPickerSegueID = @"YGInventoryCategoryPickerSegueID";
 static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
@@ -64,7 +63,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 - (void)initUI
 {
     self.segmentView.backgroundColor = [UIColor clearColor];
-    self.segmentView.highlightColor = AppBarColor;
+    self.segmentView.highlightColor = kRedColor;
     self.pageVC.delegate = self;
     self.pageVC.dataSource = self;
     SPItemListMode mode = [[NSUserDefaults standardUserDefaults] integerForKey:kSPItemListModeKey];
@@ -75,10 +74,10 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 - (void)initData
 {
-    spweakify(self);
+    ygweakify(self);
     self.filter = [[SPInventoryFilter alloc] initWithPlayer:self.player];
     [self.filter setUpdateCallback:^{
-        spstrongify(self);
+        ygstrongify(self);
         
         if (self.filter.category == SPInventoryCategoryFilter &&
             self.filter.condition == nil) {
@@ -92,10 +91,10 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 - (void)initSignal
 {
-    spweakify(self);
+    ygweakify(self);
     [RACObserve(self.categoryPicker, visible)
      subscribeNext:^(NSNumber *x) {
-         spstrongify(self);
+         ygstrongify(self);
          if (x.boolValue) {
              [UIView animateWithDuration:.2f animations:^{
                  self.categoryIndicator.transform = CGAffineTransformMakeRotation(M_PI);
@@ -113,7 +112,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 - (void)update
 {
-    RunOnMain(^{
+    RunOnMainQueue(^{
         self.segmentView.titles = self.filter.titles;
         SPItemListContainer *vc = [self viewControllerAtIndex:0];
         [self.pageVC setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
@@ -163,12 +162,12 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 {
     [self setCategoryPickerVisible:NO];
     
-    spweakify(self);
+    ygweakify(self);
     SPPlayerInventorySearchResultVC *resutVC = [SPPlayerInventorySearchResultVC instanceFromStoryboard];
     resutVC.filter = self.filter;
     resutVC.mode = self.mode;
     [resutVC setWillShowFilteredResult:^{
-        spstrongify(self);
+        ygstrongify(self);
         [self didChangedCategory:SPInventoryCategoryFilter];
     }];
     
@@ -178,7 +177,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     vc.searchBar.placeholder = @"搜索关键词：名称/品质/英雄";
     vc.searchBar.translucent = YES;
     [vc.searchBar setBackgroundImage:nil];
-    vc.searchBar.barTintColor = AppBarColor;
+    vc.searchBar.barTintColor = kRedColor;
     vc.searchBar.searchBarStyle = UISearchBarStyleProminent;
     vc.dimsBackgroundDuringPresentation = NO;
     vc.hidesNavigationBarDuringPresentation = NO;
@@ -202,11 +201,11 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    spweakify(self);
+    ygweakify(self);
     if ([segue.identifier isEqualToString:kYGInventoryCategoryPickerSegueID]) {
         self.categoryPicker = segue.destinationViewController;
         [self.categoryPicker setDidSelectedCategory:^(SPInventoryCategory type) {
-            spstrongify(self);
+            ygstrongify(self);
             [self didChangedCategory:type];
         }];
     }else if ([segue.identifier isEqualToString:kYGInventoryPageVCSegueID]){

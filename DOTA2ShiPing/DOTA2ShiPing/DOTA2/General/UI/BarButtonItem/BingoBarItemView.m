@@ -80,6 +80,7 @@
             if ([content isKindOfClass:[UIImage class]]) {
                 self.contentImageView.image = content;
             }else if ([content isKindOfClass:[NSString class]]){
+                
                 [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:content]];
             }
         }   break;

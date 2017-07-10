@@ -10,7 +10,7 @@
 #import "SPItem+Cache.h"
 #import "YYWebImage.h"
 #import "SPDataManager.h"
-#import "SPMacro.h"
+
 #import "SPPlayerItems.h"
 
 UIImage *placeholderImage(){
@@ -140,12 +140,12 @@ UIImage *placeholderImage(){
     NSUInteger hash = qiniuURL.hash;
     // 加载七牛的图片
     
-    spweakify(self);
+    ygweakify(self);
     
     [self.itemImageView yy_setImageWithURL:qiniuURL placeholder:placeholderImage() options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation | YYWebImageOptionAvoidSetImage completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
         NSUInteger hash2 = hash;
         if (hash2 == url.hash) {
-            spstrongify(self);
+            ygstrongify(self);
             if (!error && image) {
                 self.itemImageView.image = image;
             }else{
@@ -158,15 +158,15 @@ UIImage *placeholderImage(){
 - (void)loadOriginImage
 {
     // 获取原始图片
-    spweakify(self);
+    ygweakify(self);
     [self.item getItemImageInventory:^(id content) {
-        spstrongify(self);
-        RunOnMain(^{
+        ygstrongify(self);
+        RunOnMainQueue(^{
             NSURL *url = [NSURL URLWithString:content];
             NSUInteger hash = url.hash;
             
             [self.itemImageView yy_setImageWithURL:url placeholder:placeholderImage() options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation | YYWebImageOptionAvoidSetImage completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
-                spstrongify(self);
+                ygstrongify(self);
                 if (!error && image) {
                     NSUInteger hash2 = hash;
                     if (url.hash == hash2) {

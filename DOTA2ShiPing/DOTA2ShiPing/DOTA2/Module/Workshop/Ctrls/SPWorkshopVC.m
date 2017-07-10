@@ -9,8 +9,6 @@
 #import "SPWorkshopVC.h"
 #import "SPWorkshop.h"
 #import "SPWorkshopCell.h"
-#import "SPMacro.h"
-#import "UIView+More.h"
 #import "SPPopoverView.h"
 #import "DDProgressHUD.h"
 #import "SPLogoHeader.h"
@@ -21,7 +19,7 @@
 #import "SPFocusVisualEffectVC.h"
 #import "SPWorkshopResourcesVC.h"
 #import "SPDiskCacheControl.h"
-#import <ReactiveCocoa.h>
+#import <ReactiveObjC.h>
 #import <UIScrollView+EmptyDataSet.h>
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
@@ -59,13 +57,13 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
     [self.navigationController.barHideOnSwipeGestureRecognizer addTarget:self action:@selector(navigationBarChangedOnSwip:)];
     
     self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(mjrefreshAction:)];
-    self.flowLayout.itemSize = CGSizeMake(DeviceWidth/2, DeviceWidth/2);
+    self.flowLayout.itemSize = CGSizeMake(Device_Width/2, Device_Width/2);
     [SPLogoHeader setLogoHeaderInScrollView:self.collectionView];
     
-    spweakify(self);
+    ygweakify(self);
     self.workshop = [[SPWorkshop alloc] init];
     [self.workshop setUpdateCallback:^(BOOL suc, BOOL isMore) {
-        spstrongify(self);
+        ygstrongify(self);
         [self.collectionView reloadData];
         
         if (isMore) {
@@ -133,9 +131,9 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
                   [RWDropdownMenuItem itemWithText:[SPWorkshop sectionVisiblaTitle:SPWorkshopSectionMerchandise] image:nil action:nil],
                   [RWDropdownMenuItem itemWithText:[SPWorkshop sectionVisiblaTitle:SPWorkshopSectionCollections] image:nil action:nil],];
     });
-    spweakify(self);
+    ygweakify(self);
     void (^action)(SPWorkshopSection) = ^(SPWorkshopSection section){
-        spstrongify(self);
+        ygstrongify(self);
         self.HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
         self.isLoading = YES;
         [self.workshop loadWorkshopSection:section ignoreCache:NO];
@@ -159,9 +157,9 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
 
 - (IBAction)sort:(UIBarButtonItem *)item
 {
-    spweakify(self);
+    ygweakify(self);
     void (^action)(SPWorkshopSort *sort) = ^(SPWorkshopSort *sort){
-        spstrongify(self);
+        ygstrongify(self);
         self.HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
         self.isLoading = YES;
         [self.workshop sort:sort];
@@ -209,9 +207,9 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
 {
     if ([segue.identifier isEqualToString:kSPWorkshopFilterSegueID]) {
         SPWorkshopTagVC *tagVC = segue.destinationViewController;
-        spweakify(self);
+        ygweakify(self);
         [tagVC setup:self.workshop completion:^(BOOL canceled, NSArray<SPWorkshopTag *> *tags) {
-            spstrongify(self);
+            ygstrongify(self);
             if (!canceled) {
                 [self handleQueryTags:tags];
             }
@@ -242,18 +240,18 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    spweakify(self);
+    ygweakify(self);
     NSArray *items = @[
                        [RWDropdownMenuItem itemWithText:@"查看视频和图片" image:nil action:^{
                            RunAfter(.6f, ^{
-                               spstrongify(self);
+                               ygstrongify(self);
                                SPWorkshopUnit *unit = self.workshop.units[indexPath.item];
                                [self showResources:unit];
                            });
                        }],
                        [RWDropdownMenuItem itemWithText:@"打开原始链接" image:nil action:^{
                            RunAfter(.6f, ^{
-                               spstrongify(self);
+                               ygstrongify(self);
                                SPWorkshopUnit *unit = self.workshop.units[indexPath.item];
                                [SPWebHelper openURL:unit.detailURL from:self];
                            });

@@ -7,7 +7,7 @@
 //
 
 #import "SPSearchVC.h"
-#import "SPMacro.h"
+
 #import "SPSearchEngine.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "SPItemFilter.h"
@@ -61,7 +61,7 @@ static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
 - (void)initUI
 {
     [self.navigationItem setHidesBackButton:YES animated:YES];
-    self.searchContainer.frame = CGRectMake(12.f, 0, DeviceWidth-12*2.f, 44.f);
+    self.searchContainer.frame = CGRectMake(12.f, 0, Device_Width-12*2.f, 44.f);
     
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.tableView.layoutMargins = UIEdgeInsetsZero;
@@ -189,9 +189,9 @@ static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
 - (void)showUserList:(NSString *)keywords
 {
     DDProgressHUD *HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
-    spweakify(self);
+    ygweakify(self);
     [self.engine searchUserWithKeyword:keywords completion:^(BOOL suc, NSArray<SPPlayer *> *users) {
-        spstrongify(self);
+        ygstrongify(self);
         if (suc) {
             [HUD hide:YES];
             self.searchResults = users;

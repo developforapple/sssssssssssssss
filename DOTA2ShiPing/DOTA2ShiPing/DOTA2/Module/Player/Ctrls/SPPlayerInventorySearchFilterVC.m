@@ -7,11 +7,12 @@
 //
 
 #import "SPPlayerInventorySearchFilterVC.h"
-#import "SPMacro.h"
 #import "SPInventoryConditionCell.h"
 #import "SPItemHeroPickerVC.h"
 #import "RWDropdownMenu.h"
 #import <YYCategories.h>
+#import <ReactiveObjC.h>
+#import "SPDataManager.h"
 
 @interface SPPlayerInventorySearchFilterVC () <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -51,8 +52,8 @@
     }
     self.flowlayout.sectionInset = insets;
     
-    self.tradeSegment.tintColor = AppBarColor;
-    self.marketSegment.tintColor = AppBarColor;
+    self.tradeSegment.tintColor = kRedColor;
+    self.marketSegment.tintColor = kRedColor;
     
     if (self.filter.condition) {
         self.condition = self.filter.condition;
@@ -63,13 +64,13 @@
     self.tradeSegment.selectedSegmentIndex = self.condition.tradeable;
     self.marketSegment.selectedSegmentIndex = self.condition.markedable;
     
-    spweakify(self);
+    ygweakify(self);
     [RACObserve(self, resultCount)
      subscribeNext:^(NSNumber *x) {
-         spstrongify(self);
+         ygstrongify(self);
          NSUInteger count = x.integerValue;
          NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"匹配到 %lu 个结果",(unsigned long)count] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:RGBColor(85, 85, 85, 1)}];
-         [string addAttribute:NSForegroundColorAttributeName value:AppBarColor range:NSMakeRange(3, string.length-6)];
+         [string addAttribute:NSForegroundColorAttributeName value:kRedColor range:NSMakeRange(3, string.length-6)];
          self.filterResultCountLabel.attributedText = string;
          self.resultBtn.enabled = count!=0;
      }];
@@ -127,9 +128,9 @@
 {
     NSArray *qualities = [[SPDataManager shared] qualities];
     
-    spweakify(self);
+    ygweakify(self);
     void (^action)(SPItemQuality *q) = ^(SPItemQuality *q){
-        spstrongify(self);
+        ygstrongify(self);
         self.condition.quality = q;
         [self update];
     };
@@ -150,9 +151,9 @@
 {
     NSArray *rarities = [[SPDataManager shared] rarities];
     
-    spweakify(self);
+    ygweakify(self);
     void (^action)(SPItemRarity *r) = ^(SPItemRarity *r){
-        spstrongify(self);
+        ygstrongify(self);
         self.condition.rarity = r;
         [self update];
     };
@@ -180,9 +181,9 @@
     SPInventoryConditionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSPInventoryConditionCell forIndexPath:indexPath];
     cell.type = indexPath.item;
     [cell configureWithCondition:self.condition];
-    spweakify(self);
+    ygweakify(self);
     [cell setWillRemoveCondition:^(SPConditionType type) {
-        spstrongify(self);
+        ygstrongify(self);
         [self removeConditionType:type];
     }];
     return cell;
@@ -194,9 +195,9 @@
     SPConditionType type = indexPath.item;
     switch (type) {
         case SPConditionTypeHero: {
-            spweakify(self);
+            ygweakify(self);
             [SPItemHeroPickerVC presentFrom:self.parentViewController selectedCallback:^(SPHero *hero) {
-                spstrongify(self);
+                ygstrongify(self);
                 self.condition.hero = hero;
                 [self update];
             }];

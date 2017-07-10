@@ -7,8 +7,9 @@
 //
 
 #import "SPItemFilter.h"
-#import "SPMacro.h"
+
 #import "FMDB.h"
+#import "SPDataManager.h"
 
 @interface SPItemFilter ()
 @property (strong, nonatomic) FMDatabase *db;
@@ -112,7 +113,7 @@
 
 - (void)asyncUpdateItems:(void (^)(BOOL suc,NSArray *items))completion
 {
-    RunOnSubThread(^{
+    RunOnGlobalQueue(^{
         BOOL suc = [self updateItems];
         if (suc) {
             [self separateItem];

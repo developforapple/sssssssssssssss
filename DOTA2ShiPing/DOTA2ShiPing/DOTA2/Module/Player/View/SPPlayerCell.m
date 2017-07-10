@@ -8,7 +8,7 @@
 
 #import "SPPlayerCell.h"
 #import "SPPlayer.h"
-#import "SPMacro.h"
+
 #import "YYWebImage.h"
 
 @implementation SPPlayerCell
@@ -23,7 +23,7 @@
     self.playerImageView.layer.masksToBounds = YES;
     self.playerImageView.layer.cornerRadius = 4.f;
     
-    self.playerInfoBtn.tintColor = AppBarColor;
+    self.playerInfoBtn.tintColor = kRedColor;
 }
 
 - (void)configureWithPlayer:(SPPlayer *)player

@@ -8,7 +8,7 @@
 
 #import "SPPlayerListVC.h"
 #import "SPSearchVC.h"
-#import "SPMacro.h"
+
 #import "SPPlayerManager.h"
 #import "LCActionSheet.h"
 #import "SPPlayerCell.h"
@@ -44,7 +44,7 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
     [super viewDidLoad];
     
     self.tableView.sectionIndexMinimumDisplayRowCount = 2;
-    self.tableView.sectionIndexColor = AppBarColor;
+    self.tableView.sectionIndexColor = kRedColor;
     self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 0);
@@ -66,9 +66,9 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
 //    self.searchCtrl.searchBar.placeholder = @"在所有库存中搜索";
 //    self.tableView.tableHeaderView = self.searchCtrl.searchBar;
     
-    spweakify(self);
+    ygweakify(self);
     [[SPPlayerManager shared] setStarredUpdatedCallback:^{
-        spstrongify(self);
+        ygstrongify(self);
         [self update];
     }];
     [self update];
@@ -150,9 +150,9 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
 #pragma mark - Actions
 - (IBAction)add:(UIBarButtonItem *)btnItem
 {
-    spweakify(self);
+    ygweakify(self);
     void (^action)(SPSearchType type) = ^(SPSearchType type){
-        spstrongify(self);
+        ygstrongify(self);
         if (IsSearchPlayer(type)) {
             [self segueToSearchWithType:type];
         }
@@ -166,9 +166,9 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
     
     
     
-//    spweakify(self);
+//    ygweakify(self);
 //    void (^action)(SPSearchType type) = ^(SPSearchType type){
-//        spstrongify(self);
+//        ygstrongify(self);
 //        if (IsSearchPlayer(type)) {
 //            [self segueToSearchWithType:type];
 //        }
@@ -180,10 +180,10 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
 //    view.attributedMenuTitles = @[  [[NSAttributedString alloc] initWithString:@"DotaMax" attributes:attribute],
 //                                    [[NSAttributedString alloc] initWithString:@"Dotabuff" attributes:attribute],
 //                                    [[NSAttributedString alloc] initWithString:@"Steam" attributes:attribute]];
-//    view.popoverBackgroundColor = AppBarColor2;
+//    view.popoverBackgroundColor = kRedColor2;
 //    view.borderHidden = YES;
 //    
-//    [view showFromRectOfScreen:CGRectMake(DeviceWidth-8-40, 27, 40, 30) selected:^(NSInteger index) {
+//    [view showFromRectOfScreen:CGRectMake(Device_Width-8-40, 27, 40, 30) selected:^(NSInteger index) {
 //        action(index);
 //    }];
 //    return;

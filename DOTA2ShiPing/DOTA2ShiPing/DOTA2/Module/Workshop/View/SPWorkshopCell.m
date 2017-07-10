@@ -7,9 +7,7 @@
 //
 
 #import "SPWorkshopCell.h"
-#import "SPMacro.h"
 #import "SPWorkshop.h"
-#import "UIView+More.h"
 #import "SPDiskCacheControl.h"
 #import <YYWebImage.h>
 
@@ -32,10 +30,10 @@
         placeholder = [UIImage imageNamed:@"logo"];
     });
     self.imageView.contentMode = UIViewContentModeCenter;
-    spweakify(self);
+    ygweakify(self);
     
     [self.imageView yy_setImageWithURL:URL placeholder:placeholder options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation manager:[SPDiskCacheControl workshopImageManager] progress:nil transform:nil completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
-        spstrongify(self);
+        ygstrongify(self);
         if (image) {
             self.imageView.contentMode = UIViewContentModeScaleAspectFill;
         }
@@ -79,7 +77,9 @@
         }];
         
     }else{
-        [UIView setView:self.effectView hidden:YES animated:YES completion:^{
+        ygweakify(self);
+        [self.effectView setHidden:YES animated:YES completion:^{
+            ygstrongify(self);
             [self.effectView removeFromSuperview];
             self.effectView = nil;
         }];

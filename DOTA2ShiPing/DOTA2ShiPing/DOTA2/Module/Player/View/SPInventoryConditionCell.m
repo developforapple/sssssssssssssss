@@ -7,7 +7,7 @@
 //
 
 #import "SPInventoryConditionCell.h"
-#import "SPMacro.h"
+#import "SPDataManager.h"
 #import <YYWebImage.h>
 
 @implementation SPInventoryConditionCell
@@ -19,7 +19,7 @@
     self.imageContainer.layer.masksToBounds = YES;
     self.imageContainer.layer.cornerRadius = CGRectGetWidth(self.imageContainer.frame)/2;
     
-    self.closeBtn.backgroundColor = AppBarColor;
+    self.closeBtn.backgroundColor = kRedColor;
     self.closeBtn.layer.masksToBounds = YES;
     self.closeBtn.layer.cornerRadius = CGRectGetWidth(self.closeBtn.frame)/2;
 }

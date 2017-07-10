@@ -7,6 +7,8 @@
 
 #include "Config_Archive.h"
 
+NSString *const kAppAppleID = @"767324842";
+
 #if InHouseVersion
 NSString *const kAppChannel = @"InHouse";
 NSString *const kAppChannelID = @"0";

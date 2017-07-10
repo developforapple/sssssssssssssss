@@ -18,5 +18,6 @@
 #include "Enums.h"
 #include "Inline.h"
 #include "Statistic.h"
+#include "Steam.h"
 
 #endif /* Common_h */

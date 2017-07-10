@@ -299,7 +299,7 @@ NO_WARNING_BEGIN(-Wunguarded-availability)
 NO_WARNING_END
 
 #pragma mark - AppDelegate
-@implementation CDTAppDelegate (YGNotification)
+@implementation AppDelegate (YGNotification)
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     [[YGRemoteNotificationHelper shared] didReceiveDeviceToken:deviceToken orError:nil];

@@ -8,7 +8,7 @@
 
 #import "SPInventoryCategoryPickerVC.h"
 #import "SPDataManager.h"
-#import "SPMacro.h"
+
 
 static NSUInteger kConclusivePriority = 950;
 static NSUInteger kInconclusivePriority = 900;
@@ -101,7 +101,7 @@ static NSString *const kSPInventoryCategoryCell = @"SPInventoryCategoryCell";
     
     UILabel *label = [cell viewWithTag:10086];
     label.text = self.categoryTitles[indexPath.row];
-    label.textColor = _index==indexPath.row?AppBarColor:[UIColor whiteColor];
+    label.textColor = _index==indexPath.row?kRedColor:[UIColor whiteColor];
     return cell;
 }
 

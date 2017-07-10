@@ -8,7 +8,7 @@
 
 #include "SPWorkshop.h"
 #import "SPSteamAPI.h"
-#import "SPMacro.h"
+
 #import "SPDiskCacheControl.h"
 #import <TFHpple.h>
 #import <YYCache.h>
@@ -61,12 +61,12 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
     if (willRequest) {
         [self.lastTask cancel];
         
-        spweakify(self);
+        ygweakify(self);
         self.lastTask = [[SPSteamAPI shared] fetchWorkShopContent:[query query] progress:^(NSProgress *progress) {
-            spstrongify(self);
+            ygstrongify(self);
             [self progressCallback:progress];
         } completion:^(BOOL suc, id object, NSString *taskDesc) {
-            spstrongify(self);
+            ygstrongify(self);
             if (![taskDesc isEqualToString:self.lastTask.taskDescription]) {
                 return;
             }

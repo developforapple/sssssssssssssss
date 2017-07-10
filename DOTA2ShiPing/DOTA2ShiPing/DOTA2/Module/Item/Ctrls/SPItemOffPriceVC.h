@@ -6,8 +6,8 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import "SPBaseViewController.h"
+#import "YGBaseViewCtrl.h"
 
-@interface SPItemOffPriceVC : SPBaseViewController
+@interface SPItemOffPriceVC : YGBaseViewCtrl
 
 @end

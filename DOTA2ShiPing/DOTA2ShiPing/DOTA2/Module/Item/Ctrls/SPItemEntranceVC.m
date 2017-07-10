@@ -12,7 +12,7 @@
 #import "SPItemHeroPickerVC.h"
 #import "YYModel.h"
 #import "SPLogoHeader.h"
-#import "SPMacro.h"
+#import "SPDataManager.h"
 #import "SPItemListVC.h"
 
 #define kSPItemOffPriceSegueID @"SPItemOffPriceSegueID"
@@ -40,7 +40,7 @@
 
 - (void)initUI
 {
-    CGFloat width = DeviceWidth/2-0.5f;
+    CGFloat width = Device_Width/2-0.5f;
     CGFloat height = width;// width * 340 / 512.f;
     self.flowlayout.itemSize = CGSizeMake(width, height);
     self.flowlayout.minimumLineSpacing = 1.f;

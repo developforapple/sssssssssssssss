@@ -7,7 +7,7 @@
 //
 
 #import "SPPlayerItems.h"
-#import "SPMacro.h"
+
 
 #pragma mark - 用户的库存清单
 @interface SPPlayerItemsList    ()
@@ -34,11 +34,11 @@
     return self.mapping[itemid];
 }
 
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
 
 @implementation SPPlayerItem
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
 
 #pragma mark - 用户的库存详情
@@ -112,7 +112,7 @@ YYModelCopyingCodingCode
     return @{@"items":[SPPlayerItemDetail class]};
 }
 
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
 
 @interface SPPlayerItemDetail ()
@@ -188,11 +188,11 @@ YYModelCopyingCodingCode
     return _slotTag;
 }
 
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
 
 @implementation SPPlayerInventoryItemDesc
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
 
 @implementation SPPlayerInvertoryItemTag
@@ -211,5 +211,5 @@ YYModelCopyingCodingCode
     return _tagColor;
 }
 
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end

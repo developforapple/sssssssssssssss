@@ -6,13 +6,13 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import "SPBaseViewController.h"
+#import "YGBaseViewCtrl.h"
 
 @class SPHero;
 
 typedef void (^SPHeroPickerCallbackBlock)(SPHero *hero);
 
-@interface SPItemHeroPickerVC : SPBaseViewController
+@interface SPItemHeroPickerVC : YGBaseViewCtrl
 
 // 弹出英雄选择。带导航栏。左侧为取消按钮。
 + (void)presentFrom:(UIViewController *)vc

@@ -10,7 +10,7 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "SPLogoHeader.h"
 #import "SPItemCell.h"
-#import "SPMacro.h"
+
 
 @interface SPItemListContainer ()<UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
@@ -69,7 +69,7 @@
 {
     switch (mode) {
         case SPItemListModeTable:{
-            self.flowlayout.itemSize = CGSizeMake(DeviceWidth, 64);
+            self.flowlayout.itemSize = CGSizeMake(Device_Width, 64);
             self.flowlayout.sectionInset = UIEdgeInsetsZero;
             self.flowlayout.minimumLineSpacing = 0;
             self.flowlayout.minimumInteritemSpacing = 0;
@@ -84,11 +84,11 @@
             insetL = .5f;
             insetR = .5f;
             sp = .5f;
-            width = (DeviceWidth - 5 * .5f)/4.f;
+            width = (Device_Width - 5 * .5f)/4.f;
             height = ceilf(width /1.5f) + 20.f;
             
             
-//            width = DeviceWidth/4.f;
+//            width = Device_Width/4.f;
 //            height = ceilf(width/1.5f) + 20.f;
 //            insetL = 0.f;
 //            insetR = 0.f;

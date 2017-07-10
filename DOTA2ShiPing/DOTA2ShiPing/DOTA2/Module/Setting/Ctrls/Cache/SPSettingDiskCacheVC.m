@@ -8,7 +8,7 @@
 
 #import "SPSettingDiskCacheVC.h"
 #import "SPDiskCacheControl.h"
-#import "SPMacro.h"
+
 #import "DDProgressHUD.h"
 
 @interface SPSettingDiskCacheVC ()
@@ -30,19 +30,19 @@
 - (void)loadCacheCost
 {
     [SPDiskCacheControl workshopImageCacheCost:^(NSInteger cost) {
-        RunOnMain(^{
+        RunOnMainQueue(^{
             self.workshopImageCostLabel.text = [self loadDiskCacheCostCompleted:cost];
             [self.tableView reloadData];
         });
     }];
     [SPDiskCacheControl workshopDataCacheCost:^(NSInteger cost) {
-        RunOnMain(^{
+        RunOnMainQueue(^{
             self.workshopDataCostLabel.text = [self loadDiskCacheCostCompleted:cost];
             [self.tableView reloadData];
         });
     }];
     [SPDiskCacheControl itemImageCacheCost:^(NSInteger cost) {
-        RunOnMain(^{
+        RunOnMainQueue(^{
             self.itemImageCostLabel.text = [self loadDiskCacheCostCompleted:cost];
             [self.tableView reloadData];
         });
@@ -75,11 +75,11 @@
         
         if (indexPath.section == 0 && indexPath.row == 0) {
             [SPDiskCacheControl cleanWorkshopImageCache:^(int removed, int total) {
-                RunOnMain(^{
+                RunOnMainQueue(^{
                     HUD.progress = removed/(float)total;
                 });
             } end:^(BOOL suc) {
-                RunOnMain(^{
+                RunOnMainQueue(^{
                     [HUD hide:YES];
                     self.workshopImageCostLabel.text = @"0kb";
                     [self.tableView reloadData];
@@ -87,11 +87,11 @@
             }];
         }else if (indexPath.section == 0 && indexPath.row == 1){
             [SPDiskCacheControl cleanWorkshopDataCache:^(int removed, int total) {
-                RunOnMain(^{
+                RunOnMainQueue(^{
                     HUD.progress = removed/(float)total;
                 });
             } end:^(BOOL suc) {
-                RunOnMain(^{
+                RunOnMainQueue(^{
                     [HUD hide:YES];
                     self.workshopDataCostLabel.text = @"0kb";
                     [self.tableView reloadData];
@@ -99,11 +99,11 @@
             }];
         }else if (indexPath.section == 1 && indexPath.row == 0){
             [SPDiskCacheControl cleanItemImageCache:^(int removed, int total) {
-                RunOnMain(^{
+                RunOnMainQueue(^{
                     HUD.progress = removed/(float)total;
                 });
             } end:^(BOOL suc) {
-                RunOnMain(^{
+                RunOnMainQueue(^{
                     [HUD hide:YES];
                     self.itemImageCostLabel.text = @"0kb";
                     [self.tableView reloadData];

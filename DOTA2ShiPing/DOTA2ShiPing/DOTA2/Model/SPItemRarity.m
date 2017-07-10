@@ -8,8 +8,8 @@
 
 #import "SPItemRarity.h"
 #import "YYModel.h"
-#import "SPMacro.h"
+
 
 @implementation SPItemRarity
-YYModelCopyingCodingCode
+YYModelDefaultCode
 @end
