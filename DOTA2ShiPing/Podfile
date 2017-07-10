@@ -25,7 +25,7 @@ pod 'PinYin4Objc', '~> 1.1.1'       #https://github.com/kimziv/PinYin4Obj
 pod 'JZNavigationExtension', '~> 1.5.0.1' #https://github.com/JazysYu/JZNavigationExtension
 pod 'AMPopTip', '~> 1.1.1'          #https://github.com/andreamazz/AMPopTip
 
-pod 'SSKeychain'                    #https://github.com/soffes/SSKeychain
+pod 'SAMKeychain'
 pod 'DZNWebViewController'          #https://github.com/dzenbot/DZNWebViewController
 
 pod 'DACircularProgress'

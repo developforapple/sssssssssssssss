@@ -35,6 +35,7 @@ PODS:
   - PinYin4Objc (1.1.1)
   - pop (1.0.10)
   - ReactiveObjC (3.0.0)
+  - SAMKeychain (1.5.2)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -43,7 +44,6 @@ PODS:
   - sqlite3/common (3.19.3)
   - sqlite3/fts (3.19.3):
     - sqlite3/common
-  - SSKeychain (1.4.1)
   - SVProgressHUD (2.0.4)
   - YYCache (1.0.4)
   - YYCategories (1.0.4):
@@ -76,8 +76,8 @@ DEPENDENCIES:
   - PinYin4Objc (~> 1.1.1)
   - pop
   - ReactiveObjC
+  - SAMKeychain
   - SDWebImage
-  - SSKeychain
   - SVProgressHUD (~> 2.0.3)
   - YYCategories
   - YYImage/WebP
@@ -101,9 +101,9 @@ SPEC CHECKSUMS:
   PinYin4Objc: 3fa9673610368330e2dfb688b1d19a35c3930a78
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
+  SAMKeychain: 1865333198217411f35327e8da61b43de79b635b
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   sqlite3: e0f7755dc52e709215e116c801ea0c81fd45c083
-  SSKeychain: 55cc80f66f5c73da827e3077f02e43528897db41
   SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
@@ -111,6 +111,6 @@ SPEC CHECKSUMS:
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 4a8f2882591ad208d50a760b7044645f3f7fe6c0
+PODFILE CHECKSUM: 93957dcafc13ab643f5ece56802a8dcd517226bd
 
 COCOAPODS: 1.2.1
