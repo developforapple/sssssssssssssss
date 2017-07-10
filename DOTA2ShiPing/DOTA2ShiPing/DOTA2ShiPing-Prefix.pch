@@ -1,0 +1,15 @@
+//
+//  DOTA2ShiPing-Prefix.pch
+//  DOTA2ShiPing
+//
+//  Created by wwwbbat on 2017/7/10.
+//  Copyright © 2017年 wwwbbat. All rights reserved.
+//
+
+#ifndef DOTA2ShiPing_Prefix_pch
+#define DOTA2ShiPing_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* DOTA2ShiPing_Prefix_pch */
