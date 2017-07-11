@@ -8,31 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1929949B4AC914B44D61F796 /* libPods-DOTA2ShiPing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 939CCEAA439897D1DEE60C3E /* libPods-DOTA2ShiPing.a */; };
-		2D0A82521CDE4D5F00F26BD1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82511CDE4D5F00F26BD1 /* WebKit.framework */; };
-		2D0A827D1CDF323A00F26BD1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A827C1CDF323A00F26BD1 /* CoreMedia.framework */; };
-		2D0A827F1CDF324000F26BD1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A827E1CDF324000F26BD1 /* QuartzCore.framework */; };
-		2D0A82811CDF324500F26BD1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82801CDF324500F26BD1 /* Security.framework */; };
-		2D0A82831CDF324900F26BD1 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82821CDF324900F26BD1 /* AdSupport.framework */; };
-		2D0A82851CDF324F00F26BD1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82841CDF324F00F26BD1 /* StoreKit.framework */; };
 		2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82861CDF325700F26BD1 /* libz.tbd */; };
-		2D0A82891CDF325D00F26BD1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82881CDF325D00F26BD1 /* AudioToolbox.framework */; };
-		2D0A828B1CDF326200F26BD1 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A828A1CDF326200F26BD1 /* CoreMotion.framework */; };
-		2D0A828D1CDF326900F26BD1 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A828C1CDF326900F26BD1 /* MediaPlayer.framework */; };
-		2D0A828F1CDF327200F26BD1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A828E1CDF327200F26BD1 /* AVFoundation.framework */; };
-		2D0A82911CDF327900F26BD1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82901CDF327900F26BD1 /* MessageUI.framework */; };
-		2D0A82931CDF327F00F26BD1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82921CDF327F00F26BD1 /* CoreLocation.framework */; };
-		2D0A82951CDF328900F26BD1 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82941CDF328900F26BD1 /* CoreTelephony.framework */; };
-		2D0A82971CDF328E00F26BD1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82961CDF328E00F26BD1 /* SystemConfiguration.framework */; };
-		2D0A82991CDF329A00F26BD1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82981CDF329A00F26BD1 /* CoreGraphics.framework */; };
-		2D4506D41D3684B0000971B9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D4506D31D3684B0000971B9 /* CloudKit.framework */; };
 		2D48D2981CDE20D700190F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D2971CDE20D700190F0C /* main.m */; };
 		2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D29A1CDE20D700190F0C /* AppDelegate.m */; };
 		2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2A71CDE20D700190F0C /* LaunchScreen.storyboard */; };
-		2D504EBF1D3BE21E00D43B07 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D504EBE1D3BE21E00D43B07 /* JavaScriptCore.framework */; };
 		2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B211D435E95005FC6CA /* libiconv.tbd */; };
 		2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B231D435EAB005FC6CA /* libstdc++.tbd */; };
-		2D563B261D435EB6005FC6CA /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B251D435EB6005FC6CA /* AssetsLibrary.framework */; };
-		2D9B87F21D39436D00C05F95 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9B87F11D39436D00C05F95 /* SafariServices.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2DF9B81C1F1361640012950A /* Config_Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6521F1361640012950A /* Config_Appearance.m */; };
 		2DF9B81D1F1361640012950A /* Config_Archive.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6541F1361640012950A /* Config_Archive.m */; settings = {COMPILER_FLAGS = "-D'MACRO_APP_BUNDLE_ID=@\"$(CDT_APP_BUNDLE_ID)\""; }; };
 		2DF9B81E1F1361640012950A /* Config_Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6561F1361640012950A /* Config_Constant.m */; };
@@ -108,7 +89,6 @@
 		2DF9B8691F1361640012950A /* IDMTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B70B1F1361640012950A /* IDMTapDetectingView.m */; };
 		2DF9B86A1F1361640012950A /* IDMZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B70D1F1361640012950A /* IDMZoomingScrollView.m */; };
 		2DF9B86B1F1361640012950A /* YYWebImage+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7101F1361640012950A /* YYWebImage+Add.m */; };
-		2DF9B86C1F1361640012950A /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B7111F1361640012950A /* LICENSE.txt */; };
 		2DF9B86D1F1361640012950A /* README.markdown in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7121F1361640012950A /* README.markdown */; };
 		2DF9B86E1F1361640012950A /* KDCycleBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7151F1361640012950A /* KDCycleBannerView.m */; };
 		2DF9B86F1F1361640012950A /* YGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7181F1361640012950A /* YGLabel.m */; };
@@ -214,44 +194,22 @@
 		2DF9B8D51F1361640012950A /* workshoptags.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8151F1361640012950A /* workshoptags.json */; };
 		2DF9B8D61F1361640012950A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B8181F1361640012950A /* GoogleMobileAds.framework */; };
 		2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B81A1F1361640012950A /* Bugly.framework */; };
-		2DF9B8DB1F13616F0012950A /* buglySymboliOS.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B8D91F13616F0012950A /* buglySymboliOS.jar */; };
-		2DF9B8DC1F13616F0012950A /* dSYMUpload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8DA1F13616F0012950A /* dSYMUpload.sh */; };
 		2DF9B8E31F1365CB0012950A /* CDTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8E21F1365CB0012950A /* CDTUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		112F9D57D42D37A148B12842 /* Pods-DOTA2ShiPing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOTA2ShiPing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing.debug.xcconfig"; sourceTree = "<group>"; };
 		23D6142664BEC9BAEB40BFC9 /* Pods-DOTA2ShiPing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOTA2ShiPing.release.xcconfig"; path = "Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing.release.xcconfig"; sourceTree = "<group>"; };
-		2D0A82511CDE4D5F00F26BD1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		2D0A827C1CDF323A00F26BD1 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		2D0A827E1CDF324000F26BD1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		2D0A82801CDF324500F26BD1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		2D0A82821CDF324900F26BD1 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		2D0A82841CDF324F00F26BD1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2D0A82861CDF325700F26BD1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		2D0A82881CDF325D00F26BD1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		2D0A828A1CDF326200F26BD1 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		2D0A828C1CDF326900F26BD1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		2D0A828E1CDF327200F26BD1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		2D0A82901CDF327900F26BD1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		2D0A82921CDF327F00F26BD1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		2D0A82941CDF328900F26BD1 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		2D0A82961CDF328E00F26BD1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		2D0A82981CDF329A00F26BD1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2D4506D21D3683C4000971B9 /* DOTA2ShiPing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DOTA2ShiPing.entitlements; sourceTree = "<group>"; };
-		2D4506D31D3684B0000971B9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2D48D2931CDE20D600190F0C /* DOTA2ShiPing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOTA2ShiPing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D48D2971CDE20D700190F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D48D2991CDE20D700190F0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2D48D29A1CDE20D700190F0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2D48D2A81CDE20D700190F0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D48D2AA1CDE20D700190F0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2D504EBC1D3BDED200D43B07 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
-		2D504EBE1D3BE21E00D43B07 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		2D563B211D435E95005FC6CA /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		2D563B231D435EAB005FC6CA /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
-		2D563B251D435EB6005FC6CA /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		2D9B87F11D39436D00C05F95 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		2DF9B6411F135FB20012950A /* DOTA2ShiPing-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOTA2ShiPing-Prefix.pch"; sourceTree = "<group>"; };
 		2DF9B6441F1361640012950A /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		2DF9B6451F1361640012950A /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
@@ -635,31 +593,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D0A828F1CDF327200F26BD1 /* AVFoundation.framework in Frameworks */,
-				2D563B261D435EB6005FC6CA /* AssetsLibrary.framework in Frameworks */,
-				2D0A82931CDF327F00F26BD1 /* CoreLocation.framework in Frameworks */,
 				2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */,
-				2D0A82951CDF328900F26BD1 /* CoreTelephony.framework in Frameworks */,
-				2D0A82991CDF329A00F26BD1 /* CoreGraphics.framework in Frameworks */,
-				2D0A82971CDF328E00F26BD1 /* SystemConfiguration.framework in Frameworks */,
 				2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */,
-				2D0A82811CDF324500F26BD1 /* Security.framework in Frameworks */,
-				2DF9B8DB1F13616F0012950A /* buglySymboliOS.jar in Frameworks */,
-				2D0A82851CDF324F00F26BD1 /* StoreKit.framework in Frameworks */,
-				2D504EBF1D3BE21E00D43B07 /* JavaScriptCore.framework in Frameworks */,
-				2D9B87F21D39436D00C05F95 /* SafariServices.framework in Frameworks */,
-				2D4506D41D3684B0000971B9 /* CloudKit.framework in Frameworks */,
-				2D0A82911CDF327900F26BD1 /* MessageUI.framework in Frameworks */,
-				2D0A828D1CDF326900F26BD1 /* MediaPlayer.framework in Frameworks */,
 				2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */,
-				2D0A828B1CDF326200F26BD1 /* CoreMotion.framework in Frameworks */,
-				2D0A82891CDF325D00F26BD1 /* AudioToolbox.framework in Frameworks */,
 				2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */,
 				2DF9B8D61F1361640012950A /* GoogleMobileAds.framework in Frameworks */,
-				2D0A82831CDF324900F26BD1 /* AdSupport.framework in Frameworks */,
-				2D0A827F1CDF324000F26BD1 /* QuartzCore.framework in Frameworks */,
-				2D0A827D1CDF323A00F26BD1 /* CoreMedia.framework in Frameworks */,
-				2D0A82521CDE4D5F00F26BD1 /* WebKit.framework in Frameworks */,
 				1929949B4AC914B44D61F796 /* libPods-DOTA2ShiPing.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -712,13 +650,13 @@
 		2DF9B6421F1361640012950A /* DOTA2 */ = {
 			isa = PBXGroup;
 			children = (
+				2DF9B8161F1361640012950A /* Third-Party */,
 				2DF9B80F1F1361640012950A /* Resource */,
 				2DF9B6431F1361640012950A /* Common */,
 				2DF9B64F1F1361640012950A /* Config */,
 				2DF9B65C1F1361640012950A /* General */,
 				2DF9B7651F1361640012950A /* Model */,
 				2DF9B77F1F1361640012950A /* Module */,
-				2DF9B8161F1361640012950A /* Third-Party */,
 			);
 			path = DOTA2;
 			sourceTree = "<group>";
@@ -1780,29 +1718,9 @@
 		9DF9275624812581C6DA2B9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2D563B251D435EB6005FC6CA /* AssetsLibrary.framework */,
 				2D563B231D435EAB005FC6CA /* libstdc++.tbd */,
 				2D563B211D435E95005FC6CA /* libiconv.tbd */,
-				2D504EBE1D3BE21E00D43B07 /* JavaScriptCore.framework */,
-				2D504EBC1D3BDED200D43B07 /* AVKit.framework */,
-				2D9B87F11D39436D00C05F95 /* SafariServices.framework */,
-				2D4506D31D3684B0000971B9 /* CloudKit.framework */,
-				2D0A82981CDF329A00F26BD1 /* CoreGraphics.framework */,
-				2D0A82961CDF328E00F26BD1 /* SystemConfiguration.framework */,
-				2D0A82941CDF328900F26BD1 /* CoreTelephony.framework */,
-				2D0A82921CDF327F00F26BD1 /* CoreLocation.framework */,
-				2D0A82901CDF327900F26BD1 /* MessageUI.framework */,
-				2D0A828E1CDF327200F26BD1 /* AVFoundation.framework */,
-				2D0A828C1CDF326900F26BD1 /* MediaPlayer.framework */,
-				2D0A828A1CDF326200F26BD1 /* CoreMotion.framework */,
-				2D0A82881CDF325D00F26BD1 /* AudioToolbox.framework */,
 				2D0A82861CDF325700F26BD1 /* libz.tbd */,
-				2D0A82841CDF324F00F26BD1 /* StoreKit.framework */,
-				2D0A82821CDF324900F26BD1 /* AdSupport.framework */,
-				2D0A82801CDF324500F26BD1 /* Security.framework */,
-				2D0A827E1CDF324000F26BD1 /* QuartzCore.framework */,
-				2D0A827C1CDF323A00F26BD1 /* CoreMedia.framework */,
-				2D0A82511CDE4D5F00F26BD1 /* WebKit.framework */,
 				939CCEAA439897D1DEE60C3E /* libPods-DOTA2ShiPing.a */,
 			);
 			name = Frameworks;
@@ -1901,11 +1819,9 @@
 				2DF9B8D01F1361640012950A /* Assets.xcassets in Resources */,
 				2DF9B8A01F1361640012950A /* SPItemEntranceConfigure in Resources */,
 				2DF9B8D31F1361640012950A /* heroMap.json in Resources */,
-				2DF9B8DC1F13616F0012950A /* dSYMUpload.sh in Resources */,
 				2DF9B8D41F1361640012950A /* item.db in Resources */,
 				2DF9B8D21F1361640012950A /* data.json in Resources */,
 				2DF9B8661F1361640012950A /* IDMPhotoBrowser.bundle in Resources */,
-				2DF9B86C1F1361640012950A /* LICENSE.txt in Resources */,
 				2DF9B8771F1361640012950A /* CDTAlertCtrl.xib in Resources */,
 				2DF9B8641F1361640012950A /* IDMPBLocalizations.bundle in Resources */,
 			);

@@ -1,9 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-
-#source 'https://coding.net/u/hging/p/Specs/git'
-
 inhibit_all_warnings!
-
 platform:ios, '8.0'
 target 'DOTA2ShiPing'
 

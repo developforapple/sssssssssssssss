@@ -24,9 +24,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.adView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    GADRequest *req = [GADRequest request];
+    req.testDevices = @[kGADSimulatorID];
+    
     self.adView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner origin:CGPointZero];
+    self.adView.frame = self.adContainer.bounds;
+#if DEBUG_MODE
+    // 谷歌提供的测试广告单元
+    self.adView.adUnitID = @"ca-app-pub-3940256099942544/6300978111";
+#else
     self.adView.adUnitID = @"ca-app-pub-3317628345096940/6074502516";
+#endif
     self.adView.rootViewController = self;
     self.adView.delegate = self;
     self.adView.autoloadEnabled = YES;

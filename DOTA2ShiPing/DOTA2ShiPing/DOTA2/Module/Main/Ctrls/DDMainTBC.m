@@ -7,9 +7,6 @@
 //
 
 #import "DDMainTBC.h"
-
-#import <JZNavigationExtension.h>
-
 @interface DDMainTBC ()
 
 @end
@@ -19,11 +16,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    for (UINavigationController *vc in self.viewControllers) {
-        vc.interactivePopGestureRecognizer.enabled = NO;
-        vc.jz_fullScreenInteractivePopGestureEnabled = YES;
-    }
 }
 
 @end
