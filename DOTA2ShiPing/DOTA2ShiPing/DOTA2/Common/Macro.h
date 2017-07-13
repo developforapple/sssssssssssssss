@@ -120,6 +120,7 @@
 #if !defined(APP_SANDBOX_MACRO)
     #define APP_SANDBOX_MACRO
 
+    #define FileManager         [NSFileManager defaultManager]
     #define AppSandboxPath      (NSHomeDirectory())
     #define AppDocumentsPath    (NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject)
     #define AppLibraryPath      (NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject)

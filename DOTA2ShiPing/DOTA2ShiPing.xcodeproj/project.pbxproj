@@ -15,6 +15,10 @@
 		2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B211D435E95005FC6CA /* libiconv.tbd */; };
 		2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B231D435EAB005FC6CA /* libstdc++.tbd */; };
 		2D91EB741F16263A0038B49C /* SPResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB731F16263A0038B49C /* SPResourceManager.m */; };
+		2D91EB771F1724230038B49C /* SPBaseData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB761F1724230038B49C /* SPBaseData.m */; };
+		2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB7A1F1731880038B49C /* SPLocale.m */; };
+		2DE373531F176B5800C8F653 /* SPUpdate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE373521F176B5800C8F653 /* SPUpdate.storyboard */; };
+		2DE373561F176B8600C8F653 /* SPUpdateViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE373551F176B8600C8F653 /* SPUpdateViewCtrl.m */; };
 		2DF9B81C1F1361640012950A /* Config_Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6521F1361640012950A /* Config_Appearance.m */; };
 		2DF9B81D1F1361640012950A /* Config_Archive.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6541F1361640012950A /* Config_Archive.m */; settings = {COMPILER_FLAGS = "-D'MACRO_APP_BUNDLE_ID=@\"$(CDT_APP_BUNDLE_ID)\""; }; };
 		2DF9B81E1F1361640012950A /* Config_Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6561F1361640012950A /* Config_Constant.m */; };
@@ -211,6 +215,13 @@
 		2D563B231D435EAB005FC6CA /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		2D91EB721F16263A0038B49C /* SPResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPResourceManager.h; sourceTree = "<group>"; };
 		2D91EB731F16263A0038B49C /* SPResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPResourceManager.m; sourceTree = "<group>"; };
+		2D91EB751F1724230038B49C /* SPBaseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBaseData.h; sourceTree = "<group>"; };
+		2D91EB761F1724230038B49C /* SPBaseData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBaseData.m; sourceTree = "<group>"; };
+		2D91EB791F1731880038B49C /* SPLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLocale.h; sourceTree = "<group>"; };
+		2D91EB7A1F1731880038B49C /* SPLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLocale.m; sourceTree = "<group>"; };
+		2DE373521F176B5800C8F653 /* SPUpdate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SPUpdate.storyboard; sourceTree = "<group>"; };
+		2DE373541F176B8600C8F653 /* SPUpdateViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUpdateViewCtrl.h; sourceTree = "<group>"; };
+		2DE373551F176B8600C8F653 /* SPUpdateViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUpdateViewCtrl.m; sourceTree = "<group>"; };
 		2DF9B6411F135FB20012950A /* DOTA2ShiPing-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOTA2ShiPing-Prefix.pch"; sourceTree = "<group>"; };
 		2DF9B6441F1361640012950A /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		2DF9B6451F1361640012950A /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
@@ -649,10 +660,39 @@
 		2D91EB711F1626270038B49C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				2D91EB751F1724230038B49C /* SPBaseData.h */,
+				2D91EB761F1724230038B49C /* SPBaseData.m */,
 				2D91EB721F16263A0038B49C /* SPResourceManager.h */,
 				2D91EB731F16263A0038B49C /* SPResourceManager.m */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		2D91EB781F1731570038B49C /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				2D91EB791F1731880038B49C /* SPLocale.h */,
+				2D91EB7A1F1731880038B49C /* SPLocale.m */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		2DE373501F176B4A00C8F653 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				2DE373521F176B5800C8F653 /* SPUpdate.storyboard */,
+				2DE373511F176B4A00C8F653 /* Ctrls */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
+		2DE373511F176B4A00C8F653 /* Ctrls */ = {
+			isa = PBXGroup;
+			children = (
+				2DE373541F176B8600C8F653 /* SPUpdateViewCtrl.h */,
+				2DE373551F176B8600C8F653 /* SPUpdateViewCtrl.m */,
+			);
+			path = Ctrls;
 			sourceTree = "<group>";
 		};
 		2DF9B6421F1361640012950A /* DOTA2 */ = {
@@ -708,6 +748,7 @@
 		2DF9B65C1F1361640012950A /* General */ = {
 			isa = PBXGroup;
 			children = (
+				2D91EB781F1731570038B49C /* Localization */,
 				2D91EB711F1626270038B49C /* Resource */,
 				2DF9B65D1F1361640012950A /* API */,
 				2DF9B6661F1361640012950A /* AppCache */,
@@ -1321,6 +1362,7 @@
 		2DF9B77F1F1361640012950A /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				2DE373501F176B4A00C8F653 /* Update */,
 				2DF9B7801F1361640012950A /* Base */,
 				2DF9B78B1F1361640012950A /* Item */,
 				2DF9B7A71F1361640012950A /* Main */,
@@ -1818,6 +1860,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DE373531F176B5800C8F653 /* SPUpdate.storyboard in Resources */,
 				2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */,
 				2DF9B8C71F1361640012950A /* SPMain.storyboard in Resources */,
 				2DF9B85F1F1361640012950A /* BingoBarItemView.xib in Resources */,
@@ -1898,6 +1941,7 @@
 				2DF9B8AB1F1361640012950A /* SPInventoryFilter.m in Sources */,
 				2DF9B8C51F1361640012950A /* SPSettingTableVC.m in Sources */,
 				2DF9B8381F1361640012950A /* UIScrollView+yg_IBInspectable.m in Sources */,
+				2DE373561F176B8600C8F653 /* SPUpdateViewCtrl.m in Sources */,
 				2DF9B87E1F1361640012950A /* TAAnimatedDotView.m in Sources */,
 				2DF9B8B31F1361640012950A /* SPPlayerInventorySearchResultVC.m in Sources */,
 				2DF9B8561F1361640012950A /* YGThirdPlatformProcessor.m in Sources */,
@@ -1915,6 +1959,7 @@
 				2DF9B8361F1361640012950A /* UICollectionViewCell+yg_IBInspectable.m in Sources */,
 				2DF9B88D1F1361640012950A /* SPDataManager.m in Sources */,
 				2DF9B86D1F1361640012950A /* README.markdown in Sources */,
+				2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */,
 				2DF9B82A1F1361640012950A /* YGCoreMotionHelper.m in Sources */,
 				2DF9B8431F1361640012950A /* UIKit+Statistics.m in Sources */,
 				2DF9B8911F1361640012950A /* SPItemColor.m in Sources */,
@@ -1922,6 +1967,7 @@
 				2DF9B8B91F1361640012950A /* SPPlayerCell.m in Sources */,
 				2DF9B8AD1F1361640012950A /* SPPlayerManager.m in Sources */,
 				2DF9B81F1F1361640012950A /* Config_Network.m in Sources */,
+				2D91EB771F1724230038B49C /* SPBaseData.m in Sources */,
 				2DF9B8CC1F1361640012950A /* SPWorkshopVC.m in Sources */,
 				2DF9B8291F1361640012950A /* YGCoreLocationHelper.m in Sources */,
 				2DF9B8B21F1361640012950A /* SPPlayerInventorySearchFilterVC.m in Sources */,

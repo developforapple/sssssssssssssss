@@ -7,16 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVOSCloud.h>
 
 @interface SPResourceManager : NSObject
 
 // 是否需要初始化数据库
 + (BOOL)needInitializeDatabase;
-// 初始化数据库
-- (void)initializeDatabase:(void (^)(float p))progressBlock
-                completion:(void (^)(BOOL suc,NSError *error))completion;
-
-+ (instancetype)manager;
 
 // 当前本地化语言
 @property (copy, nonatomic) NSString *lang;
@@ -28,6 +24,17 @@
 // 基础数据路径
 @property (copy, nonatomic) NSString *baseDataPath;
 
+// 基础数据远程文件
+@property (strong, nonatomic) AVFile *baseDataFile;
+// 语言远程文件
+@property (strong, nonatomic) AVFile *langFile;
+// 语言补丁远程文件
+@property (strong, nonatomic) NSArray<AVFile *> *langPatchFiles;
+
+@property (copy, nonatomic) NSNumber *needUpdate;
+@property (strong, nonatomic) NSError *error;
+
+// 检查完毕后，发生错误：存放于error，是否需要更新：存放于needUpdate
 - (void)checkUpdate;
 
 @end
