@@ -80,6 +80,7 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "AVOSCloud/AVOS/AVOSCloud/AVOSCloud_Art.inc"
   install_resource "DZNWebViewController/Source/Resources/dzn_icn_activity_chrome@2x.png"
   install_resource "DZNWebViewController/Source/Resources/dzn_icn_activity_chrome@2x~ipad.png"
   install_resource "DZNWebViewController/Source/Resources/dzn_icn_activity_dolphin@2x.png"
@@ -115,6 +116,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "AVOSCloud/AVOS/AVOSCloud/AVOSCloud_Art.inc"
   install_resource "DZNWebViewController/Source/Resources/dzn_icn_activity_chrome@2x.png"
   install_resource "DZNWebViewController/Source/Resources/dzn_icn_activity_chrome@2x~ipad.png"
   install_resource "DZNWebViewController/Source/Resources/dzn_icn_activity_dolphin@2x.png"

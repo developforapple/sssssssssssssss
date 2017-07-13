@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - AMPopTip (1.1.2)
+  - AVOSCloud (6.1.0)
   - DACircularProgress (2.3.1)
   - DGActivityIndicatorView (2.1.1)
   - DZNEmptyDataSet (1.8.1)
@@ -44,6 +45,7 @@ PODS:
   - sqlite3/common (3.19.3)
   - sqlite3/fts (3.19.3):
     - sqlite3/common
+  - SSZipArchive (1.8.1)
   - SVProgressHUD (2.0.4)
   - YYCache (1.0.4)
   - YYCategories (1.0.4):
@@ -62,6 +64,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - AMPopTip (~> 1.1.1)
+  - AVOSCloud
   - DACircularProgress
   - DGActivityIndicatorView (~> 2.0)
   - DZNEmptyDataSet (~> 1.8.1)
@@ -78,6 +81,7 @@ DEPENDENCIES:
   - ReactiveObjC
   - SAMKeychain
   - SDWebImage
+  - SSZipArchive (~> 1.8.1)
   - SVProgressHUD (~> 2.0.3)
   - YYCategories
   - YYImage/WebP
@@ -87,6 +91,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AMPopTip: b31859b2e313f61318c676686493b1508c9a7221
+  AVOSCloud: b8688d3a62f614062a0b26b6a1485f7eaf008619
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
@@ -104,6 +109,7 @@ SPEC CHECKSUMS:
   SAMKeychain: 1865333198217411f35327e8da61b43de79b635b
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   sqlite3: e0f7755dc52e709215e116c801ea0c81fd45c083
+  SSZipArchive: 04547dfa448be5ed7ecbaf7eaf8a6e9eb9b42997
   SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
@@ -111,6 +117,6 @@ SPEC CHECKSUMS:
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 2f7984c4470c0af0eaab492ef2b92f7ffb778e65
+PODFILE CHECKSUM: 9abee6ef0df95fc58992771ae3fe14f70436c9b4
 
 COCOAPODS: 1.2.1

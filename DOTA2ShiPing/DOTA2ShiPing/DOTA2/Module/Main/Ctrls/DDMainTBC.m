@@ -7,6 +7,8 @@
 //
 
 #import "DDMainTBC.h"
+#import "SPResourceManager.h"
+
 @interface DDMainTBC ()
 
 @end
@@ -16,6 +18,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if ([SPResourceManager needInitializeDatabase]) {
+        [[SPResourceManager manager] initializeDatabase:^(float p) {
+            
+            NSLog(@"%.2f",p);
+            
+        } completion:^(BOOL suc, NSError *error) {
+            
+            NSLog(@"");
+        }];
+    }
 }
 
 @end

@@ -29,3 +29,6 @@ pod 'pop'
 pod 'SVProgressHUD', '~> 2.0.3'     #https://github.com/SVProgressHUD/SVProgressHUD
 pod 'IQKeyboardManager'
 pod 'SDWebImage'
+
+pod 'SSZipArchive', '~> 1.8.1'
+pod 'AVOSCloud'

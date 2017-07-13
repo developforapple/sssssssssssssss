@@ -12,6 +12,10 @@
 #import "SPSteamAPI.h"
 #import "JZNavigationExtension.h"
 
+#if LeanCloudSDK_Enabled
+#import <AVOSCloud.h>
+#endif
+
 #if AdMobSDK_Enabled
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #endif
@@ -31,6 +35,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     [self _setupUIAppearance];
     [self _setupADSplash];
+    [self _setup3rdParty];
     return YES;
 }
 
@@ -60,6 +65,11 @@
     [self.window addSubview:self.test];
     
     [GADMobileAds configureWithApplicationID:kAdMobAppID];
+}
+
+- (void)_setup3rdParty
+{
+    [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
 }
 
 - (void)uploadPushToken

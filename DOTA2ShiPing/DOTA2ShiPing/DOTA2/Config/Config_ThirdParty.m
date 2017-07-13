@@ -37,9 +37,7 @@ NSString *const kBaiduAppKey = @"NmswvpnTFoL022wAf8yGhGwj";
 NSString *const kBaiduAppKey = @"XP5AeSOEo7KKjpjBIXdvR6Lx";
 #endif
 
-
 NSString *const kPgyAppID = @"7936b38af35806197a1d09f044ca9a7b";
-
 
 NSString *const kAlipayScheme = @"cdtalipay";
 
@@ -53,8 +51,8 @@ NSString *const kPayPalClientID = @"AUcpLj-DFofxPW8u6g17_Xv5FKyx3ii731oBUjHDxIim
 NSString *const kPayPalClientID = @"AfmR3k1azm3liMETPeKE4gOXwXTXdK9eZgBjsj1kL6X4HGzw-8Bdc9yW87zZYQI5G7TI3-mMwyR4SCih";
 #endif
 
-NSString *const kLeanCloudAppID = @"zjolahobhc7f71ujeqctili1zug7v7c868levtvv5ecf3963";
-NSString *const kLeanCloudAppKey = @"wp0vpfkaw2v7q0ybe2ga5tc6wwu0gpwx779270i8h49f1hwo";
+NSString *const kLeanCloudAppID = @"uy7j0G50gYzI8jOopjxUNPpT-gzGzoHsz";
+NSString *const kLeanCloudAppKey = @"RkF7f6l3KjnnOKA7jTD1YFn7";
 
 NSString *const kPingppAppID = @"app_vL4CG01iD8mTW9SW";
 

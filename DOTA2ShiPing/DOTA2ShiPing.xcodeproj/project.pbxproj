@@ -14,6 +14,7 @@
 		2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2A71CDE20D700190F0C /* LaunchScreen.storyboard */; };
 		2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B211D435E95005FC6CA /* libiconv.tbd */; };
 		2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B231D435EAB005FC6CA /* libstdc++.tbd */; };
+		2D91EB741F16263A0038B49C /* SPResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB731F16263A0038B49C /* SPResourceManager.m */; };
 		2DF9B81C1F1361640012950A /* Config_Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6521F1361640012950A /* Config_Appearance.m */; };
 		2DF9B81D1F1361640012950A /* Config_Archive.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6541F1361640012950A /* Config_Archive.m */; settings = {COMPILER_FLAGS = "-D'MACRO_APP_BUNDLE_ID=@\"$(CDT_APP_BUNDLE_ID)\""; }; };
 		2DF9B81E1F1361640012950A /* Config_Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6561F1361640012950A /* Config_Constant.m */; };
@@ -188,9 +189,7 @@
 		2DF9B8CE1F1361640012950A /* SPWorkshopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B80C1F1361640012950A /* SPWorkshopCell.m */; };
 		2DF9B8CF1F1361640012950A /* SPWorkshopResourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B80E1F1361640012950A /* SPWorkshopResourceCell.m */; };
 		2DF9B8D01F1361640012950A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8101F1361640012950A /* Assets.xcassets */; };
-		2DF9B8D21F1361640012950A /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8121F1361640012950A /* data.json */; };
 		2DF9B8D31F1361640012950A /* heroMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8131F1361640012950A /* heroMap.json */; };
-		2DF9B8D41F1361640012950A /* item.db in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8141F1361640012950A /* item.db */; };
 		2DF9B8D51F1361640012950A /* workshoptags.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8151F1361640012950A /* workshoptags.json */; };
 		2DF9B8D61F1361640012950A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B8181F1361640012950A /* GoogleMobileAds.framework */; };
 		2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B81A1F1361640012950A /* Bugly.framework */; };
@@ -210,6 +209,8 @@
 		2D48D2AA1CDE20D700190F0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D563B211D435E95005FC6CA /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		2D563B231D435EAB005FC6CA /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		2D91EB721F16263A0038B49C /* SPResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPResourceManager.h; sourceTree = "<group>"; };
+		2D91EB731F16263A0038B49C /* SPResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPResourceManager.m; sourceTree = "<group>"; };
 		2DF9B6411F135FB20012950A /* DOTA2ShiPing-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOTA2ShiPing-Prefix.pch"; sourceTree = "<group>"; };
 		2DF9B6441F1361640012950A /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		2DF9B6451F1361640012950A /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
@@ -574,9 +575,7 @@
 		2DF9B80D1F1361640012950A /* SPWorkshopResourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWorkshopResourceCell.h; sourceTree = "<group>"; };
 		2DF9B80E1F1361640012950A /* SPWorkshopResourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWorkshopResourceCell.m; sourceTree = "<group>"; };
 		2DF9B8101F1361640012950A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2DF9B8121F1361640012950A /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		2DF9B8131F1361640012950A /* heroMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heroMap.json; sourceTree = "<group>"; };
-		2DF9B8141F1361640012950A /* item.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = item.db; sourceTree = "<group>"; };
 		2DF9B8151F1361640012950A /* workshoptags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = workshoptags.json; sourceTree = "<group>"; };
 		2DF9B8181F1361640012950A /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		2DF9B81A1F1361640012950A /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
@@ -647,6 +646,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2D91EB711F1626270038B49C /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2D91EB721F16263A0038B49C /* SPResourceManager.h */,
+				2D91EB731F16263A0038B49C /* SPResourceManager.m */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		2DF9B6421F1361640012950A /* DOTA2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -700,6 +708,7 @@
 		2DF9B65C1F1361640012950A /* General */ = {
 			isa = PBXGroup;
 			children = (
+				2D91EB711F1626270038B49C /* Resource */,
 				2DF9B65D1F1361640012950A /* API */,
 				2DF9B6661F1361640012950A /* AppCache */,
 				2DF9B6691F1361640012950A /* Capabilities */,
@@ -1673,9 +1682,7 @@
 			isa = PBXGroup;
 			children = (
 				2DF9B8101F1361640012950A /* Assets.xcassets */,
-				2DF9B8121F1361640012950A /* data.json */,
 				2DF9B8131F1361640012950A /* heroMap.json */,
-				2DF9B8141F1361640012950A /* item.db */,
 				2DF9B8151F1361640012950A /* workshoptags.json */,
 			);
 			path = Resource;
@@ -1819,8 +1826,6 @@
 				2DF9B8D01F1361640012950A /* Assets.xcassets in Resources */,
 				2DF9B8A01F1361640012950A /* SPItemEntranceConfigure in Resources */,
 				2DF9B8D31F1361640012950A /* heroMap.json in Resources */,
-				2DF9B8D41F1361640012950A /* item.db in Resources */,
-				2DF9B8D21F1361640012950A /* data.json in Resources */,
 				2DF9B8661F1361640012950A /* IDMPhotoBrowser.bundle in Resources */,
 				2DF9B8771F1361640012950A /* CDTAlertCtrl.xib in Resources */,
 				2DF9B8641F1361640012950A /* IDMPBLocalizations.bundle in Resources */,
@@ -2038,6 +2043,7 @@
 				2DF9B8741F1361640012950A /* SPPopoverView.m in Sources */,
 				2DF9B82D1F1361640012950A /* NSCalendar+YGCategory.m in Sources */,
 				2DF9B85B1F1361640012950A /* YGAreaManager.m in Sources */,
+				2D91EB741F16263A0038B49C /* SPResourceManager.m in Sources */,
 				2DF9B8701F1361640012950A /* SPLeftAlignmentLayout.m in Sources */,
 				2DF9B8B51F1361640012950A /* SPPlayerListVC.m in Sources */,
 				2DF9B8981F1361640012950A /* YGBaseNaviCtrl.m in Sources */,
