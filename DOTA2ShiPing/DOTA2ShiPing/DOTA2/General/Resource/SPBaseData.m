@@ -30,8 +30,7 @@
 + (void)saveItemAtPath:(NSString *)atPath from:(NSString *)fromPath
 {
     NSError *error;
-    [FileManager removeItemAtPath:atPath error:&error];
-    NSAssert(!error, @"发生了错误");
+    [FileManager removeItemAtPath:atPath error:nil];
     [FileManager moveItemAtPath:fromPath toPath:atPath error:&error];
     NSAssert(!error, @"发生了错误");
 }
@@ -103,40 +102,11 @@
     return [langPath stringByAppendingPathComponent:@"lang.json"];
 }
 
-+ (NSString *)langPatchFilePath:(NSString *)lang patch:(NSString *)patch
++ (NSString *)langPatchFilePath:(NSString *)lang
 {
     NSString *langPath = [self langPath:lang];
     if (!langPath) return nil;
-    NSString *name = [NSString stringWithFormat:@"lang_%@.json",patch];
-    return [langPath stringByAppendingPathComponent:name];
-}
-
-+ (NSArray<NSString *> *)langPatchFilePaths:(NSString *)lang
-{
-    NSString *langPath = [self langPath:lang];
-    if (!langPath) return @[];
-    
-    // 需要测试
-    NSMutableArray *paths = [NSMutableArray array];
-    NSDirectoryEnumerator *enumerator = [FileManager enumeratorAtPath:langPath];
-    NSString *aFile;
-    while ( (aFile = [enumerator nextObject]) ) {
-        BOOL isDirectory = NO;
-        if ([FileManager fileExistsAtPath:aFile isDirectory:&isDirectory] &&
-            !isDirectory &&
-            [[aFile lastPathComponent] hasPrefix:@"lang_"] &&
-            [[aFile pathExtension] isEqualToString:@"json"]) {
-            [paths addObject:aFile];
-        }
-    }
-    
-    [paths sortUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
-        long long v1 = [[[obj1 lastPathComponent] stringByDeletingPathExtension] longLongValue];
-        long long v2 = [[[obj2 lastPathComponent] stringByDeletingPathExtension] longLongValue];
-        return v1 < v2 ? NSOrderedAscending : ( v1 == v2 ? NSOrderedSame : NSOrderedDescending ) ;
-    }];
-    
-    return paths;
+    return [langPath stringByAppendingPathComponent:@"lang_patch.json"];
 }
 
 + (BOOL)isBaseDataValid
@@ -176,7 +146,7 @@
     if (![self isLangDataValid:lang]) return nil;
     
     NSString *mainFilePath = [self langMainFilePath:lang];
-    NSArray *patchFilePaths = [self langPatchFilePaths:lang];
+    NSString *patchFilePath = [self langPatchFilePath:lang];
     
     NSError *error;
     
@@ -193,20 +163,18 @@
     
     mainData = nil;
     
-    for (NSString *patchFile in patchFilePaths) {
-        NSData *patchData = [NSData dataWithContentsOfFile:patchFile options:NSDataReadingMappedIfSafe error:&error];
-        if (!patchData || error) {
-            NSLog(@"读取语言补丁数据失败！%@：%@",patchFile,error);
-            continue;
-        }
-        NSMutableDictionary *patchObject = [NSJSONSerialization JSONObjectWithData:patchData options:kNilOptions error:&error];
-        if (!patchObject || error) {
-            NSLog(@"解析语言补丁数据失败！%@：%@",patchFile,error);
-            continue;
-        }
-        [mainObject addEntriesFromDictionary:patchObject];
-        patchData = nil;
+    NSData *patchData = [NSData dataWithContentsOfFile:patchFilePath options:NSDataReadingMappedIfSafe error:&error];
+    if (!patchData || error) {
+        NSLog(@"读取语言补丁数据失败！%@：%@",patchFilePath,error);
+        return nil;
     }
+    NSMutableDictionary *patchObject = [NSJSONSerialization JSONObjectWithData:patchData options:kNilOptions error:&error];
+    if (!patchObject || error) {
+        NSLog(@"解析语言补丁数据失败！%@：%@",patchFilePath,error);
+        return nil;
+    }
+    [mainObject addEntriesFromDictionary:patchObject];
+    patchData = nil;
     
     return mainObject;
 }
@@ -233,11 +201,11 @@
 }
 
 // 写入语言补丁数据。
-+ (void)writeLangData:(NSData *)data lang:(NSString *)lang patch:(NSString *)patch
++ (void)writeLangPatchData:(NSData *)data lang:(NSString *)lang
 {
-    if (!lang || !patch || !data) return;
+    if (!lang || !data) return;
     RunOnMainQueue(^{
-        NSString *file = [self langPatchFilePath:lang patch:patch];
+        NSString *file = [self langPatchFilePath:lang];
         [FileManager removeItemAtPath:file error:nil];
         [data writeToFile:file atomically:YES];
     });
@@ -272,12 +240,12 @@
     });
 }
 
-+ (void)saveLangDataFrom:(NSString *)path lang:(NSString *)lang patch:(NSString *)patch
++ (void)saveLangPatchDataFrom:(NSString *)path lang:(NSString *)lang
 {
-    if (!lang || !path || !patch || ![FileManager fileExistsAtPath:path]) return;
+    if (!lang || !path || ![FileManager fileExistsAtPath:path]) return;
     
     RunOnMainQueue(^{
-        NSString *toPath = [self langPatchFilePath:lang patch:patch];
+        NSString *toPath = [self langPatchFilePath:lang];
         [self saveItemAtPath:toPath from:path];
     });
 }

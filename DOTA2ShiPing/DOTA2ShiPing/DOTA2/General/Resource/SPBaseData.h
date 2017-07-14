@@ -49,9 +49,7 @@
 // 一个语言的主文件路径
 + (NSString *)langMainFilePath:(NSString *)lang;
 // 一个语言的补丁文件路径
-+ (NSString *)langPatchFilePath:(NSString *)lang patch:(NSString *)patch;
-// 一个语言的所有已存在的补丁文件路径
-+ (NSArray<NSString *> *)langPatchFilePaths:(NSString *)lang;
++ (NSString *)langPatchFilePath:(NSString *)lang;
 
 // 基础数据是否有效
 + (BOOL)isBaseDataValid;
@@ -70,7 +68,7 @@
 // 写入语言主数据。
 + (void)writeLangData:(NSData *)data lang:(NSString *)lang;
 // 写入语言补丁数据。
-+ (void)writeLangData:(NSData *)data lang:(NSString *)lang patch:(NSString *)patch;
++ (void)writeLangPatchData:(NSData *)data lang:(NSString *)lang;
 // 写入数据库
 + (void)writeDB:(NSData *)db;
 
@@ -80,7 +78,7 @@
 // 从path保存到语言主数据
 + (void)saveLangDataFrom:(NSString *)path lang:(NSString *)lang;
 // 从path保存到语言补丁数据
-+ (void)saveLangDataFrom:(NSString *)path lang:(NSString *)lang patch:(NSString *)patch;
++ (void)saveLangPatchDataFrom:(NSString *)path lang:(NSString *)lang;
 // 从path保存到数据库
 + (void)saveDBFrom:(NSString *)path;
 

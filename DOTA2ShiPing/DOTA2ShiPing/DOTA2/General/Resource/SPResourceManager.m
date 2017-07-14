@@ -17,8 +17,21 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 
 @interface SPResourceManager ()
 @property (assign, nonatomic) long long version;
-@property (assign, nonatomic) long long nextVersion;
-@property (copy, nonatomic) NSString *folder;
+@property (assign, nonatomic) long long latestVersion;
+@property (assign, nonatomic) long long langVersion;
+@property (assign, nonatomic) long long latestLangVersion;
+@property (assign, nonatomic) long long langPatchVersion;
+@property (assign, nonatomic) long long latestLangPatchVersion;
+
+@property (assign, nonatomic) float baseDataProgress;
+@property (assign, nonatomic) float langFileProgress;
+@property (assign, nonatomic) float langPatchProgress;
+
+@property (copy, nonatomic) NSString *baseDataTmpPath;
+@property (copy, nonatomic) NSString *dbDataTmpPath;
+@property (copy, nonatomic) NSString *langDataTmpPath;
+@property (copy, nonatomic) NSString *langPatchTmpPath;
+
 @end
 
 @implementation SPResourceManager
@@ -34,68 +47,111 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
     if (self) {
         self.lang = kLangSchinese;
         self.version = [[[NSUserDefaults standardUserDefaults] objectForKey:kDataVersionKey] longLongValue];
+        self.langVersion = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"kLangDataVersion_%@",self.lang]] longLongValue];
+        self.langPatchVersion = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"kLangPatchVersion_%@",self.lang]] longLongValue];
     }
     return self;
 }
 
-- (void)checkBaseDataUpdate:(void (^)(AVFile *, NSError *))completion
+#pragma mark - Check
+- (void)checkBaseDataUpdate:(void (^)(AVFile *, NSError *, long long version))completion
 {
     if (!completion) return;
     
-    // 先检查数据版本
-    AVFileQuery *versionQuery = [AVFileQuery query];
-    [versionQuery whereKey:@"name" equalTo:@"base_data_version"];
-    [versionQuery findFilesInBackgroundWithBlock:^(NSArray<AVFile *> *objects, NSError *error) {
+    AVQuery *query = [AVQuery queryWithClassName:@"Version"];
+    [query whereKey:@"name" equalTo:@"base_data_version"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<AVObject *> *objects, NSError *error) {
         if (error) {
-            completion(nil,error);
+            completion(nil,error,0);
             return;
         }
-        AVFile *versionFile = [objects firstObject];
-        long long version = versionFile?[versionFile.metaData[@"version"] longLongValue]: (self.version+1);
+        AVObject *obj = objects.firstObject;
+        long long version = obj ? [[obj objectForKey:@"version"] longLongValue] : self.version;
         if (version > self.version) {
-            //需要更新, 获取最新文件
-            
-            AVFileQuery *query = [AVFileQuery query];
-            [query whereKey:@"name" equalTo:[NSString stringWithFormat:@"base_data_%lld",version]];
-            [query findFilesInBackgroundWithBlock:^(NSArray<AVFile *> *objects, NSError *error) {
-                if (error) {
-                    completion(nil,error);
+            AVFileQuery *query2 = [AVFileQuery query];
+            [query2 whereKey:@"name" equalTo:[NSString stringWithFormat:@"base_data_%lld.zip",version]];
+            [query2 findFilesInBackgroundWithBlock:^(NSArray<AVFile *> *objects2, NSError *error2) {
+                if (error2) {
+                    completion(nil,error2,version);
                     return;
                 }
-                AVFile *file = [objects firstObject];
-                completion(file,nil);
+                completion(objects2.firstObject,nil,version);
             }];
         }else{
-            completion(nil,nil);
+            completion(nil,nil,version);
         }
     }];
 }
 
-- (void)checkLangMainFile:(void (^)(AVFile *,NSError *))completion
+- (void)checkLangMainFileUpdate:(void (^)(AVFile *,NSError *, long long version))completion
 {
     if (!completion) return;
     
-    AVFileQuery *query = [AVFileQuery query];
-    [query whereKey:@"name" equalTo:[NSString stringWithFormat:@"%@.zip",self.lang]];
-    [query findFilesInBackgroundWithBlock:^(NSArray<AVFile *> *objects, NSError *error) {
+    AVQuery *query = [AVQuery queryWithClassName:@"Version"];
+    [query whereKey:@"name" equalTo:[NSString stringWithFormat:@"lang_version_%@",self.lang]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<AVObject *> *objects, NSError *error) {
         if (error) {
-            completion(nil,error);
-            return;
+            completion(nil,error, 0);
+            return ;
         }
-        AVFile *file = [objects firstObject];
-        completion(file,nil);
+        AVObject *obj = objects.firstObject;
+        long long version = obj ? [[obj objectForKey:@"version"] longLongValue] : self.langVersion;
+        if (version > self.langVersion) {
+            //需要更新语言主文件
+            
+            AVFileQuery *query2 = [AVFileQuery query];
+            [query2 whereKey:@"name" equalTo:[NSString stringWithFormat:@"%@_%lld.zip",self.lang,version]];
+            [query2 findFilesInBackgroundWithBlock:^(NSArray<AVFile *> *objects2, NSError *error2) {
+                if (error2) {
+                    completion(nil,error2,version);
+                    return ;
+                }
+                completion(objects2.firstObject,nil,version);
+            }];
+            
+        }else{
+            completion(nil,nil,version);
+        }
+    }];
+}
+
+- (void)checkLangPatchFile:(long long)version completion:(void (^)(AVFile *,NSError *, long long version))completion
+{
+    if (!completion) return;
+    
+    AVQuery *query = [AVQuery queryWithClassName:@"Version"];
+    [query whereKey:@"name" equalTo:[NSString stringWithFormat:@"lang_patch_version_%@",self.lang]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<AVObject *> *objects, NSError *error) {
+        if (error) {
+            completion(nil,error, 0);
+            return ;
+        }
+        AVObject *obj = objects.firstObject;
+        long long version = obj ? [[obj objectForKey:@"version"] longLongValue] : self.langPatchVersion;
+        if (version > self.langPatchVersion) {
+            
+            AVFileQuery *query2 = [AVFileQuery query];
+            [query2 whereKey:@"name" equalTo:[NSString stringWithFormat:@"%@_%lld_%lld_patch.zip",self.lang,self.latestLangVersion,version]];
+            [query2 findFilesInBackgroundWithBlock:^(NSArray<AVFile *> *objects2, NSError *error2) {
+                if (error2) {
+                    completion(nil,error2,version);
+                    return ;
+                }
+                completion(objects2.firstObject,nil,version);
+            }];
+            
+        }else{
+            completion(nil,nil,version);
+        }
     }];
 }
 
 - (void)checkUpdate
 {
-    BOOL baseDataVaild = [SPBaseData isBaseDataValid];
-    BOOL langDataVaild = [SPBaseData isLangDataValid:self.lang];
-    
     ygweakify(self);
     
     // 基础数据
-    [self checkBaseDataUpdate:^(AVFile *file, NSError *error) {
+    [self checkBaseDataUpdate:^(AVFile *file, NSError *error, long long version) {
         
         ygstrongify(self);
         
@@ -104,124 +160,264 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
             return;
         }
         
-        if (!file) {
-            self.needUpdate = @0;
-            return;
-        }
-        
         self.baseDataFile = file;
+        self.latestVersion = version;
         
-        //基础数据需要更新，检查本地数据更新
-        BOOL langDataVaild = [SPBaseData isLangDataValid:self.lang];
-        if (!langDataVaild) {
-            //语言主文件失效，需要下载
-            ygweakify(self);
-            [self checkLangMainFile:^(AVFile *langMainFile, NSError *error2) {
-                ygstrongify(self);
-                if (error2) {
-                    self.error = error2;
-                    return ;
-                }
-                self.langFile = langMainFile;
-                
-            }];
-        }
-    }];
-}
-
-- (void)initializeDatabase:(void (^)(float p))progressBlock
-                completion:(void (^)(BOOL suc,NSError *error))completion
-{
-    NSFileManager *fm = [NSFileManager defaultManager];
-    [fm createDirectoryAtPath:self.folder withIntermediateDirectories:YES attributes:nil error:nil];
-    
-    // 请求
-    AVFileQuery *query = [AVFileQuery query];
-    [query whereKey:@"name" hasPrefix:@"dota_base_data"];
-    [query findFilesInBackgroundWithBlock:^(NSArray<AVFile *> *objects, NSError *error) {
-        
-        if (error) {
-            completion?completion(NO,error):0;
-        }else{
-            AVFile *theLatestFile;
-            NSInteger lastestVersion = 0;
-            for (AVFile *aFile in objects) {
-                if ([aFile isKindOfClass:[AVFile class]]) {
-                    NSString *name = aFile.name;
-                    NSString *version = [[[name stringByDeletingPathExtension] componentsSeparatedByString:@"_"] lastObject];
-                    if (version) {
-                        NSInteger versionNumber = [version longLongValue];
-                        if (versionNumber > lastestVersion) {
-                            theLatestFile = aFile;
-                            lastestVersion = versionNumber;
-                        }
-                    }
-                }
+        // 语言数据
+        ygweakify(self);
+        [self checkLangMainFileUpdate:^(AVFile *file2, NSError *error2, long long version2) {
+            ygstrongify(self);
+            
+            if (error2) {
+                self.error = error2;
+                return;
             }
             
-            if (!theLatestFile) {
-                completion?completion(NO,nil):0;
-            }else{
-                [theLatestFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                    if (error) {
-                        completion?completion(NO,error):0;
-                    }else{
-                        RunOnGlobalQueue(^{
-                            NSString *name = [NSString stringWithFormat:@"%lld",(long long)[[NSDate date] timeIntervalSince1970]];
-                            NSString *zipTmpPath = [AppTmpPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.zip",name]];
-                            NSString *unzipTmpPath = [AppTmpPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",name]];
-                            
-                            [[NSFileManager defaultManager] removeItemAtPath:zipTmpPath error:nil];
-                            [[NSFileManager defaultManager] removeItemAtPath:unzipTmpPath error:nil];
-                            [[NSFileManager defaultManager] createDirectoryAtPath:unzipTmpPath withIntermediateDirectories:YES attributes:nil error:nil];
-                            
-                            [data writeToFile:zipTmpPath atomically:YES];
-    
-                            [SSZipArchive unzipFileAtPath:zipTmpPath toDestination:unzipTmpPath overwrite:NO password:zipPassword progressHandler:^(NSString *entry, unz_file_info zipInfo, long entryNumber, long total) {
-                                
-                            } completionHandler:^(NSString *path, BOOL succeeded, NSError *error) {
-                                if (error) {
-                                    NSLog(@"解压缩失败！%@",error);
-                                    completion?completion(NO,error):nil;
-                                }else{
-                                    NSString *dbPath = [unzipTmpPath stringByAppendingPathComponent:@"item.db"];
-                                    NSString *baseDataPath = [unzipTmpPath stringByAppendingPathComponent:@"data.json"];
-                                    NSString *langPath = [unzipTmpPath stringByAppendingPathComponent:@"sc"];
-                                    
-                                }
-                            }];
-                        });
-                    }
-                } progressBlock:^(NSInteger percentDone) {
-                    progressBlock?progressBlock(percentDone/100.f):0;
-                }];
-            }
-        }
-        
+            self.langFile = file2;
+            self.latestLangVersion = version2;
+            
+            
+            // 语言补丁
+            ygweakify(self);
+            [self checkLangPatchFile:version2 completion:^(AVFile *file3, NSError *error3, long long version3) {
+                ygstrongify(self);
+                if (error3) {
+                    self.error = error3;
+                    return ;
+                }
+                self.langPatchFile = file3;
+                self.latestLangPatchVersion = version3;
+                
+                [self decideNeedUpdate];
+            }];
+        }];
     }];
 }
 
-- (void)checkDatabaseIntegrity
+- (void)decideNeedUpdate
 {
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *originDataPath = [[NSBundle mainBundle] pathForResource:@"dota_base_data_1499852091" ofType:@"zip"];
-    NSAssert([fm fileExistsAtPath:originDataPath], @"需要修改原始数据包名");
-    
-    
-    self.folder = [AppDocumentsPath stringByAppendingPathComponent:@".basedata"];
-    if (![fm fileExistsAtPath:self.folder]) {
-        [fm createDirectoryAtPath:self.folder withIntermediateDirectories:YES attributes:nil error:nil];
+    if (!self.error && (self.baseDataFile || self.langFile || self.langPatchFile) ) {
+        self.needUpdate = @YES;
+    }else{
+        self.needUpdate = @NO;
     }
+}
+
+#pragma mark - Update
+- (void)beginUpdate
+{
+    self.baseDataProgress = 0.f;
+    self.langFileProgress = 0.f;
+    self.langPatchProgress = 0.f;
     
-    self.baseDataPath = [self.folder stringByAppendingPathComponent:@"data.json"];
-    self.langPath = [self.folder stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.json",self.lang]];
-    self.dbPath = [self.folder stringByAppendingPathComponent:@"item.db"];
-    
-    BOOL needOriginData = ![fm fileExistsAtPath:self.baseDataPath] || ![fm fileExistsAtPath:self.langPath] || ![fm fileExistsAtPath:self.dbPath];
-    if (needOriginData) {
-        NSString *oridinData = [[NSBundle mainBundle] pathForResource:@"dota_base_data_1499852091" ofType:@"zip"];
-        
+    ygweakify(self);
+    [self getBaseData:^(BOOL suc) {
+        if (!suc) return;
+        ygstrongify(self);
+        [self getLangMainData:^(BOOL suc) {
+            if(!suc) return ;
+            ygstrongify(self);
+            [self getLangPatchData:^(BOOL suc) {
+                if (!suc) return ;
+                ygstrongify(self);
+                [self updateDidCompleted];
+            }];
+        }];
+    }];
+}
+
+- (void)getBaseData:(void (^)(BOOL suc))completion
+{
+    if (self.baseDataFile) {
+        ygweakify(self);
+        [self.baseDataFile getDataStreamInBackgroundWithBlock:^(NSInputStream *stream, NSError *error) {
+            ygstrongify(self);
+            self.error = error;
+            completion?completion(error==nil):0;
+        } progressBlock:^(NSInteger percentDone) {
+            ygstrongify(self);
+            self.baseDataProgress = percentDone/100.f;
+            [self updateProgress];
+        }];
+    }else{
+        self.baseDataProgress = 1.f;
+        [self updateProgress];
+        completion?completion(YES):0;
     }
+}
+
+- (void)getLangMainData:(void (^)(BOOL suc))completion
+{
+    if (self.langFile) {
+        ygweakify(self);
+        [self.langFile getDataStreamInBackgroundWithBlock:^(NSInputStream *stream, NSError *error) {
+            ygstrongify(self);
+            self.error = error;
+            completion?completion(error==nil):0;
+        } progressBlock:^(NSInteger percentDone) {
+            ygstrongify(self);
+            self.langFileProgress = percentDone/100.f;
+            [self updateProgress];
+        }];
+    }else{
+        self.langFileProgress = 1.f;
+        [self updateProgress];
+        completion?completion(YES):0;
+    }
+}
+
+- (void)getLangPatchData:(void (^)(BOOL suc))completion
+{
+    if (self.langPatchFile) {
+        ygweakify(self);
+        [self.langPatchFile getDataStreamInBackgroundWithBlock:^(NSInputStream *stream, NSError *error) {
+            ygstrongify(self);
+            self.error = error;
+            completion?completion(error==nil):0;
+        } progressBlock:^(NSInteger percentDone) {
+            ygstrongify(self);
+            self.langPatchProgress = percentDone/100.f;
+            [self updateProgress];
+        }];
+    }else{
+        self.langPatchProgress = 1.f;
+        [self updateProgress];
+        completion?completion(YES):0;
+    }
+}
+
+- (void)updateProgress
+{
+    self.progress = self.baseDataProgress * 0.6f + self.langFileProgress * 0.2f + self.langPatchProgress * 0.2f;
+}
+
+- (void)updateDidCompleted
+{
+    if (self.updateCompleted) {
+        self.updateCompleted();
+    }
+}
+
+#pragma mark - Unzip
+- (void)beginUnzip
+{
+    ygweakify(self);
+    [self unzipBaseData:^(BOOL suc) {
+        if (!suc) return;
+        ygstrongify(self);
+        [self unzipLangMainData:^(BOOL suc) {
+            if (!suc) return ;
+            ygstrongify(self);
+            [self unzipLangPatchData:^(BOOL suc) {
+                if (!suc) return ;
+                ygstrongify(self);
+                [self unzipDidCompleted];
+            }];
+        }];
+    }];
+}
+
+- (void)unzipBaseData:(void (^)(BOOL suc))completion
+{
+    if (self.baseDataFile) {
+        NSString *tmpFolder = [SPBaseData randomTmpFolder];
+        NSString *zipPath = self.baseDataFile.localPath;
+        [SSZipArchive unzipFileAtPath:zipPath toDestination:tmpFolder overwrite:YES password:zipPassword progressHandler:^(NSString *entry, unz_file_info zipInfo, long entryNumber, long total) {
+            
+        } completionHandler:^(NSString *path, BOOL succeeded, NSError *error) {
+            self.error = error;
+            self.baseDataTmpPath = [tmpFolder stringByAppendingPathComponent:@"data.json"];
+            self.dbDataTmpPath = [tmpFolder stringByAppendingPathComponent:@"item.db"];
+            completion?completion(succeeded):0;
+        }];
+    }else{
+        completion(YES);
+    }
+}
+
+- (void)unzipLangMainData:(void (^)(BOOL suc))completion
+{
+    if (self.langFile) {
+        NSString *tmpFolder = [SPBaseData randomTmpFolder];
+        NSString *zipPath = self.langFile.localPath;
+        [SSZipArchive unzipFileAtPath:zipPath toDestination:tmpFolder overwrite:YES password:zipPassword progressHandler:^(NSString * _Nonnull entry, unz_file_info zipInfo, long entryNumber, long total) {
+            
+        } completionHandler:^(NSString *path, BOOL succeeded, NSError *error) {
+            self.error = error;
+            self.langDataTmpPath = [tmpFolder stringByAppendingPathComponent:@"lang.json"];
+            completion?completion(succeeded):0;
+        }];
+    }else{
+        completion(YES);
+    }
+}
+
+- (void)unzipLangPatchData:(void (^)(BOOL suc))completion
+{
+    if (self.langPatchFile) {
+        NSString *tmpFolder = [SPBaseData randomTmpFolder];
+        NSString *zipPath = self.langPatchFile.localPath;
+        [SSZipArchive unzipFileAtPath:zipPath toDestination:tmpFolder overwrite:YES password:zipPassword progressHandler:^(NSString * _Nonnull entry, unz_file_info zipInfo, long entryNumber, long total) {
+            
+        } completionHandler:^(NSString *path, BOOL succeeded, NSError *error) {
+            self.error = error;
+            self.langPatchTmpPath = [tmpFolder stringByAppendingPathComponent:@"lang_patch.json"];
+            completion?completion(YES):0;
+        }];
+    }else{
+        completion(YES);
+    }
+}
+
+- (void)unzipDidCompleted
+{
+    if (self.unzipCompleted) {
+        self.unzipCompleted();
+    }
+}
+
+#pragma mark - Save
+- (void)saveData
+{
+    [self saveBaseData];
+    [self saveLangMainData];
+    [self saveLangPatchData];
+}
+
+- (BOOL)saveBaseData
+{
+    if (self.baseDataFile) {
+        [SPBaseData saveDataJSONfrom:self.baseDataTmpPath];
+        [SPBaseData saveDBFrom:self.dbDataTmpPath];
+    }
+    return YES;
+}
+
+- (BOOL)saveLangMainData
+{
+    if (self.langFile) {
+        [SPBaseData saveLangDataFrom:self.langDataTmpPath lang:self.lang];
+    }
+    return YES;
+}
+
+- (BOOL)saveLangPatchData
+{
+    if (self.langPatchFile) {
+        [SPBaseData saveLangPatchDataFrom:self.langPatchTmpPath lang:self.lang];
+    }
+    return YES;
+}
+
+- (void)cleanTmp
+{
+    [FileManager removeItemAtPath:[SPBaseData tmpFolder] error:nil];
+}
+
+#pragma mark - 
+- (void)serializeData
+{
+    
 }
 
 @end

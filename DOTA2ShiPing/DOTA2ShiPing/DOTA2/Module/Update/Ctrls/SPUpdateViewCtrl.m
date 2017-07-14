@@ -8,6 +8,7 @@
 
 #import "SPUpdateViewCtrl.h"
 #import "SPResourceManager.h"
+#import <ReactiveObjC.h>
 
 @interface SPUpdateViewCtrl ()
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
@@ -31,13 +32,72 @@
     self.progressLabel.text = @"";
     
     self.manager = [[SPResourceManager alloc] init];
-    
+    [self initSignal];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self checkUpdate];
+}
+
+- (void)initSignal
+{
+    ygweakify(self);
+    [RACObserve(self.manager, error)
+     subscribeNext:^(NSError *x) {
+         if (x) {
+             ygstrongify(self);
+             [UIAlertController alert:nil message:x.localizedDescription];
+             [self showError];
+         }
+     }];
+    [RACObserve(self.manager, needUpdate)
+     subscribeNext:^(NSNumber *x) {
+         if (x && x.boolValue) {
+             ygstrongify(self);
+             [self beginUpdate];
+         }
+     }];
+    [RACObserve(self.manager, progress)
+     subscribeNext:^(NSNumber *x) {
+         ygstrongify(self);
+         self.progressLabel.text = [NSString stringWithFormat:@"%02d%%",(int)(x.floatValue*100)];
+     }];
+    self.manager.updateCompleted = ^{
+        ygstrongify(self);
+        self.progressLabel.text = @"解压缩中...";
+        [self.manager beginUnzip];
+    };
+    self.manager.unzipCompleted = ^{
+        ygstrongify(self);
+        self.progressLabel.text = @"保存中...";
+        [self.manager saveData];
+        [self done];
+    };
 }
 
 - (void)checkUpdate
 {
+    [self.manager checkUpdate];
+}
+
+- (void)showError
+{
     
+}
+
+- (void)beginUpdate
+{
+    [self.manager beginUpdate];
+}
+
+- (void)done
+{
+    self.progressLabel.text = @"更新完成";
+    [self dismiss:^{
+        [SVProgressHUD showSuccessWithStatus:@"更新完成"];
+    }];
 }
 
 @end
