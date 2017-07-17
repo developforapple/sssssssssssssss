@@ -65,35 +65,42 @@
         [params addObject:self.rarity.name];
     }
     
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM items WHERE %@",[query componentsJoinedByString:@" AND "]];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM items WHERE %@ ORDER BY creation_date DESC",[query componentsJoinedByString:@" AND "]];
+    __block BOOL suc = YES;
     
-    NSError *error;
-    FMResultSet *result = [db executeQuery:sql values:params error:&error];
-    
-    if (error) {
-        [result close];
+    YYBenchmark(^{
+        NSError *error;
+        FMResultSet *result;
+        result = [db executeQuery:sql values:params error:&error];
+        if (error) {
+            [result close];
+            SPDBCLOSE
+            NSLog(@"%@",error);
+            suc = NO;
+            return ;
+        }
+        NSMutableArray *items = [NSMutableArray array];
+        while ([result nextWithError:&error]) {
+            NSDictionary *dict = result.resultDictionary;
+            SPItem *item = [SPItem yy_modelWithDictionary:dict];
+            [items addObject:item];
+        }
+        if (error) {
+            [result close];
+            SPDBCLOSE
+            NSLog(@"%@",error);
+            suc = NO;
+            return;
+        }
+        
+        self.items = items;
         SPDBCLOSE
-        NSLog(@"%@",error);
-        return NO;
-    }
+        
+    }, ^(double ms) {
+        NSLog(@"\n\n\tsql:%@ \n\n\t耗时：%.3f ms\n\n ",sql,ms);
+    });
     
-    NSMutableArray *items = [NSMutableArray array];
-    while ([result nextWithError:&error]) {
-        NSDictionary *dict = result.resultDictionary;
-        SPItem *item = [SPItem yy_modelWithDictionary:dict];
-        [items addObject:item];
-    }
-    if (error) {
-        [result close];
-        SPDBCLOSE
-        NSLog(@"%@",error);
-        return NO;
-    }
-    self.items = items;
-    
-    SPDBCLOSE
-    
-    return YES;
+    return suc;
 }
 
 - (void)asyncUpdateItems:(void (^)(BOOL suc,NSArray *items))completion
@@ -104,7 +111,9 @@
             [self separateItem];
         }
         if (completion) {
-            completion(suc,self.items);
+            RunOnMainQueue(^{
+               completion(suc,self.items);
+            });
         }
     });
 }

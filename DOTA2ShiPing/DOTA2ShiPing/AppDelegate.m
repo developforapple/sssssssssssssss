@@ -48,11 +48,13 @@
     
     [[UISearchBar appearance] setBackgroundImage:[UIImage imageWithColor:kRedColor] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:16]}];
-    [[UINavigationBar appearance] setBarTintColor:kRedColor];
-    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:18]}];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+//    [[UINavigationBar appearance] setBarTintColor:kRedColor];
+//    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     
-//    [UIViewController setdefault];
+
+    [UIViewController setDefaultNavigationBarTintColor:RGBColor(10, 10, 10, 1)];
     [UIViewController setDefaultNavigationBarBlackStyle:YES];
     [UIViewController setDefaultNavigationBarLineHidden:YES];
     [UIViewController setDefaultNavigationBarTextColor:[UIColor whiteColor]];

@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSMutableDictionary<NSNumber *,SPItemListContainer *> *vcs;
 @property (weak, nonatomic) IBOutlet DDSegmentScrollView *segmentView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *changModeButtonItem;
+@property (weak, nonatomic) IBOutlet UIButton *filterBtn;
 
 // 分类过后的饰品数据
 @property (strong, nonatomic) NSArray<NSArray<SPItem *> *> *items;
@@ -31,48 +32,33 @@
 
 @implementation SPItemListVC
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
     self.vcs = [NSMutableDictionary dictionary];
-    
     [self initUI];
     [self loadData];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    NSLog(@"");
-}
-
-- (void)dealloc
-{
-    NSLog(@"SPItemListVC dealloc");
 }
 
 - (void)initUI
 {
     self.segmentView.highlightColor = kRedColor;
-    
-    self.pageVC.delegate = self;
-    self.pageVC.dataSource = self;
-    
     [self updateTitle];
-    
     SPItemListMode mode = [[NSUserDefaults standardUserDefaults] integerForKey:kSPItemListModeKey];
     self.mode = mode;
 }
 
 - (void)loadData
 {
+    DDProgressHUD *HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
     ygweakify(self);
     [self.filter asyncUpdateItems:^(BOOL suc, NSArray *items) {
         ygstrongify(self);
+        [HUD hide:YES];
         if (suc) {
             [self update];
         }else{
-            [DDProgressHUD showAutoHiddenHUDWithMessage:@"发生了一个错误"];
+            [SVProgressHUD showErrorWithStatus:@"发生了一个错误"];
         }
     }];
 }
@@ -105,9 +91,14 @@
     }
 }
 
-- (IBAction)changeDisplayMode:(UIBarButtonItem *)buttonItem
+- (IBAction)changeDisplayMode:(UIBarButtonItem *)btnItem
 {
     self.mode = (SPItemListMode)!self.mode;
+}
+
+- (IBAction)changeFilter:(UIButton *)btn
+{
+    
 }
 
 - (void)setMode:(SPItemListMode)mode
@@ -141,6 +132,8 @@
     static NSString *id = @"SPItemListPageVCSegueID";
     if ([segue.identifier isEqualToString:id]) {
         self.pageVC = segue.destinationViewController;
+        self.pageVC.delegate = self;
+        self.pageVC.dataSource = self;
     }
 }
 

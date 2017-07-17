@@ -15,8 +15,8 @@
 #import "SPSearchCell.h"
 #import "SPPlayerDetailInfoVC.h"
 #import "DDProgressHUD.h"
+#import "SPItemListVC.h"
 
-static NSString *kSPItemSearchedItemListSegueID = @"SPItemSearchedItemListSegueID";
 static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
 
 @interface SPSearchVC () <UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate,UIGestureRecognizerDelegate>
@@ -183,7 +183,9 @@ static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
 - (void)showItemList:(NSString *)keywords
 {
     SPItemFilter *filter = [SPItemFilter filterWithKeywords:keywords];
-    [self performSegueWithIdentifier:kSPItemSearchedItemListSegueID sender:filter];
+    SPItemListVC *vc = [SPItemListVC instanceFromStoryboard];
+    vc.filter = filter;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)showUserList:(NSString *)keywords
@@ -204,12 +206,7 @@ static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:kSPItemSearchedItemListSegueID]) {
-        UIViewController *vc = segue.destinationViewController;
-        if ([vc respondsToSelector:@selector(setFilter:)]) {
-            [vc performSelector:@selector(setFilter:) withObject:sender];
-        }
-    }else if ([segue.identifier isEqualToString:kSPSearchPlayerDetailSegueID]){
+    if ([segue.identifier isEqualToString:kSPSearchPlayerDetailSegueID]){
         SPPlayerDetailInfoVC *vc = segue.destinationViewController;
         vc.player = sender;
     }

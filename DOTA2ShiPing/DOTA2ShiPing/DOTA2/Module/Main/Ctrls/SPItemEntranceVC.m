@@ -16,7 +16,6 @@
 #import "SPItemListVC.h"
 
 #define kSPItemOffPriceSegueID @"SPItemOffPriceSegueID"
-#define kSPItemItemListSegueID @"SPItemItemListSegueID"
 
 @interface SPItemEntranceVC ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -84,7 +83,7 @@
             [SPItemHeroPickerVC bePushingIn:self.navigationController selectedCallback:^BOOL(SPHero *hero) {
                 ygstrongify(self);
                 SPItemFilter *filter = [SPItemFilter filterWithHero:hero];
-                [self performSegueWithIdentifier:kSPItemItemListSegueID sender:filter];
+                [self showItemList:filter];
                 return NO;
             }];
         }   break;
@@ -97,7 +96,7 @@
             NSArray *prefabs = [[SPDataManager shared] prefabsOfEntranceType:type];
             SPItemFilter *filter = [SPItemFilter filterWithPerfabs:prefabs];
             filter.filterTitle = config.title;
-            [self performSegueWithIdentifier:kSPItemItemListSegueID sender:filter];
+            [self showItemList:filter];
         }   break;
         default:
             break;
@@ -105,18 +104,11 @@
 }
 
 #pragma mark - Segue
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)showItemList:(SPItemFilter *)filter
 {
-    if ([segue.identifier isEqualToString:kSPItemItemListSegueID]) {
-        UIViewController *vc = [segue destinationViewController];
-        SEL sel = @selector(setFilter:);
-        if ([vc respondsToSelector:sel]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [vc performSelector:sel withObject:sender];
-#pragma clang diagnostic pop
-        }
-    }
+    SPItemListVC *vc = [SPItemListVC instanceFromStoryboard];
+    vc.filter = filter;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

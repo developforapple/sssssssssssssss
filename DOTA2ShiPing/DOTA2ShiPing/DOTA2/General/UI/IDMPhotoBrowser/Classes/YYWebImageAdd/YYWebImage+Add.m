@@ -19,7 +19,6 @@ DDSwizzleMethod
 {
     SEL oldSel = @selector(cancel);
     SEL newSel = @selector(add_cancel);
-    
     [self swizzleInstanceSelector:oldSel withNewSelector:newSel];
 }
 
@@ -49,23 +48,12 @@ DDSwizzleMethod
 
 @implementation YYWebImageManager (Add)
 
-+ (void)swizzleInstanceSelector:(SEL)originalSelector withNewSelector:(SEL)newSelector
-{
-    Method originalMethod = class_getInstanceMethod(self, originalSelector);
-    Method newMethod = class_getInstanceMethod(self, newSelector);
-    BOOL methodAdded = class_addMethod([self class],originalSelector,method_getImplementation(newMethod),method_getTypeEncoding(newMethod));
-    if (methodAdded){
-        class_replaceMethod([self class],newSelector,method_getImplementation(originalMethod),method_getTypeEncoding(originalMethod));
-    }else{
-        method_exchangeImplementations(originalMethod, newMethod);
-    }
-}
+DDSwizzleMethod
 
 + (void)load
 {
     SEL oldSel = @selector(requestImageWithURL:options:progress:transform:completion:);
     SEL newSel = @selector(add_requestImageWithURL:options:progress:transform:completion:);
-    
     [self swizzleInstanceSelector:oldSel withNewSelector:newSel];
 }
 
@@ -84,13 +72,13 @@ DDSwizzleMethod
 - (YYWebImageOperation *)existedOperationInQueue:(NSURL *)url
 {
     if (!url) return nil;
-    
     NSLog(@"队列里有%lu个任务",self.queue.operations.count);
-    
     for (YYWebImageOperation *operation in self.queue.operations) {
         if ([operation.request.URL.absoluteString isEqualToString:url.absoluteString]) {
+#if DEBUG
             NSString *state = operation.isExecuting?@"正在执行":(operation.isCancelled?@"被取消":@"其他");
             NSLog(@"找到任务 状态：%@",state);
+#endif
             return operation;
         }
     }

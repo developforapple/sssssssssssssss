@@ -21,6 +21,11 @@
 		2DC0F6901F1B6A2D004DCD3C /* SPItemHeroPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F68E1F1B6A2D004DCD3C /* SPItemHeroPickerVC.m */; };
 		2DC0F6921F1B6A3D004DCD3C /* SPHero.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC0F6911F1B6A3D004DCD3C /* SPHero.storyboard */; };
 		2DC0F6951F1B9C90004DCD3C /* SPItemHeroListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F6941F1B9C90004DCD3C /* SPItemHeroListVC.m */; };
+		2DC0F6971F1C5F82004DCD3C /* SPItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC0F6961F1C5F82004DCD3C /* SPItem.storyboard */; };
+		2DC0F69A1F1C624A004DCD3C /* SPItemEntranceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F6991F1C624A004DCD3C /* SPItemEntranceVC.m */; };
+		2DC0F69D1F1C6254004DCD3C /* SPItemEntranceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F69C1F1C6254004DCD3C /* SPItemEntranceCell.m */; };
+		2DC0F6A41F1C625D004DCD3C /* SPItemEntranceConfigure in Resources */ = {isa = PBXBuildFile; fileRef = 2DC0F6A01F1C625D004DCD3C /* SPItemEntranceConfigure */; };
+		2DC0F6A51F1C625D004DCD3C /* SPItemEntranceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F6A31F1C625D004DCD3C /* SPItemEntranceConfig.m */; };
 		2DE373531F176B5800C8F653 /* SPUpdate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE373521F176B5800C8F653 /* SPUpdate.storyboard */; };
 		2DE373561F176B8600C8F653 /* SPUpdateViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE373551F176B8600C8F653 /* SPUpdateViewCtrl.m */; };
 		2DF9B81C1F1361640012950A /* Config_Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6521F1361640012950A /* Config_Appearance.m */; };
@@ -146,14 +151,10 @@
 		2DF9B89B1F1361640012950A /* YGBaseWebViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7881F1361640012950A /* YGBaseWebViewCtrl.m */; };
 		2DF9B89C1F1361640012950A /* YGTabBarCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B78A1F1361640012950A /* YGTabBarCtrl.m */; };
 		2DF9B89E1F1361640012950A /* SPItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7901F1361640012950A /* SPItemCell.m */; };
-		2DF9B89F1F1361640012950A /* SPItemEntranceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7921F1361640012950A /* SPItemEntranceCell.m */; };
-		2DF9B8A01F1361640012950A /* SPItemEntranceConfigure in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B7951F1361640012950A /* SPItemEntranceConfigure */; };
 		2DF9B8A11F1361640012950A /* SPItemFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7971F1361640012950A /* SPItemFilter.m */; };
-		2DF9B8A21F1361640012950A /* SPItemEntranceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B79A1F1361640012950A /* SPItemEntranceVC.m */; };
 		2DF9B8A41F1361640012950A /* SPItemListContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B79E1F1361640012950A /* SPItemListContainer.m */; };
 		2DF9B8A51F1361640012950A /* SPItemListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7A01F1361640012950A /* SPItemListVC.m */; };
 		2DF9B8A61F1361640012950A /* SPItemOffPriceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7A21F1361640012950A /* SPItemOffPriceVC.m */; };
-		2DF9B8A71F1361640012950A /* SPItemEntranceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7A51F1361640012950A /* SPItemEntranceConfig.m */; };
 		2DF9B8A81F1361640012950A /* DDMainADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AA1F1361640012950A /* DDMainADVC.m */; };
 		2DF9B8A91F1361640012950A /* DDMainTBC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AC1F1361640012950A /* DDMainTBC.m */; };
 		2DF9B8AA1F1361640012950A /* SPLaunchADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AE1F1361640012950A /* SPLaunchADVC.m */; };
@@ -228,6 +229,15 @@
 		2DC0F6911F1B6A3D004DCD3C /* SPHero.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SPHero.storyboard; sourceTree = "<group>"; };
 		2DC0F6931F1B9C90004DCD3C /* SPItemHeroListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemHeroListVC.h; sourceTree = "<group>"; };
 		2DC0F6941F1B9C90004DCD3C /* SPItemHeroListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemHeroListVC.m; sourceTree = "<group>"; };
+		2DC0F6961F1C5F82004DCD3C /* SPItem.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SPItem.storyboard; sourceTree = "<group>"; };
+		2DC0F6981F1C624A004DCD3C /* SPItemEntranceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemEntranceVC.h; sourceTree = "<group>"; };
+		2DC0F6991F1C624A004DCD3C /* SPItemEntranceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemEntranceVC.m; sourceTree = "<group>"; };
+		2DC0F69B1F1C6254004DCD3C /* SPItemEntranceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemEntranceCell.h; sourceTree = "<group>"; };
+		2DC0F69C1F1C6254004DCD3C /* SPItemEntranceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemEntranceCell.m; sourceTree = "<group>"; };
+		2DC0F69F1F1C625D004DCD3C /* SPItemCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemCommon.h; sourceTree = "<group>"; };
+		2DC0F6A01F1C625D004DCD3C /* SPItemEntranceConfigure */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SPItemEntranceConfigure; sourceTree = "<group>"; };
+		2DC0F6A21F1C625D004DCD3C /* SPItemEntranceConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemEntranceConfig.h; sourceTree = "<group>"; };
+		2DC0F6A31F1C625D004DCD3C /* SPItemEntranceConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemEntranceConfig.m; sourceTree = "<group>"; };
 		2DE373521F176B5800C8F653 /* SPUpdate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SPUpdate.storyboard; sourceTree = "<group>"; };
 		2DE373541F176B8600C8F653 /* SPUpdateViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUpdateViewCtrl.h; sourceTree = "<group>"; };
 		2DE373551F176B8600C8F653 /* SPUpdateViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUpdateViewCtrl.m; sourceTree = "<group>"; };
@@ -493,22 +503,14 @@
 		2DF9B78A1F1361640012950A /* YGTabBarCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGTabBarCtrl.m; sourceTree = "<group>"; };
 		2DF9B78F1F1361640012950A /* SPItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemCell.h; sourceTree = "<group>"; };
 		2DF9B7901F1361640012950A /* SPItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemCell.m; sourceTree = "<group>"; };
-		2DF9B7911F1361640012950A /* SPItemEntranceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemEntranceCell.h; sourceTree = "<group>"; };
-		2DF9B7921F1361640012950A /* SPItemEntranceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemEntranceCell.m; sourceTree = "<group>"; };
-		2DF9B7941F1361640012950A /* SPItemCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemCommon.h; sourceTree = "<group>"; };
-		2DF9B7951F1361640012950A /* SPItemEntranceConfigure */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SPItemEntranceConfigure; sourceTree = "<group>"; };
 		2DF9B7961F1361640012950A /* SPItemFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemFilter.h; sourceTree = "<group>"; };
 		2DF9B7971F1361640012950A /* SPItemFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemFilter.m; sourceTree = "<group>"; };
-		2DF9B7991F1361640012950A /* SPItemEntranceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemEntranceVC.h; sourceTree = "<group>"; };
-		2DF9B79A1F1361640012950A /* SPItemEntranceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemEntranceVC.m; sourceTree = "<group>"; };
 		2DF9B79D1F1361640012950A /* SPItemListContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemListContainer.h; sourceTree = "<group>"; };
 		2DF9B79E1F1361640012950A /* SPItemListContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemListContainer.m; sourceTree = "<group>"; };
 		2DF9B79F1F1361640012950A /* SPItemListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemListVC.h; sourceTree = "<group>"; };
 		2DF9B7A01F1361640012950A /* SPItemListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemListVC.m; sourceTree = "<group>"; };
 		2DF9B7A11F1361640012950A /* SPItemOffPriceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemOffPriceVC.h; sourceTree = "<group>"; };
 		2DF9B7A21F1361640012950A /* SPItemOffPriceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemOffPriceVC.m; sourceTree = "<group>"; };
-		2DF9B7A41F1361640012950A /* SPItemEntranceConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemEntranceConfig.h; sourceTree = "<group>"; };
-		2DF9B7A51F1361640012950A /* SPItemEntranceConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemEntranceConfig.m; sourceTree = "<group>"; };
 		2DF9B7A91F1361640012950A /* DDMainADVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMainADVC.h; sourceTree = "<group>"; };
 		2DF9B7AA1F1361640012950A /* DDMainADVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMainADVC.m; sourceTree = "<group>"; };
 		2DF9B7AB1F1361640012950A /* DDMainTBC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMainTBC.h; sourceTree = "<group>"; };
@@ -710,6 +712,24 @@
 				2DC0F6941F1B9C90004DCD3C /* SPItemHeroListVC.m */,
 			);
 			path = ViewCtrls;
+			sourceTree = "<group>";
+		};
+		2DC0F69E1F1C625D004DCD3C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2DC0F69F1F1C625D004DCD3C /* SPItemCommon.h */,
+				2DC0F6A01F1C625D004DCD3C /* SPItemEntranceConfigure */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		2DC0F6A11F1C625D004DCD3C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2DC0F6A21F1C625D004DCD3C /* SPItemEntranceConfig.h */,
+				2DC0F6A31F1C625D004DCD3C /* SPItemEntranceConfig.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2DE373501F176B4A00C8F653 /* Update */ = {
@@ -1431,6 +1451,7 @@
 		2DF9B78B1F1361640012950A /* Item */ = {
 			isa = PBXGroup;
 			children = (
+				2DC0F6961F1C5F82004DCD3C /* SPItem.storyboard */,
 				2DF9B7981F1361640012950A /* Ctrls */,
 				2DF9B78C1F1361640012950A /* Cell */,
 				2DF9B7931F1361640012950A /* Common */,
@@ -1445,8 +1466,6 @@
 			children = (
 				2DF9B78F1F1361640012950A /* SPItemCell.h */,
 				2DF9B7901F1361640012950A /* SPItemCell.m */,
-				2DF9B7911F1361640012950A /* SPItemEntranceCell.h */,
-				2DF9B7921F1361640012950A /* SPItemEntranceCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1454,8 +1473,6 @@
 		2DF9B7931F1361640012950A /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				2DF9B7941F1361640012950A /* SPItemCommon.h */,
-				2DF9B7951F1361640012950A /* SPItemEntranceConfigure */,
 				2DF9B7961F1361640012950A /* SPItemFilter.h */,
 				2DF9B7971F1361640012950A /* SPItemFilter.m */,
 			);
@@ -1465,14 +1482,12 @@
 		2DF9B7981F1361640012950A /* Ctrls */ = {
 			isa = PBXGroup;
 			children = (
-				2DF9B7991F1361640012950A /* SPItemEntranceVC.h */,
-				2DF9B79A1F1361640012950A /* SPItemEntranceVC.m */,
-				2DF9B79D1F1361640012950A /* SPItemListContainer.h */,
-				2DF9B79E1F1361640012950A /* SPItemListContainer.m */,
-				2DF9B79F1F1361640012950A /* SPItemListVC.h */,
-				2DF9B7A01F1361640012950A /* SPItemListVC.m */,
 				2DF9B7A11F1361640012950A /* SPItemOffPriceVC.h */,
 				2DF9B7A21F1361640012950A /* SPItemOffPriceVC.m */,
+				2DF9B79F1F1361640012950A /* SPItemListVC.h */,
+				2DF9B7A01F1361640012950A /* SPItemListVC.m */,
+				2DF9B79D1F1361640012950A /* SPItemListContainer.h */,
+				2DF9B79E1F1361640012950A /* SPItemListContainer.m */,
 			);
 			path = Ctrls;
 			sourceTree = "<group>";
@@ -1480,8 +1495,6 @@
 		2DF9B7A31F1361640012950A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2DF9B7A41F1361640012950A /* SPItemEntranceConfig.h */,
-				2DF9B7A51F1361640012950A /* SPItemEntranceConfig.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1496,6 +1509,8 @@
 		2DF9B7A71F1361640012950A /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				2DC0F69E1F1C625D004DCD3C /* Common */,
+				2DC0F6A11F1C625D004DCD3C /* Model */,
 				2DF9B7A81F1361640012950A /* Ctrls */,
 				2DF9B7AF1F1361640012950A /* Views */,
 			);
@@ -1511,6 +1526,8 @@
 				2DF9B7AC1F1361640012950A /* DDMainTBC.m */,
 				2DF9B7AD1F1361640012950A /* SPLaunchADVC.h */,
 				2DF9B7AE1F1361640012950A /* SPLaunchADVC.m */,
+				2DC0F6981F1C624A004DCD3C /* SPItemEntranceVC.h */,
+				2DC0F6991F1C624A004DCD3C /* SPItemEntranceVC.m */,
 			);
 			path = Ctrls;
 			sourceTree = "<group>";
@@ -1518,6 +1535,8 @@
 		2DF9B7AF1F1361640012950A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2DC0F69B1F1C6254004DCD3C /* SPItemEntranceCell.h */,
+				2DC0F69C1F1C6254004DCD3C /* SPItemEntranceCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1900,10 +1919,11 @@
 				2DF9B8711F1361640012950A /* LCActionSheet.bundle in Resources */,
 				2DF9B8D01F1361640012950A /* Assets.xcassets in Resources */,
 				2DC0F6921F1B6A3D004DCD3C /* SPHero.storyboard in Resources */,
-				2DF9B8A01F1361640012950A /* SPItemEntranceConfigure in Resources */,
+				2DC0F6A41F1C625D004DCD3C /* SPItemEntranceConfigure in Resources */,
 				2DF9B8D31F1361640012950A /* heroMap.json in Resources */,
 				2DF9B8661F1361640012950A /* IDMPhotoBrowser.bundle in Resources */,
 				2DF9B8771F1361640012950A /* CDTAlertCtrl.xib in Resources */,
+				2DC0F6971F1C5F82004DCD3C /* SPItem.storyboard in Resources */,
 				2DF9B8641F1361640012950A /* IDMPBLocalizations.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1964,6 +1984,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DF9B8761F1361640012950A /* CDTAlertCtrl.m in Sources */,
+				2DC0F69D1F1C6254004DCD3C /* SPItemEntranceCell.m in Sources */,
 				2DF9B8731F1361640012950A /* YGLineView.m in Sources */,
 				2DF9B8521F1361640012950A /* ZMBAPI.m in Sources */,
 				2DF9B8C11F1361640012950A /* SPLastestItemVC.m in Sources */,
@@ -1999,6 +2020,7 @@
 				2DF9B8911F1361640012950A /* SPItemColor.m in Sources */,
 				2DF9B88A1F1361640012950A /* DDWebInspector.m in Sources */,
 				2DF9B8B91F1361640012950A /* SPPlayerCell.m in Sources */,
+				2DC0F6A51F1C625D004DCD3C /* SPItemEntranceConfig.m in Sources */,
 				2DF9B8AD1F1361640012950A /* SPPlayerManager.m in Sources */,
 				2DF9B81F1F1361640012950A /* Config_Network.m in Sources */,
 				2D91EB771F1724230038B49C /* SPBaseData.m in Sources */,
@@ -2014,7 +2036,6 @@
 				2DF9B8A11F1361640012950A /* SPItemFilter.m in Sources */,
 				2DF9B82F1F1361640012950A /* NSObject+YGPerformBlock.m in Sources */,
 				2DF9B8991F1361640012950A /* YGBasePopViewCtrl.m in Sources */,
-				2DF9B8A21F1361640012950A /* SPItemEntranceVC.m in Sources */,
 				2DF9B8271F1361640012950A /* YGBatteryMotionHelper.m in Sources */,
 				2DF9B8231F1361640012950A /* SPMaxPlusAPI.m in Sources */,
 				2DF9B8C01F1361640012950A /* SPItemUpdateVC.m in Sources */,
@@ -2035,7 +2056,6 @@
 				2DF9B8751F1361640012950A /* CDTAlertAction.m in Sources */,
 				2DF9B8441F1361640012950A /* UINavigationController+Convenience.m in Sources */,
 				2DF9B8CA1F1361640012950A /* SPWorkshopResourcesVC.m in Sources */,
-				2DF9B8A71F1361640012950A /* SPItemEntranceConfig.m in Sources */,
 				2DF9B8621F1361640012950A /* DDProgressHUD.m in Sources */,
 				2DF9B8491F1361640012950A /* UIViewController+Storyboard.m in Sources */,
 				2DF9B8BD1F1361640012950A /* SPSearchCell.m in Sources */,
@@ -2086,6 +2106,7 @@
 				2DF9B8CE1F1361640012950A /* SPWorkshopCell.m in Sources */,
 				2D48D2981CDE20D700190F0C /* main.m in Sources */,
 				2DF9B83D1F1361640012950A /* UIToolbar+yg_IBInspectable.m in Sources */,
+				2DC0F69A1F1C624A004DCD3C /* SPItemEntranceVC.m in Sources */,
 				2DF9B8AF1F1361640012950A /* SPPlayerAliasesVC.m in Sources */,
 				2DF9B8C81F1361640012950A /* SPWorkshop.m in Sources */,
 				2DF9B8301F1361640012950A /* NSString+STRegex.m in Sources */,
@@ -2095,7 +2116,6 @@
 				2DF9B88C1F1361640012950A /* SPPlayer.m in Sources */,
 				2DF9B8BB1F1361640012950A /* SPSearchVC.m in Sources */,
 				2DF9B87C1F1361640012950A /* RWDropdownMenuTransitionController.m in Sources */,
-				2DF9B89F1F1361640012950A /* SPItemEntranceCell.m in Sources */,
 				2DF9B87A1F1361640012950A /* RWDropdownMenu.m in Sources */,
 				2DF9B8251F1361640012950A /* BingoCache.m in Sources */,
 				2DF9B86F1F1361640012950A /* YGLabel.m in Sources */,

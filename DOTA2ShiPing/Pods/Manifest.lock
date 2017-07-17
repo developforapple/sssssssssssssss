@@ -20,13 +20,9 @@ PODS:
   - DGActivityIndicatorView (2.1.1)
   - DZNEmptyDataSet (1.8.1)
   - DZNWebViewController (3.2)
-  - FMDB/standalone (2.6.2):
-    - FMDB/standalone/default (= 2.6.2)
-    - FMDB/standalone/FTS (= 2.6.2)
-  - FMDB/standalone/default (2.6.2):
+  - FLAnimatedImage (1.0.12)
+  - FMDB/standalone (2.7.2):
     - sqlite3
-  - FMDB/standalone/FTS (2.6.2):
-    - sqlite3/fts
   - hpple (0.2.0)
   - IAPHelper (1.0.8.1)
   - IQKeyboardManager (4.0.10)
@@ -37,16 +33,15 @@ PODS:
   - pop (1.0.10)
   - ReactiveObjC (3.0.0)
   - SAMKeychain (1.5.2)
-  - SDWebImage (4.0.0):
-    - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
+  - SDWebImage/GIF (4.0.0):
+    - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
   - sqlite3 (3.19.3):
     - sqlite3/common (= 3.19.3)
   - sqlite3/common (3.19.3)
-  - sqlite3/fts (3.19.3):
-    - sqlite3/common
   - SSZipArchive (1.8.1)
-  - SVProgressHUD (2.0.4)
+  - SVProgressHUD (2.1.2)
   - YYCache (1.0.4)
   - YYCategories (1.0.4):
     - YYCategories/no-arc (= 1.0.4)
@@ -69,7 +64,7 @@ DEPENDENCIES:
   - DGActivityIndicatorView (~> 2.0)
   - DZNEmptyDataSet (~> 1.8.1)
   - DZNWebViewController
-  - FMDB/standalone (~> 2.6.2)
+  - FMDB/standalone (~> 2.7.2)
   - hpple (~> 0.2.0)
   - IAPHelper (~> 1.0.8.1)
   - IQKeyboardManager
@@ -80,13 +75,27 @@ DEPENDENCIES:
   - pop
   - ReactiveObjC
   - SAMKeychain
-  - SDWebImage
+  - SDWebImage/GIF (from `https://github.com/rs/SDWebImage.git`)
   - SSZipArchive (~> 1.8.1)
-  - SVProgressHUD (~> 2.0.3)
+  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
   - YYCategories
   - YYImage/WebP
   - YYModel (~> 1.0.4)
   - YYWebImage (~> 1.0.4)
+
+EXTERNAL SOURCES:
+  SDWebImage:
+    :git: https://github.com/rs/SDWebImage.git
+  SVProgressHUD:
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+
+CHECKOUT OPTIONS:
+  SDWebImage:
+    :commit: '041842bf085cbb711f0d9e099e6acbf6fd533b0c'
+    :git: https://github.com/rs/SDWebImage.git
+  SVProgressHUD:
+    :commit: 7e3139d2d56b336e48c178cc4605966191f4ac24
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -96,7 +105,8 @@ SPEC CHECKSUMS:
   DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   DZNWebViewController: 8e927a5de637fe0c4104c001d5cccd4fa5621e50
-  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
   IAPHelper: fbed593436838c3d40753ded319062b68c00cc38
   IQKeyboardManager: 593ee99b88381f4b9ccb22bd680f22606351bd41
@@ -110,13 +120,13 @@ SPEC CHECKSUMS:
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   sqlite3: e0f7755dc52e709215e116c801ea0c81fd45c083
   SSZipArchive: 04547dfa448be5ed7ecbaf7eaf8a6e9eb9b42997
-  SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
+  SVProgressHUD: d65371a8e4482380deddb9fe60e14e59ddb30eb3
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 9abee6ef0df95fc58992771ae3fe14f70436c9b4
+PODFILE CHECKSUM: c3aa45a6d273b2c1b009072afc14c0ac04db1605
 
 COCOAPODS: 1.2.1
