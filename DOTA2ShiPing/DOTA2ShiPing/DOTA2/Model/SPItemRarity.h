@@ -23,9 +23,16 @@
 
 @interface SPItemRarity : NSObject <NSCopying,NSCoding>
 
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *name_cn;
-@property (strong, nonatomic) NSString *color;
-@property (strong, nonatomic) NSNumber *value;  //1
+// common
+@property (copy, nonatomic) NSString *name;
+// Rarity_Common
+@property (copy, nonatomic) NSString *loc_key;
+// 1
+@property (copy, nonatomic) NSString *value;
+// desc_common
+@property (copy, nonatomic) NSString *color;
+
+
+@property (copy, nonatomic) NSString *name_loc;
 
 @end

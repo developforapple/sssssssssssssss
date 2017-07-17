@@ -7,7 +7,6 @@
 //
 
 #import "SPHero.h"
-#import "SPItemSlot.h"
 #import "YYModel.h"
 
 @interface SPHero() <YYModel>
@@ -16,9 +15,24 @@
 
 @implementation SPHero
 
-+ (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass
+YYModelDefaultCode
+
++ (NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass
 {
-    return @{@"slot":[SPItemSlot class]};
+    return @{@"ItemSlots":[SPItemSlot class]};
+}
+
+- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic
+{
+    if ([self.AttributePrimary isEqualToString:@"DOTA_ATTRIBUTE_AGILITY"]) {
+        self.type = SPHeroTypeDex;
+    }else if ([self.AttributePrimary isEqualToString:@"DOTA_ATTRIBUTE_STRENGTH"]){
+        self.type = SPHeroTypePow;
+    }else if ([self.AttributePrimary isEqualToString:@"DOTA_ATTRIBUTE_INTELLECT"]){
+        self.type = SPHeroTypeWit;
+    }
+    self.camp = [self.Team isEqualToString:@"Good"] ? SPHeroCampRadiant : SPHeroCampDire ;
+    return YES;
 }
 
 @end

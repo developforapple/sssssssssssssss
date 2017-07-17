@@ -7,9 +7,11 @@
 //
 
 #import "SPItemColor.h"
-#import <UIKit/UIColor.h>
+#import <YYModel.h>
 
 @implementation SPItemColor
+
+YYModelDefaultCode
 
 - (void)setHex_color:(NSString *)hex_color
 {

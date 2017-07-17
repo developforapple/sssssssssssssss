@@ -15,7 +15,6 @@
 
 // data
 @property (strong, nonatomic) NSString *name;   //"#DOTA_Set_Narcissistic_Leech"
-@property (strong, nonatomic) NSString *name_cn;
 @property (strong, nonatomic) NSString *store_bundle; //"Narcissistic Leech"
 
 // child
@@ -31,5 +30,7 @@
  }
  */
 @property (strong, nonatomic) NSArray<NSString *> *items;
+
+@property (strong, nonatomic) NSString *name_loc;
 
 @end

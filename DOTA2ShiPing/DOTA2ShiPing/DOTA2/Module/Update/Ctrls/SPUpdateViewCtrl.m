@@ -20,6 +20,11 @@
 
 @implementation SPUpdateViewCtrl
 
++ (BOOL)needUpdateNecessary
+{
+    return [SPResourceManager needInitializeDatabase];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -64,7 +69,7 @@
          ygstrongify(self);
          self.progressLabel.text = [NSString stringWithFormat:@"%02d%%",(int)(x.floatValue*100)];
      }];
-    self.manager.updateCompleted = ^{
+    self.manager.downloadCompleted = ^{
         ygstrongify(self);
         self.progressLabel.text = @"解压缩中...";
         [self.manager beginUnzip];
@@ -73,6 +78,9 @@
         ygstrongify(self);
         self.progressLabel.text = @"保存中...";
         [self.manager saveData];
+    };
+    self.manager.completion = ^{
+        ygstrongify(self);
         [self done];
     };
 }

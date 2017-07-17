@@ -21,6 +21,7 @@ FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 - (BOOL)isBundle;   //是否是一个套装
 - (BOOL)isInBundle; //是否包含于一个套装
 - (BOOL)isWearable; //是否是一个可穿戴的饰品
+- (BOOL)isTaunt;    //是否是一个嘲讽
 
 - (UIColor *)itemColor; //饰品的字体颜色
 

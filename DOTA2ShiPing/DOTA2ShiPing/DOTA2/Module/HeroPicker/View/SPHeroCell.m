@@ -18,6 +18,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     CAGradientLayer *layer = [CAGradientLayer layer];
     layer.frame = self.frame;
     layer.startPoint = CGPointMake(.5f, .5f);
@@ -29,11 +30,6 @@
     self.gLayer = layer;
     
     [self.blurView bringSubviewToFront:self.titleLabel];
-    
-    NSArray *releaseLog =
-    @[@{@"version":@"1.0",
-        @"build":@"1.0.65",
-        @"desc":@"“饰品总汇”重生！\n\n全新的设计，重新Coding，一切推倒重来只为情怀。"}];
 }
 
 - (void)layoutSubviews
@@ -45,7 +41,7 @@
 - (void)configure:(SPHero *)hero
 {
     _hero = hero;
-    self.titleLabel.text = hero.name_cn;
+    self.titleLabel.text = hero.name_loc;
     
     NSString *name = hero.name;
     NSRange range = [name rangeOfString:@"npc_dota_hero_"];

@@ -55,7 +55,7 @@
 //                NSString *url = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_full.png",name];
                 [self.imageView yy_setImageWithURL:[NSURL URLWithString:url] placeholder:nil options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation completion:nil];
                 
-                self.titleLabel.text = hero.name_cn;
+                self.titleLabel.text = hero.name_loc;
             }else{
                 self.imageView.hidden = YES;
                 self.closeBtn.hidden = YES;
@@ -69,9 +69,9 @@
             if (quality) {
                 self.imageView.hidden = NO;
                 self.closeBtn.hidden = NO;
-                self.titleLabel.text = quality.name_cn;
+                self.titleLabel.text = quality.name_loc;
                 SPItemColor *color = [SPItemColor new];
-                color.hex_color = quality.hexcolor;
+                color.hex_color = quality.hexColor;
                 self.imageView.backgroundColor = color.color;
                 self.imageView.layer.masksToBounds = YES;
                 self.imageView.layer.cornerRadius = CGRectGetWidth(self.imageView.frame)/2;
@@ -89,7 +89,7 @@
             if (rarity) {
                 self.imageView.hidden = NO;
                 self.closeBtn.hidden = NO;
-                self.titleLabel.text = rarity.name_cn;
+                self.titleLabel.text = rarity.name_loc;
                 self.imageView.backgroundColor = [[SPDataManager shared] colorOfName:rarity.color].color;
                 self.imageView.layer.masksToBounds = YES;
                 self.imageView.layer.cornerRadius = CGRectGetWidth(self.imageView.frame)/2;

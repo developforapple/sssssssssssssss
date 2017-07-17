@@ -11,4 +11,6 @@
 
 + (NSString *)hardwareName;
 
++ (BOOL)hardwareIsSimulator;
+
 @end

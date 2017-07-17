@@ -12,12 +12,12 @@
 
 @interface SPItemColor : NSObject
 
-// key
-@property (strong, nonatomic) NSString *token;      //desc_uncommon
-
-// data
-@property (strong, nonatomic) NSString *color_name; //ItemRarityUncommon
-@property (strong, nonatomic) NSString *hex_color;  //#5e98d9
+// desc_legendary
+@property (strong, nonatomic) NSString *name;
+// ItemRarityLegendary
+@property (strong, nonatomic) NSString *color_name;
+// #d32ce6
+@property (strong, nonatomic) NSString *hex_color;
 
 @property (assign, nonatomic) float r;
 @property (assign, nonatomic) float g;

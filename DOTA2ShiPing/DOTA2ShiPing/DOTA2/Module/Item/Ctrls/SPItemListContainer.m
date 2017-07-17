@@ -28,11 +28,6 @@
     [self initUI];
 }
 
-- (void)dealloc
-{
-    NSLog(@"SPItemListContainer dealloc");
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

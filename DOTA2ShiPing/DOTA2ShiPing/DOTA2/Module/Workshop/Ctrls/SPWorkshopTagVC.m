@@ -199,11 +199,12 @@ static NSString *const kSPWorkshopTagCell = @"SPWorkshopTagCell";
     if (self.isHeroSegment) {
         if (secion == 0) {
             ygweakify(self);
-            [SPItemHeroPickerVC presentFrom:self selectedCallback:^(SPHero *hero) {
+            [SPItemHeroPickerVC presentFrom:self selectedCallback:^BOOL(SPHero *hero) {
                 ygstrongify(self);
                 [self setupHero:hero];
                 [self.tableView reloadData];
                 [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+                return YES;
             }];
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
@@ -239,8 +240,4 @@ static NSString *const kSPWorkshopTagCell = @"SPWorkshopTagCell";
     [tvc setup:workshop completion:completion];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
 @end

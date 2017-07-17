@@ -22,4 +22,10 @@
     return hardware;
 }
 
++ (BOOL)hardwareIsSimulator
+{
+    NSString *name = [self hardwareName];
+    return [name isEqualToString:@"x86_64"] || [name isEqualToString:@"i386"];
+}
+
 @end

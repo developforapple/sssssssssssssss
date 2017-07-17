@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SPLocale.h"
 #import "SPHero.h"
 #import "SPItemPrefab.h"
 #import "SPItemRarity.h"
@@ -16,15 +17,14 @@
 
 #import "FMDB.h"
 
+/**
+ 应用需要使用的数据
+ */
 @interface SPDataManager : NSObject
 
 + (instancetype)shared;
 
-@property (strong, nonatomic) NSArray<SPHero *> *heroes;
-@property (strong, nonatomic) NSArray<SPHero *> *prefabs;
-@property (strong, nonatomic) NSArray<SPItemRarity *> *rarities;
-@property (strong, nonatomic) NSArray<SPItemColor *> *colors;
-@property (strong, nonatomic) NSArray<SPItemQuality *> *qualities;
+- (void)reloadData;
 
 - (SPItemRarity *)rarityOfName:(NSString *)name;
 - (SPItemColor *)colorOfName:(NSString *)name;
@@ -32,9 +32,52 @@
 - (NSArray<SPItemPrefab *> *)prefabsOfNames:(NSArray<NSString *> *)names;
 - (NSArray<SPItemPrefab *> *)prefabsOfEntranceType:(SPItemEntranceType)type;
 
-#pragma mark - DB
-@property (strong, readonly, nonatomic) FMDatabase *db;
 // 查询捆绑包
 - (NSArray<SPItemSets *> *)querySetsWithCondition:(NSString *)condition values:(NSArray *)values;
 
+@end
+
+#ifndef SPLOCAL
+    #define SPLOCAL(token,notfound) ([[SPDataManager shared] localizedString:( token )] ?: ( notfound ))
+#endif
+
+#ifndef SPLOCALNONIL
+    #define SPLOCALNONIL(token) SPLOCAL( ( token ),( token ) )
+#endif
+
+@interface SPDataManager (Local)
+@property (strong, readonly, nonatomic) NSDictionary<NSString *,NSString *> *localMap;
+// 忽略大小写和#前缀，返回本地化后的字符串。没找到时返回nil
+- (NSString *)localizedString:(NSString *)token;
+@end
+
+
+@interface SPDataManager (BaseData)
+@property (strong, readonly, nonatomic) NSArray<SPHero *> *heroes;
+@property (strong, readonly, nonatomic) NSArray<SPItemPrefab *> *prefabs;
+@property (strong, readonly, nonatomic) NSArray<SPItemRarity *> *rarities;
+@property (strong, readonly, nonatomic) NSArray<SPItemColor *> *colors;
+@property (strong, readonly, nonatomic) NSArray<SPItemQuality *> *qualities;
+@property (strong, readonly, nonatomic) NSArray<SPItemSlot *> *slots;
+@end
+
+#ifndef SPDB
+    #define SPDB [[SPDataManager shared] db]
+#endif
+
+#ifndef SPDBOPEN
+    #define SPDBOPEN [SPDB open];
+#endif
+
+#ifndef SPDBWITHOPEN
+    #define SPDBWITHOPEN SPDBOPEN;FMDatabase *db = SPDB;
+#endif
+
+#ifndef SPDBCLOSE
+    #define SPDBCLOSE [SPDB close];
+#endif
+
+@interface SPDataManager (DB)
+// 数据库由外部负责打开和关闭
+@property (strong, readonly, nonatomic) FMDatabase *db;
 @end

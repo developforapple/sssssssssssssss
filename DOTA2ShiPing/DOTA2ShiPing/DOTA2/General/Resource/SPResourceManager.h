@@ -31,13 +31,17 @@
 */
 
 
+
+/**
+ 应用需要使用和更新的资源
+ */
 @interface SPResourceManager : NSObject
 
 // 是否需要初始化数据库
 + (BOOL)needInitializeDatabase;
 
 // 当前本地化语言
-@property (copy, nonatomic) NSString *lang;
+@property (copy, readonly, nonatomic) NSString *lang;
 
 // 基础数据远程文件
 @property (strong, nonatomic) AVFile *baseDataFile;
@@ -50,8 +54,9 @@
 @property (strong, nonatomic) NSError *error;
 
 @property (assign, nonatomic) float progress;
-@property (copy, nonatomic) void (^updateCompleted)(void);
+@property (copy, nonatomic) void (^downloadCompleted)(void);
 @property (copy, nonatomic) void (^unzipCompleted)(void);
+@property (copy, nonatomic) void (^completion)(void);
 
 // 检查完毕后，发生错误：存放于error，是否需要更新：存放于needUpdate
 - (void)checkUpdate;

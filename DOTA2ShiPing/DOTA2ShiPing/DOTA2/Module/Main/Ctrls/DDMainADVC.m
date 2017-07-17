@@ -12,7 +12,10 @@
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #endif
 
+static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
+
 @interface DDMainADVC () <GADBannerViewDelegate>
+@property (strong, nonatomic) UITabBarController *tabBarCtrl;
 @property (weak, nonatomic) IBOutlet UIView *adContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *adContainerHeightConstraint;
 @property (strong, nonatomic) GADBannerView *adView;
@@ -26,9 +29,9 @@
     GADRequest *req = [GADRequest request];
     req.testDevices = @[kGADSimulatorID];
     
-    self.adView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner origin:CGPointZero];
-    self.adView.frame = self.adContainer.bounds;
-#if DEBUG_MODE
+    GADAdSize size = GADAdSizeFromCGSize(CGSizeMake(Device_Width, 50.f));
+    self.adView = [[GADBannerView alloc] initWithAdSize:size];
+#if NO //DEBUG_MODE
     // 谷歌提供的测试广告单元
     self.adView.adUnitID = @"ca-app-pub-3940256099942544/6300978111";
 #else
@@ -36,7 +39,15 @@
 #endif
     self.adView.rootViewController = self;
     self.adView.delegate = self;
+    
+#if TARGET_OS_SIMULATOR
+    self.adView.autoloadEnabled = NO;
+    GADRequest *request = [GADRequest request];
+    request.testDevices = @[kGADSimulatorID];
+    [self.adView loadRequest:request];
+#else
     self.adView.autoloadEnabled = YES;
+#endif
     [self.adContainer addSubview:self.adView];
 }
 
@@ -69,6 +80,34 @@
 - (void)adViewWillLeaveApplication:(GADBannerView *)bannerView
 {
     NSLog(@"点击AD即将离开应用");
+}
+
+
+- (UIViewController *)childViewControllerForStatusBarStyle
+{
+    return self.tabBarCtrl;
+}
+
+- (UIViewController *)childViewControllerForStatusBarHidden
+{
+    return self.tabBarCtrl;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return NO;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kMainTabBarCtrlSegueID]) {
+        self.tabBarCtrl = segue.destinationViewController;
+    }
 }
 
 @end

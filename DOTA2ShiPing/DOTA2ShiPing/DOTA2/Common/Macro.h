@@ -66,7 +66,12 @@
     #endif
 
     //设备类型
-    #define IS_Simulator            (NSNotFound != [Device_Model rangeOfString:@"simulator"].location)
+    #if (yg_has_include(UIDevice+Ext.h))
+        #define IS_Simulator ([UIDevice hardwareIsSimulator])
+    #else
+        #define IS_Simulator NO
+    #endif
+
     #define IS_iPhone               (NSNotFound != [Device_Model rangeOfString:@"iPhone"].location)
     #define IS_iPad                 (NSNotFound != [Device_Model rangeOfString:@"iPad"].location)
     #define IS_iPod                 (NSNotFound != [Device_Model rangeOfString:@"iPod"].location)

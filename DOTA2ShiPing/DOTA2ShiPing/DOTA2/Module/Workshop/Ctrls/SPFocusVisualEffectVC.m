@@ -83,11 +83,6 @@ NSTimeInterval const kSPFocusAnimationDurtaion = .3f;
     }];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
-
 - (void)dealloc
 {
     NSLog(@"%@释放",NSStringFromClass(self.class));

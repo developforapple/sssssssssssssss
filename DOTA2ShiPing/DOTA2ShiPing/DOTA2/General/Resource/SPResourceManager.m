@@ -41,16 +41,30 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
     return nil == [[NSUserDefaults standardUserDefaults] objectForKey:kDataVersionKey];
 }
 
+- (NSString *)lang
+{
+    return GetLang;
+}
+
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        self.lang = kLangSchinese;
         self.version = [[[NSUserDefaults standardUserDefaults] objectForKey:kDataVersionKey] longLongValue];
-        self.langVersion = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"kLangDataVersion_%@",self.lang]] longLongValue];
-        self.langPatchVersion = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"kLangPatchVersion_%@",self.lang]] longLongValue];
+        self.langVersion = [[[NSUserDefaults standardUserDefaults] objectForKey:[self langVersionKey:self.lang]] longLongValue];
+        self.langPatchVersion = [[[NSUserDefaults standardUserDefaults] objectForKey:[self langPatchVersionKey:self.lang]] longLongValue];
     }
     return self;
+}
+
+- (NSString *)langVersionKey:(NSString *)lang
+{
+    return [NSString stringWithFormat:@"kLangDataVersion_%@",lang];
+}
+
+- (NSString *)langPatchVersionKey:(NSString *)lang
+{
+    return [NSString stringWithFormat:@"kLangPatchVersion_%@",lang];
 }
 
 #pragma mark - Check
@@ -220,7 +234,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
             [self getLangPatchData:^(BOOL suc) {
                 if (!suc) return ;
                 ygstrongify(self);
-                [self updateDidCompleted];
+                [self downloadDidCompleted];
             }];
         }];
     }];
@@ -291,10 +305,10 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
     self.progress = self.baseDataProgress * 0.6f + self.langFileProgress * 0.2f + self.langPatchProgress * 0.2f;
 }
 
-- (void)updateDidCompleted
+- (void)downloadDidCompleted
 {
-    if (self.updateCompleted) {
-        self.updateCompleted();
+    if (self.downloadCompleted) {
+        self.downloadCompleted();
     }
 }
 
@@ -382,6 +396,8 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
     [self saveBaseData];
     [self saveLangMainData];
     [self saveLangPatchData];
+    
+    [self updateDidCompleted];
 }
 
 - (BOOL)saveBaseData
@@ -415,6 +431,24 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 }
 
 #pragma mark - 
+
+- (void)updateDidCompleted
+{
+    self.version = self.latestVersion;
+    [[NSUserDefaults standardUserDefaults] setObject:@(self.version) forKey:kDataVersionKey];
+    self.langVersion = self.latestLangVersion;
+    [[NSUserDefaults standardUserDefaults] setObject:@(self.langVersion) forKey:[self langVersionKey:self.lang]];
+    self.langPatchVersion = self.latestLangPatchVersion;
+    [[NSUserDefaults standardUserDefaults] setObject:@(self.langPatchVersion) forKey:[self langPatchVersionKey:self.lang]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (self.completion) {
+        self.completion();
+    }
+    
+    [self cleanTmp];
+}
+
 - (void)serializeData
 {
     

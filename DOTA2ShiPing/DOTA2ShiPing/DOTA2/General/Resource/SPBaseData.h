@@ -31,7 +31,7 @@
 + (NSString *)rootFolder;
 // 保存基础数据
 + (NSString *)baseDataFolder;
-// 保存所有语言文件
+// 保存所有语言的总目录
 + (NSString *)langFolder;
 // 指定语言文件的目录
 + (NSString *)langPath:(NSString *)lang;

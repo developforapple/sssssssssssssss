@@ -137,9 +137,9 @@
     
     NSMutableArray *array = [NSMutableArray array];
     for (SPItemQuality *q in qualities) {
-        UIColor *color = [UIColor colorWithHexString:q.hexcolor];
+        UIColor *color = [UIColor colorWithHexString:q.hexColor];
         UIImage *image = [UIImage imageWithColor:color size:CGSizeMake(20, 20)];
-        RWDropdownMenuItem *item = [RWDropdownMenuItem itemWithText:q.name_cn image:image action:^{
+        RWDropdownMenuItem *item = [RWDropdownMenuItem itemWithText:q.name_loc image:image action:^{
             action(q);
         }];
         [array addObject:item];
@@ -162,7 +162,7 @@
     for (SPItemRarity *r in rarities) {
         SPItemColor *color = [[SPDataManager shared] colorOfName:r.color];
         UIImage *image = [UIImage imageWithColor:color.color size:CGSizeMake(20, 20)];
-        RWDropdownMenuItem *item = [RWDropdownMenuItem itemWithText:r.name_cn image:image action:^{
+        RWDropdownMenuItem *item = [RWDropdownMenuItem itemWithText:r.name_loc image:image action:^{
             action(r);
         }];
         [array addObject:item];
@@ -196,10 +196,11 @@
     switch (type) {
         case SPConditionTypeHero: {
             ygweakify(self);
-            [SPItemHeroPickerVC presentFrom:self.parentViewController selectedCallback:^(SPHero *hero) {
+            [SPItemHeroPickerVC presentFrom:self.parentViewController selectedCallback:^BOOL(SPHero *hero) {
                 ygstrongify(self);
                 self.condition.hero = hero;
                 [self update];
+                return YES;
             }];
             break;
         }

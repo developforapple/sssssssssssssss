@@ -31,6 +31,11 @@
     return [self.prefab isEqualToString:@"wearable"];
 }
 
+- (BOOL)isTaunt
+{
+    return [self.prefab isEqualToString:@"taunt"];
+}
+
 - (UIColor *)itemColor
 {
     SPItemRarity *rarity = [[SPDataManager shared] rarityOfName:self.item_rarity];

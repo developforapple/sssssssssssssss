@@ -23,7 +23,6 @@ typedef NS_ENUM(NSUInteger, SPItemEntranceType) {
 };
 
 typedef NS_ENUM(NSInteger, SPHeroType) {
-    SPHeroTypeHistory = -1, //历史记录
     SPHeroTypePow = 0,  //力量
     SPHeroTypeDex = 1,  //敏捷
     SPHeroTypeWit = 2,  //智力

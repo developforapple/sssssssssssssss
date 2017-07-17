@@ -26,7 +26,10 @@
 {
     [super viewDidAppear:animated];
     
-    [[SPUpdateViewCtrl instanceFromStoryboard] show];
+    if ([SPUpdateViewCtrl needUpdateNecessary]) {
+        [[SPUpdateViewCtrl instanceFromStoryboard] show];
+    }
+//    [[SPUpdateViewCtrl instanceFromStoryboard] show];
 }
 
 @end

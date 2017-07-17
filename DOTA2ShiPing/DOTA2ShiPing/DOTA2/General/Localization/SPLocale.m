@@ -48,9 +48,33 @@
         }
     }
     if (!lang) {
-        lang = kLangEnglish;
+        lang = [[self supportedLanguages] firstObject];
     }
     return lang;
+}
+
+static NSString *const kCurLangKey = @"kAppCurLanguage";
+static NSString *curLanguage;
+
++ (NSString *)curLanguage
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        curLanguage = [[NSUserDefaults standardUserDefaults] objectForKey:kCurLangKey];
+        if (!curLanguage) {
+            [self changeLanguage:[self preferLanguages]?:kLangSchinese];
+        }
+    });
+    return curLanguage;
+}
+
++ (void)changeLanguage:(NSString *)lang
+{
+    if ([self isLangSupported:lang]) {
+        curLanguage = lang;
+        [[NSUserDefaults standardUserDefaults] setObject:lang forKey:kCurLangKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 @end

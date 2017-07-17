@@ -33,7 +33,7 @@
 @property (assign, nonatomic) IBInspectable BOOL interactivePopEnabled_;
 // 设置当前控制器的导航栏是否半透明。默认为YES，导航栏半透明
 @property (assign, nonatomic) IBInspectable BOOL naviBarTranslucent_;
-// 设置当前控制器的导航栏样式。默认为 NO.
+// 设置当前控制器的导航栏黑色样式。默认为 NO.
 @property (assign, nonatomic) IBInspectable BOOL naviBarBlackStyle_;
 // 设置当前控制器的导航栏下的1px横线是否隐藏。默认为YES，不显示细线。
 @property (assign, nonatomic) IBInspectable BOOL naviBarLineHidden_;

@@ -72,15 +72,21 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SPItemEntranceType type = indexPath.row;
+    SPItemEntranceConfig *config = self.configure[indexPath.item];
+    SPItemEntranceType type = config.type;
     
     switch (type) {
         case SPItemEntranceTypeOffPrice:
             [self performSegueWithIdentifier:kSPItemOffPriceSegueID sender:nil];
             break;
         case SPItemEntranceTypeHeroItem:{
-            SPItemHeroPickerVC *vc = [SPItemHeroPickerVC instanceFromStoryboard];
-            [self.navigationController pushViewController:vc animated:YES];
+            ygweakify(self);
+            [SPItemHeroPickerVC bePushingIn:self.navigationController selectedCallback:^BOOL(SPHero *hero) {
+                ygstrongify(self);
+                SPItemFilter *filter = [SPItemFilter filterWithHero:hero];
+                [self performSegueWithIdentifier:kSPItemItemListSegueID sender:filter];
+                return NO;
+            }];
         }   break;
         case SPItemEntranceTypeCourier:
         case SPItemEntranceTypeWorld:
@@ -90,7 +96,7 @@
         case SPItemEntranceTypeOther:{
             NSArray *prefabs = [[SPDataManager shared] prefabsOfEntranceType:type];
             SPItemFilter *filter = [SPItemFilter filterWithPerfabs:prefabs];
-            filter.filterTitle = [self.configure[indexPath.item] title];
+            filter.filterTitle = config.title;
             [self performSegueWithIdentifier:kSPItemItemListSegueID sender:filter];
         }   break;
         default:

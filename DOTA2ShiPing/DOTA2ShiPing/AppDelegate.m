@@ -50,12 +50,14 @@
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:16]}];
     [[UINavigationBar appearance] setBarTintColor:kRedColor];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:kRedColor] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    
+//    [UIViewController setdefault];
+    [UIViewController setDefaultNavigationBarBlackStyle:YES];
+    [UIViewController setDefaultNavigationBarLineHidden:YES];
+    [UIViewController setDefaultNavigationBarTextColor:[UIColor whiteColor]];
     
     [[UISegmentedControl appearance] setTintColor:[UIColor whiteColor]];
-    
-//    [[UITextField appearance] setTintColor:[UIColor]];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:kRedColor];
 }
 

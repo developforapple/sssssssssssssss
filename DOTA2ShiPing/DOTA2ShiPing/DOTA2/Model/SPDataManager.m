@@ -8,9 +8,17 @@
 
 #import "SPDataManager.h"
 #import "YYModel.h"
+#import "SPBaseData.h"
 
 @interface SPDataManager ()
-@property (strong, nonatomic) FMDatabase *db;
+@property (strong, readwrite, nonatomic) NSDictionary<NSString *,NSString *> *localMap;
+@property (strong, readwrite, nonatomic) NSArray<SPHero *> *heroes;
+@property (strong, readwrite, nonatomic) NSArray<SPItemPrefab *> *prefabs;
+@property (strong, readwrite, nonatomic) NSArray<SPItemRarity *> *rarities;
+@property (strong, readwrite, nonatomic) NSArray<SPItemColor *> *colors;
+@property (strong, readwrite, nonatomic) NSArray<SPItemQuality *> *qualities;
+@property (strong, readwrite, nonatomic) NSArray<SPItemSlot *> *slots;
+@property (strong, readwrite, nonatomic) FMDatabase *db;
 @end
 
 @implementation SPDataManager
@@ -21,25 +29,108 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shared = [SPDataManager new];
-        
-        [shared loadTestData];
+        [shared reloadData];
     });
     return shared;
 }
 
-- (void)loadTestData
+#pragma mark - Reload
+- (void)reloadData
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    
-    self.heroes = [NSArray yy_modelArrayWithClass:[SPHero class] json:dict[@"heroes"]];
-    self.prefabs = [NSArray yy_modelArrayWithClass:[SPItemPrefab class] json:dict[@"prefabs"]];
-    self.rarities = [NSArray yy_modelArrayWithClass:[SPItemRarity class] json:dict[@"rarities"]];
-    self.colors = [NSArray yy_modelArrayWithClass:[SPItemColor class] json:dict[@"colors"]];
-    self.qualities = [NSArray yy_modelArrayWithClass:[SPItemQuality class] json:dict[@"qualities"]];
+    [self reloadLocalMap];
+    [self reloadItemBaseData];
+    [self reloadDB];
 }
 
+- (void)reloadLocalMap
+{
+    NSString *lang = GetLang;
+    NSString *langMainFile = [SPBaseData langMainFilePath:lang];
+    NSString *langPatchFile = [SPBaseData langPatchFilePath:lang];
+    
+    NSError *error;
+    
+    NSInputStream *langMainStream = [NSInputStream inputStreamWithFileAtPath:langMainFile];
+    [langMainStream open];
+    NSMutableDictionary *langMainMap = [NSJSONSerialization JSONObjectWithStream:langMainStream options:NSJSONReadingMutableContainers error:&error];
+    [langMainStream close];
+    NSAssert(!error, @"出错了！");
+    
+    NSInputStream *langPatchStream = [NSInputStream inputStreamWithFileAtPath:langPatchFile];
+    [langPatchStream open];
+    NSDictionary *langPatchMap = [NSJSONSerialization JSONObjectWithStream:langPatchStream options:kNilOptions error:&error];
+    [langPatchStream close];
+    NSAssert(!error, @"出错了！");
+    
+    [langMainMap addEntriesFromDictionary:langPatchMap];
+    self.localMap = langMainMap;
+}
+
+- (void)reloadItemBaseData
+{
+    NSError *error;
+    NSString *path = [SPBaseData dataPath];
+    NSDictionary *info = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:kNilOptions error:&error];
+    NSAssert(!error, @"出错了！");
+    
+    NSArray<SPItemRarity *> *rarities  = [NSArray yy_modelArrayWithClass:[SPItemRarity class] json:info[@"rarities"]];
+    NSArray<SPItemPrefab *> *prefabs   = [NSArray yy_modelArrayWithClass:[SPItemPrefab class] json:info[@"prefabs"]];
+    NSArray<SPItemColor *>  *colors    = [NSArray yy_modelArrayWithClass:[SPItemColor class] json:info[@"colors"]];
+    NSArray<SPItemQuality*> *qualities = [NSArray yy_modelArrayWithClass:[SPItemQuality class] json:info[@"qualities"]];
+    NSArray<SPHero *>       *heroes    = [NSArray yy_modelArrayWithClass:[SPHero class] json:info[@"heroes"]];
+    NSArray<SPItemSlot *>   *slots     = [NSArray yy_modelArrayWithClass:[SPItemSlot class] json:info[@"slots"]];
+    
+    for (SPHero *aHero in heroes) {
+        [aHero setName_loc: [self localizedString:aHero.name] ?: (aHero.name) ];
+        for (SPItemSlot *aSlot in aHero.ItemSlots) {
+            // 这个本地化名称根据英雄的不同，会不同。
+            [aSlot setName_loc:[self localizedString:aSlot.SlotText] ? : aSlot.SlotText ];
+        }
+    }
+    self.heroes = [heroes sortedArrayUsingComparator:^NSComparisonResult(SPHero *obj1, SPHero *obj2) {
+        NSInteger heroID1 = obj1.HeroID.integerValue;
+        NSInteger heroID2 = obj2.HeroID.integerValue;
+        return heroID1 < heroID2 ? NSOrderedAscending : (heroID1 == heroID2 ? NSOrderedSame : NSOrderedDescending) ;
+    }];
+    
+    for (SPItemPrefab *aPrefab in prefabs) {
+        NSString *loc = [self localizedString:aPrefab.name];
+        if (!loc) {
+            loc = [self localizedString:aPrefab.item_type_name];
+        }
+        if (!loc) {
+            loc = aPrefab.name;
+        }
+        [aPrefab setName_loc:loc];
+    }
+    
+    for (SPItemQuality *aQuality in qualities) {
+        [aQuality setName_loc:[self localizedString:aQuality.displayName] ? : aQuality.name];
+    }
+    
+    for (SPItemRarity *aRarity in rarities) {
+        [aRarity setName_loc:[self localizedString:aRarity.loc_key] ? : aRarity.name];
+    }
+    
+    for (SPItemSlot *aSlot in slots) {
+        [aSlot setName_loc:[self localizedString:aSlot.SlotText] ? : aSlot.SlotName];
+    }
+    
+    self.rarities = rarities;
+    self.prefabs = prefabs;
+    self.colors = colors;
+    self.qualities = qualities;
+    self.slots = slots;
+}
+
+- (void)reloadDB
+{
+    NSString *path = [SPBaseData dbPath];
+    FMDatabase *db = [FMDatabase databaseWithPath:path];
+    self.db = db;
+}
+
+#pragma mark - Other
 - (SPItemRarity *)rarityOfName:(NSString *)name
 {
     if (!name) return nil;
@@ -57,7 +148,7 @@
     if (!name) return nil;
     
     for (SPItemColor *color in self.colors) {
-        if ([color.token isEqualToString:name]) {
+        if ([color.name isEqualToString:name]) {
             return color;
         }
     }
@@ -92,7 +183,7 @@
             names = @[@"courier",@"courier_wearable",@"modifier"];
             break;
         case SPItemEntranceTypeWorld:
-            names = @[@"ward",@"weather",@"terrain",@"summons"];
+            names = @[@"ward",@"weather",@"terrain",@"summons",@"relic",@"teleport_effect",@"blink_effect"];
             break;
         case SPItemEntranceTypeHud:
             names = @[@"cursor_pack",@"hud_skin",@"loading_screen",@"pennant"];
@@ -104,7 +195,7 @@
             names = @[@"treasure_chest",@"retired_treasure_chest",@"key"];
             break;
         case SPItemEntranceTypeOther:
-            names = @[@"blink_effect",@"tool",@"emoticon_tool",@"player_card",@"teleport_effect",@"misc",@"dynamic_recipe",@"league",@"passport_fantasy_team",@"socket_gem",@"taunt"];
+            names = @[@"tool",@"taunt",@"emoticon_tool",@"player_card",@"misc",@"dynamic_recipe",@"league",@"passport_fantasy_team",@"socket_gem",@"bundle"];
             break;
         default:
             break;
@@ -112,22 +203,12 @@
     return [self prefabsOfNames:names];
 }
 
-#pragma mark - db
-- (FMDatabase *)db
-{
-    if (!_db) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"item" ofType:@"db"];
-        _db = [FMDatabase databaseWithPath:path];
-    }
-    [_db open];
-    return _db;
-}
-
 - (NSArray<SPItemSets *> *)querySetsWithCondition:(NSString *)condition values:(NSArray *)values
 {
     if (condition.length == 0) {
         return @[];
     }
+    
     [self.db open];
     
     NSString *sql = [NSString stringWithFormat:@"SELECT * FROM sets WHERE %@",condition];
@@ -138,9 +219,34 @@
     while ([result next]) {
         NSDictionary *dict = [result resultDictionary];
         SPItemSets *sets = [SPItemSets yy_modelWithDictionary:dict];
+        sets.name_loc = [self localizedString:sets.name]?:sets.store_bundle;
         [array addObject:sets];
     }
+    
+    [self.db close];
+    
     return array;
 }
 
+@end
+
+@implementation SPDataManager (Local)
+- (NSString *)localizedString:(NSString *)token
+{
+    if (!token) return nil;
+    NSString *string = token;
+    if ([token hasPrefix:@"#"]) {
+        string = [token substringFromIndex:1];
+    }
+    NSString *lowcaseString = [string lowercaseString];
+    NSString *localized =  self.localMap[lowcaseString];
+    return localized;
+}
+
+@end
+
+@implementation SPDataManager (BaseData)
+@end
+
+@implementation SPDataManager (DB)
 @end

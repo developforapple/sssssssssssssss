@@ -7,7 +7,8 @@
 //
 
 #import "SPItemPrefab.h"
+#import <YYModel.h>
 
 @implementation SPItemPrefab
-
+YYModelDefaultCode
 @end

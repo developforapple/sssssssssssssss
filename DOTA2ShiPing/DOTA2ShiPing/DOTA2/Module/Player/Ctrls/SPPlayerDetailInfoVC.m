@@ -325,7 +325,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
             SPItemRarity *rarity = [m rarityOfName:rarityName];
             if (rarity) {
                 SPItemColor *color = [m colorOfName:rarity.color];
-                [tags addObject:@[rarity.name_cn,count,color.color,rarity.value]];
+                [tags addObject:@[rarity.name_loc,count,color.color,rarity.value]];
             }else{
                 //未知
                 [tags addObject:@[rarityName,count,[UIColor lightGrayColor],@(NSNotFound)]];

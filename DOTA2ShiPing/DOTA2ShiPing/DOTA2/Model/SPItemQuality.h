@@ -10,11 +10,18 @@
 
 @interface SPItemQuality : NSObject <NSCopying,NSCoding>
 
-@property (strong, nonatomic) NSString *displayname;
-@property (strong, nonatomic) NSString *name_cn;
-@property (strong, nonatomic) NSNumber *sortpriority;
-@property (strong, nonatomic) NSString *hexcolor;
-@property (strong, nonatomic) NSNumber *value;
-@property (strong, nonatomic) NSString *name;
+// genuine
+@property (copy, nonatomic) NSString *name;
+// 1
+@property (copy, nonatomic) NSString *value;
+// #4D7455
+@property (copy, nonatomic) NSString *hexColor;
+// 20
+@property (copy, nonatomic) NSString *sortPriority;
+// #genuine
+@property (copy, nonatomic) NSString *displayName;
+
+// 后期生成的属性
+@property (copy, nonatomic) NSString *name_loc;
 
 @end

@@ -10,7 +10,7 @@
 
 @class SPHero;
 
-typedef void (^SPHeroPickerCallbackBlock)(SPHero *hero);
+typedef BOOL (^SPHeroPickerCallbackBlock)(SPHero *hero);
 
 @interface SPItemHeroPickerVC : YGBaseViewCtrl
 
@@ -18,6 +18,9 @@ typedef void (^SPHeroPickerCallbackBlock)(SPHero *hero);
 + (void)presentFrom:(UIViewController *)vc
    selectedCallback:(SPHeroPickerCallbackBlock)callback;
 
-// 如果为NULL，则打开英雄饰品列表页。否则，使用block回调
++ (void)bePushingIn:(UINavigationController *)navi
+   selectedCallback:(SPHeroPickerCallbackBlock)callback;
+
+// 选择英雄时的回调。外部返回BOOL值标识是否隐藏英雄选择器。
 @property (copy, nonatomic) SPHeroPickerCallbackBlock didSelectedHero;
 @end

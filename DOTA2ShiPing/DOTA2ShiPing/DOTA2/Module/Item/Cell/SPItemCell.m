@@ -53,23 +53,23 @@ UIImage *placeholderImage(){
     
     [self loadImage];
     
-    self.itemNameLabel.text = item.item_name;
+    self.itemNameLabel.text = SPLOCALNONIL(item.item_name);//  item.item_name;
     
     if ([item.prefab isEqualToString:@"bundle"]) {
         
         NSArray *sets = [[SPDataManager shared] querySetsWithCondition:@"store_bundle=?" values:@[item.name?:@""]];
         SPItemSets *theSet = [sets firstObject];
         if (theSet) {
-            self.itemTypeLabel.text = [NSString stringWithFormat:@"包含“%@”",theSet.name_cn];
+            self.itemTypeLabel.text = [NSString stringWithFormat:@"%@“%@”",SPLOCAL(@"comp_2129_pg_page_treasureelementlistsub_desc_text",@"contain"),theSet.name_loc];
         }else{
             self.itemTypeLabel.text = @"";
         }
     }else{
-        self.itemTypeLabel.text = item.item_type_name;
+        self.itemTypeLabel.text = SPLOCALNONIL(item.item_type_name);// item.item_type_name;
     }
     
     SPItemRarity *rarity = [[SPDataManager shared] rarityOfName:item.item_rarity];
-    self.itemRarityLabel.text = rarity.name_cn;
+    self.itemRarityLabel.text = rarity.name_loc;
     
     SPItemColor *color = [[SPDataManager shared] colorOfName:rarity.color];
     self.mainColor = color;

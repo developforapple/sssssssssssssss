@@ -382,7 +382,7 @@
     if (keywords.length >= 2) {
         NSArray *qualities = [SPDataManager shared].qualities;
         for (SPItemQuality *q in qualities) {
-            if ([q.name_cn containsString:keywords]) {
+            if ([q.name_loc containsString:keywords]) {
                 quality = q;
                 break;
             }
@@ -394,7 +394,7 @@
     if (keywords.length >= 2 && !quality) {
         NSArray *heroes = [SPDataManager shared].heroes;
         for (SPHero *h in heroes) {
-            if ([h.name_cn containsString:keywords]) {
+            if ([h.name_loc containsString:keywords]) {
                 hero = h;
                 break;
             }
@@ -479,11 +479,11 @@
         
         NSMutableArray *tmp = [NSMutableArray array];
         if (self.condition.quality) {
-            NSString *name = self.condition.quality.name_cn;
+            NSString *name = self.condition.quality.name_loc;
             [tmp addObject:name];
         }
         if (self.condition.rarity){
-            [tmp addObject:self.condition.rarity.name_cn];
+            [tmp addObject:self.condition.rarity.name_loc];
         }
         if (self.condition.tradeable != SPConditionOptionUndefined) {
             [tmp addObject:[self.condition tradeableLocalString]];

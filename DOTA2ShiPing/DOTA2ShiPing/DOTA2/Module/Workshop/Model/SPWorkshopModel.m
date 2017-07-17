@@ -109,33 +109,33 @@ YYModelDefaultCode
             tag = [SPWorkshopTag new];
             tag.id = aHero[0];
             tag.value = aHero[1];
-            tag.text = hero.name_cn;
+            tag.text = hero.name_loc;
             break;
         }
     }
     if (!tag) {
         tag = [SPWorkshopTag new];
         tag.value = hero.name;
-        tag.text = hero.name_cn;
+        tag.text = hero.name_loc;
     }
     return tag;
 }
 
 + (instancetype)tagOfSlot:(SPItemSlot *)slot
 {
-    if (!slot || !slot.name) return nil;
+    if (!slot || !slot.SlotName) return nil;
     
     SPWorkshopTag *tag = [SPWorkshopTag new];
     tag.id = @"";
-    tag.value = slot.name;
-    tag.text = slot.name_cn_hero?:slot.name_cn;
+    tag.value = slot.SlotName;
+    tag.text = slot.name_loc?:slot.SlotName;
     return tag;
 }
 
 + (NSArray<SPWorkshopTag *> *)tagsOfHeroSlots:(SPHero *)hero
 {
     NSMutableArray *tmp = [NSMutableArray array];
-    for (SPItemSlot *slot in hero.slot) {
+    for (SPItemSlot *slot in hero.ItemSlots) {
         SPWorkshopTag *tag = [self tagOfSlot:slot];
         if (tag) {
             [tmp addObject:tag];
