@@ -9,7 +9,6 @@
 #import "SPSearchCell.h"
 #import "SPPlayer.h"
 #import "SPPlayerManager.h"
-#import "YYWebImage.h"
 #import "LCActionSheet.h"
 #import "UIViewController+Storyboard.h"
 #import "DDProgressHUD.h"
@@ -50,7 +49,7 @@
     self.spTextLabel.text = user.name;
     self.spDetailTextLabel.text = user.steam_id.description;
     
-    [self.spImageView yy_setImageWithURL:[NSURL URLWithString:user.avatar_url] placeholder:[UIImage imageNamed:@"first"] options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+    [self.spImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar_url] placeholderImage:[UIImage imageNamed:@"first"] options:SDWebImageRetryFailed | SDWebImageProgressiveDownload | SDWebImageContinueInBackground | SDWebImageRefreshCached];
 }
 
 //- (void)loadPlayerItems

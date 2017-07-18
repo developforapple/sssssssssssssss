@@ -9,7 +9,6 @@
 #import "SPWorkshopCell.h"
 #import "SPWorkshop.h"
 #import "SPDiskCacheControl.h"
-#import <YYWebImage.h>
 
 @interface SPWorkshopCell ()
 @property (strong, nonatomic) UIVisualEffectView *effectView;
@@ -32,7 +31,7 @@
     self.imageView.contentMode = UIViewContentModeCenter;
     ygweakify(self);
     
-    [self.imageView yy_setImageWithURL:URL placeholder:placeholder options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation manager:[SPDiskCacheControl workshopImageManager] progress:nil transform:nil completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+    [self.imageView sd_setImageWithURL:URL placeholderImage:placeholder options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageRefreshCached | SDWebImageContinueInBackground | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage * _Nullable image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         ygstrongify(self);
         if (image) {
             self.imageView.contentMode = UIViewContentModeScaleAspectFill;

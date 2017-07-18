@@ -8,8 +8,6 @@
 
 #import "SPItemEntranceCell.h"
 
-#import "YYWebImage.h"
-
 @implementation SPItemEntranceCell
 
 - (void)configure:(SPItemEntranceConfig *)c

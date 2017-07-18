@@ -16,7 +16,6 @@
 #import "SPPlayerInventoryVC.h"
 #import "SPPlayerManager.h"
 #import "SPPlayer+More.h"
-#import "YYWebImage.h"
 #import "SPWebHelper.h"
 #import <SafariServices/SafariServices.h>
 #import <DZNWebViewController.h>
@@ -150,7 +149,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
     if (self.info) {
         _loadData = NO;
         
-        [self.avatarImageView yy_setImageWithURL:[NSURL URLWithString:self.info.avatarfull] placeholder:nil options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:self.info.avatarfull] placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageProgressiveDownload | SDWebImageRefreshCached | SDWebImageContinueInBackground];
         self.nickNameLabel.text = self.info.personaname;
         self.steamidLabel.text = [NSString stringWithFormat:@"SteamID:%lld",self.info.steamid.longLongValue-BaseSteamID()];
         self.aliasesLabel.hidden = YES;

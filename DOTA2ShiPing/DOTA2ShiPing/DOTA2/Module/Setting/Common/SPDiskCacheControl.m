@@ -8,6 +8,7 @@
 
 #import "SPDiskCacheControl.h"
 #import "SPWorkshopModel.h"
+#import <YYCache.h>
 
 @implementation SPDiskCacheControl
 
@@ -39,27 +40,27 @@
 }
 
 #pragma mark - Workshop
-+ (YYImageCache *)workshopImageCache
++ (SDImageCache *)workshopImageCache
 {
-    static YYImageCache *cache;
+    static SDImageCache *cache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSString *cachePath = [[self imageCacheFolder] stringByAppendingPathComponent:@"workshop"];
-        cache = [[YYImageCache alloc] initWithPath:cachePath];
+        cache = [[SDImageCache alloc] initWithNamespace:@"workshop" diskCacheDirectory:cachePath];
     });
     return cache;
 }
 
-+ (YYWebImageManager *)workshopImageManager
++ (SDWebImageManager *)workshopImageManager
 {
-    static YYWebImageManager *manager;
+    static SDWebImageManager *manager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         if ([queue respondsToSelector:@selector(setQualityOfService:)]) {
             queue.qualityOfService = NSQualityOfServiceBackground;
         }
-        manager = [[YYWebImageManager alloc] initWithCache:[self workshopImageCache] queue:queue];
+        manager = [[SDWebImageManager alloc] initWithCache:[self workshopImageCache] downloader:[SDWebImageDownloader sharedDownloader]];
         [manager setCacheKeyFilter:^NSString *(NSURL *URL) {
             return [SPWorkshopResource cacheKeyOfURL:URL];
         }];
@@ -80,7 +81,10 @@
 
 + (void)cleanWorkshopImageCache:(SPProgress)progress end:(SPEndBlock)endblock;
 {
-    [[[self workshopImageCache] diskCache] removeAllObjectsWithProgressBlock:progress endBlock:endblock];
+    [[self workshopImageCache] clearDiskOnCompletion:^{
+        
+        endblock?endblock(YES):0;
+    }];
 }
 
 + (void)cleanWorkshopDataCache:(SPProgress)progress end:(SPEndBlock)endblock;
@@ -90,7 +94,9 @@
 
 + (void)workshopImageCacheCost:(SPCompletion)completion
 {
-    [[[self workshopImageCache] diskCache] totalCostWithBlock:completion];
+    [[self workshopImageCache] calculateSizeWithCompletionBlock:^(NSUInteger fileCount, NSUInteger totalSize) {
+        completion?completion(totalSize):0;
+    }];
 }
 
 + (void)workshopDataCacheCost:(SPCompletion)completion
@@ -100,12 +106,17 @@
 
 + (void)itemImageCacheCost:(SPCompletion)completion
 {
-    [[[YYImageCache sharedCache] diskCache] totalCostWithBlock:completion];
+    [[SDImageCache sharedImageCache] calculateSizeWithCompletionBlock:^(NSUInteger fileCount, NSUInteger totalSize) {
+        completion?completion(totalSize):0;
+    }];
 }
 
 + (void)cleanItemImageCache:(SPProgress)progress end:(SPEndBlock)endblock
 {
-    [[[YYImageCache sharedCache] diskCache] removeAllObjectsWithProgressBlock:progress endBlock:endblock];
+    [[SDImageCache sharedImageCache] clearMemory];
+    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+        endblock?endblock(YES):0;
+    }];
 }
 
 @end

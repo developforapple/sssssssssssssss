@@ -8,7 +8,6 @@
 
 #import "SPInventoryConditionCell.h"
 #import "SPDataManager.h"
-#import <YYWebImage.h>
 
 @implementation SPInventoryConditionCell
 
@@ -53,7 +52,8 @@
                 
                 NSString *url = [NSString stringWithFormat:@"http://www.dota2.com.cn/images/heroes/%@_icon.png",name];
 //                NSString *url = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_full.png",name];
-                [self.imageView yy_setImageWithURL:[NSURL URLWithString:url] placeholder:nil options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+                
+                [self.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageProgressiveDownload | SDWebImageRefreshCached | SDWebImageContinueInBackground];
                 
                 self.titleLabel.text = hero.name_loc;
             }else{

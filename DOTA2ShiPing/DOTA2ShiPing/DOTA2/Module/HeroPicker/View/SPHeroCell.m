@@ -8,8 +8,6 @@
 
 #import "SPHeroCell.h"
 
-#import "YYWebImage.h"
-
 @interface SPHeroCell ()
 @property (strong, nonatomic) CAGradientLayer *gLayer;
 @end
@@ -44,12 +42,12 @@
     self.titleLabel.text = hero.name_loc;
     
     NSString *name = hero.name;
-    NSRange range = [name rangeOfString:@"npc_dota_hero_"];
-    if (range.location != NSNotFound) {
-        name = [hero.name substringFromIndex:range.location + range.length];
-    }
-    NSString *url = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_full.png",name];
-    [self.imageView yy_setImageWithURL:[NSURL URLWithString:url] placeholder:nil options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+    
+    NSString *url = [NSString stringWithFormat:@"http://items-3-0.qiniudn.com/%@/small",name];
+
+//    NSString *url = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_full.png",name];
+    
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageContinueInBackground ];
 }
 
 - (void)setHighlighted:(BOOL)highlighted

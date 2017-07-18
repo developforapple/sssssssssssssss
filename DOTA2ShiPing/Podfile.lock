@@ -25,17 +25,50 @@ PODS:
     - sqlite3
   - hpple (0.2.0)
   - IAPHelper (1.0.8.1)
+  - IDMPhotoBrowser (1.11.3):
+    - DACircularProgress
+    - pop
+    - SDWebImage (= 4.0.0)
   - IQKeyboardManager (4.0.10)
   - JZNavigationExtension (1.5.0.1)
+  - libwebp (0.6.0):
+    - libwebp/core (= 0.6.0)
+    - libwebp/dec (= 0.6.0)
+    - libwebp/demux (= 0.6.0)
+    - libwebp/dsp (= 0.6.0)
+    - libwebp/enc (= 0.6.0)
+    - libwebp/mux (= 0.6.0)
+    - libwebp/utils (= 0.6.0)
+    - libwebp/webp (= 0.6.0)
+  - libwebp/core (0.6.0):
+    - libwebp/webp
+  - libwebp/dec (0.6.0):
+    - libwebp/core
+  - libwebp/demux (0.6.0):
+    - libwebp/core
+  - libwebp/dsp (0.6.0):
+    - libwebp/core
+  - libwebp/enc (0.6.0):
+    - libwebp/core
+  - libwebp/mux (0.6.0):
+    - libwebp/core
+  - libwebp/utils (0.6.0):
+    - libwebp/core
+  - libwebp/webp (0.6.0)
   - MBProgressHUD (0.9.2)
   - MJRefresh (3.1.12)
   - PinYin4Objc (1.1.1)
   - pop (1.0.10)
   - ReactiveObjC (3.0.0)
   - SAMKeychain (1.5.2)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
   - SDWebImage/GIF (4.0.0):
     - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
+  - SDWebImage/WebP (4.0.0):
+    - libwebp
     - SDWebImage/Core
   - sqlite3 (3.19.3):
     - sqlite3/common (= 3.19.3)
@@ -46,15 +79,7 @@ PODS:
   - YYCategories (1.0.4):
     - YYCategories/no-arc (= 1.0.4)
   - YYCategories/no-arc (1.0.4)
-  - YYImage (1.0.4):
-    - YYImage/Core (= 1.0.4)
-  - YYImage/Core (1.0.4)
-  - YYImage/WebP (1.0.4):
-    - YYImage/Core
   - YYModel (1.0.4)
-  - YYWebImage (1.0.5):
-    - YYCache
-    - YYImage
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -67,6 +92,7 @@ DEPENDENCIES:
   - FMDB/standalone (~> 2.7.2)
   - hpple (~> 0.2.0)
   - IAPHelper (~> 1.0.8.1)
+  - IDMPhotoBrowser (~> 1.11.3)
   - IQKeyboardManager
   - JZNavigationExtension (~> 1.5.0.1)
   - MBProgressHUD (~> 0.9.2)
@@ -75,24 +101,19 @@ DEPENDENCIES:
   - pop
   - ReactiveObjC
   - SAMKeychain
-  - SDWebImage/GIF (from `https://github.com/rs/SDWebImage.git`)
+  - SDWebImage/GIF
+  - SDWebImage/WebP
   - SSZipArchive (~> 1.8.1)
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
+  - YYCache
   - YYCategories
-  - YYImage/WebP
   - YYModel (~> 1.0.4)
-  - YYWebImage (~> 1.0.4)
 
 EXTERNAL SOURCES:
-  SDWebImage:
-    :git: https://github.com/rs/SDWebImage.git
   SVProgressHUD:
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 CHECKOUT OPTIONS:
-  SDWebImage:
-    :commit: '041842bf085cbb711f0d9e099e6acbf6fd533b0c'
-    :git: https://github.com/rs/SDWebImage.git
   SVProgressHUD:
     :commit: 7e3139d2d56b336e48c178cc4605966191f4ac24
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
@@ -109,8 +130,10 @@ SPEC CHECKSUMS:
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
   IAPHelper: fbed593436838c3d40753ded319062b68c00cc38
+  IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
   IQKeyboardManager: 593ee99b88381f4b9ccb22bd680f22606351bd41
   JZNavigationExtension: 7b95d2b1c48846b8bedcb40d767448f14cb9a0b7
+  libwebp: 1d5a07c2eb97f9c31bd5f154bb82efc0ea67c6a2
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   PinYin4Objc: 3fa9673610368330e2dfb688b1d19a35c3930a78
@@ -123,10 +146,8 @@ SPEC CHECKSUMS:
   SVProgressHUD: d65371a8e4482380deddb9fe60e14e59ddb30eb3
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
-  YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
-  YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: c3aa45a6d273b2c1b009072afc14c0ac04db1605
+PODFILE CHECKSUM: bd67f3ea1e686571f3bc7e9d82e838d4b903a9f7
 
 COCOAPODS: 1.2.1

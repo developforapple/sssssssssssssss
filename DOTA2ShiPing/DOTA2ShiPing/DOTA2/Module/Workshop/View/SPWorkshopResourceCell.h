@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <YYWebImage.h>
+#import <FLAnimatedImageView.h>
 
 @class SPWorkshopResource;
 
 UIKIT_EXTERN NSString *const kSPWorkshopResourceCell;
 
 @interface SPWorkshopResourceCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet YYAnimatedImageView *imageView;
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 
 - (void)configureWithResource:(SPWorkshopResource *)resource;

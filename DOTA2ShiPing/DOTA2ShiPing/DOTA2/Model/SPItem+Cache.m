@@ -84,16 +84,26 @@ typedef NS_ENUM(NSUInteger, SPImageType) {
     }];
 }
 
-- (NSURL *)qiniuImageURL
+- (NSURL *)qiniuSmallURL
 {
+    NSString *URLString = [self qiniuImageURLString];
+    NSString *smallURLString = [[URLString stringByAppendingString:@"/small"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return smallURLString ? [NSURL URLWithString:smallURLString] : nil;
+}
+
+- (NSURL *)quniuLargeURL
+{
+    NSString *URLString = [self qiniuImageURLString];
+    NSString *largeURLString = [URLString stringByAppendingString:@"/large"];
+    return largeURLString ? [NSURL URLWithString:largeURLString] : nil;
+}
+
+- (NSString *)qiniuImageURLString
+{
+    if (self.image_inventory.length == 0) return nil;
     NSString *name = [[self.image_inventory lowercaseString] stringByReplacingOccurrencesOfString:@"/" withString:@"%%2F"];
-    NSString *urlString = [NSString stringWithFormat:@"http://7xu3cf.com1.z0.glb.clouddn.com/%@.png",name];
-    NSString *urlString2 = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-//    NSString *urlString = @"http://7xu3cf.com1.z0.glb.clouddn.com/compendiums%25%252F600%25%252Fmini_pudge.png";
-    
-    NSURL *url = [NSURL URLWithString:urlString2];
-    return url;
+    NSString *urlString = [NSString stringWithFormat:@"http://items-3-0.qiniudn.com/%@",name];
+    return urlString;
 }
 
 - (void)getItemImageInventory:(SPItemCacheCompletion)completion

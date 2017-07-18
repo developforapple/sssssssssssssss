@@ -293,7 +293,7 @@ YYModelDefaultCode
     if (!_photo) {
         _photo = [IDMPhoto photoWithURL:[self fullURL]];
     }
-    _photo.placeholderImage = [[YYWebImageManager sharedManager].cache getImageForKey:[[YYWebImageManager sharedManager] cacheKeyForURL:[self thumbURL]]];
+    _photo.placeholderImage = [[SDWebImageManager sharedManager].imageCache imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[self thumbURL]]];
     return _photo;
 }
 

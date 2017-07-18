@@ -82,20 +82,11 @@
             width = (Device_Width - 5 * .5f)/4.f;
             height = ceilf(width /1.5f) + 20.f;
             
-            
-//            width = Device_Width/4.f;
-//            height = ceilf(width/1.5f) + 20.f;
-//            insetL = 0.f;
-//            insetR = 0.f;
-//            sp = 0.f;
-            
             self.flowlayout.itemSize = CGSizeMake(width, height);
             self.flowlayout.sectionInset =  UIEdgeInsetsMake(insetL, insetL, 0.f, insetR);
             self.flowlayout.minimumLineSpacing = sp;
             self.flowlayout.minimumInteritemSpacing = 0.f;
         }    break;
-        default:
-            break;
     }
     if (self.mode != mode) {
         self.mode = mode;

@@ -8,7 +8,6 @@
 
 #import "SPItemCell.h"
 #import "SPItem+Cache.h"
-#import "YYWebImage.h"
 #import "SPDataManager.h"
 
 #import "SPPlayerItems.h"
@@ -89,7 +88,7 @@ UIImage *placeholderImage(){
 
     NSString *iconurl = [NSString stringWithFormat:@"http://steamcommunity-a.akamaihd.net/economy/image/%@",item.icon_url];
     
-    [self.itemImageView yy_setImageWithURL:[NSURL URLWithString:iconurl] placeholder:placeholderImage() options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+    [self.itemImageView sd_setImageWithURL:[NSURL URLWithString:iconurl] placeholderImage:placeholderImage() options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageRefreshCached | SDWebImageContinueInBackground];
     
     self.mainColor = rarityTag.tagColor;
     if (self.mode == SPItemListModeGrid) {
@@ -136,15 +135,15 @@ UIImage *placeholderImage(){
 
 - (void)loadImage
 {
-    NSURL *qiniuURL = [self.item qiniuImageURL];
+    NSURL *qiniuURL = [self.item qiniuSmallURL];
     NSUInteger hash = qiniuURL.hash;
     // 加载七牛的图片
     
     ygweakify(self);
     
-    [self.itemImageView yy_setImageWithURL:qiniuURL placeholder:placeholderImage() options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation | YYWebImageOptionAvoidSetImage completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+    [self.itemImageView sd_setImageWithURL:qiniuURL placeholderImage:placeholderImage() options:SDWebImageRetryFailed | SDWebImageRefreshCached | SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         NSUInteger hash2 = hash;
-        if (hash2 == url.hash) {
+        if (hash2 == imageURL.hash) {
             ygstrongify(self);
             if (!error && image) {
                 self.itemImageView.image = image;
@@ -165,7 +164,7 @@ UIImage *placeholderImage(){
             NSURL *url = [NSURL URLWithString:content];
             NSUInteger hash = url.hash;
             
-            [self.itemImageView yy_setImageWithURL:url placeholder:placeholderImage() options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation | YYWebImageOptionAvoidSetImage completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+            [self.itemImageView sd_setImageWithURL:url placeholderImage:placeholderImage() options:SDWebImageRetryFailed | SDWebImageRefreshCached | SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 ygstrongify(self);
                 if (!error && image) {
                     NSUInteger hash2 = hash;

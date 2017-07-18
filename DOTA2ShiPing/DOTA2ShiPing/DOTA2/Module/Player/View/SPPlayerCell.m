@@ -9,8 +9,6 @@
 #import "SPPlayerCell.h"
 #import "SPPlayer.h"
 
-#import "YYWebImage.h"
-
 @implementation SPPlayerCell
 
 - (void)awakeFromNib
@@ -30,7 +28,7 @@
 {
     self->_player = player;
     
-    [self.playerImageView yy_setImageWithURL:[NSURL URLWithString:player.avatar_url] placeholder:nil options:YYWebImageOptionProgressiveBlur | YYWebImageOptionAllowBackgroundTask | YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+    [self.playerImageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:player.avatar_url] placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageRefreshCached | SDWebImageContinueInBackground progress:nil completed:nil];
     self.playerNameLabel.text = player.name;
     self.playerDescLabel.text = player.steam_id.description;
 }

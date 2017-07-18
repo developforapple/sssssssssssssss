@@ -76,10 +76,10 @@
         
         NSArray *IDMPhotos = [self.unit imageResourceIDMPhotos];
         for (IDMPhoto *p in IDMPhotos) {
-            p.manager = [SPDiskCacheControl workshopImageManager];
+//            p.manager = [SPDiskCacheControl workshopImageManager];
         }
         IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:IDMPhotos animatedFromView:cell.imageView];
-        browser.currentPageIndex = [self.unit indexInImageResourcesOfResource:resource];
+//        browser.currentPageIndex = [self.unit indexInImageResourcesOfResource:resource];
         
         [self presentViewController:browser animated:YES completion:nil];
     }

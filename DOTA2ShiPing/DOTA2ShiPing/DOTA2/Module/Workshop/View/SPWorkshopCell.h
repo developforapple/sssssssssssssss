@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FLAnimatedImageView.h>
 
 @class SPWorkshopUnit;
-@class YYAnimatedImageView;
 
 UIKIT_EXTERN NSString *const kSPWorkshopCell;
 
 @interface SPWorkshopCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet YYAnimatedImageView *imageView;
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;
 
 @property (strong, readonly, nonatomic) SPWorkshopUnit *unit;
 - (void)configureWithUnit:(SPWorkshopUnit *)unit;

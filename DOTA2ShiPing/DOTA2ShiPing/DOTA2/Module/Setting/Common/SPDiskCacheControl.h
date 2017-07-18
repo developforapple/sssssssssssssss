@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <YYWebImage.h>
+#import <SDWebImageManager.h>
+
+@class YYCache;
 
 typedef void (^SPCompletion)(NSInteger cost);
 typedef void (^SPProgress)(int removed,int total);
@@ -16,8 +18,8 @@ typedef void (^SPEndBlock)(BOOL suc);
 @interface SPDiskCacheControl : NSObject
 
 #pragma mark - Workshop
-+ (YYImageCache *)workshopImageCache;
-+ (YYWebImageManager *)workshopImageManager;
++ (SDImageCache *)workshopImageCache;
++ (SDWebImageManager *)workshopImageManager;
 + (YYCache *)workshopDataCache;
 
 + (void)cleanWorkshopImageCache:(SPProgress)progress end:(SPEndBlock)endblock;

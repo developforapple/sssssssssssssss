@@ -94,16 +94,6 @@
 		2DF9B8601F1361640012950A /* YGBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6F61F1361640012950A /* YGBubble.m */; };
 		2DF9B8611F1361640012950A /* YGBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6F81F1361640012950A /* YGBubbleView.m */; };
 		2DF9B8621F1361640012950A /* DDProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6FB1F1361640012950A /* DDProgressHUD.m */; };
-		2DF9B8631F1361640012950A /* IDMCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6FF1F1361640012950A /* IDMCaptionView.m */; };
-		2DF9B8641F1361640012950A /* IDMPBLocalizations.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B7011F1361640012950A /* IDMPBLocalizations.bundle */; };
-		2DF9B8651F1361640012950A /* IDMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7031F1361640012950A /* IDMPhoto.m */; };
-		2DF9B8661F1361640012950A /* IDMPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B7041F1361640012950A /* IDMPhotoBrowser.bundle */; };
-		2DF9B8671F1361640012950A /* IDMPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7061F1361640012950A /* IDMPhotoBrowser.m */; };
-		2DF9B8681F1361640012950A /* IDMTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7091F1361640012950A /* IDMTapDetectingImageView.m */; };
-		2DF9B8691F1361640012950A /* IDMTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B70B1F1361640012950A /* IDMTapDetectingView.m */; };
-		2DF9B86A1F1361640012950A /* IDMZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B70D1F1361640012950A /* IDMZoomingScrollView.m */; };
-		2DF9B86B1F1361640012950A /* YYWebImage+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7101F1361640012950A /* YYWebImage+Add.m */; };
-		2DF9B86D1F1361640012950A /* README.markdown in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7121F1361640012950A /* README.markdown */; };
 		2DF9B86E1F1361640012950A /* KDCycleBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7151F1361640012950A /* KDCycleBannerView.m */; };
 		2DF9B86F1F1361640012950A /* YGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7181F1361640012950A /* YGLabel.m */; };
 		2DF9B8701F1361640012950A /* SPLeftAlignmentLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B71B1F1361640012950A /* SPLeftAlignmentLayout.m */; };
@@ -391,26 +381,6 @@
 		2DF9B6F81F1361640012950A /* YGBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGBubbleView.m; sourceTree = "<group>"; };
 		2DF9B6FA1F1361640012950A /* DDProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDProgressHUD.h; sourceTree = "<group>"; };
 		2DF9B6FB1F1361640012950A /* DDProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDProgressHUD.m; sourceTree = "<group>"; };
-		2DF9B6FE1F1361640012950A /* IDMCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMCaptionView.h; sourceTree = "<group>"; };
-		2DF9B6FF1F1361640012950A /* IDMCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMCaptionView.m; sourceTree = "<group>"; };
-		2DF9B7001F1361640012950A /* IDMPBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPBConstants.h; sourceTree = "<group>"; };
-		2DF9B7011F1361640012950A /* IDMPBLocalizations.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IDMPBLocalizations.bundle; sourceTree = "<group>"; };
-		2DF9B7021F1361640012950A /* IDMPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPhoto.h; sourceTree = "<group>"; };
-		2DF9B7031F1361640012950A /* IDMPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMPhoto.m; sourceTree = "<group>"; };
-		2DF9B7041F1361640012950A /* IDMPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IDMPhotoBrowser.bundle; sourceTree = "<group>"; };
-		2DF9B7051F1361640012950A /* IDMPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPhotoBrowser.h; sourceTree = "<group>"; };
-		2DF9B7061F1361640012950A /* IDMPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMPhotoBrowser.m; sourceTree = "<group>"; };
-		2DF9B7071F1361640012950A /* IDMPhotoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPhotoProtocol.h; sourceTree = "<group>"; };
-		2DF9B7081F1361640012950A /* IDMTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMTapDetectingImageView.h; sourceTree = "<group>"; };
-		2DF9B7091F1361640012950A /* IDMTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMTapDetectingImageView.m; sourceTree = "<group>"; };
-		2DF9B70A1F1361640012950A /* IDMTapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMTapDetectingView.h; sourceTree = "<group>"; };
-		2DF9B70B1F1361640012950A /* IDMTapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMTapDetectingView.m; sourceTree = "<group>"; };
-		2DF9B70C1F1361640012950A /* IDMZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMZoomingScrollView.h; sourceTree = "<group>"; };
-		2DF9B70D1F1361640012950A /* IDMZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMZoomingScrollView.m; sourceTree = "<group>"; };
-		2DF9B70F1F1361640012950A /* YYWebImage+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYWebImage+Add.h"; sourceTree = "<group>"; };
-		2DF9B7101F1361640012950A /* YYWebImage+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYWebImage+Add.m"; sourceTree = "<group>"; };
-		2DF9B7111F1361640012950A /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		2DF9B7121F1361640012950A /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 		2DF9B7141F1361640012950A /* KDCycleBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDCycleBannerView.h; sourceTree = "<group>"; };
 		2DF9B7151F1361640012950A /* KDCycleBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDCycleBannerView.m; sourceTree = "<group>"; };
 		2DF9B7171F1361640012950A /* YGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGLabel.h; sourceTree = "<group>"; };
@@ -1044,7 +1014,6 @@
 				2DF9B6EE1F1361640012950A /* BarButtonItem */,
 				2DF9B6F41F1361640012950A /* Bubble */,
 				2DF9B6F91F1361640012950A /* HUD */,
-				2DF9B6FC1F1361640012950A /* IDMPhotoBrowser */,
 				2DF9B7131F1361640012950A /* KDCycleBannerView */,
 				2DF9B7161F1361640012950A /* Label */,
 				2DF9B7191F1361640012950A /* Layout */,
@@ -1107,49 +1076,6 @@
 				2DF9B6FB1F1361640012950A /* DDProgressHUD.m */,
 			);
 			path = HUD;
-			sourceTree = "<group>";
-		};
-		2DF9B6FC1F1361640012950A /* IDMPhotoBrowser */ = {
-			isa = PBXGroup;
-			children = (
-				2DF9B6FD1F1361640012950A /* Classes */,
-				2DF9B7111F1361640012950A /* LICENSE.txt */,
-				2DF9B7121F1361640012950A /* README.markdown */,
-			);
-			path = IDMPhotoBrowser;
-			sourceTree = "<group>";
-		};
-		2DF9B6FD1F1361640012950A /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				2DF9B6FE1F1361640012950A /* IDMCaptionView.h */,
-				2DF9B6FF1F1361640012950A /* IDMCaptionView.m */,
-				2DF9B7001F1361640012950A /* IDMPBConstants.h */,
-				2DF9B7011F1361640012950A /* IDMPBLocalizations.bundle */,
-				2DF9B7021F1361640012950A /* IDMPhoto.h */,
-				2DF9B7031F1361640012950A /* IDMPhoto.m */,
-				2DF9B7041F1361640012950A /* IDMPhotoBrowser.bundle */,
-				2DF9B7051F1361640012950A /* IDMPhotoBrowser.h */,
-				2DF9B7061F1361640012950A /* IDMPhotoBrowser.m */,
-				2DF9B7071F1361640012950A /* IDMPhotoProtocol.h */,
-				2DF9B7081F1361640012950A /* IDMTapDetectingImageView.h */,
-				2DF9B7091F1361640012950A /* IDMTapDetectingImageView.m */,
-				2DF9B70A1F1361640012950A /* IDMTapDetectingView.h */,
-				2DF9B70B1F1361640012950A /* IDMTapDetectingView.m */,
-				2DF9B70C1F1361640012950A /* IDMZoomingScrollView.h */,
-				2DF9B70D1F1361640012950A /* IDMZoomingScrollView.m */,
-				2DF9B70E1F1361640012950A /* YYWebImageAdd */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		2DF9B70E1F1361640012950A /* YYWebImageAdd */ = {
-			isa = PBXGroup;
-			children = (
-				2DF9B70F1F1361640012950A /* YYWebImage+Add.h */,
-				2DF9B7101F1361640012950A /* YYWebImage+Add.m */,
-			);
-			path = YYWebImageAdd;
 			sourceTree = "<group>";
 		};
 		2DF9B7131F1361640012950A /* KDCycleBannerView */ = {
@@ -1921,10 +1847,8 @@
 				2DC0F6921F1B6A3D004DCD3C /* SPHero.storyboard in Resources */,
 				2DC0F6A41F1C625D004DCD3C /* SPItemEntranceConfigure in Resources */,
 				2DF9B8D31F1361640012950A /* heroMap.json in Resources */,
-				2DF9B8661F1361640012950A /* IDMPhotoBrowser.bundle in Resources */,
 				2DF9B8771F1361640012950A /* CDTAlertCtrl.xib in Resources */,
 				2DC0F6971F1C5F82004DCD3C /* SPItem.storyboard in Resources */,
-				2DF9B8641F1361640012950A /* IDMPBLocalizations.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2000,7 +1924,6 @@
 				2DF9B8B31F1361640012950A /* SPPlayerInventorySearchResultVC.m in Sources */,
 				2DF9B8561F1361640012950A /* YGThirdPlatformProcessor.m in Sources */,
 				2DF9B8421F1361640012950A /* UIImage+Mask.m in Sources */,
-				2DF9B8671F1361640012950A /* IDMPhotoBrowser.m in Sources */,
 				2DF9B8281F1361640012950A /* YGCapabilityHelper.m in Sources */,
 				2DF9B8311F1361640012950A /* NSString+Utils.m in Sources */,
 				2DF9B82C1F1361640012950A /* NSArray+YYModelExt.m in Sources */,
@@ -2013,7 +1936,6 @@
 				2DF9B84E1F1361640012950A /* DDRequestManager.m in Sources */,
 				2DF9B8361F1361640012950A /* UICollectionViewCell+yg_IBInspectable.m in Sources */,
 				2DF9B88D1F1361640012950A /* SPDataManager.m in Sources */,
-				2DF9B86D1F1361640012950A /* README.markdown in Sources */,
 				2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */,
 				2DF9B82A1F1361640012950A /* YGCoreMotionHelper.m in Sources */,
 				2DF9B8431F1361640012950A /* UIKit+Statistics.m in Sources */,
@@ -2031,7 +1953,6 @@
 				2DF9B8391F1361640012950A /* UISearchBar+yg_IBInspectable.m in Sources */,
 				2DF9B8321F1361640012950A /* UIDevice+Ext.m in Sources */,
 				2DF9B8C91F1361640012950A /* SPFocusVisualEffectVC.m in Sources */,
-				2DF9B86A1F1361640012950A /* IDMZoomingScrollView.m in Sources */,
 				2DF9B8541F1361640012950A /* YGPayThirdPlatformProcessor.m in Sources */,
 				2DF9B8A11F1361640012950A /* SPItemFilter.m in Sources */,
 				2DF9B82F1F1361640012950A /* NSObject+YGPerformBlock.m in Sources */,
@@ -2070,7 +1991,6 @@
 				2DF9B8791F1361640012950A /* YGRefreshComponent.m in Sources */,
 				2DF9B8801F1361640012950A /* TAPageControl.m in Sources */,
 				2DF9B82B1F1361640012950A /* YGRemoteNotificationHelper.m in Sources */,
-				2DF9B8631F1361640012950A /* IDMCaptionView.m in Sources */,
 				2DF9B8341F1361640012950A /* UIActivityIndicatorView+yg_IBInspectable.m in Sources */,
 				2DF9B8C41F1361640012950A /* SPSettingFeedbackVC.m in Sources */,
 				2DF9B8AC1F1361640012950A /* SPPlayer+More.m in Sources */,
@@ -2078,7 +1998,6 @@
 				2DF9B8721F1361640012950A /* LCActionSheet.m in Sources */,
 				2DF9B8921F1361640012950A /* SPItemPrefab.m in Sources */,
 				2DF9B89B1F1361640012950A /* YGBaseWebViewCtrl.m in Sources */,
-				2DF9B8691F1361640012950A /* IDMTapDetectingView.m in Sources */,
 				2DF9B8901F1361640012950A /* SPItem.m in Sources */,
 				2DF9B8221F1361640012950A /* SPHTMLSerializer.m in Sources */,
 				2DF9B8211F1361640012950A /* SPDotabuffAPI.m in Sources */,
@@ -2128,7 +2047,6 @@
 				2DF9B8201F1361640012950A /* Config_ThirdParty.m in Sources */,
 				2DF9B8BC1F1361640012950A /* SPSearchBar.m in Sources */,
 				2DF9B8AA1F1361640012950A /* SPLaunchADVC.m in Sources */,
-				2DF9B86B1F1361640012950A /* YYWebImage+Add.m in Sources */,
 				2DF9B8551F1361640012950A /* CDTUserSession.m in Sources */,
 				2DF9B8B81F1361640012950A /* SPInventoryConditionCell.m in Sources */,
 				2DF9B84C1F1361640012950A /* API.m in Sources */,
@@ -2150,9 +2068,7 @@
 				2DF9B8241F1361640012950A /* SPSteamAPI.m in Sources */,
 				2DF9B8481F1361640012950A /* UIView+YGGeometry.m in Sources */,
 				2DF9B8B71F1361640012950A /* SPPlayerSelectedVC.m in Sources */,
-				2DF9B8651F1361640012950A /* IDMPhoto.m in Sources */,
 				2DF9B8B01F1361640012950A /* SPPlayerDetailInfoVC.m in Sources */,
-				2DF9B8681F1361640012950A /* IDMTapDetectingImageView.m in Sources */,
 				2DF9B81C1F1361640012950A /* Config_Appearance.m in Sources */,
 				2DF9B8A81F1361640012950A /* DDMainADVC.m in Sources */,
 				2DF9B8C31F1361640012950A /* SPSettingAboutVC.m in Sources */,
