@@ -10,7 +10,8 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "SPLogoHeader.h"
 #import "SPItemCell.h"
-
+#import "SPItemsDetailViewCtrl.h"
+#import "DOTA2ShiPing-Swift.h"
 
 @interface SPItemListContainer ()<UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
@@ -120,6 +121,13 @@
 {
     SPItem *item = self.items[indexPath.row];
     [cell configure:item];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    SPItem *item = self.items[indexPath.row];
+    SPItemsDetailViewCtrl *vc = [SPItemsDetailViewCtrl instanceFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - 

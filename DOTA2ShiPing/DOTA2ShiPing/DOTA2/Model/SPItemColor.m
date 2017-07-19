@@ -7,7 +7,7 @@
 //
 
 #import "SPItemColor.h"
-#import <YYModel.h>
+#import "YYModel.h"
 
 @implementation SPItemColor
 

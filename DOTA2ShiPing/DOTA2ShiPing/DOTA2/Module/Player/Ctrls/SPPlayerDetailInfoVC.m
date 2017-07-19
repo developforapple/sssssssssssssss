@@ -18,7 +18,7 @@
 #import "SPPlayer+More.h"
 #import "SPWebHelper.h"
 #import <SafariServices/SafariServices.h>
-#import <DZNWebViewController.h>
+#import "DZNWebViewController.h"
 
 static NSString *SPPlayerDetailItemsTagCell = @"SPPlayerDetailItemsTagCell";
 

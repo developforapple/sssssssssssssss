@@ -10,7 +10,7 @@
 #import "SPItemListContainer.h"
 #import "SPInventoryFilter.h"
 #import "SPPlayerInventorySearchFilterVC.h"
-#import <ReactiveObjC.h>
+#import "ReactiveObjC.h"
 
 static NSString *const kSPPlayerInventoryFilterSegueID = @"SPPlayerInventoryFilterSegueID";
 

@@ -7,7 +7,6 @@
 //
 
 #import "SPFocusVisualEffectVC.h"
-#import <YYCategories.h>
 
 NSTimeInterval const kSPFocusAnimationDurtaion = .3f;
 

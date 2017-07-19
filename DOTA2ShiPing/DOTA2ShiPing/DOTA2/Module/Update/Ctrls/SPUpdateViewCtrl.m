@@ -8,7 +8,7 @@
 
 #import "SPUpdateViewCtrl.h"
 #import "SPResourceManager.h"
-#import <ReactiveObjC.h>
+#import "ReactiveObjC.h"
 
 @interface SPUpdateViewCtrl ()
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;

@@ -14,6 +14,7 @@
 #import "SPLogoHeader.h"
 #import "SPDataManager.h"
 #import "SPItemListVC.h"
+#import "SPItemOffPriceVC.h"
 
 #define kSPItemOffPriceSegueID @"SPItemOffPriceSegueID"
 
@@ -75,9 +76,10 @@
     SPItemEntranceType type = config.type;
     
     switch (type) {
-        case SPItemEntranceTypeOffPrice:
-            [self performSegueWithIdentifier:kSPItemOffPriceSegueID sender:nil];
-            break;
+        case SPItemEntranceTypeOffPrice:{
+            SPItemOffPriceVC *vc = [SPItemOffPriceVC instanceFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
+        }   break;
         case SPItemEntranceTypeHeroItem:{
             ygweakify(self);
             [SPItemHeroPickerVC bePushingIn:self.navigationController selectedCallback:^BOOL(SPHero *hero) {

@@ -21,8 +21,9 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - DZNWebViewController (3.2)
   - FLAnimatedImage (1.0.12)
-  - FMDB/standalone (2.7.2):
-    - sqlite3
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
   - hpple (0.2.0)
   - IAPHelper (1.0.8.1)
   - IDMPhotoBrowser (1.11.3):
@@ -70,16 +71,13 @@ PODS:
   - SDWebImage/WebP (4.0.0):
     - libwebp
     - SDWebImage/Core
-  - sqlite3 (3.19.3):
-    - sqlite3/common (= 3.19.3)
-  - sqlite3/common (3.19.3)
   - SSZipArchive (1.8.1)
   - SVProgressHUD (2.1.2)
-  - YYCache (1.0.4)
   - YYCategories (1.0.4):
     - YYCategories/no-arc (= 1.0.4)
   - YYCategories/no-arc (1.0.4)
   - YYModel (1.0.4)
+  - ZLSwipeableViewSwift (0.0.8)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -89,7 +87,7 @@ DEPENDENCIES:
   - DGActivityIndicatorView (~> 2.0)
   - DZNEmptyDataSet (~> 1.8.1)
   - DZNWebViewController
-  - FMDB/standalone (~> 2.7.2)
+  - FMDB (~> 2.7.2)
   - hpple (~> 0.2.0)
   - IAPHelper (~> 1.0.8.1)
   - IDMPhotoBrowser (~> 1.11.3)
@@ -105,18 +103,23 @@ DEPENDENCIES:
   - SDWebImage/WebP
   - SSZipArchive (~> 1.8.1)
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
-  - YYCache
   - YYCategories
   - YYModel (~> 1.0.4)
+  - ZLSwipeableViewSwift (from `https://github.com/zhxnlai/ZLSwipeableViewSwift.git`)
 
 EXTERNAL SOURCES:
   SVProgressHUD:
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+  ZLSwipeableViewSwift:
+    :git: https://github.com/zhxnlai/ZLSwipeableViewSwift.git
 
 CHECKOUT OPTIONS:
   SVProgressHUD:
     :commit: 7e3139d2d56b336e48c178cc4605966191f4ac24
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+  ZLSwipeableViewSwift:
+    :commit: ac16644617c5e570a1537e44334c0155dbc542be
+    :git: https://github.com/zhxnlai/ZLSwipeableViewSwift.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -141,13 +144,12 @@ SPEC CHECKSUMS:
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
   SAMKeychain: 1865333198217411f35327e8da61b43de79b635b
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  sqlite3: e0f7755dc52e709215e116c801ea0c81fd45c083
   SSZipArchive: 04547dfa448be5ed7ecbaf7eaf8a6e9eb9b42997
   SVProgressHUD: d65371a8e4482380deddb9fe60e14e59ddb30eb3
-  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+  ZLSwipeableViewSwift: 488041f77089bfc03fe1419579ef32e976709f5d
 
-PODFILE CHECKSUM: bd67f3ea1e686571f3bc7e9d82e838d4b903a9f7
+PODFILE CHECKSUM: 91da6cda1ca50879076ef77fb0856e4d0edae959
 
 COCOAPODS: 1.2.1

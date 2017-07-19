@@ -16,7 +16,7 @@
 #import "SPInventoryFilter.h"
 #import "SPItemCommon.h"
 #import "SPPlayerInventorySearchResultVC.h"
-#import <ReactiveObjC.h>
+#import "ReactiveObjC.h"
 
 static NSString *const kYGInventoryCategoryPickerSegueID = @"YGInventoryCategoryPickerSegueID";
 static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";

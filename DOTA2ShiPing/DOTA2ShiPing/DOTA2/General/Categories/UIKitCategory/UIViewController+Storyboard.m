@@ -10,7 +10,7 @@
 
 // 使用 YYCache 或 PINCache 时将把storyboard名进行本地缓存
 #if (__has_include(<YYCache/YYCache.h>) || __has_include("YYCache.h"))
-    #import <YYCache/YYCache.h>
+    #import "YYCache.h"
     typedef YYCache _YGCache;
 #elif (__has_include(<PINCache/PINCache.h>) || __has_include("PINCache.h"))
     #import <PINCache/PINCache.h>
@@ -119,13 +119,13 @@ FOUNDATION_EXTERN NSString *const kAppBundleID;
         // 缓存的name不再有效
         [cache removeObjectForKey:identifier];
     }
-    
     // 未缓存，遍历storyboard文件名列表，开始尝试取出实例。
     NSDictionary *map = [self storyboardIdentifierMap];
     for (NSString *name in map) {
         NSSet *identifierList = map[name];
-        if ([identifierList containsObject:identifier]) {
-            UIViewController *instance = [self tryTakeOutInstanceFromStoryboardNamed:name identifier:identifier];
+        NSString *theIdentifier = [[identifier componentsSeparatedByString:@"."] lastObject];
+        if ([identifierList containsObject:theIdentifier]) {
+            UIViewController *instance = [self tryTakeOutInstanceFromStoryboardNamed:name identifier:theIdentifier];
             if (instance) {
                 // 成功获取实例后，对storyboard名进行缓存
                 [cache setObject:name forKey:identifier];

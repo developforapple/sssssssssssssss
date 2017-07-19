@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FLAnimatedImageView.h>
+#import "FLAnimatedImageView.h"
 
 @class SPWorkshopResource;
 

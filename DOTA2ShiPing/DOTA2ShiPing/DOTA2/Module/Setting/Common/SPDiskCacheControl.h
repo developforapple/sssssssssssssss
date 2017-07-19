@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <SDWebImageManager.h>
+#import "SDWebImageManager.h"
 
 @class YYCache;
 

@@ -9,7 +9,7 @@
 #import "SPWorkshopModel.h"
 #import "SPWorkshop.h"
 #import "SPHero.h"
-#import <YYModel.h>
+#import "YYModel.h"
 #import "IDMPhoto.h"
 
 @implementation SPWorkshopQuery

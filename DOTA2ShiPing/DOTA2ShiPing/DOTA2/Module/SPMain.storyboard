@@ -1437,50 +1437,11 @@
                     <connections>
                         <outlet property="collectionView" destination="uDV-6b-DBy" id="alh-ca-ecR"/>
                         <outlet property="flowlayout" destination="of4-sz-SH9" id="5ec-WY-OFF"/>
-                        <segue destination="Iwm-Xr-Cq5" kind="show" identifier="SPItemOffPriceSegueID" id="u3j-bd-doe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="luU-VG-myB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1282" y="-701"/>
-        </scene>
-        <!--今日特价-->
-        <scene sceneID="ZC7-ys-VlS">
-            <objects>
-                <viewController storyboardIdentifier="SPItemOffPriceVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Iwm-Xr-Cq5" customClass="SPItemOffPriceVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cEj-Hq-DXW"/>
-                        <viewControllerLayoutGuide type="bottom" id="nDb-QZ-1eE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vcM-w2-2fG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vYS-lk-eYt">
-                                <rect key="frame" x="197" y="358" width="20" height="20"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="vYS-lk-eYt" firstAttribute="centerX" secondItem="vcM-w2-2fG" secondAttribute="centerX" id="ZrH-Ii-Pcm"/>
-                            <constraint firstItem="vYS-lk-eYt" firstAttribute="centerY" secondItem="vcM-w2-2fG" secondAttribute="centerY" id="oUs-pa-nXq"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="今日特价" id="C7A-cc-9YF">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="AAA-uw-TbL">
-                            <connections>
-                                <action selector="search:" destination="Iwm-Xr-Cq5" id="5h9-EY-klg"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="loadIndicator" destination="vYS-lk-eYt" id="ct1-hA-ie0"/>
-                        <outlet property="searchItem" destination="AAA-uw-TbL" id="TwE-SC-0Yz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AgO-dC-XPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2241" y="-3741"/>
         </scene>
         <!--SearchAllPlayerInventory-->
         <scene sceneID="GJ0-sn-hKW">

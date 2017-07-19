@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0FBCFD31BA63C194601C25DFDC2C78C0'
+               BlueprintIdentifier = 'BBE65B12081F43978E1F3412F264ECE7'
                BlueprintName = 'JZNavigationExtension'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libJZNavigationExtension.a'>
+               BuildableName = 'JZNavigationExtension.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

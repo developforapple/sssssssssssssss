@@ -9,8 +9,8 @@
 #import "SPResourceManager.h"
 #import "SPBaseData.h"
 #import "SPLocale.h"
-#import <AVOSCloud.h>
-#import <SSZipArchive.h>
+#import "AVOSCloud.h"
+#import "SSZipArchive.h"
 
 static NSString *const kDataVersionKey = @"kDotaDataBaseVersion";
 static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";

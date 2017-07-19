@@ -13,7 +13,7 @@
 #import "JZNavigationExtension.h"
 
 #if LeanCloudSDK_Enabled
-#import <AVOSCloud.h>
+#import "AVOSCloud.h"
 #endif
 
 #if AdMobSDK_Enabled

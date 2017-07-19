@@ -9,7 +9,7 @@
 #import "SPSettingUpgradeVC.h"
 
 #import "DDProgressHUD.h"
-#import <IAPShare.h>
+#import "IAPShare.h"
 
 #define IAP [IAPShare sharedHelper].iap
 #define APPIAPProductID_pro @"com.itemofdota2.proversion"

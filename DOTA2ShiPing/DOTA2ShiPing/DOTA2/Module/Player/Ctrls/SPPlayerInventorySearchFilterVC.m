@@ -10,8 +10,7 @@
 #import "SPInventoryConditionCell.h"
 #import "SPItemHeroPickerVC.h"
 #import "RWDropdownMenu.h"
-#import <YYCategories.h>
-#import <ReactiveObjC.h>
+#import "ReactiveObjC.h"
 #import "SPDataManager.h"
 
 @interface SPPlayerInventorySearchFilterVC () <UICollectionViewDelegate,UICollectionViewDataSource>

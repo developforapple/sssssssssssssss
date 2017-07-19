@@ -7,13 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1929949B4AC914B44D61F796 /* libPods-DOTA2ShiPing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 939CCEAA439897D1DEE60C3E /* libPods-DOTA2ShiPing.a */; };
 		2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82861CDF325700F26BD1 /* libz.tbd */; };
 		2D48D2981CDE20D700190F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D2971CDE20D700190F0C /* main.m */; };
 		2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D29A1CDE20D700190F0C /* AppDelegate.m */; };
 		2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2A71CDE20D700190F0C /* LaunchScreen.storyboard */; };
+		2D4AD9D11F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4AD9D01F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m */; };
+		2D4AD9D41F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4AD9D31F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m */; };
 		2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B211D435E95005FC6CA /* libiconv.tbd */; };
 		2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B231D435EAB005FC6CA /* libstdc++.tbd */; };
+		2D6F1C981F1E68E400E8F614 /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C911F1E68E400E8F614 /* YYCache.m */; };
+		2D6F1C991F1E68E400E8F614 /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C931F1E68E400E8F614 /* YYDiskCache.m */; };
+		2D6F1C9A1F1E68E400E8F614 /* YYKVStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C951F1E68E400E8F614 /* YYKVStorage.m */; };
+		2D6F1C9B1F1E68E400E8F614 /* YYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C971F1E68E400E8F614 /* YYMemoryCache.m */; };
+		2D6F1C9D1F1E6D3F00E8F614 /* Pods_DOTA2ShiPing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70FA08C933879E048D521D6 /* Pods_DOTA2ShiPing.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */; };
+		2D6F1CA41F1E709F00E8F614 /* SPSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CA31F1E709F00E8F614 /* SPSwift.swift */; };
+		2D6F1CA61F1E7BCB00E8F614 /* SPItemsDetailViewCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CA51F1E7BCB00E8F614 /* SPItemsDetailViewCtrl.swift */; };
 		2D91EB741F16263A0038B49C /* SPResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB731F16263A0038B49C /* SPResourceManager.m */; };
 		2D91EB771F1724230038B49C /* SPBaseData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB761F1724230038B49C /* SPBaseData.m */; };
 		2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB7A1F1731880038B49C /* SPLocale.m */; };
@@ -37,7 +46,6 @@
 		2DF9B8221F1361640012950A /* SPHTMLSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6611F1361640012950A /* SPHTMLSerializer.m */; };
 		2DF9B8231F1361640012950A /* SPMaxPlusAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6631F1361640012950A /* SPMaxPlusAPI.m */; };
 		2DF9B8241F1361640012950A /* SPSteamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6651F1361640012950A /* SPSteamAPI.m */; };
-		2DF9B8251F1361640012950A /* BingoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6681F1361640012950A /* BingoCache.m */; };
 		2DF9B8261F1361640012950A /* TQLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B66B1F1361640012950A /* TQLocationConverter.m */; };
 		2DF9B8271F1361640012950A /* YGBatteryMotionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B66D1F1361640012950A /* YGBatteryMotionHelper.m */; };
 		2DF9B8281F1361640012950A /* YGCapabilityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B66F1F1361640012950A /* YGCapabilityHelper.m */; };
@@ -204,8 +212,25 @@
 		2D48D29A1CDE20D700190F0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2D48D2A81CDE20D700190F0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D48D2AA1CDE20D700190F0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D4AD9CF1F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemsDetailViewCtrl.h; sourceTree = "<group>"; };
+		2D4AD9D01F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemsDetailViewCtrl.m; sourceTree = "<group>"; };
+		2D4AD9D21F1E63ED00FF3EDF /* SPItemInfoViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemInfoViewCtrl.h; sourceTree = "<group>"; };
+		2D4AD9D31F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemInfoViewCtrl.m; sourceTree = "<group>"; };
 		2D563B211D435E95005FC6CA /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		2D563B231D435EAB005FC6CA /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		2D6F1C901F1E68E400E8F614 /* YYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCache.h; sourceTree = "<group>"; };
+		2D6F1C911F1E68E400E8F614 /* YYCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCache.m; sourceTree = "<group>"; };
+		2D6F1C921F1E68E400E8F614 /* YYDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDiskCache.h; sourceTree = "<group>"; };
+		2D6F1C931F1E68E400E8F614 /* YYDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDiskCache.m; sourceTree = "<group>"; };
+		2D6F1C941F1E68E400E8F614 /* YYKVStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKVStorage.h; sourceTree = "<group>"; };
+		2D6F1C951F1E68E400E8F614 /* YYKVStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYKVStorage.m; sourceTree = "<group>"; };
+		2D6F1C961F1E68E400E8F614 /* YYMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYMemoryCache.h; sourceTree = "<group>"; };
+		2D6F1C971F1E68E400E8F614 /* YYMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYMemoryCache.m; sourceTree = "<group>"; };
+		2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
+		2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOTA2ShiPing-Bridging-Header.h"; sourceTree = "<group>"; };
+		2D6F1CA31F1E709F00E8F614 /* SPSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSwift.swift; sourceTree = "<group>"; };
+		2D6F1CA51F1E7BCB00E8F614 /* SPItemsDetailViewCtrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPItemsDetailViewCtrl.swift; sourceTree = "<group>"; };
 		2D91EB721F16263A0038B49C /* SPResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPResourceManager.h; sourceTree = "<group>"; };
 		2D91EB731F16263A0038B49C /* SPResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPResourceManager.m; sourceTree = "<group>"; };
 		2D91EB751F1724230038B49C /* SPBaseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBaseData.h; sourceTree = "<group>"; };
@@ -261,8 +286,6 @@
 		2DF9B6631F1361640012950A /* SPMaxPlusAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMaxPlusAPI.m; sourceTree = "<group>"; };
 		2DF9B6641F1361640012950A /* SPSteamAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSteamAPI.h; sourceTree = "<group>"; };
 		2DF9B6651F1361640012950A /* SPSteamAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSteamAPI.m; sourceTree = "<group>"; };
-		2DF9B6671F1361640012950A /* BingoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BingoCache.h; sourceTree = "<group>"; };
-		2DF9B6681F1361640012950A /* BingoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BingoCache.m; sourceTree = "<group>"; };
 		2DF9B66A1F1361640012950A /* TQLocationConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQLocationConverter.h; sourceTree = "<group>"; };
 		2DF9B66B1F1361640012950A /* TQLocationConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQLocationConverter.m; sourceTree = "<group>"; };
 		2DF9B66C1F1361640012950A /* YGBatteryMotionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGBatteryMotionHelper.h; sourceTree = "<group>"; };
@@ -572,7 +595,7 @@
 		2DF9B8E01F13639E0012950A /* Steam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Steam.h; sourceTree = "<group>"; };
 		2DF9B8E11F1365CB0012950A /* CDTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDTUser.h; sourceTree = "<group>"; };
 		2DF9B8E21F1365CB0012950A /* CDTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDTUser.m; sourceTree = "<group>"; };
-		939CCEAA439897D1DEE60C3E /* libPods-DOTA2ShiPing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DOTA2ShiPing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B70FA08C933879E048D521D6 /* Pods_DOTA2ShiPing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DOTA2ShiPing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -580,12 +603,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */,
+				2D6F1C9D1F1E6D3F00E8F614 /* Pods_DOTA2ShiPing.framework in Frameworks */,
 				2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */,
 				2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */,
 				2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */,
 				2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */,
 				2DF9B8D61F1361640012950A /* GoogleMobileAds.framework in Frameworks */,
-				1929949B4AC914B44D61F796 /* libPods-DOTA2ShiPing.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +656,21 @@
 				2DF9B6411F135FB20012950A /* DOTA2ShiPing-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2D6F1C8F1F1E68E400E8F614 /* YYCache */ = {
+			isa = PBXGroup;
+			children = (
+				2D6F1C901F1E68E400E8F614 /* YYCache.h */,
+				2D6F1C911F1E68E400E8F614 /* YYCache.m */,
+				2D6F1C921F1E68E400E8F614 /* YYDiskCache.h */,
+				2D6F1C931F1E68E400E8F614 /* YYDiskCache.m */,
+				2D6F1C941F1E68E400E8F614 /* YYKVStorage.h */,
+				2D6F1C951F1E68E400E8F614 /* YYKVStorage.m */,
+				2D6F1C961F1E68E400E8F614 /* YYMemoryCache.h */,
+				2D6F1C971F1E68E400E8F614 /* YYMemoryCache.m */,
+			);
+			path = YYCache;
 			sourceTree = "<group>";
 		};
 		2D91EB711F1626270038B49C /* Resource */ = {
@@ -776,7 +815,6 @@
 				2D91EB781F1731570038B49C /* Localization */,
 				2D91EB711F1626270038B49C /* Resource */,
 				2DF9B65D1F1361640012950A /* API */,
-				2DF9B6661F1361640012950A /* AppCache */,
 				2DF9B6691F1361640012950A /* Capabilities */,
 				2DF9B6761F1361640012950A /* Categories */,
 				2DF9B6BF1F1361640012950A /* Navigate */,
@@ -803,15 +841,6 @@
 				2DF9B6651F1361640012950A /* SPSteamAPI.m */,
 			);
 			path = API;
-			sourceTree = "<group>";
-		};
-		2DF9B6661F1361640012950A /* AppCache */ = {
-			isa = PBXGroup;
-			children = (
-				2DF9B6671F1361640012950A /* BingoCache.h */,
-				2DF9B6681F1361640012950A /* BingoCache.m */,
-			);
-			path = AppCache;
 			sourceTree = "<group>";
 		};
 		2DF9B6691F1361640012950A /* Capabilities */ = {
@@ -1344,9 +1373,9 @@
 			isa = PBXGroup;
 			children = (
 				2DC0F6881F1B6A2D004DCD3C /* HeroPicker */,
+				2DF9B78B1F1361640012950A /* Item */,
 				2DE373501F176B4A00C8F653 /* Update */,
 				2DF9B7801F1361640012950A /* Base */,
-				2DF9B78B1F1361640012950A /* Item */,
 				2DF9B7A71F1361640012950A /* Main */,
 				2DF9B7B01F1361640012950A /* Player */,
 				2DF9B7D51F1361640012950A /* Search */,
@@ -1414,6 +1443,13 @@
 				2DF9B7A01F1361640012950A /* SPItemListVC.m */,
 				2DF9B79D1F1361640012950A /* SPItemListContainer.h */,
 				2DF9B79E1F1361640012950A /* SPItemListContainer.m */,
+				2D4AD9CF1F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.h */,
+				2D4AD9D01F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m */,
+				2D6F1CA51F1E7BCB00E8F614 /* SPItemsDetailViewCtrl.swift */,
+				2D4AD9D21F1E63ED00FF3EDF /* SPItemInfoViewCtrl.h */,
+				2D4AD9D31F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m */,
+				2D6F1CA31F1E709F00E8F614 /* SPSwift.swift */,
+				2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */,
 			);
 			path = Ctrls;
 			sourceTree = "<group>";
@@ -1710,6 +1746,7 @@
 		2DF9B8161F1361640012950A /* Third-Party */ = {
 			isa = PBXGroup;
 			children = (
+				2D6F1C8F1F1E68E400E8F614 /* YYCache */,
 				2DF9B8171F1361640012950A /* AdMob */,
 				2DF9B8191F1361640012950A /* Bugly_2.4.8 */,
 			);
@@ -1744,10 +1781,12 @@
 		9DF9275624812581C6DA2B9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */,
+				2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */,
 				2D563B231D435EAB005FC6CA /* libstdc++.tbd */,
 				2D563B211D435E95005FC6CA /* libiconv.tbd */,
 				2D0A82861CDF325700F26BD1 /* libz.tbd */,
-				939CCEAA439897D1DEE60C3E /* libPods-DOTA2ShiPing.a */,
+				B70FA08C933879E048D521D6 /* Pods_DOTA2ShiPing.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1797,6 +1836,7 @@
 					2D48D2921CDE20D600190F0C = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 8QP3ZT6EXM;
+						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1946,12 +1986,14 @@
 				2DF9B8AD1F1361640012950A /* SPPlayerManager.m in Sources */,
 				2DF9B81F1F1361640012950A /* Config_Network.m in Sources */,
 				2D91EB771F1724230038B49C /* SPBaseData.m in Sources */,
+				2D6F1C9A1F1E68E400E8F614 /* YYKVStorage.m in Sources */,
 				2DF9B8CC1F1361640012950A /* SPWorkshopVC.m in Sources */,
 				2DF9B8291F1361640012950A /* YGCoreLocationHelper.m in Sources */,
 				2DF9B8B21F1361640012950A /* SPPlayerInventorySearchFilterVC.m in Sources */,
 				2DF9B8781F1361640012950A /* CDTAlertDefine.m in Sources */,
 				2DF9B8391F1361640012950A /* UISearchBar+yg_IBInspectable.m in Sources */,
 				2DF9B8321F1361640012950A /* UIDevice+Ext.m in Sources */,
+				2D4AD9D41F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m in Sources */,
 				2DF9B8C91F1361640012950A /* SPFocusVisualEffectVC.m in Sources */,
 				2DF9B8541F1361640012950A /* YGPayThirdPlatformProcessor.m in Sources */,
 				2DF9B8A11F1361640012950A /* SPItemFilter.m in Sources */,
@@ -1963,6 +2005,7 @@
 				2DF9B81D1F1361640012950A /* Config_Archive.m in Sources */,
 				2DF9B8A51F1361640012950A /* SPItemListVC.m in Sources */,
 				2DF9B8891F1361640012950A /* SPWebHelper.m in Sources */,
+				2D6F1C981F1E68E400E8F614 /* YYCache.m in Sources */,
 				2DF9B8A41F1361640012950A /* SPItemListContainer.m in Sources */,
 				2DF9B8461F1361640012950A /* UIView+BlockGesture.m in Sources */,
 				2DF9B8371F1361640012950A /* UINavigationBar+yg_IBInspectable.m in Sources */,
@@ -1992,9 +2035,12 @@
 				2DF9B8801F1361640012950A /* TAPageControl.m in Sources */,
 				2DF9B82B1F1361640012950A /* YGRemoteNotificationHelper.m in Sources */,
 				2DF9B8341F1361640012950A /* UIActivityIndicatorView+yg_IBInspectable.m in Sources */,
+				2D6F1C991F1E68E400E8F614 /* YYDiskCache.m in Sources */,
 				2DF9B8C41F1361640012950A /* SPSettingFeedbackVC.m in Sources */,
+				2D4AD9D11F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m in Sources */,
 				2DF9B8AC1F1361640012950A /* SPPlayer+More.m in Sources */,
 				2DF9B8E31F1365CB0012950A /* CDTUser.m in Sources */,
+				2D6F1C9B1F1E68E400E8F614 /* YYMemoryCache.m in Sources */,
 				2DF9B8721F1361640012950A /* LCActionSheet.m in Sources */,
 				2DF9B8921F1361640012950A /* SPItemPrefab.m in Sources */,
 				2DF9B89B1F1361640012950A /* YGBaseWebViewCtrl.m in Sources */,
@@ -2006,6 +2052,7 @@
 				2DF9B8821F1361640012950A /* SDCycleScrollView.m in Sources */,
 				2DF9B83A1F1361640012950A /* UITabBar+yg_IBInspectable.m in Sources */,
 				2DF9B85D1F1361640012950A /* BingoBarItem.m in Sources */,
+				2D6F1CA61F1E7BCB00E8F614 /* SPItemsDetailViewCtrl.swift in Sources */,
 				2DF9B8831F1361640012950A /* UIView+SDExtension.m in Sources */,
 				2DF9B8451F1361640012950A /* UIView+Animation.m in Sources */,
 				2DF9B8971F1361640012950A /* SPPlayerItems.m in Sources */,
@@ -2036,7 +2083,6 @@
 				2DF9B8BB1F1361640012950A /* SPSearchVC.m in Sources */,
 				2DF9B87C1F1361640012950A /* RWDropdownMenuTransitionController.m in Sources */,
 				2DF9B87A1F1361640012950A /* RWDropdownMenu.m in Sources */,
-				2DF9B8251F1361640012950A /* BingoCache.m in Sources */,
 				2DF9B86F1F1361640012950A /* YGLabel.m in Sources */,
 				2DF9B8331F1361640012950A /* CoreLocation+Convert.m in Sources */,
 				2DF9B83B1F1361640012950A /* UITableView+yg_IBInspectable.m in Sources */,
@@ -2066,6 +2112,7 @@
 				2DF9B8B51F1361640012950A /* SPPlayerListVC.m in Sources */,
 				2DF9B8981F1361640012950A /* YGBaseNaviCtrl.m in Sources */,
 				2DF9B8241F1361640012950A /* SPSteamAPI.m in Sources */,
+				2D6F1CA41F1E709F00E8F614 /* SPSwift.swift in Sources */,
 				2DF9B8481F1361640012950A /* UIView+YGGeometry.m in Sources */,
 				2DF9B8B71F1361640012950A /* SPPlayerSelectedVC.m in Sources */,
 				2DF9B8B01F1361640012950A /* SPPlayerDetailInfoVC.m in Sources */,
@@ -2114,6 +2161,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2163,6 +2211,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2188,19 +2237,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUGLY_APP_BUNDLE_ID = "$(PRODUCT_BUNDLE_IDENTIFIER)";
-				BUGLY_APP_ID = "//todo";
-				BUGLY_APP_KEY = "//todo";
+				BUGLY_APP_ID = todo;
+				BUGLY_APP_KEY = todo;
 				BUGLY_ENABLED = 0;
 				BUGLY_JAR_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/buglySymboliOS.jar";
 				BUGLY_SHELL_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/dSYMUpload.sh";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/DOTA2ShiPing/3rd/AdMob",
 					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/AdMob",
 					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/Bugly_2.4.8",
+					"$(PROJECT_DIR)/DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2208,23 +2259,11 @@
 				INFOPLIST_FILE = DOTA2ShiPing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/DOTA2ShiPing/3rd/BaiduAD",
-					"$(PROJECT_DIR)/DOTA2ShiPing/3rd/UMeng/umeng_community_ios_v2.6.1/Lib_UMCommunity",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"AFNetworking\"",
-					"-l\"DZNEmptyDataSet\"",
-					"-l\"FMDB\"",
-					"-l\"IAPHelper\"",
-					"-l\"MBProgressHUD\"",
-					"-l\"MJRefresh\"",
-					"-l\"YYModel\"",
 					"-l\"c++\"",
-					"-l\"sqlite3\"",
 					"-framework",
 					"\"CoreFoundation\"",
 					"-framework",
@@ -2250,6 +2289,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = wwwbbat.DOTA2ShiPing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
 		};
@@ -2259,19 +2302,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUGLY_APP_BUNDLE_ID = "$(PRODUCT_BUNDLE_IDENTIFIER)";
-				BUGLY_APP_ID = "//todo";
-				BUGLY_APP_KEY = "//todo";
+				BUGLY_APP_ID = todo;
+				BUGLY_APP_KEY = todo;
 				BUGLY_ENABLED = 0;
 				BUGLY_JAR_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/buglySymboliOS.jar";
 				BUGLY_SHELL_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/dSYMUpload.sh";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/DOTA2ShiPing/3rd/AdMob",
 					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/AdMob",
 					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/Bugly_2.4.8",
+					"$(PROJECT_DIR)/DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2279,23 +2324,11 @@
 				INFOPLIST_FILE = DOTA2ShiPing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/DOTA2ShiPing/3rd/BaiduAD",
-					"$(PROJECT_DIR)/DOTA2ShiPing/3rd/UMeng/umeng_community_ios_v2.6.1/Lib_UMCommunity",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"AFNetworking\"",
-					"-l\"DZNEmptyDataSet\"",
-					"-l\"FMDB\"",
-					"-l\"IAPHelper\"",
-					"-l\"MBProgressHUD\"",
-					"-l\"MJRefresh\"",
-					"-l\"YYModel\"",
 					"-l\"c++\"",
-					"-l\"sqlite3\"",
 					"-framework",
 					"\"CoreFoundation\"",
 					"-framework",
@@ -2321,6 +2354,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = wwwbbat.DOTA2ShiPing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
 		};
