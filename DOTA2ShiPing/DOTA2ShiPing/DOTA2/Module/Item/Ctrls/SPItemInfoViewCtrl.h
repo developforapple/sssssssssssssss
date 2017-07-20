@@ -8,6 +8,8 @@
 
 #import "YGBaseViewCtrl.h"
 
-@interface SPItemInfoViewCtrl : YGBaseViewCtrl
+@class SPItem;
 
+@interface SPItemInfoViewCtrl : YGBaseViewCtrl
+@property (strong, nonatomic) SPItem *item;
 @end

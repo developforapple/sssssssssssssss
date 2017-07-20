@@ -15,7 +15,7 @@ typedef void(^SPItemCacheCompletion)(id content);
 
 // 存储在七牛的图片url
 - (NSURL *)qiniuSmallURL;
-- (NSURL *)quniuLargeURL;
+- (NSURL *)qiniuLargeURL;
 
 // 获取饰品小图。如果缓存了，读取缓存。
 - (void)getItemImageInventory:(SPItemCacheCompletion)completion;

@@ -54,3 +54,62 @@
 }
 
 @end
+
+static void *kTrueConstantKey = &kTrueConstantKey;
+
+@interface NSLayoutConstraint (Collapsed)
+@property (assign, nonatomic) float trueConstant;
+@end
+@implementation NSLayoutConstraint (Collapsed)
+- (void)setTrueConstant:(float)trueConstant
+{
+    objc_setAssociatedObject(self, kTrueConstantKey, @(trueConstant), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (float)trueConstant
+{
+    NSNumber *v = objc_getAssociatedObject(self, kTrueConstantKey);
+    if (!v) {
+        return self.constant;
+    }
+    return v.floatValue;
+}
+@end
+
+static void *kCollapsedConstraintsKey = &kCollapsedConstraintsKey;
+static void *kCollapsedKey = &kCollapsedKey;
+
+@implementation UIView (Collapsed)
+
+- (void)setCollapsedConstraints:(NSArray *)collapsedConstraints
+{
+    for (NSLayoutConstraint *constraint in collapsedConstraints) {
+        constraint.trueConstant = constraint.constant;
+    }
+    objc_setAssociatedObject(self, kCollapsedConstraintsKey, collapsedConstraints, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSArray *)collapsedConstraints
+{
+    return objc_getAssociatedObject(self, kCollapsedConstraintsKey);
+}
+
+- (void)setCollapsed:(BOOL)collapsed
+{
+    objc_setAssociatedObject(self, kCollapsedKey, @(collapsed), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self updateCollapsedConstraints:collapsed];
+}
+
+- (BOOL)isCollapsed
+{
+    return [objc_getAssociatedObject(self, kCollapsedKey) boolValue];
+}
+
+- (void)updateCollapsedConstraints:(BOOL)collapsed
+{
+    for (NSLayoutConstraint *aConstraint in self.collapsedConstraints) {
+        aConstraint.constant = collapsed ? 0 : aConstraint.trueConstant ;
+    }
+}
+
+@end

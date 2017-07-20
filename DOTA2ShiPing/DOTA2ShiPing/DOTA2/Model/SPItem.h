@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YYModel.h"
 
 FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 
@@ -42,15 +41,15 @@ FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 @property (strong, nonatomic) NSString *item_slot;          //neck
 @property (strong, nonatomic) NSString *item_quality;
 
-@property (strong, nonatomic) NSString *purchase_requirement_prompt_text;   //db name: prpt
-@property (strong, nonatomic) NSString *purchase_requires_owning_league_id; //db name: proli
-@property (strong, nonatomic) NSString * purchase_requirement_prompt_ok_text; //db name: prpot
-@property (strong, nonatomic) NSString * purchase_requirement_prompt_ok_event;//db name: prpoe
-@property (strong, nonatomic) NSString * purchase_through_event;              //db name: pte
+@property (strong, nonatomic) NSString *purchase_requirement_prompt_text;    //db name: prpt
+@property (strong, nonatomic) NSString *purchase_requires_owning_league_id;  //db name: proli
+@property (strong, nonatomic) NSString *purchase_requirement_prompt_ok_text; //db name: prpot
+@property (strong, nonatomic) NSString *purchase_requirement_prompt_ok_event;//db name: prpoe
+@property (strong, nonatomic) NSString *purchase_through_event;              //db name: pte
 
 @property (strong, nonatomic) NSString *override_attack_attachments; //覆盖攻击 //db name: oaa
-@property (strong, nonatomic) NSString *event_id;   //EVENT_ID_FALL_MAJOR_2015
-@property (strong, nonatomic) NSString *expiration_date;//结束时间
+@property (strong, nonatomic) NSString *event_id;           //EVENT_ID_FALL_MAJOR_2015
+@property (strong, nonatomic) NSString *expiration_date;    //结束时间
 @property (strong, nonatomic) NSString *player_loadout;
 @property (strong, nonatomic) NSString *associated_item;
 @property (strong, nonatomic) NSString *item_class;
@@ -106,7 +105,7 @@ FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 
 @end
 
-@interface SPItemChild : NSObject <YYModel>
+@interface SPItemChild : NSObject
 
 @property (strong, nonatomic) SPItemAutograph *autograph;
 

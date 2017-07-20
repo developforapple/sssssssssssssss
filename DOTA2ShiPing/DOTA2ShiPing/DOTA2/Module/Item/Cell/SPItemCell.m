@@ -74,7 +74,11 @@ UIImage *placeholderImage(){
     self.mainColor = color;
     
     if (self.mode == SPItemListModeGrid) {
-        self.itemNameLabel.backgroundColor = [color blendColorWithAlpha:0.5f baseColor:nil];
+        self.itemNameLabel.textColor = [UIColor whiteColor];
+        self.itemNameLabel.backgroundColor = color.color;
+//        self.itemNameLabel.backgroundColor = [color blendColorWithAlpha:0.5f baseColor:nil];
+    }else{
+        self.itemNameLabel.textColor = self.itemRarityLabel.textColor = self.itemTypeLabel.textColor = [UIColor whiteColor];
     }
 }
 
@@ -85,6 +89,8 @@ UIImage *placeholderImage(){
     self.itemNameLabel.text = item.name;
     self.itemRarityLabel.text = rarityTag.name;
     self.itemTypeLabel.text = item.type;
+    
+    self.itemNameLabel.textColor = self.itemRarityLabel.textColor = self.itemTypeLabel.textColor = [UIColor whiteColor];
 
     NSString *iconurl = [NSString stringWithFormat:@"http://steamcommunity-a.akamaihd.net/economy/image/%@",item.icon_url];
     
@@ -100,7 +106,8 @@ UIImage *placeholderImage(){
 {
     if (!_lineLayer) {
         _lineLayer = [CALayer layer];
-        _lineLayer.backgroundColor = RGBColor(200, 200, 200, 1).CGColor;
+//        _lineLayer.backgroundColor = RGBColor(200, 200, 200, 1).CGColor;
+        _lineLayer.backgroundColor = RGBColor(250, 250, 250, 0.5).CGColor;
         [self.layer addSublayer:_lineLayer];
     }
     return _lineLayer;
@@ -118,8 +125,10 @@ UIImage *placeholderImage(){
         }
     }
     if (self.mode == SPItemListModeTable){
-        _gLayer.colors = @[(id)[self.mainColor blendColorWithAlpha:.5f baseColor:nil].CGColor,
-                           (id)[self.mainColor blendColorWithAlpha:.1f baseColor:nil].CGColor];
+//        _gLayer.colors = @[(id)[self.mainColor blendColorWithAlpha:.5f baseColor:nil].CGColor,
+//                           (id)[self.mainColor blendColorWithAlpha:.1f baseColor:nil].CGColor];
+        _gLayer.colors = @[(id)[self.mainColor blendColorWithAlpha:.8f baseColor:RGBColor(46, 46, 46, 1)].CGColor,
+                           (id)[self.mainColor blendColorWithAlpha:.2f baseColor:RGBColor(46, 46, 46, 1)].CGColor];
     }
     return _gLayer;
 }

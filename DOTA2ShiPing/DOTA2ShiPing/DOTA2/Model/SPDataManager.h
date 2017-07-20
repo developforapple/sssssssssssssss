@@ -31,6 +31,9 @@
 - (SPItemPrefab *)prefabOfName:(NSString *)name;
 - (NSArray<SPItemPrefab *> *)prefabsOfNames:(NSArray<NSString *> *)names;
 - (NSArray<SPItemPrefab *> *)prefabsOfEntranceType:(SPItemEntranceType)type;
+- (NSArray<SPHero *> *)heroesOfNames:(NSArray<NSString *> *)heroes;
+- (SPItemQuality *)qualityOfName:(NSString *)name;
+- (SPItemSlot *)slotOfName:(NSString *)name;
 
 // 查询捆绑包
 - (NSArray<SPItemSets *> *)querySetsWithCondition:(NSString *)condition values:(NSArray *)values;

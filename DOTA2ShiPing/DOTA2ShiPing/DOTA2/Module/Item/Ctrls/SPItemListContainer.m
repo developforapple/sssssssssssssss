@@ -11,9 +11,8 @@
 #import "SPLogoHeader.h"
 #import "SPItemCell.h"
 #import "SPItemsDetailViewCtrl.h"
-#import "DOTA2ShiPing-Swift.h"
 
-@interface SPItemListContainer ()<UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
+@interface SPItemListContainer ()<UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
@@ -127,6 +126,7 @@
 {
     SPItem *item = self.items[indexPath.row];
     SPItemsDetailViewCtrl *vc = [SPItemsDetailViewCtrl instanceFromStoryboard];
+    vc.item = item;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

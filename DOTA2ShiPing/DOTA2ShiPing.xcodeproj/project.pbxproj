@@ -21,8 +21,7 @@
 		2D6F1C9B1F1E68E400E8F614 /* YYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C971F1E68E400E8F614 /* YYMemoryCache.m */; };
 		2D6F1C9D1F1E6D3F00E8F614 /* Pods_DOTA2ShiPing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70FA08C933879E048D521D6 /* Pods_DOTA2ShiPing.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */; };
-		2D6F1CA41F1E709F00E8F614 /* SPSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CA31F1E709F00E8F614 /* SPSwift.swift */; };
-		2D6F1CA61F1E7BCB00E8F614 /* SPItemsDetailViewCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CA51F1E7BCB00E8F614 /* SPItemsDetailViewCtrl.swift */; };
+		2D6F1CAB1F1F3D4200E8F614 /* SPItemTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */; };
 		2D91EB741F16263A0038B49C /* SPResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB731F16263A0038B49C /* SPResourceManager.m */; };
 		2D91EB771F1724230038B49C /* SPBaseData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB761F1724230038B49C /* SPBaseData.m */; };
 		2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB7A1F1731880038B49C /* SPLocale.m */; };
@@ -229,8 +228,8 @@
 		2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOTA2ShiPing-Bridging-Header.h"; sourceTree = "<group>"; };
-		2D6F1CA31F1E709F00E8F614 /* SPSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSwift.swift; sourceTree = "<group>"; };
-		2D6F1CA51F1E7BCB00E8F614 /* SPItemsDetailViewCtrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPItemsDetailViewCtrl.swift; sourceTree = "<group>"; };
+		2D6F1CA91F1F3D4200E8F614 /* SPItemTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemTransition.h; sourceTree = "<group>"; };
+		2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemTransition.m; sourceTree = "<group>"; };
 		2D91EB721F16263A0038B49C /* SPResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPResourceManager.h; sourceTree = "<group>"; };
 		2D91EB731F16263A0038B49C /* SPResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPResourceManager.m; sourceTree = "<group>"; };
 		2D91EB751F1724230038B49C /* SPBaseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBaseData.h; sourceTree = "<group>"; };
@@ -1430,6 +1429,8 @@
 			children = (
 				2DF9B7961F1361640012950A /* SPItemFilter.h */,
 				2DF9B7971F1361640012950A /* SPItemFilter.m */,
+				2D6F1CA91F1F3D4200E8F614 /* SPItemTransition.h */,
+				2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1445,10 +1446,8 @@
 				2DF9B79E1F1361640012950A /* SPItemListContainer.m */,
 				2D4AD9CF1F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.h */,
 				2D4AD9D01F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m */,
-				2D6F1CA51F1E7BCB00E8F614 /* SPItemsDetailViewCtrl.swift */,
 				2D4AD9D21F1E63ED00FF3EDF /* SPItemInfoViewCtrl.h */,
 				2D4AD9D31F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m */,
-				2D6F1CA31F1E709F00E8F614 /* SPSwift.swift */,
 				2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */,
 			);
 			path = Ctrls;
@@ -2021,6 +2020,7 @@
 				2DF9B8441F1361640012950A /* UINavigationController+Convenience.m in Sources */,
 				2DF9B8CA1F1361640012950A /* SPWorkshopResourcesVC.m in Sources */,
 				2DF9B8621F1361640012950A /* DDProgressHUD.m in Sources */,
+				2D6F1CAB1F1F3D4200E8F614 /* SPItemTransition.m in Sources */,
 				2DF9B8491F1361640012950A /* UIViewController+Storyboard.m in Sources */,
 				2DF9B8BD1F1361640012950A /* SPSearchCell.m in Sources */,
 				2DF9B8BA1F1361640012950A /* SPSearchEngine.m in Sources */,
@@ -2052,7 +2052,6 @@
 				2DF9B8821F1361640012950A /* SDCycleScrollView.m in Sources */,
 				2DF9B83A1F1361640012950A /* UITabBar+yg_IBInspectable.m in Sources */,
 				2DF9B85D1F1361640012950A /* BingoBarItem.m in Sources */,
-				2D6F1CA61F1E7BCB00E8F614 /* SPItemsDetailViewCtrl.swift in Sources */,
 				2DF9B8831F1361640012950A /* UIView+SDExtension.m in Sources */,
 				2DF9B8451F1361640012950A /* UIView+Animation.m in Sources */,
 				2DF9B8971F1361640012950A /* SPPlayerItems.m in Sources */,
@@ -2112,7 +2111,6 @@
 				2DF9B8B51F1361640012950A /* SPPlayerListVC.m in Sources */,
 				2DF9B8981F1361640012950A /* YGBaseNaviCtrl.m in Sources */,
 				2DF9B8241F1361640012950A /* SPSteamAPI.m in Sources */,
-				2D6F1CA41F1E709F00E8F614 /* SPSwift.swift in Sources */,
 				2DF9B8481F1361640012950A /* UIView+YGGeometry.m in Sources */,
 				2DF9B8B71F1361640012950A /* SPPlayerSelectedVC.m in Sources */,
 				2DF9B8B01F1361640012950A /* SPPlayerDetailInfoVC.m in Sources */,

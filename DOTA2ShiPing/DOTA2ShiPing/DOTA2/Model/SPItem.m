@@ -8,6 +8,7 @@
 
 #import "SPItem.h"
 #import "SPDataManager.h"
+#import "YYModel.h"
 
 @interface SPItem () <YYModel>
 
@@ -99,6 +100,10 @@
 {
     return [NSString stringWithFormat:@"%@ %@ %@",[super description],self.token,self.item_name];
 }
+
+@end
+
+@interface SPItemChild () <YYModel>
 
 @end
 

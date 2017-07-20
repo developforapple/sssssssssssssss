@@ -19,3 +19,9 @@
 - (BOOL)containView:(UIView *)view;
 
 @end
+
+
+@interface UIView (Collapsed)
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *collapsedConstraints;
+@property (assign, getter=isCollapsed, nonatomic) BOOL collapsed;
+@end

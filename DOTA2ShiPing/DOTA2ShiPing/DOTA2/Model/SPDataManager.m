@@ -146,7 +146,6 @@
 - (SPItemColor *)colorOfName:(NSString *)name
 {
     if (!name) return nil;
-    
     for (SPItemColor *color in self.colors) {
         if ([color.name isEqualToString:name]) {
             return color;
@@ -201,6 +200,41 @@
             break;
     }
     return [self prefabsOfNames:names];
+}
+
+- (NSArray<SPHero *> *)heroesOfNames:(NSArray<NSString *> *)heroes
+{
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSString *name in heroes) {
+        for (SPHero *aHero in self.heroes) {
+            if ([aHero.name isEqualToString:name]) {
+                [array addObject:aHero];
+            }
+        }
+    }
+    return array;
+}
+
+- (SPItemQuality *)qualityOfName:(NSString *)name
+{
+    if (!name) return nil;
+    for (SPItemQuality *quality in self.qualities) {
+        if ([quality.name isEqualToString:name]) {
+            return quality;
+        }
+    }
+    return nil;
+}
+
+- (SPItemSlot *)slotOfName:(NSString *)name
+{
+    if (!name) return nil;
+    for (SPItemSlot *slot in self.slots) {
+        if ([slot.SlotName isEqualToString:name]) {
+            return slot;
+        }
+    }
+    return nil;
 }
 
 - (NSArray<SPItemSets *> *)querySetsWithCondition:(NSString *)condition values:(NSArray *)values

@@ -91,10 +91,10 @@ typedef NS_ENUM(NSUInteger, SPImageType) {
     return smallURLString ? [NSURL URLWithString:smallURLString] : nil;
 }
 
-- (NSURL *)quniuLargeURL
+- (NSURL *)qiniuLargeURL
 {
     NSString *URLString = [self qiniuImageURLString];
-    NSString *largeURLString = [URLString stringByAppendingString:@"/large"];
+    NSString *largeURLString = [[URLString stringByAppendingString:@"/large"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return largeURLString ? [NSURL URLWithString:largeURLString] : nil;
 }
 
