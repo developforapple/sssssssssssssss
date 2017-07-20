@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SPItemCommon.h"
+#import "YGLineView.h"
 
 @class SPItem;
 @class SPPlayerInventoryItemDetail;
@@ -22,11 +23,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *itemRarityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *itemTypeLabel;
 
+// for grid
+@property (weak, nonatomic) IBOutlet YGLineView *leftLine;
+
 @property (strong, readonly, nonatomic) id item;
 
 @property (assign, nonatomic) SPItemListMode mode;
 
 // Class:SPItem SPPlayerInventoryItemDetail
 - (void)configure:(id)item;
+
 
 @end

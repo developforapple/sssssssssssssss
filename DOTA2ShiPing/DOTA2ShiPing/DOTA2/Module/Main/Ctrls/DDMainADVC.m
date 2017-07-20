@@ -93,16 +93,6 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
     return self.tabBarCtrl;
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return NO;
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kMainTabBarCtrlSegueID]) {

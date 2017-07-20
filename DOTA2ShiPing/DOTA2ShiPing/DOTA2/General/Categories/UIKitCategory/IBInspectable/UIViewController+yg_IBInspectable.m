@@ -7,15 +7,16 @@
 //
 
 #import "UIViewController+yg_IBInspectable.h"
-
+#import "UIViewController+yg_StatusBar.h"
 #import "JZNavigationExtension.h"
 #import <IQKeyboardManager/IQKeyboardManager.h>
+
+#pragma mark - UINavigationController
+static const void *nextAppearIsPushKey = &nextAppearIsPushKey;
 
 @interface UINavigationController (POP_PUSH)
 @property (assign, nonatomic) BOOL nextAppearIsPush;
 @end
-
-static const void *nextAppearIsPushKey = &nextAppearIsPushKey;
 
 @implementation UINavigationController (POP_PUSH)
 
@@ -28,7 +29,6 @@ static const void *nextAppearIsPushKey = &nextAppearIsPushKey;
 {
     return [objc_getAssociatedObject(self, nextAppearIsPushKey) boolValue];
 }
-
 @end
 
 @implementation UIViewController (yg_IBInspectable)
@@ -41,8 +41,6 @@ static const void *naviBarLineColorKey      = &naviBarLineColorKey;
 static const void *naviBarTextColorKey      = &naviBarTextColorKey;
 static const void *naviBarShadowHiddenKey   = &naviBarShadowHiddenKey;
 static const void *IQKeyboardEnabledKey     = &IQKeyboardEnabledKey;
-static const void *statusBarHiddenKey       = &statusBarHiddenKey;
-static const void *statusBarLightKey        = &statusBarLightKey;
 
 static BOOL kDefaultInteractivePopEnabled = YES;
 static BOOL kDefaultNaviBarTranslucent = YES;
@@ -87,46 +85,49 @@ static NSMutableSet<Class> *kIgnoredViewControllerClasses;
 
 #pragma mark Lift Cycle
 
-YGSwizzleMethod
++ (BOOL)swizzleInstanceSelector:(SEL)originalSel withNewSelector:(SEL)newSel
+{
+    Method originalMethod = class_getInstanceMethod(self, originalSel);
+    Method newMethod = class_getInstanceMethod(self, newSel);
+    if (!originalMethod || !newMethod) return NO;
+    
+    class_addMethod(self,
+                    originalSel,
+                    class_getMethodImplementation(self, originalSel),
+                    method_getTypeEncoding(originalMethod));
+    class_addMethod(self,
+                    newSel,
+                    class_getMethodImplementation(self, newSel),
+                    method_getTypeEncoding(newMethod));
+    
+    method_exchangeImplementations(class_getInstanceMethod(self, originalSel),
+                                   class_getInstanceMethod(self, newSel));
+    return YES;
+}
 
 + (void)load
 {
-    kDefaultNaviBarLineColor = RGBColor(229, 229, 229, 0.8f);
-    kDefaultNaviBarTextColor = kTextColor;
-    
-    SEL oldViewWillAppearSel = @selector(viewWillAppear:);
-    SEL newViewWillAppearSel = @selector(yg_viewWillAppear:);
-    [self swizzleInstanceSelector:oldViewWillAppearSel withNewSelector:newViewWillAppearSel];
-    
-    SEL oldViewWillDisappearSel = @selector(viewWillDisappear:);
-    SEL newViewWillDisappearSel = @selector(yg_viewWillDisappear:);
-    [self swizzleInstanceSelector:oldViewWillDisappearSel withNewSelector:newViewWillDisappearSel];
-    
-    SEL oldViewDidAppearSel = @selector(viewDidAppear:);
-    SEL newViewDidAppearSel = @selector(yg_viewDidAppear:);
-    [self swizzleInstanceSelector:oldViewDidAppearSel withNewSelector:newViewDidAppearSel];
-    
-    SEL oldViewDidLoadSel = @selector(viewDidLoad);
-    SEL newViewDidLoadSel = @selector(yg_viewDidLoad);
-    [self swizzleInstanceSelector:oldViewDidLoadSel withNewSelector:newViewDidLoadSel];
-    
-    if ([self canSetupStatusBar]) {
-        SEL oldPrefersStatusBarHidden = @selector(prefersStatusBarHidden);
-        SEL newPrefersStatusBarHidden = @selector(yg_prefersStatusBarHidden);
-        [self swizzleInstanceSelector:oldPrefersStatusBarHidden withNewSelector:newPrefersStatusBarHidden];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        kDefaultNaviBarLineColor = RGBColor(229, 229, 229, 0.8f);
+        kDefaultNaviBarTextColor = kTextColor;
         
-        SEL oldPreferredStatusBarStyle = @selector(preferredStatusBarStyle);
-        SEL newPreferredStatusBarStyle = @selector(yg_preferredStatusBarStyle);
-        [self swizzleInstanceSelector:oldPreferredStatusBarStyle withNewSelector:newPreferredStatusBarStyle];
+        SEL oldViewWillAppearSel = @selector(viewWillAppear:);
+        SEL newViewWillAppearSel = @selector(yg_viewWillAppear:);
+        [self swizzleInstanceSelector:oldViewWillAppearSel withNewSelector:newViewWillAppearSel];
         
-        SEL oldChildViewControllerForStatusBarHidden = @selector(childViewControllerForStatusBarHidden);
-        SEL newChildViewControllerForStatusBarHidden = @selector(yg_childViewControllerForStatusBarHidden);
-        [self swizzleInstanceSelector:oldChildViewControllerForStatusBarHidden withNewSelector:newChildViewControllerForStatusBarHidden];
+        SEL oldViewWillDisappearSel = @selector(viewWillDisappear:);
+        SEL newViewWillDisappearSel = @selector(yg_viewWillDisappear:);
+        [self swizzleInstanceSelector:oldViewWillDisappearSel withNewSelector:newViewWillDisappearSel];
         
-        SEL oldChildViewControllerForStatusBarStyle = @selector(childViewControllerForStatusBarStyle);
-        SEL newChildViewControllerForStatusBarStyle = @selector(yg_childViewControllerForStatusBarStyle);
-        [self swizzleInstanceSelector:oldChildViewControllerForStatusBarStyle withNewSelector:newChildViewControllerForStatusBarStyle];
-    }
+        SEL oldViewDidAppearSel = @selector(viewDidAppear:);
+        SEL newViewDidAppearSel = @selector(yg_viewDidAppear:);
+        [self swizzleInstanceSelector:oldViewDidAppearSel withNewSelector:newViewDidAppearSel];
+        
+        SEL oldViewDidLoadSel = @selector(viewDidLoad);
+        SEL newViewDidLoadSel = @selector(yg_viewDidLoad);
+        [self swizzleInstanceSelector:oldViewDidLoadSel withNewSelector:newViewDidLoadSel];
+    });
 }
 
 - (void)yg_viewDidLoad
@@ -178,12 +179,7 @@ YGSwizzleMethod
                 [self updateNaviBarStyle]; //不更新barStyle
             } completion:^(BOOL finished) {}];
             
-            if (![UIViewController canSetupStatusBar]) {
-                BOOL hidden = self.statusBarHidden_;
-                BOOL light = self.statusBarLight_;
-                [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationFade];
-                [[UIApplication sharedApplication] setStatusBarStyle:light?UIStatusBarStyleLightContent:UIStatusBarStyleDefault animated:YES];
-            }
+            [self updateStatusBarAppearIfNeed];
         }
     }
     
@@ -211,12 +207,7 @@ YGSwizzleMethod
                 [self updateNaviBarStyle];
             } completion:^(BOOL finished) {}];
             
-            if (![UIViewController canSetupStatusBar]) {
-                BOOL hidden = self.statusBarHidden_;
-                BOOL light = self.statusBarLight_;
-                [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationFade];
-                [[UIApplication sharedApplication] setStatusBarStyle:light?UIStatusBarStyleLightContent:UIStatusBarStyleDefault animated:YES];
-            }
+            [self updateStatusBarAppearIfNeed];
         }
     }
     
@@ -515,116 +506,6 @@ YGSwizzleMethod
         [[IQKeyboardManager sharedManager] setEnable:enabled];
         [[IQKeyboardManager sharedManager] setEnableAutoToolbar:enabled];
     }
-}
-
-#pragma mark StatusBar
-+ (BOOL)canSetupStatusBar
-{
-    static BOOL can = NO;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        can = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"UIViewControllerBasedStatusBarAppearance"] boolValue];
-    });
-    return can;
-}
-
-- (void)setStatusBarHidden_:(BOOL)statusBarHidden_
-{
-    objc_setAssociatedObject(self, statusBarHiddenKey, @(statusBarHidden_), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    if ([UIViewController canSetupStatusBar]) {
-        [UIView animateWithDuration:.15f animations:^{
-            [self setNeedsStatusBarAppearanceUpdate];
-        }];
-    }else{
-        [[UIApplication sharedApplication] setStatusBarHidden:statusBarHidden_ withAnimation:UIStatusBarAnimationFade];
-    }
-}
-
-- (BOOL)statusBarHidden_
-{
-    BOOL isHidden = NO;
-    NSNumber *hidden = objc_getAssociatedObject(self, statusBarHiddenKey);
-    if (!hidden) {
-        isHidden = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"UIStatusBarHidden"] boolValue];
-    }else{
-        isHidden = hidden.boolValue;
-    }
-    return isHidden;
-}
-
-- (BOOL)statusBarHiddenIsSet
-{
-    return objc_getAssociatedObject(self, statusBarHiddenKey);
-}
-
-- (void)setStatusBarLight_:(BOOL)statusBarLight_
-{
-    objc_setAssociatedObject(self, statusBarLightKey, @(statusBarLight_), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    if ([UIViewController canSetupStatusBar]){
-        [UIView animateWithDuration:.15f animations:^{
-            [self setNeedsStatusBarAppearanceUpdate];
-        }];
-    }else{
-        [[UIApplication sharedApplication] setStatusBarStyle:statusBarLight_?UIStatusBarStyleLightContent:UIStatusBarStyleDefault animated:YES];
-    }
-}
-
-- (BOOL)statusBarLight_
-{
-    BOOL isLight = NO;
-    NSNumber *light = objc_getAssociatedObject(self, statusBarLightKey);
-    if (!light) {
-        UIStatusBarStyle style = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"UIStatusBarHidden"] intValue];
-        isLight = style == UIStatusBarStyleLightContent;
-    }else{
-        isLight = light.boolValue;
-    }
-    return isLight;
-}
-
-- (BOOL)statusBarLightIsSet
-{
-    return objc_getAssociatedObject(self, statusBarLightKey);
-}
-
-- (BOOL)yg_prefersStatusBarHidden
-{
-    if ([self statusBarHiddenIsSet]) {
-        return self.statusBarHidden_;
-    }
-    return [self yg_prefersStatusBarHidden];
-}
-
-- (UIStatusBarStyle)yg_preferredStatusBarStyle
-{
-    if ([self statusBarLightIsSet]) {
-        return [self statusBarLight_]?UIStatusBarStyleLightContent:UIStatusBarStyleDefault;
-    }
-    return [self yg_preferredStatusBarStyle];
-}
-
-- (UIViewController *)yg_childViewControllerForStatusBarStyle
-{
-    if ([self isKindOfClass:[UINavigationController class]]) {
-        return [(UINavigationController *)self topViewController];
-    }else if ([self isKindOfClass:[UITabBarController class]]){
-        return [(UITabBarController *)self selectedViewController];
-    }else if ([self statusBarLightIsSet]){
-        return nil;
-    }
-    return [self yg_childViewControllerForStatusBarStyle];
-}
-
-- (UIViewController *)yg_childViewControllerForStatusBarHidden
-{
-    if ([self isKindOfClass:[UINavigationController class]]) {
-        return [(UINavigationController *)self topViewController];
-    }else if ([self isKindOfClass:[UITabBarController class]]){
-        return [(UITabBarController *)self selectedViewController];
-    }else if ([self statusBarHiddenIsSet]) {
-        return nil;
-    }
-    return [self yg_childViewControllerForStatusBarHidden];
 }
 
 @end

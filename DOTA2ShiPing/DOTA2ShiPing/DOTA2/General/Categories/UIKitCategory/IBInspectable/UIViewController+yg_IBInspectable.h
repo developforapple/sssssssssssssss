@@ -47,10 +47,4 @@
 // 设置当前控制器下IQKeyboard是否打开。默认是打开的。
 @property (assign, nonatomic) IBInspectable BOOL IQKeyboardEnabled;
 
-// 配置控制器对应的状态栏时，需要info.plist中“View controller-based status bar appearance”为YES。并且正确配置根控制器的 childViewControllerForStatusBarStyle
-// 设置当前控制器的状态栏是否隐藏。默认为info.plist中定义的
-@property (assign, nonatomic) IBInspectable BOOL statusBarHidden_;
-// 设置当前控制的状态栏是否亮色。默认为info.plist中定义的
-@property (assign, nonatomic) IBInspectable BOOL statusBarLight_;
-
 @end

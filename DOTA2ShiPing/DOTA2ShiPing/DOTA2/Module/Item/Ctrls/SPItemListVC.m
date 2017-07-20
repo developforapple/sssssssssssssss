@@ -42,7 +42,8 @@
 
 - (void)initUI
 {
-    self.segmentView.highlightColor = kRedColor;
+    self.segmentView.normalColor = [UIColor whiteColor];
+    self.segmentView.highlightColor = [UIColor whiteColor];
     [self updateTitle];
     SPItemListMode mode = [[NSUserDefaults standardUserDefaults] integerForKey:kSPItemListModeKey];
     self.mode = mode;
@@ -149,6 +150,7 @@
         vc = [SPItemListContainer instanceFromStoryboard];
         vc.items = self.items[index];
         vc.mode = self.mode;
+        vc.topInset = @(64.f+CGRectGetHeight(self.segmentView.bounds));
         self.vcs[k] = vc;
     }
     return vc;

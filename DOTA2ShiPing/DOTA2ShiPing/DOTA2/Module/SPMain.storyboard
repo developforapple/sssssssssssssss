@@ -132,7 +132,7 @@
         <!--库存-->
         <scene sceneID="rch-d4-350">
             <objects>
-                <navigationController id="zsh-Bl-EOa" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="_unused1" id="zsh-Bl-EOa" customClass="YGBaseNaviCtrl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="库存" image="icon_tab_user" selectedImage="icon_tab_user_pressed" id="SIp-5h-mAa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Prc-IS-l98">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -877,10 +877,10 @@
             </objects>
             <point key="canvasLocation" x="3193" y="6312"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Base Navi Ctrl-->
         <scene sceneID="T7b-MW-yar">
             <objects>
-                <navigationController id="xPg-ZR-vk2" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="_unused3" id="xPg-ZR-vk2" customClass="YGBaseNaviCtrl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" selectedImage="icon_tab_me_pressed" systemItem="more" id="OFS-aX-arh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zWU-il-bT8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -897,7 +897,7 @@
         <!--创意工坊-->
         <scene sceneID="t2Y-97-rqn">
             <objects>
-                <navigationController id="6Vh-GT-cbK" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="_unused2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6Vh-GT-cbK" customClass="YGBaseNaviCtrl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="创意工坊" image="icon_tab_workshop" selectedImage="icon_tab_workshop_pressed" id="dhl-wH-iTi"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1sY-E0-iNh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1321,7 +1321,7 @@
         <!--饰品-->
         <scene sceneID="qUc-LN-vL1">
             <objects>
-                <navigationController id="GuK-T5-nQd" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="_unused0" id="GuK-T5-nQd" customClass="YGBaseNaviCtrl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="饰品" image="icon_tab_home" selectedImage="icon_tab_home_pressed" id="qQO-N3-oMg"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fHt-p1-1VA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

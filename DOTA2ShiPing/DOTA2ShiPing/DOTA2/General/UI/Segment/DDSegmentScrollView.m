@@ -212,9 +212,23 @@ static UIColor *kDefaultHighlightColor;
     [self setToolBarVisible:translucent];
 }
 
+- (void)setBarTintColor:(UIColor *)barTintColor
+{
+    _barTintColor = barTintColor;
+    [self setTranslucent:self.translucent];
+}
+
+- (void)setBlackStyle:(BOOL)blackStyle
+{
+    _blackStyle = blackStyle;
+    [self setTranslucent:self.translucent];
+}
+
 - (void)setToolBarVisible:(BOOL)visible
 {
     if (visible) {
+        self.toolBar.barTintColor = self.barTintColor;
+        self.toolBar.barStyle = self.blackStyle ? UIBarStyleBlack : UIBarStyleDefault ;
         [self sendSubviewToBack:self.toolBar];
         _previousBackgroundColor = self.backgroundColor;
         self.backgroundColor = [UIColor clearColor];

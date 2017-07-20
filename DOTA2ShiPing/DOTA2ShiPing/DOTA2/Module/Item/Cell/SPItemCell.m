@@ -19,24 +19,17 @@ UIImage *placeholderImage(){
 }
 
 @interface SPItemCell ()
-@property (strong, nonatomic) CALayer *lineLayer;
 @property (strong, nonatomic) SPItemColor *mainColor;
 @property (strong, nonatomic) CAGradientLayer *gLayer;
 @end
 
 @implementation SPItemCell
 
-- (void)dealloc
-{
-    NSLog(@"%@释放",NSStringFromClass([self class]));
-}
-
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
     if (self.mode == SPItemListModeTable) {
-        self.lineLayer.frame = CGRectMake(0, CGRectGetHeight(self.frame)-.5f, CGRectGetWidth(self.frame), .5f);
         self.gLayer.frame = self.backColorView.bounds;
     }
 }
@@ -74,11 +67,7 @@ UIImage *placeholderImage(){
     self.mainColor = color;
     
     if (self.mode == SPItemListModeGrid) {
-        self.itemNameLabel.textColor = [UIColor whiteColor];
         self.itemNameLabel.backgroundColor = color.color;
-//        self.itemNameLabel.backgroundColor = [color blendColorWithAlpha:0.5f baseColor:nil];
-    }else{
-        self.itemNameLabel.textColor = self.itemRarityLabel.textColor = self.itemTypeLabel.textColor = [UIColor whiteColor];
     }
 }
 
@@ -102,17 +91,6 @@ UIImage *placeholderImage(){
     }
 }
 
-- (CALayer *)lineLayer
-{
-    if (!_lineLayer) {
-        _lineLayer = [CALayer layer];
-//        _lineLayer.backgroundColor = RGBColor(200, 200, 200, 1).CGColor;
-        _lineLayer.backgroundColor = RGBColor(250, 250, 250, 0.5).CGColor;
-        [self.layer addSublayer:_lineLayer];
-    }
-    return _lineLayer;
-}
-
 - (CAGradientLayer *)gLayer
 {
     if (!_gLayer) {
@@ -125,10 +103,12 @@ UIImage *placeholderImage(){
         }
     }
     if (self.mode == SPItemListModeTable){
-//        _gLayer.colors = @[(id)[self.mainColor blendColorWithAlpha:.5f baseColor:nil].CGColor,
-//                           (id)[self.mainColor blendColorWithAlpha:.1f baseColor:nil].CGColor];
-        _gLayer.colors = @[(id)[self.mainColor blendColorWithAlpha:.8f baseColor:RGBColor(46, 46, 46, 1)].CGColor,
-                           (id)[self.mainColor blendColorWithAlpha:.2f baseColor:RGBColor(46, 46, 46, 1)].CGColor];
+//        _gLayer.colors = @[(id)[self.mainColor blendColorWithAlpha:.8f baseColor:nil].CGColor,
+//                           (id)[self.mainColor blendColorWithAlpha:.4f baseColor:nil].CGColor];
+        
+        UIColor *baseColor = RGBColor(120, 120, 120, 1);
+        _gLayer.colors = @[(id)[self.mainColor blendColorWithAlpha:.8f baseColor:baseColor].CGColor,
+                           (id)[self.mainColor blendColorWithAlpha:.2f baseColor:baseColor].CGColor];
     }
     return _gLayer;
 }

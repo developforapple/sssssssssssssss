@@ -16,28 +16,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-}
-
-- (UIViewController *)childViewControllerForStatusBarStyle
-{
-    return self.topViewController;
-}
-
-- (UIViewController *)childViewControllerForStatusBarHidden
-{
-    return self.topViewController;
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return NO;
 }
 
 @end

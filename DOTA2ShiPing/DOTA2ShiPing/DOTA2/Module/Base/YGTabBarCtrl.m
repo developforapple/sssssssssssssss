@@ -28,8 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
 }
 
 - (UINavigationController *)navigationOfTab:(BingoTabType)type
@@ -43,14 +41,6 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
-//    if (!SESSION.logined &&
-//        (viewController == BingoMineNaviCtrl ||
-//         viewController == BingoPowerNaviCtrl)) {
-//        [SESSION loginIfNeed:self doSomething:^{
-//            [tabBarController setSelectedViewController:viewController];
-//        }];
-//        return NO;
-//    }
     return YES;
 }
 

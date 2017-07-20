@@ -9,10 +9,10 @@
 @import UIKit;
 
 typedef NS_ENUM(NSUInteger, YGLineDirection) {
-    YGLineDirectionHorizontal,          //水平位于顶部 insetsBottom 无效
-    YGLineDirectionVertical,            //垂直位于左侧 insetsRight 无效
-    YGLineDirectionHorizontalBottom,    //水平位于底部 insetsTop 无效
-    YGLineDirectionVerticalRight,       //垂直位于右侧 insetsLeft 无效
+    YGLineDirectionHorizontal = 0,          //水平位于顶部 insetsBottom 无效
+    YGLineDirectionVertical = 1,            //垂直位于左侧 insetsRight 无效
+    YGLineDirectionHorizontalBottom = 2,    //水平位于底部 insetsTop 无效
+    YGLineDirectionVerticalRight = 3,       //垂直位于右侧 insetsLeft 无效
 };
 
 #define kYGLineDirectionHorizontal @"top"

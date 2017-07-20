@@ -45,6 +45,10 @@
 @property (assign, nonatomic) IBInspectable CGPoint indicatorOffset;
 // 默认为NO。如果设为YES，将待高斯模糊效果。
 @property (assign, nonatomic) IBInspectable BOOL translucent;
+// 影响高斯模糊的基础颜色
+@property (strong, nonatomic) IBInspectable UIColor *barTintColor;
+// 设置高斯模糊的黑色风格
+@property (assign, nonatomic) IBInspectable BOOL blackStyle;
 
 @property (assign, readonly, nonatomic) NSUInteger lastIndex;
 

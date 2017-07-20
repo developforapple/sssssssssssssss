@@ -22,6 +22,7 @@
 		2D6F1C9D1F1E6D3F00E8F614 /* Pods_DOTA2ShiPing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70FA08C933879E048D521D6 /* Pods_DOTA2ShiPing.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */; };
 		2D6F1CAB1F1F3D4200E8F614 /* SPItemTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */; };
+		2D6F1CAE1F20D72500E8F614 /* UIViewController+yg_StatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAD1F20D72500E8F614 /* UIViewController+yg_StatusBar.m */; };
 		2D91EB741F16263A0038B49C /* SPResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB731F16263A0038B49C /* SPResourceManager.m */; };
 		2D91EB771F1724230038B49C /* SPBaseData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB761F1724230038B49C /* SPBaseData.m */; };
 		2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB7A1F1731880038B49C /* SPLocale.m */; };
@@ -230,6 +231,8 @@
 		2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOTA2ShiPing-Bridging-Header.h"; sourceTree = "<group>"; };
 		2D6F1CA91F1F3D4200E8F614 /* SPItemTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemTransition.h; sourceTree = "<group>"; };
 		2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemTransition.m; sourceTree = "<group>"; };
+		2D6F1CAC1F20D72500E8F614 /* UIViewController+yg_StatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+yg_StatusBar.h"; sourceTree = "<group>"; };
+		2D6F1CAD1F20D72500E8F614 /* UIViewController+yg_StatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+yg_StatusBar.m"; sourceTree = "<group>"; };
 		2D91EB721F16263A0038B49C /* SPResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPResourceManager.h; sourceTree = "<group>"; };
 		2D91EB731F16263A0038B49C /* SPResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPResourceManager.m; sourceTree = "<group>"; };
 		2D91EB751F1724230038B49C /* SPBaseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBaseData.h; sourceTree = "<group>"; };
@@ -936,13 +939,13 @@
 		2DF9B68C1F1361640012950A /* IBInspectable */ = {
 			isa = PBXGroup;
 			children = (
+				2DF9B6931F1361640012950A /* UIKit+yg_IBInspectable.h */,
 				2DF9B68D1F1361640012950A /* UIActivityIndicatorView+yg_IBInspectable.h */,
 				2DF9B68E1F1361640012950A /* UIActivityIndicatorView+yg_IBInspectable.m */,
 				2DF9B68F1F1361640012950A /* UIButton+yg_IBInspectable.h */,
 				2DF9B6901F1361640012950A /* UIButton+yg_IBInspectable.m */,
 				2DF9B6911F1361640012950A /* UICollectionViewCell+yg_IBInspectable.h */,
 				2DF9B6921F1361640012950A /* UICollectionViewCell+yg_IBInspectable.m */,
-				2DF9B6931F1361640012950A /* UIKit+yg_IBInspectable.h */,
 				2DF9B6941F1361640012950A /* UINavigationBar+yg_IBInspectable.h */,
 				2DF9B6951F1361640012950A /* UINavigationBar+yg_IBInspectable.m */,
 				2DF9B6961F1361640012950A /* UIScrollView+yg_IBInspectable.h */,
@@ -961,6 +964,8 @@
 				2DF9B6A31F1361640012950A /* UIView+yg_IBInspectable.m */,
 				2DF9B6A41F1361640012950A /* UIViewController+yg_IBInspectable.h */,
 				2DF9B6A51F1361640012950A /* UIViewController+yg_IBInspectable.m */,
+				2D6F1CAC1F20D72500E8F614 /* UIViewController+yg_StatusBar.h */,
+				2D6F1CAD1F20D72500E8F614 /* UIViewController+yg_StatusBar.m */,
 			);
 			path = IBInspectable;
 			sourceTree = "<group>";
@@ -2099,6 +2104,7 @@
 				2DF9B8931F1361640012950A /* SPItemQuality.m in Sources */,
 				2DF9B84F1F1361640012950A /* DDResponse.m in Sources */,
 				2DC0F6901F1B6A2D004DCD3C /* SPItemHeroPickerVC.m in Sources */,
+				2D6F1CAE1F20D72500E8F614 /* UIViewController+yg_StatusBar.m in Sources */,
 				2DF9B8611F1361640012950A /* YGBubbleView.m in Sources */,
 				2DF9B88E1F1361640012950A /* SPHero.m in Sources */,
 				2DF9B8C21F1361640012950A /* SPMyStarredItemVC.m in Sources */,

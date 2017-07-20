@@ -50,12 +50,10 @@
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:18]}];
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
-//    [[UINavigationBar appearance] setBarTintColor:kRedColor];
-//    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     
-
-    [UIViewController setDefaultNavigationBarTintColor:RGBColor(10, 10, 10, 1)];
-    [UIViewController setDefaultNavigationBarBlackStyle:YES];
+    [UIViewController setStatusBarControlMode:YGStatusBarControlModeAuto];
+    [UIViewController setDefaultStatusBarStyle:UIStatusBarStyleLightContent];
+    [UIViewController setDefaultNavigationBarTintColor:RGBColor(0, 0, 0, 1)];
     [UIViewController setDefaultNavigationBarLineHidden:YES];
     [UIViewController setDefaultNavigationBarTextColor:[UIColor whiteColor]];
     
@@ -73,6 +71,8 @@
 
 - (void)_setup3rdParty
 {
+    [AVOSCloud setAllLogsEnabled:NO];
+    [AVOSCloud setVerbosePolicy:kAVVerboseNone];
     [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
 }
 

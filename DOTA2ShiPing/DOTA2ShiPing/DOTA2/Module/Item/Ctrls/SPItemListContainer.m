@@ -15,7 +15,8 @@
 @interface SPItemListContainer ()<UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
+@property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
+@property (strong, nonatomic) UICollectionViewFlowLayout *tableLayout;
 
 @end
 
@@ -42,7 +43,6 @@
 
 - (void)initUI
 {
-    [self updateWithMode:self.mode];
     [SPLogoHeader setLogoHeaderInScrollView:self.collectionView];
     self.collectionView.emptyDataSetSource = self;
     self.collectionView.emptyDataSetDelegate = self;
@@ -52,6 +52,36 @@
         insets.top = self.topInset.floatValue;
         self.collectionView.contentInset = insets;
     }
+    
+    // tableLayout
+    {
+        self.tableLayout = [[UICollectionViewFlowLayout alloc] init];
+        self.tableLayout.itemSize = CGSizeMake(Device_Width, 64.f);
+        self.tableLayout.sectionInset = UIEdgeInsetsZero;
+        self.tableLayout.minimumLineSpacing = 0.f;
+        self.tableLayout.minimumInteritemSpacing = 0.f;
+    }
+    
+    // flow layout
+    {
+        CGFloat width = 0.f;
+        CGFloat height = 0.f;
+        UIEdgeInsets sectionInset;
+        CGFloat itemSpacing = 0.f;
+        CGFloat lineSpacing = 0.5f;
+        
+        width = floorf(Device_Width/4);
+        height = ceilf(width/1.5f + 20.f);
+        CGFloat margin = (Device_Width - width * 4 ) /2;
+        sectionInset = UIEdgeInsetsMake(0, margin, 0, margin);
+        
+        self.flowlayout.itemSize = CGSizeMake(width, height);
+        self.flowlayout.sectionInset = sectionInset;
+        self.flowlayout.minimumLineSpacing = lineSpacing;
+        self.flowlayout.minimumInteritemSpacing = itemSpacing;
+    }
+    
+    [self updateWithMode:self.mode];
 }
 
 - (void)setupClearBackground
@@ -62,30 +92,51 @@
 
 - (void)updateWithMode:(SPItemListMode)mode
 {
+//    self.mode = mode;
+//    UICollectionViewLayout *layout = mode == SPItemListModeTable ? self.tableLayout : self.flowlayout ;
+//    
+//    ygweakify(self);
+//    [self.collectionView setCollectionViewLayout:layout animated:YES completion:^(BOOL finished) {
+//        ygstrongify(self);
+//        [self.collectionView reloadData];
+//    }];
+//    return;
+    
     switch (mode) {
         case SPItemListModeTable:{
             self.flowlayout.itemSize = CGSizeMake(Device_Width, 64);
             self.flowlayout.sectionInset = UIEdgeInsetsZero;
-            self.flowlayout.minimumLineSpacing = 0;
-            self.flowlayout.minimumInteritemSpacing = 0;
+            self.flowlayout.minimumLineSpacing = 0.f;
+            self.flowlayout.minimumInteritemSpacing = 0.f;
         }   break;
         case SPItemListModeGrid:{
-            CGFloat width;
-            CGFloat height;
-            CGFloat insetL;
-            CGFloat insetR;
-            CGFloat sp;
+//            CGFloat width;
+//            CGFloat height;
+//            CGFloat insetL;
+//            CGFloat insetR;
+//            CGFloat sp;
+//            
+//            insetL = .5f;
+//            insetR = .5f;
+//            sp = .5f;
+//            width = (Device_Width - 5 * .5f)/4.f;
+//            height = ceilf(width /1.5f) + 20.f;
             
-            insetL = .5f;
-            insetR = .5f;
-            sp = .5f;
-            width = (Device_Width - 5 * .5f)/4.f;
-            height = ceilf(width /1.5f) + 20.f;
+            CGFloat width = 0.f;
+            CGFloat height = 0.f;
+            UIEdgeInsets sectionInset;
+            CGFloat itemSpacing = 0.f;
+            CGFloat lineSpacing = 0.5f;
+            
+            width = floorf(Device_Width/4);
+            height = ceilf(width/1.5f + 20.f);
+            CGFloat margin = (Device_Width - width * 4 ) /2;
+            sectionInset = UIEdgeInsetsMake(0, margin, 0, margin);
             
             self.flowlayout.itemSize = CGSizeMake(width, height);
-            self.flowlayout.sectionInset =  UIEdgeInsetsMake(insetL, insetL, 0.f, insetR);
-            self.flowlayout.minimumLineSpacing = sp;
-            self.flowlayout.minimumInteritemSpacing = 0.f;
+            self.flowlayout.sectionInset = sectionInset;
+            self.flowlayout.minimumLineSpacing = lineSpacing;
+            self.flowlayout.minimumInteritemSpacing = itemSpacing;
         }    break;
     }
     if (self.mode != mode) {
@@ -120,6 +171,11 @@
 {
     SPItem *item = self.items[indexPath.row];
     [cell configure:item];
+    
+    if (cell.mode == SPItemListModeGrid) {
+        BOOL isFirstItemOfLine = indexPath.row % 4 == 0;
+        cell.leftLine.hidden = isFirstItemOfLine;
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

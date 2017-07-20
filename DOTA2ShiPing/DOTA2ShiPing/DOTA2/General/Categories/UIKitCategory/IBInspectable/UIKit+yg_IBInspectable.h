@@ -20,6 +20,7 @@
 #import "UITabBar+yg_IBInspectable.h"
 #import "UIActivityIndicatorView+yg_IBInspectable.h"
 #import "UIViewController+yg_IBInspectable.h"
+#import "UIViewController+yg_StatusBar.h"
 #import "UIScrollView+yg_IBInspectable.h"
 
 /*!
