@@ -43,6 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *name_loc;
 - (void)setName_loc:(NSString * _Nonnull)name_loc;
 
+- (NSString *)smallImageURL;
+
 @end
 
 NS_ASSUME_NONNULL_END

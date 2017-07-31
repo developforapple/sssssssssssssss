@@ -42,6 +42,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
 
 @property (strong, nonatomic) AFHTTPSessionManager *webAPIManager;
 @property (strong, nonatomic) AFHTTPSessionManager *workshopManager;
+@property (strong, nonatomic) AFHTTPSessionManager *marketManager;
 @end
 
 @implementation SPSteamAPI
@@ -82,6 +83,23 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
         [_workshopManager.requestSerializer setValue:@"http://steamcommunity.com/app/570/workshop/" forHTTPHeaderField:@"Referer"];
     }
     return _workshopManager;
+}
+
+- (AFHTTPSessionManager *)marketManager
+{
+    if (!_marketManager) {
+        NSURL *baseURL = [NSURL URLWithString:@"http://steamcommunity.com"];
+        _marketManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
+        _marketManager.responseSerializer = [[SPHTMLSerializer alloc] init];
+        
+        [_marketManager.requestSerializer setValue:@"Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E188a Safari/601.1" forHTTPHeaderField:@"User-Agent"];
+        [_marketManager.requestSerializer setValue:@"zh-cn" forHTTPHeaderField:@"Accept-Language"];
+        [_marketManager.requestSerializer setValue:@"http://steamcommunity.com/" forHTTPHeaderField:@"Referer"];
+        [_marketManager.requestSerializer setValue:@"steamcommunity.com" forHTTPHeaderField:@"HOST"];
+        [_marketManager.requestSerializer setValue:@"gzip, deflate" forHTTPHeaderField:@"Accept-Encoding"];
+        
+    }
+    return _marketManager;
 }
 
 - (NSDictionary *)defaultWebAPIParams
@@ -448,6 +466,40 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         completion(NO,-1);
     }];
+}
+
+- (NSURLSessionDataTask *)fetchSteamMarketContent:(NSString *)itemName
+                                       completion:(SPSteamFetchCompletion2)completion
+{
+    if (!itemName || !completion) return nil;
+    
+    return
+    [self.marketManager GET:@"market/search" parameters:@{@"q":itemName,@"appid":@570,@"l":@"schinese"} progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        completion(nil!=responseObject,responseObject,task.taskDescription);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        completion(NO,@"网络错误",task.taskDescription);
+    }];
+}
+
+- (void)fetchSteamMarketItemDetail:(NSString *)url
+                        completion:(SPSteamFetchCompletion)completion
+{
+    if (!url || !completion) return ;
+    
+    RunOnGlobalQueue(^{
+        NSError *error;
+        NSString *string = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:&error];
+        
+        RunOnMainQueue(^{
+            if (error) {
+                completion(NO,@"网络错误");
+            }else{
+                completion(YES,string);
+            }
+        });
+    });
 }
 
 @end

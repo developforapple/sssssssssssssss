@@ -35,4 +35,8 @@ YG_EXTERN UIColor *kLineColor;            //细线    F5F5F5
 YG_EXTERN UIColor *kDisableColor;         //失效状态背景  dadada
 
 
+YG_EXTERN UIColor *kBarTintColor;
+YG_EXTERN UIColor *kTintColor;
+
+
 #endif /* Config_Appearance_h */

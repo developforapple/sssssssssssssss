@@ -35,4 +35,9 @@ YYModelDefaultCode
     return YES;
 }
 
+- (NSString *)smallImageURL
+{
+    return [NSString stringWithFormat:@"http://items-3-0.qiniudn.com/%@/herosmall",self.name];
+}
+
 @end

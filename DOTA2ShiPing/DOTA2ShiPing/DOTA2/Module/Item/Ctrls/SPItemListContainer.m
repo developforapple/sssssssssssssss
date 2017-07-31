@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
-@property (strong, nonatomic) UICollectionViewFlowLayout *tableLayout;
+//@property (strong, nonatomic) UICollectionViewFlowLayout *tableLayout;
 
 @end
 
@@ -55,11 +55,11 @@
     
     // tableLayout
     {
-        self.tableLayout = [[UICollectionViewFlowLayout alloc] init];
-        self.tableLayout.itemSize = CGSizeMake(Device_Width, 64.f);
-        self.tableLayout.sectionInset = UIEdgeInsetsZero;
-        self.tableLayout.minimumLineSpacing = 0.f;
-        self.tableLayout.minimumInteritemSpacing = 0.f;
+//        self.tableLayout = [[UICollectionViewFlowLayout alloc] init];
+//        self.tableLayout.itemSize = CGSizeMake(Device_Width, 64.f);
+//        self.tableLayout.sectionInset = UIEdgeInsetsZero;
+//        self.tableLayout.minimumLineSpacing = 0.f;
+//        self.tableLayout.minimumInteritemSpacing = 0.f;
     }
     
     // flow layout

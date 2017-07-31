@@ -9,6 +9,30 @@
 #import "SPItemColor.h"
 #import "YYModel.h"
 
+extern UIColor *blendColors(UIColor *color1,UIColor *color2,CGFloat alpha){
+    alpha = MAX(0, MIN(1, alpha));
+    
+    if (!color1) return [color2 colorWithAlphaComponent:alpha];
+    if (!color2) return color1;
+    
+    CGFloat r1,g1,b1,r2,g2,b2,r3,g3,b3;
+    [color1 getRed:&r1 green:&g1 blue:&b1 alpha:NULL];
+    [color2 getRed:&r2 green:&g2 blue:&b2 alpha:NULL];
+
+    r3 = r2 * alpha + r1 * (1-alpha);
+    g3 = g2 * alpha + g1 * (1-alpha);
+    b3 = b2 * alpha + b1 * (1-alpha);
+    
+    return [UIColor colorWithRed:r3 green:g3 blue:b3 alpha:1.f];
+}
+
+@interface SPItemColor ()
+@property (assign, readwrite, nonatomic) float r;
+@property (assign, readwrite, nonatomic) float g;
+@property (assign, readwrite, nonatomic) float b;
+@property (strong, readwrite, nonatomic) UIColor *color;
+@end
+
 @implementation SPItemColor
 
 YYModelDefaultCode
@@ -28,39 +52,8 @@ YYModelDefaultCode
     self.r = r/255.f;
     self.g = g/255.f;
     self.b = b/255.f;
-}
-
-- (UIColor *)color
-{
-    return [UIColor colorWithRed:self.r green:self.g blue:self.b alpha:1.f];
-}
-
-- (UIColor *)blendColorWithAlpha:(float)alpha baseColor:(UIColor *)baseColor
-{
-    static CGFloat (^algorithm)(CGFloat,CGFloat,CGFloat) = ^CGFloat(CGFloat c1,CGFloat c2,CGFloat a1){
-        return c1*a1+c2*(1-a1);
-    };
-    
-    CGFloat r2,g2,b2;
-    
-    if (!baseColor) {
-        r2 = g2 = b2 = 1.f;
-    }else{
-        [baseColor getRed:&r2 green:&g2 blue:&b2 alpha:NULL];
-    }
-    CGFloat r = algorithm(self.r,r2,alpha);
-    CGFloat g = algorithm(self.g,g2,alpha);
-    CGFloat b = algorithm(self.b,b2,alpha);
-    return [UIColor colorWithRed:r green:g blue:b alpha:1.f];
+    self.color = [UIColor colorWithRed:self.r green:self.g blue:self.b alpha:1.f];
 }
 
 @end
-
-//204 = 255*0.1+x*0.9     198
-//75  = 255*0.1+x*0.9     55
-//56  = 255*0.1+x*0.9     39
-
-//253 =   252
-//103     86
-//78      58
 

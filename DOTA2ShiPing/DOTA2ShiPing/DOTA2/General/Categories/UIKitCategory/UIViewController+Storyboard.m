@@ -133,7 +133,7 @@ FOUNDATION_EXTERN NSString *const kAppBundleID;
             }
         }
     }
-    return nil;
+    return [[self alloc] init];
 }
 
 + (instancetype)instanceFromStoryboard

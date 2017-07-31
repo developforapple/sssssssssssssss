@@ -69,6 +69,14 @@ typedef void (^SPSteamFetchCompletion2)(BOOL suc, id object, NSString *taskDesc)
 - (void)workshopImageTest:(NSURL *)imageURL
                completion:(void (^)(BOOL suc, NSUInteger size))completion;
 
+#pragma mark - Steam Market
+
+- (NSURLSessionDataTask *)fetchSteamMarketContent:(NSString *)itemName
+                                       completion:(SPSteamFetchCompletion2)completion;
+
+- (void)fetchSteamMarketItemDetail:(NSString *)url
+                        completion:(SPSteamFetchCompletion)completion;
+
 @end
 
 

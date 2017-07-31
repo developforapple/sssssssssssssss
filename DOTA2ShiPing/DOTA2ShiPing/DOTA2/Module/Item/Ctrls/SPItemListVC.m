@@ -11,6 +11,7 @@
 #import "SPItemFilter.h"
 
 #import "SPItemListContainer.h"
+#import "Chameleon.h"
 
 @interface SPItemListVC () <UIPageViewControllerDelegate,UIPageViewControllerDataSource>
 
@@ -42,8 +43,7 @@
 
 - (void)initUI
 {
-    self.segmentView.normalColor = [UIColor whiteColor];
-    self.segmentView.highlightColor = [UIColor whiteColor];
+    self.segmentView.barTintColor = FlatNavyBlueDark;
     [self updateTitle];
     SPItemListMode mode = [[NSUserDefaults standardUserDefaults] integerForKey:kSPItemListModeKey];
     self.mode = mode;

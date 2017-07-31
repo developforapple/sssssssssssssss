@@ -12,6 +12,7 @@ FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 
 @class SPItemChild;
 @class SPItemAutograph;
+@class SPItemStyle;
 
 @class UIColor;
 
@@ -22,7 +23,8 @@ FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 - (BOOL)isWearable; //是否是一个可穿戴的饰品
 - (BOOL)isTaunt;    //是否是一个嘲讽
 
-- (UIColor *)itemColor; //饰品的字体颜色
+- (UIColor *)itemColor;
+- (NSString *)nameWithQualtity;
 
 // key
 @property (strong, nonatomic) NSNumber *token;  // 20818
@@ -56,19 +58,24 @@ FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 
 //只保存一个 workshoplink 比如pc cold的亲笔签名 281702591
 @property (strong, nonatomic) NSNumber *autograph;
-// 饰品所属英雄。使用 | 分隔
+// 饰品所属英雄。使用 || 分隔
 @property (strong, nonatomic) NSString *heroes;
-// 捆绑包中的饰品 使用 | 分隔
+// 捆绑包中的饰品 使用 || 分隔
 @property (strong, nonatomic) NSString *bundleItems;
-// 饰品所属的捆绑包，使用 | 分隔
+// 饰品所属的捆绑包，使用 || 分隔
 @property (strong, nonatomic) NSString *bundles;
 // 箱子的掉落列表 
 @property (strong, nonatomic) NSString *lootList;
+
+// 款式。原始数据，JSON格式
+@property (strong, nonatomic) NSString *styles;
 
 // child
 @property (strong, nonatomic) SPItemChild *child;
 
 @property (strong, nonatomic) NSString *image_inventory_large;
+
+- (NSArray<SPItemStyle *> *)stylesObjects;
 
 ///*
 // {

@@ -43,22 +43,21 @@
 {
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} forState:UIControlStateNormal];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
-    [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:kRedColor];
+    [[UIBarButtonItem appearance] setTintColor:kTintColor];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:kTintColor];
     
     [[UISearchBar appearance] setBackgroundImage:[UIImage imageWithColor:kRedColor] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:18]}];
-    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:kTintColor,NSFontAttributeName:[UIFont boldSystemFontOfSize:18]}];
     
-    [UIViewController setStatusBarControlMode:YGStatusBarControlModeAuto];
     [UIViewController setDefaultStatusBarStyle:UIStatusBarStyleLightContent];
-    [UIViewController setDefaultNavigationBarTintColor:RGBColor(0, 0, 0, 1)];
+    [UIViewController setDefaultNavigationBarTintColor:kBarTintColor];
     [UIViewController setDefaultNavigationBarLineHidden:YES];
-    [UIViewController setDefaultNavigationBarTextColor:[UIColor whiteColor]];
+    [UIViewController setDefaultNavigationBarTextColor:kTintColor];
+    [UIViewController setStatusBarControlMode:YGStatusBarControlModeAuto];
     
-    [[UISegmentedControl appearance] setTintColor:[UIColor whiteColor]];
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:kRedColor];
+    [[UISegmentedControl appearance] setTintColor:kTintColor];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:kTextColor];
 }
 
 - (void)_setupADSplash

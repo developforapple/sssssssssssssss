@@ -13,6 +13,13 @@
 		2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2A71CDE20D700190F0C /* LaunchScreen.storyboard */; };
 		2D4AD9D11F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4AD9D01F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m */; };
 		2D4AD9D41F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4AD9D31F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m */; };
+		2D4B5C761F2198CF00A3D8C9 /* SPItemStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5C751F2198CF00A3D8C9 /* SPItemStyle.m */; };
+		2D4B5C791F27974F00A3D8C9 /* SPItemPriceListViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5C781F27974F00A3D8C9 /* SPItemPriceListViewCtrl.m */; };
+		2D4B5C7C1F27B1F900A3D8C9 /* SPMarketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5C7B1F27B1F900A3D8C9 /* SPMarketItem.m */; };
+		2D4B5CE31F2A323800A3D8C9 /* SPItemPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5CE21F2A323800A3D8C9 /* SPItemPriceCell.m */; };
+		2D4B5D4C1F2A54CB00A3D8C9 /* SPChart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D4B5D4A1F2A54CB00A3D8C9 /* SPChart.storyboard */; };
+		2D4B5D4F1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5D4E1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m */; };
+		2D4B5D541F2E2C8100A3D8C9 /* SPPriceUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5D531F2E2C8100A3D8C9 /* SPPriceUnit.m */; };
 		2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B211D435E95005FC6CA /* libiconv.tbd */; };
 		2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B231D435EAB005FC6CA /* libstdc++.tbd */; };
 		2D6F1C981F1E68E400E8F614 /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C911F1E68E400E8F614 /* YYCache.m */; };
@@ -216,6 +223,19 @@
 		2D4AD9D01F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemsDetailViewCtrl.m; sourceTree = "<group>"; };
 		2D4AD9D21F1E63ED00FF3EDF /* SPItemInfoViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemInfoViewCtrl.h; sourceTree = "<group>"; };
 		2D4AD9D31F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemInfoViewCtrl.m; sourceTree = "<group>"; };
+		2D4B5C741F2198CF00A3D8C9 /* SPItemStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemStyle.h; sourceTree = "<group>"; };
+		2D4B5C751F2198CF00A3D8C9 /* SPItemStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemStyle.m; sourceTree = "<group>"; };
+		2D4B5C771F27974F00A3D8C9 /* SPItemPriceListViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemPriceListViewCtrl.h; sourceTree = "<group>"; };
+		2D4B5C781F27974F00A3D8C9 /* SPItemPriceListViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemPriceListViewCtrl.m; sourceTree = "<group>"; };
+		2D4B5C7A1F27B1F900A3D8C9 /* SPMarketItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMarketItem.h; sourceTree = "<group>"; };
+		2D4B5C7B1F27B1F900A3D8C9 /* SPMarketItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMarketItem.m; sourceTree = "<group>"; };
+		2D4B5CE11F2A323800A3D8C9 /* SPItemPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemPriceCell.h; sourceTree = "<group>"; };
+		2D4B5CE21F2A323800A3D8C9 /* SPItemPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemPriceCell.m; sourceTree = "<group>"; };
+		2D4B5D4A1F2A54CB00A3D8C9 /* SPChart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SPChart.storyboard; sourceTree = "<group>"; };
+		2D4B5D4D1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPriceChartViewCtrl.h; sourceTree = "<group>"; };
+		2D4B5D4E1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceChartViewCtrl.m; sourceTree = "<group>"; };
+		2D4B5D521F2E2C8100A3D8C9 /* SPPriceUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPriceUnit.h; sourceTree = "<group>"; };
+		2D4B5D531F2E2C8100A3D8C9 /* SPPriceUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceUnit.m; sourceTree = "<group>"; };
 		2D563B211D435E95005FC6CA /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		2D563B231D435EAB005FC6CA /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		2D6F1C901F1E68E400E8F614 /* YYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCache.h; sourceTree = "<group>"; };
@@ -658,6 +678,42 @@
 				2DF9B6411F135FB20012950A /* DOTA2ShiPing-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2D4B5D461F2A54CB00A3D8C9 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				2D4B5D501F2E2C6C00A3D8C9 /* Model */,
+				2D4B5D511F2E2C6C00A3D8C9 /* View */,
+				2D4B5D4A1F2A54CB00A3D8C9 /* SPChart.storyboard */,
+				2D4B5D471F2A54CB00A3D8C9 /* Ctrls */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		2D4B5D471F2A54CB00A3D8C9 /* Ctrls */ = {
+			isa = PBXGroup;
+			children = (
+				2D4B5D4D1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.h */,
+				2D4B5D4E1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m */,
+			);
+			path = Ctrls;
+			sourceTree = "<group>";
+		};
+		2D4B5D501F2E2C6C00A3D8C9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2D4B5D521F2E2C8100A3D8C9 /* SPPriceUnit.h */,
+				2D4B5D531F2E2C8100A3D8C9 /* SPPriceUnit.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2D4B5D511F2E2C6C00A3D8C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2D6F1C8F1F1E68E400E8F614 /* YYCache */ = {
@@ -1360,6 +1416,8 @@
 				2DF9B7701F1361640012950A /* SPItem.m */,
 				2DF9B77D1F1361640012950A /* SPPlayerItems.h */,
 				2DF9B77E1F1361640012950A /* SPPlayerItems.m */,
+				2D4B5C741F2198CF00A3D8C9 /* SPItemStyle.h */,
+				2D4B5C751F2198CF00A3D8C9 /* SPItemStyle.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1376,6 +1434,7 @@
 		2DF9B77F1F1361640012950A /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				2D4B5D461F2A54CB00A3D8C9 /* Chart */,
 				2DC0F6881F1B6A2D004DCD3C /* HeroPicker */,
 				2DF9B78B1F1361640012950A /* Item */,
 				2DE373501F176B4A00C8F653 /* Update */,
@@ -1425,6 +1484,8 @@
 			children = (
 				2DF9B78F1F1361640012950A /* SPItemCell.h */,
 				2DF9B7901F1361640012950A /* SPItemCell.m */,
+				2D4B5CE11F2A323800A3D8C9 /* SPItemPriceCell.h */,
+				2D4B5CE21F2A323800A3D8C9 /* SPItemPriceCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1453,6 +1514,8 @@
 				2D4AD9D01F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m */,
 				2D4AD9D21F1E63ED00FF3EDF /* SPItemInfoViewCtrl.h */,
 				2D4AD9D31F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m */,
+				2D4B5C771F27974F00A3D8C9 /* SPItemPriceListViewCtrl.h */,
+				2D4B5C781F27974F00A3D8C9 /* SPItemPriceListViewCtrl.m */,
 				2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */,
 			);
 			path = Ctrls;
@@ -1461,6 +1524,8 @@
 		2DF9B7A31F1361640012950A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2D4B5C7A1F27B1F900A3D8C9 /* SPMarketItem.h */,
+				2D4B5C7B1F27B1F900A3D8C9 /* SPMarketItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1883,6 +1948,7 @@
 			files = (
 				2DE373531F176B5800C8F653 /* SPUpdate.storyboard in Resources */,
 				2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */,
+				2D4B5D4C1F2A54CB00A3D8C9 /* SPChart.storyboard in Resources */,
 				2DF9B8C71F1361640012950A /* SPMain.storyboard in Resources */,
 				2DF9B85F1F1361640012950A /* BingoBarItemView.xib in Resources */,
 				2DF9B8D51F1361640012950A /* workshoptags.json in Resources */,
@@ -1982,6 +2048,7 @@
 				2DF9B88D1F1361640012950A /* SPDataManager.m in Sources */,
 				2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */,
 				2DF9B82A1F1361640012950A /* YGCoreMotionHelper.m in Sources */,
+				2D4B5C7C1F27B1F900A3D8C9 /* SPMarketItem.m in Sources */,
 				2DF9B8431F1361640012950A /* UIKit+Statistics.m in Sources */,
 				2DF9B8911F1361640012950A /* SPItemColor.m in Sources */,
 				2DF9B88A1F1361640012950A /* DDWebInspector.m in Sources */,
@@ -2017,6 +2084,7 @@
 				2DF9B8471F1361640012950A /* UIView+Hierarchy.m in Sources */,
 				2DF9B8601F1361640012950A /* YGBubble.m in Sources */,
 				2DF9B8CD1F1361640012950A /* SPWorkshopModel.m in Sources */,
+				2D4B5C791F27974F00A3D8C9 /* SPItemPriceListViewCtrl.m in Sources */,
 				2DF9B8A61F1361640012950A /* SPItemOffPriceVC.m in Sources */,
 				2DF9B8351F1361640012950A /* UIButton+yg_IBInspectable.m in Sources */,
 				2DF9B83C1F1361640012950A /* UITableViewCell+yg_IBInspectable.m in Sources */,
@@ -2057,9 +2125,11 @@
 				2DF9B8821F1361640012950A /* SDCycleScrollView.m in Sources */,
 				2DF9B83A1F1361640012950A /* UITabBar+yg_IBInspectable.m in Sources */,
 				2DF9B85D1F1361640012950A /* BingoBarItem.m in Sources */,
+				2D4B5D4F1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m in Sources */,
 				2DF9B8831F1361640012950A /* UIView+SDExtension.m in Sources */,
 				2DF9B8451F1361640012950A /* UIView+Animation.m in Sources */,
 				2DF9B8971F1361640012950A /* SPPlayerItems.m in Sources */,
+				2D4B5C761F2198CF00A3D8C9 /* SPItemStyle.m in Sources */,
 				2DF9B88B1F1361640012950A /* DDWebViewController.m in Sources */,
 				2DF9B8941F1361640012950A /* SPItemRarity.m in Sources */,
 				2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */,
@@ -2113,6 +2183,7 @@
 				2DF9B82D1F1361640012950A /* NSCalendar+YGCategory.m in Sources */,
 				2DF9B85B1F1361640012950A /* YGAreaManager.m in Sources */,
 				2D91EB741F16263A0038B49C /* SPResourceManager.m in Sources */,
+				2D4B5CE31F2A323800A3D8C9 /* SPItemPriceCell.m in Sources */,
 				2DF9B8701F1361640012950A /* SPLeftAlignmentLayout.m in Sources */,
 				2DF9B8B51F1361640012950A /* SPPlayerListVC.m in Sources */,
 				2DF9B8981F1361640012950A /* YGBaseNaviCtrl.m in Sources */,
@@ -2122,6 +2193,7 @@
 				2DF9B8B01F1361640012950A /* SPPlayerDetailInfoVC.m in Sources */,
 				2DF9B81C1F1361640012950A /* Config_Appearance.m in Sources */,
 				2DF9B8A81F1361640012950A /* DDMainADVC.m in Sources */,
+				2D4B5D541F2E2C8100A3D8C9 /* SPPriceUnit.m in Sources */,
 				2DF9B8C31F1361640012950A /* SPSettingAboutVC.m in Sources */,
 				2DF9B84D1F1361640012950A /* DDError.m in Sources */,
 			);

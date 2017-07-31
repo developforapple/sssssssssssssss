@@ -131,6 +131,24 @@
                                                         </mask>
                                                     </variation>
                                                 </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DkB-qZ-eSS" customClass="YGLineView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="1" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="1" id="qyo-Mp-Y2M"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                            <real key="value" value="0.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="direction">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -139,14 +157,18 @@
                                             <constraint firstItem="I9d-uc-Kc3" firstAttribute="leading" secondItem="inb-rX-l9O" secondAttribute="leading" id="JbZ-S6-Led"/>
                                             <constraint firstAttribute="bottom" secondItem="I9d-uc-Kc3" secondAttribute="bottom" id="R4Q-2j-4Eu"/>
                                             <constraint firstItem="I9d-uc-Kc3" firstAttribute="top" secondItem="inb-rX-l9O" secondAttribute="top" id="RbS-xl-03v"/>
+                                            <constraint firstItem="DkB-qZ-eSS" firstAttribute="leading" secondItem="inb-rX-l9O" secondAttribute="leading" id="Rp2-4W-D5k"/>
                                             <constraint firstAttribute="trailing" secondItem="I9d-uc-Kc3" secondAttribute="trailing" id="g6R-7X-IkI"/>
                                             <constraint firstAttribute="bottom" secondItem="ZoO-3X-o9z" secondAttribute="bottom" id="k0N-z0-mJj"/>
+                                            <constraint firstAttribute="bottom" secondItem="DkB-qZ-eSS" secondAttribute="bottom" id="rce-w1-qyI"/>
+                                            <constraint firstItem="DkB-qZ-eSS" firstAttribute="top" secondItem="inb-rX-l9O" secondAttribute="top" id="rzC-kP-nxj"/>
                                             <constraint firstItem="ZoO-3X-o9z" firstAttribute="top" secondItem="inb-rX-l9O" secondAttribute="top" id="y3o-m0-i4h"/>
                                         </constraints>
                                         <size key="customSize" width="78" height="44"/>
                                         <connections>
                                             <outlet property="blurView" destination="I9d-uc-Kc3" id="Mnl-dW-V6z"/>
                                             <outlet property="imageView" destination="ZoO-3X-o9z" id="k5B-di-Htf"/>
+                                            <outlet property="leftLine" destination="DkB-qZ-eSS" id="FcW-pN-prK"/>
                                             <outlet property="titleLabel" destination="paN-Tn-jhk" id="hCQ-hv-e8Q"/>
                                         </connections>
                                     </collectionViewCell>

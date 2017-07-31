@@ -32,22 +32,21 @@
 {
     self.collectionView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);
     
-    CGFloat width;
-    CGFloat height;
-    CGFloat insetL;
-    CGFloat insetR;
-    CGFloat sp;
+    CGFloat width = 0.f;
+    CGFloat height = 0.f;
+    UIEdgeInsets sectionInset;
+    CGFloat itemSpacing = 0.f;
+    CGFloat lineSpacing = 0.5f;
     
-    insetL = .5f;
-    insetR = .5f;
-    sp = .5f;
-    width = (Device_Width - 5 * .5f)/4.f;
-    height = ceilf(width *144.f / 256.f);
+    width = floorf(Device_Width/4);
+    height = ceilf(width * 144.f / 256.f);
+    CGFloat margin = (Device_Width - width * 4 ) /2;
+    sectionInset = UIEdgeInsetsMake(0.5, margin, 0, margin);
     
     self.flowlayout.itemSize = CGSizeMake(width, height);
-    self.flowlayout.sectionInset =  UIEdgeInsetsMake(insetL, insetL, 0.f, insetR);
-    self.flowlayout.minimumLineSpacing = sp;
-    self.flowlayout.minimumInteritemSpacing = 0.f;
+    self.flowlayout.sectionInset = sectionInset;
+    self.flowlayout.minimumLineSpacing = lineSpacing;
+    self.flowlayout.minimumInteritemSpacing = itemSpacing;
     
     self.collectionView.emptyDataSetSource = self;
     self.collectionView.emptyDataSetDelegate = self;
@@ -140,6 +139,8 @@
 {
     SPHeroCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSPHeroCell forIndexPath:indexPath];
     [cell configure:_heroes[indexPath.section][indexPath.row]];
+    BOOL isFirstItemOfLine = indexPath.row % 4 == 0;
+    cell.leftLine.hidden = isFirstItemOfLine;
     return cell;
 }
 

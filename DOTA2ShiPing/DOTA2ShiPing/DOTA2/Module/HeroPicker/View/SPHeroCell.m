@@ -41,13 +41,11 @@
     _hero = hero;
     self.titleLabel.text = hero.name_loc;
     
-    NSString *name = hero.name;
-    
-    NSString *url = [NSString stringWithFormat:@"http://items-3-0.qiniudn.com/%@/small",name];
+    NSString *url = [hero smallImageURL];
 
 //    NSString *url = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_full.png",name];
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageContinueInBackground ];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"HeroPlacehodler"] options:SDWebImageRetryFailed | SDWebImageContinueInBackground ];
 }
 
 - (void)setHighlighted:(BOOL)highlighted

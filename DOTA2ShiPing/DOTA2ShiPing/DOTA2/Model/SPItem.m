@@ -9,9 +9,13 @@
 #import "SPItem.h"
 #import "SPDataManager.h"
 #import "YYModel.h"
+#import "SPItemStyle.h"
 
 @interface SPItem () <YYModel>
-
+{
+    UIColor *_itemColor;
+    NSString *_nameWithQualtity;
+}
 @end
 
 @implementation SPItem
@@ -39,9 +43,35 @@
 
 - (UIColor *)itemColor
 {
-    SPItemRarity *rarity = [[SPDataManager shared] rarityOfName:self.item_rarity];
-    SPItemColor *color = [[SPDataManager shared] colorOfName:rarity.color];
-    return color.color;
+    if (!_itemColor) {
+        if ([self.item_quality isEqualToString:@"base"] ||
+            [self.item_quality isEqualToString:@"unique"]) {
+            
+            SPItemRarity *rarity = [[SPDataManager shared] rarityOfName:self.item_rarity];
+            SPItemColor *color = [[SPDataManager shared] colorOfName:rarity.color];
+            _itemColor = color.color;
+            
+        }else{
+            SPItemQuality *qualtity = [[SPDataManager shared] qualityOfName:self.item_quality];
+            _itemColor = HEXColor(qualtity.hexColor);
+        }
+    }
+    return _itemColor;
+}
+
+- (NSString *)nameWithQualtity
+{
+    if (!_nameWithQualtity) {
+        NSString *name = SPLOCAL(self.item_name, self.name);
+        if ([self.item_quality isEqualToString:@"base"] ||
+            [self.item_quality isEqualToString:@"unique"]) {
+            _nameWithQualtity = name;
+        }else{
+            SPItemQuality *qualtity = [[SPDataManager shared] qualityOfName:self.item_quality];
+            _nameWithQualtity = [NSString stringWithFormat:@"%@ %@",qualtity.name_loc,name];
+        }
+    }
+    return _nameWithQualtity;
 }
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic
@@ -86,6 +116,15 @@
         _item_description = [_item_name copy];
     }
     return _item_description;
+}
+
+- (NSArray<SPItemStyle *> *)stylesObjects
+{
+    NSArray<SPItemStyle *> *objects = [NSArray yy_modelArrayWithClass:[SPItemStyle class] json:self.styles];
+    NSArray *sorted = [objects sortedArrayUsingComparator:^NSComparisonResult(SPItemStyle *obj1, SPItemStyle *obj2) {
+        return [@(obj1.index.intValue) compare:@(obj2.index.intValue)];
+    }];
+    return sorted;
 }
 
 //- (NSString *)prefab

@@ -6,6 +6,7 @@
 //
 
 #include "Config_Appearance.h"
+#import "ChameleonMacros.h"
 
 // 主题蓝色系
 UIColor *kBlueColor;            //主题颜色 0484FA
@@ -27,6 +28,9 @@ UIColor *kLightTextColor;       //很淡的文本颜色 C9C9C9
 
 UIColor *kLineColor;            //细线    F5F5F5
 UIColor *kDisableColor;         //失效状态背景  dadada
+
+UIColor *kBarTintColor;
+UIColor *kTintColor;
 
 @interface _Config_Appearance : NSObject
 
@@ -52,6 +56,9 @@ UIColor *kDisableColor;         //失效状态背景  dadada
     
     kLineColor      = [UIColor colorWithHexString:@"F5F5F5"];
     kDisableColor   = [UIColor colorWithHexString:@"dadada"];
+    
+    kBarTintColor = FlatNavyBlueDark;
+    kTintColor = FlatWhite;
 }
 
 @end

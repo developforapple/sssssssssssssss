@@ -19,13 +19,11 @@
 // #d32ce6
 @property (strong, nonatomic) NSString *hex_color;
 
-@property (assign, nonatomic) float r;
-@property (assign, nonatomic) float g;
-@property (assign, nonatomic) float b;
-
-- (UIColor *)color;
-
-// 手动计算设定透明度后的混合颜色。alpha，混合的透明度。baseColor底色，默认为白色。
-- (UIColor *)blendColorWithAlpha:(float)alpha baseColor:(UIColor *)baseColor;
+@property (assign, readonly, nonatomic) float r;
+@property (assign, readonly, nonatomic) float g;
+@property (assign, readonly, nonatomic) float b;
+@property (strong, readonly, nonatomic) UIColor *color;
 
 @end
+
+extern UIColor *blendColors(UIColor *color1,UIColor *color2,CGFloat alpha);

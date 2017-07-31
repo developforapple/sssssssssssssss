@@ -19,7 +19,7 @@ UIImage *placeholderImage(){
 }
 
 @interface SPItemCell ()
-@property (strong, nonatomic) SPItemColor *mainColor;
+@property (strong, nonatomic) UIColor *mainColor;
 @property (strong, nonatomic) CAGradientLayer *gLayer;
 @end
 
@@ -45,7 +45,7 @@ UIImage *placeholderImage(){
     
     [self loadImage];
     
-    self.itemNameLabel.text = SPLOCALNONIL(item.item_name);//  item.item_name;
+    self.itemNameLabel.text = item.nameWithQualtity;
     
     if ([item.prefab isEqualToString:@"bundle"]) {
         
@@ -63,11 +63,10 @@ UIImage *placeholderImage(){
     SPItemRarity *rarity = [[SPDataManager shared] rarityOfName:item.item_rarity];
     self.itemRarityLabel.text = rarity.name_loc;
     
-    SPItemColor *color = [[SPDataManager shared] colorOfName:rarity.color];
-    self.mainColor = color;
+    self.mainColor = item.itemColor;
     
     if (self.mode == SPItemListModeGrid) {
-        self.itemNameLabel.backgroundColor = color.color;
+        self.itemNameLabel.backgroundColor = self.mainColor;
     }
 }
 
@@ -85,9 +84,9 @@ UIImage *placeholderImage(){
     
     [self.itemImageView sd_setImageWithURL:[NSURL URLWithString:iconurl] placeholderImage:placeholderImage() options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageRefreshCached | SDWebImageContinueInBackground];
     
-    self.mainColor = rarityTag.tagColor;
+    self.mainColor = rarityTag.tagColor.color;
     if (self.mode == SPItemListModeGrid) {
-        self.itemNameLabel.backgroundColor = [self.mainColor blendColorWithAlpha:.5f baseColor:nil];
+        self.itemNameLabel.backgroundColor = blendColors([UIColor whiteColor], self.mainColor, .5f);
     }
 }
 
@@ -103,23 +102,11 @@ UIImage *placeholderImage(){
         }
     }
     if (self.mode == SPItemListModeTable){
-//        _gLayer.colors = @[(id)[self.mainColor blendColorWithAlpha:.8f baseColor:nil].CGColor,
-//                           (id)[self.mainColor blendColorWithAlpha:.4f baseColor:nil].CGColor];
-        
         UIColor *baseColor = RGBColor(120, 120, 120, 1);
-        _gLayer.colors = @[(id)[self.mainColor blendColorWithAlpha:.8f baseColor:baseColor].CGColor,
-                           (id)[self.mainColor blendColorWithAlpha:.2f baseColor:baseColor].CGColor];
+        _gLayer.colors = @[(id)blendColors(baseColor, self.mainColor, .8f).CGColor,
+                           (id)blendColors(baseColor, self.mainColor, .2f).CGColor];
     }
     return _gLayer;
-}
-
-- (SPItemColor *)mainColor
-{
-    if (!_mainColor) {
-        _mainColor = [SPItemColor new];
-        _mainColor.hex_color = @"#ffffff";
-    }
-    return _mainColor;
 }
 
 - (void)loadImage
