@@ -43,11 +43,15 @@ YYModelDefaultCode
     unit.price = price;
     unit.count = count;
     unit.date = dateFromDateStr(dateStr);
+    unit.priceStr = [NSString stringWithFormat:@"%.2f",price];
+    unit.timestamp = [unit.date timeIntervalSince1970];
     return unit;
 }
 
 + (NSArray<SPPriceUnit *> *)unitsWithDatas:(NSArray<NSArray *> *)datas
 {
+    if (!datas || ![datas isKindOfClass:[NSArray class]]) return nil;
+    
     NSMutableArray *units = [NSMutableArray array];
     for (NSArray *aData in datas) {
         SPPriceUnit *aUnit = [SPPriceUnit unitWithData:aData];
@@ -56,6 +60,21 @@ YYModelDefaultCode
         }
     }
     return units;
+}
+
+- (NSString *)year_month_day
+{
+    return [NSString stringWithFormat:@"%d-%02d-%02d",self.date.year,self.date.month,self.date.day];
+}
+
+- (NSString *)month_day
+{
+    return [NSString stringWithFormat:@"%02d-%02d",self.date.month,self.date.day];
+}
+
+- (NSString *)unitDesc
+{
+    return [NSString stringWithFormat:@"%d-%02d-%02d 售出%d件",self.date.year,self.date.month,self.date.day,self.count];
 }
 
 @end

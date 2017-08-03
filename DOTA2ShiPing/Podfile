@@ -33,7 +33,7 @@ pod 'AFNetworking', '~> 3.1.0'      #https://github.com/AFNetworking/AFNetworkin
 pod 'SSZipArchive', '~> 1.8.1'
 pod 'AVOSCloud'
 pod 'IDMPhotoBrowser', '~> 1.11.3'
-pod 'JBChartView', '~> 3.0.13'
-pod 'ZLSwipeableViewSwift', :git => 'https://github.com/zhxnlai/ZLSwipeableViewSwift.git'
+pod 'JBChartView' , :git => 'https://github.com/developforapple/JBChartView.git'
+#pod 'ZLSwipeableViewSwift', :git => 'https://github.com/zhxnlai/ZLSwipeableViewSwift.git'
 
 pod 'ChameleonFramework', '~> 2.1.0'

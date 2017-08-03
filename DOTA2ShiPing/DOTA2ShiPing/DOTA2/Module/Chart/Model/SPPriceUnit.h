@@ -10,14 +10,22 @@
 
 @interface SPPriceUnit : NSObject <NSCoding,NSCopying>
 
-@property (copy, nonatomic) NSString *dateStr;             //Oct 15 2016 01: +0
+@property (copy, nonatomic) NSString *dateStr;          //Oct 15 2016 01: +0
 @property (assign, nonatomic) float price;              //0.913
 @property (assign, nonatomic) NSInteger count;          //2
+@property (copy, nonatomic) NSString *prefix;           // $
+@property (copy, nonatomic) NSString *currency;         //USD
+@property (copy, nonatomic) NSString *priceStr;         //0.913
 
 @property (strong, nonatomic) NSDate *date;
+@property (assign, nonatomic) NSTimeInterval timestamp;
 
 + (instancetype)unitWithData:(NSArray *)data;
 
 + (NSArray<SPPriceUnit *> *)unitsWithDatas:(NSArray<NSArray *> *)datas;
+
+- (NSString *)year_month_day;
+- (NSString *)month_day;
+- (NSString *)unitDesc;
 
 @end

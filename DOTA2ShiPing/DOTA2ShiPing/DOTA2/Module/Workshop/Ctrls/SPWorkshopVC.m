@@ -50,8 +50,6 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
 {
     [super viewDidLoad];
     
-    
-    
     [self initSignal];
     
     [self.navigationController.barHideOnSwipeGestureRecognizer addTarget:self action:@selector(navigationBarChangedOnSwip:)];

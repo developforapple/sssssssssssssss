@@ -12,13 +12,33 @@
 #import "SPMarketItem.h"
 #import "SPSteamAPI.h"
 #import "SPPriceUnit.h"
+#import "RWDropdownMenu.h"
+#import "SPPriceChartConfig.h"
 
 @interface SPPriceChartViewCtrl () <JBLineChartViewDelegate,JBLineChartViewDataSource>
 @property (weak, nonatomic) IBOutlet JBLineChartView *chartView;
+@property (weak, nonatomic) IBOutlet UIView *pricePreviewView;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *dateRangeView;
+@property (weak, nonatomic) IBOutlet UILabel *minimumDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maximumDateLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *priceRangeView;
+@property (weak, nonatomic) IBOutlet UILabel *maximumPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minimumPriceLabel;
+
+@property (strong, nonatomic) NSArray<SPPriceUnit *> *allUnits;
 
 @property (strong, nonatomic) NSArray<SPPriceUnit *> *units;
 @property (strong, nonatomic) SPPriceUnit *minimumUnit;
 @property (strong, nonatomic) SPPriceUnit *maximumUnit;
+
+@property (strong, nonatomic) SPPriceUnit *curUnit;
+@property (strong, nonatomic) SPPriceChartConfig *config;
+@property (assign, nonatomic) SPPriceChartLevel level;
 
 @end
 
@@ -30,11 +50,10 @@
     
     [self.view layoutIfNeeded];
     
+    self.nameLabel.text = self.marketItem.name;
+    
     self.chartView.delegate = self;
     self.chartView.dataSource = self;
-    
-    self.chartView.headerView = nil;
-    self.chartView.footerView = nil;
     
     self.chartView.headerPadding = 0.f;
     self.chartView.footerPadding = 0.f;
@@ -42,77 +61,223 @@
     self.chartView.minimumValue = 0.f;
     self.chartView.maximumValue = 100.f;
     
-//    [self.chartView resetMinimumValue];
-//    [self.chartView resetMaximumValue];
-    
-    [self.chartView setState:JBChartViewStateExpanded animated:YES force:YES callback:^{
-        
-    }];
-    
-    [self.chartView reloadDataAnimated:YES];
+    self.view.backgroundColor = self.item.itemColor;
+    self.chartView.backgroundColor = self.item.itemColor;
     
     [self loadPriceData];
 }
 
+- (void)setupBestLevel
+{
+    NSArray *units = [self unitsInLevel:SPPriceChartLevelWeek];
+    if (units.count > 7) {
+        [self updateLevel:SPPriceChartLevelWeek];
+        return;
+    }
+    
+    units = [self unitsInLevel:SPPriceChartLevelMonth];
+    if (units.count > 30) {
+        [self updateLevel:SPPriceChartLevelMonth];
+        return;
+    }
+    
+    units = [self unitsInLevel:SPPriceChartLevelQuarter];
+    if (units.count > 30*3) {
+        [self updateLevel:SPPriceChartLevelMonth];
+        return;
+    }
+    
+    units = [self unitsInLevel:SPPriceChartLevelYear];
+    if (units.count > 365) {
+        [self updateLevel:SPPriceChartLevelMonth];
+        return;
+    }
+    
+    [self updateLevel:SPPriceChartLevelAll];
+}
+
+- (void)updateLevel:(SPPriceChartLevel )level
+{
+    [self rightNavButtonText:LevelString(level)];
+    self.level = level;
+    self.units = [self unitsInLevel:level];
+    self.curUnit = nil;
+    
+    SPPriceUnit *minimumUnit;
+    SPPriceUnit *maximumUnit;
+    for (SPPriceUnit *aUnit in self.units) {
+        if (!minimumUnit || minimumUnit.price >= aUnit.price) {
+            minimumUnit = aUnit;
+        }
+        if (!maximumUnit || maximumUnit.price <= aUnit.price) {
+            maximumUnit = aUnit;
+        }
+    }
+    SPPriceChartConfig *r = LinearTickGenerator(minimumUnit.price, maximumUnit.price, 1, 7);
+    self.minimumUnit = minimumUnit;
+    self.maximumUnit = maximumUnit;
+    self.config = r;
+    
+    self.minimumDateLabel.text = self.units.firstObject.month_day;
+    self.maximumDateLabel.text = self.units.lastObject.month_day;
+    
+    NSString *(^bestPriceString)(CGFloat p) = ^NSString *(CGFloat p){
+        if (p<10.f) {
+            return [NSString stringWithFormat:@"%.2f",p];
+        }
+        if (p < 100) {
+            return [NSString stringWithFormat:@"%.1f",p];
+        }
+        return [NSString stringWithFormat:@"%.0f",p];
+    };
+    self.minimumPriceLabel.text = bestPriceString(self.config.bottomPrice);
+    self.maximumPriceLabel.text = bestPriceString(self.config.topPrice);
+    
+    [self.view layoutIfNeeded];
+    
+    [self reloadChartView];
+}
+
+- (NSArray<SPPriceUnit *> *)unitsInLevel:(SPPriceChartLevel)level
+{
+    NSTimeInterval latestTime = self.allUnits.lastObject.timestamp;
+    NSTimeInterval spTime = 0;
+    switch (level) {
+        case SPPriceChartLevelWeek:{
+            spTime = latestTime - 7 * 24 * 60 * 60;
+        }   break;
+        case SPPriceChartLevelMonth:{
+            spTime = latestTime - 30 * 24 * 60 * 60;
+        }   break;
+        case SPPriceChartLevelQuarter:{
+            spTime = latestTime - 3 * 30 * 24 * 60 * 60;
+        }   break;
+        case SPPriceChartLevelYear:{
+            spTime = latestTime - 365 * 24 * 60 * 60;
+        }   break;
+        case SPPriceChartLevelAll:{
+            spTime = 0;
+        }   break;
+    }
+    
+    if (level == SPPriceChartLevelAll) {
+        return self.allUnits;
+    }
+    
+    NSInteger idx = self.allUnits.count-1;
+    
+    
+    while (idx > 0) {
+        if (self.allUnits[idx].timestamp < spTime) {
+            break;
+        }
+        idx--;
+    }
+    return [self.allUnits subarrayWithRange:NSMakeRange(idx, self.allUnits.count-idx)];
+}
+
 - (void)loadPriceData
 {
-    [[SPSteamAPI shared] fetchSteamMarketItemDetail:self.marketItem.href completion:^(BOOL suc, NSString *data) {
+    NSURLComponents *components = [NSURLComponents componentsWithString:self.marketItem.href];
+    components.query = nil;
+    NSString *URL = components.URL.absoluteString;
+    
+    [[SPSteamAPI shared] fetchSteamMarketItemDetail:URL completion:^(BOOL suc, NSString *data) {
         if (suc) {
             NSError *error;
             NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:@"\\[\\[.*\\]\\]" options:NSRegularExpressionCaseInsensitive error:&error];
             NSTextCheckingResult *checkingResult = [reg firstMatchInString:data options:NSMatchingReportCompletion range:NSMakeRange(0, data.length)];
-            NSRange range = [checkingResult rangeAtIndex:0];
-            NSString *sourceString = [data substringWithRange:range];
-            [self didLoadPriceSourceData:sourceString];
+            
+            NSMutableArray *possibleDatas = [NSMutableArray array];
+            for (NSInteger i=0; i<checkingResult.numberOfRanges; i++) {
+                NSRange range = [checkingResult rangeAtIndex:i];
+                NSString *string = [data substringWithRange:range];
+                [possibleDatas addObject:string];
+            }
+            [self didLoadPriceSourceData:possibleDatas];
         }else{
             [SVProgressHUD showErrorWithStatus:data];
         }
     }];
 }
 
-- (void)didLoadPriceSourceData:(NSString *)data
+- (void)didLoadPriceSourceData:(NSArray *)possibleDatas;
 {
     RunOnGlobalQueue(^{
-        NSError *error;
-        NSArray *sources = [NSJSONSerialization JSONObjectWithData:[data dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-        if (error || !sources || ![sources isKindOfClass:[NSArray class]]) {
+        
+        NSArray<SPPriceUnit *> *units;
+        
+        for (NSString *aSources in possibleDatas) {
+            
+            NSError *error;
+            NSArray *tmp = [NSJSONSerialization JSONObjectWithData:[aSources dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+            if (error || !tmp || ![tmp isKindOfClass:[NSArray class]]) {
+                NSLog(@"解析价格数组出错！error:%@",error);
+            }else{
+                NSArray *theUnits = [SPPriceUnit unitsWithDatas:tmp];
+                if (theUnits.count > 0) {
+                    units = theUnits;
+                    break;
+                }
+            }
+        }
+        
+        if (!units) {
             RunOnMainQueue(^{
-                NSLog(@"价格数组解析出错！error:%@",error);
                 [SVProgressHUD showErrorWithStatus:@"解析错误，请重试！"];
             });
             return;
         }
         
-        NSArray<SPPriceUnit *> *units = [SPPriceUnit unitsWithDatas:sources];
-        SPPriceUnit *minimumUnit;
-        SPPriceUnit *maximumUnit;
-        for (SPPriceUnit *aUnit in units) {
-            if (!minimumUnit || minimumUnit.price >= aUnit.price) {
-                minimumUnit = aUnit;
-            }
-            if (!maximumUnit || maximumUnit.price <= aUnit.price) {
-                maximumUnit = aUnit;
-            }
-        }
+        self.allUnits = units;
         
         RunOnMainQueue(^{
             
-            self.minimumUnit = minimumUnit;
-            self.maximumUnit = maximumUnit;
-            self.units = units;
-            [self reloadChartView];
-        
+            [self setupBestLevel];
+            
         });
     });
 }
 
 - (void)reloadChartView
 {
-    self.chartView.minimumValue = self.minimumUnit.price;
-    self.chartView.maximumValue = self.maximumUnit.price;
-    
+    self.chartView.minimumValue = self.config.bottomPrice;
+    self.chartView.maximumValue = self.config.topPrice;
     [self.chartView reloadDataAnimated:YES];
-    [self.chartView setState:JBChartViewStateExpanded animated:YES];
+}
+
+- (void)updateCurPrice
+{
+    self.pricePreviewView.hidden = !self.curUnit;
+    self.priceLabel.text = self.curUnit.priceStr;
+    self.descLabel.text = self.curUnit.unitDesc;
+}
+
+- (void)doRightNaviBarItemAction
+{
+    static NSArray *items;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        items = @[[RWDropdownMenuItem itemWithText:LevelString(SPPriceChartLevelWeek) image:nil action:nil],
+                  [RWDropdownMenuItem itemWithText:LevelString(SPPriceChartLevelMonth) image:nil action:nil],
+                  [RWDropdownMenuItem itemWithText:LevelString(SPPriceChartLevelQuarter) image:nil action:nil],
+                  [RWDropdownMenuItem itemWithText:LevelString(SPPriceChartLevelYear) image:nil action:nil],
+                  [RWDropdownMenuItem itemWithText:LevelString(SPPriceChartLevelAll) image:nil action:nil]];
+    });
+    ygweakify(self);
+    void (^action)(SPPriceChartLevel level) = ^(SPPriceChartLevel level){
+        ygstrongify(self);
+        [self updateLevel:level];
+    };
+    for (RWDropdownMenuItem *item in items) {
+        NSUInteger idx = [items indexOfObject:item];
+        [item setValue:^{action(idx);} forKey:@"action"];
+    }
+    
+    [RWDropdownMenu presentInPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem
+                                       presentingFrom:self
+                                            withItems:items
+                                           completion:nil];
 }
 
 #pragma mark - JBLineChartView dataSource
@@ -124,7 +289,7 @@
 
 - (BOOL)shouldExtendSelectionViewIntoFooterPaddingForChartView:(JBChartView *)chartView
 {
-    return NO;
+    return YES;
 }
 
 - (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView
@@ -149,12 +314,12 @@
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView dimmedSelectionOpacityAtLineIndex:(NSUInteger)lineIndex
 {
-    return 0.9f;
+    return 1.f;
 }
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView dimmedSelectionDotOpacityAtLineIndex:(NSUInteger)lineIndex
 {
-    return 0.9f;
+    return 1.f;
 }
 
 - (UIView *)lineChartView:(JBLineChartView *)lineChartView dotViewAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
@@ -180,7 +345,8 @@
 
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex
 {
-
+    self.curUnit = self.units[horizontalIndex];
+    [self updateCurPrice];
 }
 
 - (void)didDeselectLineInLineChartView:(JBLineChartView *)lineChartView
@@ -195,7 +361,7 @@
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForLineAtLineIndex:(NSUInteger)lineIndex
 {
-    return [UIColor blackColor];
+    return [UIColor whiteColor];
 }
 
 - (CAGradientLayer *)lineChartView:(JBLineChartView *)lineChartView gradientForLineAtLineIndex:(NSUInteger)lineIndex
@@ -230,7 +396,9 @@
 
 - (CGFloat)verticalSelectionWidthForLineChartView:(JBLineChartView *)lineChartView
 {
-    return 5.f;
+    NSInteger count = self.units.count;
+    CGFloat width = CGRectGetWidth(lineChartView.frame) / count;
+    return MAX(width, 5);
 }
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView verticalSelectionColorForLineAtLineIndex:(NSUInteger)lineIndex

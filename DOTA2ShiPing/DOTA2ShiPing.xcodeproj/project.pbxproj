@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82861CDF325700F26BD1 /* libz.tbd */; };
+		2D19E0111F32F22A00747B01 /* SPPriceChartConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */; };
 		2D48D2981CDE20D700190F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D2971CDE20D700190F0C /* main.m */; };
 		2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D29A1CDE20D700190F0C /* AppDelegate.m */; };
 		2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2A71CDE20D700190F0C /* LaunchScreen.storyboard */; };
@@ -22,6 +23,9 @@
 		2D4B5D541F2E2C8100A3D8C9 /* SPPriceUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5D531F2E2C8100A3D8C9 /* SPPriceUnit.m */; };
 		2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B211D435E95005FC6CA /* libiconv.tbd */; };
 		2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B231D435EAB005FC6CA /* libstdc++.tbd */; };
+		2D6B7B531F3207310048CEA9 /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2D6B7B501F3207310048CEA9 /* DINPro-Bold.otf */; };
+		2D6B7B541F3207310048CEA9 /* DINPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2D6B7B511F3207310048CEA9 /* DINPro-Medium.otf */; };
+		2D6B7B551F3207310048CEA9 /* DINPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2D6B7B521F3207310048CEA9 /* DINPro-Regular.otf */; };
 		2D6F1C981F1E68E400E8F614 /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C911F1E68E400E8F614 /* YYCache.m */; };
 		2D6F1C991F1E68E400E8F614 /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C931F1E68E400E8F614 /* YYDiskCache.m */; };
 		2D6F1C9A1F1E68E400E8F614 /* YYKVStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C951F1E68E400E8F614 /* YYKVStorage.m */; };
@@ -212,6 +216,8 @@
 		112F9D57D42D37A148B12842 /* Pods-DOTA2ShiPing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOTA2ShiPing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing.debug.xcconfig"; sourceTree = "<group>"; };
 		23D6142664BEC9BAEB40BFC9 /* Pods-DOTA2ShiPing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOTA2ShiPing.release.xcconfig"; path = "Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing.release.xcconfig"; sourceTree = "<group>"; };
 		2D0A82861CDF325700F26BD1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		2D19E00F1F32F22A00747B01 /* SPPriceChartConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPriceChartConfig.h; sourceTree = "<group>"; };
+		2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceChartConfig.m; sourceTree = "<group>"; };
 		2D4506D21D3683C4000971B9 /* DOTA2ShiPing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DOTA2ShiPing.entitlements; sourceTree = "<group>"; };
 		2D48D2931CDE20D600190F0C /* DOTA2ShiPing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOTA2ShiPing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D48D2971CDE20D700190F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -238,6 +244,9 @@
 		2D4B5D531F2E2C8100A3D8C9 /* SPPriceUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceUnit.m; sourceTree = "<group>"; };
 		2D563B211D435E95005FC6CA /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		2D563B231D435EAB005FC6CA /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		2D6B7B501F3207310048CEA9 /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
+		2D6B7B511F3207310048CEA9 /* DINPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Medium.otf"; sourceTree = "<group>"; };
+		2D6B7B521F3207310048CEA9 /* DINPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.otf"; sourceTree = "<group>"; };
 		2D6F1C901F1E68E400E8F614 /* YYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCache.h; sourceTree = "<group>"; };
 		2D6F1C911F1E68E400E8F614 /* YYCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCache.m; sourceTree = "<group>"; };
 		2D6F1C921F1E68E400E8F614 /* YYDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDiskCache.h; sourceTree = "<group>"; };
@@ -683,10 +692,10 @@
 		2D4B5D461F2A54CB00A3D8C9 /* Chart */ = {
 			isa = PBXGroup;
 			children = (
-				2D4B5D501F2E2C6C00A3D8C9 /* Model */,
-				2D4B5D511F2E2C6C00A3D8C9 /* View */,
 				2D4B5D4A1F2A54CB00A3D8C9 /* SPChart.storyboard */,
 				2D4B5D471F2A54CB00A3D8C9 /* Ctrls */,
+				2D4B5D501F2E2C6C00A3D8C9 /* Model */,
+				2D4B5D511F2E2C6C00A3D8C9 /* View */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -705,6 +714,8 @@
 			children = (
 				2D4B5D521F2E2C8100A3D8C9 /* SPPriceUnit.h */,
 				2D4B5D531F2E2C8100A3D8C9 /* SPPriceUnit.m */,
+				2D19E00F1F32F22A00747B01 /* SPPriceChartConfig.h */,
+				2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1434,6 +1445,7 @@
 		2DF9B77F1F1361640012950A /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				2DF9B7FA1F1361640012950A /* Workshop */,
 				2D4B5D461F2A54CB00A3D8C9 /* Chart */,
 				2DC0F6881F1B6A2D004DCD3C /* HeroPicker */,
 				2DF9B78B1F1361640012950A /* Item */,
@@ -1444,7 +1456,6 @@
 				2DF9B7D51F1361640012950A /* Search */,
 				2DF9B7E31F1361640012950A /* Setting */,
 				2DF9B7F91F1361640012950A /* SPMain.storyboard */,
-				2DF9B7FA1F1361640012950A /* Workshop */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -1805,6 +1816,9 @@
 		2DF9B80F1F1361640012950A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				2D6B7B501F3207310048CEA9 /* DINPro-Bold.otf */,
+				2D6B7B511F3207310048CEA9 /* DINPro-Medium.otf */,
+				2D6B7B521F3207310048CEA9 /* DINPro-Regular.otf */,
 				2DF9B8101F1361640012950A /* Assets.xcassets */,
 				2DF9B8131F1361640012950A /* heroMap.json */,
 				2DF9B8151F1361640012950A /* workshoptags.json */,
@@ -1950,6 +1964,9 @@
 				2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */,
 				2D4B5D4C1F2A54CB00A3D8C9 /* SPChart.storyboard in Resources */,
 				2DF9B8C71F1361640012950A /* SPMain.storyboard in Resources */,
+				2D6B7B551F3207310048CEA9 /* DINPro-Regular.otf in Resources */,
+				2D6B7B541F3207310048CEA9 /* DINPro-Medium.otf in Resources */,
+				2D6B7B531F3207310048CEA9 /* DINPro-Bold.otf in Resources */,
 				2DF9B85F1F1361640012950A /* BingoBarItemView.xib in Resources */,
 				2DF9B8D51F1361640012950A /* workshoptags.json in Resources */,
 				2DF9B8711F1361640012950A /* LCActionSheet.bundle in Resources */,
@@ -2074,6 +2091,7 @@
 				2DF9B8231F1361640012950A /* SPMaxPlusAPI.m in Sources */,
 				2DF9B8C01F1361640012950A /* SPItemUpdateVC.m in Sources */,
 				2DF9B81D1F1361640012950A /* Config_Archive.m in Sources */,
+				2D19E0111F32F22A00747B01 /* SPPriceChartConfig.m in Sources */,
 				2DF9B8A51F1361640012950A /* SPItemListVC.m in Sources */,
 				2DF9B8891F1361640012950A /* SPWebHelper.m in Sources */,
 				2D6F1C981F1E68E400E8F614 /* YYCache.m in Sources */,
