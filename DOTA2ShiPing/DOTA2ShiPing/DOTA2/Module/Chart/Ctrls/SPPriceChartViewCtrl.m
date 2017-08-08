@@ -16,6 +16,9 @@
 #import "SPPriceChartConfig.h"
 
 @interface SPPriceChartViewCtrl () <JBLineChartViewDelegate,JBLineChartViewDataSource>
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading;
+@property (weak, nonatomic) IBOutlet UIView *container;
+
 @property (weak, nonatomic) IBOutlet JBLineChartView *chartView;
 @property (weak, nonatomic) IBOutlet UIView *pricePreviewView;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
@@ -36,6 +39,7 @@
 @property (strong, nonatomic) SPPriceUnit *minimumUnit;
 @property (strong, nonatomic) SPPriceUnit *maximumUnit;
 
+@property (assign, nonatomic) NSInteger curIndex;
 @property (strong, nonatomic) SPPriceUnit *curUnit;
 @property (strong, nonatomic) SPPriceChartConfig *config;
 @property (assign, nonatomic) SPPriceChartLevel level;
@@ -61,8 +65,9 @@
     self.chartView.minimumValue = 0.f;
     self.chartView.maximumValue = 100.f;
     
-    self.view.backgroundColor = self.item.itemColor;
-    self.chartView.backgroundColor = self.item.itemColor;
+    self.container.backgroundColor = [self.item.itemColor colorWithAlphaComponent:0.5f];
+    
+    [self updateCurPrice];
     
     [self loadPriceData];
 }
@@ -164,16 +169,12 @@
         return self.allUnits;
     }
     
-    NSInteger idx = self.allUnits.count-1;
-    
-    
-    while (idx > 0) {
-        if (self.allUnits[idx].timestamp < spTime) {
-            break;
-        }
-        idx--;
-    }
-    return [self.allUnits subarrayWithRange:NSMakeRange(idx, self.allUnits.count-idx)];
+    NSIndexSet *indexes = [self.allUnits indexesOfObjectsWithOptions:NSEnumerationReverse passingTest:^BOOL(SPPriceUnit *obj, NSUInteger idx, BOOL *stop) {
+        BOOL pass = obj.timestamp >= spTime;
+        *stop = !pass;
+        return pass;
+    }];
+    return [self.allUnits objectsAtIndexes:indexes];
 }
 
 - (void)loadPriceData
@@ -188,6 +189,12 @@
             NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:@"\\[\\[.*\\]\\]" options:NSRegularExpressionCaseInsensitive error:&error];
             NSTextCheckingResult *checkingResult = [reg firstMatchInString:data options:NSMatchingReportCompletion range:NSMakeRange(0, data.length)];
             
+            if (!checkingResult) {
+                [self.loading stopAnimating];
+                [SVProgressHUD showInfoWithStatus:@"没有价格记录"];
+                return;
+            }
+            
             NSMutableArray *possibleDatas = [NSMutableArray array];
             for (NSInteger i=0; i<checkingResult.numberOfRanges; i++) {
                 NSRange range = [checkingResult rangeAtIndex:i];
@@ -196,6 +203,7 @@
             }
             [self didLoadPriceSourceData:possibleDatas];
         }else{
+            [self.loading stopAnimating];
             [SVProgressHUD showErrorWithStatus:data];
         }
     }];
@@ -224,6 +232,7 @@
         
         if (!units) {
             RunOnMainQueue(^{
+                [self.loading stopAnimating];
                 [SVProgressHUD showErrorWithStatus:@"解析错误，请重试！"];
             });
             return;
@@ -233,6 +242,7 @@
         
         RunOnMainQueue(^{
             
+            [self.loading stopAnimating];
             [self setupBestLevel];
             
         });
@@ -248,9 +258,8 @@
 
 - (void)updateCurPrice
 {
-    self.pricePreviewView.hidden = !self.curUnit;
-    self.priceLabel.text = self.curUnit.priceStr;
-    self.descLabel.text = self.curUnit.unitDesc;
+    self.priceLabel.text = self.curUnit ? self.curUnit.priceStr : self.marketItem.priceNumber;
+    self.descLabel.text = self.curUnit ? self.curUnit.unitDesc : @"当前价格";
 }
 
 - (void)doRightNaviBarItemAction
@@ -274,10 +283,20 @@
         [item setValue:^{action(idx);} forKey:@"action"];
     }
     
-    [RWDropdownMenu presentInPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem
-                                       presentingFrom:self
-                                            withItems:items
-                                           completion:nil];
+    [RWDropdownMenu presentInPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem presentingFrom:self withItems:items completion:nil];
+}
+
+- (void)doLeftNaviBarItemAction
+{
+    if (self.presentedViewController) {
+        ygweakify(self);
+        [self dismissViewControllerAnimated:YES completion:^{
+            ygstrongify(self);
+            [self doLeftNaviBarItemAction];
+        }];
+    }else{
+        [super doLeftNaviBarItemAction];
+    }
 }
 
 #pragma mark - JBLineChartView dataSource
@@ -304,7 +323,7 @@
 
 - (BOOL)lineChartView:(JBLineChartView *)lineChartView showsDotsForLineAtLineIndex:(NSUInteger)lineIndex
 {
-    return NO;
+    return YES;
 }
 
 - (BOOL)lineChartView:(JBLineChartView *)lineChartView smoothLineAtLineIndex:(NSUInteger)lineIndex
@@ -319,7 +338,7 @@
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView dimmedSelectionDotOpacityAtLineIndex:(NSUInteger)lineIndex
 {
-    return 1.f;
+    return 0.f;
 }
 
 - (UIView *)lineChartView:(JBLineChartView *)lineChartView dotViewAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
@@ -329,7 +348,8 @@
 
 - (BOOL)lineChartView:(JBLineChartView *)lineChartView shouldHideDotViewOnSelectionAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
 {
-    return YES;
+//    return !self.curUnit || self.curIndex != horizontalIndex;
+    return NO;
 }
 
 #pragma mark - JBLineChartView delegate
@@ -345,6 +365,15 @@
 
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex
 {
+    if (self.curUnit) {
+        UIView *previousDotView = [lineChartView dotViewAtHorizontalIndex:self.curIndex atLineIndex:lineIndex];
+        previousDotView.backgroundColor = [UIColor clearColor];
+    }
+    UIView *dotView = [lineChartView dotViewAtHorizontalIndex:horizontalIndex atLineIndex:lineIndex];
+    dotView.backgroundColor = [UIColor redColor];
+    
+    
+    self.curIndex = horizontalIndex;
     self.curUnit = self.units[horizontalIndex];
     [self updateCurPrice];
 }
@@ -381,7 +410,7 @@
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
 {
-    return nil;
+    return [UIColor clearColor];
 }
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex
@@ -391,7 +420,7 @@
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView dotRadiusForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
 {
-    return 0.f;
+    return 4.f;
 }
 
 - (CGFloat)verticalSelectionWidthForLineChartView:(JBLineChartView *)lineChartView
@@ -425,11 +454,11 @@
 //{
 //    return nil;
 //}
-//
-//- (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionColorForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
-//{
-//    return nil;
-//}
+
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionColorForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
+{
+    return [UIColor clearColor];
+}
 
 - (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex
 {

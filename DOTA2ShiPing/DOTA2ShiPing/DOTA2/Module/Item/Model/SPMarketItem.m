@@ -10,4 +10,10 @@
 
 @implementation SPMarketItem
 
+- (NSString *)priceNumber
+{
+    NSString *p = [[self.price componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@".0123456789"] invertedSet]] componentsJoinedByString:@""];
+    return p;
+}
+
 @end

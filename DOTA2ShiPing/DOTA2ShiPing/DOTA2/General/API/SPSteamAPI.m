@@ -92,12 +92,13 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
         _marketManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
         _marketManager.responseSerializer = [[SPHTMLSerializer alloc] init];
         
-        [_marketManager.requestSerializer setValue:@"Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E188a Safari/601.1" forHTTPHeaderField:@"User-Agent"];
-        [_marketManager.requestSerializer setValue:@"zh-cn" forHTTPHeaderField:@"Accept-Language"];
-        [_marketManager.requestSerializer setValue:@"http://steamcommunity.com/" forHTTPHeaderField:@"Referer"];
-        [_marketManager.requestSerializer setValue:@"steamcommunity.com" forHTTPHeaderField:@"HOST"];
-        [_marketManager.requestSerializer setValue:@"gzip, deflate" forHTTPHeaderField:@"Accept-Encoding"];
-        
+        AFHTTPRequestSerializer *reqSerializer = _marketManager.requestSerializer;
+        [reqSerializer setValue:@"steamcommunity.com" forHTTPHeaderField:@"Host"];
+        [reqSerializer setValue:@"keep-alive" forHTTPHeaderField:@"Connection"];
+        [reqSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+        [reqSerializer setValue:@"Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_3 like Mac OS X) AppleWebKit/603.3.8 (KHTML, like Gecko) Mobile/14G60" forHTTPHeaderField:@"User-Agent"];
+        [reqSerializer setValue:@"http://steamcommunity.com" forHTTPHeaderField:@"Referer"];
+        [reqSerializer setValue:@"gzip, deflate" forHTTPHeaderField:@"Accept-Encoding"];
     }
     return _marketManager;
 }
@@ -479,7 +480,15 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         completion(nil!=responseObject,responseObject,task.taskDescription);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        completion(NO,@"网络错误",task.taskDescription);
+        
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+        
+        if ([response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 429) {
+            NSLog(@"%@", response.allHeaderFields);
+            completion(NO,@"您最近作出的请求太多了。请稍候再重试您的请求。",task.taskDescription);
+        }else{
+            completion(NO,@"网络错误",task.taskDescription);
+        }
     }];
 }
 

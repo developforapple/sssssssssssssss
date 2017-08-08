@@ -70,133 +70,11 @@ FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 // 款式。原始数据，JSON格式
 @property (strong, nonatomic) NSString *styles;
 
-// child
-@property (strong, nonatomic) SPItemChild *child;
-
 @property (strong, nonatomic) NSString *image_inventory_large;
 
 - (NSArray<SPItemStyle *> *)stylesObjects;
 
-///*
-// {
-// "armor of sizzling charge" = 1;
-// "hat of sizzling charge" = 1;
-// "pauldrons of sizzling charge" = 1;
-// "sizzling charge loading screen" = 1;
-// }
-// */
-//@property (strong, nonatomic) NSDictionary *bundle;        //TODO
-//
-///*
-// {
-// "npc_dota_hero_storm_spirit" = 1;
-// }
-// */
-//@property (strong, nonatomic) NSDictionary *used_by_heroes; //TODO
-//
-///*
-// {
-// "is_weapon" = 1;
-// }
-// */
-//@property (strong, nonatomic) NSDictionary *tags;
-//
-///*
-// {
-// type = "league_view_pass";
-// "use_string" = "#ConsumeItem";
-// }
-// child keys: usage
-// */
-//@property (strong, nonatomic) NSDictionary *tool;
-
 @end
-
-@interface SPItemChild : NSObject
-
-@property (strong, nonatomic) SPItemAutograph *autograph;
-
-@property (strong, nonatomic) NSDictionary *static_attributes;
-
-@property (strong, nonatomic) NSDictionary *additional_info;
-
-@property (strong, nonatomic) NSArray<NSString *> *bundle;
-
-@property (strong, nonatomic) NSArray<NSString *> *used_by_heroes;
-
-@property (strong, nonatomic) NSDictionary *visuals;
-
-@end
-
-
-/*
- {(
- "item_type_name",
- "purchase_requirement_prompt_text",
- developer,
- "min_ilevel",
- "item_description",
- "override_attack_attachments",
- "perfect_world_explicit_whitelist",
- "purchase_requires_owning_league_id",
- token,
- "mouse_pressed_sound",
- "show_in_armory",
- "image_inventory_overlay",
- "sound_material",
- "has_store_custom_item_details_panel",
- "event_id",
- "premium_point_cost",
- "hide_tradecraftdelete",
- "expiration_date",
- "purchase_requirement_prompt_ok_text",
- "particle_snapshot",
- "model_player1",
- "image_inventory_size_w",
- "tournament_url",
- "reward_sound",
- "model_player3",
- child,
- "disable_style_selector",
- "purchase_requirement_prompt_ok_event",
- "frostivus_premium_price",
- "creation_date",
- "image_banner",
- "player_loadout",
- "event_premium_price",
- "ignore_in_collection_view",
- "hide_quantity",
- "item_quality",
- "frostivus_price",
- name,
- "image_inventory",
- "associated_item",
- "used_by_heroes",
- prefab,
- "free_cafe_equip",
- "event_point_id",
- "forced_item_quality",
- "tooltip_banner",
- "item_class",
- baseitem,
- "item_name",
- "drop_sound",
- hidden,
- "item_slot",
- propername,
- "purchase_through_event",
- "file://resources/layout/treasures/nested_treasure_ii.xml",
- "model_player",
- "model_player2",
- "item_rarity",
- "particle_folder",
- "preview_override_def_index",
- "max_ilevel",
- "image_inventory_size_h"
- )}
-
- */
-
 
 @interface SPItemAutograph : NSObject
 @property (strong, nonatomic) NSString *name;
@@ -205,10 +83,3 @@ FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 @property (strong, nonatomic) NSNumber *filename_override;
 @property (strong, nonatomic) NSString *icon_path;
 @end
-
-//@interface SPItemStyle : NSObject
-//@property (strong, nonatomic) NSNumber *index;
-//@property (strong, nonatomic) NSString *name;
-//@property (strong, nonatomic) NSString *skin;
-//@property (strong, nonatomic) NSString *alternate_icon;
-//@end

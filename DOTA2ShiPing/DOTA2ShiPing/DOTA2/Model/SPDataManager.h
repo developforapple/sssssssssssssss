@@ -14,6 +14,7 @@
 #import "SPItemColor.h"
 #import "SPItemSets.h"
 #import "SPItemQuality.h"
+#import "SPLootList.h"
 
 #import "FMDB.h"
 
@@ -37,6 +38,8 @@
 
 // 查询捆绑包
 - (NSArray<SPItemSets *> *)querySetsWithCondition:(NSString *)condition values:(NSArray *)values;
+
+- (NSArray<NSString *> *)itemsInLootlist:(NSString *)lootlist;
 
 @end
 
@@ -62,6 +65,7 @@
 @property (strong, readonly, nonatomic) NSArray<SPItemColor *> *colors;
 @property (strong, readonly, nonatomic) NSArray<SPItemQuality *> *qualities;
 @property (strong, readonly, nonatomic) NSArray<SPItemSlot *> *slots;
+@property (strong, readonly, nonatomic) NSArray<SPLootList *> *lootlist;
 @end
 
 #ifndef SPDB

@@ -91,7 +91,8 @@
              @"purchase_requires_owning_league_id":@"proli",
              @"purchase_requirement_prompt_ok_text":@"prpot",
              @"purchase_requirement_prompt_ok_event":@"prpoe",
-             @"purchase_through_event":@"pte"};
+             @"purchase_through_event":@"pte",
+             @"lootList":@"lootlist"};
 }
 
 - (NSString *)item_rarity
@@ -138,27 +139,6 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@ %@ %@",[super description],self.token,self.item_name];
-}
-
-@end
-
-@interface SPItemChild () <YYModel>
-
-@end
-
-@implementation SPItemChild
-
-- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic
-{
-    NSMutableDictionary *bundle = [dic[@"bundle"] mutableCopy];
-    bundle[@"child"] = nil;
-    self.bundle = [bundle allKeys];
-    
-    NSMutableDictionary *used_by_heroes = [dic[@"used_by_heroes"] mutableCopy];
-    used_by_heroes[@"child"] = nil;
-    self.used_by_heroes = [used_by_heroes allKeys];
-    
-    return YES;
 }
 
 @end

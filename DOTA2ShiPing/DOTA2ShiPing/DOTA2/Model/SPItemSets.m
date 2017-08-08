@@ -23,14 +23,14 @@
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic
 {
-    self.items = [dic[@"items"] componentsSeparatedByString:@"|"];
+    self.items = [dic[@"items"] componentsSeparatedByString:@"||"];
     
     return YES;
 }
 
 - (BOOL)modelCustomTransformToDictionary:(NSMutableDictionary *)dic
 {
-    dic[@"items"] = [self.items componentsJoinedByString:@"|"];
+    dic[@"items"] = [self.items componentsJoinedByString:@"||"];
     return YES;
 }
 

@@ -252,7 +252,7 @@ NO_WARNING_END
 
 - (UIStatusBarStyle)yg_preferredStatusBarStyle
 {
-    NSLog(@"%@\t yg_preferredStatusBarStyle",NSStringFromClass([self class]));
+//    NSLog(@"%@\t yg_preferredStatusBarStyle",NSStringFromClass([self class]));
     switch ([UIViewController statusBarControlMode]) {
         case YGStatusBarControlModeApplication:{
             return [UIApplication sharedApplication].statusBarStyle;
@@ -269,7 +269,7 @@ NO_WARNING_END
 
 - (UIViewController *)yg_childViewControllerForStatusBarStyle
 {
-    NSLog(@"%@\t yg_childViewControllerForStatusBarStyle",NSStringFromClass([self class]));
+//    NSLog(@"%@\t yg_childViewControllerForStatusBarStyle",NSStringFromClass([self class]));
     if ([UIViewController statusBarControlMode] == YGStatusBarControlModeAuto) {
         if ([self isKindOfClass:[UINavigationController class]]) {
             return [(UINavigationController *)self topViewController];

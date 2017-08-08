@@ -83,9 +83,6 @@ static void *kCollapsedKey = &kCollapsedKey;
 
 - (void)setCollapsedConstraints:(NSArray *)collapsedConstraints
 {
-    for (NSLayoutConstraint *constraint in collapsedConstraints) {
-        constraint.trueConstant = constraint.constant;
-    }
     objc_setAssociatedObject(self, kCollapsedConstraintsKey, collapsedConstraints, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -107,8 +104,22 @@ static void *kCollapsedKey = &kCollapsedKey;
 
 - (void)updateCollapsedConstraints:(BOOL)collapsed
 {
-    for (NSLayoutConstraint *aConstraint in self.collapsedConstraints) {
-        aConstraint.constant = collapsed ? 0 : aConstraint.trueConstant ;
+    if (collapsed) {
+        for (NSLayoutConstraint *aConstraint in self.collapsedConstraints) {
+            CGFloat curConstant = aConstraint.constant;
+            if (curConstant != 0.f) {
+                aConstraint.trueConstant = curConstant;
+            }
+            aConstraint.constant = 0.f;
+        }
+    }else{
+        for (NSLayoutConstraint *aConstraint in self.collapsedConstraints) {
+            CGFloat curConstraint = aConstraint.constant;
+            if (curConstraint == 0.f) {
+                aConstraint.constant = aConstraint.trueConstant;
+            }
+            aConstraint.trueConstant = aConstraint.constant;
+        }
     }
 }
 

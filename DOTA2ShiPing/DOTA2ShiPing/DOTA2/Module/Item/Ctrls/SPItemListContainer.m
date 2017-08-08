@@ -53,15 +53,6 @@
         self.collectionView.contentInset = insets;
     }
     
-    // tableLayout
-    {
-//        self.tableLayout = [[UICollectionViewFlowLayout alloc] init];
-//        self.tableLayout.itemSize = CGSizeMake(Device_Width, 64.f);
-//        self.tableLayout.sectionInset = UIEdgeInsetsZero;
-//        self.tableLayout.minimumLineSpacing = 0.f;
-//        self.tableLayout.minimumInteritemSpacing = 0.f;
-    }
-    
     // flow layout
     {
         CGFloat width = 0.f;
@@ -92,16 +83,6 @@
 
 - (void)updateWithMode:(SPItemListMode)mode
 {
-//    self.mode = mode;
-//    UICollectionViewLayout *layout = mode == SPItemListModeTable ? self.tableLayout : self.flowlayout ;
-//    
-//    ygweakify(self);
-//    [self.collectionView setCollectionViewLayout:layout animated:YES completion:^(BOOL finished) {
-//        ygstrongify(self);
-//        [self.collectionView reloadData];
-//    }];
-//    return;
-    
     switch (mode) {
         case SPItemListModeTable:{
             self.flowlayout.itemSize = CGSizeMake(Device_Width, 64);
@@ -110,17 +91,6 @@
             self.flowlayout.minimumInteritemSpacing = 0.f;
         }   break;
         case SPItemListModeGrid:{
-//            CGFloat width;
-//            CGFloat height;
-//            CGFloat insetL;
-//            CGFloat insetR;
-//            CGFloat sp;
-//            
-//            insetL = .5f;
-//            insetR = .5f;
-//            sp = .5f;
-//            width = (Device_Width - 5 * .5f)/4.f;
-//            height = ceilf(width /1.5f) + 20.f;
             
             CGFloat width = 0.f;
             CGFloat height = 0.f;

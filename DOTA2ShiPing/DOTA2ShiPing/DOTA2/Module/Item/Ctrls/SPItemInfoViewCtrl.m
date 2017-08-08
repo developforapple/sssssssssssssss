@@ -15,6 +15,7 @@
 #import "UIView+Hierarchy.h"
 #import "Chameleon.h"
 #import "SPItemPriceListViewCtrl.h"
+#import "SPBundleItemsViewCtrl.h"
 
 @interface SPItemInfoViewCtrl ()
 
@@ -52,6 +53,11 @@
 @property (strong, nonatomic) CAGradientLayer *pricePanelBGLayer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *priceHeightConstraint;
 @property (strong, nonatomic) SPItemPriceListViewCtrl *priceListViewCtrl;
+
+@property (weak, nonatomic) IBOutlet UIView *bundlePanel;
+@property (strong, nonatomic) CAGradientLayer *bundlePanelBGLayer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bundleHeightConstraint;
+@property (strong, nonatomic) SPBundleItemsViewCtrl *bundleItemsViewCtrl;
 
 @property (weak, nonatomic) IBOutlet UIView *descPanel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
@@ -103,6 +109,7 @@
     [self updateStylePanel];
     [self updateEffectPanel];
     [self updatePricePanel];
+    [self updateBundlePanel];
     [self updateDescPanel];
 }
 
@@ -115,6 +122,7 @@
     self.descPanelBgLayer.frame = self.descPanel.bounds;
     self.HRSPanelBgLayer.frame = self.heroRaritySlotPanel.bounds;
     self.pricePanelBGLayer.frame = self.pricepanel.bounds;
+    self.bundlePanelBGLayer.frame = self.bundlePanel.bounds;
 }
 
 - (CAGradientLayer *)gradientLayer
@@ -228,6 +236,14 @@
     [self.pricepanel.layer insertSublayer:self.pricePanelBGLayer atIndex:0];
 }
 
+- (void)updateBundlePanel
+{
+    self.bundlePanel.collapsed = YES;
+    self.bundleItemsViewCtrl.item = self.item;
+    self.bundlePanelBGLayer = [self gradientLayer];
+    [self.bundlePanel.layer insertSublayer:self.bundlePanelBGLayer atIndex:0];
+}
+
 - (void)updateDescPanel
 {
     NSError *error;
@@ -261,6 +277,22 @@
                 CGRect frame = self.pricepanel.bounds;
                 frame.size.height = pricePanelH;
                 self.pricePanelBGLayer.frame = frame;
+            }];
+        };
+    }else if ([segue.identifier isEqualToString:@"SPBundleItemsViewCtrlSegueID"]){
+        self.bundleItemsViewCtrl = segue.destinationViewController;
+        ygweakify(self);
+        self.bundleItemsViewCtrl.heightDidChanged = ^(CGFloat height) {
+            ygstrongify(self);
+            [UIView animateWithDuration:.4f animations:^{
+                CGFloat panelH = height;
+                self.bundleHeightConstraint.constant = panelH;
+                [self.scrollView layoutIfNeeded];
+                
+                CGRect frame = self.bundlePanel.bounds;
+                frame.size.height = panelH;
+                self.bundlePanelBGLayer.frame = frame;
+                self.bundlePanel.collapsed = panelH == 0.f;
             }];
         };
     }

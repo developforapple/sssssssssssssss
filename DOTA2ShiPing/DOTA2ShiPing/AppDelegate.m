@@ -20,6 +20,8 @@
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #endif
 
+#import "Chameleon.h"
+
 @interface AppDelegate ()
 @property (strong, nonatomic) SPLaunchADVC *adVC;
 @property (strong, nonatomic) UIView *test;
@@ -58,6 +60,10 @@
     
     [[UISegmentedControl appearance] setTintColor:kTintColor];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:kTextColor];
+    
+    [SVProgressHUD setMinimumDismissTimeInterval:2.f];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleLight];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
 }
 
 - (void)_setupADSplash

@@ -18,7 +18,11 @@
 @property (strong, readwrite, nonatomic) NSArray<SPItemColor *> *colors;
 @property (strong, readwrite, nonatomic) NSArray<SPItemQuality *> *qualities;
 @property (strong, readwrite, nonatomic) NSArray<SPItemSlot *> *slots;
+@property (strong, readwrite, nonatomic) NSArray<SPLootList *> *lootlist;
 @property (strong, readwrite, nonatomic) FMDatabase *db;
+
+@property (strong, nonatomic) NSSet *lootlistTokens;
+
 @end
 
 @implementation SPDataManager
@@ -79,6 +83,7 @@
     NSArray<SPItemQuality*> *qualities = [NSArray yy_modelArrayWithClass:[SPItemQuality class] json:info[@"qualities"]];
     NSArray<SPHero *>       *heroes    = [NSArray yy_modelArrayWithClass:[SPHero class] json:info[@"heroes"]];
     NSArray<SPItemSlot *>   *slots     = [NSArray yy_modelArrayWithClass:[SPItemSlot class] json:info[@"slots"]];
+    NSArray<SPLootList *>   *lootlist  = [NSArray yy_modelArrayWithClass:[SPLootList class] json:info[@"lootlist"]];
     
     for (SPHero *aHero in heroes) {
         [aHero setName_loc: [self localizedString:aHero.name] ?: (aHero.name) ];
@@ -116,11 +121,18 @@
         [aSlot setName_loc:[self localizedString:aSlot.SlotText] ? : aSlot.SlotName];
     }
     
+    NSMutableSet *lootlistTokens = [NSMutableSet set];
+    for (SPLootList *aList in lootlist) {
+        [lootlistTokens addObject:aList.token];
+    }
+    
     self.rarities = rarities;
     self.prefabs = prefabs;
     self.colors = colors;
     self.qualities = qualities;
     self.slots = slots;
+    self.lootlist = lootlist;
+    self.lootlistTokens = lootlistTokens;
 }
 
 - (void)reloadDB
@@ -258,6 +270,43 @@
     }
     
     [self.db close];
+    
+    return array;
+}
+
+- (NSArray<NSString *> *)itemsInLootlist:(NSString *)lootlist
+{
+    if (!lootlist) return nil;
+    if (![self.lootlistTokens containsObject:lootlist]) return nil;
+    
+    SPLootList *list;
+    for (SPLootList *aList in self.lootlist) {
+        if ([aList.token isEqualToString:lootlist]) {
+            list = aList;
+            break;
+        }
+    }
+    if (!list) return nil;
+    
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (NSString *aName in list.lootList) {
+        NSArray *theList = [self itemsInLootlist:aName];
+        if (!theList) {
+            [array addObject:aName];
+        }else{
+            [array addObject:theList];
+        }
+    }
+    
+    for (NSString *aName in list.additional) {
+        NSArray *theList = [self itemsInLootlist:aName];
+        if (!theList) {
+            [array addObject:aName];
+        }else{
+            [array addObject:theList];
+        }
+    }
     
     return array;
 }

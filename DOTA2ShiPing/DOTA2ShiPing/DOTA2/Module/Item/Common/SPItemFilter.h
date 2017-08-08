@@ -11,6 +11,7 @@
 #import "SPItemRarity.h"
 #import "SPItem.h"
 #import "SPItemPrefab.h"
+#import "SPItemSets.h"
 
 // 过滤器
 @interface SPItemFilter : NSObject
@@ -24,10 +25,14 @@
 // 根据关键词筛选
 + (instancetype)filterWithKeywords:(NSString *)keywords;
 
+// 根据包中饰品列表筛选
++ (instancetype)filterWithItemNames:(NSArray<NSString *> *)itemNames;
+
 @property (strong, nonatomic) SPHero *hero;
 @property (strong, nonatomic) NSArray<SPItemPrefab *> *prefabs;
 @property (strong, nonatomic) SPItemRarity *rarity;
 @property (strong, nonatomic) NSString *keywords;
+@property (strong, nonatomic) NSArray *itemNames;
 @property (strong, nonatomic) NSString *filterTitle;
 
 // 查询到的数据

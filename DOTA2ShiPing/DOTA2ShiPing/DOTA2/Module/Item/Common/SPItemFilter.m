@@ -36,6 +36,13 @@
     return filter;
 }
 
++ (instancetype)filterWithItemNames:(NSArray<NSString *> *)itemNames
+{
+    SPItemFilter *filter = [[SPItemFilter alloc] init];
+    filter.itemNames = itemNames;
+    return filter;
+}
+
 - (BOOL)updateItems
 {
     SPDBWITHOPEN
@@ -64,6 +71,17 @@
         [query addObject:@" ( rarity = ? ) "];
         [params addObject:self.rarity.name];
     }
+    
+    if (self.itemNames && self.itemNames.count) {
+        NSMutableArray *itemNamesQuery = [NSMutableArray array];
+        for (NSString *aItemName in self.itemNames) {
+            [itemNamesQuery addObject:@" ( name = ? COLLATE NOCASE ) "];
+            [params addObject:aItemName];
+        }
+        [query addObject:[NSString stringWithFormat:@" (%@) ",[itemNamesQuery componentsJoinedByString:@" OR "]]];
+    }
+    
+    if (query.count == 0) return NO;
     
     NSString *sql = [NSString stringWithFormat:@"SELECT * FROM items WHERE %@ ORDER BY creation_date DESC",[query componentsJoinedByString:@" AND "]];
     __block BOOL suc = YES;

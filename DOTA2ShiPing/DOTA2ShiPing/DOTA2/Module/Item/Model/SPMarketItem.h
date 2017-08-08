@@ -13,4 +13,7 @@
 @property (strong, nonatomic) NSString *qty;    //41
 @property (strong, nonatomic) NSString *price;  //$0.21 USD
 @property (strong, nonatomic) NSString *href;   //
+
+- (NSString *)priceNumber;
+
 @end

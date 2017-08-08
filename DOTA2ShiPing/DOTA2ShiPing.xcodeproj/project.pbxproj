@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82861CDF325700F26BD1 /* libz.tbd */; };
 		2D19E0111F32F22A00747B01 /* SPPriceChartConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */; };
+		2D19E0141F34446000747B01 /* SPBundleItemsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0131F34446000747B01 /* SPBundleItemsViewCtrl.m */; };
+		2D40220E1F385D830006EFEF /* SPLootList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D40220D1F385D830006EFEF /* SPLootList.m */; };
 		2D48D2981CDE20D700190F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D2971CDE20D700190F0C /* main.m */; };
 		2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D29A1CDE20D700190F0C /* AppDelegate.m */; };
 		2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2A71CDE20D700190F0C /* LaunchScreen.storyboard */; };
@@ -218,6 +220,10 @@
 		2D0A82861CDF325700F26BD1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		2D19E00F1F32F22A00747B01 /* SPPriceChartConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPriceChartConfig.h; sourceTree = "<group>"; };
 		2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceChartConfig.m; sourceTree = "<group>"; };
+		2D19E0121F34446000747B01 /* SPBundleItemsViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBundleItemsViewCtrl.h; sourceTree = "<group>"; };
+		2D19E0131F34446000747B01 /* SPBundleItemsViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBundleItemsViewCtrl.m; sourceTree = "<group>"; };
+		2D40220C1F385D830006EFEF /* SPLootList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLootList.h; sourceTree = "<group>"; };
+		2D40220D1F385D830006EFEF /* SPLootList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLootList.m; sourceTree = "<group>"; };
 		2D4506D21D3683C4000971B9 /* DOTA2ShiPing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DOTA2ShiPing.entitlements; sourceTree = "<group>"; };
 		2D48D2931CDE20D600190F0C /* DOTA2ShiPing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOTA2ShiPing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D48D2971CDE20D700190F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1429,6 +1435,8 @@
 				2DF9B77E1F1361640012950A /* SPPlayerItems.m */,
 				2D4B5C741F2198CF00A3D8C9 /* SPItemStyle.h */,
 				2D4B5C751F2198CF00A3D8C9 /* SPItemStyle.m */,
+				2D40220C1F385D830006EFEF /* SPLootList.h */,
+				2D40220D1F385D830006EFEF /* SPLootList.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1527,6 +1535,8 @@
 				2D4AD9D31F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m */,
 				2D4B5C771F27974F00A3D8C9 /* SPItemPriceListViewCtrl.h */,
 				2D4B5C781F27974F00A3D8C9 /* SPItemPriceListViewCtrl.m */,
+				2D19E0121F34446000747B01 /* SPBundleItemsViewCtrl.h */,
+				2D19E0131F34446000747B01 /* SPBundleItemsViewCtrl.m */,
 				2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */,
 			);
 			path = Ctrls;
@@ -2096,6 +2106,7 @@
 				2DF9B8891F1361640012950A /* SPWebHelper.m in Sources */,
 				2D6F1C981F1E68E400E8F614 /* YYCache.m in Sources */,
 				2DF9B8A41F1361640012950A /* SPItemListContainer.m in Sources */,
+				2D40220E1F385D830006EFEF /* SPLootList.m in Sources */,
 				2DF9B8461F1361640012950A /* UIView+BlockGesture.m in Sources */,
 				2DF9B8371F1361640012950A /* UINavigationBar+yg_IBInspectable.m in Sources */,
 				2DF9B8B61F1361640012950A /* SPPlayerInventoryUpdateVC.m in Sources */,
@@ -2193,6 +2204,7 @@
 				2DF9B84F1F1361640012950A /* DDResponse.m in Sources */,
 				2DC0F6901F1B6A2D004DCD3C /* SPItemHeroPickerVC.m in Sources */,
 				2D6F1CAE1F20D72500E8F614 /* UIViewController+yg_StatusBar.m in Sources */,
+				2D19E0141F34446000747B01 /* SPBundleItemsViewCtrl.m in Sources */,
 				2DF9B8611F1361640012950A /* YGBubbleView.m in Sources */,
 				2DF9B88E1F1361640012950A /* SPHero.m in Sources */,
 				2DF9B8C21F1361640012950A /* SPMyStarredItemVC.m in Sources */,
