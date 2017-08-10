@@ -108,7 +108,6 @@
         self.filter = [SPItemFilter filterWithItemNames:itemNames];
         [self loadBundleItems];
         
-        
     }else{
         //不包含包内容
         [self callback];

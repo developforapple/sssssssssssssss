@@ -10,7 +10,7 @@
 #import "SPLogoHeader.h"
 #import "SPItem.h"
 #import "SPItemStyle.h"
-#import "SPItem+Cache.h"
+#import "SPItemImageLoader.h"
 #import "SPDataManager.h"
 #import "UIView+Hierarchy.h"
 #import "Chameleon.h"
@@ -140,13 +140,8 @@
 
 - (void)updateImagePanel
 {
-    ygweakify(self);
-    [self.imageView sd_setImageWithURL:[self.item qiniuLargeURL] placeholderImage:[UIImage imageNamed:@"HeroPlacehodler"] options:SDWebImageRetryFailed | SDWebImageProgressiveDownload | SDWebImageRefreshCached | SDWebImageContinueInBackground | SDWebImageHighPriority  progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-        
-    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        ygstrongify(self);
-        [self.imageView setHidden:NO animated:YES];
-    }];
+    [self.imageView setHidden:NO animated:YES];
+    [SPItemImageLoader loadItemImage:self.item type:SPImageTypeLarge imageView:self.imageView];
 }
 
 - (void)updateTitlePanel

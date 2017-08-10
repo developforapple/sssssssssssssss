@@ -295,7 +295,7 @@
         if (!theList) {
             [array addObject:aName];
         }else{
-            [array addObject:theList];
+            [array addObjectsFromArray:theList];
         }
     }
     
@@ -304,7 +304,7 @@
         if (!theList) {
             [array addObject:aName];
         }else{
-            [array addObject:theList];
+            [array addObjectsFromArray:theList];
         }
     }
     

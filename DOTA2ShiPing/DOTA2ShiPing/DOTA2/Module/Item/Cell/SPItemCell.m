@@ -7,16 +7,10 @@
 //
 
 #import "SPItemCell.h"
-#import "SPItem+Cache.h"
+#import "SPItemImageLoader.h"
 #import "SPDataManager.h"
 
 #import "SPPlayerItems.h"
-
-UIImage *placeholderImage(){
-    static UIImage *img;
-    if (!img) img = [UIImage imageNamed:@"HeroPlacehodler"];
-    return img;
-}
 
 @interface SPItemCell ()
 @property (strong, nonatomic) UIColor *mainColor;
@@ -111,46 +105,7 @@ UIImage *placeholderImage(){
 
 - (void)loadImage
 {
-    NSURL *qiniuURL = [self.item qiniuSmallURL];
-    NSUInteger hash = qiniuURL.hash;
-    // 加载七牛的图片
-    
-    ygweakify(self);
-    
-    [self.itemImageView sd_setImageWithURL:qiniuURL placeholderImage:placeholderImage() options:SDWebImageRetryFailed | SDWebImageRefreshCached | SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        NSUInteger hash2 = hash;
-        if (hash2 == imageURL.hash) {
-            ygstrongify(self);
-            if (!error && image) {
-                self.itemImageView.image = image;
-            }else{
-                [self loadOriginImage];
-            }
-        }
-    }];
-}
-
-- (void)loadOriginImage
-{
-    // 获取原始图片
-    ygweakify(self);
-    [self.item getItemImageInventory:^(id content) {
-        ygstrongify(self);
-        RunOnMainQueue(^{
-            NSURL *url = [NSURL URLWithString:content];
-            NSUInteger hash = url.hash;
-            
-            [self.itemImageView sd_setImageWithURL:url placeholderImage:placeholderImage() options:SDWebImageRetryFailed | SDWebImageRefreshCached | SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                ygstrongify(self);
-                if (!error && image) {
-                    NSUInteger hash2 = hash;
-                    if (url.hash == hash2) {
-                        self.itemImageView.image = image;
-                    }
-                }
-            }];
-        });
-    }];
+    [SPItemImageLoader loadItemImage:self.item type:SPImageTypeNormal imageView:self.itemImageView];
 }
 
 @end
