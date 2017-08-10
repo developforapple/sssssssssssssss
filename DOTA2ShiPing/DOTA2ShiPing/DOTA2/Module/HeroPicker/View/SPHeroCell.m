@@ -45,7 +45,7 @@
 
 //    NSString *url = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_full.png",name];
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"HeroPlacehodler"] options:SDWebImageRetryFailed | SDWebImageContinueInBackground ];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"placeholder"] options:SDWebImageRetryFailed | SDWebImageContinueInBackground ];
 }
 
 - (void)setHighlighted:(BOOL)highlighted

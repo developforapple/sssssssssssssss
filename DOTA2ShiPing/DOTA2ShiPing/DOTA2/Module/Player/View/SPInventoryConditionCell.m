@@ -53,7 +53,7 @@
                 NSString *url = [NSString stringWithFormat:@"http://www.dota2.com.cn/images/heroes/%@_icon.png",name];
 //                NSString *url = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_full.png",name];
                 
-                [self.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageProgressiveDownload | SDWebImageRefreshCached | SDWebImageContinueInBackground];
+                [self.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageProgressiveDownload | SDWebImageContinueInBackground];
                 
                 self.titleLabel.text = hero.name_loc;
             }else{

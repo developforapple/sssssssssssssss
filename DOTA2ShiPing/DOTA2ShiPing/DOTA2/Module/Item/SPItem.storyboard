@@ -163,7 +163,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeroPlacehodler" translatesAutoresizingMaskIntoConstraints="NO" id="JfY-ln-bfu">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="JfY-ln-bfu">
                                                     <rect key="frame" x="10" y="2" width="90" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="JfY-ln-bfu" secondAttribute="height" multiplier="3:2" id="pVq-xa-18W"/>
@@ -255,7 +255,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeroPlacehodler" translatesAutoresizingMaskIntoConstraints="NO" id="M4K-y7-Z9X">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="M4K-y7-Z9X">
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="60"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -830,7 +830,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeroPlacehodler" translatesAutoresizingMaskIntoConstraints="NO" id="oOK-el-tlM">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="oOK-el-tlM">
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="60"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -894,8 +894,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="HeroPlacehodler" width="128" height="72"/>
         <image name="icon_arrow_more" width="8" height="14"/>
         <image name="icon_four_rectangle" width="21" height="21"/>
+        <image name="placeholder" width="128" height="72"/>
     </resources>
 </document>

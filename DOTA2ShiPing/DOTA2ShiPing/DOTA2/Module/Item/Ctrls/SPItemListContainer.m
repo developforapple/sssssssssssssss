@@ -11,6 +11,7 @@
 #import "SPLogoHeader.h"
 #import "SPItemCell.h"
 #import "SPItemsDetailViewCtrl.h"
+#import "SPItemImageLoader.h"
 
 @interface SPItemListContainer ()<UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate,UINavigationControllerDelegate>
 
@@ -53,25 +54,6 @@
         self.collectionView.contentInset = insets;
     }
     
-    // flow layout
-    {
-        CGFloat width = 0.f;
-        CGFloat height = 0.f;
-        UIEdgeInsets sectionInset;
-        CGFloat itemSpacing = 0.f;
-        CGFloat lineSpacing = 0.5f;
-        
-        width = floorf(Device_Width/4);
-        height = ceilf(width/1.5f + 20.f);
-        CGFloat margin = (Device_Width - width * 4 ) /2;
-        sectionInset = UIEdgeInsetsMake(0, margin, 0, margin);
-        
-        self.flowlayout.itemSize = CGSizeMake(width, height);
-        self.flowlayout.sectionInset = sectionInset;
-        self.flowlayout.minimumLineSpacing = lineSpacing;
-        self.flowlayout.minimumInteritemSpacing = itemSpacing;
-    }
-    
     [self updateWithMode:self.mode];
 }
 
@@ -85,6 +67,9 @@
 {
     switch (mode) {
         case SPItemListModeTable:{
+            
+            [SPItemImageLoader setItemListCellImageSize:CGSizeMake(90, 60)];
+            
             self.flowlayout.itemSize = CGSizeMake(Device_Width, 64);
             self.flowlayout.sectionInset = UIEdgeInsetsZero;
             self.flowlayout.minimumLineSpacing = 0.f;
@@ -103,10 +88,13 @@
             CGFloat margin = (Device_Width - width * 4 ) /2;
             sectionInset = UIEdgeInsetsMake(0, margin, 0, margin);
             
+            [SPItemImageLoader setItemListCellImageSize:CGSizeMake(width, height)];
+            
             self.flowlayout.itemSize = CGSizeMake(width, height);
             self.flowlayout.sectionInset = sectionInset;
             self.flowlayout.minimumLineSpacing = lineSpacing;
             self.flowlayout.minimumInteritemSpacing = itemSpacing;
+            
         }    break;
     }
     if (self.mode != mode) {

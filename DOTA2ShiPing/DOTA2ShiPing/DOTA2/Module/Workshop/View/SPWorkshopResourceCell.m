@@ -29,7 +29,7 @@
         BOOL isGif = resource.isGif;
         self.imageView.contentMode = UIViewContentModeCenter;
         NSURL *URL = isGif ? [resource fullURL] : [resource thumbURL] ;
-        [self.imageView sd_setImageWithURL:URL placeholderImage:[UIImage imageNamed:@"logo"] options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageProgressiveDownload | SDWebImageRefreshCached | SDWebImageContinueInBackground  progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *targetURL) {
+        [self.imageView sd_setImageWithURL:URL placeholderImage:[UIImage imageNamed:@"logo"] options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageProgressiveDownload | SDWebImageContinueInBackground  progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *targetURL) {
             
             ygstrongify(self);
             CGFloat p = receivedSize/(CGFloat)expectedSize;

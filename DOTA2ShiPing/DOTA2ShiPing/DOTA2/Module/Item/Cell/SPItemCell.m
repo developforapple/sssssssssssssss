@@ -76,7 +76,7 @@
 
     NSString *iconurl = [NSString stringWithFormat:@"http://steamcommunity-a.akamaihd.net/economy/image/%@",item.icon_url];
     
-    [self.itemImageView sd_setImageWithURL:[NSURL URLWithString:iconurl] placeholderImage:placeholderImage() options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageRefreshCached | SDWebImageContinueInBackground];
+    [self.itemImageView sd_setImageWithURL:[NSURL URLWithString:iconurl] placeholderImage:placeholderImage(kItemListCellImageSize) options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageContinueInBackground];
     
     self.mainColor = rarityTag.tagColor.color;
     if (self.mode == SPItemListModeGrid) {

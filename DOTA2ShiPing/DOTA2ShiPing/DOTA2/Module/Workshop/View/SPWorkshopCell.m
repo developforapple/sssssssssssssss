@@ -31,7 +31,7 @@
     self.imageView.contentMode = UIViewContentModeCenter;
     ygweakify(self);
     
-    [self.imageView sd_setImageWithURL:URL placeholderImage:placeholder options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageRefreshCached | SDWebImageContinueInBackground | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage * _Nullable image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self.imageView sd_setImageWithURL:URL placeholderImage:placeholder options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageContinueInBackground | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage * _Nullable image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         ygstrongify(self);
         if (image) {
             self.imageView.contentMode = UIViewContentModeScaleAspectFill;

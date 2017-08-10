@@ -23,10 +23,13 @@ YG_EXTERN YYCache *normalImageCache();
 YG_EXTERN YYCache *largeImageCache();
 YG_EXTERN YYCache *qiniuCache();
 YG_EXTERN YYCache *cacheForImageType(SPImageType type);
-YG_EXTERN UIImage *placeholderImage();
+YG_EXTERN UIImage *placeholderImage(CGSize size);
+
+YG_EXTERN CGSize kItemListCellImageSize;
 
 @interface SPItemImageLoader : NSObject
 
++ (void)setItemListCellImageSize:(CGSize)size;
 
 + (void)getItemImageURL:(SPItem *)item
                  ofType:(SPImageType)type

@@ -59,16 +59,31 @@ qiniuCache(){
 }
 
 UIImage *
-placeholderImage(){
-    static UIImage *img;
+placeholderImage(CGSize size){
+    
+    static YYMemoryCache *cache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        img = [UIImage imageNamed:@"HeroPlacehodler"];
+        cache = [[YYMemoryCache alloc] init];
     });
-    return img;
+    
+    NSNumber *k = @(((long)size.width*10000+(long)size.height));
+    if ([cache containsObjectForKey:k]) {
+        return [cache objectForKey:k];
+    }
+    UIImage *image = [[UIImage imageNamed:@"placeholder"] imageByResizeToSize:size contentMode:UIViewContentModeScaleAspectFill];
+    [cache setObject:image forKey:k];
+    return image;
 }
 
+CGSize kItemListCellImageSize = {186,124};
+
 @implementation SPItemImageLoader
+
++ (void)setItemListCellImageSize:(CGSize)size
+{
+    kItemListCellImageSize = size;
+}
 
 + (void)getItemImageURL:(SPItem *)item
                  ofType:(SPImageType)type
@@ -108,7 +123,7 @@ placeholderImage(){
 {
     NSUInteger hash = URL.hash;
     ygweakify(imageView);
-    [imageView sd_setImageWithURL:URL placeholderImage:placeholderImage() options:SDWebImageRetryFailed | SDWebImageRefreshCached | SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [imageView sd_setImageWithURL:URL placeholderImage:placeholderImage(kItemListCellImageSize) options:SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         NSUInteger hash2 = hash;
         if (hash2 == imageURL.hash) {
             if (!error && image) {
