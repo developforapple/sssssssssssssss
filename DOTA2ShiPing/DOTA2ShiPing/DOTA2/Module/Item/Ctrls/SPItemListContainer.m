@@ -13,7 +13,7 @@
 #import "SPItemsDetailViewCtrl.h"
 #import "SPItemImageLoader.h"
 
-@interface SPItemListContainer ()<UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate,UINavigationControllerDelegate>
+@interface SPItemListContainer ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDataSourcePrefetching,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
@@ -52,6 +52,10 @@
         UIEdgeInsets insets = self.collectionView.contentInset;
         insets.top = self.topInset.floatValue;
         self.collectionView.contentInset = insets;
+    }
+    
+    if (iOS10) {
+        self.collectionView.prefetchDataSource = self;
     }
     
     [self updateWithMode:self.mode];
@@ -121,20 +125,28 @@
 {
     NSString *identifier = self.mode==SPItemListModeGrid?kSPItemCellNormal:kSPItemCellLarge;
     SPItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    cell.mode = self.mode;
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(SPItemCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    SPItem *item = self.items[indexPath.row];
-    [cell configure:item];
     
+    SPItem *item = self.items[indexPath.row];
+    cell.mode = self.mode;
+    [cell configure:item];
     if (cell.mode == SPItemListModeGrid) {
         BOOL isFirstItemOfLine = indexPath.row % 4 == 0;
         cell.leftLine.hidden = isFirstItemOfLine;
     }
+    
+    return cell;
 }
+
+//- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(SPItemCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    SPItem *item = self.items[indexPath.row];
+//    cell.mode = self.mode;
+//    [cell configure:item];
+//    if (cell.mode == SPItemListModeGrid) {
+//        BOOL isFirstItemOfLine = indexPath.row % 4 == 0;
+//        cell.leftLine.hidden = isFirstItemOfLine;
+//    }
+//}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -142,6 +154,15 @@
     SPItemsDetailViewCtrl *vc = [SPItemsDetailViewCtrl instanceFromStoryboard];
     vc.item = item;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
+{
+    NSMutableArray *items = [NSMutableArray array];
+    for (NSIndexPath *aIndexPath in indexPaths) {
+        [items addObject:self.items[aIndexPath.item]];
+    }
+    [SPItemImageLoader prefetchItemImages:items];
 }
 
 #pragma mark - 

@@ -8,6 +8,7 @@
 
 #import "SPItemImageLoader.h"
 #import "YYCache.h"
+#import <SDWebImage/SDWebImagePrefetcher.h>
 
 YYCache *
 normalImageCache(){
@@ -65,13 +66,14 @@ placeholderImage(CGSize size){
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         cache = [[YYMemoryCache alloc] init];
+        cache.autoTrimInterval = CGFLOAT_MAX;
     });
-    
-    NSNumber *k = @(((long)size.width*10000+(long)size.height));
-    if ([cache containsObjectForKey:k]) {
-        return [cache objectForKey:k];
-    }
-    UIImage *image = [[UIImage imageNamed:@"placeholder"] imageByResizeToSize:size contentMode:UIViewContentModeScaleAspectFill];
+
+    NSNumber *k = @( ((int)size.width) << 12 | ((int)size.height) );
+    UIImage *image = [cache objectForKey:k];
+    if (image) return image;
+
+    image = [[UIImage imageNamed:@"placeholder"] imageByResizeToSize:size contentMode:UIViewContentModeScaleAspectFill];
     [cache setObject:image forKey:k];
     return image;
 }
@@ -143,7 +145,7 @@ CGSize kItemListCellImageSize = {186,124};
     NSURL *qiniuURL = [item qiniuURLOfType:type];
     [self loadImageURL:qiniuURL imageView:imageView failed:^(NSError *err) {
         
-        [qiniuCache() setObject:@YES forKey:item.token.description];
+//        [qiniuCache() setObject:@YES forKey:item.token.description];
         
         // 加载原始图片
         [self getItemImageURL:item ofType:type completion:^(id content) {
@@ -160,6 +162,13 @@ CGSize kItemListCellImageSize = {186,124};
             }
         }];
     }];
+}
+
++ (void)prefetchItemImages:(NSArray<SPItem *> *)items
+{
+    NSMutableArray *array = [NSMutableArray array];
+    NSArray *urls = [items valueForKeyPath:@"qiniuSmallURL"];
+    [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:urls];
 }
 
 @end

@@ -45,8 +45,7 @@
             }
             
             if (productPurchased) {
-                [purchasedProducts addObject:productIdentifier];
-                
+                [purchasedProducts addObject:productIdentifier];  
             }
         }
         if ([SKPaymentQueue defaultQueue]) {
@@ -117,9 +116,12 @@
         productIdentifier = transaction.payment.productIdentifier;
     }
     
-    [SFHFKeychainUtils storeUsername:productIdentifier andPassword:@"YES" forServiceName:@"IAPHelper" updateExisting:YES error:nil];
-    
-    [_purchasedProducts addObject:productIdentifier];
+    //check productIdentifier exist or not
+    //it can be possible nil
+    if (productIdentifier) {
+        [SFHFKeychainUtils storeUsername:productIdentifier andPassword:@"YES" forServiceName:@"IAPHelper" updateExisting:YES error:nil];
+        [_purchasedProducts addObject:productIdentifier];
+    }
 }
 
 - (void)provideContent:(NSString *)productIdentifier {
@@ -367,4 +369,18 @@
     }
 }
 
+
+- (NSString *)getLocalePrice:(SKProduct *)product {
+    if (product) {
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        [formatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+        [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [formatter setLocale:product.priceLocale];
+        
+        return [formatter stringFromNumber:product.price];
+    }
+    return @"";
+    
+    
+}
 @end

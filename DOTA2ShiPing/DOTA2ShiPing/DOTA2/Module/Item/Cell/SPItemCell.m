@@ -19,14 +19,22 @@
 
 @implementation SPItemCell
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    if (self.mode == SPItemListModeTable) {
-        self.gLayer.frame = self.backColorView.bounds;
-    }
-}
+//- (void)layoutSubviews
+//{
+//    [super layoutSubviews];
+//    
+//    if (self.mode == SPItemListModeTable) {
+//        self.gLayer.frame = self.backColorView.bounds;
+//    }
+//}
+
+//- (void)setMode:(SPItemListMode)mode
+//{
+//    _mode = mode;
+//    if (self.mode == SPItemListModeTable) {
+//        self.gLayer.frame = self.backColorView.bounds;
+//    }
+//}
 
 - (void)configure:(SPItem *)item
 {
@@ -61,6 +69,10 @@
     
     if (self.mode == SPItemListModeGrid) {
         self.itemNameLabel.backgroundColor = self.mainColor;
+    }else{
+        UIColor *baseColor = RGBColor(120, 120, 120, 1);
+        self.gLayer.colors = @[(id)blendColors(baseColor, self.mainColor, .8f).CGColor,
+                               (id)blendColors(baseColor, self.mainColor, .2f).CGColor];
     }
 }
 
@@ -86,19 +98,14 @@
 
 - (CAGradientLayer *)gLayer
 {
+    if (self.mode != SPItemListModeTable) return nil;
     if (!_gLayer) {
         _gLayer = [CAGradientLayer layer];
-        if (self.mode == SPItemListModeTable) {
-            _gLayer.startPoint = CGPointMake(0, .5f);
-            _gLayer.endPoint = CGPointMake(1, .5f);
-            _gLayer.locations = @[@0,@1];
-            [self.backColorView.layer addSublayer:_gLayer];
-        }
-    }
-    if (self.mode == SPItemListModeTable){
-        UIColor *baseColor = RGBColor(120, 120, 120, 1);
-        _gLayer.colors = @[(id)blendColors(baseColor, self.mainColor, .8f).CGColor,
-                           (id)blendColors(baseColor, self.mainColor, .2f).CGColor];
+        _gLayer.frame = self.backColorView.bounds;
+        _gLayer.startPoint = CGPointMake(0, .5f);
+        _gLayer.endPoint = CGPointMake(1, .5f);
+        _gLayer.locations = @[@0,@1];
+        [self.backColorView.layer addSublayer:_gLayer];
     }
     return _gLayer;
 }

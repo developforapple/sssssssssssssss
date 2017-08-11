@@ -40,6 +40,8 @@ YG_EXTERN CGSize kItemListCellImageSize;
                  type:(SPImageType)type
             imageView:(UIImageView *)imageView;
 
++ (void)prefetchItemImages:(NSArray *)items;
+
 @end
 
 

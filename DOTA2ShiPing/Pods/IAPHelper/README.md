@@ -45,6 +45,15 @@ if(![IAPShare sharedHelper].iap) {
      }];
 ```
 
+### Get Locale Price and Title
+
+```objc
+SKProduct* product =[[IAPShare sharedHelper].iap.products objectAtIndex:0];
+
+NSLog(@"Price: %@",[[IAPShare sharedHelper].iap getLocalePrice:product]);
+NSLog(@"Title: %@",product.localizedTitle);
+```
+
 ### Purchase
 
 ```objc
@@ -53,18 +62,28 @@ if(![IAPShare sharedHelper].iap) {
 }];
 ```
 
+
+
 ### Check Receipt with shared secret
 
+For checking receipt , recommend to use only for server side. I am not recommend to use from client side directly check it. However, sometime we want to use only on client side for some reason. Use with your own risk.
+
+Please check [Apple guide ](https://developer.apple.com/library/content/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html#//apple_ref/doc/uid/TP40010573-CH104-SW2).
+
 ```objc
-[[IAPShare sharedHelper].iap checkReceipt:trans.transactionReceipt AndSharedSecret:@"your sharesecret" onCompletion:^(NSString *response, NSError *error) {
+[[IAPShare sharedHelper].iap checkReceipt:[NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]] AndSharedSecret:@"your sharesecret" onCompletion:^(NSString *response, NSError *error) {
 
 }];
 ```
 
 ### Check Receipt without shared secret
 
+For checking receipt , recommend to use only for server side. I am not recommend to use from client side directly check it. However, sometime we want to use only on client side for some reason. Use with your own risk.
+
+Please check [Apple guide ](https://developer.apple.com/library/content/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html#//apple_ref/doc/uid/TP40010573-CH104-SW2).
+
 ```objc
-[[IAPShare sharedHelper].iap checkReceipt:trans.transactionReceipt onCompletion:^(NSString *response, NSError *error) {
+[[IAPShare sharedHelper].iap checkReceipt:[NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]] onCompletion:^(NSString *response, NSError *error) {
 
 }];
 ```
@@ -135,7 +154,10 @@ if(![IAPShare sharedHelper].iap) {
        if(response > 0 ) {
        SKProduct* product =[[IAPShare sharedHelper].iap.products objectAtIndex:0];
 
-       [[IAPShare sharedHelper].iap buyProduct:product
+        NSLog(@"Price: %@",[[IAPShare sharedHelper].iap getLocalePrice:product]);
+        NSLog(@"Title: %@",product.localizedTitle);
+
+        [[IAPShare sharedHelper].iap buyProduct:product
                                   onCompletion:^(SKPaymentTransaction* trans){
 
               if(trans.error)
@@ -144,7 +166,7 @@ if(![IAPShare sharedHelper].iap) {
               }
               else if(trans.transactionState == SKPaymentTransactionStatePurchased) {
 
-                  [[IAPShare sharedHelper].iap checkReceipt:trans.transactionReceipt AndSharedSecret:@"your sharesecret" onCompletion:^(NSString *response, NSError *error) {
+                  [[IAPShare sharedHelper].iap checkReceipt:[NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]] AndSharedSecret:@"your sharesecret" onCompletion:^(NSString *response, NSError *error) {
 
                       //Convert JSON String to NSDictionary
                       NSDictionary* rec = [IAPShare toJSON:response];

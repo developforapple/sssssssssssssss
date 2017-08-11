@@ -11,6 +11,7 @@
 #import "SPLaunchADVC.h"
 #import "SPSteamAPI.h"
 #import "JZNavigationExtension.h"
+#import <SDWebImage/SDWebImagePrefetcher.h>
 
 #if LeanCloudSDK_Enabled
 #import "AVOSCloud.h"
@@ -79,6 +80,13 @@
     [AVOSCloud setAllLogsEnabled:NO];
     [AVOSCloud setVerbosePolicy:kAVVerboseNone];
     [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
+    
+    [SDWebImageManager sharedManager].imageDownloader.executionOrder = SDWebImageDownloaderLIFOExecutionOrder;
+    [SDWebImageManager sharedManager].imageDownloader.maxConcurrentDownloads = 20;
+    
+    [SDWebImagePrefetcher sharedImagePrefetcher].maxConcurrentDownloads = 4;
+//    dispatch_queue_t queue = dispatch_queue_create("SDWebImagePrefetcherQueue", DISPATCH_QUEUE_CONCURRENT);
+    [SDWebImagePrefetcher sharedImagePrefetcher].prefetcherQueue = dispatch_queue_create("SDWebImagePrefetcherQueue", DISPATCH_QUEUE_CONCURRENT);
 }
 
 - (void)uploadPushToken

@@ -108,46 +108,30 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DOTA2ShiPing/DOTA2/Module/Item/Common/SPItemImageLoader.m"
-            timestampString = "524059881.860666"
+            filePath = "Pods/SDWebImage/SDWebImage/SDWebImagePrefetcher.m"
+            timestampString = "524123232.765508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "+loadItemImage:type:imageView:"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-startPrefetchingAtIndex:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/SPItemListContainer.m"
-            timestampString = "524059946.826924"
+            timestampString = "524123587.988228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "-updateWithMode:"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "-collectionView:prefetchItemsAtIndexPaths:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DOTA2ShiPing/DOTA2/Module/Item/Common/SPItemImageLoader.m"
-            timestampString = "524060549.366914"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "placeholderImage()"
-            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
