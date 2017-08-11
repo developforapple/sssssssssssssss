@@ -212,6 +212,8 @@
 		2DF9B8D61F1361640012950A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B8181F1361640012950A /* GoogleMobileAds.framework */; };
 		2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B81A1F1361640012950A /* Bugly.framework */; };
 		2DF9B8E31F1365CB0012950A /* CDTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8E21F1365CB0012950A /* CDTUser.m */; };
+		699074401F3D902C00B64030 /* SPMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6990743F1F3D902C00B64030 /* SPMemoryCache.m */; };
+		699074431F3DA63500B64030 /* CALayer+SDWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 699074421F3DA63500B64030 /* CALayer+SDWebCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -632,6 +634,10 @@
 		2DF9B8E01F13639E0012950A /* Steam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Steam.h; sourceTree = "<group>"; };
 		2DF9B8E11F1365CB0012950A /* CDTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDTUser.h; sourceTree = "<group>"; };
 		2DF9B8E21F1365CB0012950A /* CDTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDTUser.m; sourceTree = "<group>"; };
+		6990743E1F3D902C00B64030 /* SPMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMemoryCache.h; sourceTree = "<group>"; };
+		6990743F1F3D902C00B64030 /* SPMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMemoryCache.m; sourceTree = "<group>"; };
+		699074411F3DA63500B64030 /* CALayer+SDWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+SDWebCache.h"; sourceTree = "<group>"; };
+		699074421F3DA63500B64030 /* CALayer+SDWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+SDWebCache.m"; sourceTree = "<group>"; };
 		B70FA08C933879E048D521D6 /* Pods_DOTA2ShiPing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DOTA2ShiPing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1516,6 +1522,10 @@
 				2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */,
 				2DDB45471F3C4EC9005E8460 /* SPItemImageLoader.h */,
 				2DDB45481F3C4EC9005E8460 /* SPItemImageLoader.m */,
+				6990743E1F3D902C00B64030 /* SPMemoryCache.h */,
+				6990743F1F3D902C00B64030 /* SPMemoryCache.m */,
+				699074411F3DA63500B64030 /* CALayer+SDWebCache.h */,
+				699074421F3DA63500B64030 /* CALayer+SDWebCache.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2052,6 +2062,7 @@
 				2DF9B83F1F1361640012950A /* UIViewController+yg_IBInspectable.m in Sources */,
 				2DF9B8881F1361640012950A /* SPLogoHeader.m in Sources */,
 				2DF9B8531F1361640012950A /* YGPaymentResult.m in Sources */,
+				699074401F3D902C00B64030 /* SPMemoryCache.m in Sources */,
 				2DF9B8261F1361640012950A /* TQLocationConverter.m in Sources */,
 				2DF9B8AB1F1361640012950A /* SPInventoryFilter.m in Sources */,
 				2DF9B8C51F1361640012950A /* SPSettingTableVC.m in Sources */,
@@ -2071,6 +2082,7 @@
 				2DF9B8AE1F1361640012950A /* SPInventoryCategoryPickerVC.m in Sources */,
 				2DF9B84E1F1361640012950A /* DDRequestManager.m in Sources */,
 				2DF9B8361F1361640012950A /* UICollectionViewCell+yg_IBInspectable.m in Sources */,
+				699074431F3DA63500B64030 /* CALayer+SDWebCache.m in Sources */,
 				2DF9B88D1F1361640012950A /* SPDataManager.m in Sources */,
 				2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */,
 				2DF9B82A1F1361640012950A /* YGCoreMotionHelper.m in Sources */,

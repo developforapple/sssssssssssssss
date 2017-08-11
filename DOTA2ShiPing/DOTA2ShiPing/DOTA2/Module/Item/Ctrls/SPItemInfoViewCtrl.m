@@ -141,7 +141,7 @@
 - (void)updateImagePanel
 {
     [self.imageView setHidden:NO animated:YES];
-    [SPItemImageLoader loadItemImage:self.item type:SPImageTypeLarge imageView:self.imageView];
+    [SPItemImageLoader loadItemImage:self.item size:self.imageView.bounds.size type:SPImageTypeLarge imageView:self.imageView];
 }
 
 - (void)updateTitlePanel

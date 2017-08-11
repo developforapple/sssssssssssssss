@@ -163,7 +163,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="JfY-ln-bfu">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JfY-ln-bfu">
                                                     <rect key="frame" x="10" y="2" width="90" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="JfY-ln-bfu" secondAttribute="height" multiplier="3:2" id="pVq-xa-18W"/>
@@ -255,7 +255,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="M4K-y7-Z9X">
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M4K-y7-Z9X">
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="60"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -308,7 +308,6 @@
                                         </constraints>
                                         <size key="customSize" width="90" height="80"/>
                                         <connections>
-                                            <outlet property="itemImageView" destination="M4K-y7-Z9X" id="2i4-Ue-6d8"/>
                                             <outlet property="itemNameLabel" destination="aoK-QI-UwU" id="OGi-QU-E4c"/>
                                             <outlet property="leftLine" destination="YUY-eP-jS6" id="rlF-HK-6gG"/>
                                         </connections>

@@ -10,22 +10,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/SDWebImage/SDWebImage/SDImageCache.m"
-            timestampString = "524050989.975097"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
-            landmarkName = "-queryCacheOperationForKey:done:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/SDWebImage/SDWebImage/SDImageCache.m"
             timestampString = "524051356.032477"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -108,30 +92,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pods/SDWebImage/SDWebImage/SDWebImagePrefetcher.m"
-            timestampString = "524123232.765508"
+            filePath = "DOTA2ShiPing/DOTA2/Module/Item/Common/SPItemImageLoader.m"
+            timestampString = "524139549.359911"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "83"
             endingLineNumber = "83"
-            landmarkName = "-startPrefetchingAtIndex:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/SPItemListContainer.m"
-            timestampString = "524123587.988228"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "-collectionView:prefetchItemsAtIndexPaths:"
-            landmarkType = "7">
+            landmarkName = "placeholderImage()"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

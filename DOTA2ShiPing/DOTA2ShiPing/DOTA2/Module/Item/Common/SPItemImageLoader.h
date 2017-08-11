@@ -25,22 +25,23 @@ YG_EXTERN YYCache *qiniuCache();
 YG_EXTERN YYCache *cacheForImageType(SPImageType type);
 YG_EXTERN UIImage *placeholderImage(CGSize size);
 
-YG_EXTERN CGSize kItemListCellImageSize;
-
 @interface SPItemImageLoader : NSObject
 
-+ (void)setItemListCellImageSize:(CGSize)size;
-
-+ (void)getItemImageURL:(SPItem *)item
-                 ofType:(SPImageType)type
-             completion:(SPItemCacheCompletion)completion;
-
++ (void)setSDWebImageUseYYMemoryCache;
 
 + (void)loadItemImage:(SPItem *)item
+                 size:(CGSize)size
                  type:(SPImageType)type
             imageView:(UIImageView *)imageView;
 
-+ (void)prefetchItemImages:(NSArray *)items;
++ (void)loadItemImage:(SPItem *)item
+                 size:(CGSize)size
+                 type:(SPImageType)type
+                layer:(CALayer *)layer;
+
++ (void)prefetchItemImages:(NSArray<NSString *> *)itemImages;
+
++ (void)clearMemory;
 
 @end
 

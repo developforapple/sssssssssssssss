@@ -11,6 +11,7 @@
 #import "SPLaunchADVC.h"
 #import "SPSteamAPI.h"
 #import "JZNavigationExtension.h"
+#import "SPItemImageLoader.h"
 #import <SDWebImage/SDWebImagePrefetcher.h>
 
 #if LeanCloudSDK_Enabled
@@ -81,11 +82,10 @@
     [AVOSCloud setVerbosePolicy:kAVVerboseNone];
     [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
     
-    [SDWebImageManager sharedManager].imageDownloader.executionOrder = SDWebImageDownloaderLIFOExecutionOrder;
+    // 使用YYMemoryCache 代替 SDWebImage 默认的内存缓存。不修改文件缓存。
+    [SPItemImageLoader setSDWebImageUseYYMemoryCache];
     [SDWebImageManager sharedManager].imageDownloader.maxConcurrentDownloads = 20;
-    
     [SDWebImagePrefetcher sharedImagePrefetcher].maxConcurrentDownloads = 4;
-//    dispatch_queue_t queue = dispatch_queue_create("SDWebImagePrefetcherQueue", DISPATCH_QUEUE_CONCURRENT);
     [SDWebImagePrefetcher sharedImagePrefetcher].prefetcherQueue = dispatch_queue_create("SDWebImagePrefetcherQueue", DISPATCH_QUEUE_CONCURRENT);
 }
 

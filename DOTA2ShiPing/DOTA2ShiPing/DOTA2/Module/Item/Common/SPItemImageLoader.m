@@ -8,6 +8,10 @@
 
 #import "SPItemImageLoader.h"
 #import "YYCache.h"
+#import "SPMemoryCache.h"
+#import "CALayer+SDWebCache.h"
+#import <SDWebImage/UIImage+MultiFormat.h>
+#import <SDWebImage/UIImage+WebP.h>
 #import <SDWebImage/SDWebImagePrefetcher.h>
 
 YYCache *
@@ -74,17 +78,37 @@ placeholderImage(CGSize size){
     if (image) return image;
 
     image = [[UIImage imageNamed:@"placeholder"] imageByResizeToSize:size contentMode:UIViewContentModeScaleAspectFill];
+    NSData *data = [image sd_imageDataAsFormat:SDImageFormatWebP];
+    image = [UIImage sd_imageWithData:data];
     [cache setObject:image forKey:k];
     return image;
 }
 
-CGSize kItemListCellImageSize = {186,124};
+dispatch_queue_t
+resizeImageQueue(void){
+    static dispatch_queue_t queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        queue = dispatch_queue_create("SPResizeImageQueue", DISPATCH_QUEUE_CONCURRENT);
+    });
+    return queue;
+}
 
 @implementation SPItemImageLoader
 
-+ (void)setItemListCellImageSize:(CGSize)size
++ (void)setSDWebImageUseYYMemoryCache
 {
-    kItemListCellImageSize = size;
+    // SDWebImage的imageCache存在一个 memCache 的属性作为内存缓存 其类型为 NSCache
+    // SPMemoryCache 继承 YYMemoryCache 兼容了 NSCache 的接口
+    SPMemoryCache *cache = [[SPMemoryCache alloc] init];
+    NSString *k = @"memCache";
+    SEL memCacheGetter = NSSelectorFromString(k);
+    if ([[SDWebImageManager sharedManager].imageCache respondsToSelector:memCacheGetter]) {
+        NSCache *sdMemCache = [[SDWebImageManager sharedManager].imageCache valueForKey:k];
+        cache.name = sdMemCache.name;
+        [[SDWebImageManager sharedManager].imageCache setValue:cache forKey:k];
+        [sdMemCache removeAllObjects];
+    }
 }
 
 + (void)getItemImageURL:(SPItem *)item
@@ -120,12 +144,13 @@ CGSize kItemListCellImageSize = {186,124};
 }
 
 + (void)loadImageURL:(NSURL *)URL
+                size:(CGSize)size
            imageView:(UIImageView *)imageView
               failed:(void(^)(NSError *))failed
 {
     NSUInteger hash = URL.hash;
     ygweakify(imageView);
-    [imageView sd_setImageWithURL:URL placeholderImage:placeholderImage(kItemListCellImageSize) options:SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [imageView sd_setImageWithURL:URL placeholderImage:placeholderImage(size) options:SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         NSUInteger hash2 = hash;
         if (hash2 == imageURL.hash) {
             if (!error && image) {
@@ -138,37 +163,98 @@ CGSize kItemListCellImageSize = {186,124};
     }];;
 }
 
++ (void)loadImageURL:(NSURL *)URL
+                size:(CGSize)size
+               layer:(CALayer *)layer
+              failed:(void(^)(NSError *))failed
+{
+    ygweakify(layer);
+    [layer sd_setImageWithURL:URL placeholderImage:placeholderImage(size) options:SDWebImageContinueInBackground | SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (!error && image) {
+            ygstrongify(layer);
+            layer.contents = (__bridge id _Nullable)(image.CGImage);
+            return;
+        }
+        failed ? failed(error) : 0;
+    }];
+    
+//    NSUInteger hash = URL.hash;
+//    ygweakify(layer);
+//    [layer sd_setImageWithURL:URL placeholderImage:placeholderImage(size) options:SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        NSUInteger hash2 = hash;
+//        if (hash2 == imageURL.hash) {
+//            if (!error && image) {
+//                ygstrongify(layer);
+//                layer.contents = (__bridge id _Nullable)(image.CGImage);
+//                return;
+//            }
+//            failed ? failed(error) : 0;
+//        }
+//    }];
+}
+
 + (void)loadItemImage:(SPItem *)item
+                 size:(CGSize)size
                  type:(SPImageType)type
             imageView:(UIImageView *)imageView
 {
     NSURL *qiniuURL = [item qiniuURLOfType:type];
-    [self loadImageURL:qiniuURL imageView:imageView failed:^(NSError *err) {
+    [self loadImageURL:qiniuURL size:size imageView:imageView failed:^(NSError *err) {
         
-//        [qiniuCache() setObject:@YES forKey:item.token.description];
+        //        [qiniuCache() setObject:@YES forKey:item.token.description];
         
         // 加载原始图片
         [self getItemImageURL:item ofType:type completion:^(id content) {
             
             if (content) {
                 
-                [self loadImageURL:content imageView:imageView failed:nil];
+                [self loadImageURL:content size:size imageView:imageView failed:nil];
                 
             }else if(type == SPImageTypeLarge){
                 
                 // 获取原始大图出错时，显示原始小图
-                [self loadItemImage:item type:SPImageTypeNormal imageView:imageView];
-            
+                [self loadItemImage:item size:size type:SPImageTypeNormal imageView:imageView];
+                
             }
         }];
     }];
 }
 
-+ (void)prefetchItemImages:(NSArray<SPItem *> *)items
++ (void)loadItemImage:(SPItem *)item
+                 size:(CGSize)size
+                 type:(SPImageType)type
+                layer:(CALayer *)layer
 {
-    NSMutableArray *array = [NSMutableArray array];
-    NSArray *urls = [items valueForKeyPath:@"qiniuSmallURL"];
-    [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:urls];
+    NSURL *qiniuURL = [item qiniuURLOfType:type];
+    [self loadImageURL:qiniuURL size:size layer:layer failed:^(NSError *err) {
+        
+        //        [qiniuCache() setObject:@YES forKey:item.token.description];
+        
+        // 加载原始图片
+        [self getItemImageURL:item ofType:type completion:^(id content) {
+            
+            if (content) {
+                
+                [self loadImageURL:content size:size layer:layer failed:nil];
+                
+            }else if(type == SPImageTypeLarge){
+                
+                // 获取原始大图出错时，显示原始小图
+                [self loadItemImage:item size:size type:SPImageTypeNormal layer:layer];
+                
+            }
+        }];
+    }];
+}
+
++ (void)prefetchItemImages:(NSArray<NSString *> *)itemImages
+{
+    [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:itemImages];
+}
+
++ (void)clearMemory
+{
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
 }
 
 @end

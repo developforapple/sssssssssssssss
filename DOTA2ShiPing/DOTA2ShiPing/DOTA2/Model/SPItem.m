@@ -82,6 +82,10 @@
     if (!self.item_name) {
         self.item_name = @"";
     }
+    
+    // 实现计算出颜色
+    __unused UIColor *color = [self itemColor];
+    
     return YES;
 }
 

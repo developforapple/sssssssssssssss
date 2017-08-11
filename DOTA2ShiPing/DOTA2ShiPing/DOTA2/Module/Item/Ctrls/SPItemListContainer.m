@@ -19,6 +19,8 @@
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
 //@property (strong, nonatomic) UICollectionViewFlowLayout *tableLayout;
 
+@property (assign, nonatomic) CGSize itemImageSize;
+
 @end
 
 @implementation SPItemListContainer
@@ -72,7 +74,7 @@
     switch (mode) {
         case SPItemListModeTable:{
             
-            [SPItemImageLoader setItemListCellImageSize:CGSizeMake(90, 60)];
+            self.itemImageSize = CGSizeMake(90, 60);
             
             self.flowlayout.itemSize = CGSizeMake(Device_Width, 64);
             self.flowlayout.sectionInset = UIEdgeInsetsZero;
@@ -87,12 +89,14 @@
             CGFloat itemSpacing = 0.f;
             CGFloat lineSpacing = 0.5f;
             
+            CGFloat textHeight = 20.f;
+            
             width = floorf(Device_Width/4);
-            height = ceilf(width/1.5f + 20.f);
+            height = ceilf(width/1.5f + textHeight);
             CGFloat margin = (Device_Width - width * 4 ) /2;
             sectionInset = UIEdgeInsetsMake(0, margin, 0, margin);
             
-            [SPItemImageLoader setItemListCellImageSize:CGSizeMake(width, height)];
+            self.itemImageSize = CGSizeMake(width, height - textHeight);
             
             self.flowlayout.itemSize = CGSizeMake(width, height);
             self.flowlayout.sectionInset = sectionInset;
@@ -125,28 +129,19 @@
 {
     NSString *identifier = self.mode==SPItemListModeGrid?kSPItemCellNormal:kSPItemCellLarge;
     SPItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    
-    SPItem *item = self.items[indexPath.row];
     cell.mode = self.mode;
-    [cell configure:item];
+    cell.placeholderImageSize = self.itemImageSize;
     if (cell.mode == SPItemListModeGrid) {
-        BOOL isFirstItemOfLine = indexPath.row % 4 == 0;
-        cell.leftLine.hidden = isFirstItemOfLine;
+        cell.leftLine.hidden = indexPath.row%4==0;
     }
-    
     return cell;
 }
 
-//- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(SPItemCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    SPItem *item = self.items[indexPath.row];
-//    cell.mode = self.mode;
-//    [cell configure:item];
-//    if (cell.mode == SPItemListModeGrid) {
-//        BOOL isFirstItemOfLine = indexPath.row % 4 == 0;
-//        cell.leftLine.hidden = isFirstItemOfLine;
-//    }
-//}
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(SPItemCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    SPItem *item = self.items[indexPath.row];
+    [cell configure:item];
+}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -158,11 +153,11 @@
 
 - (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
 {
-    NSMutableArray *items = [NSMutableArray array];
+    NSMutableArray *itemImages = [NSMutableArray array];
     for (NSIndexPath *aIndexPath in indexPaths) {
-        [items addObject:self.items[aIndexPath.item]];
+        [itemImages addObject:[self.items[aIndexPath.item] qiniuSmallURL]];
     }
-    [SPItemImageLoader prefetchItemImages:items];
+    [SPItemImageLoader prefetchItemImages:itemImages];
 }
 
 #pragma mark - 
