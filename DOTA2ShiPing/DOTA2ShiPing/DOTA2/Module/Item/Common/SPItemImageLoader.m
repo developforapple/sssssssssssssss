@@ -166,31 +166,23 @@ resizeImageQueue(void){
 + (void)loadImageURL:(NSURL *)URL
                 size:(CGSize)size
                layer:(CALayer *)layer
+         placeholder:(BOOL)placeholder
               failed:(void(^)(NSError *))failed
 {
-    ygweakify(layer);
-    [layer sd_setImageWithURL:URL placeholderImage:placeholderImage(size) options:SDWebImageContinueInBackground | SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (!error && image) {
-            ygstrongify(layer);
-            layer.contents = (__bridge id _Nullable)(image.CGImage);
-            return;
-        }
-        failed ? failed(error) : 0;
-    }];
+    NSInteger hash = URL.hash;
     
-//    NSUInteger hash = URL.hash;
-//    ygweakify(layer);
-//    [layer sd_setImageWithURL:URL placeholderImage:placeholderImage(size) options:SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        NSUInteger hash2 = hash;
-//        if (hash2 == imageURL.hash) {
-//            if (!error && image) {
-//                ygstrongify(layer);
-//                layer.contents = (__bridge id _Nullable)(image.CGImage);
-//                return;
-//            }
-//            failed ? failed(error) : 0;
-//        }
-//    }];
+    ygweakify(layer);
+    [layer sd_setImageWithURL:URL placeholderImage:placeholder ? placeholderImage(size) : nil options:SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        NSInteger hash2 = hash;
+        if (hash2 == imageURL.hash) {
+            if (!error && image) {
+                ygstrongify(layer);
+                layer.hidden = NO;
+                return;
+            }
+            failed ? failed(error) : 0;
+        }
+    }];
 }
 
 + (void)loadItemImage:(SPItem *)item
@@ -226,7 +218,7 @@ resizeImageQueue(void){
                 layer:(CALayer *)layer
 {
     NSURL *qiniuURL = [item qiniuURLOfType:type];
-    [self loadImageURL:qiniuURL size:size layer:layer failed:^(NSError *err) {
+    [self loadImageURL:qiniuURL size:size layer:layer placeholder:type!=SPImageTypeNormal failed:^(NSError *err) {
         
         //        [qiniuCache() setObject:@YES forKey:item.token.description];
         
@@ -235,7 +227,7 @@ resizeImageQueue(void){
             
             if (content) {
                 
-                [self loadImageURL:content size:size layer:layer failed:nil];
+                [self loadImageURL:content size:size layer:layer placeholder:type!=SPImageTypeNormal failed:nil];
                 
             }else if(type == SPImageTypeLarge){
                 
@@ -247,7 +239,7 @@ resizeImageQueue(void){
     }];
 }
 
-+ (void)prefetchItemImages:(NSArray<NSString *> *)itemImages
++ (void)prefetchItemImages:(NSArray *)itemImages
 {
     [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:itemImages];
 }

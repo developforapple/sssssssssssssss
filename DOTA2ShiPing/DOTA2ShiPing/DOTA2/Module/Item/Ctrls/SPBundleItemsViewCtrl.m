@@ -152,14 +152,17 @@
 {
     NSString *identifier = self.mode==SPItemListModeGrid?kSPItemCellNormal:kSPItemCellLarge;
     SPItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    cell.mode = self.mode;
+//    [cell preload:^(SPItemCellConfig *c) {
+//        c.mode = self.mode;
+//        c.item = self.items[indexPath.row];
+//        c.lineHidden = YES;
+//    }];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(SPItemCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SPItem *item = self.items[indexPath.row];
-    [cell configure:item];
+    [cell willDisplay];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

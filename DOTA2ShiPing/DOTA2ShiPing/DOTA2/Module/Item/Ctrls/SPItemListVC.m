@@ -109,7 +109,7 @@
     
     for (NSNumber *key in self.vcs) {
         SPItemListContainer *container = self.vcs[key];
-        [container updateWithMode:mode];
+        [container update:mode data:nil];
     }
     [UIView animateWithDuration:.2f animations:^{
         self.changModeButtonItem.image = [UIImage imageNamed:self.mode!=SPItemListModeTable?@"icon_three_rectangle":@"icon_four_rectangle"];
@@ -148,8 +148,7 @@
     SPItemListContainer *vc = self.vcs[k];
     if (!vc) {
         vc = [SPItemListContainer instanceFromStoryboard];
-        vc.items = self.items[index];
-        vc.mode = self.mode;
+        [vc update:self.mode data:self.items[index]];
         vc.topInset = @(64.f+CGRectGetHeight(self.segmentView.bounds));
         self.vcs[k] = vc;
     }

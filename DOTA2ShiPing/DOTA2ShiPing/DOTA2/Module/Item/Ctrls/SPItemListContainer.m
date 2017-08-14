@@ -12,6 +12,9 @@
 #import "SPItemCell.h"
 #import "SPItemsDetailViewCtrl.h"
 #import "SPItemImageLoader.h"
+#import "SPItemCellModel.h"
+
+SPItemListMode const kSPItemListModeAuto = 10086;
 
 @interface SPItemListContainer ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDataSourcePrefetching,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate,UINavigationControllerDelegate>
 
@@ -19,7 +22,10 @@
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
 //@property (strong, nonatomic) UICollectionViewFlowLayout *tableLayout;
 
+@property (strong, readwrite, nonatomic) NSArray *items;
 @property (assign, nonatomic) CGSize itemImageSize;
+
+@property (strong, nonatomic) NSArray<SPItemCellModel *> *cellModels;
 
 @end
 
@@ -28,7 +34,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self initUI];
 }
 
@@ -59,8 +64,6 @@
     if (iOS10) {
         self.collectionView.prefetchDataSource = self;
     }
-    
-    [self updateWithMode:self.mode];
 }
 
 - (void)setupClearBackground
@@ -69,78 +72,50 @@
     self.collectionView.backgroundColor = [UIColor clearColor];
 }
 
-- (void)updateWithMode:(SPItemListMode)mode
+- (void)update:(SPItemListMode)mode data:(NSArray *)items
 {
-    switch (mode) {
-        case SPItemListModeTable:{
-            
-            self.itemImageSize = CGSizeMake(90, 60);
-            
-            self.flowlayout.itemSize = CGSizeMake(Device_Width, 64);
-            self.flowlayout.sectionInset = UIEdgeInsetsZero;
-            self.flowlayout.minimumLineSpacing = 0.f;
-            self.flowlayout.minimumInteritemSpacing = 0.f;
-        }   break;
-        case SPItemListModeGrid:{
-            
-            CGFloat width = 0.f;
-            CGFloat height = 0.f;
-            UIEdgeInsets sectionInset;
-            CGFloat itemSpacing = 0.f;
-            CGFloat lineSpacing = 0.5f;
-            
-            CGFloat textHeight = 20.f;
-            
-            width = floorf(Device_Width/4);
-            height = ceilf(width/1.5f + textHeight);
-            CGFloat margin = (Device_Width - width * 4 ) /2;
-            sectionInset = UIEdgeInsetsMake(0, margin, 0, margin);
-            
-            self.itemImageSize = CGSizeMake(width, height - textHeight);
-            
-            self.flowlayout.itemSize = CGSizeMake(width, height);
-            self.flowlayout.sectionInset = sectionInset;
-            self.flowlayout.minimumLineSpacing = lineSpacing;
-            self.flowlayout.minimumInteritemSpacing = itemSpacing;
-            
-        }    break;
-    }
-    if (self.mode != mode) {
-        self.mode = mode;
-        [self.collectionView reloadData];
-    }
-}
-
-- (void)setItems:(NSArray<SPItem *> *)items
-{
-    if (_items != items) {
-        _items = items;
-        [self.collectionView reloadData];
-    }
+    self.items = items ? : self.items;
+    self.mode = mode = (mode==kSPItemListModeAuto) ? mode : ([[NSUserDefaults standardUserDefaults] integerForKey:kSPItemListModeKey]);
+    
+    NSMutableArray *models = [NSMutableArray array];
+    [self.items enumerateObjectsUsingBlock:^(SPItem *obj, NSUInteger idx, BOOL *stop) {
+        SPItemCellModel *model = [SPItemCellModel viewModelWithEntity:obj];
+        if (model) {
+            model.mode = mode;
+            model.lineHidden = idx%4==0;
+            [model create];
+            [models addObject:model];
+        }
+    }];
+    self.cellModels = models;
+    self.mode = mode;
+    SPItemLayout *layout = [SPItemLayout layoutWithMode:mode];
+    self.flowlayout.itemSize = layout.itemSize;
+    self.flowlayout.sectionInset = layout.sectionInset;
+    self.flowlayout.minimumInteritemSpacing = layout.interitemSpacing;
+    self.flowlayout.minimumLineSpacing = layout.lineSpacing;
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.items.count;
+    return self.cellModels.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *identifier = self.mode==SPItemListModeGrid?kSPItemCellNormal:kSPItemCellLarge;
     SPItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    cell.mode = self.mode;
-    cell.placeholderImageSize = self.itemImageSize;
-    if (cell.mode == SPItemListModeGrid) {
-        cell.leftLine.hidden = indexPath.row%4==0;
-    }
+    [cell preload:self.cellModels[indexPath.item]];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(SPItemCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SPItem *item = self.items[indexPath.row];
-    [cell configure:item];
+//    if (kVelocity <= 3.0f) {
+        [cell willDisplay];
+//    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -153,12 +128,24 @@
 
 - (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
 {
-    NSMutableArray *itemImages = [NSMutableArray array];
-    for (NSIndexPath *aIndexPath in indexPaths) {
-        [itemImages addObject:[self.items[aIndexPath.item] qiniuSmallURL]];
-    }
-    [SPItemImageLoader prefetchItemImages:itemImages];
+//    NSMutableArray *itemImages = [NSMutableArray array];
+//    for (NSIndexPath *indexPath in indexPaths) {
+//        [itemImages addObject:[self.items[indexPath.item] qiniuSmallURL]];
+//    }
+//    [SPItemImageLoader prefetchItemImages:itemImages];
 }
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    float velocity = calculateVelocity(scrollView.contentOffset.y);
+//    NSLog(@"%.8f",velocity);
+//}
+
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    NSArray<SPItemCell *> *cells = [self.collectionView visibleCells];
+//    [cells makeObjectsPerformSelector:@selector(willDisplay)];
+//}
 
 #pragma mark - 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView

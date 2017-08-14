@@ -191,7 +191,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     
     for (NSNumber *key in self.vcs) {
         SPItemListContainer *container = self.vcs[key];
-        [container updateWithMode:mode];
+        [container update:mode data:nil];
     }
     [UIView animateWithDuration:.2f animations:^{
         self.modeBtn.image = [UIImage imageNamed:self.mode!=SPItemListModeTable?@"icon_three_rectangle":@"icon_four_rectangle"];
@@ -228,8 +228,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
         vc.topInset = @(64.f+44.f);
         self.vcs[k] = vc;
     }
-    vc.items = self.filter.items[index];
-    vc.mode = self.mode;
+    [vc update:self.mode data:self.filter.items[index]];
     return vc;
 }
 

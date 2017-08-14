@@ -13,55 +13,107 @@
 #import "SPPlayerItems.h"
 
 @interface SPItemCell ()
+
+// 作为占位图的图层，总是存在于grid模式，避免cell刷新图片时重设一次placeholder图片
+@property (strong, nonatomic) CALayer *placeholderImageLayer;
+@property (strong, nonatomic) CALayer *imageLayer;
+@property (strong, nonatomic) CATextLayer *nameLayer;
+
 @property (strong, nonatomic) CAGradientLayer *gLayer;
 @end
 
 @implementation SPItemCell
 
-- (CALayer *)imageLayer
+- (void)prepareForReuse
 {
-    if (!_imageLayer) {
-        _imageLayer = [CALayer layer];
-        _imageLayer.frame = CGRectMake(0, 0, self.placeholderImageSize.width, self.placeholderImageSize.height);
-        _imageLayer.contentsScale = Screen_Scale;
-        _imageLayer.contentsGravity = kCAGravityResizeAspectFill;
-        _imageLayer.masksToBounds = YES;
-        _imageLayer.opaque = YES;
-        _imageLayer.opacity = 1.f;
-        _imageLayer.drawsAsynchronously = YES;
-        _imageLayer.backgroundColor = [UIColor whiteColor].CGColor;
-        [self.contentView.layer addSublayer:_imageLayer];
+    [super prepareForReuse];
+    if (_imageLayer) {
+        _imageLayer.contents = nil;
+        _imageLayer.hidden = YES;
     }
-    return _imageLayer;
 }
 
-//- (void)layoutSubviews
-//{
-//    [super layoutSubviews];
-//    
-//    if (_imageLayer) {
-//        _imageLayer.frame = CGRectMake(0, 0, _placeholderImageSize.width, _placeholderImageSize.height);
-//    }
-//}
-
-- (void)configure:(SPItem *)item
+- (CALayer *)createImageLayer
 {
-    _item = item;
+    CALayer *imageLayer = [CALayer layer];
+    imageLayer.frame = CGRectMake(0, 0, _model.preferImageSize.width, _model.preferImageSize.height);
+    imageLayer.contentsScale = Screen_Scale;
+    imageLayer.contentsGravity = kCAGravityResizeAspectFill;
+    imageLayer.masksToBounds = YES;
+    imageLayer.opaque = YES;
+    imageLayer.opacity = 1.f;
+    imageLayer.drawsAsynchronously = YES;
+    imageLayer.backgroundColor = [UIColor redColor].CGColor;
+    return imageLayer;
+}
+
+- (void)preload:(SPItemCellModel *)cellModel
+{
+    self.model = cellModel;
+    SPItem *item = _model.item;
+    
+    if (_model.mode == SPItemListModeGrid) {
+        
+        if (!_placeholderImageLayer) {
+            // 生成默认图片图层
+            _placeholderImageLayer = [self createImageLayer];
+            _placeholderImageLayer.contents = (__bridge id _Nullable)(placeholderImage(_model.preferImageSize).CGImage);
+            [self.contentView.layer insertSublayer:_placeholderImageLayer atIndex:0];
+        }
+        
+        if (!_imageLayer) {
+            // 生成图片图层
+            _imageLayer = [self createImageLayer];
+            _imageLayer.hidden = YES;
+            [self.contentView.layer insertSublayer:_imageLayer above:_placeholderImageLayer];
+        }
+        
+        if (!_nameLayer) {
+            _nameLayer = [CATextLayer layer];
+            _nameLayer.wrapped = YES;
+            _nameLayer.truncationMode = kCATruncationNone;
+            _nameLayer.alignmentMode = kCAAlignmentCenter;
+            _nameLayer.contentsScale = Screen_Scale;
+            [self.contentView.layer insertSublayer:_nameLayer above:_placeholderImageLayer];
+        }
+        
+        _nameLayer.bounds = CGRectMake(0, 0, _model.nameSize.width-4.f, _model.nameSize.height);
+        _nameLayer.position = _model.namePosition;
+        _nameLayer.string = _model.name;
+        
+        self.contentView.backgroundColor = item.itemColor;
+        
+    }else if (_model.mode == SPItemListModeTable){
+    
+        if (!_gLayer) {
+            _gLayer = [CAGradientLayer layer];
+            _gLayer.frame = self.backColorView.bounds;
+            _gLayer.startPoint = CGPointMake(0, .5f);
+            _gLayer.endPoint = CGPointMake(1, .5f);
+            _gLayer.locations = @[@0,@1];
+            [_backColorView.layer addSublayer:_gLayer];
+        }
+    }
+    
+    _itemNameLabel.text = item.nameWithQualtity;
+    _leftLine.hidden = _model.lineHidden;
+}
+
+- (void)willDisplay
+{
+    SPItem *item = _model.item;
     
     if ([item isKindOfClass:[SPPlayerItemDetail class]]) {
         [self loadInventoryItem:(SPPlayerItemDetail *)item];
         return;
     }
     
-    self.itemNameLabel.text = item.nameWithQualtity;
-    
     if (self.itemImageView) {
-        [SPItemImageLoader loadItemImage:self.item size:self.placeholderImageSize type:SPImageTypeNormal imageView:self.itemImageView];
+        [SPItemImageLoader loadItemImage:item size:_model.preferImageSize type:SPImageTypeNormal imageView:self.itemImageView];
     }else{
-        [SPItemImageLoader loadItemImage:self.item size:self.placeholderImageSize type:SPImageTypeNormal layer:self.imageLayer];
+        _imageLayer.hidden = YES;
+        [SPItemImageLoader loadItemImage:item size:_model.preferImageSize type:SPImageTypeNormal layer:_imageLayer];
     }
-    
-//    [SPItemImageLoader loadItemImage:self.item size:self.placeholderImageSize type:SPImageTypeNormal imageView:self.itemImageView];
     
     if (self.itemTypeLabel) {
         if ([item.prefab isEqualToString:@"bundle"]) {
@@ -82,13 +134,16 @@
         self.itemRarityLabel.text = rarity.name_loc;
     }
     
-    if (self.mode == SPItemListModeGrid) {
-        self.itemNameLabel.backgroundColor = item.itemColor;
-    }else{
+    if (_model.mode == SPItemListModeTable) {
         UIColor *baseColor = RGBColor(120, 120, 120, 1);
         self.gLayer.colors = @[(id)blendColors(baseColor, item.itemColor, .8f).CGColor,
                                (id)blendColors(baseColor, item.itemColor, .2f).CGColor];
     }
+}
+
+- (void)display
+{
+    
 }
 
 - (void)loadInventoryItem:(SPPlayerItemDetail *)item
@@ -104,23 +159,9 @@
 //    NSString *iconurl = [NSString stringWithFormat:@"http://steamcommunity-a.akamaihd.net/economy/image/%@",item.icon_url];
 //    [self.itemImageView sd_setImageWithURL:[NSURL URLWithString:iconurl] placeholderImage:placeholderImage(kItemListCellImageSize) options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageContinueInBackground];
     
-    if (self.mode == SPItemListModeGrid) {
+    if (_model.mode == SPItemListModeGrid) {
         self.itemNameLabel.backgroundColor = blendColors([UIColor whiteColor], rarityTag.tagColor.color, .5f);
     }
-}
-
-- (CAGradientLayer *)gLayer
-{
-    if (self.mode != SPItemListModeTable) return nil;
-    if (!_gLayer) {
-        _gLayer = [CAGradientLayer layer];
-        _gLayer.frame = self.backColorView.bounds;
-        _gLayer.startPoint = CGPointMake(0, .5f);
-        _gLayer.endPoint = CGPointMake(1, .5f);
-        _gLayer.locations = @[@0,@1];
-        [self.backColorView.layer addSublayer:_gLayer];
-    }
-    return _gLayer;
 }
 
 @end

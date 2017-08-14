@@ -255,24 +255,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M4K-y7-Z9X">
-                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="60"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="M4K-y7-Z9X" secondAttribute="height" multiplier="3:2" id="VVX-5m-Q0O"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aoK-QI-UwU">
-                                                    <rect key="frame" x="0.0" y="60" width="90" height="20"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds_" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUY-eP-jS6" userLabel="leftLine" customClass="YGLineView">
                                                     <rect key="frame" x="0.0" y="0.0" width="1" height="80"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -296,19 +278,11 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="YUY-eP-jS6" firstAttribute="leading" secondItem="d4N-eY-VTh" secondAttribute="leading" id="CCH-K1-Gpi"/>
-                                            <constraint firstItem="aoK-QI-UwU" firstAttribute="leading" secondItem="d4N-eY-VTh" secondAttribute="leading" id="MEz-rk-9Ym"/>
-                                            <constraint firstAttribute="bottom" secondItem="aoK-QI-UwU" secondAttribute="bottom" id="Mh9-7y-Kya"/>
                                             <constraint firstItem="YUY-eP-jS6" firstAttribute="top" secondItem="d4N-eY-VTh" secondAttribute="top" id="ZUv-rn-lYb"/>
-                                            <constraint firstAttribute="trailing" secondItem="M4K-y7-Z9X" secondAttribute="trailing" id="Zg0-yA-uXV"/>
-                                            <constraint firstItem="aoK-QI-UwU" firstAttribute="top" secondItem="M4K-y7-Z9X" secondAttribute="bottom" id="edY-eh-gY5"/>
-                                            <constraint firstAttribute="trailing" secondItem="aoK-QI-UwU" secondAttribute="trailing" id="ipG-RX-hdi"/>
-                                            <constraint firstItem="M4K-y7-Z9X" firstAttribute="top" secondItem="d4N-eY-VTh" secondAttribute="top" id="pbw-6w-TDi"/>
                                             <constraint firstAttribute="bottom" secondItem="YUY-eP-jS6" secondAttribute="bottom" id="sGy-Hm-geU"/>
-                                            <constraint firstItem="M4K-y7-Z9X" firstAttribute="leading" secondItem="d4N-eY-VTh" secondAttribute="leading" id="vTD-7Y-1eL"/>
                                         </constraints>
                                         <size key="customSize" width="90" height="80"/>
                                         <connections>
-                                            <outlet property="itemNameLabel" destination="aoK-QI-UwU" id="OGi-QU-E4c"/>
                                             <outlet property="leftLine" destination="YUY-eP-jS6" id="rlF-HK-6gG"/>
                                         </connections>
                                     </collectionViewCell>

@@ -77,7 +77,7 @@ static NSString *const kSPPlayerInventoryFilterSegueID = @"SPPlayerInventoryFilt
         [self setSearchResultListVisible:YES];
     }
     NSArray *items = [self.filter itemsWithKeywords:searchController.searchBar.text];
-    self.container.items = items;
+    [self.container update:kSPItemListModeAuto data:items];
 }
 
 #pragma mark - Segue
