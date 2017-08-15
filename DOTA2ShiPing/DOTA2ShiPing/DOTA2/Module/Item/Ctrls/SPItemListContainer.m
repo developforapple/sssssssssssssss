@@ -20,10 +20,9 @@ SPItemListMode const kSPItemListModeAuto = 10086;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
-//@property (strong, nonatomic) UICollectionViewFlowLayout *tableLayout;
 
 @property (strong, readwrite, nonatomic) NSArray *items;
-@property (assign, nonatomic) CGSize itemImageSize;
+@property (assign, readwrite, nonatomic) SPItemListMode mode;
 
 @property (strong, nonatomic) NSArray<SPItemCellModel *> *cellModels;
 
@@ -60,10 +59,20 @@ SPItemListMode const kSPItemListModeAuto = 10086;
         insets.top = self.topInset.floatValue;
         self.collectionView.contentInset = insets;
     }
-    
     if (iOS10) {
         self.collectionView.prefetchDataSource = self;
     }
+    
+    [self updateLayout];
+}
+
+- (void)updateLayout
+{
+    SPItemLayout *layout = [SPItemLayout layoutWithMode:self.mode];
+    self.flowlayout.itemSize = layout.itemSize;
+    self.flowlayout.sectionInset = layout.sectionInset;
+    self.flowlayout.minimumInteritemSpacing = layout.interitemSpacing;
+    self.flowlayout.minimumLineSpacing = layout.lineSpacing;
 }
 
 - (void)setupClearBackground
@@ -77,23 +86,18 @@ SPItemListMode const kSPItemListModeAuto = 10086;
     self.items = items ? : self.items;
     self.mode = mode = (mode==kSPItemListModeAuto) ? mode : ([[NSUserDefaults standardUserDefaults] integerForKey:kSPItemListModeKey]);
     
-    NSMutableArray *models = [NSMutableArray array];
+    NSMutableArray *cellModels = [NSMutableArray array];
     [self.items enumerateObjectsUsingBlock:^(SPItem *obj, NSUInteger idx, BOOL *stop) {
-        SPItemCellModel *model = [SPItemCellModel viewModelWithEntity:obj];
-        if (model) {
-            model.mode = mode;
-            model.lineHidden = idx%4==0;
-            [model create];
-            [models addObject:model];
+        SPItemCellModel *aCellModel = [SPItemCellModel viewModelWithEntity:obj];
+        if (aCellModel) {
+            aCellModel.mode = mode;
+            aCellModel.lineHidden = idx%4==0;
+            [aCellModel create];
+            [cellModels addObject:aCellModel];
         }
     }];
-    self.cellModels = models;
-    self.mode = mode;
-    SPItemLayout *layout = [SPItemLayout layoutWithMode:mode];
-    self.flowlayout.itemSize = layout.itemSize;
-    self.flowlayout.sectionInset = layout.sectionInset;
-    self.flowlayout.minimumInteritemSpacing = layout.interitemSpacing;
-    self.flowlayout.minimumLineSpacing = layout.lineSpacing;
+    self.cellModels = cellModels;
+    [self updateLayout];
     [self.collectionView reloadData];
 }
 
@@ -113,9 +117,7 @@ SPItemListMode const kSPItemListModeAuto = 10086;
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(SPItemCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (kVelocity <= 3.0f) {
-        [cell willDisplay];
-//    }
+    [cell willDisplay];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -128,24 +130,21 @@ SPItemListMode const kSPItemListModeAuto = 10086;
 
 - (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
 {
-//    NSMutableArray *itemImages = [NSMutableArray array];
-//    for (NSIndexPath *indexPath in indexPaths) {
-//        [itemImages addObject:[self.items[indexPath.item] qiniuSmallURL]];
-//    }
-//    [SPItemImageLoader prefetchItemImages:itemImages];
+    RunOnGlobalQueue(^{
+        NSMutableArray *array = [NSMutableArray array];
+        [indexPaths enumerateObjectsUsingBlock:^(NSIndexPath *obj, NSUInteger idx, BOOL *stop) {
+            SPItem *item = self.items[obj.item];
+            [array addObject:[item qiniuSmallURL]];
+        }];
+        [SPItemImageLoader prefetchItemImages:array];
+    });
+    //啥都不做
 }
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    float velocity = calculateVelocity(scrollView.contentOffset.y);
-//    NSLog(@"%.8f",velocity);
-//}
-
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-//{
-//    NSArray<SPItemCell *> *cells = [self.collectionView visibleCells];
-//    [cells makeObjectsPerformSelector:@selector(willDisplay)];
-//}
+- (void)collectionView:(UICollectionView *)collectionView cancelPrefetchingForItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
+{
+    //啥都不做
+}
 
 #pragma mark - 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView

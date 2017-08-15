@@ -15,9 +15,11 @@ YG_EXTERN SPItemListMode const kSPItemListModeAuto;
 
 @interface SPItemListContainer : YGBaseViewCtrl
 
+
 @property (strong, readonly, nonatomic) NSArray *items;
+@property (assign, readonly, nonatomic) SPItemListMode mode;
+
 @property (strong, nonatomic) NSAttributedString *emptyDataNote;
-@property (assign, nonatomic) SPItemListMode mode;
 
 // 一般不用设置。当需要segment透明的时候设置为一个合适的值
 @property (strong, nonatomic) NSNumber *topInset;

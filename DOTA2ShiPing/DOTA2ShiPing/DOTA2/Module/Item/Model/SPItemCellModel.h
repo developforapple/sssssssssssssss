@@ -30,6 +30,9 @@
 @property (assign, nonatomic) CGSize preferImageSize;
 
 // table
+@property (strong, nonatomic) NSArray *gradientColors;
+@property (copy, nonatomic) NSString *typeString;
+@property (copy, nonatomic) NSString *rarityString;
 
 // grid 自动设置
 @property (assign, nonatomic) CGSize nameSize;

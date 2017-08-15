@@ -12,17 +12,18 @@
 #import "SPItemsDetailViewCtrl.h"
 #import "SPItemFilter.h"
 #import "SPDataManager.h"
+#import "SPItemCellModel.h"
 
 @interface SPBundleItemsViewCtrl () <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-@property (strong, nonatomic) NSArray *items;
 @property (assign, nonatomic) SPItemListMode mode;
-
 @property (strong, nonatomic) SPItemFilter *filter;
-
 @property (strong, nonatomic) SPItemSets *set;
+
+@property (strong, nonatomic) NSArray<SPItem *> *items;
+@property (strong, nonatomic) NSArray<SPItemCellModel *> *cellModels;
 
 @end
 

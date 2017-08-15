@@ -150,12 +150,12 @@ resizeImageQueue(void){
 {
     NSUInteger hash = URL.hash;
     ygweakify(imageView);
-    [imageView sd_setImageWithURL:URL placeholderImage:placeholderImage(size) options:SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAvoidAutoSetImage progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [imageView sd_setImageWithURL:URL placeholderImage:placeholderImage(size) options:SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         NSUInteger hash2 = hash;
         if (hash2 == imageURL.hash) {
-            if (!error && image) {
+            if (image) {
                 ygstrongify(imageView);
-                imageView.image = image;
+                imageView.hidden = NO;
                 return;
             }
             failed ? failed(error) : 0;
@@ -175,7 +175,7 @@ resizeImageQueue(void){
     [layer sd_setImageWithURL:URL placeholderImage:placeholder ? placeholderImage(size) : nil options:SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         NSInteger hash2 = hash;
         if (hash2 == imageURL.hash) {
-            if (!error && image) {
+            if (image) {
                 ygstrongify(layer);
                 layer.hidden = NO;
                 return;

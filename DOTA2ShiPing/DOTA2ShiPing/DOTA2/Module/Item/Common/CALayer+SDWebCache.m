@@ -105,7 +105,7 @@ static char imageURLKey;
                     return;
                 } else if (image) {
                     [sself sd_setImage:image imageData:data basedOnClassOrViaCustomSetImageBlock:setImageBlock];
-                    [sself sd_setNeedsLayout];
+//                    [sself sd_setNeedsLayout];
                 } else {
                     if ((options & SDWebImageDelayPlaceholder)) {
                         [sself sd_setImage:placeholder imageData:nil basedOnClassOrViaCustomSetImageBlock:setImageBlock];

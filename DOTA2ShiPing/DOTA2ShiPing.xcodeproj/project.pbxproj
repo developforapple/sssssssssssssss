@@ -212,6 +212,7 @@
 		2DF9B8D61F1361640012950A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B8181F1361640012950A /* GoogleMobileAds.framework */; };
 		2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B81A1F1361640012950A /* Bugly.framework */; };
 		2DF9B8E31F1365CB0012950A /* CDTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8E21F1365CB0012950A /* CDTUser.m */; };
+		6919742B1F42A96E00FB5007 /* SPBundleItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6919742A1F42A96E00FB5007 /* SPBundleItemCell.m */; };
 		691DC39E1F418D6F00DF5E81 /* DDViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 691DC39D1F418D6F00DF5E81 /* DDViewModel.m */; };
 		691DC3A11F418D8D00DF5E81 /* SPItemCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 691DC3A01F418D8D00DF5E81 /* SPItemCellModel.m */; };
 		699074401F3D902C00B64030 /* SPMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6990743F1F3D902C00B64030 /* SPMemoryCache.m */; };
@@ -636,6 +637,8 @@
 		2DF9B8E01F13639E0012950A /* Steam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Steam.h; sourceTree = "<group>"; };
 		2DF9B8E11F1365CB0012950A /* CDTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDTUser.h; sourceTree = "<group>"; };
 		2DF9B8E21F1365CB0012950A /* CDTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDTUser.m; sourceTree = "<group>"; };
+		691974291F42A96E00FB5007 /* SPBundleItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBundleItemCell.h; sourceTree = "<group>"; };
+		6919742A1F42A96E00FB5007 /* SPBundleItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBundleItemCell.m; sourceTree = "<group>"; };
 		691DC39C1F418D6F00DF5E81 /* DDViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDViewModel.h; sourceTree = "<group>"; };
 		691DC39D1F418D6F00DF5E81 /* DDViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDViewModel.m; sourceTree = "<group>"; };
 		691DC39F1F418D8D00DF5E81 /* SPItemCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemCellModel.h; sourceTree = "<group>"; };
@@ -1515,6 +1518,8 @@
 			children = (
 				2DF9B78F1F1361640012950A /* SPItemCell.h */,
 				2DF9B7901F1361640012950A /* SPItemCell.m */,
+				691974291F42A96E00FB5007 /* SPBundleItemCell.h */,
+				6919742A1F42A96E00FB5007 /* SPBundleItemCell.m */,
 				2D4B5CE11F2A323800A3D8C9 /* SPItemPriceCell.h */,
 				2D4B5CE21F2A323800A3D8C9 /* SPItemPriceCell.m */,
 			);
@@ -2225,6 +2230,7 @@
 				2DF9B84C1F1361640012950A /* API.m in Sources */,
 				2DF9B8CF1F1361640012950A /* SPWorkshopResourceCell.m in Sources */,
 				2DF9B8931F1361640012950A /* SPItemQuality.m in Sources */,
+				6919742B1F42A96E00FB5007 /* SPBundleItemCell.m in Sources */,
 				2DF9B84F1F1361640012950A /* DDResponse.m in Sources */,
 				2DC0F6901F1B6A2D004DCD3C /* SPItemHeroPickerVC.m in Sources */,
 				2D6F1CAE1F20D72500E8F614 /* UIViewController+yg_StatusBar.m in Sources */,

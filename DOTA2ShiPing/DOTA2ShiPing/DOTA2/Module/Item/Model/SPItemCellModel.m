@@ -8,6 +8,8 @@
 
 #import "SPItemCellModel.h"
 #import "SPItem.h"
+#import "SPItemColor.h"
+#import "SPDataManager.h"
 
 @implementation SPItemLayout
 
@@ -82,7 +84,25 @@
 
 - (void)createWithTableMode
 {
-
+    SPItem *item = self.entity;
+    
+    if ([item.prefab isEqualToString:@"bundle"]) {
+        NSArray *sets = [[SPDataManager shared] querySetsWithCondition:@"store_bundle=?" values:@[item.name?:@""]];
+        SPItemSets *theSet = [sets firstObject];
+        if (theSet) {
+            self.typeString = [NSString stringWithFormat:@"%@“%@”",SPLOCAL(@"comp_2129_pg_page_treasureelementlistsub_desc_text",@"contain"),theSet.name_loc];
+        }else{
+            self.typeString = @"";
+        }
+    }else{
+        self.typeString = SPLOCALNONIL(item.item_type_name);// item.item_type_name;
+    }
+    
+    self.rarityString = [[SPDataManager shared] rarityOfName:item.item_rarity].name_loc;
+    
+    UIColor *baseColor = RGBColor(120, 120, 120, 1);
+    self.gradientColors = @[(id)blendColors(baseColor, item.itemColor, .8f).CGColor,
+                             (id)blendColors(baseColor, item.itemColor, .2f).CGColor];
 }
 
 - (void)createWithGridMode

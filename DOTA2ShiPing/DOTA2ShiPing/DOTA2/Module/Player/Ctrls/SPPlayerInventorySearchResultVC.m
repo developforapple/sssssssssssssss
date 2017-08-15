@@ -30,7 +30,7 @@ static NSString *const kSPPlayerInventoryFilterSegueID = @"SPPlayerInventoryFilt
     self.effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     
     self.container = [SPItemListContainer instanceFromStoryboard];
-    self.container.mode = self.mode;
+    [self.container update:self.mode data:nil];
     self.container.topInset = @(64.f);
     [self.container setupClearBackground];
     [self addChildViewController:self.container];

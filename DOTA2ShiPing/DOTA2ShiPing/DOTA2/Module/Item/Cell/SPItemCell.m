@@ -43,7 +43,6 @@
     imageLayer.opaque = YES;
     imageLayer.opacity = 1.f;
     imageLayer.drawsAsynchronously = YES;
-    imageLayer.backgroundColor = [UIColor redColor].CGColor;
     return imageLayer;
 }
 
@@ -54,18 +53,19 @@
     
     if (_model.mode == SPItemListModeGrid) {
         
-        if (!_placeholderImageLayer) {
-            // 生成默认图片图层
-            _placeholderImageLayer = [self createImageLayer];
-            _placeholderImageLayer.contents = (__bridge id _Nullable)(placeholderImage(_model.preferImageSize).CGImage);
-            [self.contentView.layer insertSublayer:_placeholderImageLayer atIndex:0];
-        }
+//        if (!_placeholderImageLayer) {
+//            // 生成默认图片图层
+//            _placeholderImageLayer = [self createImageLayer];
+//            _placeholderImageLayer.contents = (__bridge id _Nullable)(placeholderImage(_model.preferImageSize).CGImage);
+//            [self.contentView.layer insertSublayer:_placeholderImageLayer atIndex:0];
+//        }
         
         if (!_imageLayer) {
             // 生成图片图层
             _imageLayer = [self createImageLayer];
             _imageLayer.hidden = YES;
-            [self.contentView.layer insertSublayer:_imageLayer above:_placeholderImageLayer];
+//            [self.contentView.layer insertSublayer:_imageLayer above:_placeholderImageLayer];
+            [self.contentView.layer insertSublayer:_imageLayer atIndex:0];
         }
         
         if (!_nameLayer) {
@@ -74,13 +74,10 @@
             _nameLayer.truncationMode = kCATruncationNone;
             _nameLayer.alignmentMode = kCAAlignmentCenter;
             _nameLayer.contentsScale = Screen_Scale;
-            [self.contentView.layer insertSublayer:_nameLayer above:_placeholderImageLayer];
+            _nameLayer.masksToBounds = YES;
+            [self.contentView.layer insertSublayer:_nameLayer above:_imageLayer];
         }
-        
-        _nameLayer.bounds = CGRectMake(0, 0, _model.nameSize.width-4.f, _model.nameSize.height);
-        _nameLayer.position = _model.namePosition;
-        _nameLayer.string = _model.name;
-        
+
         self.contentView.backgroundColor = item.itemColor;
         
     }else if (_model.mode == SPItemListModeTable){
@@ -95,7 +92,6 @@
         }
     }
     
-    _itemNameLabel.text = item.nameWithQualtity;
     _leftLine.hidden = _model.lineHidden;
 }
 
@@ -109,35 +105,37 @@
     }
     
     if (self.itemImageView) {
-        [SPItemImageLoader loadItemImage:item size:_model.preferImageSize type:SPImageTypeNormal imageView:self.itemImageView];
+        [SPItemImageLoader loadItemImage:item size:_model.preferImageSize type:SPImageTypeNormal imageView:_itemImageView];
     }else{
         _imageLayer.hidden = YES;
         [SPItemImageLoader loadItemImage:item size:_model.preferImageSize type:SPImageTypeNormal layer:_imageLayer];
     }
     
+    if (self.nameLayer) {
+        [CATransaction begin];
+        [CATransaction setDisableActions:YES];
+//        _nameLayer.string = nil;
+        _nameLayer.bounds = CGRectMake(0, 0, _model.nameSize.width-4.f, _model.nameSize.height);
+        _nameLayer.position = _model.namePosition;
+        _nameLayer.string = _model.name;
+        _nameLayer.backgroundColor = item.itemColor.CGColor;
+        [CATransaction commit];
+    }
+    
+    if (self.itemNameLabel) {
+        self.itemNameLabel.text = item.nameWithQualtity;
+    }
+    
     if (self.itemTypeLabel) {
-        if ([item.prefab isEqualToString:@"bundle"]) {
-            NSArray *sets = [[SPDataManager shared] querySetsWithCondition:@"store_bundle=?" values:@[item.name?:@""]];
-            SPItemSets *theSet = [sets firstObject];
-            if (theSet) {
-                self.itemTypeLabel.text = [NSString stringWithFormat:@"%@“%@”",SPLOCAL(@"comp_2129_pg_page_treasureelementlistsub_desc_text",@"contain"),theSet.name_loc];
-            }else{
-                self.itemTypeLabel.text = @"";
-            }
-        }else{
-            self.itemTypeLabel.text = SPLOCALNONIL(item.item_type_name);// item.item_type_name;
-        }
+        self.itemTypeLabel.text = _model.typeString;
     }
     
     if (self.itemRarityLabel) {
-        SPItemRarity *rarity = [[SPDataManager shared] rarityOfName:item.item_rarity];
-        self.itemRarityLabel.text = rarity.name_loc;
+        self.itemRarityLabel.text = _model.rarityString;
     }
     
     if (_model.mode == SPItemListModeTable) {
-        UIColor *baseColor = RGBColor(120, 120, 120, 1);
-        self.gLayer.colors = @[(id)blendColors(baseColor, item.itemColor, .8f).CGColor,
-                               (id)blendColors(baseColor, item.itemColor, .2f).CGColor];
+        self.gLayer.colors = _model.gradientColors;
     }
 }
 
