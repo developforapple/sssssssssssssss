@@ -81,6 +81,9 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
         }
         AVObject *obj = objects.firstObject;
         long long version = obj ? [[obj objectForKey:@"version"] longLongValue] : self.version;
+        
+        NSLog(@"新版本：%lld, 当前版本:%lld",version,self.version);
+        
         if (version > self.version) {
             AVFileQuery *query2 = [AVFileQuery query];
             [query2 whereKey:@"name" equalTo:[NSString stringWithFormat:@"base_data_%lld.zip",version]];

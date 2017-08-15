@@ -81,14 +81,26 @@
 
 - (void)loadData
 {
-    NSArray<SPHero *> *heroes = [[SPDataManager shared] heroesOfNames:[self.item.heroes componentsSeparatedByString:@"|"]];
+    SPHero *hero = [[SPDataManager shared] heroesOfNames:[self.item.heroes componentsSeparatedByString:@"|"]].firstObject;
     SPItemRarity *rarity = [[SPDataManager shared] rarityOfName:self.item.item_rarity];
     SPItemPrefab *prefab = [[SPDataManager shared] prefabOfName:self.item.prefab];
     SPItemQuality *quality = [[SPDataManager shared] qualityOfName:self.item.item_quality];
-    SPItemSlot *slot = [[SPDataManager shared] slotOfName:self.item.item_slot];
     UIColor *color = self.item.itemColor;
     
-    self.hero = heroes.firstObject;
+    SPItemSlot *slot;
+    if (self.item.item_slot.length) {
+        slot = [[SPDataManager shared] slotOfName:self.item.item_slot];
+    }
+    if ( !slot && hero){
+        for (SPItemSlot *aHeroSlot in hero.ItemSlots) {
+            if ([aHeroSlot.SlotName isEqualToString:self.item.prefab]) {
+                slot = aHeroSlot;
+                break;
+            }
+        }
+    }
+    
+    self.hero = hero;
     self.prefab = prefab;
     self.rarity = rarity;
     self.quality = quality;
@@ -160,14 +172,17 @@
 {
     //英雄
     SPHero *hero = self.hero;
-    [self.heroImageView sd_setImageWithURL:[NSURL URLWithString:[hero smallImageURL]] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageRetryFailed | SDWebImageContinueInBackground];
+    self.heroImageView.collapsed = hero==nil;
+    if (hero) {
+        [self.heroImageView sd_setImageWithURL:[NSURL URLWithString:[hero smallImageURL]] placeholderImage:placeholderImage(self.heroImageView.bounds.size) options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageContinueInBackground];
+    }
     
     // 稀有度：uncommon
     NSString *rarityTitle = SPLOCAL(@"tag_category_rarity", @"Rarity");
     self.rarityLabel.text = [NSString stringWithFormat:@"%@：%@",rarityTitle,self.rarity.name_loc];
     // 槽位
     NSString *slotTitle = SPLOCAL(@"dota_loadoutslot", @"Slot");
-    self.slotLabel.text = [NSString stringWithFormat:@"%@：%@",slotTitle,self.slot.name_loc];
+    self.slotLabel.text = [NSString stringWithFormat:@"%@：%@",slotTitle,self.slot?self.slot.name_loc : @"none"];
     
     self.HRSPanelBgLayer = [self gradientLayer];
     [self.heroRaritySlotPanel.layer insertSublayer:self.HRSPanelBgLayer atIndex:0];

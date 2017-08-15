@@ -8,11 +8,10 @@
 
 #import "SPBundleItemsViewCtrl.h"
 #import "SPItem.h"
-#import "SPItemCell.h"
+#import "SPBundleItemCell.h"
 #import "SPItemsDetailViewCtrl.h"
 #import "SPItemFilter.h"
 #import "SPDataManager.h"
-#import "SPItemCellModel.h"
 
 @interface SPBundleItemsViewCtrl () <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
@@ -23,7 +22,6 @@
 @property (strong, nonatomic) SPItemSets *set;
 
 @property (strong, nonatomic) NSArray<SPItem *> *items;
-@property (strong, nonatomic) NSArray<SPItemCellModel *> *cellModels;
 
 @end
 
@@ -151,19 +149,10 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = self.mode==SPItemListModeGrid?kSPItemCellNormal:kSPItemCellLarge;
-    SPItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-//    [cell preload:^(SPItemCellConfig *c) {
-//        c.mode = self.mode;
-//        c.item = self.items[indexPath.row];
-//        c.lineHidden = YES;
-//    }];
+    NSString *identifier = kSPBundleItemCell;
+    SPBundleItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    cell.item = self.items[indexPath.item];
     return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(SPItemCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    [cell willDisplay];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

@@ -108,7 +108,7 @@
         [SPItemImageLoader loadItemImage:item size:_model.preferImageSize type:SPImageTypeNormal imageView:_itemImageView];
     }else{
         _imageLayer.hidden = YES;
-        [SPItemImageLoader loadItemImage:item size:_model.preferImageSize type:SPImageTypeNormal layer:_imageLayer];
+        [SPItemImageLoader loadItemImage:item size:kNonePlaceholderSize type:SPImageTypeNormal layer:_imageLayer];
     }
     
     if (self.nameLayer) {

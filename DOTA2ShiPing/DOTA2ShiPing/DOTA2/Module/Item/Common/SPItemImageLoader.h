@@ -25,6 +25,8 @@ YG_EXTERN YYCache *qiniuCache();
 YG_EXTERN YYCache *cacheForImageType(SPImageType type);
 YG_EXTERN UIImage *placeholderImage(CGSize size);
 
+YG_EXTERN CGSize const kNonePlaceholderSize;
+
 @interface SPItemImageLoader : NSObject
 
 + (void)setSDWebImageUseYYMemoryCache;

@@ -66,6 +66,8 @@ qiniuCache(){
 UIImage *
 placeholderImage(CGSize size){
     
+    if (CGSizeEqualToSize(size, kNonePlaceholderSize))  return nil;
+    
     static YYMemoryCache *cache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -93,6 +95,8 @@ resizeImageQueue(void){
     });
     return queue;
 }
+
+CGSize const kNonePlaceholderSize = {-1,-1};
 
 @implementation SPItemImageLoader
 
@@ -166,13 +170,12 @@ resizeImageQueue(void){
 + (void)loadImageURL:(NSURL *)URL
                 size:(CGSize)size
                layer:(CALayer *)layer
-         placeholder:(BOOL)placeholder
               failed:(void(^)(NSError *))failed
 {
     NSInteger hash = URL.hash;
     
     ygweakify(layer);
-    [layer sd_setImageWithURL:URL placeholderImage:placeholder ? placeholderImage(size) : nil options:SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [layer sd_setImageWithURL:URL placeholderImage:placeholderImage(size) options:SDWebImageContinueInBackground | SDWebImageLowPriority | SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         NSInteger hash2 = hash;
         if (hash2 == imageURL.hash) {
             if (image) {
@@ -218,7 +221,7 @@ resizeImageQueue(void){
                 layer:(CALayer *)layer
 {
     NSURL *qiniuURL = [item qiniuURLOfType:type];
-    [self loadImageURL:qiniuURL size:size layer:layer placeholder:type!=SPImageTypeNormal failed:^(NSError *err) {
+    [self loadImageURL:qiniuURL size:size layer:layer failed:^(NSError *err) {
         
         //        [qiniuCache() setObject:@YES forKey:item.token.description];
         
@@ -227,7 +230,7 @@ resizeImageQueue(void){
             
             if (content) {
                 
-                [self loadImageURL:content size:size layer:layer placeholder:type!=SPImageTypeNormal failed:nil];
+                [self loadImageURL:content size:size layer:layer failed:nil];
                 
             }else if(type == SPImageTypeLarge){
                 

@@ -93,13 +93,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DOTA2ShiPing/DOTA2/Module/Item/Common/SPItemImageLoader.m"
-            timestampString = "524139549.359911"
+            timestampString = "524465667.068108"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "placeholderImage()"
             landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/SPItemInfoViewCtrl.m"
+            timestampString = "524471572.304594"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "-loadData"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class SPItem;
+
 YG_EXTERN NSString *const kSPBundleItemCell;
 
 @interface SPBundleItemCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
+@property (weak, nonatomic) IBOutlet UILabel *itemNameLabel;
+
+@property (strong, nonatomic) SPItem *item;
 
 @end
