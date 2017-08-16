@@ -61,18 +61,6 @@ static NSString *const kSPWorkshopTagCell = @"SPWorkshopTagCell";
     self.tableView.editing = YES;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-//    static NSString *tipsKey = @"SPWorkshopTagTip";
-//    if (![[NSUserDefaults standardUserDefaults] boolForKey:tipsKey]) {
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"创意工坊过滤选项" message:@"选择多个过滤标签，意味着物品需要满足多个条件。所以当您选择大量标签时，可能会搜索不到结果。" preferredStyle:UIAlertControllerStyleAlert];
-//        [alert addAction:[UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil]];
-//        [self presentViewController:alert animated:YES completion:nil];
-//    }
-}
-
 - (void)setup:(SPWorkshop *)workshop
    completion:(SPWorkshopTagCompletion)completion
 {

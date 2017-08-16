@@ -13,6 +13,7 @@
 #import "SPItemPriceCell.h"
 #import "SPWebHelper.h"
 #import "SPPriceChartViewCtrl.h"
+#import "LCActionSheet.h"
 
 @interface SPItemPriceListViewCtrl () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
@@ -36,20 +37,17 @@
 
 - (void)willPreviewItem:(SPMarketItem *)item
 {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:item.name message:item.price preferredStyle:UIAlertControllerStyleActionSheet];
-    [alert addAction:[UIAlertAction actionWithTitle:@"价格曲线" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
-        SPPriceChartViewCtrl *vc = [SPPriceChartViewCtrl instanceFromStoryboard];
-        vc.marketItem = item;
-        vc.item = self.item;
-        [self.navigationController pushViewController:vc animated:YES];
-        
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"前往市场" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [SPWebHelper openURL:[NSURL URLWithString:item.href] from:self.parentViewController];
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-    [self.parentViewController presentViewController:alert animated:YES completion:nil];
+    LCActionSheet *sheet = [[LCActionSheet alloc] initWithTitle:item.name buttonTitles:@[@"历史价格变动",@"前往市场"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            SPPriceChartViewCtrl *vc = [SPPriceChartViewCtrl instanceFromStoryboard];
+            vc.marketItem = item;
+            vc.item = self.item;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if (buttonIndex == 1){
+             [SPWebHelper openURL:[NSURL URLWithString:item.href] from:self.parentViewController];
+        }
+    }];
+    [sheet show];
 }
 
 - (TFHppleElement *)search:(TFHppleElement *)element class:(NSString *)class

@@ -189,6 +189,8 @@
     
     self.HRSPanelBgLayer = [self gradientLayer];
     [self.heroRaritySlotPanel.layer insertSublayer:self.HRSPanelBgLayer atIndex:0];
+    
+    [self.heroRaritySlotPanel layoutIfNeeded];
 }
 
 - (void)updateStylePanel
@@ -271,7 +273,9 @@
                     range:NSMakeRange(0, string.length)];
     self.descLabel.attributedText = string;
     
+    [self.descPanel layoutIfNeeded];
     self.descPanelBgLayer = [self gradientLayer];
+    self.descPanelBgLayer.frame = self.descPanel.bounds;
     [self.descPanel.layer insertSublayer:self.descPanelBgLayer atIndex:0];
 }
 

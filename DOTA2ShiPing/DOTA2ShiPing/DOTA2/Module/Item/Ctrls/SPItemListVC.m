@@ -12,6 +12,7 @@
 
 #import "SPItemListContainer.h"
 #import "Chameleon.h"
+#import "SPItemFilterViewCtrl.h"
 
 @interface SPItemListVC () <UIPageViewControllerDelegate,UIPageViewControllerDataSource>
 
@@ -103,7 +104,11 @@
 
 - (IBAction)changeFilter:(UIButton *)btn
 {
-    
+    SPItemFilterNaviCtrl *navi = [SPItemFilterNaviCtrl instanceFromStoryboard];
+    [navi setup:SPFilterOptionTypeHero | SPFilterOptionTypeRarity | SPFilterOptionTypeEvent options:nil completion:^(BOOL canceled, NSArray<SPFilterOption *> *options) {
+        
+    }];
+    [self.navigationController presentViewController:navi animated:YES completion:nil];
 }
 
 - (void)setMode:(SPItemListMode)mode
