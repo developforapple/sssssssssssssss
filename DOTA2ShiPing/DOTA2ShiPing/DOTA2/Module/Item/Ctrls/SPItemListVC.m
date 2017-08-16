@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet DDSegmentScrollView *segmentView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *changModeButtonItem;
 @property (weak, nonatomic) IBOutlet UIButton *filterBtn;
+@property (weak, nonatomic) IBOutlet UILabel *emptyLabel;
 
 // 分类过后的饰品数据
 @property (strong, nonatomic) NSArray<NSArray<SPItem *> *> *items;
@@ -68,6 +69,7 @@
 {
     self.items = self.filter.separatedItems;
     self.segmentTitles = self.filter.titles;
+    self.emptyLabel.hidden = self.items.count;
     [self reloadData];
 }
 
@@ -77,7 +79,9 @@
         [self updateTitle];
         self.segmentView.titles = self.segmentTitles;
         UIViewController *vc = [self viewControllerAtIndex:0];
-        [self.pageVC setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        if (vc) {
+            [self.pageVC setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        }
     });
 }
 

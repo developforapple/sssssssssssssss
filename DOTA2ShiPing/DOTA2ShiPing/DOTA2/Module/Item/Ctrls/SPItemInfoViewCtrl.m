@@ -87,17 +87,20 @@
     SPItemQuality *quality = [[SPDataManager shared] qualityOfName:self.item.item_quality];
     UIColor *color = self.item.itemColor;
     
+    
     SPItemSlot *slot;
     if (self.item.item_slot.length) {
         slot = [[SPDataManager shared] slotOfName:self.item.item_slot];
-    }
-    if ( !slot && hero){
-        for (SPItemSlot *aHeroSlot in hero.ItemSlots) {
-            if ([aHeroSlot.SlotName isEqualToString:self.item.prefab]) {
-                slot = aHeroSlot;
-                break;
+        if (!slot && hero) {
+            for (SPItemSlot *aHeroSlot in hero.ItemSlots) {
+                if ([aHeroSlot.SlotName isEqualToString:self.item.item_slot]) {
+                    slot = aHeroSlot;
+                    break;
+                }
             }
         }
+    }else{
+        slot = [[SPDataManager shared] slotOfName:self.item.prefab];
     }
     
     self.hero = hero;

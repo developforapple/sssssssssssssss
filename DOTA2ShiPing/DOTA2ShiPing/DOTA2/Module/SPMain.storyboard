@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GDj-Ya-DFG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GDj-Ya-DFG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -134,7 +134,7 @@
             <objects>
                 <navigationController storyboardIdentifier="_unused1" id="zsh-Bl-EOa" customClass="YGBaseNaviCtrl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="库存" image="icon_tab_user" selectedImage="icon_tab_user_pressed" id="SIp-5h-mAa"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Prc-IS-l98">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Prc-IS-l98">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -882,7 +882,7 @@
             <objects>
                 <navigationController storyboardIdentifier="_unused3" id="xPg-ZR-vk2" customClass="YGBaseNaviCtrl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" selectedImage="icon_tab_me_pressed" systemItem="more" id="OFS-aX-arh"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zWU-il-bT8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zWU-il-bT8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -899,7 +899,7 @@
             <objects>
                 <navigationController storyboardIdentifier="_unused2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6Vh-GT-cbK" customClass="YGBaseNaviCtrl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="创意工坊" image="icon_tab_workshop" selectedImage="icon_tab_workshop_pressed" id="dhl-wH-iTi"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1sY-E0-iNh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1sY-E0-iNh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1106,7 +1106,7 @@
         <scene sceneID="rOB-0K-8AR">
             <objects>
                 <collectionViewController storyboardIdentifier="SPWorkshopResourcesVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iew-s0-niq" userLabel="创意工坊资源" customClass="SPWorkshopResourcesVC" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="aZ4-qS-9eE">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="aZ4-qS-9eE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="1wL-Tj-3bk">
@@ -1166,7 +1166,7 @@
         <scene sceneID="VJM-N7-hZA">
             <objects>
                 <navigationController storyboardIdentifier="SPWorkshopTagVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Bq6-Db-Bx0" customClass="SPWorkshopTagVC" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="asR-Dv-Pqx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="asR-Dv-Pqx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1323,7 +1323,7 @@
             <objects>
                 <navigationController storyboardIdentifier="_unused0" id="GuK-T5-nQd" customClass="YGBaseNaviCtrl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="饰品" image="icon_tab_home" selectedImage="icon_tab_home_pressed" id="qQO-N3-oMg"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fHt-p1-1VA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fHt-p1-1VA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.090306115195187373" blue="0.179500302232667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

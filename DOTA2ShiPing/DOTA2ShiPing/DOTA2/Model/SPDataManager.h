@@ -15,6 +15,7 @@
 #import "SPItemSets.h"
 #import "SPItemQuality.h"
 #import "SPLootList.h"
+#import "SPDotaEvent.h"
 
 #import "FMDB.h"
 
@@ -66,6 +67,7 @@
 @property (strong, readonly, nonatomic) NSArray<SPItemQuality *> *qualities;
 @property (strong, readonly, nonatomic) NSArray<SPItemSlot *> *slots;
 @property (strong, readonly, nonatomic) NSArray<SPLootList *> *lootlist;
+@property (strong, readonly, nonatomic) NSArray<SPDotaEvent *> *events;
 @end
 
 #ifndef SPDB

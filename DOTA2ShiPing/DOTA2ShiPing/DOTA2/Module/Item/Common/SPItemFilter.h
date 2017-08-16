@@ -12,6 +12,7 @@
 #import "SPItem.h"
 #import "SPItemPrefab.h"
 #import "SPItemSets.h"
+#import "SPDotaEvent.h"
 
 // 过滤器
 @interface SPItemFilter : NSObject
@@ -22,6 +23,9 @@
 // 根据多个类型进行筛选
 + (instancetype)filterWithPerfabs:(NSArray<SPItemPrefab *> *)prefabs;
 
+// 根据事件筛选
++ (instancetype)filterWithEvent:(SPDotaEvent *)event;
+
 // 根据关键词筛选
 + (instancetype)filterWithKeywords:(NSString *)keywords;
 
@@ -31,6 +35,7 @@
 @property (strong, nonatomic) SPHero *hero;
 @property (strong, nonatomic) NSArray<SPItemPrefab *> *prefabs;
 @property (strong, nonatomic) SPItemRarity *rarity;
+@property (strong, nonatomic) SPDotaEvent *event;
 @property (strong, nonatomic) NSString *keywords;
 @property (strong, nonatomic) NSArray *itemNames;
 @property (strong, nonatomic) NSString *filterTitle;

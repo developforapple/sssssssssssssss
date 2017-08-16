@@ -28,6 +28,14 @@
     return filter;
 }
 
++ (instancetype)filterWithEvent:(SPDotaEvent *)event
+{
+    SPItemFilter *filter = [SPItemFilter new];
+    filter.event = event;
+    filter.filterTitle = event.name_loc;
+    return filter;
+}
+
 + (instancetype)filterWithKeywords:(NSString *)keywords
 {
     SPItemFilter *filter = [[SPItemFilter alloc] init];
@@ -79,6 +87,10 @@
             [params addObject:aItemName];
         }
         [query addObject:[NSString stringWithFormat:@" (%@) ",[itemNamesQuery componentsJoinedByString:@" OR "]]];
+    }
+    if (self.event) {
+        [query addObject:@" ( event_id = ? )"];
+        [params addObject:self.event.event_id];
     }
     
     if (query.count == 0) return NO;
@@ -147,7 +159,9 @@
     }
     
     NSArray *prefabs;
-    if (self.keywords) {
+    if (self.prefabs) {
+        prefabs = self.prefabs;
+    }else{
         NSMutableSet *prefabSet = [NSMutableSet set];
         for (SPItem *item in self.items) {
             NSString *prefabName = item.prefab;
@@ -156,8 +170,6 @@
             }
         }
         prefabs = [[SPDataManager shared] prefabsOfNames:[prefabSet allObjects]];
-    }else{
-        prefabs = self.prefabs;
     }
     
     NSMutableArray *temp = [NSMutableArray array];

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SPItemEntranceConfig.h"
 
+@class SPDotaEvent;
+
 #define kSPItemEntranceCell @"SPItemEntranceCell"
 
 @interface SPItemEntranceCell : UICollectionViewCell
@@ -17,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 - (void)configure:(SPItemEntranceConfig *)c;
+- (void)configureWithEvent:(SPDotaEvent *)event;
 
 @end

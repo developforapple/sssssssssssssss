@@ -7,14 +7,20 @@
 //
 
 #import "SPItemEntranceCell.h"
+#import "SPDotaEvent.h"
 
 @implementation SPItemEntranceCell
 
 - (void)configure:(SPItemEntranceConfig *)c
 {
     self.titleLabel.text = c.title;
-    
     self.imageView.image = [UIImage imageNamed:c.image];
+}
+
+- (void)configureWithEvent:(SPDotaEvent *)event
+{
+    self.titleLabel.text = event.name_loc ? : event.event_id;
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:event.picture] placeholderImage:[UIImage imageNamed:@"Item_OffPrice"]];
 }
 
 - (void)setHighlighted:(BOOL)highlighted

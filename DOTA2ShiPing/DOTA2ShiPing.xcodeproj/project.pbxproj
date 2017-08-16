@@ -215,6 +215,8 @@
 		6919742B1F42A96E00FB5007 /* SPBundleItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6919742A1F42A96E00FB5007 /* SPBundleItemCell.m */; };
 		691DC39E1F418D6F00DF5E81 /* DDViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 691DC39D1F418D6F00DF5E81 /* DDViewModel.m */; };
 		691DC3A11F418D8D00DF5E81 /* SPItemCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 691DC3A01F418D8D00DF5E81 /* SPItemCellModel.m */; };
+		6954FCDF1F43EC5900DDB5D3 /* SPDotaEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCDE1F43EC5900DDB5D3 /* SPDotaEvent.m */; };
+		6954FCE21F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCE11F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m */; };
 		699074401F3D902C00B64030 /* SPMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6990743F1F3D902C00B64030 /* SPMemoryCache.m */; };
 		699074431F3DA63500B64030 /* CALayer+SDWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 699074421F3DA63500B64030 /* CALayer+SDWebCache.m */; };
 /* End PBXBuildFile section */
@@ -643,6 +645,10 @@
 		691DC39D1F418D6F00DF5E81 /* DDViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDViewModel.m; sourceTree = "<group>"; };
 		691DC39F1F418D8D00DF5E81 /* SPItemCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemCellModel.h; sourceTree = "<group>"; };
 		691DC3A01F418D8D00DF5E81 /* SPItemCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemCellModel.m; sourceTree = "<group>"; };
+		6954FCDD1F43EC5900DDB5D3 /* SPDotaEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDotaEvent.h; sourceTree = "<group>"; };
+		6954FCDE1F43EC5900DDB5D3 /* SPDotaEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDotaEvent.m; sourceTree = "<group>"; };
+		6954FCE01F4415A200DDB5D3 /* SPDotaEventsViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDotaEventsViewCtrl.h; sourceTree = "<group>"; };
+		6954FCE11F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDotaEventsViewCtrl.m; sourceTree = "<group>"; };
 		6990743E1F3D902C00B64030 /* SPMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMemoryCache.h; sourceTree = "<group>"; };
 		6990743F1F3D902C00B64030 /* SPMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMemoryCache.m; sourceTree = "<group>"; };
 		699074411F3DA63500B64030 /* CALayer+SDWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+SDWebCache.h"; sourceTree = "<group>"; };
@@ -1452,6 +1458,8 @@
 				2D4B5C751F2198CF00A3D8C9 /* SPItemStyle.m */,
 				2D40220C1F385D830006EFEF /* SPLootList.h */,
 				2D40220D1F385D830006EFEF /* SPLootList.m */,
+				6954FCDD1F43EC5900DDB5D3 /* SPDotaEvent.h */,
+				6954FCDE1F43EC5900DDB5D3 /* SPDotaEvent.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1548,6 +1556,8 @@
 			children = (
 				2DF9B7A11F1361640012950A /* SPItemOffPriceVC.h */,
 				2DF9B7A21F1361640012950A /* SPItemOffPriceVC.m */,
+				6954FCE01F4415A200DDB5D3 /* SPDotaEventsViewCtrl.h */,
+				6954FCE11F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m */,
 				2DF9B79F1F1361640012950A /* SPItemListVC.h */,
 				2DF9B7A01F1361640012950A /* SPItemListVC.m */,
 				2DF9B79D1F1361640012950A /* SPItemListContainer.h */,
@@ -2130,8 +2140,10 @@
 				2D19E0111F32F22A00747B01 /* SPPriceChartConfig.m in Sources */,
 				2DF9B8A51F1361640012950A /* SPItemListVC.m in Sources */,
 				2DF9B8891F1361640012950A /* SPWebHelper.m in Sources */,
+				6954FCDF1F43EC5900DDB5D3 /* SPDotaEvent.m in Sources */,
 				2D6F1C981F1E68E400E8F614 /* YYCache.m in Sources */,
 				2DF9B8A41F1361640012950A /* SPItemListContainer.m in Sources */,
+				6954FCE21F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m in Sources */,
 				2D40220E1F385D830006EFEF /* SPLootList.m in Sources */,
 				2DF9B8461F1361640012950A /* UIView+BlockGesture.m in Sources */,
 				2DF9B8371F1361640012950A /* UINavigationBar+yg_IBInspectable.m in Sources */,

@@ -15,6 +15,7 @@
 #import "SPDataManager.h"
 #import "SPItemListVC.h"
 #import "SPItemOffPriceVC.h"
+#import "SPDotaEventsViewCtrl.h"
 
 #define kSPItemOffPriceSegueID @"SPItemOffPriceSegueID"
 
@@ -88,6 +89,10 @@
                 [self showItemList:filter];
                 return NO;
             }];
+        }   break;
+        case SPItemEntranceTypeEvent:{
+            SPDotaEventsViewCtrl *vc = [SPDotaEventsViewCtrl instanceFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
         }   break;
         case SPItemEntranceTypeCourier:
         case SPItemEntranceTypeWorld:

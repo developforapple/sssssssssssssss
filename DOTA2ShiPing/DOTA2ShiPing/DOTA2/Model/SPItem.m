@@ -83,6 +83,14 @@
         self.item_name = @"";
     }
     
+    if (self.item_slot.length == 0) {
+        if ([self.prefab isEqualToString:@"wearable"]) {
+            self.item_slot = @"weapon";
+        }else if ([self.prefab isEqualToString:@"taunt"]){
+            self.item_slot = @"taunt";
+        }
+    }
+    
     // 实现计算出颜色
     __unused UIColor *color = [self itemColor];
     
@@ -131,6 +139,7 @@
     }];
     return sorted;
 }
+
 
 //- (NSString *)prefab
 //{

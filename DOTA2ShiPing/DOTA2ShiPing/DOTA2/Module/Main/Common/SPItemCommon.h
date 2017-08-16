@@ -11,7 +11,8 @@
 
 typedef NS_ENUM(NSUInteger, SPItemEntranceType) {
     SPItemEntranceTypeOffPrice,     //今日特价
-    SPItemEntranceTypeHeroItem,     //英雄饰品
+    SPItemEntranceTypeEvent,        //事件
+    SPItemEntranceTypeHeroItem,     //英雄
     SPItemEntranceTypeCourier,      //信使
     SPItemEntranceTypeWorld,        //世界
     SPItemEntranceTypeHud,          //界面

@@ -19,6 +19,7 @@
 @property (strong, readwrite, nonatomic) NSArray<SPItemQuality *> *qualities;
 @property (strong, readwrite, nonatomic) NSArray<SPItemSlot *> *slots;
 @property (strong, readwrite, nonatomic) NSArray<SPLootList *> *lootlist;
+@property (strong, readwrite, nonatomic) NSArray<SPDotaEvent *> *events;
 @property (strong, readwrite, nonatomic) FMDatabase *db;
 
 @property (strong, nonatomic) NSSet *lootlistTokens;
@@ -84,6 +85,7 @@
     NSArray<SPHero *>       *heroes    = [NSArray yy_modelArrayWithClass:[SPHero class] json:info[@"heroes"]];
     NSArray<SPItemSlot *>   *slots     = [NSArray yy_modelArrayWithClass:[SPItemSlot class] json:info[@"slots"]];
     NSArray<SPLootList *>   *lootlist  = [NSArray yy_modelArrayWithClass:[SPLootList class] json:info[@"lootlist"]];
+    NSArray<SPDotaEvent *>  *events    = [NSArray yy_modelArrayWithClass:[SPDotaEvent class] json:info[@"events"]];
     
     for (SPHero *aHero in heroes) {
         [aHero setName_loc: [self localizedString:aHero.name] ?: (aHero.name) ];
@@ -126,6 +128,10 @@
         [lootlistTokens addObject:aList.token];
     }
     
+    for (SPDotaEvent *aEvent in events) {
+        aEvent.name_loc = [self localizedString:aEvent.event_name];
+    }
+    
     self.rarities = rarities;
     self.prefabs = prefabs;
     self.colors = colors;
@@ -133,6 +139,7 @@
     self.slots = slots;
     self.lootlist = lootlist;
     self.lootlistTokens = lootlistTokens;
+    self.events = events;
 }
 
 - (void)reloadDB

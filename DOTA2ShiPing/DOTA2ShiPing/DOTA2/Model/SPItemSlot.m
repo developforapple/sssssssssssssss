@@ -12,4 +12,10 @@
 
 @implementation SPItemSlot
 YYModelDefaultCode
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ %@ %@",[super description],_SlotName,_name_loc];
+}
+
 @end
