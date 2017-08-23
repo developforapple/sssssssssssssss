@@ -25,6 +25,8 @@
 {
     [super viewDidLoad];
     
+    [self leftNavButtonImg:@"icon_navi_cancel"];
+    
     [self loadData];
     
     self.tableView.allowsMultipleSelection = YES;
@@ -69,18 +71,18 @@
     [heroOption updateHero:hero];
 }
 
-- (IBAction)exit:(id)sender
+- (void)doLeftNaviBarItemAction
 {
     if (self.completion) {
         self.completion(YES,nil);
     }
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [super doLeftNaviBarItemAction];
 }
 
 - (IBAction)done:(id)sender
 {
     NSArray *indexPaths = [self.tableView indexPathsForSelectedRows];
-    NSMutableArray *selectedTags = [NSMutableArray array];
+    NSMutableArray<SPFilterOption *> *selectedTags = [NSMutableArray array];
     for (NSIndexPath *indexPath in indexPaths) {
         SPFilterOption *option = [self.groups[indexPath.section] options][indexPath.row];
         [selectedTags addObject:option];
@@ -88,7 +90,7 @@
     if (self.completion) {
         self.completion(NO,selectedTags);
     }
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [super doLeftNaviBarItemAction];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -125,23 +127,32 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger section = indexPath.section;
-    NSUInteger row = indexPath.row;
-    if (self.groups[section].options[row].type == SPFilterOptionTypeHero) {
+    if (self.groups[section].type == SPFilterOptionTypeHero) {
         ygweakify(self);
         [SPItemHeroPickerVC presentFrom:self selectedCallback:^BOOL(SPHero *hero) {
             ygstrongify(self);
             [self setupHero:hero];
-            [self.tableView reloadData];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
             return YES;
         }];
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }else{
+        NSArray<NSIndexPath *> *selectedIndexPaths = [self.tableView indexPathsForSelectedRows];
+        for (NSIndexPath *aIndexPath in selectedIndexPaths) {
+            if (aIndexPath.section == indexPath.section && aIndexPath.row != indexPath.row) {
+                [self.tableView deselectRowAtIndexPath:aIndexPath animated:YES];
+            }
+        }
     }
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (self.groups[indexPath.section].type == SPFilterOptionTypeHero) {
+        [self setupHero:nil];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath

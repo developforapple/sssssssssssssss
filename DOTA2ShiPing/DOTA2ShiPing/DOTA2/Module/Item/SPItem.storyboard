@@ -974,8 +974,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="v3C-Bu-6mN"/>
                                 <exclude reference="eS5-pf-Qjh"/>
+                                <exclude reference="v3C-Bu-6mN"/>
                                 <exclude reference="AUW-jq-Y5w"/>
                             </mask>
                         </variation>
@@ -1007,6 +1007,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="32" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Hm9-nR-3mz">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SPItemFilterOptionCell" textLabel="Pxo-zj-pu8" style="IBUITableViewCellStyleDefault" id="qHQ-fC-VtE">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="32"/>
@@ -1044,11 +1045,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="筛选" id="8br-7p-0zv">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="oCh-LO-Pqn">
-                            <connections>
-                                <action selector="exit:" destination="TsE-8r-UDv" id="MOt-iS-Ons"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="DgN-Xw-1fA">
                             <connections>
                                 <action selector="done:" destination="TsE-8r-UDv" id="dck-b9-BeO"/>
@@ -1067,7 +1063,7 @@
         <scene sceneID="rLu-Od-7vb">
             <objects>
                 <navigationController storyboardIdentifier="SPItemFilterNaviCtrl" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vHY-Ka-d1I" customClass="SPItemFilterNaviCtrl" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LEg-gY-NMs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LEg-gY-NMs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

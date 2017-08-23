@@ -25,9 +25,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *filterBtn;
 @property (weak, nonatomic) IBOutlet UILabel *emptyLabel;
 
+@property (strong, nonatomic) NSArray<SPFilterOption *> *options;
 // 分类过后的饰品数据
 @property (strong, nonatomic) NSArray<NSArray<SPItem *> *> *items;
-@property (strong, nonatomic) NSArray<NSString *> *segmentTitles;
 
 @property (assign, nonatomic) NSUInteger currentIndex;
 
@@ -68,8 +68,39 @@
 
 - (void)update
 {
-    self.items = self.filter.separatedItems;
-    self.segmentTitles = self.filter.titles;
+    if (!self.options || self.options.count == 0) {
+        self.items = self.filter.separatedItems;
+    }else{
+        //根据options过滤一遍
+        
+        SPHero *hero;
+        SPItemRarity *rarity;
+        SPDotaEvent *event;
+        for (SPFilterOption *option in self.options) {
+            switch (option.type) {
+                case SPFilterOptionTypeHero: hero = option.option;break;
+                case SPFilterOptionTypeRarity: rarity = option.option;break;
+                case SPFilterOptionTypeEvent: event = option.option;break;
+            }
+        }
+        
+        NSMutableArray *newItems = [NSMutableArray array];
+        for (NSArray<SPItem *> *itemArray in self.filter.separatedItems) {
+            NSMutableArray *newItemArray = [NSMutableArray array];
+            [newItems addObject:newItemArray];
+            for (SPItem *aItem in itemArray) {
+                
+                BOOL heroOK = !hero || [aItem.heroes containsString:hero.name];
+                BOOL rarityOK = !rarity || [aItem.item_rarity isEqualToString:rarity.name];
+                BOOL eventOK = !event || [aItem.event_id isEqualToString:event.event_id];
+                if (heroOK && rarityOK && eventOK) {
+                    [newItemArray addObject:aItem];
+                }
+            }
+        }
+        
+        self.items = newItems;
+    }
     self.emptyLabel.hidden = self.items.count;
     [self reloadData];
 }
@@ -78,10 +109,28 @@
 {
     RunOnMainQueue(^{
         [self updateTitle];
-        self.segmentView.titles = self.segmentTitles;
-        UIViewController *vc = [self viewControllerAtIndex:0];
-        if (vc) {
-            [self.pageVC setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        
+        NSMutableArray *titles = [NSMutableArray array];
+        for (NSInteger i=0; i<self.filter.titles.count; i++) {
+            NSString *title = self.filter.titles[i];
+            if (i < self.items.count && self.items[i].count != 0) {
+                [titles addObject:[NSString stringWithFormat:@"%@ %lu",title,(unsigned long)self.items[i].count]];
+            }else{
+                [titles addObject:title];
+            }
+        }
+        self.segmentView.titles = titles;
+        
+        if (self.vcs.count == 0) {
+            UIViewController *vc = [self viewControllerAtIndex:0];
+            if (vc) {
+                [self.pageVC setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+            }
+        }else{
+            for (NSNumber *key in self.vcs) {
+                SPItemListContainer *container = self.vcs[key];
+                [container update:self.mode data:self.items[key.integerValue]];
+            }
         }
     });
 }
@@ -89,12 +138,13 @@
 - (void)updateTitle
 {
     NSString *baseTitle = self.filter.filterTitle;
+    self.navigationItem.title = baseTitle;
     
-    if (self.filter.items.count != 0) {
-        self.navigationItem.title = [NSString stringWithFormat:@"%@（%lu）",baseTitle,self.filter.items.count];
-    }else{
-        self.navigationItem.title = baseTitle;
-    }
+//    if (self.filter.items.count != 0) {
+//        self.navigationItem.title = [NSString stringWithFormat:@"%@（%lu）",baseTitle,self.filter.items.count];
+//    }else{
+//        self.navigationItem.title = baseTitle;
+//    }
 }
 
 - (IBAction)changeDisplayMode:(UIBarButtonItem *)btnItem
@@ -104,11 +154,21 @@
 
 - (IBAction)changeFilter:(UIButton *)btn
 {
+    ygweakify(self);
     SPItemFilterNaviCtrl *navi = [SPItemFilterNaviCtrl instanceFromStoryboard];
     [navi setup:SPFilterOptionTypeHero | SPFilterOptionTypeRarity | SPFilterOptionTypeEvent options:nil completion:^(BOOL canceled, NSArray<SPFilterOption *> *options) {
-        
+        if (!canceled ) {
+            ygstrongify(self);
+            [self filter:options];
+        }
     }];
     [self.navigationController presentViewController:navi animated:YES completion:nil];
+}
+
+- (void)filter:(NSArray<SPFilterOption *> *)options
+{
+    self.options = options;
+    [self update];
 }
 
 - (void)setMode:(SPItemListMode)mode

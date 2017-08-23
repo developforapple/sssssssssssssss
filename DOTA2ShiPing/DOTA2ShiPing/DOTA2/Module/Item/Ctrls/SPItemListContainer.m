@@ -134,7 +134,10 @@ SPItemListMode const kSPItemListModeAuto = 10086;
         NSMutableArray *array = [NSMutableArray array];
         [indexPaths enumerateObjectsUsingBlock:^(NSIndexPath *obj, NSUInteger idx, BOOL *stop) {
             SPItem *item = self.items[obj.item];
-            [array addObject:[item qiniuSmallURL]];
+            NSURL *URL = [item qiniuSmallURL];
+            if (URL) {
+                [array addObject:URL];
+            }
         }];
         [SPItemImageLoader prefetchItemImages:array];
     });

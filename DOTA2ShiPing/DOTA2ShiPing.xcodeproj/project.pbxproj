@@ -215,6 +215,10 @@
 		6919742B1F42A96E00FB5007 /* SPBundleItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6919742A1F42A96E00FB5007 /* SPBundleItemCell.m */; };
 		691DC39E1F418D6F00DF5E81 /* DDViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 691DC39D1F418D6F00DF5E81 /* DDViewModel.m */; };
 		691DC3A11F418D8D00DF5E81 /* SPItemCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 691DC3A01F418D8D00DF5E81 /* SPItemCellModel.m */; };
+		692A55841F4D6C1C006914BF /* SPItemSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 692A55821F4D6C1C006914BF /* SPItemSearch.storyboard */; };
+		692A55871F4D6C2E006914BF /* SPItemSearchViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 692A55861F4D6C2E006914BF /* SPItemSearchViewCtrl.m */; };
+		692A558A1F4D6C7A006914BF /* SPItemSearchOptionViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 692A55891F4D6C7A006914BF /* SPItemSearchOptionViewCtrl.m */; };
+		692A558E1F4D712F006914BF /* SPItemSearchOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 692A558D1F4D712F006914BF /* SPItemSearchOption.m */; };
 		6954FCDF1F43EC5900DDB5D3 /* SPDotaEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCDE1F43EC5900DDB5D3 /* SPDotaEvent.m */; };
 		6954FCE21F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCE11F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m */; };
 		6954FCE51F44326D00DDB5D3 /* SPItemFilterViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCE41F44326D00DDB5D3 /* SPItemFilterViewCtrl.m */; };
@@ -647,6 +651,15 @@
 		691DC39D1F418D6F00DF5E81 /* DDViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDViewModel.m; sourceTree = "<group>"; };
 		691DC39F1F418D8D00DF5E81 /* SPItemCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemCellModel.h; sourceTree = "<group>"; };
 		691DC3A01F418D8D00DF5E81 /* SPItemCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemCellModel.m; sourceTree = "<group>"; };
+		692A55821F4D6C1C006914BF /* SPItemSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SPItemSearch.storyboard; sourceTree = "<group>"; };
+		692A55851F4D6C2E006914BF /* SPItemSearchViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemSearchViewCtrl.h; sourceTree = "<group>"; };
+		692A55861F4D6C2E006914BF /* SPItemSearchViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemSearchViewCtrl.m; sourceTree = "<group>"; };
+		692A55881F4D6C7A006914BF /* SPItemSearchOptionViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemSearchOptionViewCtrl.h; sourceTree = "<group>"; };
+		692A55891F4D6C7A006914BF /* SPItemSearchOptionViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemSearchOptionViewCtrl.m; sourceTree = "<group>"; };
+		692A558B1F4D706A006914BF /* SPItemSearchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemSearchDelegate.h; sourceTree = "<group>"; };
+		692A558C1F4D712F006914BF /* SPItemSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemSearchOption.h; sourceTree = "<group>"; };
+		692A558D1F4D712F006914BF /* SPItemSearchOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemSearchOption.m; sourceTree = "<group>"; };
+		692A558F1F4D853F006914BF /* SPItemSearchCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemSearchCommon.h; sourceTree = "<group>"; };
 		6954FCDD1F43EC5900DDB5D3 /* SPDotaEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDotaEvent.h; sourceTree = "<group>"; };
 		6954FCDE1F43EC5900DDB5D3 /* SPDotaEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDotaEvent.m; sourceTree = "<group>"; };
 		6954FCE01F4415A200DDB5D3 /* SPDotaEventsViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDotaEventsViewCtrl.h; sourceTree = "<group>"; };
@@ -1482,6 +1495,7 @@
 		2DF9B77F1F1361640012950A /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				692A557E1F4D6C1C006914BF /* ItemSearch */,
 				2DF9B7FA1F1361640012950A /* Workshop */,
 				2D4B5D461F2A54CB00A3D8C9 /* Chart */,
 				2DC0F6881F1B6A2D004DCD3C /* HeroPicker */,
@@ -1916,6 +1930,54 @@
 			path = Bugly;
 			sourceTree = "<group>";
 		};
+		692A557E1F4D6C1C006914BF /* ItemSearch */ = {
+			isa = PBXGroup;
+			children = (
+				692A55821F4D6C1C006914BF /* SPItemSearch.storyboard */,
+				692A557F1F4D6C1C006914BF /* Common */,
+				692A55801F4D6C1C006914BF /* Ctrls */,
+				692A55811F4D6C1C006914BF /* Model */,
+				692A55831F4D6C1C006914BF /* View */,
+			);
+			path = ItemSearch;
+			sourceTree = "<group>";
+		};
+		692A557F1F4D6C1C006914BF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				692A558B1F4D706A006914BF /* SPItemSearchDelegate.h */,
+				692A558F1F4D853F006914BF /* SPItemSearchCommon.h */,
+				692A558C1F4D712F006914BF /* SPItemSearchOption.h */,
+				692A558D1F4D712F006914BF /* SPItemSearchOption.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		692A55801F4D6C1C006914BF /* Ctrls */ = {
+			isa = PBXGroup;
+			children = (
+				692A55851F4D6C2E006914BF /* SPItemSearchViewCtrl.h */,
+				692A55861F4D6C2E006914BF /* SPItemSearchViewCtrl.m */,
+				692A55881F4D6C7A006914BF /* SPItemSearchOptionViewCtrl.h */,
+				692A55891F4D6C7A006914BF /* SPItemSearchOptionViewCtrl.m */,
+			);
+			path = Ctrls;
+			sourceTree = "<group>";
+		};
+		692A55811F4D6C1C006914BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		692A55831F4D6C1C006914BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		9DF9275624812581C6DA2B9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2019,6 +2081,7 @@
 				2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */,
 				2D4B5D4C1F2A54CB00A3D8C9 /* SPChart.storyboard in Resources */,
 				2DF9B8C71F1361640012950A /* SPMain.storyboard in Resources */,
+				692A55841F4D6C1C006914BF /* SPItemSearch.storyboard in Resources */,
 				2D6B7B551F3207310048CEA9 /* DINPro-Regular.otf in Resources */,
 				2D6B7B541F3207310048CEA9 /* DINPro-Medium.otf in Resources */,
 				2D6B7B531F3207310048CEA9 /* DINPro-Bold.otf in Resources */,
@@ -2131,6 +2194,7 @@
 				2DF9B8AD1F1361640012950A /* SPPlayerManager.m in Sources */,
 				2DF9B81F1F1361640012950A /* Config_Network.m in Sources */,
 				2D91EB771F1724230038B49C /* SPBaseData.m in Sources */,
+				692A558E1F4D712F006914BF /* SPItemSearchOption.m in Sources */,
 				2D6F1C9A1F1E68E400E8F614 /* YYKVStorage.m in Sources */,
 				2DF9B8CC1F1361640012950A /* SPWorkshopVC.m in Sources */,
 				2DF9B8291F1361640012950A /* YGCoreLocationHelper.m in Sources */,
@@ -2178,6 +2242,7 @@
 				2DF9B8491F1361640012950A /* UIViewController+Storyboard.m in Sources */,
 				2DF9B8BD1F1361640012950A /* SPSearchCell.m in Sources */,
 				2DF9B8BA1F1361640012950A /* SPSearchEngine.m in Sources */,
+				692A558A1F4D6C7A006914BF /* SPItemSearchOptionViewCtrl.m in Sources */,
 				2DF9B8811F1361640012950A /* SDCollectionViewCell.m in Sources */,
 				2DC0F6951F1B9C90004DCD3C /* SPItemHeroListVC.m in Sources */,
 				2DF9B85E1F1361640012950A /* BingoBarItemView.m in Sources */,
@@ -2258,6 +2323,7 @@
 				2DF9B84F1F1361640012950A /* DDResponse.m in Sources */,
 				2DC0F6901F1B6A2D004DCD3C /* SPItemHeroPickerVC.m in Sources */,
 				2D6F1CAE1F20D72500E8F614 /* UIViewController+yg_StatusBar.m in Sources */,
+				692A55871F4D6C2E006914BF /* SPItemSearchViewCtrl.m in Sources */,
 				2D19E0141F34446000747B01 /* SPBundleItemsViewCtrl.m in Sources */,
 				2DF9B8611F1361640012950A /* YGBubbleView.m in Sources */,
 				2DF9B88E1F1361640012950A /* SPHero.m in Sources */,
@@ -2406,6 +2472,7 @@
 				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2471,6 +2538,7 @@
 				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

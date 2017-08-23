@@ -208,16 +208,18 @@
         NSArray *items = temp[index];
         NSString *title = titles[index];
         NSUInteger count = items.count;
-        if (count != 0) {
-            [segmentTitles addObject:[NSString stringWithFormat:@"%@ %lu",title,(unsigned long)count]];
-        }else{
-            [segmentTitles addObject:title];
-        }
+        [segmentTitles addObject:title];
+//        if (count != 0) {
+//            [segmentTitles addObject:[NSString stringWithFormat:@"%@ %lu",title,(unsigned long)count]];
+//        }else{
+//            [segmentTitles addObject:title];
+//        }
     }
     
     if (others.count != 0) {
         [temp addObject:others];
-        [segmentTitles addObject:[NSString stringWithFormat:@"%@ %lu",SPLOCALNONIL(@"dota_othertype"),(unsigned long)others.count]];
+        [segmentTitles addObject:SPLOCALNONIL(@"dota_othertype")];
+//        [segmentTitles addObject:[NSString stringWithFormat:@"%@ %lu",SPLOCALNONIL(@"dota_othertype"),(unsigned long)others.count]];
     }
     
     self.separatedItems = temp;
@@ -268,24 +270,28 @@
     NSMutableArray *items = [NSMutableArray array];
     
     if (bundles.count > 0) {
-        [segmentTitles addObject:[NSString stringWithFormat:@"%@ %lu",SPLOCALNONIL(@"bundle"),(unsigned long)bundles.count]];
+        [segmentTitles addObject:SPLOCALNONIL(@"bundle")];
+//        [segmentTitles addObject:[NSString stringWithFormat:@"%@ %lu",SPLOCALNONIL(@"bundle"),(unsigned long)bundles.count]];
         [items addObject:bundles];
     }
     
     for (NSInteger i=0; i<slotItems.count; i++) {
         NSInteger count = [slotItems[i] count];
         NSString *slotLoc = slotNamesLoc[i];
-        if (count != 0) {
-            [segmentTitles addObject:[NSString stringWithFormat:@"%@ %lu",slotLoc,(unsigned long)count]];
-        }else{
-            [segmentTitles addObject:slotLoc];
-        }
+        [segmentTitles addObject:slotLoc];
+        
+//        if (count != 0) {
+//            [segmentTitles addObject:[NSString stringWithFormat:@"%@ %lu",slotLoc,(unsigned long)count]];
+//        }else{
+//            [segmentTitles addObject:slotLoc];
+//        }
         [items addObject:slotItems[i]];
     }
     
     
     if (others.count > 0) {
-        [segmentTitles addObject:[NSString stringWithFormat:@"%@ %lu",SPLOCALNONIL(@"dota_othertype"),(unsigned long)others.count]];
+        [segmentTitles addObject:SPLOCALNONIL(@"dota_othertype")];
+//        [segmentTitles addObject:[NSString stringWithFormat:@"%@ %lu",SPLOCALNONIL(@"dota_othertype"),(unsigned long)others.count]];
         [items addObject:others];
     }
     
