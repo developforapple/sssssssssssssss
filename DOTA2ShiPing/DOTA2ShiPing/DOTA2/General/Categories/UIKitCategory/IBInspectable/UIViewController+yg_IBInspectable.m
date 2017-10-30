@@ -10,6 +10,7 @@
 #import "UIViewController+yg_StatusBar.h"
 #import "JZNavigationExtension.h"
 #import <IQKeyboardManager/IQKeyboardManager.h>
+#import "UIScrollView+yg_IBInspectable.h"
 
 #pragma mark - UINavigationController
 static const void *nextAppearIsPushKey = &nextAppearIsPushKey;
@@ -91,17 +92,20 @@ static NSMutableSet<Class> *kIgnoredViewControllerClasses;
     Method newMethod = class_getInstanceMethod(self, newSel);
     if (!originalMethod || !newMethod) return NO;
     
+    IMP originalIMP = class_getMethodImplementation(self, originalSel);
     class_addMethod(self,
                     originalSel,
-                    class_getMethodImplementation(self, originalSel),
+                    originalIMP,
                     method_getTypeEncoding(originalMethod));
+    IMP newIMP = class_getMethodImplementation(self, newSel);
     class_addMethod(self,
                     newSel,
-                    class_getMethodImplementation(self, newSel),
+                    newIMP,
                     method_getTypeEncoding(newMethod));
-    
-    method_exchangeImplementations(class_getInstanceMethod(self, originalSel),
-                                   class_getInstanceMethod(self, newSel));
+    Method originalMethod2 = class_getInstanceMethod(self, originalSel);
+    Method newMethod2 = class_getInstanceMethod(self, newSel);
+    method_exchangeImplementations(originalMethod2,
+                                   newMethod2);
     return YES;
 }
 
@@ -109,7 +113,7 @@ static NSMutableSet<Class> *kIgnoredViewControllerClasses;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        kDefaultNaviBarLineColor = RGBColor(229, 229, 229, 0.8f);
+        kDefaultNaviBarLineColor = RGBColor(229, 229, 229, 0.8);
         kDefaultNaviBarTextColor = kTextColor;
         
         SEL oldViewWillAppearSel = @selector(viewWillAppear:);
@@ -143,10 +147,13 @@ static NSMutableSet<Class> *kIgnoredViewControllerClasses;
         [(UINavigationController *)self interactivePopGestureRecognizer].enabled = NO;
     }
     
-    // 使用自定义的返回按钮
-    [self.navigationItem setHidesBackButton:YES];  //不显示默认的返回按钮，采用leftBarButtonItem作为返回按钮
-    [self.navigationController.navigationBar.backItem setHidesBackButton:YES];  //解决使用手势返回中途取消手势时，导航栏出现一个默认返回按钮的问题。
-    [self.navigationItem.backBarButtonItem setTitle:@""];  //隐藏默认返回按钮的标题。
+    if (self.navigationController &&
+        self.parentViewController == self.navigationController) {
+        // 使用自定义的返回按钮
+        [self.navigationItem setHidesBackButton:YES];  //不显示默认的返回按钮，采用leftBarButtonItem作为返回按钮
+        [self.navigationController.navigationBar.backItem setHidesBackButton:YES];  //解决使用手势返回中途取消手势时，导航栏出现一个默认返回按钮的问题。
+        [self.navigationItem.backBarButtonItem setTitle:@""];  //隐藏默认返回按钮的标题。
+    }
     
     [self updateIQKeyboardEnabled];
 }
@@ -160,10 +167,9 @@ static NSMutableSet<Class> *kIgnoredViewControllerClasses;
     if (self.navigationController &&
         self.parentViewController == self.navigationController &&
         self.navigationController.topViewController == self) {
-//        NSLog(@"viewWillAppear");
         
         if (self.navigationController.nextAppearIsPush) {
-            [UIView animateWithDuration:.2f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 
                 // 这里为什么要禁用？
                 // 发现一个bug，上一个界面A不要手势返回，push的下一个界面B有手势返回时，B界面的手势返回将不起作用。此时view上所有操作发生错乱。
@@ -179,10 +185,11 @@ static NSMutableSet<Class> *kIgnoredViewControllerClasses;
                 [self updateNaviBarStyle]; //不更新barStyle
             } completion:^(BOOL finished) {}];
             
+            [self _updateJz];
             [self updateStatusBarAppearIfNeed];
         }
     }
-    
+
     [self updateIQKeyboardEnabled];
 }
 
@@ -198,7 +205,7 @@ static NSMutableSet<Class> *kIgnoredViewControllerClasses;
 //        NSLog(@"viewDidAppear");
         
         if (![self.navigationController nextAppearIsPush]) {
-            [UIView animateWithDuration:.2f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 [self updateInteractivePop];
                 [self updateNaviBarTranslucent];
                 [self updateNaviBarLine];
@@ -219,6 +226,7 @@ static NSMutableSet<Class> *kIgnoredViewControllerClasses;
         //        tabbar.barShadowHidden_ = YES;
     }
     
+    [self _updateJz];
     [self updateIQKeyboardEnabled];
 }
 
@@ -256,7 +264,31 @@ static NSMutableSet<Class> *kIgnoredViewControllerClasses;
     
     id jz_navigationBarBackgroundAlpha = objc_getAssociatedObject(self, @selector(jz_navigationBarBackgroundAlpha));
     if (!jz_navigationBarBackgroundAlpha) {
-        self.jz_navigationBarBackgroundAlpha = 1.f;
+        self.jz_navigationBarBackgroundAlpha = 1;
+        
+        // 解决bug
+        [self.navigationController.navigationBar setYg_background_alpha:1];
+    }
+}
+
+- (void)_updateJz
+{
+    if (!self.navigationController || self.parentViewController != self.navigationController) return;
+    
+    UIColor *jz_navigationBarTintColor = objc_getAssociatedObject(self, @selector(jz_navigationBarTintColor));
+    if (jz_navigationBarTintColor) {
+        self.jz_navigationBarTintColor = jz_navigationBarTintColor;
+    }
+    id jz_wantsNavigationBarVisibleObject = objc_getAssociatedObject(self, @selector(jz_wantsNavigationBarVisible));
+    if (jz_wantsNavigationBarVisibleObject) {
+        self.jz_wantsNavigationBarVisible = [jz_wantsNavigationBarVisibleObject boolValue];
+    }
+    id jz_navigationBarBackgroundAlpha = objc_getAssociatedObject(self, @selector(jz_navigationBarBackgroundAlpha));
+    if (jz_navigationBarBackgroundAlpha) {
+        self.jz_navigationBarBackgroundAlpha = [jz_navigationBarBackgroundAlpha doubleValue];
+        
+        // 解决bug
+        [self.navigationController.navigationBar setYg_background_alpha:[jz_navigationBarBackgroundAlpha doubleValue]];
     }
 }
 
@@ -431,19 +463,22 @@ static NSMutableSet<Class> *kIgnoredViewControllerClasses;
 {
     if (self.navigationController && self.parentViewController == self.navigationController) {
         UIColor *color = self.naviBarTextColor_;
-        NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:self.navigationController.navigationBar.titleTextAttributes];
+        NSDictionary *titleTextAttributes = self.navigationController.navigationBar.titleTextAttributes;
+        NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:titleTextAttributes];
         attributes[NSForegroundColorAttributeName] = color;
         self.navigationController.navigationBar.titleTextAttributes = attributes;
         self.navigationController.navigationBar.tintColor = color;
         
         if ([self _naviBarTextColorIsSet]) {
             [[self.navigationItem leftBarButtonItems] enumerateObjectsUsingBlock:^(UIBarButtonItem *obj, NSUInteger idx, BOOL *stop) {
-                NSMutableDictionary *attributes1 = [NSMutableDictionary dictionaryWithDictionary:[obj titleTextAttributesForState:UIControlStateNormal]];
+                NSDictionary *titleTextAttributes1 = [obj titleTextAttributesForState:UIControlStateNormal];
+                NSMutableDictionary *attributes1 = [NSMutableDictionary dictionaryWithDictionary:titleTextAttributes1];
                 attributes1[NSForegroundColorAttributeName] = color;
                 [obj setTitleTextAttributes:attributes1 forState:UIControlStateNormal];
             }];
             [[self.navigationItem rightBarButtonItems] enumerateObjectsUsingBlock:^(UIBarButtonItem *obj, NSUInteger idx, BOOL *stop) {
-                NSMutableDictionary *attributes1 = [NSMutableDictionary dictionaryWithDictionary:[obj titleTextAttributesForState:UIControlStateNormal]];
+                NSDictionary *titleTextAttributes1 = [obj titleTextAttributesForState:UIControlStateNormal];
+                NSMutableDictionary *attributes1 = [NSMutableDictionary dictionaryWithDictionary:titleTextAttributes1];
                 attributes1[NSForegroundColorAttributeName] = color;
                 [obj setTitleTextAttributes:attributes1 forState:UIControlStateNormal];
             }];

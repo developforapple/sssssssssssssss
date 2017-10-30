@@ -2,32 +2,32 @@
 //  UIScrollView+yg_IBInspectable.m
 //  CDT
 //
-//  Created by Jay on 2017/7/5.
-//  Copyright © 2017年 ailaidian,Inc. All rights reserved.
+//  Created by WangBo (developforapple@163.com) on 2017/7/5.
+//  Copyright © 2017年 来电科技 All rights reserved.
 //
 
 #import "UIScrollView+yg_IBInspectable.h"
 
 @implementation UIScrollView (yg_IBInspectable)
 
-- (void)setAutoAdjustInsetsNever:(BOOL)autoAdjustInsetsNever
+- (void)setAutomaticallyAdjustsScrollViewInsets:(BOOL)automaticallyAdjustsScrollViewInsets
 {
 #if iOS11_SDK_ENABLED
     if (iOS11) {
-        if (autoAdjustInsetsNever) {
-            self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }else{
+        if (automaticallyAdjustsScrollViewInsets) {
             self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
+        }else{
+            self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
     }
 #endif
 }
 
-- (BOOL)autoAdjustInsetsNever
+- (BOOL)automaticallyAdjustsScrollViewInsets
 {
 #if iOS11_SDK_ENABLED
     if (iOS11) {
-        return self.contentInsetAdjustmentBehavior == UIScrollViewContentInsetAdjustmentNever;
+        return self.contentInsetAdjustmentBehavior == UIScrollViewContentInsetAdjustmentAutomatic;
     }
     return NO;
 #else

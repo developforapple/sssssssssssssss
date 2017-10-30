@@ -62,7 +62,7 @@
     
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] init];
     
-    for (NSInteger index = 0; index < stringBlocks.count; index++) {
+    for (NSUInteger index = 0; index < stringBlocks.count; index++) {
         NSString *string2 = stringBlocks[index];
         
         if (index%2 != 0) {
@@ -78,51 +78,6 @@
         }
     }
     return attrString;
-}
-
-- (NSArray *)_scanner:(NSString *)characterSet count:(NSInteger)count
-{
-    if (count == 0) return @[];
-    if (count != -1 && count < 0) return nil;
-    BOOL scannerAll = count == -1;
-    
-    NSMutableArray *result = [NSMutableArray array];
-    NSScanner *scanner = [NSScanner scannerWithString:self];
-    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:characterSet];
-    
-    BOOL finish = NO;
-    NSInteger number;
-    do {
-        [scanner scanUpToCharactersFromSet:set intoString:nil];
-        if ([scanner scanInteger:&number]) {
-            [result addObject:@(number)];
-            finish = [scanner isAtEnd];
-        }else{
-            finish = YES;
-        }
-    } while (!finish && (scannerAll || result.count < count));
-    
-    return result;
-}
-
-- (NSArray<NSNumber *> *)scannerIntergers:(NSInteger)count
-{
-    return [self _scanner:@"-0123456789" count:count];
-}
-
-- (NSArray<NSNumber *> *)scannerAllIntergers
-{
-    return [self scannerIntergers:-1];
-}
-
-- (NSArray<NSNumber *> *)scannerUIntergers:(NSInteger)count
-{
-    return [self _scanner:@"0123456789" count:count];
-}
-
-- (NSArray<NSNumber *> *)scannerAllUIntergers
-{
-    return [self scannerUIntergers:-1];
 }
 
 @end

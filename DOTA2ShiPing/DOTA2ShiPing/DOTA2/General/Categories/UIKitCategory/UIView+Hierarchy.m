@@ -57,22 +57,16 @@
 
 static void *kTrueConstantKey = &kTrueConstantKey;
 
-@interface NSLayoutConstraint (Collapsed)
-@property (assign, nonatomic) float trueConstant;
-@end
 @implementation NSLayoutConstraint (Collapsed)
-- (void)setTrueConstant:(float)trueConstant
+- (void)setTrueConstant:(CGFloat)trueConstant
 {
     objc_setAssociatedObject(self, kTrueConstantKey, @(trueConstant), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (float)trueConstant
+- (CGFloat)trueConstant
 {
     NSNumber *v = objc_getAssociatedObject(self, kTrueConstantKey);
-    if (!v) {
-        return self.constant;
-    }
-    return v.floatValue;
+    return v?v.doubleValue:self.constant;
 }
 @end
 
@@ -97,6 +91,20 @@ static void *kCollapsedKey = &kCollapsedKey;
     [self updateCollapsedConstraints:collapsed];
 }
 
+- (void)setCollapsed:(BOOL)collapsed animated:(BOOL)animated
+{
+    if (animated) {
+        RunOnMainQueue(^{
+            [UIView animateWithDuration:.2 animations:^{
+                [self setCollapsed:collapsed];
+                [self.superview?:self layoutIfNeeded];
+            }];
+        });
+    }else{
+        [self setCollapsed:collapsed];
+    }
+}
+
 - (BOOL)isCollapsed
 {
     return [objc_getAssociatedObject(self, kCollapsedKey) boolValue];
@@ -104,23 +112,25 @@ static void *kCollapsedKey = &kCollapsedKey;
 
 - (void)updateCollapsedConstraints:(BOOL)collapsed
 {
-    if (collapsed) {
-        for (NSLayoutConstraint *aConstraint in self.collapsedConstraints) {
-            CGFloat curConstant = aConstraint.constant;
-            if (curConstant != 0.f) {
-                aConstraint.trueConstant = curConstant;
+    RunOnMainQueue(^{
+        if (collapsed) {
+            for (NSLayoutConstraint *aConstraint in self.collapsedConstraints) {
+                CGFloat curConstant = aConstraint.constant;
+                if (curConstant > 0.0) {
+                    aConstraint.trueConstant = curConstant;
+                }
+                aConstraint.constant = 0;
             }
-            aConstraint.constant = 0.f;
-        }
-    }else{
-        for (NSLayoutConstraint *aConstraint in self.collapsedConstraints) {
-            CGFloat curConstraint = aConstraint.constant;
-            if (curConstraint == 0.f) {
-                aConstraint.constant = aConstraint.trueConstant;
+        }else{
+            for (NSLayoutConstraint *aConstraint in self.collapsedConstraints) {
+                CGFloat curConstraint = aConstraint.constant;
+                if (curConstraint == 0.0) {
+                    aConstraint.constant = aConstraint.trueConstant;
+                }
+                aConstraint.trueConstant = aConstraint.constant;
             }
-            aConstraint.trueConstant = aConstraint.constant;
         }
-    }
+    });
 }
 
 @end

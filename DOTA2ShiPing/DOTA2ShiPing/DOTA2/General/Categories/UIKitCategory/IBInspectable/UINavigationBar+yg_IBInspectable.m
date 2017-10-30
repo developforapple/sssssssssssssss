@@ -12,6 +12,7 @@
 static void *lineViewColorKey = &lineViewColorKey;
 static void *barTintColorAlphaKey = &barTintColorAlphaKey;
 static void *barShadowHiddenKey = &barShadowHiddenKey;
+static void *backgroundAlphaKey = &backgroundAlphaKey;
 
 @implementation UINavigationBar (yg_IBInspectable)
 - (UIView *)lineView
@@ -27,7 +28,7 @@ static void *barShadowHiddenKey = &barShadowHiddenKey;
     for (UIView *view in self.subviews) {
         if ([view isKindOfClass:bgClass]) {
             for (UIView *bgSubView in view.subviews) {
-                if (CGRectGetHeight(bgSubView.bounds) <= 1.1f) {
+                if (CGRectGetHeight(bgSubView.bounds) <= 1.1) {
                     return bgSubView;
                 }
             }
@@ -42,6 +43,7 @@ static void *barShadowHiddenKey = &barShadowHiddenKey;
         UIView *view = [self valueForKey:@"_backgroundView"];
         return view;
     } @catch (NSException *exception) {
+        NSLog(@"%@",exception);
         return nil;
     }
 }
@@ -74,7 +76,7 @@ static void *barShadowHiddenKey = &barShadowHiddenKey;
         UIView *lineView = [self lineView];
         
         /*!
-         *  @brief 这里不能直接修改颜色。因为在UINavigationBar内部，lineView的颜色会被系统再次修改。
+         *   这里不能直接修改颜色。因为在UINavigationBar内部，lineView的颜色会被系统再次修改。
          *         所以采用监听的方法，当lineView的颜色不一致时进行调整
          */
         static void *lineColorDisposableKey = &lineColorDisposableKey;
@@ -109,7 +111,7 @@ static void *barShadowHiddenKey = &barShadowHiddenKey;
     if (self.barTintColor) {
         
         /*!
-         *  @brief 这里不能直接修改alpha。因为在UINavigationBar内部，alpha值和backgroundColor会被系统再次修改。
+         *   这里不能直接修改alpha。因为在UINavigationBar内部，alpha值和backgroundColor会被系统再次修改。
          *         所以采用监听的方法，当alpha值和设定的值不一致时进行调整。
          */
         
@@ -117,7 +119,7 @@ static void *barShadowHiddenKey = &barShadowHiddenKey;
         bingoWeakify(self);
         [RACObserve(view, alpha)
          subscribeNext:^(NSNumber *x) {
-             if (x.floatValue != barTintColorAlpha_) {
+             if ((CGFloat)x.floatValue != barTintColorAlpha_) {
                  bingoStrongify(self);
                  [[self barTintColorEffectView] setAlpha:barTintColorAlpha_];
              }
@@ -129,9 +131,9 @@ static void *barShadowHiddenKey = &barShadowHiddenKey;
 {
     NSNumber *alpha = objc_getAssociatedObject(self, barTintColorAlphaKey);
     if (!alpha) {
-        return 0.85f;   //系统默认透明度。
+        return 0.85;   //系统默认透明度。
     }
-    return alpha.floatValue;
+    return (CGFloat)alpha.floatValue;
 }
 
 - (BOOL)barShadowHidden_
@@ -148,9 +150,40 @@ static void *barShadowHiddenKey = &barShadowHiddenKey;
     if (self.barShadowHidden_ != barShadowHidden_) {
         objc_setAssociatedObject(self, barShadowHiddenKey, @(barShadowHidden_), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         self.layer.shadowColor = kBlueColor.CGColor;
-        self.layer.shadowOffset = CGSizeMake(2.f, 2.f);
-        self.layer.shadowOpacity = barShadowHidden_?0.f:.2f;
-        self.layer.shadowRadius = 4.f;
+        self.layer.shadowOffset = CGSizeMake(2, 2);
+        self.layer.shadowOpacity = barShadowHidden_?0.:0.2;
+        self.layer.shadowRadius = 4.;
     }
 }
+
+- (void)setYg_background_alpha:(CGFloat)yg_background_alpha
+{
+    objc_setAssociatedObject(self, backgroundAlphaKey, @(yg_background_alpha), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    /*!
+     *   这里不能直接修改alpha。因为在UINavigationBar内部，alpha值和backgroundColor会被系统再次修改。
+     *         所以采用监听的方法，当alpha值和设定的值不一致时进行调整。
+     */
+    
+//    UIView *view = [self backgroundView_];
+//    bingoWeakify(self);
+//    [RACObserve(view, alpha)
+//     subscribeNext:^(NSNumber *x) {
+//         bingoStrongify(self);
+//         float alpha = self.yg_background_alpha;
+//         if (x.floatValue != alpha) {
+//             [[self backgroundView_] setAlpha:alpha];
+//         }
+//     }];
+}
+
+- (CGFloat)yg_background_alpha
+{
+    NSNumber *alpha = objc_getAssociatedObject(self, backgroundAlphaKey);
+    if (!alpha) {
+        return [self backgroundView_].alpha;
+    }
+    return alpha.doubleValue;
+}
+
 @end

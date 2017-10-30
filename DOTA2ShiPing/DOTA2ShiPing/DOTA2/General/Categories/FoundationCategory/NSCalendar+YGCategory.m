@@ -9,65 +9,65 @@
 #import "NSCalendar+YGCategory.h"
 
 static BOOL isEaster(NSInteger iYear, NSInteger iMonth, NSInteger iDay){
-    NSDictionary *easterDays = @{@2017:@416,
-                                 @2018:@401,
-                                 @2019:@412,
-                                 @2020:@414};
-    return [@(iMonth*100+iDay) isEqualToNumber:easterDays[@(iYear)]];
+    NSDictionary<NSNumber *,NSNumber *> *easterDays = @{@2017:@416,
+                                                        @2018:@401,
+                                                        @2019:@412,
+                                                        @2020:@414};
+    return [easterDays[@(iYear)] isEqualToNumber:@(iMonth*100+iDay)];
 }
 
 static BOOL isMothersDay(NSInteger iYear, NSInteger iMonth, NSInteger iDay){
-    NSDictionary *days = @{@2017:@514,
+    NSDictionary<NSNumber *,NSNumber *> *days = @{@2017:@514,
                            @2018:@513,
                            @2019:@512,
                            @2020:@510,
                            @2021:@509};
-    return [@(iMonth*100+iDay) isEqualToNumber:days[@(iYear)]];
+    return [days[@(iYear)] isEqualToNumber:@(iMonth*100+iDay)];
 }
 
 static BOOL isFathersDay(NSInteger iYear, NSInteger iMonth, NSInteger iDay){
-    NSDictionary *days = @{@2017:@618,
+    NSDictionary<NSNumber *,NSNumber *> *days = @{@2017:@618,
                            @2018:@617,
                            @2019:@616,
                            @2020:@621,
                            @2021:@620};
-    return [@(iMonth*100+iDay) isEqualToNumber:days[@(iYear)]];
+    return [days[@(iYear)] isEqualToNumber:@(iMonth*100+iDay)];
 }
 
 static BOOL isThanksgivingDay(NSInteger iYear, NSInteger iMonth, NSInteger iDay){
-    NSDictionary *days = @{@2017:@1123,
+    NSDictionary<NSNumber *,NSNumber *> *days = @{@2017:@1123,
                            @2018:@1122,
                            @2019:@1128,
                            @2020:@1126,
                            @2021:@1125};
-    return [@(iMonth*100+iDay) isEqualToNumber:days[@(iYear)]];
+    return [days[@(iYear)] isEqualToNumber:@(iMonth*100+iDay)];
 }
 
 static BOOL isQingMingDay(NSInteger iYear, NSInteger iMonth , NSInteger iDay){
-    NSDictionary *days = @{@2017:@404,
+    NSDictionary<NSNumber *,NSNumber *> *days = @{@2017:@404,
                            @2018:@405,
                            @2019:@405,
                            @2020:@404,
                            @2021:@404};
-    return [@(iMonth*100+iDay) isEqualToNumber:days[@(iYear)]];
+    return [days[@(iYear)] isEqualToNumber:@(iMonth*100+iDay)];
 }
 
 static BOOL isDongZhiDay(NSInteger iYear, NSInteger iMonth , NSInteger iDay){
-    NSDictionary *days = @{@2017:@1222,
+    NSDictionary<NSNumber *,NSNumber *> *days = @{@2017:@1222,
                            @2018:@1222,
                            @2019:@1222,
                            @2020:@1221,
                            @2021:@1221};
-    return [@(iMonth*100+iDay) isEqualToNumber:days[@(iYear)]];
+    return [days[@(iYear)] isEqualToNumber:@(iMonth*100+iDay)];
 }
 
 static BOOL isChuXiDay(NSInteger iYear, NSInteger iMonth , NSInteger iDay){
-    NSDictionary *days = @{@2017:@127,
+    NSDictionary<NSNumber *,NSNumber *> *days = @{@2017:@127,
                            @2018:@215,
                            @2019:@204,
                            @2020:@124,
                            @2021:@211};
-    return [@(iMonth*100+iDay) isEqualToNumber:days[@(iYear)]];
+    return [days[@(iYear)] isEqualToNumber:@(iMonth*100+iDay)];
 }
 
 @implementation NSCalendar (YGCategory)

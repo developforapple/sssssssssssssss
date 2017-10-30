@@ -14,12 +14,4 @@
 
 + (NSAttributedString *)attributedStringByAddUnderlineForURLInString:(NSString *)string;
 
-// 查找出现的整数
-- (NSArray<NSNumber *> *)scannerIntergers:(NSInteger)count;
-- (NSArray<NSNumber *> *)scannerAllIntergers;
-
-// 查找出现的正整数。忽略'-' 例如 -100 会被当做 100 返回
-- (NSArray<NSNumber *> *)scannerUIntergers:(NSInteger)count;
-- (NSArray<NSNumber *> *)scannerAllUIntergers;
-
 @end

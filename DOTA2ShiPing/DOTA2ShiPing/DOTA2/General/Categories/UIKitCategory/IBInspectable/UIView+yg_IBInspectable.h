@@ -16,7 +16,7 @@
 @property (strong, nonatomic) IBInspectable UIColor *borderColor_;
 @property (strong, nonatomic) IBInspectable UIColor *shadowColor_;
 @property (assign, nonatomic) IBInspectable CGFloat shadowRadius_;
-@property (assign, nonatomic) IBInspectable CGFloat shadowOpacity_;
+@property (assign, nonatomic) IBInspectable float shadowOpacity_;
 @property (assign, nonatomic) IBInspectable CGSize  shadowOffset_;
 // 分别设置水平和垂直方向上的长度是否为0。默认条件下不需要设置。
 // 当设为YES时，将添加一个优先级999，值为0的约束。

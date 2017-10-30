@@ -30,7 +30,7 @@
 - (BOOL)isValidUrl;
 
 /**
- @brief     是否符合IP格式，xxx.xxx.xxx.xxx
+      是否符合IP格式，xxx.xxx.xxx.xxx
  */
 - (BOOL)isValidIP;
 
@@ -45,7 +45,7 @@
 - (BOOL)isValidIdCardName;
 
 /** 
- @brief     是否符合最小长度、最长长度，是否包含中文,首字母是否可以为数字
+      是否符合最小长度、最长长度，是否包含中文,首字母是否可以为数字
  @param     minLenth 账号最小长度
  @param     maxLenth 账号最长长度
  @param     containChinese 是否包含中文

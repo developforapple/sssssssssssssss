@@ -31,7 +31,7 @@ YGSwizzleMethod
         for (UIView *view in self.subviews) {
             if ([view isKindOfClass:class]) {
                 for (UIView *lineView in view.subviews) {
-                    if (CGRectGetHeight(lineView.bounds) <= 1.1f) {
+                    if (CGRectGetHeight(lineView.bounds) <= 1.1) {
                         return lineView;
                     }
                 }
@@ -42,7 +42,7 @@ YGSwizzleMethod
     
     for (UIView *view in self.subviews) {
         if ([view isKindOfClass:[UIImageView class]]) {
-            if (CGRectGetHeight(view.bounds) <= 1.1f) {
+            if (CGRectGetHeight(view.bounds) <= 1.1) {
                 return view;
             }
         }

@@ -2,7 +2,7 @@
 //  UIViewController+yg_StatusBarAppearance.m
 //  DOTA2ShiPing
 //
-//  Created by wwwbbat on 2017/7/20.
+//  Created by WangBo (developforapple@163.com) on 2017/7/20.
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
@@ -28,17 +28,20 @@ BOOL swizzleInstanceOfSelector(Class cls, SEL originalSel, SEL newSel){
     Method newMethod = class_getInstanceMethod(cls, newSel);
     if (!originalMethod || !newMethod) return NO;
     
+    IMP originalIMP = class_getMethodImplementation(cls, originalSel);
     class_addMethod(cls,
                     originalSel,
-                    class_getMethodImplementation(cls, originalSel),
+                    originalIMP,
                     method_getTypeEncoding(originalMethod));
+    IMP newIMP = class_getMethodImplementation(cls, newSel);
     class_addMethod(cls,
                     newSel,
-                    class_getMethodImplementation(cls, newSel),
+                    newIMP,
                     method_getTypeEncoding(newMethod));
-    
-    method_exchangeImplementations(class_getInstanceMethod(cls, originalSel),
-                                   class_getInstanceMethod(cls, newSel));
+    Method originalMethod2 = class_getInstanceMethod(cls, originalSel);
+    Method newMethod2 = class_getInstanceMethod(cls, newSel);
+    method_exchangeImplementations(originalMethod2,
+                                   newMethod2);
     return YES;
 }
 
@@ -194,7 +197,7 @@ NO_WARNING_END
         }   break;
         case YGStatusBarControlModeViewCtrl:
         case YGStatusBarControlModeAuto:{
-            [UIView animateWithDuration:.15f animations:^{
+            [UIView animateWithDuration:.15 animations:^{
                 [self setNeedsStatusBarAppearanceUpdate];
             }];
         }   break;
@@ -210,7 +213,7 @@ NO_WARNING_END
         }   break;
         case YGStatusBarControlModeViewCtrl:
         case YGStatusBarControlModeAuto:{
-            [UIView animateWithDuration:.15f animations:^{
+            [UIView animateWithDuration:.15 animations:^{
                 [self setNeedsStatusBarAppearanceUpdate];
             }];
         }   break;
@@ -224,13 +227,13 @@ NO_WARNING_END
     switch ([UIViewController statusBarControlMode]) {
         case YGStatusBarControlModeApplication:{
             return [UIApplication sharedApplication].statusBarHidden;
-        }   break;
+        }
         case YGStatusBarControlModeViewCtrl:{
             return [self yg_prefersStatusBarHidden];
-        }   break;
+        }
         case YGStatusBarControlModeAuto:{
             return self.statusBarHidden_;
-        }   break;
+        }
     }
     return [self yg_prefersStatusBarHidden];
 }
@@ -256,13 +259,13 @@ NO_WARNING_END
     switch ([UIViewController statusBarControlMode]) {
         case YGStatusBarControlModeApplication:{
             return [UIApplication sharedApplication].statusBarStyle;
-        }   break;
+        }
         case YGStatusBarControlModeViewCtrl:{
             return [self yg_preferredStatusBarStyle];
-        }   break;
+        }
         case YGStatusBarControlModeAuto:{
             return [self statusBarStyleForStatusBar];
-        }   break;
+        }
     }
     return [self yg_preferredStatusBarStyle];
 }
@@ -323,13 +326,10 @@ NO_WARNING_END
     switch (self.statusBarStyle_) {
         case YGStatusBarStyleBlack:
             return kYGStatusBarStyleBlackText;
-            break;
         case YGStatusBarStyleLight:
             return kYGStatusBarStyleLightText;
-            break;
         case YGStatusBarStyleAuto:
             return kYGStatusBarStyleAutoText;
-            break;
     }
     return nil;
 }

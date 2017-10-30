@@ -22,7 +22,7 @@ static void *barShadowHiddenKey = &barShadowHiddenKey;
         for (UIView *view in self.subviews) {
             if ([view isKindOfClass:class]) {
                 for (UIView *lineView in view.subviews) {
-                    if (CGRectGetHeight(lineView.bounds) <= 1.1f) {
+                    if (CGRectGetHeight(lineView.bounds) <= 1.1) {
                         return lineView;
                     }
                 }
@@ -33,7 +33,7 @@ static void *barShadowHiddenKey = &barShadowHiddenKey;
     
     for (UIView *view in self.subviews) {
         if ([view isKindOfClass:[UIImageView class]]) {
-            if (CGRectGetHeight(view.bounds) <= 1.1f) {
+            if (CGRectGetHeight(view.bounds) <= 1.1) {
                 return view;
             }
         }
@@ -58,7 +58,7 @@ static void *barShadowHiddenKey = &barShadowHiddenKey;
         UIView *lineView = [self lineView];
         
         /*!
-         *  @brief 这里不能直接修改颜色。因为在UITabBar内部，lineView的颜色会被系统再次修改。
+         *   这里不能直接修改颜色。因为在UITabBar内部，lineView的颜色会被系统再次修改。
          *         所以采用监听的方法，当lineView的颜色不一致时进行调整
          */
         
@@ -94,9 +94,9 @@ static void *barShadowHiddenKey = &barShadowHiddenKey;
     if (self.barShadowHidden_ != barShadowHidden_) {
         objc_setAssociatedObject(self, barShadowHiddenKey, @(barShadowHidden_), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         self.layer.shadowColor = kBlueColor.CGColor;
-        self.layer.shadowOffset = CGSizeMake(-2.f, -2.f);
-        self.layer.shadowOpacity = barShadowHidden_?0.f:.2f;
-        self.layer.shadowRadius = 4.f;
+        self.layer.shadowOffset = CGSizeMake(-2, -2);
+        self.layer.shadowOpacity = barShadowHidden_?0:.2;
+        self.layer.shadowRadius = 4;
     }
 }
 @end

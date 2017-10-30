@@ -2,7 +2,7 @@
 //  UIViewController+yg_StatusBarAppearance.h
 //  DOTA2ShiPing
 //
-//  Created by wwwbbat on 2017/7/20.
+//  Created by WangBo (developforapple@163.com) on 2017/7/20.
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 

@@ -12,7 +12,7 @@
 
 - (void)performBlock:(YGPerformBlock)block
 {
-    [self performBlock:block afterDelay:0.f];
+    [self performBlock:block afterDelay:0];
 }
 
 - (void)performBlock:(YGPerformBlock)block afterDelay:(NSTimeInterval)delay

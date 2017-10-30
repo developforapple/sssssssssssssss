@@ -10,89 +10,139 @@
 
 @implementation UINavigationController (Convenience)
 
-- (__kindof UIViewController *)firstViewControllerOfClass:(Class)cls
+- (nullable UIViewController *)firstOne:(Class)cls
 {
-    for (UIViewController *vc in self.viewControllers) {
-        if ([vc isKindOfClass:cls]) {
-            return vc;
-        }
-    }
-    return nil;
+    return [[self findAll:cls] firstObject];
 }
 
-- (NSInteger)firstViewControllerIndexOfClass:(Class)cls
+- (nullable UIViewController *)lastOne:(Class)cls
 {
-    UIViewController *vc = [self firstViewControllerOfClass:cls];
-    if (vc) {
-        return [[self viewControllers] indexOfObject:vc];
-    }
-    return NSNotFound;
+    return [[self findAll:cls] lastObject];
 }
 
-- (NSArray *)viewControllersBeforeClass:(Class)cls
+- (nullable NSArray *)findAll:(Class)cls
 {
-    NSInteger idx = [self firstViewControllerIndexOfClass:cls];
-    if (idx != NSNotFound) {
-        return [self.viewControllers subarrayWithRange:NSMakeRange(0, idx)];
-    }
-    return nil;
+    if (!cls) return nil;
+    return [self.viewControllers objectsAtIndexes:[self.viewControllers indexesOfObjectsWithOptions:NSEnumerationConcurrent passingTest:^BOOL(UIViewController *obj, NSUInteger idx, BOOL *stop) {
+        return [obj isKindOfClass:cls];
+    }]];
 }
 
-- (NSArray *)viewControllersBeforeAndIncludeClass:(Class)cls
+- (nullable UIViewController *)previousOne:(UIViewController *)viewCtrl
 {
-    NSInteger idx = [self firstViewControllerIndexOfClass:cls];
-    if (idx != NSNotFound) {
-        return [self.viewControllers subarrayWithRange:NSMakeRange(0, idx+1)];
-    }
-    return nil;
+    return [[self previousAll:viewCtrl] lastObject];
 }
 
-- (void)redirectToViewController:(UIViewController *)viewController
+- (nullable UIViewController *)nextOne:(UIViewController *)viewCtrl
 {
-    [self redirectToViewController:viewController animated:YES];
+    return [[self nextAll:viewCtrl] firstObject];
 }
 
-- (void)redirectToViewController:(UIViewController *)viewController animated:(BOOL)animated
+- (nullable NSArray *)previousAll:(UIViewController *)viewCtrl
 {
-    if (!viewController || ![viewController isKindOfClass:[UIViewController class]]) return;
+    if (!viewCtrl) return nil;
+    NSInteger index = [self.viewControllers indexOfObject:viewCtrl];
+    if (index == NSNotFound) return nil;
+    return [self.viewControllers subarrayWithRange:NSMakeRange(0, index)];
+}
+
+- (nullable NSArray *)nextAll:(UIViewController *)viewCtrl
+{
+    if (!viewCtrl) return nil;
+    NSInteger index = [self.viewControllers indexOfObject:viewCtrl];
+    if (index == NSNotFound) return nil;
+    if (viewCtrl == self.topViewController) return @[];
+    NSInteger loc = index+1;
+    NSInteger len = self.viewControllers.count-loc;
+    return [self.viewControllers subarrayWithRange:NSMakeRange(loc, len)];
+}
+
+#pragma mark - Redirect
+- (void)replace:(UIViewController *)viewCtrl to:(UIViewController *)newViewCtrl
+{
+    if (!viewCtrl || !newViewCtrl) return;
     
-    if (self.viewControllers.count == 0) {
-        [self pushViewController:viewController animated:animated];
+    if ([self.viewControllers containsObject:newViewCtrl]) return;
+    
+    NSInteger index = [self.viewControllers indexOfObject:viewCtrl];
+    if (index == NSNotFound) return;
+    
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self.viewControllers];
+    [array replaceObjectAtIndex:index withObject:newViewCtrl];
+    [self setViewControllers:array animated:NO];
+}
+
+- (void)redirectTopViewCtrlTo:(UIViewController *)viewCtrl
+{
+    [self redirectTopViewCtrlTo:viewCtrl animated:YES];
+}
+
+- (void)redirectTopViewCtrlTo:(UIViewController *)viewCtrl animated:(BOOL)animated
+{
+    if ([self.viewControllers containsObject:viewCtrl]) {
+        [self popToViewController:viewCtrl animated:animated];
+    }else{
+        UIViewController *top = self.topViewController;
+        [self yg_push:viewCtrl afterPopOutViewCtrl:top];
+    }
+}
+
+- (void)yg_push:(UIViewController *)viewCtrl afterPopToClass:(Class)popToCls
+{
+    [self yg_push:viewCtrl afterPopToClass:popToCls animated:YES];
+}
+
+- (void)yg_push:(UIViewController *)viewCtrl afterPopToClass:(Class)popToCls animated:(BOOL)animated
+{
+    UIViewController *popToViewCtrl = [self firstOne:popToCls];
+    [self yg_push:viewCtrl afterPopToViewCtrl:popToViewCtrl animated:animated];
+}
+
+- (void)yg_push:(UIViewController *)viewCtrl afterPopToViewCtrl:(UIViewController *)popToViewCtrl
+{
+    [self yg_push:viewCtrl afterPopToViewCtrl:popToViewCtrl animated:YES];
+}
+
+- (void)yg_push:(UIViewController *)viewCtrl afterPopToViewCtrl:(UIViewController *)popToViewCtrl animated:(BOOL)animated
+{
+    if (!viewCtrl) return;
+    if ([self.viewControllers containsObject:viewCtrl]) return;
+    if (!popToViewCtrl) {
+        [self pushViewController:viewCtrl animated:animated];
         return;
     }
     
-    if ([self.viewControllers containsObject:viewController]) {
-        [self popToViewController:viewController animated:animated];
-        return;
+    NSInteger index = [self.viewControllers indexOfObject:popToViewCtrl];
+    if (index == NSNotFound) {
+        [self pushViewController:viewCtrl animated:animated];
+    }else{
+        NSMutableArray *viewCtrls = [NSMutableArray arrayWithArray:[self.viewControllers subarrayWithRange:NSMakeRange(0, index+1)]];
+        [viewCtrls addObject:viewCtrl];
+        [self setViewControllers:viewCtrls animated:animated];
     }
-    
-    NSMutableArray *viewCtrls = [NSMutableArray arrayWithArray:[self.viewControllers subarrayWithRange:NSMakeRange(0, self.viewControllers.count-1)]];
-    [viewCtrls addObject:viewController];
-    [self setViewControllers:viewCtrls animated:animated];
 }
 
-- (void)replaceViewControllr:(UIViewController *)viewController to:(UIViewController *)newViewController
+- (void)yg_push:(UIViewController *)viewCtrl afterPopOutClass:(Class)popOutCls
 {
-    [self replaceViewControllr:viewController to:newViewController animated:YES];
+    [self yg_push:viewCtrl afterPopOutClass:popOutCls animated:YES];
 }
 
-- (void)replaceViewControllr:(UIViewController *)viewController to:(UIViewController *)newViewController animated:(BOOL)animated
+- (void)yg_push:(UIViewController *)viewCtrl afterPopOutClass:(Class)popOutCls animated:(BOOL)animated
 {
-    if (!newViewController || ![viewController isKindOfClass:[UIViewController class]] || ![newViewController isKindOfClass:[UIViewController class]]) {
-        return;
-    }
-    
-    NSArray *viewCtrls = self.viewControllers;
-    NSInteger index = [viewCtrls indexOfObject:viewController];
-    if ( !viewController || index == NSNotFound) {
-        
-        [self pushViewController:newViewController animated:animated];
-        
-        return;
-    }
-    NSMutableArray *array = [NSMutableArray arrayWithArray:viewCtrls];
-    [array replaceObjectAtIndex:index withObject:newViewController];
-    [self setViewControllers:array animated:animated];
+    UIViewController *popOutViewCtrl = [self firstOne:popOutCls];
+    [self yg_push:viewCtrl afterPopOutViewCtrl:popOutViewCtrl animated:animated];
 }
+
+- (void)yg_push:(UIViewController *)viewCtrl afterPopOutViewCtrl:(UIViewController *)popOutViewCtrl
+{
+    [self yg_push:viewCtrl afterPopOutViewCtrl:popOutViewCtrl animated:YES];
+}
+
+- (void)yg_push:(UIViewController *)viewCtrl afterPopOutViewCtrl:(UIViewController *)popOutViewCtrl animated:(BOOL)animated
+{
+    UIViewController *previousViewCtrl = [self previousOne:popOutViewCtrl];
+    [self yg_push:viewCtrl afterPopToViewCtrl:previousViewCtrl animated:animated];
+}
+
 
 @end

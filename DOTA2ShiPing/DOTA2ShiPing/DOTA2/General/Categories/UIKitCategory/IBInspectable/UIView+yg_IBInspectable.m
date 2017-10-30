@@ -35,7 +35,8 @@ static void *verticalZeroConstraintKey = &verticalZeroConstraintKey;
 
 - (UIColor *)borderColor_
 {
-    return [UIColor colorWithCGColor:self.layer.borderColor];
+    CGColorRef c = self.layer.borderColor;
+    return c?[UIColor colorWithCGColor:c]:nil;
 }
 
 - (void)setBorderColor_:(UIColor *)borderColor_
@@ -55,7 +56,8 @@ static void *verticalZeroConstraintKey = &verticalZeroConstraintKey;
 
 - (UIColor *)shadowColor_
 {
-    return [UIColor colorWithCGColor:self.layer.shadowColor];
+    CGColorRef c = self.layer.shadowColor;
+    return c?[UIColor colorWithCGColor:c]:nil;
 }
 
 - (void)setShadowColor_:(UIColor *)shadowColor_
@@ -73,12 +75,12 @@ static void *verticalZeroConstraintKey = &verticalZeroConstraintKey;
     self.layer.shadowRadius = shadowRadius_;
 }
 
-- (CGFloat)shadowOpacity_
+- (float)shadowOpacity_
 {
     return self.layer.shadowOpacity;
 }
 
-- (void)setShadowOpacity_:(CGFloat)shadowOpacity_
+- (void)setShadowOpacity_:(float)shadowOpacity_
 {
     self.layer.shadowOpacity = shadowOpacity_;
 }

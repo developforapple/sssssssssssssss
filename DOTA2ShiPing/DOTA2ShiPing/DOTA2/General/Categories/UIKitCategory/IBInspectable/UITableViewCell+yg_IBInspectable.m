@@ -91,7 +91,7 @@ NO_WARNING_BEGIN(-Wobjc-protocol-method-implementation)
 {
     NSNumber *fontSize = objc_getAssociatedObject(self, actionFontSizeKey);
     if (!fontSize || !(state & UITableViewCellStateShowingDeleteConfirmationMask)) return;
-    UIFont *font = [UIFont systemFontOfSize:fontSize.floatValue];
+    UIFont *font = [UIFont systemFontOfSize:fontSize.doubleValue];
     
     Class cls = NSClassFromString(@"UITableViewCellDeleteConfirmationView");
     UIView *confirmationView;

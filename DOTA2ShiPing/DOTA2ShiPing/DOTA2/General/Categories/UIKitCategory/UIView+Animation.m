@@ -44,6 +44,9 @@ dispatch_semaphore_t _UIViewAnimationSempahore(UIView *view){
 {
     if (!animated){
         self.hidden = hidden;
+        if (completion){
+            completion();
+        }
         return;
     }
     
@@ -64,8 +67,8 @@ dispatch_semaphore_t _UIViewAnimationSempahore(UIView *view){
     }
     if (hidden) {
         CGFloat alpha = self.alpha;
-        [UIView animateWithDuration:.25f animations:^{
-            self.alpha = 0.f;
+        [UIView animateWithDuration:.25 animations:^{
+            self.alpha = 0;
         } completion:^(BOOL finished) {
             self.hidden = YES;
             self.alpha = alpha;
@@ -74,9 +77,9 @@ dispatch_semaphore_t _UIViewAnimationSempahore(UIView *view){
         }];
     }else{
         CGFloat alpha = self.alpha;
-        self.alpha = 0.f;
+        self.alpha = 0;
         self.hidden = NO;
-        [UIView animateWithDuration:.25f animations:^{
+        [UIView animateWithDuration:.25 animations:^{
             self.alpha = alpha;
         } completion:^(BOOL finished) {
             if (completion) completion();
