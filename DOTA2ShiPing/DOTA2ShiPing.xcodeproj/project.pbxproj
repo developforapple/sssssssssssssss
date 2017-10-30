@@ -1158,7 +1158,6 @@
 				2DF9B7311F1361640012950A /* RWDropdownMenu */,
 				2DF9B7381F1361640012950A /* SDCycleScrollView */,
 				2DF9B7481F1361640012950A /* Segment */,
-				2DF9B74B1F1361640012950A /* Share */,
 				2DF9B7501F1361640012950A /* TextField */,
 				2DF9B7561F1361640012950A /* UIImage */,
 				2DF9B7591F1361640012950A /* UIScrollView */,
@@ -1340,45 +1339,6 @@
 			path = Segment;
 			sourceTree = "<group>";
 		};
-		2DF9B74B1F1361640012950A /* Share */ = {
-			isa = PBXGroup;
-			children = (
-				2DF9B74C1F1361640012950A /* Common */,
-				2DF9B74D1F1361640012950A /* Ctrls */,
-				2DF9B74E1F1361640012950A /* Model */,
-				2DF9B74F1F1361640012950A /* View */,
-			);
-			path = Share;
-			sourceTree = "<group>";
-		};
-		2DF9B74C1F1361640012950A /* Common */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		2DF9B74D1F1361640012950A /* Ctrls */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Ctrls;
-			sourceTree = "<group>";
-		};
-		2DF9B74E1F1361640012950A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		2DF9B74F1F1361640012950A /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		2DF9B7501F1361640012950A /* TextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -1422,16 +1382,8 @@
 				2DF9B7611F1361640012950A /* DDWebInspector.m */,
 				2DF9B7621F1361640012950A /* DDWebViewController.h */,
 				2DF9B7631F1361640012950A /* DDWebViewController.m */,
-				2DF9B7641F1361640012950A /* WebBridge */,
 			);
 			path = WebView;
-			sourceTree = "<group>";
-		};
-		2DF9B7641F1361640012950A /* WebBridge */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = WebBridge;
 			sourceTree = "<group>";
 		};
 		2DF9B7651F1361640012950A /* Model */ = {

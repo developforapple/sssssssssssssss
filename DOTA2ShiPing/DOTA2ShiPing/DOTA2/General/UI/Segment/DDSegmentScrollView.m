@@ -41,12 +41,6 @@
 static UIColor *kDefaultNormalColor;
 static UIColor *kDefaultHighlightColor;
 
-+ (void)load
-{
-    [self setDefaultNormalColor:kTextColor];
-    [self setDefaultHighlightColor:kBlueColor];
-}
-
 + (void)setDefaultNormalColor:(UIColor *)color
 {
     kDefaultNormalColor = color;
@@ -77,20 +71,27 @@ static UIColor *kDefaultHighlightColor;
 
 - (void)setup
 {
+    if (!kDefaultNormalColor) {
+        kDefaultNormalColor = kTextColor;
+    }
+    if (!kDefaultHighlightColor) {
+        kDefaultHighlightColor = kBlueColor;
+    }
+    
     self.normalColor = kDefaultNormalColor;
     self.highlightColor = kDefaultHighlightColor;
-    self.normalBorderColor = [self.normalColor colorWithAlphaComponent:.4f];
-    self.highlightBorderColor = [self.highlightColor colorWithAlphaComponent:.4f];
+    self.normalBorderColor = [self.normalColor colorWithAlphaComponent:.4];
+    self.highlightBorderColor = [self.highlightColor colorWithAlphaComponent:.4];
     self.normalFont = [UIFont systemFontOfSize:15];
-    self.highlightScale = 1.4f;
+    self.highlightScale = 1.4;
     
     self.titleList = [NSArray array];
     self.unitList = [NSMutableArray array];
     self.widthList = [NSMutableArray array];
     
-    self.edgeInsets = UIEdgeInsetsMake(0, 20.f, 0.f, 20.f);
+    self.edgeInsets = UIEdgeInsetsMake(0, 20, 0, 20);
     self.indicatorOffset = CGPointZero;
-    self.unitSpacing = 32.f;
+    self.unitSpacing = 32;
     
     self.showIndicator = YES;
     self.showTitleBorder = NO;
@@ -107,7 +108,7 @@ static UIColor *kDefaultHighlightColor;
     
     [self resetUnitsIfNeed];
     
-    self.lineLayer.frame = CGRectMake(0, CGRectGetHeight(self.frame)-.5f, CGRectGetWidth(self.frame), .5f);
+    self.lineLayer.frame = CGRectMake(0, CGRectGetHeight(self.frame)-0.5, CGRectGetWidth(self.frame), .5);
 }
 
 - (UIScrollView *)scrollView
@@ -130,10 +131,10 @@ static UIColor *kDefaultHighlightColor;
 - (UIView *)indicatorView
 {
     if (!_indicatorView) {
-        _indicatorView = [[UIView alloc] initWithFrame:CGRectMake(self.edgeInsets.left+self.indicatorOffset.x, CGRectGetHeight(self.frame)-2+self.indicatorOffset.y, 30.f, 2.f)];
+        _indicatorView = [[UIView alloc] initWithFrame:CGRectMake(self.edgeInsets.left+self.indicatorOffset.x, CGRectGetHeight(self.frame)-2+self.indicatorOffset.y, 30, 2)];
         _indicatorView.backgroundColor = self.highlightColor;
         _indicatorView.layer.masksToBounds = YES;
-        _indicatorView.layer.cornerRadius = 0.5f;
+        _indicatorView.layer.cornerRadius = 0.5;
         [self.scrollView addSubview:_indicatorView];
     }
     return _indicatorView;
@@ -276,23 +277,23 @@ static UIColor *kDefaultHighlightColor;
         CGFloat normalWidth = normalSize.width;
         CGFloat normalHeight = normalSize.height;
         if (_titleHeightDidSet) {
-            normalHeight = ceilf(MAX(self.titleMinimumHeight, normalSize.height));
+            normalHeight = ceil(MAX(self.titleMinimumHeight, normalSize.height));
         }
         
         if (self.showTitleBorder) {
-            normalWidth += (2*15.f);
+            normalWidth += (2*15);
             
             label.layer.masksToBounds = YES;
             label.layer.borderColor = self.normalBorderColor.CGColor;
-            label.layer.borderWidth = .5f;
+            label.layer.borderWidth = .5;
             label.layer.cornerRadius = normalHeight/2;
         }
         
-        label.frame = CGRectMake(offset, (height-normalHeight)/2, ceilf(normalWidth), normalHeight);
+        label.frame = CGRectMake(offset, (height-normalHeight)/2, ceil(normalWidth), normalHeight);
         
-        offset += ceilf(normalWidth);  // offset 加上label的宽度
+        offset += ceil(normalWidth);  // offset 加上label的宽度
         offset += self.unitSpacing;       // offset 加上间距
-        [widths addObject:@(ceilf(normalWidth*self.highlightScale))];
+        [widths addObject:@(ceil(normalWidth*self.highlightScale))];
         
         [self.scrollView addSubview:label];
         [units addObject:label];
@@ -317,7 +318,7 @@ static UIColor *kDefaultHighlightColor;
     if (!self.lineLayer) {
         self.lineLayer = [CALayer layer];
         self.lineLayer.backgroundColor = self.lineViewColor.CGColor;
-        self.lineLayer.frame = CGRectMake(0, CGRectGetHeight(self.frame)-.5f, CGRectGetWidth(self.frame), .5f);
+        self.lineLayer.frame = CGRectMake(0, CGRectGetHeight(self.frame)-.5, CGRectGetWidth(self.frame), .5);
         [self.layer addSublayer:self.lineLayer];
     }
     self.lineLayer.hidden = !self.showLineView;
@@ -329,12 +330,12 @@ static UIColor *kDefaultHighlightColor;
     CGSize scrollSize = self.scrollView.frame.size;
     
     if (self.titleList.count != 0 &&
-        contentSize.width != 0 &&
+        contentSize.width != 0.0 &&
         contentSize.width < scrollSize.width) {
         //标签数量不足。需要重新布局
         
         CGFloat width = scrollSize.width;
-        CGFloat labelTotalWidth = 0.f;
+        CGFloat labelTotalWidth = 0;
         for (UILabel *label in self.unitList) {
             labelTotalWidth += CGRectGetWidth(label.frame);
         }
@@ -375,7 +376,7 @@ static UIColor *kDefaultHighlightColor;
     UILabel *currentlabel = [self unitAtIndex:from];
     UILabel *nextlabel = [self unitAtIndex:to];
     
-    [UIView animateWithDuration:.4f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         currentlabel.textColor = self.normalColor;
         currentlabel.transform = CGAffineTransformIdentity;
         nextlabel.textColor = self.highlightColor;
@@ -397,19 +398,19 @@ static UIColor *kDefaultHighlightColor;
     
     self.indicatorView.hidden = NO;
     
-    CGFloat dValue = 2.f;   //这个值是指示器两端超出label的宽度的差值
+    CGFloat dValue = 2;   //这个值是指示器两端超出label的宽度的差值
     UILabel *label = [self unitAtIndex:index];
     
     CGPoint center = CGPointMake(CGRectGetMidX(label.frame), CGRectGetMidY(label.frame));
-    CGFloat width = [self.widthList[index] floatValue] + dValue * 2;
-    CGFloat x = center.x - width/2.f;
-    CGFloat y = CGRectGetHeight(self.frame) - 2.f;
-    CGFloat height = 2.f;
+    CGFloat width = [self.widthList[index] doubleValue] + dValue * 2;
+    CGFloat x = center.x - width/2;
+    CGFloat y = CGRectGetHeight(self.frame) - 2;
+    CGFloat height = 2;
     
     x += self.indicatorOffset.x;
     y += self.indicatorOffset.y;
     
-    [UIView animateWithDuration:.25f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.indicatorView.frame = CGRectMake(x, y, width, height);
     } completion:^(BOOL finished) {
     }];
@@ -430,7 +431,7 @@ static UIColor *kDefaultHighlightColor;
     CGFloat scrollOffset = self.scrollView.contentOffset.x;
     scrollOffset += offset;
     
-    CGFloat minimumLimit = 0.f;
+    CGFloat minimumLimit = 0;
     CGFloat maximumLimit = self.scrollView.contentSize.width - CGRectGetWidth(self.scrollView.frame);
     
     CGFloat contentOffsetY = self.scrollView.contentOffset.y;
