@@ -2,8 +2,8 @@
 //  ThirdParty.h
 //  CDT
 //
-//  Created by wwwbbat on 2017/6/20.
-//  Copyright © 2017年 ailaidian,Inc. All rights reserved.
+//  Created by WangBo (developforapple@163.com) on 2017/6/20.
+//  Copyright © 2017年 来电科技 All rights reserved.
 //
 
 #ifndef ThirdParty_h
@@ -59,7 +59,11 @@
 // 高德
 #define GaodeSDK_Enabled    YG_SDK_ENABLED     (AMapFoundationKit/AMapFoundationKit.h)
 
+// 谷歌地图
+#define GoogleMap_Enabled   YG_SDK_ENABLED     (GoogleMaps/GoogleMaps.h)
+
 // 谷歌AdMob
 #define AdMobSDK_Enabled    YG_SDK_ENABLED     (GoogleMobileAds/GoogleMobileAds.h)
 
 #endif /* ThirdParty_h */
+

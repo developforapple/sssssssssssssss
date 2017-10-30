@@ -1,7 +1,7 @@
 //
 //  Macro.h
 //
-//  Created by WangBo on 16/5/26.
+//  Created by WangBo (developforapple@163.com) on 16/5/26.
 //  Copyright © 2016年 WangBo. All rights reserved.
 //
 
@@ -40,13 +40,17 @@
     #define Device_Width            (CGRectGetWidth([UIScreen mainScreen].nativeBounds)/Device_Scale)    //设备屏幕宽
     #define Device_Height           (CGRectGetHeight([UIScreen mainScreen].nativeBounds)/Device_Scale)    //设备屏幕高
 
+    //状态栏高度，一般为20，在iPhoneX上是44，隐藏状态栏时为0
+    #define StatusBar_Height        (CGRectGetHeight([UIApplication sharedApplication].statusBarFrame))
+
     #define IS_Phone_UI             (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
     #define IS_Pad_UI               (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
-    #define IS_3_5_INCH_SCREEN      (IS_Phone_UI && ((int)Device_Height<568))
-    #define IS_4_0_INCH_SCREEN      (IS_Phone_UI && ((int)Device_Height==568))
-    #define IS_4_7_INCH_SCREEN      (IS_Phone_UI && ((int)Device_Height==667))
-    #define IS_5_5_INCH_SCREEN      (IS_Phone_UI && ((int)Device_Height>667))
+    #define IS_3_5_INCH_SCREEN      (IS_Phone_UI && ((int)Device_Width==320) && ((int)Device_Height==480))
+    #define IS_4_0_INCH_SCREEN      (IS_Phone_UI && ((int)Device_Width==320) && ((int)Device_Height==568))
+    #define IS_4_7_INCH_SCREEN      (IS_Phone_UI && ((int)Device_Width==375) && ((int)Device_Height==667))
+    #define IS_5_5_INCH_SCREEN      (IS_Phone_UI && ((int)Device_Width==414) && ((int)Device_Height==736))
+    #define IS_5_8_INCH_SCREEN      (IS_Phone_UI && ((int)Device_Width==375) && ((int)Device_Height==812))
 #endif  //APP_UI_MACRO
 
 #pragma mark - Device
@@ -55,9 +59,15 @@
     #define APP_DEVICE_MACRO
 
     #define Device_SysVersionStr    ([UIDevice currentDevice].systemVersion)
-    #define Device_SysVersion       ([UIDevice currentDevice].systemVersion.floatValue)
+    #define Device_SysVersion       ([UIDevice currentDevice].systemVersion.doubleValue)
     #define Device_SysName          ([UIDevice currentDevice].systemName)
     #define Device_Model            ([UIDevice currentDevice].model)
+
+    #if (yg_has_include(FCUUID.h))
+        #define Device_UUID    ([FCUUID uuidForDevice])
+    #else
+        #define Device_UUID @""
+    #endif
 
     #if (yg_has_include(UIDevice+Ext.h))
         #define Device_Hardware     ([UIDevice hardwareName])
@@ -84,18 +94,18 @@
         #define iOS10                   @available(iOS 10.0, *)
         #define iOS11                   @available(iOS 11.0, *)
 
-        #define IS_iOS7                 (Device_SysVersion >= 7.f && (Device_SysVersion < 8.f))
-        #define IS_iOS8                 (Device_SysVersion >= 8.f && (Device_SysVersion < 9.f))
-        #define IS_iOS9                 (Device_SysVersion >= 9.f && (Device_SysVersion < 10.f))
-        #define IS_iOS10                (Device_SysVersion >= 10.f && (Device_SysVersion < 11.f))
-        #define IS_iOS11                (Device_SysVersion >= 11.f && (Device_SysVersion < 12.f))
+        #define IS_iOS7                 (Device_SysVersion >= 7.0 && (Device_SysVersion < 8.0))
+        #define IS_iOS8                 (Device_SysVersion >= 8.0 && (Device_SysVersion < 9.0))
+        #define IS_iOS9                 (Device_SysVersion >= 9.0 && (Device_SysVersion < 10.0))
+        #define IS_iOS10                (Device_SysVersion >= 10.0 && (Device_SysVersion < 11.0))
+        #define IS_iOS11                (Device_SysVersion >= 11.0 && (Device_SysVersion < 12.0))
     #else
         #define iOSLater(v)             (Device_SysVersion >= (float)(v))
-        #define iOS7                    (Device_SysVersion >= 7.f)
-        #define iOS8                    (Device_SysVersion >= 8.f)
-        #define iOS9                    (Device_SysVersion >= 9.f)
-        #define iOS10                   (Device_SysVersion >= 10.f)
-        #define iOS11                   (Device_SysVersion >= 11.f)
+        #define iOS7                    (Device_SysVersion >= 7.0)
+        #define iOS8                    (Device_SysVersion >= 8.0)
+        #define iOS9                    (Device_SysVersion >= 9.0)
+        #define iOS10                   (Device_SysVersion >= 10.0)
+        #define iOS11                   (Device_SysVersion >= 11.0)
 
         #define IS_iOS7                 (iOS7 && !iOS8)
         #define IS_iOS8                 (iOS8 && !iOS9)
@@ -118,6 +128,10 @@
     #define AppBuildVersion     ([AppBundle objectForInfoDictionaryKey:(__bridge NSString *)kCFBundleVersionKey])
     #define AppResource(name)   ([AppBundle pathForResource:name ofType:nil])
 
+    #define AppVersionMajor     ([AppVersion componentsSeparatedByString:@"."].firstObject.integerValue)
+    #define AppVersionMinor     ([AppVersion componentsSeparatedByString:@"."][1].integerValue)
+    #define AppVersionPatch     ([AppVersion componentsSeparatedByString:@"."].lastObject.integerValue)
+
 #endif //APPBUNDLE_MACRO
 
 #pragma mark - Sandbox
@@ -135,6 +149,10 @@
 
 #pragma mark - Convenient
 
+#if !DEBUG_MODE
+    #define NSLog(...)
+#endif
+
 // 其他便利的宏
 #if !defined(APP_CONVENIENT_MACRO)
     #define APP_CONVENIENT_MACRO
@@ -142,8 +160,8 @@
     // 确保在max和min确定的范围内取值
     #define Confine(value,maxV,minV) (MAX((minV),MIN((maxV),(value))))
 
-    #define RGBColor(R,G,B,A) [UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:A]
-    #define RandomColor RGBColor(arc4random_uniform(255),arc4random_uniform(255),arc4random_uniform(255),1)
+    #define RGBColor(R,G,B,A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
+    #define RandomColor RGBColor(arc4random_uniform(256),arc4random_uniform(256),arc4random_uniform(256),1)
 
     #if yg_has_include(UIColor+YYAdd.h)
         #define HEXColor(hex) [UIColor colorWithHexString:hex];
@@ -158,16 +176,10 @@
 #endif //APP_CONVENIENT_MACRO
 
 
-#if !DEBUG_MODE
-    #define NSLog(...)
-#endif
-
-#pragma mark - Other
-
 #if !defined(YYModelDefaultCode) && yg_has_include(YYModel.h)
     // YYModel 实现 NSCoding NSCopying hash euqal的方法
     #define YYModelDefaultCode \
-        -(void)encodeWithCoder:(NSCoder*)aCoder{[self yy_modelEncodeWithCoder:aCoder];}-(id)initWithCoder:(NSCoder*)aDecoder{self=[super init];return [self yy_modelInitWithCoder:aDecoder];}-(id)copyWithZone:(NSZone *)zone{return[self yy_modelCopy];}-(NSUInteger)hash{return[self yy_modelHash];}-(BOOL)isEqual:(id)object{return [self yy_modelIsEqual:object];}
+        -(void)encodeWithCoder:(NSCoder*)aCoder{[self yy_modelEncodeWithCoder:aCoder];}-(id)initWithCoder:(NSCoder*)aDecoder{self=[super init];return [self yy_modelInitWithCoder:aDecoder];}-(id)copyWithZone:(NSZone *)zone{return[self yy_modelCopy]?:nil;}-(NSUInteger)hash{return[self yy_modelHash];}-(BOOL)isEqual:(id)object{return [self yy_modelIsEqual:object];}
 #endif
 
 #if !defined(YGSwizzleMethod)

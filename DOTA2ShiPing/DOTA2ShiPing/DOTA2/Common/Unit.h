@@ -42,3 +42,4 @@
 #define YG_UNIT_MW_H        YG_UNIT("发电量","兆瓦时")
 
 #endif /* Unit_h */
+

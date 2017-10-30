@@ -909,6 +909,7 @@
 			isa = PBXGroup;
 			children = (
 				2DF9B6501F1361640012950A /* Config.h */,
+				2DF9B65B1F1361640012950A /* ConfigDefines.h */,
 				2DF9B6511F1361640012950A /* Config_Appearance.h */,
 				2DF9B6521F1361640012950A /* Config_Appearance.m */,
 				2DF9B6531F1361640012950A /* Config_Archive.h */,
@@ -919,7 +920,6 @@
 				2DF9B6581F1361640012950A /* Config_Network.m */,
 				2DF9B6591F1361640012950A /* Config_ThirdParty.h */,
 				2DF9B65A1F1361640012950A /* Config_ThirdParty.m */,
-				2DF9B65B1F1361640012950A /* ConfigDefines.h */,
 			);
 			path = Config;
 			sourceTree = "<group>";
