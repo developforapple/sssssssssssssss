@@ -12,11 +12,11 @@
 #import "NSObject+URLSessionTask.h"
 #import "ReactiveObjC.h"
 
-#import "DDTaskBenchmarkTest.h"
-
 #pragma mark - RequestManager
 @interface DDRequestManager ()
 @property (strong, readwrite, nonatomic) AFHTTPSessionManager *manager;
+@property (copy, nonatomic) DDRespSucHandler sucHandler;
+@property (copy, nonatomic) DDRespFailHandler failHandler;
 @end
 
 @implementation DDRequestManager
@@ -27,7 +27,7 @@
     
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
-    config.timeoutIntervalForRequest = 20.f;
+    config.timeoutIntervalForRequest = 20;
     config.HTTPShouldSetCookies = NO;
     config.HTTPCookieAcceptPolicy = NSHTTPCookieAcceptPolicyNever;
 #if DEBUG_MODE
@@ -40,7 +40,11 @@
     manager.manager = afn;
     
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-    [[AFNetworkActivityIndicatorManager sharedManager] setActivationDelay:0.4f];
+    [[AFNetworkActivityIndicatorManager sharedManager] setActivationDelay:0.4];
+    
+    [manager setSuccessResponseHandler:nil];
+    [manager setFailureResponseHandler:nil];
+    
     return manager;
 }
 
@@ -55,6 +59,44 @@
     dict[@"network"] = self.manager.reachabilityManager.reachableViaWWAN?@"Cellular":(self.manager.reachabilityManager.reachableViaWiFi?@"WiFi":@"Unknown");
     return dict;
 }
+
+- (void)setSuccessResponseHandler:(DDRespSucHandler)sucHandler
+{
+    if (sucHandler) {
+        self.sucHandler = sucHandler;
+    }else{
+        self.sucHandler = ^(DDTASK task, id object, DDRespSucBlock sucCallback, DDRespFailBlock failCallback) {
+            if ([task task_isCanceled] || !object) return;
+            DDResponse *response = [DDResponse response:task.response object:object];
+            RunOnMainQueue(^{
+                if (response.suc && sucCallback) {
+                    sucCallback(task,response);
+                }else if (!response.suc && failCallback){
+                    failCallback(task,response);
+                }
+                [SESSION checkAccessTokenValid:response.result];
+            });
+        };
+    }
+}
+
+- (void)setFailureResponseHandler:(DDRespFailHandler)failHandler
+{
+    if (failHandler) {
+        self.failHandler = failHandler;
+    }else{
+        self.failHandler = ^(DDTASK task, NSError *err, DDRespFailBlock failCallback) {
+            if ([task task_isCanceled]) return;
+            if (failCallback) {
+                DDResponse *response = [DDResponse response:task.response error:err];
+                RunOnMainQueue(^{
+                    failCallback(task,response);
+                });
+            }
+        };
+    }
+}
+
 @end
 
 #pragma mark - Request
@@ -63,25 +105,10 @@
 - (DDTASK)request:(int)method :(NSString *)uri :(NSDictionary *)param :(NSDictionary *)data :(DDRespSucBlock)respSuc :(DDRespFailBlock)respFail
 {
     void (^successHandler)(DDTASK, id) = ^(DDTASK task, id object){
-        if ([task task_isCanceled] || !object) return;
-        DDResponse *response = [DDResponse response:task.response object:object];
-        RunOnMainQueue(^{
-            if (response.suc && respSuc) {
-                respSuc(task,response);
-            }else if (!response.suc && respFail){
-                respFail(task,response);
-            }
-            [SESSION checkAccessTokenValid:response.result];
-        });
+        self.sucHandler(task, object, respSuc, respFail);
     };
     void (^failureHandler)(DDTASK, NSError *) = ^(DDTASK task, NSError *error){
-        if ([task task_isCanceled]) return;
-        if (respFail) {
-            DDResponse *response = [DDResponse response:task.response error:error];
-            RunOnMainQueue(^{
-                respFail(task,response);
-            });
-        }
+        self.failHandler(task, error, respFail);
     };
     
     NSMutableDictionary *dict = [self presetParameters];
@@ -94,7 +121,8 @@
             if (data && data.count > 0) {
                 task = [self.manager POST:uri parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                     for (NSString *key in data) {
-                        [formData appendPartWithFormData:data[key] name:key];
+                        id v = data[key];
+                        [formData appendPartWithFormData:v name:key];
                     }
                 } progress:nil success:successHandler failure:failureHandler];
             }else{

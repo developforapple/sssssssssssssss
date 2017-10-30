@@ -1,7 +1,7 @@
 //
 //  DDError.h
 //
-//  Created by WangBo on 2017/4/1.
+//  Created by WangBo (developforapple@163.com) on 2017/4/1.
 //  Copyright © 2017年 WangBo. All rights reserved.
 //
 

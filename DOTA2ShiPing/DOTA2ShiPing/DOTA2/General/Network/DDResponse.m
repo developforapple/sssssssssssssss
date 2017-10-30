@@ -1,14 +1,13 @@
 //
 //  DDResponse.m
 //
-//  Created by WangBo on 2017/4/1.
+//  Created by WangBo (developforapple@163.com) on 2017/4/1.
 //  Copyright © 2017年 WangBo. All rights reserved.
 //
 
 #import "DDResponse.h"
 
 @interface DDResponse ()
-@property (assign, readwrite, nonatomic) BOOL suc;
 @property (strong, readwrite, nonatomic) DDError *error;
 @end
 

@@ -26,6 +26,25 @@ typedef void (^DDRespSucBlock)(DDTASK task, DDResponse *resp);
 typedef void (^DDRespFailBlock)(DDTASK task, DDResponse *resp);
 
 /**
+ handler 处理 AF 的success回调。handler将AF返回的内容封装成DDResponse返回给外部。
+
+ @param task 当前任务
+ @param object AF返回的响应数据
+ @param sucCallback handler判断resp的内容为有效时，使用此block回调给外部
+ @param failCallback handler判断resp的内容为无效时，使用此block回调给外部
+ */
+typedef void (^DDRespSucHandler)(DDTASK task, id object, DDRespSucBlock sucCallback, DDRespFailBlock failCallback);
+
+/**
+ handler 处理 AF 的failure回调。handler将AF返回的错误信息封装成DDResponse返回给外部。
+
+ @param task 当前任务
+ @param err AF的回调
+ @param failCallback 将封装的DDResponse回传给外部调用者
+ */
+typedef void (^DDRespFailHandler)(DDTASK task, NSError *err, DDRespFailBlock failCallback);
+
+/**
  进度block
  @param p 进度
  */
@@ -49,6 +68,20 @@ typedef void (^DDProgressBlock)(NSProgress *p);
  @return 可变的字典
  */
 - (NSMutableDictionary *)presetParameters;
+
+/**
+ 设置处理返回成功的block。不做设置，或者设置为nil时，将会使用默认的block
+
+ @param sucHandler sucHandler description
+ */
+- (void)setSuccessResponseHandler:(DDRespSucHandler)sucHandler;
+
+/**
+ 设置处理返回失败的block。不做设置，或者设置为nil时，将会使用默认的block
+
+ @param failHandler failHandler description
+ */
+- (void)setFailureResponseHandler:(DDRespFailHandler)failHandler;
 
 @end
 

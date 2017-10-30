@@ -1,7 +1,7 @@
 //
 //  DDError.m
 //
-//  Created by WangBo on 2017/4/1.
+//  Created by WangBo (developforapple@163.com) on 2017/4/1.
 //  Copyright © 2017年 WangBo. All rights reserved.
 //
 
@@ -15,7 +15,7 @@
     DDError *error = [DDError new];
     error.error = err;
     error.errcode = err.code;
-    error.msg = [NSString stringWithFormat:@"网络错误 code:%ld",(long)err.code];
+    error.msg = [NSString stringWithFormat:NSLocalizedString(@"网络错误 code:%ld", nil),(long)err.code];
     NSLog(@"%@",err);
     return error;
 }
@@ -31,7 +31,7 @@
     NSString *code = response[@"errcode"];
     DDError *error = [DDError new];
     error.errcode = code?[code integerValue]:result;
-    error.msg = response[@"msg"]?:[NSString stringWithFormat:@"网络错误 code:%@",code];
+    error.msg = response[@"msg"]?:[NSString stringWithFormat:NSLocalizedString(@"网络错误 code:%@",nil),code];
     return error;
 }
 

@@ -1,7 +1,7 @@
 //
 //  DDResponse.h
 //
-//  Created by WangBo on 2017/4/1.
+//  Created by WangBo (developforapple@163.com) on 2017/4/1.
 //  Copyright © 2017年 WangBo. All rights reserved.
 //
 
@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, DDRespResult) {
 /**
  响应是否有效。出现错误时为NO。没有错误，服务器返回result为fail时也为NO。其余为YES。
  */
-@property (assign, readonly, nonatomic) BOOL suc;
+@property (assign, nonatomic) BOOL suc;
 
 /**
  当出现网络问题或者数据解析问题时，AF返回的错误信息。

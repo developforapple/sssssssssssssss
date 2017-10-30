@@ -2,8 +2,8 @@
 //  Network.h
 //  CDT
 //
-//  Created by wwwbbat on 2017/6/29.
-//  Copyright © 2017年 ailaidian,Inc. All rights reserved.
+//  Created by WangBo (developforapple@163.com) on 2017/6/29.
+//  Copyright © 2017年 来电科技 All rights reserved.
 //
 
 #ifndef Network_h

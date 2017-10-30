@@ -2,8 +2,8 @@
 //  CDTRequestManager.h
 //  CDT
 //
-//  Created by wwwbbat on 2017/6/29.
-//  Copyright © 2017年 ailaidian,Inc. All rights reserved.
+//  Created by WangBo (developforapple@163.com) on 2017/6/29.
+//  Copyright © 2017年 来电科技 All rights reserved.
 //
 
 #import "DDRequestManager.h"
@@ -50,6 +50,7 @@
                     success:(DDRespSucBlock)suc
                     failure:(DDRespFailBlock)fail;
 
+
 #pragma mark - Nearby
 /**
  获取经纬度附近的来电列表
@@ -85,6 +86,32 @@
                    success:(DDRespSucBlock)suc
                    failure:(DDRespFailBlock)fail;
 
+/**
+ 获取网点详情
+
+ @param sid 网点id
+ @param suc suc description
+ @param fail fail description
+ @return return value description
+ */
+- (DDTASK)fetchShopDetail:(NSInteger)sid
+                  success:(DDRespSucBlock)suc
+                  failure:(DDRespFailBlock)fail YG_AVAILABLE(4.1.2,"新增");
+
+/**
+ 获取终端相关图片
+
+ @param terminal 终端id
+ @param terminalType 终端类型。0柜机 1桌面宝
+ @param suc suc description
+ @param fail fail description
+ @return return value description
+ */
+- (DDTASK)fetchTerminalPictures:(NSString *)terminal
+                           type:(int)terminalType
+                        success:(DDRespSucBlock)suc
+                        failure:(DDRespFailBlock)fail YG_AVAILABLE(4.1.2,"新增");
+
 #pragma mark - logic
 
 /**
@@ -118,12 +145,14 @@
  
  @param terminalId 终端id
  @param cdbType 0 不带线 1 iPhone线 2 安卓线 3 typeC线
+ @param encryptedLevel 加密后的当前电量。使用AES加密。原始字符串为 50_xxx 50为电量。xxx为随机1-3位字符串。
  @param suc suc description
  @param fail fail description
  @return return value description
  */
 - (DDTASK)createRentTask:(NSString *)terminalId
                  cdbType:(int)cdbType
+            batteryLevel:(NSString *)encryptedLevel
                  success:(DDRespSucBlock)suc
                  failure:(DDRespFailBlock)fail;
 
@@ -154,6 +183,54 @@
 - (DDTASK)checkTask:(NSInteger )taskId
             success:(DDRespSucBlock)suc
             failure:(DDRespFailBlock)fail;
+
+/**
+ 获取当前正在进行中的订单
+
+ @param suc suc description
+ @param fail fail description
+ @return return value description
+ */
+- (DDTASK)fetchCurrentRecord:(DDRespSucBlock)suc
+                     failure:(DDRespFailBlock)fail;
+
+/**
+ 我的充电宝记录
+
+ @param type 1 已借没还 2 已借已还 3 已购买
+ @param suc suc description
+ @param fail fail description
+ @return return value description
+ */
+- (DDTASK)fetchBorrowedList:(NSInteger)type
+                    success:(DDRespSucBlock)suc
+                    failure:(DDRespFailBlock)fail;
+
+/**
+ 归还充电宝
+
+ @param cdbId 充电宝id
+ @param terminal 终端id
+ @param suc suc description
+ @param fail fail description
+ @return return value description
+ */
+- (DDTASK)returnCDB:(NSString *)cdbId
+           terminal:(NSString *)terminal
+            success:(DDRespSucBlock)suc
+            failure:(DDRespFailBlock)fail;
+
+/**
+ 归还充电宝任务结果查询
+
+ @param taskId 归还充电宝任务id
+ @param suc suc description
+ @param fail fail description
+ @return return value description
+ */
+- (DDTASK)checkReturnTask:(NSString *)taskId
+                  success:(DDRespSucBlock)suc
+                  failure:(DDRespFailBlock)fail;
 
 #pragma mark - User
 
@@ -219,11 +296,13 @@
 /**
  获取交易明细列表
  
+ @param sortId sortId 分页的排序id
  @param suc suc description
  @param fail fail description
  @return return value description
  */
-- (DDTASK)fetchTradeList:(DDRespSucBlock)suc
+- (DDTASK)fetchTradeList:(NSNumber *)sortId
+                 success:(DDRespSucBlock)suc
                  failure:(DDRespFailBlock)fail;
 
 /**
@@ -278,7 +357,33 @@
                         success:(DDRespSucBlock)suc
                         failure:(DDRespFailBlock)fail;
 
+/**
+ 获取终端广告
+
+ @param terminal 终端id
+ @param suc suc description
+ @param fail fail description
+ @return return value description
+ */
+- (DDTASK)fetchTerminalAD:(NSString *)terminal
+                  success:(DDRespSucBlock)suc
+                  failure:(DDRespFailBlock)fail;
+
 #pragma mark - Login
+
+/**
+ 使用微信登录
+
+ @param wechatCode 微信授权后的code
+ @param uuid uuid
+ @param suc suc description
+ @param fail fail description
+ @return return value description
+ */
+- (DDTASK)wechatAuthLogin:(NSString *)wechatCode
+                     uuid:(NSString *)uuid
+                  success:(DDRespSucBlock)suc
+                  failure:(DDRespFailBlock)fail;
 
 /**
  上传微信登录信息

@@ -101,7 +101,6 @@
 		2DF9B84D1F1361640012950A /* DDError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6C61F1361640012950A /* DDError.m */; };
 		2DF9B84E1F1361640012950A /* DDRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6C81F1361640012950A /* DDRequestManager.m */; };
 		2DF9B84F1F1361640012950A /* DDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6CA1F1361640012950A /* DDResponse.m */; };
-		2DF9B8501F1361640012950A /* DDTaskBenchmarkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6CC1F1361640012950A /* DDTaskBenchmarkTest.m */; };
 		2DF9B8511F1361640012950A /* NSObject+URLSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6CF1F1361640012950A /* NSObject+URLSessionTask.m */; };
 		2DF9B8521F1361640012950A /* ZMBAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6D11F1361640012950A /* ZMBAPI.m */; };
 		2DF9B8531F1361640012950A /* YGPaymentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6D41F1361640012950A /* YGPaymentResult.m */; };
@@ -425,8 +424,6 @@
 		2DF9B6C81F1361640012950A /* DDRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDRequestManager.m; sourceTree = "<group>"; };
 		2DF9B6C91F1361640012950A /* DDResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDResponse.h; sourceTree = "<group>"; };
 		2DF9B6CA1F1361640012950A /* DDResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDResponse.m; sourceTree = "<group>"; };
-		2DF9B6CB1F1361640012950A /* DDTaskBenchmarkTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTaskBenchmarkTest.h; sourceTree = "<group>"; };
-		2DF9B6CC1F1361640012950A /* DDTaskBenchmarkTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTaskBenchmarkTest.m; sourceTree = "<group>"; };
 		2DF9B6CD1F1361640012950A /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
 		2DF9B6CE1F1361640012950A /* NSObject+URLSessionTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLSessionTask.h"; sourceTree = "<group>"; };
 		2DF9B6CF1F1361640012950A /* NSObject+URLSessionTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLSessionTask.m"; sourceTree = "<group>"; };
@@ -1102,8 +1099,6 @@
 				2DF9B6C81F1361640012950A /* DDRequestManager.m */,
 				2DF9B6C91F1361640012950A /* DDResponse.h */,
 				2DF9B6CA1F1361640012950A /* DDResponse.m */,
-				2DF9B6CB1F1361640012950A /* DDTaskBenchmarkTest.h */,
-				2DF9B6CC1F1361640012950A /* DDTaskBenchmarkTest.m */,
 				2DF9B6CD1F1361640012950A /* Network.h */,
 				2DF9B6CE1F1361640012950A /* NSObject+URLSessionTask.h */,
 				2DF9B6CF1F1361640012950A /* NSObject+URLSessionTask.m */,
@@ -2328,7 +2323,6 @@
 				2DF9B8401F1361640012950A /* UIAlertController+Convenience.m in Sources */,
 				2DF9B8C61F1361640012950A /* SPSettingUpgradeVC.m in Sources */,
 				2DF9B8951F1361640012950A /* SPItemSets.m in Sources */,
-				2DF9B8501F1361640012950A /* DDTaskBenchmarkTest.m in Sources */,
 				2DF9B8BF1F1361640012950A /* SPSettingDiskCacheVC.m in Sources */,
 				2DF9B89E1F1361640012950A /* SPItemCell.m in Sources */,
 				2DF9B89A1F1361640012950A /* YGBaseViewCtrl.m in Sources */,

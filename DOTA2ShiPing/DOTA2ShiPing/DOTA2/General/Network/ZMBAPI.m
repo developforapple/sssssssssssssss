@@ -2,8 +2,8 @@
 //  ZMBRequestManager.m
 //  CDT
 //
-//  Created by wwwbbat on 2017/6/29.
-//  Copyright © 2017年 ailaidian,Inc. All rights reserved.
+//  Created by WangBo (developforapple@163.com) on 2017/6/29.
+//  Copyright © 2017年 来电科技 All rights reserved.
 //
 
 #import "ZMBAPI.h"
@@ -90,11 +90,13 @@
 }
 
 - (DDTASK)fetchZMBRecord:(NSString *)recordId
+                terminal:(NSString *)terminalId
                  success:(DDRespSucBlock)suc
                  failure:(DDRespFailBlock)fail
 {
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"chargeHistoryId"] = recordId;
+    param[@"terminal"] = terminalId;
     return DDPOST(@"ldb/ldbChargeInfoGet", param, suc, fail);
 }
 

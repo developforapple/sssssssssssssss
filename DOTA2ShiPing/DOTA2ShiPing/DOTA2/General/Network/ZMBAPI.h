@@ -2,8 +2,8 @@
 //  ZMBRequestManager.h
 //  CDT
 //
-//  Created by wwwbbat on 2017/6/29.
-//  Copyright © 2017年 ailaidian,Inc. All rights reserved.
+//  Created by WangBo (developforapple@163.com) on 2017/6/29.
+//  Copyright © 2017年 来电科技 All rights reserved.
 //
 
 #import "DDRequestManager.h"
@@ -107,12 +107,14 @@
 /**
  获取桌面宝充电记录详情
  
- @param recordId 记录id
+ @param recordId 记录id。不传recordId返回上一个记录。
+ @param terminalId 当前桌面宝id，如果有的话。
  @param suc suc description
  @param fail fail description
  @return return value description
  */
 - (DDTASK)fetchZMBRecord:(NSString *)recordId
+                terminal:(NSString *)terminalId
                  success:(DDRespSucBlock)suc
                  failure:(DDRespFailBlock)fail;
 
@@ -120,7 +122,7 @@
  构建桌面宝支付数据
  
  @param channel 支付平台
- @param bizId  桌面宝订单id
+ @param bizId  桌面宝订单id。先付款的逻辑中，bizId传nil
  @param amount 金额，单位分
  @param suc suc description
  @param fail fail description

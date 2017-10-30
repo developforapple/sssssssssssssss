@@ -2,8 +2,8 @@
 //  CDTRequestManager.m
 //  CDT
 //
-//  Created by wwwbbat on 2017/6/29.
-//  Copyright © 2017年 ailaidian,Inc. All rights reserved.
+//  Created by WangBo (developforapple@163.com) on 2017/6/29.
+//  Copyright © 2017年 来电科技 All rights reserved.
 //
 
 #import "API.h"
@@ -16,7 +16,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         api = [CDTRequestManager managerWithHost:kAPIURL];
-        NSLog(@"");
     });
     return api;
 }
@@ -60,7 +59,8 @@
     param[@"lng"] = @(lon);
     param[@"type"] = @(itemType);
     param[@"sortTime"] = @(sortTime);
-    return DDPOST(@"cdt/nearbyGetList", param, suc, fail);
+    param[@"limit"] = @20;
+    return DDPOST(@"cdt/nearbyGetList_v2", param, suc, fail);
 }
 
 - (DDTASK)searchNearbyList:(NSString *)keywords
@@ -73,7 +73,27 @@
     param[@"keyword"] = keywords;
     param[@"lat"] = lat;
     param[@"lng"] = lon;
-    return DDPOST(@"cdt/searchNearbyList", param, suc, fail);
+    return DDPOST(@"cdt/searchNearbyList_v2", param, suc, fail);
+}
+
+- (DDTASK)fetchShopDetail:(NSInteger)sid
+                  success:(DDRespSucBlock)suc
+                  failure:(DDRespFailBlock)fail
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"sid"] = @(sid);
+    return DDPOST(@"cdt/shopDetailsGet", param, suc, fail);
+}
+
+- (DDTASK)fetchTerminalPictures:(NSString *)terminal
+                           type:(int)terminalType
+                        success:(DDRespSucBlock)suc
+                        failure:(DDRespFailBlock)fail
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"terminal"] = terminal;
+    param[@"terminalType"] = @(terminalType);
+    return DDPOST(@"cdt/shopPomotionPhotoGet", param, suc, fail);
 }
 
 #pragma mark - logic
@@ -100,12 +120,14 @@
 
 - (DDTASK)createRentTask:(NSString *)terminalId
                  cdbType:(int)cdbType
+            batteryLevel:(NSString *)encryptedLevel
                  success:(DDRespSucBlock)suc
                  failure:(DDRespFailBlock)fail
 {
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"terminal"] = terminalId;
     param[@"cdbType"] = @(cdbType);
+    param[@"batteryLevel"] = encryptedLevel;
     return DDPOST(@"cdt/taskAdd", param, suc, fail);
 }
 
@@ -131,6 +153,43 @@
     return DDPOST(@"cdt/webTaskGet", param, suc, fail);
 }
 
+- (DDTASK)fetchCurrentRecord:(DDRespSucBlock)suc
+                     failure:(DDRespFailBlock)fail
+{
+    return DDPOST(@"cdt/checkHistoryInfoGet", nil, suc, fail);
+}
+
+- (DDTASK)fetchBorrowedList:(NSInteger)type
+                    success:(DDRespSucBlock)suc
+                    failure:(DDRespFailBlock)fail
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"type"] = @(type);
+    return DDPOST(@"cdt/checkHistoryGet", param, suc, fail);
+}
+
+- (DDTASK)returnCDB:(NSString *)cdbId
+           terminal:(NSString *)terminal
+            success:(DDRespSucBlock)suc
+            failure:(DDRespFailBlock)fail
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"cdbID"] = cdbId;
+    param[@"terminal"] = terminal;
+    param[@"platform"] = @"iOS";
+    return DDPOST(@"cdt/taskAddRecycle", param, suc, fail);
+}
+
+- (DDTASK)checkReturnTask:(NSString *)taskId
+                  success:(DDRespSucBlock)suc
+                  failure:(DDRespFailBlock)fail
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"taskId"] = taskId;
+    param[@"platform"] = @"iOS";
+    return DDPOST(@"cdt/taskGetRecycle", param, suc, fail);
+}
+
 #pragma mark - User
 - (DDTASK)fetchUserInfo:(DDRespSucBlock)suc
                 failure:(DDRespFailBlock)fail
@@ -141,7 +200,7 @@
 - (DDTASK)fetchCouponList:(DDRespSucBlock)suc
                   failure:(DDRespFailBlock)fail
 {
-    return DDPOST(@"cdt/webTicketGet", nil, suc, fail);
+    return DDPOST(@"cdt/webTicketGet_v2", nil, suc, fail);
 }
 
 - (DDTASK)addCoupon:(NSInteger)event
@@ -162,6 +221,7 @@
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"count"] = @(kDefaultPageSize);
     param[@"sortTime"] = sortId;
+    param[@"version"] = @2;
     return DDPOST(@"cdt/webCheckHistoryGet", param, suc, fail);
 }
 
@@ -175,10 +235,14 @@
     return DDPOST(@"cdt/webBuyLineHistoryGet", param, suc, fail);
 }
 
-- (DDTASK)fetchTradeList:(DDRespSucBlock)suc
+- (DDTASK)fetchTradeList:(NSNumber *)sortId
+                 success:(DDRespSucBlock)suc
                  failure:(DDRespFailBlock)fail
 {
-    return DDPOST(@"cdt/webTransactionRecordListGet", nil, suc, fail);
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"count"] = @(kDefaultPageSize);
+    param[@"sortTime"] = sortId;
+    return DDPOST(@"cdt/webTransactionRecordListGet", param, suc, fail);
 }
 
 - (DDTASK)fetchTradeDetail:(NSString *)tradeId
@@ -221,7 +285,27 @@
     return DDPOST(@"cdt/cashPickup", param, suc, fail);
 }
 
+- (DDTASK)fetchTerminalAD:(NSString *)terminal
+                  success:(DDRespSucBlock)suc
+                  failure:(DDRespFailBlock)fail
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"terminal"] = terminal;
+    return DDPOST(@"cdt/redPacketAdListGet", param, suc, fail);
+}
+
 #pragma mark - Login
+- (DDTASK)wechatAuthLogin:(NSString *)wechatCode
+                     uuid:(NSString *)uuid
+                  success:(DDRespSucBlock)suc
+                  failure:(DDRespFailBlock)fail
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"code"] = wechatCode;
+    param[@"uuId"] = uuid;
+    return DDPOST(@"cdt/wxAPPAuthCode", param, suc, fail);
+}
+
 - (DDTASK)loginUsingWechat:(NSDictionary *)info
                    success:(DDRespSucBlock)suc
                    failure:(DDRespFailBlock)fail
