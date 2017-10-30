@@ -8,6 +8,7 @@
 
 #import "YGBaseViewCtrl.h"
 #import "SPItemSearchOption.h"
+#import "SPItemSearchDelegate.h"
 
 @interface SPItemSearchOptionViewCtrl : YGBaseViewCtrl
 
