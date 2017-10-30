@@ -108,22 +108,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DOTA2ShiPing/DOTA2/Module/Main/Ctrls/SPItemEntranceVC.m"
-            timestampString = "524556638.05431"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "DOTA2ShiPing/DOTA2/General/API/SPSteamAPI.m"
             timestampString = "524557682.780967"
             startingColumnNumber = "9223372036854775807"
