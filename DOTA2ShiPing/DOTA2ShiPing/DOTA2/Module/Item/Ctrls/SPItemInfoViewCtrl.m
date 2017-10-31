@@ -19,6 +19,7 @@
 #import "SPGamepediaAPI.h"
 #import "SDCycleScrollView.h"
 #import "SPGamepediaImage.h"
+#import "MXParallaxHeader.h"
 
 @interface SPItemInfoViewCtrl ()
 
@@ -32,7 +33,7 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (weak, nonatomic) IBOutlet SDCycleScrollView *imagePanel;
+@property (strong, nonatomic) IBOutlet SDCycleScrollView *imagePanel;
 @property (strong, nonatomic) CAGradientLayer *imagePanelBgLayer;
 
 @property (weak, nonatomic) IBOutlet UIView *titlePanel;
@@ -93,6 +94,7 @@
 
 - (void)loadData
 {
+    
     SPHero *hero = [[SPDataManager shared] heroesOfNames:[self.item.heroes componentsSeparatedByString:@"|"]].firstObject;
     SPItemRarity *rarity = [[SPDataManager shared] rarityOfName:self.item.item_rarity];
     SPItemPrefab *prefab = [[SPDataManager shared] prefabOfName:self.item.prefab];
@@ -125,8 +127,15 @@
 
 - (void)initUI
 {
+    self.scrollView.automaticallyAdjustsScrollViewInsets = self.automaticallyAdjustsScrollViewInsets;
+    
+    self.scrollView.parallaxHeader.view = self.imagePanel;
+    self.scrollView.parallaxHeader.height = 2.0 / 3.0 * Device_Width;
+    self.scrollView.parallaxHeader.mode = MXParallaxHeaderModeFill;
+    self.scrollView.parallaxHeader.minimumHeight = 20.0;
+    
     self.imagePanel.autoScrollTimeInterval = 1.5f;
-    self.imagePanel.bannerImageViewContentMode = UIViewContentModeScaleAspectFit;
+    self.imagePanel.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     self.imagePanel.showPageControl = YES;
     self.imagePanel.placeholderImage = nil;
     self.imagePanel.autoScroll = YES;

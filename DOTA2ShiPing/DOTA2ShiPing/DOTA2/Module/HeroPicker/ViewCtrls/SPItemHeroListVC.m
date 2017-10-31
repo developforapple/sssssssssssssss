@@ -30,8 +30,6 @@
 
 - (void)initUI
 {
-    self.collectionView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);
-    
     CGFloat width = 0.f;
     CGFloat height = 0.f;
     UIEdgeInsets sectionInset;

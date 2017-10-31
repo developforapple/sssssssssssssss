@@ -15,6 +15,7 @@
 {
     UIColor *_itemColor;
     NSString *_nameWithQualtity;
+    NSString *_enNameWithQuality;
 }
 @end
 
@@ -72,6 +73,21 @@
         }
     }
     return _nameWithQualtity;
+}
+
+- (NSString *)enNameWithQuality
+{
+    if (!_enNameWithQuality) {
+        NSString *name = self.name;
+        if ([self.item_quality isEqualToString:@"base"] ||
+            [self.item_quality isEqualToString:@"unique"]) {
+            _enNameWithQuality = name;
+        }else{
+            SPItemQuality *qualtity = [[SPDataManager shared] qualityOfName:self.item_quality];
+            _enNameWithQuality = [NSString stringWithFormat:@"%@ %@",qualtity.name,name];
+        }
+    }
+    return _enNameWithQuality;
 }
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic

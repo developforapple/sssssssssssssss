@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '9E804CD5D65CB6D995BFFC2D2E2DE6F8'
-               BlueprintName = 'SAMKeychain'
+               BlueprintIdentifier = 'E75E5BAC0FE6E4C6A5E5F95EA6807F8A'
+               BlueprintName = 'MXParallaxHeader'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SAMKeychain.framework'>
+               BuildableName = 'MXParallaxHeader.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

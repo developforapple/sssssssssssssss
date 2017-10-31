@@ -7,11 +7,11 @@
 //
 
 #import "SPItemsDetailViewCtrl.h"
-#import "SPItemInfoViewCtrl.h"
+#import "SPItemViewCtrl.h"
 #import "SPItem.h"
 
 @interface SPItemsDetailViewCtrl ()
-@property (strong, nonatomic) SPItemInfoViewCtrl *infoViewCtrl;
+@property (strong, nonatomic) SPItemViewCtrl *infoViewCtrl;
 @end
 
 @implementation SPItemsDetailViewCtrl
@@ -19,8 +19,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
 }
 
 - (void)setItem:(SPItem *)item

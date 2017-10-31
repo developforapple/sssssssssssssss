@@ -62,6 +62,7 @@ PODS:
   - libwebp/webp (0.6.0)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.15)
+  - MXParallaxHeader (0.6.1)
   - PinYin4Objc (1.1.1)
   - pop (1.0.10)
   - ReactiveObjC (3.0.0)
@@ -100,12 +101,13 @@ DEPENDENCIES:
   - JZNavigationExtension (~> 1.5.0.1)
   - MBProgressHUD
   - MJRefresh
+  - MXParallaxHeader
   - PinYin4Objc (~> 1.1.1)
   - pop
   - ReactiveObjC
   - SAMKeychain
-  - SDWebImage/GIF (~> 4.1.0)
-  - SDWebImage/WebP (~> 4.1.0)
+  - SDWebImage/GIF
+  - SDWebImage/WebP
   - SSZipArchive
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
   - YYCategories
@@ -150,6 +152,7 @@ SPEC CHECKSUMS:
   libwebp: 1d5a07c2eb97f9c31bd5f154bb82efc0ea67c6a2
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: 9af70f5f9327a2cf87f0fb5929f35fcc2fa638ea
+  MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   PinYin4Objc: 3fa9673610368330e2dfb688b1d19a35c3930a78
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
@@ -160,6 +163,6 @@ SPEC CHECKSUMS:
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: a1cab2fcb1fc1632c622233814f578e5be2d95f3
+PODFILE CHECKSUM: ffb80fcd28f586705b2d87ff9723547a30c37e3c
 
 COCOAPODS: 1.3.1

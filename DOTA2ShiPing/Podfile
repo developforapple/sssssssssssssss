@@ -41,3 +41,5 @@ pod 'JBChartView' , :git => 'https://github.com/developforapple/JBChartView.git'
 #pod 'ZLSwipeableViewSwift', :git => 'https://github.com/zhxnlai/ZLSwipeableViewSwift.git'
 
 pod 'ChameleonFramework', '~> 2.1.0'
+
+pod 'MXParallaxHeader'

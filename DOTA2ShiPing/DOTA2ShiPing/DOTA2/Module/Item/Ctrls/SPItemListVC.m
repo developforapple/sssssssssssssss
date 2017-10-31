@@ -218,7 +218,7 @@
     if (!vc) {
         vc = [SPItemListContainer instanceFromStoryboard];
         [vc update:self.mode data:self.items[index]];
-        vc.topInset = @(64.f+CGRectGetHeight(self.segmentView.bounds));
+        vc.topInset = @(CGRectGetHeight(self.segmentView.bounds));
         self.vcs[k] = vc;
     }
     return vc;

@@ -93,7 +93,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DOTA2ShiPing/DOTA2/Module/Item/Common/SPItemImageLoader.m"
-            timestampString = "531050547.995325"
+            timestampString = "531124039.705781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
@@ -125,7 +125,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DOTA2ShiPing/DOTA2/Model/SPDataManager.m"
-            timestampString = "531026059.110358"
+            timestampString = "531137845.485288"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
@@ -174,6 +174,22 @@
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DOTA2ShiPing/DOTA2/Module/Item/View/SPItemSaleView.m"
+            timestampString = "531137845.485395"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-update"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
