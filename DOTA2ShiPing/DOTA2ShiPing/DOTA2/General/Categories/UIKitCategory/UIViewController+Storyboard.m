@@ -10,7 +10,7 @@
 
 // 使用 YYCache 或 PINCache 时将把storyboard名进行本地缓存
 #if (__has_include(<YYCache/YYCache.h>) || __has_include("YYCache.h"))
-    #import <YYCache/YYCache.h>
+    #import "YYCache.h"
     typedef YYCache _YGCache;
 #elif (__has_include(<PINCache/PINCache.h>) || __has_include("PINCache.h"))
     #import <PINCache/PINCache.h>

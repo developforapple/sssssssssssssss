@@ -10,6 +10,5 @@
 #define Network_h
 
 #import "API.h"
-#import "ZMBAPI.h"
 
 #endif /* Network_h */

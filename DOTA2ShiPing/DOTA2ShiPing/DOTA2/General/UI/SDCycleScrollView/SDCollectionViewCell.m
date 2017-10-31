@@ -32,6 +32,7 @@
 
 #import "SDCollectionViewCell.h"
 #import "UIView+SDExtension.h"
+@import SDWebImage;
 
 @implementation SDCollectionViewCell
 {
@@ -69,7 +70,8 @@
 
 - (void)setupImageView
 {
-    UIImageView *imageView = [[UIImageView alloc] init];
+    FLAnimatedImageView *imageView = [[FLAnimatedImageView alloc] init];
+//    UIImageView *imageView = [[UIImageView alloc] init];
     _imageView = imageView;
     [self.contentView addSubview:imageView];
 }

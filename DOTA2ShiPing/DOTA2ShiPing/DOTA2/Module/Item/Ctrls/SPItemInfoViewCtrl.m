@@ -16,6 +16,9 @@
 #import "Chameleon.h"
 #import "SPItemPriceListViewCtrl.h"
 #import "SPBundleItemsViewCtrl.h"
+#import "SPGamepediaAPI.h"
+#import "SDCycleScrollView.h"
+#import "SPGamepediaImage.h"
 
 @interface SPItemInfoViewCtrl ()
 
@@ -29,8 +32,8 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (weak, nonatomic) IBOutlet UIView *imagePanel;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet SDCycleScrollView *imagePanel;
+@property (strong, nonatomic) CAGradientLayer *imagePanelBgLayer;
 
 @property (weak, nonatomic) IBOutlet UIView *titlePanel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -63,6 +66,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (strong, nonatomic) CAGradientLayer *descPanelBgLayer;
 
+@property (strong, nonatomic) NSArray<SPGamepediaAPI *> *extraImages;
+
 @end
 
 @implementation SPItemInfoViewCtrl
@@ -72,11 +77,18 @@
     [super viewDidLoad];
     
     [SPLogoHeader setLogoHeaderInScrollView:self.scrollView];
-    
-    [self loadData];
-    
     [self initUI];
+    [self loadData];
+    [self loadImages];
     [self updateUI];
+}
+
+- (void)loadImages
+{
+    [[SPGamepediaAPI shared] fetchItem:self.item.name completion:^(BOOL suc, NSError *error, id result) {
+        self.extraImages = result;
+        [self updateImagePanel];
+    }];
 }
 
 - (void)loadData
@@ -113,7 +125,12 @@
 
 - (void)initUI
 {
-    self.imageView.hidden = YES;
+    self.imagePanel.autoScrollTimeInterval = 1.5f;
+    self.imagePanel.bannerImageViewContentMode = UIViewContentModeScaleAspectFit;
+    self.imagePanel.showPageControl = YES;
+    self.imagePanel.placeholderImage = nil;
+    self.imagePanel.autoScroll = YES;
+    self.imagePanel.backgroundColor = [UIColor clearColor];
 }
 
 - (void)updateUI
@@ -132,6 +149,7 @@
 {
     [super viewWillLayoutSubviews];
     
+    self.imagePanelBgLayer.frame = self.imagePanel.bounds;
     self.titlePanelBgLayer.frame = self.titlePanel.bounds;
     self.stylePanelBgLayer.frame = self.stylePanel.bounds;
     self.descPanelBgLayer.frame = self.descPanel.bounds;
@@ -155,8 +173,16 @@
 
 - (void)updateImagePanel
 {
-    [self.imageView setHidden:NO animated:YES];
-    [SPItemImageLoader loadItemImage:self.item size:self.imageView.bounds.size type:SPImageTypeLarge imageView:self.imageView];
+    if (!self.imagePanelBgLayer) {
+        self.imagePanelBgLayer = [self gradientLayer];
+        [self.imagePanel.layer insertSublayer:self.imagePanelBgLayer atIndex:0];
+    }
+    
+    NSMutableArray *extraImageURLs = [NSMutableArray arrayWithObject:[self.item qiniuLargeURL]];
+    for (SPGamepediaImage *aImage in self.extraImages) {
+        [extraImageURLs addObject:aImage.fullsizeImageURL];
+    }
+    self.imagePanel.imageURLStringsGroup = extraImageURLs;
 }
 
 - (void)updateTitlePanel
