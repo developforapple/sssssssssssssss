@@ -48,7 +48,7 @@
     
     SPHero *hero = self.itemData.hero;
     if (hero) {
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:[hero smallImageURL]] placeholderImage:placeholderImage(self.imageView.bounds.size) options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageContinueInBackground];
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:[hero vertImageURL]] placeholderImage:placeholderImage(self.imageView.bounds.size) options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageContinueInBackground];
     }else{
         self.imageView.image = placeholderImage(self.imageView.bounds.size);
     }

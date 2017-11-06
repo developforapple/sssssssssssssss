@@ -40,4 +40,14 @@ YYModelDefaultCode
     return [NSString stringWithFormat:@"http://items-3-0.qiniudn.com/%@/herosmall",self.name];
 }
 
+- (NSString *)vertImageURL
+{
+    return [NSString stringWithFormat:@"http://items-3-0.qiniudn.com/%@_vert/herosmall",self.name];
+}
+
+- (NSString *)iconURL
+{
+    return [NSString stringWithFormat:@"http://items-3-0.qiniudn.com/%@_icon/herosmall",self.name];
+}
+
 @end

@@ -44,6 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setName_loc:(NSString * _Nonnull)name_loc;
 
 - (NSString *)smallImageURL;
+- (NSString *)vertImageURL;
+- (NSString *)iconURL;
 
 @end
 
