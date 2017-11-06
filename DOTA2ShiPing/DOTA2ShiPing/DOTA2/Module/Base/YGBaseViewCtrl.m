@@ -49,7 +49,7 @@
 - (void)leftNavButtonTemplateImg:(NSString*)img
 {
     UIImage *image = [[UIImage imageNamed:img] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(doLeftNaviBarItemAction)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(doLeftNaviBarItemActio:)];
 }
 
 - (void)rightNavButtonTemplateImg:(NSString*)img
@@ -64,6 +64,16 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:text style:UIBarButtonItemStylePlain target:self action:@selector(doRightNaviBarItemAction)];
     }else{
         self.navigationItem.rightBarButtonItem = nil;
+    }
+}
+
+- (void)doLeftNaviBarItemAction:(id)sender
+{
+    if (self.navigationController.viewControllers.firstObject == self &&
+        self.navigationController.presentingViewController) {
+        [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

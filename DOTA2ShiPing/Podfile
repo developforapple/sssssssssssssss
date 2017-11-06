@@ -8,6 +8,7 @@ pod 'ReactiveObjC'
 pod 'IAPHelper'       #https://github.com/saturngod/IAPHelper
 pod 'YYModel', '~> 1.0.4'           #https://github.com/ibireme/YYModel
 pod 'YYCategories'
+pod 'YYCache'
 
 pod 'MBProgressHUD'     #http://www.bukovinski.com
 pod 'DZNEmptyDataSet', '~> 1.8.1'   #https://github.com/dzenbot/DZNEmptyDataSet
@@ -43,3 +44,5 @@ pod 'JBChartView' , :git => 'https://github.com/developforapple/JBChartView.git'
 pod 'ChameleonFramework', '~> 2.1.0'
 
 pod 'MXParallaxHeader'
+
+pod 'Google-Mobile-Ads-SDK'

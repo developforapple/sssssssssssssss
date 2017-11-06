@@ -11,6 +11,7 @@
 #import "SPLeftAlignmentLayout.h"
 #import "SPItemImageLoader.h"
 #import "SPDataManager.h"
+#import "Chameleon.h"
 
 @interface SPItemTitleView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -147,7 +148,7 @@ NSString *const kSPItemTagCell = @"SPItemTagCell";
 {
     _tagInfo = tagInfo;
     self.tagLabel.text = tagInfo.tag;
-    self.tagLabel.textColor = tagInfo.color ? : kSubTextColor;
+    self.tagLabel.textColor = tagInfo.color ? : FlatGrayDark;
     self.contentView.layer.borderColor = self.tagLabel.textColor.CGColor;
 }
 

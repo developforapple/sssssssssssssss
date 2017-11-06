@@ -8,6 +8,7 @@
 
 #import "SPItemSharedData.h"
 #import "SPDataManager.h"
+#import "SPItemFilter.h"
 
 @interface SPItemSharedData ()
 @property (strong, readwrite, nonatomic) SPItem *item;
@@ -17,7 +18,13 @@
 @property (strong, readwrite, nonatomic) SPItemQuality *quality;
 @property (strong, readwrite, nonatomic) SPItemSlot *slot;
 @property (strong, readwrite, nonatomic) UIColor *color;
+@property (strong, readwrite, nonatomic) NSArray<SPItemStyle *> *styles;
 @property (strong, readwrite, nonatomic) SPItemSets *itemSet;
+@property (strong, readwrite, nonatomic) NSArray<SPItem *> *bundleItems;
+@property (strong, readwrite, nonatomic) NSArray<SPItem *> *lootList;
+
+@property (strong, nonatomic) SPItemFilter *filter;
+
 @end
 
 @implementation SPItemSharedData
@@ -69,6 +76,48 @@
         NSString *bundle = [self.item.bundles componentsSeparatedByString:@"||"].firstObject;
         NSArray *sets = [[SPDataManager shared] querySetsWithCondition:@"store_bundle = ?" values:@[bundle]];
         self.itemSet = sets.firstObject;
+    }
+    
+    NSArray<SPItemStyle *> *styles = [NSArray yy_modelArrayWithClass:[SPItemStyle class] json:self.item.styles];
+    NSArray *sortedStyles = [styles sortedArrayUsingComparator:^NSComparisonResult(SPItemStyle *obj1, SPItemStyle *obj2) {
+        return [@(obj1.index.intValue) compare:@(obj2.index.intValue)];
+    }];
+    self.styles = sortedStyles;
+    
+    [self updateItems];
+}
+
+- (void)updateItems
+{
+    NSString *bundleItems = self.item.bundleItems;
+    NSString *bundles = self.item.bundles;
+    NSString *lootList = self.item.lootList;
+    
+    if (bundleItems.length) {
+        // 饰品是一个包
+        NSArray *itemNames = [bundleItems componentsSeparatedByString:@"||"];
+        SPItemFilter *filter = [SPItemFilter filterWithItemNames:itemNames];
+        [filter updateItems];
+        self.bundleItems = filter.items;
+        
+    }else if (bundles.length){
+        // 饰品属于一个包
+        
+        NSArray *itemNames = self.itemSet.items;
+        SPItemFilter *filter = [SPItemFilter filterWithItemNames:itemNames];
+        [filter updateItems];
+        self.bundleItems = filter.items;
+        
+    }else if (lootList.length){
+        //包含一个掉落列表
+        NSArray *itemNames = [[SPDataManager shared] itemsInLootlist:lootList];
+        SPItemFilter *filter = [SPItemFilter filterWithItemNames:itemNames];
+        [filter updateItems];
+        self.lootList = filter.items;
+        
+    }else{
+        //不包含包内容
+        
     }
 }
 

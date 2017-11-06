@@ -13,17 +13,3 @@
 @interface SPItemSaleView : UIView
 @property (strong, nonatomic) SPItemSharedData *itemData;
 @end
-
-@interface SPItemPlatform : NSObject
-@property (copy, nonatomic) NSString *name;
-@property (strong, nonatomic) UIImage *logo;
-+ (instancetype)named:(NSString *)name logoNamed:(NSString *)logoName;
-@end
-
-UIKIT_EXTERN NSString *const kSPItemPlatformCell;
-
-@interface SPItemPlatformCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
-@property (strong, nonatomic) SPItemPlatform *platform;
-@end

@@ -10,6 +10,8 @@
 		2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82861CDF325700F26BD1 /* libz.tbd */; };
 		2D19E0111F32F22A00747B01 /* SPPriceChartConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */; };
 		2D19E0141F34446000747B01 /* SPBundleItemsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0131F34446000747B01 /* SPBundleItemsViewCtrl.m */; };
+		2D37AAB41FAEEB5E0043DDD4 /* SPItemDescPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D37AAB31FAEEB5E0043DDD4 /* SPItemDescPanel.m */; };
+		2D37AAB71FAEF5CC0043DDD4 /* SPItemMoreItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D37AAB61FAEF5CC0043DDD4 /* SPItemMoreItemsView.m */; };
 		2D40220E1F385D830006EFEF /* SPLootList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D40220D1F385D830006EFEF /* SPLootList.m */; };
 		2D48D2981CDE20D700190F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D2971CDE20D700190F0C /* main.m */; };
 		2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D29A1CDE20D700190F0C /* AppDelegate.m */; };
@@ -23,15 +25,12 @@
 		2D4B5D4C1F2A54CB00A3D8C9 /* SPChart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D4B5D4A1F2A54CB00A3D8C9 /* SPChart.storyboard */; };
 		2D4B5D4F1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5D4E1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m */; };
 		2D4B5D541F2E2C8100A3D8C9 /* SPPriceUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5D531F2E2C8100A3D8C9 /* SPPriceUnit.m */; };
+		2D54622E1FAF234B006B2485 /* SPItemPriceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D54622D1FAF234B006B2485 /* SPItemPriceLoader.m */; };
 		2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B211D435E95005FC6CA /* libiconv.tbd */; };
 		2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B231D435EAB005FC6CA /* libstdc++.tbd */; };
 		2D6B7B531F3207310048CEA9 /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2D6B7B501F3207310048CEA9 /* DINPro-Bold.otf */; };
 		2D6B7B541F3207310048CEA9 /* DINPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2D6B7B511F3207310048CEA9 /* DINPro-Medium.otf */; };
 		2D6B7B551F3207310048CEA9 /* DINPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2D6B7B521F3207310048CEA9 /* DINPro-Regular.otf */; };
-		2D6F1C981F1E68E400E8F614 /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C911F1E68E400E8F614 /* YYCache.m */; };
-		2D6F1C991F1E68E400E8F614 /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C931F1E68E400E8F614 /* YYDiskCache.m */; };
-		2D6F1C9A1F1E68E400E8F614 /* YYKVStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C951F1E68E400E8F614 /* YYKVStorage.m */; };
-		2D6F1C9B1F1E68E400E8F614 /* YYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1C971F1E68E400E8F614 /* YYMemoryCache.m */; };
 		2D6F1C9D1F1E6D3F00E8F614 /* Pods_DOTA2ShiPing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70FA08C933879E048D521D6 /* Pods_DOTA2ShiPing.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */; };
 		2D6F1CAB1F1F3D4200E8F614 /* SPItemTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */; };
@@ -206,7 +205,6 @@
 		2DF9B8D01F1361640012950A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8101F1361640012950A /* Assets.xcassets */; };
 		2DF9B8D31F1361640012950A /* heroMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8131F1361640012950A /* heroMap.json */; };
 		2DF9B8D51F1361640012950A /* workshoptags.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8151F1361640012950A /* workshoptags.json */; };
-		2DF9B8D61F1361640012950A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B8181F1361640012950A /* GoogleMobileAds.framework */; };
 		2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B81A1F1361640012950A /* Bugly.framework */; };
 		2DF9B8E31F1365CB0012950A /* CDTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8E21F1365CB0012950A /* CDTUser.m */; };
 		690BD50D1FA71524007A4D5D /* SPGamepediaAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD50C1FA71524007A4D5D /* SPGamepediaAPI.m */; };
@@ -239,6 +237,10 @@
 		2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceChartConfig.m; sourceTree = "<group>"; };
 		2D19E0121F34446000747B01 /* SPBundleItemsViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBundleItemsViewCtrl.h; sourceTree = "<group>"; };
 		2D19E0131F34446000747B01 /* SPBundleItemsViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBundleItemsViewCtrl.m; sourceTree = "<group>"; };
+		2D37AAB21FAEEB5E0043DDD4 /* SPItemDescPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemDescPanel.h; sourceTree = "<group>"; };
+		2D37AAB31FAEEB5E0043DDD4 /* SPItemDescPanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemDescPanel.m; sourceTree = "<group>"; };
+		2D37AAB51FAEF5CC0043DDD4 /* SPItemMoreItemsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemMoreItemsView.h; sourceTree = "<group>"; };
+		2D37AAB61FAEF5CC0043DDD4 /* SPItemMoreItemsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemMoreItemsView.m; sourceTree = "<group>"; };
 		2D40220C1F385D830006EFEF /* SPLootList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLootList.h; sourceTree = "<group>"; };
 		2D40220D1F385D830006EFEF /* SPLootList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLootList.m; sourceTree = "<group>"; };
 		2D4506D21D3683C4000971B9 /* DOTA2ShiPing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DOTA2ShiPing.entitlements; sourceTree = "<group>"; };
@@ -265,19 +267,13 @@
 		2D4B5D4E1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceChartViewCtrl.m; sourceTree = "<group>"; };
 		2D4B5D521F2E2C8100A3D8C9 /* SPPriceUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPriceUnit.h; sourceTree = "<group>"; };
 		2D4B5D531F2E2C8100A3D8C9 /* SPPriceUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceUnit.m; sourceTree = "<group>"; };
+		2D54622C1FAF234B006B2485 /* SPItemPriceLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemPriceLoader.h; sourceTree = "<group>"; };
+		2D54622D1FAF234B006B2485 /* SPItemPriceLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemPriceLoader.m; sourceTree = "<group>"; };
 		2D563B211D435E95005FC6CA /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		2D563B231D435EAB005FC6CA /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		2D6B7B501F3207310048CEA9 /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
 		2D6B7B511F3207310048CEA9 /* DINPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Medium.otf"; sourceTree = "<group>"; };
 		2D6B7B521F3207310048CEA9 /* DINPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.otf"; sourceTree = "<group>"; };
-		2D6F1C901F1E68E400E8F614 /* YYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCache.h; sourceTree = "<group>"; };
-		2D6F1C911F1E68E400E8F614 /* YYCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCache.m; sourceTree = "<group>"; };
-		2D6F1C921F1E68E400E8F614 /* YYDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDiskCache.h; sourceTree = "<group>"; };
-		2D6F1C931F1E68E400E8F614 /* YYDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDiskCache.m; sourceTree = "<group>"; };
-		2D6F1C941F1E68E400E8F614 /* YYKVStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKVStorage.h; sourceTree = "<group>"; };
-		2D6F1C951F1E68E400E8F614 /* YYKVStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYKVStorage.m; sourceTree = "<group>"; };
-		2D6F1C961F1E68E400E8F614 /* YYMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYMemoryCache.h; sourceTree = "<group>"; };
-		2D6F1C971F1E68E400E8F614 /* YYMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYMemoryCache.m; sourceTree = "<group>"; };
 		2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOTA2ShiPing-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -636,7 +632,6 @@
 		2DF9B8101F1361640012950A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DF9B8131F1361640012950A /* heroMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heroMap.json; sourceTree = "<group>"; };
 		2DF9B8151F1361640012950A /* workshoptags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = workshoptags.json; sourceTree = "<group>"; };
-		2DF9B8181F1361640012950A /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		2DF9B81A1F1361640012950A /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		2DF9B8D91F13616F0012950A /* buglySymboliOS.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = buglySymboliOS.jar; sourceTree = "<group>"; };
 		2DF9B8DA1F13616F0012950A /* dSYMUpload.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dSYMUpload.sh; sourceTree = "<group>"; };
@@ -698,7 +693,6 @@
 				2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */,
 				2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */,
 				2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */,
-				2DF9B8D61F1361640012950A /* GoogleMobileAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,21 +777,6 @@
 			children = (
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		2D6F1C8F1F1E68E400E8F614 /* YYCache */ = {
-			isa = PBXGroup;
-			children = (
-				2D6F1C901F1E68E400E8F614 /* YYCache.h */,
-				2D6F1C911F1E68E400E8F614 /* YYCache.m */,
-				2D6F1C921F1E68E400E8F614 /* YYDiskCache.h */,
-				2D6F1C931F1E68E400E8F614 /* YYDiskCache.m */,
-				2D6F1C941F1E68E400E8F614 /* YYKVStorage.h */,
-				2D6F1C951F1E68E400E8F614 /* YYKVStorage.m */,
-				2D6F1C961F1E68E400E8F614 /* YYMemoryCache.h */,
-				2D6F1C971F1E68E400E8F614 /* YYMemoryCache.m */,
-			);
-			path = YYCache;
 			sourceTree = "<group>";
 		};
 		2D91EB711F1626270038B49C /* Resource */ = {
@@ -1525,6 +1504,8 @@
 				699074421F3DA63500B64030 /* CALayer+SDWebCache.m */,
 				690BD51E1FA84420007A4D5D /* SPItemSharedData.h */,
 				690BD51F1FA84420007A4D5D /* SPItemSharedData.m */,
+				2D54622C1FAF234B006B2485 /* SPItemPriceLoader.h */,
+				2D54622D1FAF234B006B2485 /* SPItemPriceLoader.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1843,19 +1824,9 @@
 		2DF9B8161F1361640012950A /* Third-Party */ = {
 			isa = PBXGroup;
 			children = (
-				2D6F1C8F1F1E68E400E8F614 /* YYCache */,
-				2DF9B8171F1361640012950A /* AdMob */,
 				2DF9B8191F1361640012950A /* Bugly_2.4.8 */,
 			);
 			path = "Third-Party";
-			sourceTree = "<group>";
-		};
-		2DF9B8171F1361640012950A /* AdMob */ = {
-			isa = PBXGroup;
-			children = (
-				2DF9B8181F1361640012950A /* GoogleMobileAds.framework */,
-			);
-			path = AdMob;
 			sourceTree = "<group>";
 		};
 		2DF9B8191F1361640012950A /* Bugly_2.4.8 */ = {
@@ -1882,6 +1853,10 @@
 				690BD51C1FA84260007A4D5D /* SPItemTitleView.m */,
 				69A117011FA8747700A32747 /* SPItemSaleView.h */,
 				69A117021FA8747700A32747 /* SPItemSaleView.m */,
+				2D37AAB21FAEEB5E0043DDD4 /* SPItemDescPanel.h */,
+				2D37AAB31FAEEB5E0043DDD4 /* SPItemDescPanel.m */,
+				2D37AAB51FAEF5CC0043DDD4 /* SPItemMoreItemsView.h */,
+				2D37AAB61FAEF5CC0043DDD4 /* SPItemMoreItemsView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1986,7 +1961,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SP;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = wwwbbat;
 				TargetAttributes = {
 					2D48D2921CDE20D600190F0C = {
@@ -2102,6 +2077,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
 				"${BUILT_PRODUCTS_DIR}/YYCategories/YYCategories.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 				"${BUILT_PRODUCTS_DIR}/hpple/hpple.framework",
@@ -2134,6 +2110,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCategories.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hpple.framework",
@@ -2200,6 +2177,7 @@
 				2DF9B84E1F1361640012950A /* DDRequestManager.m in Sources */,
 				2DF9B8361F1361640012950A /* UICollectionViewCell+yg_IBInspectable.m in Sources */,
 				699074431F3DA63500B64030 /* CALayer+SDWebCache.m in Sources */,
+				2D54622E1FAF234B006B2485 /* SPItemPriceLoader.m in Sources */,
 				2DF9B88D1F1361640012950A /* SPDataManager.m in Sources */,
 				2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */,
 				2DF9B82A1F1361640012950A /* YGCoreMotionHelper.m in Sources */,
@@ -2214,7 +2192,6 @@
 				2DF9B81F1F1361640012950A /* Config_Network.m in Sources */,
 				2D91EB771F1724230038B49C /* SPBaseData.m in Sources */,
 				692A558E1F4D712F006914BF /* SPItemSearchOption.m in Sources */,
-				2D6F1C9A1F1E68E400E8F614 /* YYKVStorage.m in Sources */,
 				2DF9B8CC1F1361640012950A /* SPWorkshopVC.m in Sources */,
 				2DF9B8291F1361640012950A /* YGCoreLocationHelper.m in Sources */,
 				690BD5201FA84420007A4D5D /* SPItemSharedData.m in Sources */,
@@ -2236,7 +2213,6 @@
 				2DF9B8A51F1361640012950A /* SPItemListVC.m in Sources */,
 				2DF9B8891F1361640012950A /* SPWebHelper.m in Sources */,
 				6954FCDF1F43EC5900DDB5D3 /* SPDotaEvent.m in Sources */,
-				2D6F1C981F1E68E400E8F614 /* YYCache.m in Sources */,
 				2DF9B8A41F1361640012950A /* SPItemListContainer.m in Sources */,
 				6954FCE21F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m in Sources */,
 				2D40220E1F385D830006EFEF /* SPLootList.m in Sources */,
@@ -2274,12 +2250,10 @@
 				2DF9B8801F1361640012950A /* TAPageControl.m in Sources */,
 				2DF9B82B1F1361640012950A /* YGRemoteNotificationHelper.m in Sources */,
 				2DF9B8341F1361640012950A /* UIActivityIndicatorView+yg_IBInspectable.m in Sources */,
-				2D6F1C991F1E68E400E8F614 /* YYDiskCache.m in Sources */,
 				2DF9B8C41F1361640012950A /* SPSettingFeedbackVC.m in Sources */,
 				2D4AD9D11F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m in Sources */,
 				2DF9B8AC1F1361640012950A /* SPPlayer+More.m in Sources */,
 				2DF9B8E31F1365CB0012950A /* CDTUser.m in Sources */,
-				2D6F1C9B1F1E68E400E8F614 /* YYMemoryCache.m in Sources */,
 				2DF9B8721F1361640012950A /* LCActionSheet.m in Sources */,
 				2DF9B8921F1361640012950A /* SPItemPrefab.m in Sources */,
 				2DF9B89B1F1361640012950A /* YGBaseWebViewCtrl.m in Sources */,
@@ -2316,6 +2290,7 @@
 				2DF9B8AF1F1361640012950A /* SPPlayerAliasesVC.m in Sources */,
 				2DF9B8C81F1361640012950A /* SPWorkshop.m in Sources */,
 				2DF9B8301F1361640012950A /* NSString+STRegex.m in Sources */,
+				2D37AAB71FAEF5CC0043DDD4 /* SPItemMoreItemsView.m in Sources */,
 				2DF9B84B1F1361640012950A /* YGThirdPartyNavigate.m in Sources */,
 				2DF9B8A91F1361640012950A /* DDMainTBC.m in Sources */,
 				2DF9B8B11F1361640012950A /* SPPlayerInventorySearchAllPlayerVC.m in Sources */,
@@ -2328,6 +2303,7 @@
 				2DF9B8331F1361640012950A /* CoreLocation+Convert.m in Sources */,
 				2DF9B83B1F1361640012950A /* UITableView+yg_IBInspectable.m in Sources */,
 				2DF9B8851F1361640012950A /* YGTextField.m in Sources */,
+				2D37AAB41FAEEB5E0043DDD4 /* SPItemDescPanel.m in Sources */,
 				2DF9B8871F1361640012950A /* UIImage+ImageEffects.m in Sources */,
 				2DF9B87F1F1361640012950A /* TADotView.m in Sources */,
 				2DF9B8B41F1361640012950A /* SPPlayerInventoryVC.m in Sources */,
@@ -2395,14 +2371,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2445,14 +2427,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

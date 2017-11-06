@@ -16,6 +16,8 @@
 #import "SDCycleScrollView.h"
 #import "SPItemTitleView.h"
 #import "SPItemSaleView.h"
+#import "SPItemDescPanel.h"
+#import "SPItemMoreItemsView.h"
 
 @interface SPItemViewCtrl ()
 
@@ -26,6 +28,8 @@
 @property (strong, nonatomic) IBOutlet SDCycleScrollView *imagePanel;
 @property (weak, nonatomic) IBOutlet SPItemTitleView *titlePanel;
 @property (weak, nonatomic) IBOutlet SPItemSaleView *salePanel;
+@property (weak, nonatomic) IBOutlet SPItemDescPanel *descPanel;
+@property (weak, nonatomic) IBOutlet SPItemMoreItemsView *moreItemsPanel;
 
 @end
 
@@ -69,6 +73,8 @@
     
     self.titlePanel.itemData = self.itemData;
     self.salePanel.itemData = self.itemData;
+    self.descPanel.itemData = self.itemData;
+    self.moreItemsPanel.itemData = self.itemData;
 }
 
 - (void)updateImagePanel
