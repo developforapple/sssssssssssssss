@@ -8,7 +8,7 @@
 
 #import "SPDiskCacheControl.h"
 #import "SPWorkshopModel.h"
-#import "YYCache.h"
+@import YYCache;
 
 @implementation SPDiskCacheControl
 

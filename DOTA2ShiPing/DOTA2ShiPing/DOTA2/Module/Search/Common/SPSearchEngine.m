@@ -9,7 +9,7 @@
 #import "SPSearchEngine.h"
 #import "SPDataManager.h"
 #import "SPItem.h"
-#import "YYCache.h"
+@import YYCache;
 #import "SPMaxPlusAPI.h"
 #import "SPDotabuffAPI.h"
 #import "SPSteamAPI.h"

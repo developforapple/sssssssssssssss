@@ -11,7 +11,7 @@
 
 #import "SPDiskCacheControl.h"
 #import "TFHpple.h"
-#import "YYCache.h"
+@import YYCache;
 #import "YYModel.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 
