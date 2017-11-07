@@ -39,7 +39,7 @@
 
 // 异步加载的
 @property (strong, readonly, nonatomic) SPItemDota2Price *dota2Price;
-@property (strong, readonly, nonatomic) NSArray<SPItemSteamPrice *> *steamPrices;
+@property (strong, readonly, nonatomic) SPItemSteamPrice *steamPrice;
 
 
 - (instancetype)init NS_UNAVAILABLE;

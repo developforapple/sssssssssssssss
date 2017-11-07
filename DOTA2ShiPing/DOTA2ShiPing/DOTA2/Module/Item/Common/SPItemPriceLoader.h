@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @class SPItem;
+@class SPMarketItem;
 
-typedef void (^SPItemPriceLoaderCompletion)(float price);
+@interface SPItemPriceBase : NSObject
+@property (copy, nonatomic) NSString *error;
+@end
 
-@interface SPItemDota2Price : NSObject
+@interface SPItemDota2Price : SPItemPriceBase
 @property (copy, nonatomic) NSString *price;
 @property (copy, nonatomic) NSString *originPrice;
-@property (copy, nonatomic) NSString *error;
 
 // 未实现
 @property (assign, nonatomic) float priceF;
@@ -24,7 +26,10 @@ typedef void (^SPItemPriceLoaderCompletion)(float price);
 @property (copy, nonatomic) NSString *suffix;
 @end
 
-@interface SPItemSteamPrice : NSObject
+@interface SPItemSteamPrice : SPItemPriceBase
+@property (strong, nonatomic) NSArray<SPMarketItem *> *items;
+
+- (NSString *)basePrice;
 
 @end
 
@@ -32,5 +37,7 @@ typedef void (^SPItemPriceLoaderCompletion)(float price);
 
 + (void)loadDota2MarketPrice:(SPItem *)item
                   completion:(void (^)(SPItemDota2Price *price))completion;
++ (void)loadSteamMarketPrice:(SPItem *)item
+                  completion:(void(^)(SPItemSteamPrice *price))completion;
 
 @end

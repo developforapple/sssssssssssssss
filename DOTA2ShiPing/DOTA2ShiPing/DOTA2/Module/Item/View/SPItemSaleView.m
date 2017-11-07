@@ -30,16 +30,27 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
 
 - (void)updatePrice:(id)priceObject
 {
+    self.loading.animating_ = priceObject == nil;
+    
     switch (self.platform) {
         case SPItemPlatformDota2:{
             SPItemDota2Price *price = priceObject;
-
-            self.loading.animating_ = price == nil;
-            
             if (price) {
                 self.btn.hidden = price.error.length;
                 [self.btn setTitle:price.price forState:UIControlStateNormal];
             }
+            
+        }   break;
+        
+        case SPItemPlatformSteam:{
+            SPItemSteamPrice *price = priceObject;
+            if (price) {
+                self.btn.hidden = price.error.length;
+                [self.btn setTitle:price.basePrice forState:UIControlStateNormal];
+            }
+        }   break;
+            
+        case SPItemPlatformTaobao:{
             
         }   break;
     }
@@ -83,6 +94,11 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
      subscribeNext:^(id x) {
          ygstrongify(self);
          [self.dota2View updatePrice:self.itemData.dota2Price];
+     }];
+    [RACObserve(self.itemData, steamPrice)
+     subscribeNext:^(id x) {
+         ygstrongify(self);
+         [self.steamView updatePrice:self.itemData.steamPrice];
      }];
 }
 

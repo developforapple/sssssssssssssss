@@ -108,22 +108,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DOTA2ShiPing/DOTA2/General/API/SPSteamAPI.m"
-            timestampString = "524557682.780967"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "486"
-            endingLineNumber = "486"
-            landmarkName = "-fetchSteamMarketContent:completion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "DOTA2ShiPing/DOTA2/Model/SPDataManager.m"
             timestampString = "531137845.485288"
             startingColumnNumber = "9223372036854775807"

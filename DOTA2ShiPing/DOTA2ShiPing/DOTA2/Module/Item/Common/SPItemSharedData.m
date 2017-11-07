@@ -24,7 +24,7 @@
 @property (strong, readwrite, nonatomic) NSArray<SPItem *> *lootList;
 
 @property (strong, readwrite, nonatomic) SPItemDota2Price *dota2Price;
-@property (strong, readwrite, nonatomic) NSArray<SPItemSteamPrice *> *steamPrices;
+@property (strong, readwrite, nonatomic) SPItemSteamPrice *steamPrice;
 
 @end
 
@@ -129,7 +129,9 @@
     [SPItemPriceLoader loadDota2MarketPrice:self.item completion:^(SPItemDota2Price *price) {
         self.dota2Price = price;
     }];
-    
+    [SPItemPriceLoader loadSteamMarketPrice:self.item completion:^(SPItemSteamPrice *price) {
+        self.steamPrice = price;
+    }];
     
 }
 
