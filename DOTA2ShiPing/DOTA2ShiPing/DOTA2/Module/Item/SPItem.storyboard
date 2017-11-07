@@ -31,7 +31,7 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRd-kL-dWP" customClass="DDSegmentScrollView">
-                                <rect key="frame" x="0.0" y="68" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="EMc-nX-Mnw"/>
                                 </constraints>
@@ -1224,6 +1224,11 @@
                                             <constraint firstItem="9Mx-8c-z4z" firstAttribute="top" secondItem="LYL-fu-VPd" secondAttribute="bottom" constant="8" id="tKY-6X-9yR"/>
                                         </constraints>
                                         <edgeInsets key="layoutMargins" top="12" left="12" bottom="12" right="12"/>
+                                        <connections>
+                                            <outlet property="dota2View" destination="Ptl-qK-dJV" id="SOG-Zo-Nh1"/>
+                                            <outlet property="steamView" destination="jCe-KO-gbn" id="M0J-7I-ott"/>
+                                            <outlet property="taobaoView" destination="YRX-I5-eJW" id="Zn9-KL-Ro3"/>
+                                        </connections>
                                     </view>
                                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTC-9A-WSU" customClass="SPItemDescPanel">
                                         <rect key="frame" x="0.0" y="329" width="375" height="41"/>
@@ -1696,7 +1701,7 @@
             <objects>
                 <navigationController storyboardIdentifier="SPItemFilterNaviCtrl" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vHY-Ka-d1I" customClass="SPItemFilterNaviCtrl" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LEg-gY-NMs">
-                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

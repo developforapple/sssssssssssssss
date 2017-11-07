@@ -23,7 +23,8 @@
 @property (strong, readwrite, nonatomic) NSArray<SPItem *> *bundleItems;
 @property (strong, readwrite, nonatomic) NSArray<SPItem *> *lootList;
 
-@property (strong, nonatomic) SPItemFilter *filter;
+@property (strong, readwrite, nonatomic) SPItemDota2Price *dota2Price;
+@property (strong, readwrite, nonatomic) NSArray<SPItemSteamPrice *> *steamPrices;
 
 @end
 
@@ -85,6 +86,8 @@
     self.styles = sortedStyles;
     
     [self updateItems];
+    
+    [self loadPrices];
 }
 
 - (void)updateItems
@@ -119,6 +122,15 @@
         //不包含包内容
         
     }
+}
+
+- (void)loadPrices
+{
+    [SPItemPriceLoader loadDota2MarketPrice:self.item completion:^(SPItemDota2Price *price) {
+        self.dota2Price = price;
+    }];
+    
+    
 }
 
 @end

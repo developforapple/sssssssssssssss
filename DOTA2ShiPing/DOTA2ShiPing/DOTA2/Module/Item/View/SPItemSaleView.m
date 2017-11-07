@@ -9,6 +9,8 @@
 #import "SPItemSaleView.h"
 #import "YGLineView.h"
 #import "SPItemSharedData.h"
+#import "SPItemPriceLoader.h"
+@import ReactiveObjC;
 
 typedef NS_ENUM(NSUInteger, SPItemPlatform) {
     SPItemPlatformDota2,
@@ -26,9 +28,21 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
 
 @implementation SPItemPlatformView
 
-- (void)loadPriceInfo
+- (void)updatePrice:(id)priceObject
 {
-    
+    switch (self.platform) {
+        case SPItemPlatformDota2:{
+            SPItemDota2Price *price = priceObject;
+
+            self.loading.animating_ = price == nil;
+            
+            if (price) {
+                self.btn.hidden = price.error.length;
+                [self.btn setTitle:price.price forState:UIControlStateNormal];
+            }
+            
+        }   break;
+    }
 }
 
 - (IBAction)btnAction:(id)sender
@@ -64,9 +78,12 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
 
 - (void)update
 {
-    [self.dota2View loadPriceInfo];
-    [self.steamView loadPriceInfo];
-    [self.taobaoView loadPriceInfo];
+    ygweakify(self);
+    [RACObserve(self.itemData, dota2Price)
+     subscribeNext:^(id x) {
+         ygstrongify(self);
+         [self.dota2View updatePrice:self.itemData.dota2Price];
+     }];
 }
 
 @end

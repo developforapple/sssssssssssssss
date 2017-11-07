@@ -16,6 +16,8 @@
 #import "SPItemSets.h"
 #import "SPItemStyle.h"
 
+#import "SPItemPriceLoader.h"
+
 @interface SPItemSharedData : NSObject
 
 @property (strong, readonly, nonatomic) SPItem *item;
@@ -34,6 +36,11 @@
 
 // 如果item是一个bundle，那么这里为bundle对应sets的内容
 @property (strong, readonly, nonatomic) SPItemSets *itemSet;
+
+// 异步加载的
+@property (strong, readonly, nonatomic) SPItemDota2Price *dota2Price;
+@property (strong, readonly, nonatomic) NSArray<SPItemSteamPrice *> *steamPrices;
+
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
