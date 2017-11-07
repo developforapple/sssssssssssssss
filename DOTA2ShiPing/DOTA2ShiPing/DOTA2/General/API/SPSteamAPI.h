@@ -71,6 +71,9 @@ typedef void (^SPSteamFetchCompletion2)(BOOL suc, id object, NSString *taskDesc)
 
 #pragma mark - Steam Market
 
+- (void)fetchSteamPriceOverview:(NSString *)itemName
+                     completion:(SPSteamFetchCompletion2)completion;
+
 - (NSURLSessionDataTask *)fetchSteamMarketContent:(NSString *)itemName
                                        completion:(SPSteamFetchCompletion2)completion;
 

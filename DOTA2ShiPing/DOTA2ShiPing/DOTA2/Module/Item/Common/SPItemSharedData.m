@@ -129,9 +129,14 @@
     [SPItemPriceLoader loadDota2MarketPrice:self.item completion:^(SPItemDota2Price *price) {
         self.dota2Price = price;
     }];
-    [SPItemPriceLoader loadSteamMarketPrice:self.item completion:^(SPItemSteamPrice *price) {
+    
+    [SPItemPriceLoader loadSteamMarketPriceOverview:self.item completion:^(SPItemSteamPrice *price) {
         self.steamPrice = price;
     }];
+    
+//    [SPItemPriceLoader loadSteamMarketPrice:self.item completion:^(SPItemSteamPrice *price) {
+//        self.steamPrice = price;
+//    }];
     
 }
 

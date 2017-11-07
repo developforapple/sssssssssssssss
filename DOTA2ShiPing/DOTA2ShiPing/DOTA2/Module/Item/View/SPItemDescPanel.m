@@ -27,13 +27,16 @@
 {
     NSMutableAttributedString *content = [[NSMutableAttributedString alloc] init];
     
+    
+    UIColor *color = FlatGray;
+    
     // styles
     SPItem *item = self.itemData.item;
     NSArray *styles = self.itemData.styles;
     if (styles.count != 0) {
         
-        NSDictionary *normalAttributes = @{NSForegroundColorAttributeName:FlatWhiteDark};
-        NSDictionary *redAttributes = @{NSForegroundColorAttributeName:FlatWhiteDark};
+        NSDictionary *normalAttributes = @{NSForegroundColorAttributeName:color};
+        NSDictionary *redAttributes = @{NSForegroundColorAttributeName:color};
         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"款式：" attributes:normalAttributes];
         for (SPItemStyle *aStyle in styles) {
             NSString *text;
@@ -69,7 +72,7 @@
     NSString *desc = SPLOCALNONIL(self.itemData.item.item_description);
     NSData *descData = [desc dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithData:descData options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)} documentAttributes:nil error:&error];
-    [string setAttributes:@{NSForegroundColorAttributeName:FlatWhiteDark,
+    [string setAttributes:@{NSForegroundColorAttributeName:color,
                             NSFontAttributeName:[UIFont systemFontOfSize:14]}
                     range:NSMakeRange(0, string.length)];
     

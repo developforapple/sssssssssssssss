@@ -11,6 +11,7 @@
 #import "SPItemSharedData.h"
 #import "SPItemPriceLoader.h"
 @import ReactiveObjC;
+@import ChameleonFramework;
 
 typedef NS_ENUM(NSUInteger, SPItemPlatform) {
     SPItemPlatformDota2,
@@ -30,23 +31,51 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
 
 - (void)updatePrice:(id)priceObject
 {
-    self.loading.animating_ = priceObject == nil;
+    self.loading.animating_ = self.btn.hidden = priceObject == nil;
     
     switch (self.platform) {
         case SPItemPlatformDota2:{
             SPItemDota2Price *price = priceObject;
-            if (price) {
-                self.btn.hidden = price.error.length;
+            if (price.error.length == 0) {
+                
+                [self.btn setBackgroundColor:FlatSkyBlue];
+                [self.btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 [self.btn setTitle:price.price forState:UIControlStateNormal];
+                
+//                self.btn.borderColor_ = FlatSkyBlue;
+//                [self.btn setTitleColor:FlatSkyBlue forState:UIControlStateNormal];
+//                [self.btn setTitle:price.price forState:UIControlStateNormal];
+            }else{
+                
+                self.btn.backgroundColor = [UIColor clearColor];
+                [self.btn setTitleColor:FlatWhiteDark forState:UIControlStateNormal];
+                [self.btn setTitle:price.error forState:UIControlStateNormal];
+                
+//                self.btn.borderColor_ = [UIColor clearColor];
+//                [self.btn setTitleColor:FlatWhiteDark forState:UIControlStateNormal];
+//                [self.btn setTitle:price.error forState:UIControlStateNormal];
             }
             
         }   break;
         
         case SPItemPlatformSteam:{
             SPItemSteamPrice *price = priceObject;
-            if (price) {
-                self.btn.hidden = price.error.length;
+            if (price.error.length == 0) {
+                [self.btn setBackgroundColor:FlatSkyBlue];
+                [self.btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 [self.btn setTitle:price.basePrice forState:UIControlStateNormal];
+                
+//                self.btn.borderColor_ = FlatSkyBlue;
+//                [self.btn setTitleColor:FlatSkyBlue forState:UIControlStateNormal];
+//                [self.btn setTitle:price.basePrice forState:UIControlStateNormal];
+            }else{
+                self.btn.backgroundColor = [UIColor clearColor];
+                [self.btn setTitleColor:FlatWhiteDark forState:UIControlStateNormal];
+                [self.btn setTitle:price.error forState:UIControlStateNormal];
+                
+//                self.btn.borderColor_ = [UIColor clearColor];
+//                [self.btn setTitleColor:FlatWhiteDark forState:UIControlStateNormal];
+//                [self.btn setTitle:price.error forState:UIControlStateNormal];
             }
         }   break;
             

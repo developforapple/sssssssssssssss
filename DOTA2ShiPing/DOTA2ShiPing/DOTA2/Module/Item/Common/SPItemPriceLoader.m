@@ -33,6 +33,9 @@
 }
 @end
 
+@implementation SPItemSteamPriceOverview
+@end
+
 @implementation SPItemSteamPrice
 - (instancetype)initWithItems:(NSArray *)items
 {
@@ -43,8 +46,20 @@
     return self;
 }
 
+- (instancetype)initWithOverview:(SPItemSteamPriceOverview *)overview
+{
+    self = [super init];
+    if (self) {
+        self.overview = overview;
+    }
+    return self;
+}
+
 - (NSString *)basePrice
 {
+    if (self.overview) {
+        return self.overview.lowest_price;
+    }
     return self.items.firstObject.price;
 }
 
@@ -105,6 +120,24 @@
         }
     }
     return nil;
+}
+
++ (void)loadSteamMarketPriceOverview:(SPItem *)item
+                          completion:(void(^)(SPItemSteamPrice *price))completion
+{
+    if (!completion) return;
+    
+    [[SPSteamAPI shared] fetchSteamPriceOverview:item.name completion:^(BOOL suc, id object, NSString *taskDesc) {
+        
+        if (!suc) {
+            completion([SPItemSteamPrice error:@"网络错误"]);
+            return;
+        }
+        
+        SPItemSteamPriceOverview *overview = [SPItemSteamPriceOverview yy_modelWithJSON:object];
+        SPItemSteamPrice *price = [[SPItemSteamPrice alloc] initWithOverview:overview];
+        completion(price);
+    }];
 }
 
 + (void)loadSteamMarketPrice:(SPItem *)item completion:(void(^)(SPItemSteamPrice *price))completion

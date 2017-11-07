@@ -99,6 +99,10 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
         [reqSerializer setValue:@"Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_3 like Mac OS X) AppleWebKit/603.3.8 (KHTML, like Gecko) Mobile/14G60" forHTTPHeaderField:@"User-Agent"];
         [reqSerializer setValue:@"http://steamcommunity.com" forHTTPHeaderField:@"Referer"];
         [reqSerializer setValue:@"gzip, deflate" forHTTPHeaderField:@"Accept-Encoding"];
+        
+        NSMutableSet *types = [NSMutableSet setWithSet:_marketManager.responseSerializer.acceptableContentTypes];
+        [types addObject:@"application/json"];
+        _marketManager.responseSerializer.acceptableContentTypes = types;
     }
     return _marketManager;
 }
@@ -469,13 +473,63 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
     }];
 }
 
+- (void)fetchSteamPriceOverview:(NSString *)itemName
+                     completion:(SPSteamFetchCompletion2)completion
+{
+    if (!itemName || !completion) return;
+    
+    NSDictionary *param = @{@"market_hash_name":itemName,
+                            @"appid":@"570",
+                            @"country":@"CN",
+                            @"currency":@"23"};
+    
+    RunOnGlobalQueue(^{
+       
+        NSURLComponents *components = [NSURLComponents componentsWithString:@"http://steamcommunity.com/market/priceoverview"];
+        NSMutableArray *query = [NSMutableArray array];
+        for (NSString *k in param) {
+            NSURLQueryItem *item = [NSURLQueryItem queryItemWithName:k value:param[k]];
+            [query addObject:item];
+        }
+        components.queryItems = query;
+        
+        NSData *data = [NSData dataWithContentsOfURL:[components URL]];
+        
+        RunOnMainQueue(^{
+            if (data.length == 0) {
+                completion(nil,nil,nil);
+            }else{
+                completion(YES,data,nil);
+            }
+        });
+    });
+    
+    
+//    return
+//    [self.marketManager GET:@"market/priceoverview" parameters:param progress:^(NSProgress *downloadProgress) {
+//        
+//    } success:^(NSURLSessionDataTask *task, id responseObject) {
+//        completion(nil!=responseObject,responseObject,task.taskDescription);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        
+//        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+//        
+//        if ([response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 429) {
+//            NSLog(@"%@", response.allHeaderFields);
+//            completion(NO,@"您最近作出的请求太多了。请稍候再重试您的请求。",task.taskDescription);
+//        }else{
+//            completion(NO,@"网络错误",task.taskDescription);
+//        }
+//    }];
+}
+
 - (NSURLSessionDataTask *)fetchSteamMarketContent:(NSString *)itemName
                                        completion:(SPSteamFetchCompletion2)completion
 {
     if (!itemName || !completion) return nil;
     
     return
-    [self.marketManager GET:@"market/search" parameters:@{@"q":itemName,@"appid":@570,@"l":@"schinese"} progress:^(NSProgress * _Nonnull downloadProgress) {
+    [self.marketManager GET:@"market/search" parameters:@{@"q":itemName,@"appid":@570,@"l":@"schinese"} progress:^(NSProgress *downloadProgress) {
         
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         completion(nil!=responseObject,responseObject,task.taskDescription);

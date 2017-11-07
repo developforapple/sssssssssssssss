@@ -53,41 +53,43 @@
         self.imageView.image = placeholderImage(self.imageView.bounds.size);
     }
     
+    UIColor *color = FlatGrayDark;//self.itemData.color;
+    
     // hero tag
     NSMutableArray *tags = [NSMutableArray array];
     if (hero) {
-        [tags addObject:[SPItemTag tag:hero.name_loc color:nil]];
+        [tags addObject:[SPItemTag tag:hero.name_loc color:color]];
     }
     
     // rarity tag
     if (self.itemData.rarity) {
-        SPItemColor *color = [[SPDataManager shared] colorOfName:self.itemData.rarity.color];
-        [tags addObject:[SPItemTag tag:self.itemData.rarity.name_loc color:color.color]];
+//        SPItemColor *color = [[SPDataManager shared] colorOfName:self.itemData.rarity.color];
+        [tags addObject:[SPItemTag tag:self.itemData.rarity.name_loc color:color]];
     }
     
     // type tag
     NSString *type = SPLOCALNONIL(self.itemData.item.item_type_name);
     if (type.length) {
-        [tags addObject:[SPItemTag tag:type color:nil]];
+        [tags addObject:[SPItemTag tag:type color:color]];
     }
     
     // slot tag
     if (self.itemData.slot) {
-        [tags addObject:[SPItemTag tag:self.itemData.slot.name_loc color:nil]];
+        [tags addObject:[SPItemTag tag:self.itemData.slot.name_loc color:color]];
     }
     
     //item set tag
     if (self.itemData.itemSet) {
-        [tags addObject:[SPItemTag tag:self.itemData.itemSet.name_loc color:nil]];
+        [tags addObject:[SPItemTag tag:self.itemData.itemSet.name_loc color:color]];
     }
     
     // 可交易 tag
     // TODO
-    [tags addObject:[SPItemTag tag:@"可交易" color:nil]];
+    [tags addObject:[SPItemTag tag:@"可交易" color:color]];
     
     // 可出售 tag
     // TODO
-    [tags addObject:[SPItemTag tag:@"可出售" color:nil]];
+    [tags addObject:[SPItemTag tag:@"可出售" color:color]];
     
     self.tags = tags;
     [self.tagView reloadData];
@@ -140,7 +142,7 @@ NSString *const kSPItemTagCell = @"SPItemTagCell";
     [super awakeFromNib];
     
     self.contentView.layer.masksToBounds = YES;
-    self.contentView.layer.cornerRadius = 2.f;
+    self.contentView.layer.cornerRadius = 4.f;
     self.contentView.layer.borderWidth = 0.5f;
 }
 
@@ -148,6 +150,8 @@ NSString *const kSPItemTagCell = @"SPItemTagCell";
 {
     _tagInfo = tagInfo;
     self.tagLabel.text = tagInfo.tag;
+    self.tagLabel.textColor = [UIColor whiteColor];
+//    self.contentView.backgroundColor = [tagInfo.color colorWithAlphaComponent:0.8];
     self.tagLabel.textColor = tagInfo.color ? : FlatGrayDark;
     self.contentView.layer.borderColor = self.tagLabel.textColor.CGColor;
 }

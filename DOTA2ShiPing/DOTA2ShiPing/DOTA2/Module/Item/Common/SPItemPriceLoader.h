@@ -26,8 +26,16 @@
 @property (copy, nonatomic) NSString *suffix;
 @end
 
+@interface SPItemSteamPriceOverview : SPItemPriceBase
+@property (assign, nonatomic) BOOL success;
+@property (copy, nonatomic) NSString *lowest_price;
+@property (assign, nonatomic) NSInteger volume;
+@property (copy, nonatomic) NSString *median_price;
+@end
+
 @interface SPItemSteamPrice : SPItemPriceBase
 @property (strong, nonatomic) NSArray<SPMarketItem *> *items;
+@property (strong, nonatomic) SPItemSteamPriceOverview *overview;
 
 - (NSString *)basePrice;
 
@@ -37,6 +45,8 @@
 
 + (void)loadDota2MarketPrice:(SPItem *)item
                   completion:(void (^)(SPItemDota2Price *price))completion;
++ (void)loadSteamMarketPriceOverview:(SPItem *)item
+                          completion:(void(^)(SPItemSteamPrice *price))completion;
 + (void)loadSteamMarketPrice:(SPItem *)item
                   completion:(void(^)(SPItemSteamPrice *price))completion;
 
