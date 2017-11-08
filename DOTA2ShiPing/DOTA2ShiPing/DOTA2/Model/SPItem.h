@@ -26,6 +26,7 @@ FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 - (UIColor *)itemColor;
 - (NSString *)nameWithQualtity;
 - (NSString *)enNameWithQuality;
+- (NSString *)market_hash_name;
 
 // key
 @property (strong, nonatomic) NSNumber *token;  // 20818

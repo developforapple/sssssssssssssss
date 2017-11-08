@@ -16,6 +16,7 @@
     UIColor *_itemColor;
     NSString *_nameWithQualtity;
     NSString *_enNameWithQuality;
+    NSString *_market_hash_name;
 }
 @end
 
@@ -88,6 +89,21 @@
         }
     }
     return _enNameWithQuality;
+}
+
+- (NSString *)market_hash_name
+{
+    if (!_market_hash_name) {
+        NSString *name = self.name;
+        if ([self.item_quality isEqualToString:@"base"] ||
+            [self.item_quality isEqualToString:@"unique"]) {
+            _market_hash_name = name;
+        }else{
+            SPItemQuality *qualtity = [[SPDataManager shared] qualityOfName:self.item_quality];
+            _market_hash_name = [NSString stringWithFormat:@"%@ %@",[qualtity.name capitalizedString],name];
+        }
+    }
+    return _market_hash_name;
 }
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic

@@ -492,16 +492,20 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
             [query addObject:item];
         }
         components.queryItems = query;
-        
-        NSData *data = [NSData dataWithContentsOfURL:[components URL]];
-        
-        RunOnMainQueue(^{
-            if (data.length == 0) {
-                completion(nil,nil,nil);
-            }else{
-                completion(YES,data,nil);
-            }
-        });
+
+        [[[NSURLSession sharedSession] dataTaskWithURL:components.URL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
+            NSInteger code = resp.statusCode;
+            RunOnMainQueue(^{
+                if (code == 429) {
+                    completion(NO,@"请求频繁",nil);
+                }else if (!error){
+                    completion(YES,data,nil);
+                }else{
+                    completion(NO,@"网络错误",nil);
+                }
+            });
+        }] resume];
     });
     
     

@@ -127,14 +127,23 @@
 {
     if (!completion) return;
     
-    [[SPSteamAPI shared] fetchSteamPriceOverview:item.name completion:^(BOOL suc, id object, NSString *taskDesc) {
+    [[SPSteamAPI shared] fetchSteamPriceOverview:item.market_hash_name completion:^(BOOL suc, id object, NSString *taskDesc) {
         
         if (!suc) {
-            completion([SPItemSteamPrice error:@"网络错误"]);
+            completion([SPItemSteamPrice error:object?:@"网络错误"]);
             return;
         }
         
         SPItemSteamPriceOverview *overview = [SPItemSteamPriceOverview yy_modelWithJSON:object];
+        if (!overview) {
+            completion([SPItemSteamPrice error:@"失败"]);
+            return;
+        }
+        if (!overview.success) {
+            completion([SPItemSteamPrice error:@"未找到改物品"]);
+            return;
+        }
+        
         SPItemSteamPrice *price = [[SPItemSteamPrice alloc] initWithOverview:overview];
         completion(price);
     }];

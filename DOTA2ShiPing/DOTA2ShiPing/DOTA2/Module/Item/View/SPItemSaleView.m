@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
 @interface SPItemPlatformView : YGLineView
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading;
 @property (assign, nonatomic) SPItemPlatform platform;
@@ -29,59 +30,40 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
 
 @implementation SPItemPlatformView
 
-- (void)updatePrice:(id)priceObject
+- (void)updatePrice:(__kindof SPItemPriceBase *)priceObject
 {
-    self.loading.animating_ = self.btn.hidden = priceObject == nil;
+    BOOL loading = priceObject == nil;
+    self.loading.animating_ = loading;
     
-    switch (self.platform) {
-        case SPItemPlatformDota2:{
-            SPItemDota2Price *price = priceObject;
-            if (price.error.length == 0) {
-                
-                [self.btn setBackgroundColor:FlatSkyBlue];
-                [self.btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                [self.btn setTitle:price.price forState:UIControlStateNormal];
-                
-//                self.btn.borderColor_ = FlatSkyBlue;
-//                [self.btn setTitleColor:FlatSkyBlue forState:UIControlStateNormal];
-//                [self.btn setTitle:price.price forState:UIControlStateNormal];
-            }else{
-                
-                self.btn.backgroundColor = [UIColor clearColor];
-                [self.btn setTitleColor:FlatWhiteDark forState:UIControlStateNormal];
-                [self.btn setTitle:price.error forState:UIControlStateNormal];
-                
-//                self.btn.borderColor_ = [UIColor clearColor];
-//                [self.btn setTitleColor:FlatWhiteDark forState:UIControlStateNormal];
-//                [self.btn setTitle:price.error forState:UIControlStateNormal];
-            }
-            
-        }   break;
+    if (!loading) {
         
-        case SPItemPlatformSteam:{
-            SPItemSteamPrice *price = priceObject;
-            if (price.error.length == 0) {
-                [self.btn setBackgroundColor:FlatSkyBlue];
-                [self.btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                [self.btn setTitle:price.basePrice forState:UIControlStateNormal];
+        BOOL failed = priceObject.error.length;
+        
+        self.errorLabel.text = priceObject.error;
+        self.errorLabel.hidden = !failed;
+        self.btn.hidden = failed;
+        
+        switch (self.platform) {
+            case SPItemPlatformDota2:{
+                SPItemDota2Price *price = priceObject;
+                if (!failed) {
+                    [self.btn setTitle:price.price forState:UIControlStateNormal];
+                }
                 
-//                self.btn.borderColor_ = FlatSkyBlue;
-//                [self.btn setTitleColor:FlatSkyBlue forState:UIControlStateNormal];
-//                [self.btn setTitle:price.basePrice forState:UIControlStateNormal];
-            }else{
-                self.btn.backgroundColor = [UIColor clearColor];
-                [self.btn setTitleColor:FlatWhiteDark forState:UIControlStateNormal];
-                [self.btn setTitle:price.error forState:UIControlStateNormal];
+            }   break;
+            case SPItemPlatformSteam:{
+                SPItemSteamPrice *price = priceObject;
+                if (!failed) {
+                    [self.btn setTitle:price.basePrice forState:UIControlStateNormal];
+                }
+            }   break;
+            case SPItemPlatformTaobao:{
                 
-//                self.btn.borderColor_ = [UIColor clearColor];
-//                [self.btn setTitleColor:FlatWhiteDark forState:UIControlStateNormal];
-//                [self.btn setTitle:price.error forState:UIControlStateNormal];
-            }
-        }   break;
-            
-        case SPItemPlatformTaobao:{
-            
-        }   break;
+            }   break;
+        }
+    }else{
+        self.btn.hidden = YES;
+        self.errorLabel.hidden = YES;
     }
 }
 
