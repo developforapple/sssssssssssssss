@@ -74,6 +74,10 @@ typedef void (^SPSteamFetchCompletion2)(BOOL suc, id object, NSString *taskDesc)
 - (void)fetchSteamPriceOverview:(NSString *)itemName
                      completion:(SPSteamFetchCompletion2)completion;
 
+- (void)fetchSteamPriceList:(NSString *)itemName
+                     pageNo:(NSInteger)pageNo
+                 completion:(SPSteamFetchCompletion2)completion;
+
 - (NSURLSessionDataTask *)fetchSteamMarketContent:(NSString *)itemName
                                        completion:(SPSteamFetchCompletion2)completion;
 

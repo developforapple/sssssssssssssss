@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82861CDF325700F26BD1 /* libz.tbd */; };
+		2D0BD6FB1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD6FA1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m */; };
+		2D0BD6FE1FB3486E00A5DD99 /* SPItemSteamPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD6FD1FB3486E00A5DD99 /* SPItemSteamPriceCell.m */; };
 		2D19E0111F32F22A00747B01 /* SPPriceChartConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */; };
 		2D19E0141F34446000747B01 /* SPBundleItemsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0131F34446000747B01 /* SPBundleItemsViewCtrl.m */; };
 		2D37AAB41FAEEB5E0043DDD4 /* SPItemDescPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D37AAB31FAEEB5E0043DDD4 /* SPItemDescPanel.m */; };
@@ -233,6 +235,10 @@
 		112F9D57D42D37A148B12842 /* Pods-DOTA2ShiPing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOTA2ShiPing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing.debug.xcconfig"; sourceTree = "<group>"; };
 		23D6142664BEC9BAEB40BFC9 /* Pods-DOTA2ShiPing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOTA2ShiPing.release.xcconfig"; path = "Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing.release.xcconfig"; sourceTree = "<group>"; };
 		2D0A82861CDF325700F26BD1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		2D0BD6F91FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemSteamPricesViewCtrl.h; sourceTree = "<group>"; };
+		2D0BD6FA1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemSteamPricesViewCtrl.m; sourceTree = "<group>"; };
+		2D0BD6FC1FB3486E00A5DD99 /* SPItemSteamPriceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemSteamPriceCell.h; sourceTree = "<group>"; };
+		2D0BD6FD1FB3486E00A5DD99 /* SPItemSteamPriceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemSteamPriceCell.m; sourceTree = "<group>"; };
 		2D19E00F1F32F22A00747B01 /* SPPriceChartConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPriceChartConfig.h; sourceTree = "<group>"; };
 		2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceChartConfig.m; sourceTree = "<group>"; };
 		2D19E0121F34446000747B01 /* SPBundleItemsViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBundleItemsViewCtrl.h; sourceTree = "<group>"; };
@@ -1485,6 +1491,8 @@
 				6919742A1F42A96E00FB5007 /* SPBundleItemCell.m */,
 				2D4B5CE11F2A323800A3D8C9 /* SPItemPriceCell.h */,
 				2D4B5CE21F2A323800A3D8C9 /* SPItemPriceCell.m */,
+				2D0BD6FC1FB3486E00A5DD99 /* SPItemSteamPriceCell.h */,
+				2D0BD6FD1FB3486E00A5DD99 /* SPItemSteamPriceCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1533,6 +1541,8 @@
 				2D4B5C781F27974F00A3D8C9 /* SPItemPriceListViewCtrl.m */,
 				2D19E0121F34446000747B01 /* SPBundleItemsViewCtrl.h */,
 				2D19E0131F34446000747B01 /* SPBundleItemsViewCtrl.m */,
+				2D0BD6F91FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.h */,
+				2D0BD6FA1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m */,
 				2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */,
 			);
 			path = Ctrls;
@@ -2181,6 +2191,7 @@
 				2DF9B88D1F1361640012950A /* SPDataManager.m in Sources */,
 				2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */,
 				2DF9B82A1F1361640012950A /* YGCoreMotionHelper.m in Sources */,
+				2D0BD6FB1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m in Sources */,
 				6954FCE81F44329100DDB5D3 /* SPFilterOption.m in Sources */,
 				690BD5161FA71E6D007A4D5D /* SPGamepediaImage.m in Sources */,
 				2D4B5C7C1F27B1F900A3D8C9 /* SPMarketItem.m in Sources */,
@@ -2199,6 +2210,7 @@
 				2DF9B8781F1361640012950A /* CDTAlertDefine.m in Sources */,
 				2DF9B8391F1361640012950A /* UISearchBar+yg_IBInspectable.m in Sources */,
 				2DF9B8321F1361640012950A /* UIDevice+Ext.m in Sources */,
+				2D0BD6FE1FB3486E00A5DD99 /* SPItemSteamPriceCell.m in Sources */,
 				2D4AD9D41F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m in Sources */,
 				2DF9B8C91F1361640012950A /* SPFocusVisualEffectVC.m in Sources */,
 				2DF9B8541F1361640012950A /* YGPayThirdPlatformProcessor.m in Sources */,

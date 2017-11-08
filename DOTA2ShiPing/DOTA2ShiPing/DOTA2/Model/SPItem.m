@@ -106,6 +106,16 @@
     return _market_hash_name;
 }
 
+- (NSString *)dota2MarketURL
+{
+    return [NSString stringWithFormat:@"http://store.dota2.com.cn/itemdetails/%@",self.token];
+}
+
+- (NSString *)steamMarketURL
+{
+    return [NSString stringWithFormat:@"http://steamcommunity.com/market/listings/570/%@",[self.market_hash_name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+}
+
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic
 {
     if (!self.name) {

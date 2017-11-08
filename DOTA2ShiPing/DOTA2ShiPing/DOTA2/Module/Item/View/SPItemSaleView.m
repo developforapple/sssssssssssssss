@@ -10,6 +10,8 @@
 #import "YGLineView.h"
 #import "SPItemSharedData.h"
 #import "SPItemPriceLoader.h"
+#import "SPWebHelper.h"
+#import "SPItemSteamPricesViewCtrl.h"
 @import ReactiveObjC;
 @import ChameleonFramework;
 
@@ -26,6 +28,7 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading;
 @property (assign, nonatomic) SPItemPlatform platform;
+@property (strong, nonatomic) SPItem *item;
 @end
 
 @implementation SPItemPlatformView
@@ -67,9 +70,32 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
     }
 }
 
+- (IBAction)bgAction:(id)sender
+{
+    switch (self.platform) {
+        case SPItemPlatformDota2:{
+            [SPWebHelper openURL:[NSURL URLWithString:[self.item dota2MarketURL]] from:self.viewController.navigationController];
+        }   break;
+        case SPItemPlatformSteam:{
+            SPItemSteamPricesViewCtrl *vc = [SPItemSteamPricesViewCtrl instanceFromStoryboard];
+            vc.item = self.item;
+            [self.viewController.navigationController pushViewController:vc animated:YES];
+        }   break;
+        case SPItemPlatformTaobao:break;
+    }
+}
+
 - (IBAction)btnAction:(id)sender
 {
-    
+    switch (self.platform) {
+        case SPItemPlatformDota2:{
+            [SPWebHelper openURL:[NSURL URLWithString:[self.item dota2MarketURL]] from:self.viewController.navigationController];
+        }   break;
+        case SPItemPlatformSteam:{
+            [SPWebHelper openURL:[NSURL URLWithString:[self.item steamMarketURL]] from:self.viewController.navigationController];
+        }   break;
+        case SPItemPlatformTaobao:break;
+    }
 }
 
 @end
@@ -95,6 +121,9 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
 - (void)setItemData:(SPItemSharedData *)itemData
 {
     _itemData = itemData;
+    self.dota2View.item = itemData.item;
+    self.steamView.item = itemData.item;
+    self.taobaoView.item = itemData.item;
     [self update];
 }
 

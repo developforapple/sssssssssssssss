@@ -28,6 +28,9 @@ FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 - (NSString *)enNameWithQuality;
 - (NSString *)market_hash_name;
 
+- (NSString *)dota2MarketURL;
+- (NSString *)steamMarketURL;
+
 // key
 @property (strong, nonatomic) NSNumber *token;  // 20818
 

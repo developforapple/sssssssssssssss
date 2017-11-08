@@ -507,24 +507,50 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
             });
         }] resume];
     });
+}
+
+- (void)fetchSteamPriceList:(NSString *)itemName
+                     pageNo:(NSInteger)pageNo
+                 completion:(SPSteamFetchCompletion2)completion
+{
     
+//    http://steamcommunity.com/market/search/render/?query=信仰&start=0&count=10&search_descriptions=0&sort_column=default&sort_dir=desc&appid=570
     
-//    return
-//    [self.marketManager GET:@"market/priceoverview" parameters:param progress:^(NSProgress *downloadProgress) {
-//        
-//    } success:^(NSURLSessionDataTask *task, id responseObject) {
-//        completion(nil!=responseObject,responseObject,task.taskDescription);
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        
-//        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
-//        
-//        if ([response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 429) {
-//            NSLog(@"%@", response.allHeaderFields);
-//            completion(NO,@"您最近作出的请求太多了。请稍候再重试您的请求。",task.taskDescription);
-//        }else{
-//            completion(NO,@"网络错误",task.taskDescription);
-//        }
-//    }];
+    if (!itemName || !completion) return;
+    
+    NSDictionary *param = @{@"query":itemName,
+                            @"appid":@"570",
+                            @"start":[@(pageNo*10) stringValue],
+                            @"count":@"10",
+                            @"sort_column":@"default",
+                            @"sort_dir":@"desc",
+                            @"search_descriptions":@"0"
+                            };
+    
+    RunOnGlobalQueue(^{
+        
+        NSURLComponents *components = [NSURLComponents componentsWithString:@"http://steamcommunity.com/market/search/render"];
+        NSMutableArray *query = [NSMutableArray array];
+        for (NSString *k in param) {
+            NSURLQueryItem *item = [NSURLQueryItem queryItemWithName:k value:param[k]];
+            [query addObject:item];
+        }
+        components.queryItems = query;
+        
+        [[[NSURLSession sharedSession] dataTaskWithURL:components.URL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
+            NSInteger code = resp.statusCode;
+            RunOnMainQueue(^{
+                if (code == 429) {
+                    completion(NO,@"请求频繁",nil);
+                }else if (!error){
+                    completion(YES,data,nil);
+                }else{
+                    completion(NO,@"网络错误",nil);
+                }
+            });
+        }] resume];
+    });
 }
 
 - (NSURLSessionDataTask *)fetchSteamMarketContent:(NSString *)itemName

@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface SPMarketItem : NSObject
-@property (strong, nonatomic) NSString *name;   //铭刻 小飞侠
-@property (strong, nonatomic) NSString *qty;    //41
-@property (strong, nonatomic) NSString *price;  //$0.21 USD
-@property (strong, nonatomic) NSString *href;   //
+@property (copy, nonatomic) NSString *name;   //铭刻 小飞侠
+@property (copy, nonatomic) NSString *qty;    //41
+@property (copy, nonatomic) NSString *price;  //$0.21 USD
+@property (copy, nonatomic) NSString *href;   //
+@property (copy, nonatomic) NSString *hexColor;
+@property (copy, nonatomic) NSString *image;
 
 - (NSString *)priceNumber;
 
