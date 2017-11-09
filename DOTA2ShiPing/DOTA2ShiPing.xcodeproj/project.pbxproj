@@ -753,7 +753,6 @@
 				2D4B5D4A1F2A54CB00A3D8C9 /* SPChart.storyboard */,
 				2D4B5D471F2A54CB00A3D8C9 /* Ctrls */,
 				2D4B5D501F2E2C6C00A3D8C9 /* Model */,
-				2D4B5D511F2E2C6C00A3D8C9 /* View */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -776,13 +775,6 @@
 				2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		2D4B5D511F2E2C6C00A3D8C9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		2D91EB711F1626270038B49C /* Resource */ = {
@@ -1976,7 +1968,7 @@
 				TargetAttributes = {
 					2D48D2921CDE20D600190F0C = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 274KUV28NC;
+						DevelopmentTeam = 8QP3ZT6EXM;
 						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -2494,7 +2486,7 @@
 				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 274KUV28NC;
+				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2536,7 +2528,7 @@
 					"-lstdc++",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wwwbbat.ShiPing.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = wwwbbat.ShiPing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2560,7 +2552,7 @@
 				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 274KUV28NC;
+				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2602,7 +2594,7 @@
 					"-lstdc++",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wwwbbat.ShiPing.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = wwwbbat.ShiPing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

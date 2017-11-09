@@ -12,8 +12,9 @@
 #import "TFHpple.h"
 #import "YGRefreshComponent.h"
 #import "SPItemSteamPriceCell.h"
+#import "SPPriceChartViewCtrl.h"
 
-@interface SPItemSteamPricesViewCtrl ()<UITableViewDelegate,UITableViewDataSource>
+@interface SPItemSteamPricesViewCtrl ()<YGRefreshDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading;
 
@@ -30,6 +31,8 @@
 {
     [super viewDidLoad];
     
+    [self.tableView refreshHeader:NO footer:YES delegate:self];
+    
     self.priceList = [NSMutableArray array];
     
     self.pageNo = 0;
@@ -39,8 +42,14 @@
 - (void)loadData:(NSInteger)pageNo
 {
     [SPItemPriceLoader loadSteamMarketPriceList:self.item pageNo:pageNo completion:^(SPItemSteamPrice *price) {
+        [self.loading stopAnimating];
         [self parsePrice:price page:pageNo];
     }];
+}
+
+- (void)refreshFooterBeginRefreshing:(UIScrollView *)scrollView
+{
+    [self loadData:self.pageNo+1];
 }
 
 - (void)parsePrice:(SPItemSteamPrice *)price page:(NSInteger)pageNo
@@ -50,12 +59,12 @@
         [SVProgressHUD showErrorWithStatus:price.error];
         return;
     }
-    if (!price.list.success) {
+    if (!price.list.success || price.items.count < 10) {
         // 没有更多了
         [self.tableView setNoMoreData];
         return;
     }
-    
+    self.pageNo = pageNo;
     [self.priceList addObjectsFromArray:price.items];
     [self.tableView reloadData];
 }
@@ -72,5 +81,14 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    SPPriceChartViewCtrl *vc = [SPPriceChartViewCtrl instanceFromStoryboard];
+    vc.item = self.item;
+    vc.marketItem = self.priceList[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end

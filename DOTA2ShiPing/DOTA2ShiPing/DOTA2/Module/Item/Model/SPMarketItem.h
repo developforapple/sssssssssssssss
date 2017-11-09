@@ -17,5 +17,6 @@
 @property (copy, nonatomic) NSString *image;
 
 - (NSString *)priceNumber;
+- (UIColor *)color;
 
 @end

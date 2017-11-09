@@ -215,6 +215,9 @@
                 if (hexColorL != NSNotFound) {
                     hexColor = [colorString substringFromIndex:hexColorL];
                 }
+                if ([hexColor hasSuffix:@";"]) {
+                    hexColor = [hexColor substringToIndex:hexColor.length-1];
+                }
                 
                 SPMarketItem *aItem = [SPMarketItem new];
                 aItem.name = name;

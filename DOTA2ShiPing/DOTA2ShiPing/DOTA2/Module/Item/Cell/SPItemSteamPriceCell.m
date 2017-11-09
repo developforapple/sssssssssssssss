@@ -27,6 +27,10 @@ NSString *const kSPItemSteamPriceCell = @"SPItemSteamPriceCell";
     [self.itemImageView sd_setImageWithURL:[NSURL URLWithString:itemPrice.image]];
     self.itemNameLabel.text = itemPrice.name;
     self.itemPriceLabel.text = itemPrice.price;
+    self.itemQtyLabel.text = [@"x " stringByAppendingString:itemPrice.qty];
+    
+    self.itemImageView.borderColor_ = itemPrice.color;
+    self.itemImageView.borderWidth_ = 1;
 }
 
 
