@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SPItemColor.h"
 
 @interface SPMarketItem : NSObject
 @property (copy, nonatomic) NSString *name;   //铭刻 小飞侠
@@ -16,7 +17,8 @@
 @property (copy, nonatomic) NSString *hexColor;
 @property (copy, nonatomic) NSString *image;
 
+@property (strong, nonatomic) SPItemColor *color;
+
 - (NSString *)priceNumber;
-- (UIColor *)color;
 
 @end

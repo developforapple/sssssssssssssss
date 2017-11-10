@@ -10,7 +10,7 @@
 
 @interface SPMarketItem ()
 {
-    UIColor *_color;
+    
 }
 @end
 
@@ -22,10 +22,11 @@
     return p;
 }
 
-- (UIColor *)color
+- (SPItemColor *)color
 {
     if (!_color){
-        _color = [UIColor colorWithHexString:self.hexColor];
+        _color = [SPItemColor new];
+        [_color setHex_color:self.hexColor];
     }
     return _color;
 }

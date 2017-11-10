@@ -54,8 +54,10 @@
             _itemColor = color.color;
             
         }else{
+            
             SPItemQuality *qualtity = [[SPDataManager shared] qualityOfName:self.item_quality];
             _itemColor = HEXColor(qualtity.hexColor);
+            
         }
     }
     return _itemColor;

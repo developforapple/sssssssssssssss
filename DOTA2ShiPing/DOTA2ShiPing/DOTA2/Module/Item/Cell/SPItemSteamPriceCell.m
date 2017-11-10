@@ -9,15 +9,24 @@
 #import "SPItemSteamPriceCell.h"
 #import "SPMarketItem.h"
 #import "SPWebHelper.h"
+#import "SPItemColor.h"
 
 NSString *const kSPItemSteamPriceCell = @"SPItemSteamPriceCell";
+
+@interface SPItemSteamPriceCell ()
+@property (weak, nonatomic) IBOutlet UIView *backColorView;
+@property (strong, nonatomic) CAGradientLayer *gLayer;
+@end
 
 @implementation SPItemSteamPriceCell
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
+}
+
+- (void)layoutSubviews
+{
     
 }
 
@@ -30,15 +39,28 @@ NSString *const kSPItemSteamPriceCell = @"SPItemSteamPriceCell";
     self.itemPriceLabel.text = itemPrice.price;
     self.itemQtyLabel.text = [@"x " stringByAppendingString:itemPrice.qty];
     
-    self.itemImageView.borderColor_ = itemPrice.color;
-    self.itemImageView.borderWidth_ = 1;
-    
     [self.itemPriceBtn setTitle:itemPrice.price forState:UIControlStateNormal];
+    
+    if (!_gLayer) {
+        _gLayer = [CAGradientLayer layer];
+        _gLayer.frame = self.backColorView.bounds;
+        _gLayer.startPoint = CGPointMake(0, .5f);
+        _gLayer.endPoint = CGPointMake(1, .5f);
+        _gLayer.locations = @[@0,@1];
+        [_backColorView.layer addSublayer:_gLayer];
+    }
+    
+    UIColor *baseColor = RGBColor(120, 120, 120, 1);
+    NSArray *colors =  @[(id)blendColors(baseColor, itemPrice.color.color, .8f).CGColor,
+                         (id)blendColors(baseColor, itemPrice.color.color, .2f).CGColor];
+    _gLayer.colors = colors;
 }
 
 - (IBAction)steamWebsiteAction:(id)sender
 {
-    [SPWebHelper openURL:[NSURL URLWithString:self.itemPrice.href] from:[self viewController]];
+    NSURLComponents *compontents = [NSURLComponents componentsWithString:self.itemPrice.href];
+    compontents.queryItems = nil;
+    [SPWebHelper openURL:compontents.URL from:[self viewController]];
 }
 
 
