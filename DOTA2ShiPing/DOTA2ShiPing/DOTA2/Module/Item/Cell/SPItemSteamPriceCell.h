@@ -17,6 +17,7 @@ YG_EXTERN NSString *const kSPItemSteamPriceCell;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
 @property (weak, nonatomic) IBOutlet UILabel *itemPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *itemQtyLabel;
+@property (weak, nonatomic) IBOutlet UIButton *itemPriceBtn;
 
 @property (strong, nonatomic) SPMarketItem *itemPrice;
 - (void)configureWithPrice:(SPMarketItem *)itemPrice;

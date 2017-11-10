@@ -13,6 +13,7 @@
 #import "YGRefreshComponent.h"
 #import "SPItemSteamPriceCell.h"
 #import "SPPriceChartViewCtrl.h"
+#import "SPLogoHeader.h"
 
 @interface SPItemSteamPricesViewCtrl ()<YGRefreshDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -30,8 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self.tableView refreshHeader:NO footer:YES delegate:self];
+    [SPLogoHeader setLogoHeaderInScrollView:self.tableView];
     
     self.priceList = [NSMutableArray array];
     
@@ -62,7 +63,6 @@
     if (!price.list.success || price.items.count < 10) {
         // 没有更多了
         [self.tableView setNoMoreData];
-        return;
     }
     self.pageNo = pageNo;
     [self.priceList addObjectsFromArray:price.items];

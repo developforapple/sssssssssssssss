@@ -8,6 +8,7 @@
 
 #import "SPItemSteamPriceCell.h"
 #import "SPMarketItem.h"
+#import "SPWebHelper.h"
 
 NSString *const kSPItemSteamPriceCell = @"SPItemSteamPriceCell";
 
@@ -31,6 +32,13 @@ NSString *const kSPItemSteamPriceCell = @"SPItemSteamPriceCell";
     
     self.itemImageView.borderColor_ = itemPrice.color;
     self.itemImageView.borderWidth_ = 1;
+    
+    [self.itemPriceBtn setTitle:itemPrice.price forState:UIControlStateNormal];
+}
+
+- (IBAction)steamWebsiteAction:(id)sender
+{
+    [SPWebHelper openURL:[NSURL URLWithString:self.itemPrice.href] from:[self viewController]];
 }
 
 
