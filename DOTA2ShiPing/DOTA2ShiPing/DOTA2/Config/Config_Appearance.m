@@ -58,7 +58,7 @@ UIColor *kTintColor;
     kDisableColor   = [UIColor colorWithHexString:@"dadada"];
     
     kBarTintColor = FlatNavyBlueDark;
-    kTintColor = FlatWhite;
+    kTintColor = [UIColor whiteColor];
 }
 
 @end

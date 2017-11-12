@@ -18,14 +18,14 @@
 #import "SPItemSaleView.h"
 #import "SPItemDescPanel.h"
 #import "SPItemMoreItemsView.h"
+#import "SPItemBannerView.h"
 
-@interface SPItemViewCtrl ()
+@interface SPItemViewCtrl () <MXParallaxHeaderDelegate>
 
 @property (strong, nonatomic) SPItemSharedData *itemData;
-@property (strong, nonatomic) NSArray<SPGamepediaImage *> *extraImages;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) IBOutlet SDCycleScrollView *imagePanel;
+@property (strong, nonatomic) IBOutlet SPItemBannerView *bannerPanel;
 @property (weak, nonatomic) IBOutlet SPItemTitleView *titlePanel;
 @property (weak, nonatomic) IBOutlet SPItemSaleView *salePanel;
 @property (weak, nonatomic) IBOutlet SPItemDescPanel *descPanel;
@@ -48,42 +48,30 @@
 {
     self.scrollView.automaticallyAdjustsScrollViewInsets = self.automaticallyAdjustsScrollViewInsets;
     
-    self.scrollView.parallaxHeader.view = self.imagePanel;
+    self.scrollView.parallaxHeader.delegate = self;
+    self.scrollView.parallaxHeader.view = self.bannerPanel;
     self.scrollView.parallaxHeader.height = 2.0 / 3.0 * Device_Width;
     self.scrollView.parallaxHeader.mode = MXParallaxHeaderModeFill;
     self.scrollView.parallaxHeader.minimumHeight = 20.0;
-    
-    self.imagePanel.autoScrollTimeInterval = 1.5f;
-    self.imagePanel.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
-    self.imagePanel.showPageControl = YES;
-    self.imagePanel.placeholderImage = nil;
-    self.imagePanel.autoScroll = YES;
-    self.imagePanel.backgroundColor = [UIColor clearColor];
 }
 
 - (void)loadData
 {
     self.itemData = [[SPItemSharedData alloc] initWithItem:self.item];
-    
 }
 
 - (void)updateUI
 {
-    [self updateImagePanel];
-    
+    self.bannerPanel.itemData = self.itemData;
     self.titlePanel.itemData = self.itemData;
     self.salePanel.itemData = self.itemData;
     self.descPanel.itemData = self.itemData;
     self.moreItemsPanel.itemData = self.itemData;
 }
 
-- (void)updateImagePanel
+- (void)parallaxHeaderDidScroll:(MXParallaxHeader *)parallaxHeader
 {
-    NSMutableArray *extraImageURLs = [NSMutableArray arrayWithObject:[self.itemData.item qiniuLargeURL]];
-    for (SPGamepediaImage *aImage in self.extraImages) {
-        [extraImageURLs addObject:aImage.fullsizeImageURL];
-    }
-    self.imagePanel.imageURLStringsGroup = extraImageURLs;
+    [self.bannerPanel setScrollProgress:parallaxHeader.progress];
 }
 
 @end

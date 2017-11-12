@@ -10,21 +10,6 @@
 #import "TFHpple.h"
 #import "SPGamepediaImage.h"
 
-static NSError * AFErrorWithUnderlyingError(NSError *error, NSError *underlyingError) {
-    if (!error) {
-        return underlyingError;
-    }
-    
-    if (!underlyingError || error.userInfo[NSUnderlyingErrorKey]) {
-        return error;
-    }
-    
-    NSMutableDictionary *mutableUserInfo = [error.userInfo mutableCopy];
-    mutableUserInfo[NSUnderlyingErrorKey] = underlyingError;
-    
-    return [[NSError alloc] initWithDomain:error.domain code:error.code userInfo:mutableUserInfo];
-}
-
 static BOOL AFErrorOrUnderlyingErrorHasCodeInDomain(NSError *error, NSInteger code, NSString *domain) {
     if ([error.domain isEqualToString:domain] && error.code == code) {
         return YES;
@@ -65,8 +50,20 @@ static BOOL AFErrorOrUnderlyingErrorHasCodeInDomain(NSError *error, NSInteger co
             NSString *html = [jsonObject valueForKeyPath:@"parse.text.*"];
             NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
             TFHpple *root = [TFHpple hppleWithHTMLData:data];
-            NSArray<TFHppleElement *> *galleryboxes = [root searchWithXPathQuery:@"//li[@class='gallerybox']//img"];
+            NSArray<TFHppleElement *> *effectsBoxes = [root searchWithXPathQuery:@"//table[@class='wikitable']//a[@class='image']//img"];
+            NSArray<TFHppleElement *> *galleryboxes = [root searchWithXPathQuery:@"//li[@class='gallerybox']//a[@class='image']//img"];
             NSMutableArray *images = [NSMutableArray array];
+            
+            for (TFHppleElement *element in effectsBoxes) {
+                NSString *src = [element objectForKey:@"src"];
+                SPGamepediaImage *image = [SPGamepediaImage gamepediaImage:src];
+                if (image) {
+                    image.width = [[element objectForKey:@"width"] integerValue];
+                    image.height = [[element objectForKey:@"height"] integerValue];
+                    [images addObject:image];
+                }
+            }
+            
             for (TFHppleElement *element in galleryboxes) {
                 NSString *src = [element objectForKey:@"src"];
                 SPGamepediaImage *image = [SPGamepediaImage gamepediaImage:src];

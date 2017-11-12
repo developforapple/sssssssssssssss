@@ -39,8 +39,7 @@
             return nil;
         }
         image.path = [path substringToIndex:NSMaxRange(r)];
-        
-        NSString *tmp = [path substringFromIndex:NSMaxRange(r)];
+        NSString *tmp = [path substringFromIndex:NSMaxRange(r)+1];
         NSArray *pathCompontents = [tmp componentsSeparatedByString:@"/"];
         if (pathCompontents.count >= 3) {
             image.filepath = [pathCompontents[0] stringByAppendingPathComponent:pathCompontents[1]];
@@ -69,29 +68,40 @@
 
 - (NSURL *)fullsizeImageURL
 {
-    return [self thumbImageURL:0];
+    return [self imageURL:SPGamepediaImageScaleFull];
 }
 
-- (NSURL *)thumbImageURL:(int)px
+- (NSURL *)imageURL:(SPGamepediaImageScale)scale
 {
     NSURLComponents *compontents = [NSURLComponents new];
     compontents.scheme = self.scheme;
     compontents.host = self.host;
     
-    if (px > 0) {
-        
-        NSString *path = [[[[self.path  stringByAppendingPathComponent:@"thumb"]
-                                        stringByAppendingPathComponent:self.filepath]
-                                        stringByAppendingPathComponent:self.filename]
-                                        stringByAppendingPathComponent:[NSString stringWithFormat:@"%dpx-%@",px,self.filename]];
-        compontents.path = path;
-        
-    }else{
-        NSString *path = [[self.path  stringByAppendingPathComponent:self.filepath]
-                                      stringByAppendingPathComponent:self.filename];
-        compontents.path = path;
+    switch (scale) {
+        case SPGamepediaImageScaleFull:{
+            NSString *path = [[self.path  stringByAppendingPathComponent:self.filepath]
+                              stringByAppendingPathComponent:self.filename];
+            compontents.path = path;
+        }   break;
+        case SPGamepediaImageScale1:
+        case SPGamepediaImageScale2:
+        case SPGamepediaImageScale1x5:{
+            
+            int px = scale/2.0 * self.width;
+            NSString *path = [[[[self.path  stringByAppendingPathComponent:@"thumb"]
+                                            stringByAppendingPathComponent:self.filepath]
+                                            stringByAppendingPathComponent:self.filename]
+                                            stringByAppendingPathComponent:[NSString stringWithFormat:@"%dpx-%@",px,self.filename]];
+            compontents.path = path;
+            
+        }   break;
+        case SPGamepediaImageScaleBest:{
+            
+            // 以full代替
+            return [self imageURL:SPGamepediaImageScaleFull];
+            
+        }   break;
     }
-    
     if (self.version.length) {
         compontents.queryItems = @[[NSURLQueryItem queryItemWithName:@"version" value:self.version]];
     }

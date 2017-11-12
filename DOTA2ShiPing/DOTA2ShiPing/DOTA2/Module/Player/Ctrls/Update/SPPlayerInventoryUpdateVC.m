@@ -7,7 +7,6 @@
 //
 
 #import "SPPlayerInventoryUpdateVC.h"
-#import "AMPopTip.h"
 
 @interface SPPlayerInventoryUpdateVC ()
 

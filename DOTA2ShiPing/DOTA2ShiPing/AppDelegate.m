@@ -24,6 +24,8 @@
 
 #import "Chameleon.h"
 
+@import SDWebImage;
+
 @interface AppDelegate ()
 @property (strong, nonatomic) SPLaunchADVC *adVC;
 @property (strong, nonatomic) UIView *test;
@@ -45,14 +47,20 @@
 
 - (void)_setupUIAppearance
 {
-    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} forState:UIControlStateNormal];
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setTintColor:kTintColor];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} forState:UIControlStateHighlighted];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} forState:UIControlStateSelected];
     [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:kTintColor];
+    if (iOS11){}else{
+        [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, -65.f) forBarMetrics:UIBarMetricsDefault];
+    }
+    
+    [[UINavigationBar appearance] setBackIndicatorImage:nil];
+    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:nil];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:kTintColor,NSFontAttributeName:[UIFont boldSystemFontOfSize:18]}];
     
     [[UISearchBar appearance] setBackgroundImage:[UIImage imageWithColor:kRedColor] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
-    
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:kTintColor,NSFontAttributeName:[UIFont boldSystemFontOfSize:18]}];
     
     [UIViewController setDefaultStatusBarStyle:UIStatusBarStyleLightContent];
     [UIViewController setDefaultNavigationBarTintColor:kBarTintColor];
@@ -66,6 +74,8 @@
     [SVProgressHUD setMinimumDismissTimeInterval:2.f];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleLight];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    
+    [[SDWebImageDownloader sharedDownloader] setDownloadTimeout:60];
 }
 
 - (void)_setupADSplash

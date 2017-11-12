@@ -14,6 +14,11 @@
 #import <SDWebImage/UIImage+WebP.h>
 #import <SDWebImage/SDWebImagePrefetcher.h>
 
+// 这个函数如果发生了修改，需要重新上传所有图片
+static NSString *getQiniuName(NSString *inventory){
+    return [NSString stringWithFormat:@"%lu",(unsigned long)[[inventory stringByAppendingString:@"_0123456789"] hash]];
+}
+
 YYCache *
 normalImageCache(){
     static YYCache *_kDefaultCache;
@@ -280,8 +285,8 @@ CGSize const kNonePlaceholderSize = {-1,-1};
 - (NSString *)qiniuImageURLString
 {
     if (self.image_inventory.length == 0) return nil;
-    NSString *name = [[self.image_inventory lowercaseString] stringByReplacingOccurrencesOfString:@"/" withString:@"%%2F"];
-    NSString *urlString = [NSString stringWithFormat:@"http://items-3-0.qiniudn.com/%@",name];
+    NSString *qiniuName = getQiniuName(self.image_inventory);
+    NSString *urlString = [NSString stringWithFormat:@"http://items-3-0.qiniudn.com/%@",qiniuName];
     return urlString;
 }
 

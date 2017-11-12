@@ -8,6 +8,7 @@
 
 #import "IDMPhoto.h"
 #import "IDMPhotoBrowser.h"
+@import SDWebImage;
 
 // Private
 @interface IDMPhoto () {
@@ -137,16 +138,27 @@ caption = _caption;
         } else if (_photoURL) {
             // Load async from web (using SDWebImageManager)
 			
-			[[SDWebImageManager sharedManager] loadImageWithURL:_photoURL options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+			[[SDWebImageManager sharedManager] loadImageWithURL:_photoURL options:SDWebImageRetryFailed | SDWebImageAllowInvalidSSLCertificates | SDWebImageAvoidAutoSetImage | SDWebImageContinueInBackground progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
 				CGFloat progress = ((CGFloat)receivedSize)/((CGFloat)expectedSize);
-				
-				if (self.progressUpdateBlock) {
-					self.progressUpdateBlock(progress);
-				}
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (self.progressUpdateBlock) {
+                        self.progressUpdateBlock(progress);
+                    }
+                });
+            
 			} completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-				if (image) {
-					self.underlyingImage = image;
-				}
+				
+                if (data) {
+                    SDImageFormat imageFormat = [NSData sd_imageFormatForImageData:data];
+                    if (imageFormat == SDImageFormatGIF) {
+                        FLAnimatedImage *animagedImage = [FLAnimatedImage animatedImageWithGIFData:data];
+                        self.underlyingImage = animagedImage;
+                    } else {
+                        self.underlyingImage = image;
+                    }
+                }else if(image){
+                    self.underlyingImage = image;
+                }
 				
 				[self performSelectorOnMainThread:@selector(imageLoadingComplete) withObject:nil waitUntilDone:NO];
 			}];

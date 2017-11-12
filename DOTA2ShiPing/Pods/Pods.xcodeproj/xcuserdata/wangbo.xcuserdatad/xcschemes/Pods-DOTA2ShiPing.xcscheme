@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0910"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "518408ABF639C017331EAD86AE4C01E2"
+               BlueprintIdentifier = "4F811B494A49EF718C40D42EE49E0E07"
                BuildableName = "Pods_DOTA2ShiPing.framework"
                BlueprintName = "Pods-DOTA2ShiPing"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "518408ABF639C017331EAD86AE4C01E2"
+            BlueprintIdentifier = "4F811B494A49EF718C40D42EE49E0E07"
             BuildableName = "Pods_DOTA2ShiPing.framework"
             BlueprintName = "Pods-DOTA2ShiPing"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -58,7 +58,18 @@ typedef enum {
 /** 图片滚动回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index;
 
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView
+          willLoadImage:(NSString *)url
+                atIndex:(NSInteger)index;
 
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView
+                loading:(NSString *)url
+               received:(NSInteger)receivedLength
+                  total:(NSInteger)totalLength ;
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView
+           didLoadimage:(NSString *)url
+                  error:(NSError *)error;
 
 
 
@@ -193,6 +204,7 @@ typedef enum {
 /** 滚动手势禁用（文字轮播较实用） */
 - (void)disableScrollGesture;
 
+- (void)setCurrentIndex:(int)curIndex;
 
 //////////////////////  清除缓存API  //////////////////////
 

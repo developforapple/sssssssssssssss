@@ -9,6 +9,7 @@
 #import "SPItemSharedData.h"
 #import "SPDataManager.h"
 #import "SPItemFilter.h"
+#import "SPGamepediaAPI.h"
 
 @interface SPItemSharedData ()
 @property (strong, readwrite, nonatomic) SPItem *item;
@@ -25,6 +26,8 @@
 
 @property (strong, readwrite, nonatomic) SPItemDota2Price *dota2Price;
 @property (strong, readwrite, nonatomic) SPItemSteamPrice *steamPrice;
+
+@property (strong, readwrite, nonatomic) NSArray<SPGamepediaImage *> *extraImages;
 
 @end
 
@@ -88,6 +91,7 @@
     [self updateItems];
     
     [self loadPrices];
+    [self loadExtraImages];
 }
 
 - (void)updateItems
@@ -138,6 +142,15 @@
 //        self.steamPrice = price;
 //    }];
     
+}
+
+- (void)loadExtraImages
+{
+    [[SPGamepediaAPI shared] fetchItem:self.item.name completion:^(BOOL suc, NSError *error, id result) {
+        if (suc) {
+            self.extraImages = result;
+        }
+    }];
 }
 
 @end

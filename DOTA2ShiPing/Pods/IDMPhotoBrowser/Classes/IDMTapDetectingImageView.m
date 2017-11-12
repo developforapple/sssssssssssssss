@@ -7,6 +7,7 @@
 //
 
 #import "IDMTapDetectingImageView.h"
+#import <FLAnimatedImage/FLAnimatedImage.h>
 
 @implementation IDMTapDetectingImageView
 
@@ -65,6 +66,15 @@
 - (void)handleTripleTap:(UITouch *)touch {
 	if ([tapDelegate respondsToSelector:@selector(imageView:tripleTapDetected:)])
 		[tapDelegate imageView:self tripleTapDetected:touch];
+}
+
+- (void)setImage:(UIImage *)image
+{
+    if ([image isKindOfClass:[FLAnimatedImage class]]) {
+        [self setAnimatedImage:(FLAnimatedImage *)image];
+    }else{
+        [super setImage:image];
+    }
 }
 
 @end

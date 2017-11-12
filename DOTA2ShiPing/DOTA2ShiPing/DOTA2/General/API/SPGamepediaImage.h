@@ -12,6 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 //https://dota2.gamepedia.com/media/dota2.gamepedia.com/thumb/a/a4/Aria_of_the_Wild_Wind_Set_prev1.png/120px-Aria_of_the_Wild_Wind_Set_prev1.png?version=1a1700891c7bb2dd332862c6ebd214c5
 
+typedef NS_ENUM(NSUInteger, SPGamepediaImageScale) {
+    SPGamepediaImageScale1 = 1,
+    SPGamepediaImageScale1x5 = 3,
+    SPGamepediaImageScale2 = 4,
+    SPGamepediaImageScaleFull = 888,
+    SPGamepediaImageScaleBest = 999
+};
+
 @interface SPGamepediaImage : NSObject
 
 @property (copy, readonly, nonatomic) NSString *scheme;       //对应 scheme
@@ -30,9 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 完整大小的图片。等同于 thumbImageURL px为0
 - (NSURL *)fullsizeImageURL;
-
-// px只能是 0 或者 width的 1倍、1.5倍、2倍。px为0时等同于 fullsizeImageURL
-- (NSURL *)thumbImageURL:(int)px;
+- (NSURL *)imageURL:(SPGamepediaImageScale)scale;
 
 @end
 

@@ -9,15 +9,15 @@
 
 @interface YGBaseViewCtrl : UIViewController
 
-
-- (void)leftNavButtonImg:(NSString*)img;
-- (void)rightNavButtonImg:(NSString*)img;
-- (void)leftNavButtonTemplateImg:(NSString*)img;
-- (void)rightNavButtonTemplateImg:(NSString*)img;
+- (void)leftNavButtonImg:(NSString *)img;
+- (void)rightNavButtonImg:(NSString *)img;
+- (void)leftNavButtonTemplateImg:(NSString *)img;
+- (void)rightNavButtonTemplateImg:(NSString *)img;
 - (void)rightNavButtonText:(NSString *)text;
 - (void)doLeftNaviBarItemAction;
 - (void)doRightNaviBarItemAction;
 - (void)noLeftNavButton;
 
+- (void)setTitleImage:(NSString *)img;
 
 @end

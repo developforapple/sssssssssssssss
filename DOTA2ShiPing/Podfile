@@ -2,47 +2,59 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 inhibit_all_warnings!
 platform:ios, '8.0'
-target 'DOTA2ShiPing'
 
-pod 'ReactiveObjC'
-pod 'IAPHelper'       #https://github.com/saturngod/IAPHelper
-pod 'YYModel', '~> 1.0.4'           #https://github.com/ibireme/YYModel
-pod 'YYCategories'
-pod 'YYCache'
+target 'DOTA2ShiPing' do
 
-pod 'MBProgressHUD'     #http://www.bukovinski.com
-pod 'DZNEmptyDataSet', '~> 1.8.1'   #https://github.com/dzenbot/DZNEmptyDataSet
-pod 'FMDB', '~> 2.7.2'   #https://github.com/ccgus/fmdb
-pod 'MJRefresh'                     #https://github.com/CoderMJLee/MJRefresh
-pod 'hpple', '~> 0.2.0'             #https://github.com/topfunky/hpple
-pod 'DGActivityIndicatorView', '~> 2.0' #https://github.com/gontovnik/DGActivityIndicatorView
-pod 'PinYin4Objc', '~> 1.1.1'       #https://github.com/kimziv/PinYin4Obj
-pod 'JZNavigationExtension', '~> 1.5.0.1' #https://github.com/JazysYu/JZNavigationExtension
-pod 'AMPopTip', '~> 1.1.1'          #https://github.com/andreamazz/AMPopTip
+    pod 'ReactiveObjC'
+    pod 'IAPHelper'       #https://github.com/saturngod/IAPHelper
+    pod 'YYModel'         #https://github.com/ibireme/YYModel
+    pod 'YYCategories'
+    pod 'YYCache'
 
-pod 'SAMKeychain'
-pod 'DZNWebViewController'          #https://github.com/dzenbot/DZNWebViewController
+    pod 'MBProgressHUD'     #http://www.bukovinski.com
+    pod 'DZNEmptyDataSet'   #https://github.com/dzenbot/DZNEmptyDataSet
+    pod 'FMDB/standalone'              #https://github.com/ccgus/fmdb
+    pod 'MJRefresh'                     #https://github.com/CoderMJLee/MJRefresh
+    pod 'hpple'             #https://github.com/topfunky/hpple
+    pod 'DGActivityIndicatorView'  #https://github.com/gontovnik/DGActivityIndicatorView
+    pod 'PinYin4Objc'              #https://github.com/kimziv/PinYin4Obj
+    pod 'JZNavigationExtension', '1.5.0.1' #https://github.com/JazysYu/JZNavigationExtension
+    pod 'AMPopTip'          #https://github.com/andreamazz/AMPopTip
 
-pod 'DACircularProgress'
-pod 'pop'
-pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
-pod 'IQKeyboardManager'
+    pod 'SAMKeychain'
+    pod 'DZNWebViewController'          #https://github.com/dzenbot/DZNWebViewController
 
-pod 'SDWebImage/GIF'
-pod 'SDWebImage/WebP'
+    pod 'DACircularProgress'
+    pod 'pop'
+    pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
+    pod 'IQKeyboardManager'
 
-pod 'AFNetworking', '~> 3.1.0'      #https://github.com/AFNetworking/AFNetworking
+    pod 'SDWebImage/GIF'
+    pod 'SDWebImage/WebP'
 
-pod 'SSZipArchive'
-pod 'AVOSCloud'
+    pod 'AFNetworking'      #https://github.com/AFNetworking/AFNetworking
 
-#解决依赖SDWebImage版本问题
-pod 'IDMPhotoBrowser', :git => 'https://github.com/developforapple/IDMPhotoBrowser.git'
-pod 'JBChartView' , :git => 'https://github.com/developforapple/JBChartView.git'
-#pod 'ZLSwipeableViewSwift', :git => 'https://github.com/zhxnlai/ZLSwipeableViewSwift.git'
+    pod 'SSZipArchive'
+    pod 'AVOSCloud'
 
-pod 'ChameleonFramework', '~> 2.1.0'
+    #解决依赖SDWebImage版本问题
+    pod 'IDMPhotoBrowser', :git => 'https://github.com/developforapple/IDMPhotoBrowser.git'
+    pod 'JBChartView' , :git => 'https://github.com/developforapple/JBChartView.git'
+    #pod 'ZLSwipeableViewSwift', :git => 'https://github.com/zhxnlai/ZLSwipeableViewSwift.git'
 
-pod 'MXParallaxHeader'
+    pod 'ChameleonFramework'
 
-pod 'Google-Mobile-Ads-SDK'
+    pod 'MXParallaxHeader'
+
+    pod 'Google-Mobile-Ads-SDK'
+
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = 'Swift 4.0'
+            config.build_settings['VALID_ARCHS'] = 'armv7 arm64'
+        end
+    end
+end

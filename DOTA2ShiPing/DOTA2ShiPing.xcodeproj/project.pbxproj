@@ -10,6 +10,7 @@
 		2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82861CDF325700F26BD1 /* libz.tbd */; };
 		2D0BD6FB1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD6FA1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m */; };
 		2D0BD6FE1FB3486E00A5DD99 /* SPItemSteamPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD6FD1FB3486E00A5DD99 /* SPItemSteamPriceCell.m */; };
+		2D0BD7011FB5FBCA00A5DD99 /* SPItemBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD7001FB5FBCA00A5DD99 /* SPItemBannerView.m */; };
 		2D19E0111F32F22A00747B01 /* SPPriceChartConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */; };
 		2D19E0141F34446000747B01 /* SPBundleItemsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0131F34446000747B01 /* SPBundleItemsViewCtrl.m */; };
 		2D37AAB41FAEEB5E0043DDD4 /* SPItemDescPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D37AAB31FAEEB5E0043DDD4 /* SPItemDescPanel.m */; };
@@ -239,6 +240,8 @@
 		2D0BD6FA1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemSteamPricesViewCtrl.m; sourceTree = "<group>"; };
 		2D0BD6FC1FB3486E00A5DD99 /* SPItemSteamPriceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemSteamPriceCell.h; sourceTree = "<group>"; };
 		2D0BD6FD1FB3486E00A5DD99 /* SPItemSteamPriceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemSteamPriceCell.m; sourceTree = "<group>"; };
+		2D0BD6FF1FB5FBCA00A5DD99 /* SPItemBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemBannerView.h; sourceTree = "<group>"; };
+		2D0BD7001FB5FBCA00A5DD99 /* SPItemBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemBannerView.m; sourceTree = "<group>"; };
 		2D19E00F1F32F22A00747B01 /* SPPriceChartConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPriceChartConfig.h; sourceTree = "<group>"; };
 		2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceChartConfig.m; sourceTree = "<group>"; };
 		2D19E0121F34446000747B01 /* SPBundleItemsViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBundleItemsViewCtrl.h; sourceTree = "<group>"; };
@@ -1851,6 +1854,8 @@
 		690BD51A1FA84210007A4D5D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2D0BD6FF1FB5FBCA00A5DD99 /* SPItemBannerView.h */,
+				2D0BD7001FB5FBCA00A5DD99 /* SPItemBannerView.m */,
 				690BD51B1FA84260007A4D5D /* SPItemTitleView.h */,
 				690BD51C1FA84260007A4D5D /* SPItemTitleView.m */,
 				69A117011FA8747700A32747 /* SPItemSaleView.h */,
@@ -2085,6 +2090,7 @@
 				"${BUILT_PRODUCTS_DIR}/hpple/hpple.framework",
 				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
+				"${BUILT_PRODUCTS_DIR}/sqlite3/sqlite3.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2118,6 +2124,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hpple.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/sqlite3.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2301,6 +2308,7 @@
 				691DC39E1F418D6F00DF5E81 /* DDViewModel.m in Sources */,
 				2DF9B88C1F1361640012950A /* SPPlayer.m in Sources */,
 				2DF9B8BB1F1361640012950A /* SPSearchVC.m in Sources */,
+				2D0BD7011FB5FBCA00A5DD99 /* SPItemBannerView.m in Sources */,
 				2DF9B87C1F1361640012950A /* RWDropdownMenuTransitionController.m in Sources */,
 				2DF9B87A1F1361640012950A /* RWDropdownMenu.m in Sources */,
 				2DF9B86F1F1361640012950A /* YGLabel.m in Sources */,
@@ -2532,7 +2540,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
@@ -2597,7 +2605,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = wwwbbat.ShiPing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;

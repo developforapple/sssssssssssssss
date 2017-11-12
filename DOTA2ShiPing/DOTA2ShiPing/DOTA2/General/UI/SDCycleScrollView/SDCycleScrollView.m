@@ -70,11 +70,20 @@ NSString * const ID = @"SDCycleScrollViewCell";
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self initialization];
+        [self setupMainView];
+    }
+    return self;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self initialization];
-    [self setupMainView];
+    
 }
 
 - (void)initialization
@@ -150,6 +159,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
     
     if (@available(iOS 11.0, *)) {
         mainView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        mainView.insetsLayoutMarginsFromSafeArea = NO;
     }
     
     mainView.dataSource = self;
@@ -444,6 +454,15 @@ NSString * const ID = @"SDCycleScrollViewCell";
     [self scrollToIndex:targetIndex];
 }
 
+- (void)setCurrentIndex:(int)curIndex
+{
+    if (!self.infiniteLoop) {
+        [self scrollToIndex:curIndex];
+    }else{
+        [self scrollToIndex:_totalItemsCount * 0.5 + curIndex];
+    }
+}
+
 - (void)scrollToIndex:(int)targetIndex
 {
     if (targetIndex >= _totalItemsCount) {
@@ -609,7 +628,32 @@ NSString * const ID = @"SDCycleScrollViewCell";
     
     if (!self.onlyDisplayText && [imagePath isKindOfClass:[NSString class]]) {
         if ([imagePath hasPrefix:@"http"]) {
-            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:self.placeholderImage];
+            
+            SDWebImageOptions options = SDWebImageRetryFailed | SDWebImageProgressiveDownload | SDWebImageContinueInBackground | SDWebImageAllowInvalidSSLCertificates;
+            
+            if ([self.delegate respondsToSelector:@selector(cycleScrollView:willLoadImage:atIndex:)]) {
+                [self.delegate cycleScrollView:self willLoadImage:imagePath atIndex:itemIndex];
+            }
+            
+            __weak typeof(self) weakSelf = self;
+            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:self.placeholderImage options:options progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *targetURL) {
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                if ([strongSelf.delegate respondsToSelector:@selector(cycleScrollView:loading:received:total:)]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [strongSelf.delegate cycleScrollView:strongSelf loading:targetURL.absoluteString received:receivedSize total:expectedSize];
+                    });
+                }
+                
+            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                if ([strongSelf.delegate respondsToSelector:@selector(cycleScrollView:didLoadimage:error:)]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [strongSelf.delegate cycleScrollView:strongSelf didLoadimage:imageURL.absoluteString error:error];
+                    });
+                }
+            }];
+            
+        
         } else {
             UIImage *image = [UIImage imageNamed:imagePath];
             if (!image) {
@@ -650,6 +694,19 @@ NSString * const ID = @"SDCycleScrollViewCell";
     }
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell isKindOfClass:[SDCollectionViewCell class]]) {
+        [(SDCollectionViewCell *)cell pauseAnimating];
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell isKindOfClass:[SDCollectionViewCell class]]) {
+        [(SDCollectionViewCell *)cell resumeAnimating];
+    }
+}
 
 #pragma mark - UIScrollViewDelegate
 

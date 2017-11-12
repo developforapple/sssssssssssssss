@@ -32,10 +32,7 @@
 {
     [super viewDidLoad];
     [self.tableView refreshHeader:NO footer:YES delegate:self];
-    [SPLogoHeader setLogoHeaderInScrollView:self.tableView];
-    
     self.priceList = [NSMutableArray array];
-    
     self.pageNo = 0;
     [self loadData:self.pageNo];
 }

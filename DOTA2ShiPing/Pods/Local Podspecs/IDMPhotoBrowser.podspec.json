@@ -31,8 +31,14 @@
   ],
   "requires_arc": true,
   "dependencies": {
-    "SDWebImage": [
-      "~> 4.1.0"
+    "SDWebImage/Core": [
+      "~> 4.2.2"
+    ],
+    "SDWebImage/GIF": [
+      "~> 4.2.2"
+    ],
+    "SDWebImage/WebP": [
+      "~> 4.2.2"
     ],
     "DACircularProgress": [
 

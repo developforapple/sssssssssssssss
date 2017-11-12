@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "IDMPhotoBrowser.h"
 #import "IDMZoomingScrollView.h"
-
+@import FLAnimatedImage;
 #import "pop/POP.h"
 
 #ifndef IDMPhotoBrowserLocalizedStrings
@@ -415,7 +415,9 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
     float fadeAlpha = 1 - fabs(scrollView.frame.origin.y)/scrollView.frame.size.height;
 
-    UIImage *imageFromView = [scrollView.photo underlyingImage];
+    UIImage *imageFromView = scrollView.photoImageView.image;
+    
+//    UIImage *imageFromView = [scrollView.photo underlyingImage];
     if (!imageFromView && [scrollView.photo respondsToSelector:@selector(placeholderImage)]) {
         imageFromView = [scrollView.photo placeholderImage];
     }

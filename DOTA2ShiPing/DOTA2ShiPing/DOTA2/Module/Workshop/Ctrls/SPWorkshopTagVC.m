@@ -7,9 +7,7 @@
 //
 
 #import "SPWorkshopTagVC.h"
-
 #import "SPItemHeroPickerVC.h"
-#import "AMPopTip.h"
 
 static NSString *const kSPWorkshopTagCell = @"SPWorkshopTagCell";
 

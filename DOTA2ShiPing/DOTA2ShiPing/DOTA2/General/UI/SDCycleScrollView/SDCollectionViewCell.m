@@ -32,11 +32,11 @@
 
 #import "SDCollectionViewCell.h"
 #import "UIView+SDExtension.h"
-@import SDWebImage;
+@import FLAnimatedImage;
 
 @implementation SDCollectionViewCell
 {
-    __weak UILabel *_titleLabel;
+    UILabel *_titleLabel;
 }
 
 
@@ -46,7 +46,6 @@
         [self setupImageView];
         [self setupTitleLabel];
     }
-    
     return self;
 }
 
@@ -113,6 +112,28 @@
         CGFloat titleLabelY = self.sd_height - titleLabelH;
         _titleLabel.frame = CGRectMake(titleLabelX, titleLabelY, titleLabelW, titleLabelH);
     }
+}
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    
+    FLAnimatedImageView *imageView = (FLAnimatedImageView *)self.imageView;
+    imageView.animatedImage = nil;
+    imageView.image = nil;
+    [self pauseAnimating];
+}
+
+- (void)resumeAnimating
+{
+    FLAnimatedImageView *imageView = (FLAnimatedImageView *)self.imageView;
+    [imageView startAnimating];
+}
+
+- (void)pauseAnimating
+{
+    FLAnimatedImageView *imageView = (FLAnimatedImageView *)self.imageView;
+    [imageView stopAnimating];
 }
 
 @end
