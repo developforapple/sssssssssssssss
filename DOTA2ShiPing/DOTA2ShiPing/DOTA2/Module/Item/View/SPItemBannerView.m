@@ -14,6 +14,126 @@
 
 static const NSInteger kInvalidValue = -1;
 
+#pragma mark - SPItemBannerImageInfo
+@interface SPItemBannerImageInfo ()
+
+@end
+
+@implementation SPItemBannerImageInfo
+- (instancetype)init:(NSString *)URL
+{
+    self = [super init];
+    if (self) {
+        self.url = URL;
+        self.received = kInvalidValue;
+        self.length = kInvalidValue;
+    }
+    return self;
+}
+
+- (CGFloat)progress
+{
+    if (self.received < 0 || self.length <= 0) {
+        return kInvalidValue;
+    }
+    return self.received / (CGFloat)self.length;
+}
+
+- (NSString *)lengthDesc
+{
+    NSInteger imageSize = self.length;
+    if (imageSize >= 1024 * 1024) {
+        CGFloat mb = imageSize / 1024.f / 1024.f;
+        return [NSString stringWithFormat:@"%.1fMB",mb];
+    }else if (imageSize >= 1024){
+        CGFloat kb = imageSize / 1024.f;
+        return [NSString stringWithFormat:@"%.1fKB",kb];
+    }else if (imageSize > 0){
+        return [NSString stringWithFormat:@"%dByte",imageSize];
+    }else{
+        return @"";
+    }
+}
+@end
+
+#pragma mark - SPItemBannerInfoUnit
+@interface SPItemBannerInfoUnit ()
+
+@end
+
+@implementation SPItemBannerInfoUnit
+- (void)update:(SPItemBannerImageInfo *)info
+{
+    switch (self.type) {
+        case SPItemBannerInfoTypeIndex:{
+            self.infoLabel.text = [NSString stringWithFormat:@"%d/%d",info.index+1,info.imageCount];
+        }   break;
+        case SPItemBannerInfoTypeProgress:{
+            self.infoLabel.text = [NSString stringWithFormat:@"%.0f%%",[info progress] * 100];
+        }   break;
+        case SPItemBannerInfoTypePlayable:{
+            switch (info.playable) {
+                case SPItemBannerPlayableNone:break;
+                case SPItemBannerPlayableGif:{
+                    self.infoLabel.text = @"GIF";
+                }   break;
+                case SPItemBannerPlayableVideo:{
+                    self.infoLabel.text = @"视频";
+                }   break;
+                case SPItemBannerPlayableAudio:{
+                    self.infoLabel.text = @"音频";
+                }   break;
+            }
+        }   break;
+        case SPItemBannerInfoTypeSize:{
+            self.infoLabel.text = [info lengthDesc];
+        }   break;
+    }
+}
+@end
+
+
+#pragma mark - SPItemBannerInfoView
+@interface SPItemBannerInfoView ()
+
+@end
+
+@implementation SPItemBannerInfoView
+
+- (void)setShouldShow:(BOOL)shouldShow
+{
+    _shouldShow = shouldShow;
+    [self setHidden:!shouldShow animated:YES];
+}
+
+- (void)update:(SPItemBannerImageInfo *)info
+{
+    if (!self.shouldShow) return;
+    
+    // index
+    [self.indexUnit update:info];
+    
+    // size
+    if (info.length != kInvalidValue) {
+        self.sizeUnit.collapsed = NO;
+        [self.sizeUnit update:info];
+    }else{
+        self.sizeUnit.collapsed = YES;
+    }
+    
+    // playable
+    
+    
+    
+    
+    [self.progressUnit update:info];
+    [self.sizeUnit update:info];
+}
+@end
+
+
+#pragma mark - SPItemBannerView
+
 @interface SPItemBannerView () <SDCycleScrollViewDelegate,IDMPhotoBrowserDelegate>
 
 @property (strong, nonatomic) NSMutableDictionary<NSString *,SPItemBannerImageInfo *> *imageInfoCache;
@@ -255,40 +375,3 @@ static const NSInteger kInvalidValue = -1;
 
 @end
 
-
-@implementation SPItemBannerImageInfo
-- (instancetype)init:(NSString *)URL
-{
-    self = [super init];
-    if (self) {
-        self.url = URL;
-        self.received = kInvalidValue;
-        self.length = kInvalidValue;
-    }
-    return self;
-}
-
-- (CGFloat)progress
-{
-    if (self.received < 0 || self.length <= 0) {
-        return kInvalidValue;
-    }
-    return self.received / (CGFloat)self.length;
-}
-
-- (NSString *)lengthDesc
-{
-    NSInteger imageSize = self.length;
-    if (imageSize >= 1024 * 1024) {
-        CGFloat mb = imageSize / 1024.f / 1024.f;
-        return [NSString stringWithFormat:@"%.1fMB",mb];
-    }else if (imageSize >= 1024){
-        CGFloat kb = imageSize / 1024.f;
-        return [NSString stringWithFormat:@"%.1fKB",kb];
-    }else if (imageSize > 0){
-        return [NSString stringWithFormat:@"%dByte",imageSize];
-    }else{
-        return @"";
-    }
-}
-@end

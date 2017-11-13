@@ -1523,7 +1523,52 @@
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xWs-xr-dIz" userLabel="ImagePanel" customClass="SDCycleScrollView">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                            <subviews>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buE-DZ-2Zb">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="TuO-2D-SSC">
+                                        <size key="itemSize" width="375" height="200"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                    <cells>
+                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Uss-bt-3kD">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oLX-Nm-kcV">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7RI-o4-28W">
+                                                        <rect key="frame" x="172.5" y="85" width="30" height="30"/>
+                                                        <state key="normal" title="Play"/>
+                                                    </button>
+                                                </subviews>
+                                            </view>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="oLX-Nm-kcV" secondAttribute="bottom" id="9pq-SL-Gsu"/>
+                                                <constraint firstItem="oLX-Nm-kcV" firstAttribute="leading" secondItem="Uss-bt-3kD" secondAttribute="leading" id="EHD-p8-puJ"/>
+                                                <constraint firstItem="7RI-o4-28W" firstAttribute="centerX" secondItem="Uss-bt-3kD" secondAttribute="centerX" id="idh-5Z-YMo"/>
+                                                <constraint firstItem="oLX-Nm-kcV" firstAttribute="top" secondItem="Uss-bt-3kD" secondAttribute="top" id="mcT-An-Pmg"/>
+                                                <constraint firstAttribute="trailing" secondItem="oLX-Nm-kcV" secondAttribute="trailing" id="rNm-P5-Kdb"/>
+                                                <constraint firstItem="7RI-o4-28W" firstAttribute="centerY" secondItem="Uss-bt-3kD" secondAttribute="centerY" id="sfd-gh-ezH"/>
+                                            </constraints>
+                                        </collectionViewCell>
+                                    </cells>
+                                </collectionView>
+                            </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="buE-DZ-2Zb" secondAttribute="bottom" id="TYp-ea-prR"/>
+                                <constraint firstItem="buE-DZ-2Zb" firstAttribute="top" secondItem="xWs-xr-dIz" secondAttribute="top" id="lsQ-RC-7qi"/>
+                                <constraint firstItem="buE-DZ-2Zb" firstAttribute="leading" secondItem="xWs-xr-dIz" secondAttribute="leading" id="o0m-xz-qEc"/>
+                                <constraint firstAttribute="trailing" secondItem="buE-DZ-2Zb" secondAttribute="trailing" id="ok8-Nk-uRS"/>
+                            </constraints>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2h-fK-wVQ">
                             <rect key="frame" x="152" y="166" width="84" height="24"/>

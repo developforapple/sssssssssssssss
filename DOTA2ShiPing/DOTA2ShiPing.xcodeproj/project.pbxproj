@@ -227,6 +227,7 @@
 		6954FCE21F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCE11F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m */; };
 		6954FCE51F44326D00DDB5D3 /* SPItemFilterViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCE41F44326D00DDB5D3 /* SPItemFilterViewCtrl.m */; };
 		6954FCE81F44329100DDB5D3 /* SPFilterOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCE71F44329100DDB5D3 /* SPFilterOption.m */; };
+		69819CC21FB99C4F00977873 /* SPItemBannerImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69819CC11FB99C4F00977873 /* SPItemBannerImageCell.m */; };
 		699074401F3D902C00B64030 /* SPMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6990743F1F3D902C00B64030 /* SPMemoryCache.m */; };
 		699074431F3DA63500B64030 /* CALayer+SDWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 699074421F3DA63500B64030 /* CALayer+SDWebCache.m */; };
 		69A117031FA8747700A32747 /* SPItemSaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A117021FA8747700A32747 /* SPItemSaleView.m */; };
@@ -682,6 +683,8 @@
 		6954FCE41F44326D00DDB5D3 /* SPItemFilterViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemFilterViewCtrl.m; sourceTree = "<group>"; };
 		6954FCE61F44329100DDB5D3 /* SPFilterOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFilterOption.h; sourceTree = "<group>"; };
 		6954FCE71F44329100DDB5D3 /* SPFilterOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFilterOption.m; sourceTree = "<group>"; };
+		69819CC01FB99C4F00977873 /* SPItemBannerImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemBannerImageCell.h; sourceTree = "<group>"; };
+		69819CC11FB99C4F00977873 /* SPItemBannerImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemBannerImageCell.m; sourceTree = "<group>"; };
 		6990743E1F3D902C00B64030 /* SPMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMemoryCache.h; sourceTree = "<group>"; };
 		6990743F1F3D902C00B64030 /* SPMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMemoryCache.m; sourceTree = "<group>"; };
 		699074411F3DA63500B64030 /* CALayer+SDWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+SDWebCache.h"; sourceTree = "<group>"; };
@@ -1488,6 +1491,8 @@
 				2D4B5CE21F2A323800A3D8C9 /* SPItemPriceCell.m */,
 				2D0BD6FC1FB3486E00A5DD99 /* SPItemSteamPriceCell.h */,
 				2D0BD6FD1FB3486E00A5DD99 /* SPItemSteamPriceCell.m */,
+				69819CC01FB99C4F00977873 /* SPItemBannerImageCell.h */,
+				69819CC11FB99C4F00977873 /* SPItemBannerImageCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2295,6 +2300,7 @@
 				2DF9B89A1F1361640012950A /* YGBaseViewCtrl.m in Sources */,
 				2DF9B8511F1361640012950A /* NSObject+URLSessionTask.m in Sources */,
 				2DF9B8CE1F1361640012950A /* SPWorkshopCell.m in Sources */,
+				69819CC21FB99C4F00977873 /* SPItemBannerImageCell.m in Sources */,
 				2D48D2981CDE20D700190F0C /* main.m in Sources */,
 				2DF9B83D1F1361640012950A /* UIToolbar+yg_IBInspectable.m in Sources */,
 				2DC0F69A1F1C624A004DCD3C /* SPItemEntranceVC.m in Sources */,
