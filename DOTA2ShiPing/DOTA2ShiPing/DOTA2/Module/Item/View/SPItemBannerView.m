@@ -9,6 +9,7 @@
 #import "SPItemBannerView.h"
 #import "SPItemSharedData.h"
 #import "SPItemImageLoader.h"
+#import "SPItemBannerImageCell.h"
 @import ReactiveObjC;
 @import IDMPhotoBrowser;
 
@@ -20,13 +21,14 @@ static const NSInteger kInvalidValue = -1;
 @end
 
 @implementation SPItemBannerImageInfo
-- (instancetype)init:(NSString *)URL
+- (instancetype)init:(NSURL *)URL
 {
     self = [super init];
     if (self) {
         self.url = URL;
         self.received = kInvalidValue;
         self.length = kInvalidValue;
+        self.playable = [URL.pathExtension caseInsensitiveCompare:@"gif"] == NSOrderedSame ? SPItemBannerPlayableGif : SPItemBannerPlayableNone;;
     }
     return self;
 }
@@ -54,6 +56,11 @@ static const NSInteger kInvalidValue = -1;
         return @"";
     }
 }
+
+- (BOOL)isPlayable
+{
+    return self.playable != SPItemBannerPlayableNone;
+}
 @end
 
 #pragma mark - SPItemBannerInfoUnit
@@ -62,6 +69,13 @@ static const NSInteger kInvalidValue = -1;
 @end
 
 @implementation SPItemBannerInfoUnit
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+}
+
 - (void)update:(SPItemBannerImageInfo *)info
 {
     switch (self.type) {
@@ -90,6 +104,14 @@ static const NSInteger kInvalidValue = -1;
         }   break;
     }
 }
+
+- (void)setHidden:(BOOL)hidden
+{
+    [super setHidden:hidden];
+    self.horizontalZero_ = hidden;
+    self.collapsed = hidden;
+}
+
 @end
 
 
@@ -99,6 +121,15 @@ static const NSInteger kInvalidValue = -1;
 @end
 
 @implementation SPItemBannerInfoView
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.indexUnit.type = SPItemBannerInfoTypeIndex;
+    self.sizeUnit.type = SPItemBannerInfoTypeSize;
+    self.playableUnit.type = SPItemBannerInfoTypePlayable;
+    self.progressUnit.type = SPItemBannerInfoTypeProgress;
+}
 
 - (void)setShouldShow:(BOOL)shouldShow
 {
@@ -112,32 +143,44 @@ static const NSInteger kInvalidValue = -1;
     
     // index
     [self.indexUnit update:info];
+    self.indexUnit.hidden = NO;
     
     // size
     if (info.length != kInvalidValue) {
-        self.sizeUnit.collapsed = NO;
         [self.sizeUnit update:info];
+        self.sizeUnit.hidden = NO;
     }else{
-        self.sizeUnit.collapsed = YES;
+        self.sizeUnit.hidden = YES;
     }
     
     // playable
+    if ( [info isPlayable]) {
+        [self.playableUnit update:info];
+        self.playableUnit.hidden = NO;
+    }else{
+        self.playableUnit.hidden = YES;
+    }
     
+    // progress
+    if (!info.completed && info.received != kInvalidValue && info.length != kInvalidValue) {
+        [self.progressUnit update:info];
+        self.progressUnit.hidden = NO;
+    }else{
+        self.progressUnit.hidden = YES;
+    }
     
-    
-    
-    [self.progressUnit update:info];
-    [self.sizeUnit update:info];
+    [self layoutIfNeeded];
 }
 @end
 
 
 #pragma mark - SPItemBannerView
 
-@interface SPItemBannerView () <SDCycleScrollViewDelegate,IDMPhotoBrowserDelegate>
+@interface SPItemBannerView () <UICollectionViewDelegate,UICollectionViewDataSource,IDMPhotoBrowserDelegate>
 
-@property (strong, nonatomic) NSMutableDictionary<NSString *,SPItemBannerImageInfo *> *imageInfoCache;
-@property (strong, nonatomic) NSMutableDictionary<NSNumber *,SPItemBannerImageInfo *> *imageList;
+@property (strong, nonatomic) NSMutableArray<SPItemBannerImageInfo *> *imageInfoList;
+@property (strong, nonatomic) NSMutableArray<NSURL *> *imageURLs;
+
 @property (assign, nonatomic) NSInteger curIndex;
 @property (strong, nonatomic) RACDisposable *disposable;
 
@@ -153,16 +196,29 @@ static const NSInteger kInvalidValue = -1;
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
+    if (@available(iOS 11.0, *)) {
+        self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.collectionView.insetsLayoutMarginsFromSafeArea = NO;
+    }
+    [self layoutIfNeeded];
+    self.layout.itemSize = self.bounds.size;
     [self reset];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
     
-    self.imageView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
-    self.imageView.infiniteLoop = NO;
-    self.imageView.showPageControl = NO;
-    self.imageView.placeholderImage = nil;
-    self.imageView.autoScroll = NO;
-    self.imageView.backgroundColor = [UIColor clearColor];
-    self.imageView.delegate = self;
+    CGFloat height = CGRectGetHeight(self.bounds);
+    CGFloat previousHeight = CGRectGetHeight(_collectionView.bounds);
+    if (height < previousHeight) {
+        _layout.itemSize = self.bounds.size;
+        _collectionView.frame = self.bounds;
+    }else{
+        _collectionView.frame = self.bounds;
+        _layout.itemSize = self.bounds.size;
+    }
+    [_collectionView setCollectionViewLayout:_layout animated:YES];
 }
 
 - (void)dealloc
@@ -172,19 +228,13 @@ static const NSInteger kInvalidValue = -1;
     }
     _disposable = nil;
     
-    [_imageInfoCache removeAllObjects];
-    [_imageList removeAllObjects];
-    _imageView.delegate = nil;
+    [_imageInfoList removeAllObjects];
 }
 
-- (void)setCurIndex:(NSInteger)curIndex
+- (void)updateCurImageIndex:(NSInteger)index
 {
-    NSInteger preIndex = _curIndex;
-    _curIndex = curIndex;
-    
-    if (preIndex == curIndex) return;
-    
-    SPItemBannerImageInfo *info = self.imageList[@(curIndex)];
+    self.curIndex = index;
+    SPItemBannerImageInfo *info = self.imageInfoList[index];
     [self watchImageInfo:info];
 }
 
@@ -206,7 +256,7 @@ static const NSInteger kInvalidValue = -1;
       takeUntil:self.rac_willDeallocSignal]
      subscribeNext:^(id x) {
          ygstrongify(self);
-         [self updateImageInfo];
+         [self updateImageInfoView];
      }];
 }
 
@@ -214,17 +264,13 @@ static const NSInteger kInvalidValue = -1;
 {
     _itemData = itemData;
     [self update];
-    
-    self.imageView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
 }
 
 - (void)setScrollProgress:(float)progress
 {
     float alpha = (progress - 0.1) / (1 - 0.5 - 0.1);
     alpha = Confine(alpha, 1, 0);
-    self.imageCounterView.alpha = alpha;
-    self.imageProgressView.alpha = alpha;
-    self.imageSizeView.alpha = alpha;
+    self.infoView.alpha = alpha;
 }
 
 - (void)update
@@ -235,11 +281,11 @@ static const NSInteger kInvalidValue = -1;
           ygstrongify(self);
           NSURL *URL = [self.itemData.item qiniuLargeURL];
           if (value) {
-              NSMutableArray *extraImageURLs = URL ? [NSMutableArray arrayWithObject:URL] : [NSMutableArray array];
+              NSMutableArray *imageURLs = URL ? [NSMutableArray arrayWithObject:URL] : [NSMutableArray array];
               for (SPGamepediaImage *aImage in value) {
-                  [extraImageURLs addObject:[aImage imageURL:SPGamepediaImageScaleBest]];
+                  [imageURLs addObject:[aImage imageURL:SPGamepediaImageScaleBest]];
               }
-              return extraImageURLs;
+              return imageURLs;
           }else if (URL){
               return @[URL];
           }else{
@@ -251,116 +297,125 @@ static const NSInteger kInvalidValue = -1;
          
          if (x == nil || x.count == 0 || x.count == 1) {
              self.hasExtraImages = NO;
-             self.imageCounterView.hidden = YES;
+             self.infoView.hidden = YES;
          }else{
              self.hasExtraImages = YES;
-             self.imageCounterLabel.text = [NSString stringWithFormat:@"1/%d",x.count];
-             [self.imageCounterView setHidden:NO animated:YES];
+             [self.infoView setHidden:NO animated:YES];
          }
          
-         self.imageView.imageURLStringsGroup = x;
+         NSMutableArray *infoList = [NSMutableArray array];
+         NSMutableArray *URLs = [NSMutableArray array];
+         for (NSInteger i = 0; i<x.count; i++) {
+             SPItemBannerImageInfo *info = [[SPItemBannerImageInfo alloc] init:x[i]];
+             info.index = i;
+             info.imageCount = x.count;
+             [infoList addObject:info];
+             [URLs addObject:x[i]];
+         }
+         self.imageInfoList = infoList;
+         self.imageURLs = URLs;
+         [self.collectionView reloadData];
+         if (infoList.count > 0) {
+             [self updateCurImageIndex:0];
+         }
      }];
+    
+    
 }
 
-- (void)updateImageInfo
+- (void)updateImageInfoView
 {
-    if (!self.hasExtraImages) {
-        self.imageCounterView.hidden = self.imageSizeView.hidden = self.imageProgressView.hidden = YES;
-        return;
-    }
-    
-    SPItemBannerImageInfo *info = self.imageList[@(self.curIndex)];
-    if (!info) {
-        self.imageCounterView.hidden = NO;
-        self.imageSizeView.hidden = self.imageProgressView.hidden = YES;
-        return;
-    }
-    
-    self.imageCounterView.hidden = NO;
-    
-    if (info.completed) {
-        
-        [self.imagePrepareIndicator stopAnimating];
-        
-        if (info.length == kInvalidValue) {
-            self.imageSizeView.hidden = YES;
-        }else{
-            self.imageSizeView.hidden = NO;
-            self.imageSizeLabel.text = [info lengthDesc];
-        }
-        self.imageProgressView.hidden = YES;
-        return;
-    }
-    
-    self.imageSizeView.hidden = NO;
-    if (info.length == kInvalidValue) {
-        self.imageSizeLabel.hidden = YES;
-        [self.imagePrepareIndicator startAnimating];
-    }else{
-        self.imageSizeLabel.hidden = NO;
-        [self.imagePrepareIndicator stopAnimating];
-    }
-    self.imageSizeLabel.text = [info lengthDesc];
-    
-    if ( info.length == kInvalidValue || info.received == kInvalidValue ) {
-        self.imageProgressView.hidden = YES;
-    }else {
-        self.imageProgressView.hidden = NO;
-        self.imageProgressLabel.text = [NSString stringWithFormat:@"%.0f%%",[info progress] * 100];
-    }
+    self.infoView.shouldShow = self.imageInfoList.count > 1;
+    [self.infoView update:self.imageInfoList[self.curIndex]];
 }
 
 - (void)reset
 {
-    self.imageInfoCache = [NSMutableDictionary dictionary];
-    self.imageList = [NSMutableDictionary dictionary];
+    self.imageInfoList = [NSMutableArray array];
     self.curIndex = 0;
 }
 
-#pragma mark - SDCycleScrollViewDelegate
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+- (SPItemBannerImageInfo *)imageInfoForURL:(NSURL *)URL
 {
-    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:cycleScrollView.imageURLStringsGroup animatedFromView:cycleScrollView];
-    [browser setInitialPageIndex:index];
+    NSString *url = URL.absoluteString;
+    for (SPItemBannerImageInfo *info in self.imageInfoList) {
+        if ([info.url.absoluteString isEqualToString:url]) {
+            return info;
+        }
+    }
+    return nil;
+}
+
+- (void)loadingImage:(NSURL *)URL received:(NSInteger)received expected:(NSInteger)expected
+{
+    SPItemBannerImageInfo *info = [self imageInfoForURL:URL];
+    info.received = received;
+    info.length = expected;
+}
+
+- (void)didLoadImage:(NSURL *)URL error:(NSError *)error
+{
+    SPItemBannerImageInfo *info = [self imageInfoForURL:URL];
+    info.error = error;
+    info.completed = YES;
+}
+
+
+#pragma mark - UICollectionView
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.imageInfoList.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    SPItemBannerImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSPItemBannerImageCell forIndexPath:indexPath];
+    
+    NSURL *url = self.imageURLs[indexPath.item];
+    SDWebImageOptions options = SDWebImageRetryFailed | SDWebImageProgressiveDownload | SDWebImageContinueInBackground | SDWebImageAllowInvalidSSLCertificates;
+    
+    ygweakify(self);
+    NSLog(@"load image: %@",url);
+    [cell.imageView sd_setImageWithURL:url placeholderImage:nil options:options progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *targetURL) {
+        ygstrongify(self);
+        RunOnMainQueue(^{
+            [self loadingImage:targetURL received:receivedSize expected:expectedSize];
+        });
+    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        ygstrongify(self);
+        [self didLoadImage:imageURL error:error];
+    }];
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    SPItemBannerImageCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:self.imageURLs animatedFromView:cell.imageView];
+    [browser setInitialPageIndex:(int)indexPath.item];
     browser.delegate = self;
     [[self viewController] presentViewController:browser animated:YES completion:nil];
 }
 
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    self.curIndex = index;
-    self.imageCounterLabel.text = [NSString stringWithFormat:@"%d/%d",index+1,cycleScrollView.imageURLStringsGroup.count];
+    [self scrollViewDidEndScrollingAnimation:scrollView];
 }
 
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView willLoadImage:(NSString *)url atIndex:(NSInteger)index
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    SPItemBannerImageInfo *info = self.imageInfoCache[url];
-    if (!info) {
-        info = [[SPItemBannerImageInfo alloc] init:url];
-        self.imageInfoCache[url] = info;
-    }
-    self.imageList[@(index)] = info;
-}
-
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView loading:(NSString *)url received:(NSInteger)receivedLength total:(NSInteger)totalLength
-{
-    SPItemBannerImageInfo *info = self.imageInfoCache[url];
-    info.received = receivedLength;
-    info.length = totalLength;
-}
-
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didLoadimage:(NSString *)url error:(NSError *)error
-{
-    SPItemBannerImageInfo *info = self.imageInfoCache[url];
-    info.error = error;
-    info.completed = YES;
+    CGFloat offsetX = scrollView.contentOffset.x;
+    NSInteger index = offsetX / CGRectGetWidth(scrollView.frame);
+    [self updateCurImageIndex:index];
 }
 
 #pragma mark - IDMPhotoBrowserDelegate
 
 - (void)willDisappearPhotoBrowser:(IDMPhotoBrowser *)photoBrowser
 {
-    [self.imageView setCurrentIndex:self.photoBrowserIndex];
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.photoBrowserIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
 - (void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didShowPhotoAtIndex:(NSUInteger)index

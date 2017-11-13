@@ -28,20 +28,22 @@ typedef NS_ENUM(NSUInteger, SPItemBannerPlayable) {
 @interface SPItemBannerImageInfo : NSObject
 @property (assign, nonatomic) NSInteger index;                  //索引
 @property (assign, nonatomic) NSInteger imageCount;             //图片数量
-@property (copy, nonatomic) NSString *url;                      //资源URL
+@property (copy, nonatomic) NSURL *url;                      //资源URL
 @property (assign, nonatomic) SPItemBannerPlayable playable;    //可播放资源类型
 @property (assign, nonatomic) NSInteger received;               //接收字节数
 @property (assign, nonatomic) NSInteger length;                 //总字节数
 @property (strong, nonatomic) NSError *error;                   //错误信息
 @property (assign, nonatomic) BOOL completed;                   //已完成
-- (instancetype)init:(NSString *)URL;
+- (instancetype)init:(NSURL *)URL;
 - (CGFloat)progress;
 - (NSString *)lengthDesc;
+- (BOOL)isPlayable;
 @end
 
 @interface SPItemBannerInfoUnit : UIView
 @property (assign, nonatomic) SPItemBannerInfoType type;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *effectView;
 - (void)update:(SPItemBannerImageInfo *)info;
 @end
 
@@ -53,20 +55,14 @@ typedef NS_ENUM(NSUInteger, SPItemBannerPlayable) {
 @property (weak, nonatomic) IBOutlet SPItemBannerInfoUnit *indexUnit;
 
 @property (assign, nonatomic) BOOL shouldShow;
-
 - (void)update:(SPItemBannerImageInfo *)info;
+
 @end
 
 @interface SPItemBannerView : UIView
-@property (weak, nonatomic) IBOutlet SDCycleScrollView *imageView;
-@property (weak, nonatomic) IBOutlet UIView *imageCounterView;
-@property (weak, nonatomic) IBOutlet UILabel *imageCounterLabel;
-@property (weak, nonatomic) IBOutlet UIView *imageSizeView;
-@property (weak, nonatomic) IBOutlet UILabel *imageSizeLabel;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imagePrepareIndicator;
-@property (weak, nonatomic) IBOutlet UIView *imageProgressView;
-@property (weak, nonatomic) IBOutlet UILabel *imageProgressLabel;
-
+@property (weak, nonatomic) IBOutlet SPItemBannerInfoView *infoView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *layout;
 @property (strong, nonatomic) SPItemSharedData *itemData;
 
 - (void)setScrollProgress:(float)progress;
