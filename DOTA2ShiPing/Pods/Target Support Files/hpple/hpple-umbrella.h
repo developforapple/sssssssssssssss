@@ -14,6 +14,6 @@
 #import "TFHppleElement.h"
 #import "XPathQuery.h"
 
-FOUNDATION_EXPORT double hppleVersionNumber;
-FOUNDATION_EXPORT const unsigned char hppleVersionString[];
+FOUNDATION_EXPORT double HppleVersionNumber;
+FOUNDATION_EXPORT const unsigned char HppleVersionString[];
 

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BEE572595D5246429A1460D353C3AA8C"
+               BlueprintIdentifier = "4F811B494A49EF718C40D42EE49E0E07"
                BuildableName = "Pods_DOTA2ShiPing.framework"
                BlueprintName = "Pods-DOTA2ShiPing"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BEE572595D5246429A1460D353C3AA8C"
+            BlueprintIdentifier = "4F811B494A49EF718C40D42EE49E0E07"
             BuildableName = "Pods_DOTA2ShiPing.framework"
             BlueprintName = "Pods-DOTA2ShiPing"
             ReferencedContainer = "container:Pods.xcodeproj">

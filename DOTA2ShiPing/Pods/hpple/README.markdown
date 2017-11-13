@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/premedios/hpple.png)](https://travis-ci.org/premedios/hpple)
+
 # DESCRIPTION
 
 Hpple: A nice Objective-C wrapper on the XPathQuery library for parsing HTML.
@@ -18,7 +20,7 @@ Hpple was created by Geoffrey Grosenbach, [Topfunky Corporation](http://topfunky
 
 # INSTALLATION
 
-* Open your XCode project and the Hpple project.
+* Open your Xcode project and the Hpple project.
 * Drag the "Hpple" directory to your project.
 * Add the libxml2.2.dylib framework to your project and search paths as described at [Cocoa with Love](http://cocoawithlove.com/2008/10/using-libxml2-for-parsing-and-xpath.html)
 
@@ -28,7 +30,7 @@ More documentation and short screencast coming soon...
 
 See TFHppleHTMLTest.m in the Hpple project for samples.
 
-<pre>
+```objc
 #import "TFHpple.h"
 
 NSData  * data      = [NSData dataWithContentsOfFile:@"index.html"];
@@ -42,10 +44,11 @@ TFHppleElement * element = [elements objectAtIndex:0];
 [e attributes];                 // NSDictionary of href, class, id, etc.
 [e objectForKey:@"href"];       // Easy access to single attribute
 [e firstChildWithTagName:@"b"]; // The first "b" child node
-
-</pre>
+```
 
 # TODO
 
 * Internal error catching and messages
 * CSS3 selectors in addition to XPath
+
+

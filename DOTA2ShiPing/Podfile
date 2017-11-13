@@ -15,7 +15,7 @@ target 'DOTA2ShiPing' do
     pod 'DZNEmptyDataSet'   #https://github.com/dzenbot/DZNEmptyDataSet
     pod 'FMDB/standalone'              #https://github.com/ccgus/fmdb
     pod 'MJRefresh'                     #https://github.com/CoderMJLee/MJRefresh
-    pod 'hpple'             #https://github.com/topfunky/hpple
+    pod 'hpple', :git => 'https://github.com/topfunky/hpple.git'             #https://github.com/topfunky/hpple
     pod 'DGActivityIndicatorView'  #https://github.com/gontovnik/DGActivityIndicatorView
     pod 'PinYin4Objc'              #https://github.com/kimziv/PinYin4Obj
     pod 'JZNavigationExtension', '1.5.0.1' #https://github.com/JazysYu/JZNavigationExtension

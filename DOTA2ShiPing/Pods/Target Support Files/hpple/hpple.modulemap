@@ -1,4 +1,4 @@
-framework module hpple {
+framework module Hpple {
   umbrella header "hpple-umbrella.h"
 
   export *
