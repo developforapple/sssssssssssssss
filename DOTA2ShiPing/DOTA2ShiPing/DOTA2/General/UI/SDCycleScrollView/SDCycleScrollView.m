@@ -636,7 +636,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
             }
             
             __weak typeof(self) weakSelf = self;
-            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:self.placeholderImage options:options progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *targetURL) {
+            [cell sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:self.placeholderImage options:options progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *targetURL) {
                 __strong typeof(weakSelf) strongSelf = weakSelf;
                 if ([strongSelf.delegate respondsToSelector:@selector(cycleScrollView:loading:received:total:)]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -668,6 +668,8 @@ NSString * const ID = @"SDCycleScrollViewCell";
     if (_titlesGroup.count && itemIndex < _titlesGroup.count) {
         cell.title = _titlesGroup[itemIndex];
     }
+    
+    cell.imageViewConfiguredContentMode = self.bannerImageViewContentMode;
     
     if (!cell.hasConfigured) {
         cell.titleLabelBackgroundColor = self.titleLabelBackgroundColor;

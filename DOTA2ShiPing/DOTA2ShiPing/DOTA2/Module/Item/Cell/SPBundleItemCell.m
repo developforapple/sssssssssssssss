@@ -23,4 +23,10 @@ NSString *const kSPBundleItemCell = @"SPBundleItemCell";
     self.contentView.backgroundColor = item.itemColor;
 }
 
+- (void)setIsMoreStyle:(BOOL)isMoreStyle
+{
+    _isMoreStyle = isMoreStyle;
+    self.moreItemsView.hidden = !isMoreStyle;
+}
+
 @end

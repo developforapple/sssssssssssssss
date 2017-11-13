@@ -114,6 +114,40 @@
     }
 }
 
+- (void)sd_setImageWithURL:(nullable NSURL *)url
+          placeholderImage:(nullable UIImage *)placeholder
+                   options:(SDWebImageOptions)options
+                  progress:(nullable SDWebImageDownloaderProgressBlock)progressBlock
+                 completed:(nullable SDExternalCompletionBlock)completedBlock
+{
+    ygweakify(self);
+    [self.imageView sd_setImageWithURL:url placeholderImage:placeholder options:options progress:progressBlock completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        ygstrongify(self);
+        if (completedBlock) {
+            completedBlock(image,error,cacheType,imageURL);
+        }
+        [self adjustImageViewContentMode];
+    }];
+}
+
+- (void)adjustImageViewContentMode
+{
+    FLAnimatedImageView *imageView = (FLAnimatedImageView *)self.imageView;
+    CGSize imageSize;
+    if (imageView.animatedImage) {
+        imageSize = imageView.animatedImage.size;
+    }else{
+        imageSize = imageView.image.size;
+    }
+    
+    if (imageSize.width < CGRectGetWidth(self.imageView.bounds) &&
+        imageSize.height < CGRectGetHeight(self.imageView.bounds)) {
+        self.imageView.contentMode = UIViewContentModeCenter;
+    }else{
+        self.imageView.contentMode = self.imageViewConfiguredContentMode;
+    }
+}
+
 - (void)prepareForReuse
 {
     [super prepareForReuse];

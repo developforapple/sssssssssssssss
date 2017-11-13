@@ -59,9 +59,11 @@
      }];
     [RACObserve(self.manager, needUpdate)
      subscribeNext:^(NSNumber *x) {
+         ygstrongify(self);
          if (x && x.boolValue) {
-             ygstrongify(self);
              [self beginUpdate];
+         }else{
+             [self isLatestVersion];
          }
      }];
     [RACObserve(self.manager, progress)
@@ -98,6 +100,14 @@
 - (void)beginUpdate
 {
     [self.manager beginUpdate];
+}
+
+- (void)isLatestVersion
+{
+    self.progressLabel.text = @"已经是最新版本";
+    [self dismiss:^{
+        [SVProgressHUD showInfoWithStatus:@"已是最新版本"];
+    }];
 }
 
 - (void)done

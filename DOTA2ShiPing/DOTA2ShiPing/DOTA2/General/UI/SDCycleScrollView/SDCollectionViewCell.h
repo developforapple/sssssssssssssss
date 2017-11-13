@@ -42,7 +42,7 @@
 @property (nonatomic, strong) UIColor *titleLabelBackgroundColor;
 @property (nonatomic, assign) CGFloat titleLabelHeight;
 @property (nonatomic, assign) NSTextAlignment titleLabelTextAlignment;
-
+@property (nonatomic, assign) UIViewContentMode imageViewConfiguredContentMode;
 @property (nonatomic, assign) BOOL hasConfigured;
 
 /** 只展示文字轮播 */
@@ -50,5 +50,11 @@
 
 - (void)resumeAnimating;
 - (void)pauseAnimating;
+
+- (void)sd_setImageWithURL:(nullable NSURL *)url
+          placeholderImage:(nullable UIImage *)placeholder
+                   options:(SDWebImageOptions)options
+                  progress:(nullable SDWebImageDownloaderProgressBlock)progressBlock
+                 completed:(nullable SDExternalCompletionBlock)completedBlock;
 
 @end
