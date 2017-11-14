@@ -57,7 +57,7 @@
     ygweakify(self);
     [self.filter asyncUpdateItems:^(BOOL suc, NSArray *items) {
         ygstrongify(self);
-        [HUD hide:YES];
+        [HUD hideAnimated:YES];
         if (suc) {
             [self update];
         }else{
@@ -73,11 +73,13 @@
     }else{
         //根据options过滤一遍
         
+        NSString *keywords;
         SPHero *hero;
         SPItemRarity *rarity;
         SPDotaEvent *event;
         for (SPFilterOption *option in self.options) {
             switch (option.type) {
+                case SPFilterOptionTypeText: keywords = option.option;break;
                 case SPFilterOptionTypeHero: hero = option.option;break;
                 case SPFilterOptionTypeRarity: rarity = option.option;break;
                 case SPFilterOptionTypeEvent: event = option.option;break;
@@ -89,11 +91,11 @@
             NSMutableArray *newItemArray = [NSMutableArray array];
             [newItems addObject:newItemArray];
             for (SPItem *aItem in itemArray) {
-                
+                BOOL keywordsOK = !keywords.length || [aItem.item_name containsString:keywords] || [aItem.nameWithQualtity containsString:keywords];
                 BOOL heroOK = !hero || [aItem.heroes containsString:hero.name];
                 BOOL rarityOK = !rarity || [aItem.item_rarity isEqualToString:rarity.name];
                 BOOL eventOK = !event || [aItem.event_id isEqualToString:event.event_id];
-                if (heroOK && rarityOK && eventOK) {
+                if (keywordsOK && heroOK && rarityOK && eventOK) {
                     [newItemArray addObject:aItem];
                 }
             }
@@ -156,7 +158,7 @@
 {
     ygweakify(self);
     SPItemFilterNaviCtrl *navi = [SPItemFilterNaviCtrl instanceFromStoryboard];
-    [navi setup:SPFilterOptionTypeHero | SPFilterOptionTypeRarity | SPFilterOptionTypeEvent options:nil completion:^(BOOL canceled, NSArray<SPFilterOption *> *options) {
+    [navi setup:SPFilterOptionTypeAll options:nil completion:^(BOOL canceled, NSArray<SPFilterOption *> *options) {
         if (!canceled ) {
             ygstrongify(self);
             [self filter:options];

@@ -7,14 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SPGamepediaData.h"
 
-typedef void (^SPGamepediaAPICompletion)(BOOL suc, NSError *error, id result);
+@class SPItem;
+
+typedef void (^SPGamepediaAPICompletion)(BOOL suc, NSError *error, SPGamepediaData *data);
+
+typedef NS_ENUM(NSUInteger, SPGamepediaAPIErrorCode) {
+    SPGamepediaAPIErrorCodeUnexpectedResponse = 10086,
+};
 
 @interface SPGamepediaAPI : NSObject
 
 + (instancetype)shared;
 
-- (void)fetchItem:(NSString *)itemName
-       completion:(SPGamepediaAPICompletion)completion;
+- (void)fetchItemInfo:(SPItem *)item
+           completion:(SPGamepediaAPICompletion)completion;
 
 @end

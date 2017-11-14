@@ -9,10 +9,15 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_OPTIONS(NSUInteger, SPFilterOptionType) {
-    SPFilterOptionTypeHero = 1 << 0,
-    SPFilterOptionTypeRarity = 1 << 1,
-    SPFilterOptionTypeEvent = 1 << 2,
+    SPFilterOptionTypeText = 1 << 0,
+    SPFilterOptionTypeHero = 1 << 1,
+    SPFilterOptionTypeRarity = 1 << 2,
+    SPFilterOptionTypeEvent = 1 << 3,
 };
+#define SPFilterOptionTypeAll ( SPFilterOptionTypeText | \
+                                SPFilterOptionTypeHero | \
+                                SPFilterOptionTypeRarity | \
+                                SPFilterOptionTypeEvent)
 
 @class SPFilterOption;
 @class SPItemRarity;
@@ -24,6 +29,7 @@ typedef NS_OPTIONS(NSUInteger, SPFilterOptionType) {
 @property (assign, nonatomic) SPFilterOptionType type;
 @property (strong, nonatomic) NSArray<SPFilterOption *> *options;
 
++ (instancetype)textGroup;
 + (instancetype)rarityGroup:(NSArray<SPItemRarity *> *)rarities;
 + (instancetype)eventGroup:(NSArray<SPDotaEvent *> *)events;
 + (instancetype)heroGroup:(SPFilterOption *)option;
@@ -35,6 +41,7 @@ typedef NS_OPTIONS(NSUInteger, SPFilterOptionType) {
 @property (assign, nonatomic) SPFilterOptionType type;
 @property (strong, nonatomic) id option;
 
++ (instancetype)textOption;
 + (instancetype)rarityOption:(SPItemRarity *)rarity;
 + (instancetype)heroOption:(SPHero *)hero;
 + (instancetype)emptyHeroOption;

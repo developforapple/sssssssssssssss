@@ -14,6 +14,7 @@
 - (void)leftNavButtonTemplateImg:(NSString *)img;
 - (void)rightNavButtonTemplateImg:(NSString *)img;
 - (void)rightNavButtonText:(NSString *)text;
+- (void)rightNavSystemItem:(UIBarButtonSystemItem)item;
 - (void)doLeftNaviBarItemAction;
 - (void)doRightNaviBarItemAction;
 - (void)noLeftNavButton;

@@ -27,7 +27,7 @@
 @property (strong, readwrite, nonatomic) SPItemDota2Price *dota2Price;
 @property (strong, readwrite, nonatomic) SPItemSteamPrice *steamPrice;
 
-@property (strong, readwrite, nonatomic) NSArray<SPGamepediaImage *> *extraImages;
+@property (strong, readwrite, nonatomic) SPGamepediaData *extraData;
 
 @end
 
@@ -146,9 +146,9 @@
 
 - (void)loadExtraImages
 {
-    [[SPGamepediaAPI shared] fetchItem:self.item.name completion:^(BOOL suc, NSError *error, id result) {
+    [[SPGamepediaAPI shared] fetchItemInfo:self.item completion:^(BOOL suc, NSError *error, SPGamepediaData *data) {
         if (suc) {
-            self.extraImages = result;
+            self.extraData = data;
         }
     }];
 }

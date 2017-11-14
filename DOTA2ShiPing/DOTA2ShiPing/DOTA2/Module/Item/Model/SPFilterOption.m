@@ -16,6 +16,16 @@
 @end
 
 @implementation SPFilterOptionGroup
+
++ (instancetype)textGroup
+{
+    SPFilterOptionGroup *group = [SPFilterOptionGroup new];
+    group.title = @"匹配物品名称";
+    group.options = @[[SPFilterOption textOption]];
+    group.type = SPFilterOptionTypeText;
+    return group;
+}
+
 + (instancetype)rarityGroup:(NSArray<SPItemRarity *> *)rarities
 {
     NSMutableArray *array = [NSMutableArray array];
@@ -26,7 +36,7 @@
         }
     }
     SPFilterOptionGroup *group = [SPFilterOptionGroup new];
-    group.title = @"稀有度";
+    group.title = @"物品稀有度";
     group.options = array;
     group.type = SPFilterOptionTypeRarity;
     return group;
@@ -42,7 +52,7 @@
         }
     }
     SPFilterOptionGroup *group = [SPFilterOptionGroup new];
-    group.title = @"事件";
+    group.title = @"Dota2事件";
     group.options = array;
     group.type = SPFilterOptionTypeEvent;
     return group;
@@ -51,7 +61,7 @@
 + (instancetype)heroGroup:(SPFilterOption *)option
 {
     SPFilterOptionGroup *group = [SPFilterOptionGroup new];
-    group.title = @"英雄";
+    group.title = @"适用英雄";
     group.options = option ? @[option] : @[];
     group.type = SPFilterOptionTypeHero;
     return group;
@@ -64,6 +74,15 @@
 @end
 
 @implementation SPFilterOption
+
++ (instancetype)textOption
+{
+    SPFilterOption *option = [SPFilterOption new];
+    option.name = @"输入匹配文本";
+    option.type = SPFilterOptionTypeText;
+    return option;
+}
+
 + (instancetype)rarityOption:(SPItemRarity *)rarity
 {
     SPFilterOption *option = [SPFilterOption new];

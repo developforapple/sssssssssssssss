@@ -43,6 +43,12 @@
     return [self.prefab isEqualToString:@"taunt"];
 }
 
+- (BOOL)isPlayable
+{
+    return YES;
+//    return [self.prefab isEqualToString:@"TODO"];
+}
+
 - (UIColor *)itemColor
 {
     if (!_itemColor) {

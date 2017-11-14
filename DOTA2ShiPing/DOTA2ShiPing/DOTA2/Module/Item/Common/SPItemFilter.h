@@ -32,6 +32,9 @@
 // 根据包中饰品列表筛选
 + (instancetype)filterWithItemNames:(NSArray<NSString *> *)itemNames;
 
+// 外部导入的物品
++ (instancetype)importItems:(NSArray<SPItem *> *)items;
+
 @property (strong, nonatomic) SPHero *hero;
 @property (strong, nonatomic) NSArray<SPItemPrefab *> *prefabs;
 @property (strong, nonatomic) SPItemRarity *rarity;

@@ -11,6 +11,10 @@
 #import "FMDB.h"
 #import "SPDataManager.h"
 
+@interface SPItemFilter ()
+@property (assign, nonatomic) BOOL importItemsFlag;
+@end
+
 @implementation SPItemFilter
 
 + (instancetype)filterWithHero:(SPHero *)hero
@@ -51,8 +55,18 @@
     return filter;
 }
 
++ (instancetype)importItems:(NSArray<SPItem *> *)items
+{
+    SPItemFilter *filter = [[SPItemFilter alloc] init];
+    filter.items = items;
+    filter.importItemsFlag = YES;
+    return filter;
+}
+
 - (BOOL)updateItems
 {
+    if (_importItemsFlag) return YES;
+    
     SPDBWITHOPEN
     
     NSMutableArray *query = [NSMutableArray array];
@@ -150,6 +164,12 @@
 
 - (void)separateItem
 {
+    if (_importItemsFlag) {
+        self.separatedItems = @[self.items];
+        self.titles = @[@"全部物品"];
+        return;
+    }
+    
     //根据英雄查询饰品，按照部位分类
     //根据其他查询饰品，按照饰品类型分类
     

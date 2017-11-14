@@ -77,6 +77,11 @@
     }
 }
 
+- (void)rightNavSystemItem:(UIBarButtonSystemItem)item
+{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:item target:self action:@selector(doRightNaviBarItemAction)];
+}
+
 - (void)doLeftNaviBarItemAction
 {
     if (self.navigationController.viewControllers.firstObject == self &&

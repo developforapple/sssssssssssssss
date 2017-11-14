@@ -15,8 +15,8 @@
 #import "SPItemSlot.h"
 #import "SPItemSets.h"
 #import "SPItemStyle.h"
-#import "SPGamepediaImage.h"
 #import "SPItemPriceLoader.h"
+#import "SPGamepediaData.h"
 
 @interface SPItemSharedData : NSObject
 
@@ -41,7 +41,8 @@
 @property (strong, readonly, nonatomic) SPItemDota2Price *dota2Price;
 @property (strong, readonly, nonatomic) SPItemSteamPrice *steamPrice;
 
-@property (strong, readonly, nonatomic) NSArray<SPGamepediaImage *> *extraImages;
+// 来自 Gamepedia 的数据 异步加载
+@property (strong, readonly, nonatomic) SPGamepediaData *extraData;
 
 
 - (instancetype)init NS_UNAVAILABLE;

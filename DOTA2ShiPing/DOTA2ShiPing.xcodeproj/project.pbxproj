@@ -12,7 +12,6 @@
 		2D0BD6FE1FB3486E00A5DD99 /* SPItemSteamPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD6FD1FB3486E00A5DD99 /* SPItemSteamPriceCell.m */; };
 		2D0BD7011FB5FBCA00A5DD99 /* SPItemBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD7001FB5FBCA00A5DD99 /* SPItemBannerView.m */; };
 		2D19E0111F32F22A00747B01 /* SPPriceChartConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */; };
-		2D19E0141F34446000747B01 /* SPBundleItemsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0131F34446000747B01 /* SPBundleItemsViewCtrl.m */; };
 		2D37AAB41FAEEB5E0043DDD4 /* SPItemDescPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D37AAB31FAEEB5E0043DDD4 /* SPItemDescPanel.m */; };
 		2D37AAB71FAEF5CC0043DDD4 /* SPItemMoreItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D37AAB61FAEF5CC0043DDD4 /* SPItemMoreItemsView.m */; };
 		2D40220E1F385D830006EFEF /* SPLootList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D40220D1F385D830006EFEF /* SPLootList.m */; };
@@ -20,11 +19,8 @@
 		2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D29A1CDE20D700190F0C /* AppDelegate.m */; };
 		2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2A71CDE20D700190F0C /* LaunchScreen.storyboard */; };
 		2D4AD9D11F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4AD9D01F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m */; };
-		2D4AD9D41F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4AD9D31F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m */; };
 		2D4B5C761F2198CF00A3D8C9 /* SPItemStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5C751F2198CF00A3D8C9 /* SPItemStyle.m */; };
-		2D4B5C791F27974F00A3D8C9 /* SPItemPriceListViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5C781F27974F00A3D8C9 /* SPItemPriceListViewCtrl.m */; };
 		2D4B5C7C1F27B1F900A3D8C9 /* SPMarketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5C7B1F27B1F900A3D8C9 /* SPMarketItem.m */; };
-		2D4B5CE31F2A323800A3D8C9 /* SPItemPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5CE21F2A323800A3D8C9 /* SPItemPriceCell.m */; };
 		2D4B5D4C1F2A54CB00A3D8C9 /* SPChart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D4B5D4A1F2A54CB00A3D8C9 /* SPChart.storyboard */; };
 		2D4B5D4F1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5D4E1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m */; };
 		2D4B5D541F2E2C8100A3D8C9 /* SPPriceUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5D531F2E2C8100A3D8C9 /* SPPriceUnit.m */; };
@@ -231,6 +227,8 @@
 		699074401F3D902C00B64030 /* SPMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6990743F1F3D902C00B64030 /* SPMemoryCache.m */; };
 		699074431F3DA63500B64030 /* CALayer+SDWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 699074421F3DA63500B64030 /* CALayer+SDWebCache.m */; };
 		69A117031FA8747700A32747 /* SPItemSaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A117021FA8747700A32747 /* SPItemSaleView.m */; };
+		69F631131FBAF01600A60EC8 /* SPGamepediaPlayable.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F631121FBAF01600A60EC8 /* SPGamepediaPlayable.m */; };
+		69F631161FBAF4CE00A60EC8 /* SPGamepediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F631151FBAF4CE00A60EC8 /* SPGamepediaData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -245,8 +243,6 @@
 		2D0BD7001FB5FBCA00A5DD99 /* SPItemBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemBannerView.m; sourceTree = "<group>"; };
 		2D19E00F1F32F22A00747B01 /* SPPriceChartConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPriceChartConfig.h; sourceTree = "<group>"; };
 		2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceChartConfig.m; sourceTree = "<group>"; };
-		2D19E0121F34446000747B01 /* SPBundleItemsViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBundleItemsViewCtrl.h; sourceTree = "<group>"; };
-		2D19E0131F34446000747B01 /* SPBundleItemsViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBundleItemsViewCtrl.m; sourceTree = "<group>"; };
 		2D37AAB21FAEEB5E0043DDD4 /* SPItemDescPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemDescPanel.h; sourceTree = "<group>"; };
 		2D37AAB31FAEEB5E0043DDD4 /* SPItemDescPanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemDescPanel.m; sourceTree = "<group>"; };
 		2D37AAB51FAEF5CC0043DDD4 /* SPItemMoreItemsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemMoreItemsView.h; sourceTree = "<group>"; };
@@ -262,16 +258,10 @@
 		2D48D2AA1CDE20D700190F0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D4AD9CF1F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemsDetailViewCtrl.h; sourceTree = "<group>"; };
 		2D4AD9D01F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemsDetailViewCtrl.m; sourceTree = "<group>"; };
-		2D4AD9D21F1E63ED00FF3EDF /* SPItemInfoViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemInfoViewCtrl.h; sourceTree = "<group>"; };
-		2D4AD9D31F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemInfoViewCtrl.m; sourceTree = "<group>"; };
 		2D4B5C741F2198CF00A3D8C9 /* SPItemStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemStyle.h; sourceTree = "<group>"; };
 		2D4B5C751F2198CF00A3D8C9 /* SPItemStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemStyle.m; sourceTree = "<group>"; };
-		2D4B5C771F27974F00A3D8C9 /* SPItemPriceListViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemPriceListViewCtrl.h; sourceTree = "<group>"; };
-		2D4B5C781F27974F00A3D8C9 /* SPItemPriceListViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemPriceListViewCtrl.m; sourceTree = "<group>"; };
 		2D4B5C7A1F27B1F900A3D8C9 /* SPMarketItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMarketItem.h; sourceTree = "<group>"; };
 		2D4B5C7B1F27B1F900A3D8C9 /* SPMarketItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMarketItem.m; sourceTree = "<group>"; };
-		2D4B5CE11F2A323800A3D8C9 /* SPItemPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemPriceCell.h; sourceTree = "<group>"; };
-		2D4B5CE21F2A323800A3D8C9 /* SPItemPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemPriceCell.m; sourceTree = "<group>"; };
 		2D4B5D4A1F2A54CB00A3D8C9 /* SPChart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SPChart.storyboard; sourceTree = "<group>"; };
 		2D4B5D4D1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPriceChartViewCtrl.h; sourceTree = "<group>"; };
 		2D4B5D4E1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceChartViewCtrl.m; sourceTree = "<group>"; };
@@ -691,6 +681,10 @@
 		699074421F3DA63500B64030 /* CALayer+SDWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+SDWebCache.m"; sourceTree = "<group>"; };
 		69A117011FA8747700A32747 /* SPItemSaleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemSaleView.h; sourceTree = "<group>"; };
 		69A117021FA8747700A32747 /* SPItemSaleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemSaleView.m; sourceTree = "<group>"; };
+		69F631111FBAF01600A60EC8 /* SPGamepediaPlayable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaPlayable.h; sourceTree = "<group>"; };
+		69F631121FBAF01600A60EC8 /* SPGamepediaPlayable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPGamepediaPlayable.m; sourceTree = "<group>"; };
+		69F631141FBAF4CE00A60EC8 /* SPGamepediaData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaData.h; sourceTree = "<group>"; };
+		69F631151FBAF4CE00A60EC8 /* SPGamepediaData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPGamepediaData.m; sourceTree = "<group>"; };
 		B70FA08C933879E048D521D6 /* Pods_DOTA2ShiPing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DOTA2ShiPing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -954,6 +948,10 @@
 				690BD50F1FA71666007A4D5D /* SPGamepediaSerializer.m */,
 				690BD5141FA71E6D007A4D5D /* SPGamepediaImage.h */,
 				690BD5151FA71E6D007A4D5D /* SPGamepediaImage.m */,
+				69F631111FBAF01600A60EC8 /* SPGamepediaPlayable.h */,
+				69F631121FBAF01600A60EC8 /* SPGamepediaPlayable.m */,
+				69F631141FBAF4CE00A60EC8 /* SPGamepediaData.h */,
+				69F631151FBAF4CE00A60EC8 /* SPGamepediaData.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1487,8 +1485,6 @@
 				2DF9B7901F1361640012950A /* SPItemCell.m */,
 				691974291F42A96E00FB5007 /* SPBundleItemCell.h */,
 				6919742A1F42A96E00FB5007 /* SPBundleItemCell.m */,
-				2D4B5CE11F2A323800A3D8C9 /* SPItemPriceCell.h */,
-				2D4B5CE21F2A323800A3D8C9 /* SPItemPriceCell.m */,
 				2D0BD6FC1FB3486E00A5DD99 /* SPItemSteamPriceCell.h */,
 				2D0BD6FD1FB3486E00A5DD99 /* SPItemSteamPriceCell.m */,
 				69819CC01FB99C4F00977873 /* SPItemBannerImageCell.h */,
@@ -1533,14 +1529,8 @@
 				6954FCE41F44326D00DDB5D3 /* SPItemFilterViewCtrl.m */,
 				2D4AD9CF1F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.h */,
 				2D4AD9D01F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m */,
-				2D4AD9D21F1E63ED00FF3EDF /* SPItemInfoViewCtrl.h */,
-				2D4AD9D31F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m */,
 				690BD5171FA841A1007A4D5D /* SPItemViewCtrl.h */,
 				690BD5181FA841A1007A4D5D /* SPItemViewCtrl.m */,
-				2D4B5C771F27974F00A3D8C9 /* SPItemPriceListViewCtrl.h */,
-				2D4B5C781F27974F00A3D8C9 /* SPItemPriceListViewCtrl.m */,
-				2D19E0121F34446000747B01 /* SPBundleItemsViewCtrl.h */,
-				2D19E0131F34446000747B01 /* SPBundleItemsViewCtrl.m */,
 				2D0BD6F91FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.h */,
 				2D0BD6FA1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m */,
 				2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */,
@@ -2215,7 +2205,6 @@
 				2DF9B8391F1361640012950A /* UISearchBar+yg_IBInspectable.m in Sources */,
 				2DF9B8321F1361640012950A /* UIDevice+Ext.m in Sources */,
 				2D0BD6FE1FB3486E00A5DD99 /* SPItemSteamPriceCell.m in Sources */,
-				2D4AD9D41F1E63ED00FF3EDF /* SPItemInfoViewCtrl.m in Sources */,
 				2DF9B8C91F1361640012950A /* SPFocusVisualEffectVC.m in Sources */,
 				2DF9B8541F1361640012950A /* YGPayThirdPlatformProcessor.m in Sources */,
 				2DF9B8A11F1361640012950A /* SPItemFilter.m in Sources */,
@@ -2234,13 +2223,13 @@
 				2D40220E1F385D830006EFEF /* SPLootList.m in Sources */,
 				2DF9B8461F1361640012950A /* UIView+BlockGesture.m in Sources */,
 				6954FCE51F44326D00DDB5D3 /* SPItemFilterViewCtrl.m in Sources */,
+				69F631161FBAF4CE00A60EC8 /* SPGamepediaData.m in Sources */,
 				2DF9B8371F1361640012950A /* UINavigationBar+yg_IBInspectable.m in Sources */,
 				2DDB45491F3C4EC9005E8460 /* SPItemImageLoader.m in Sources */,
 				2DF9B8B61F1361640012950A /* SPPlayerInventoryUpdateVC.m in Sources */,
 				2DF9B8471F1361640012950A /* UIView+Hierarchy.m in Sources */,
 				2DF9B8601F1361640012950A /* YGBubble.m in Sources */,
 				2DF9B8CD1F1361640012950A /* SPWorkshopModel.m in Sources */,
-				2D4B5C791F27974F00A3D8C9 /* SPItemPriceListViewCtrl.m in Sources */,
 				2DF9B8A61F1361640012950A /* SPItemOffPriceVC.m in Sources */,
 				2DF9B8351F1361640012950A /* UIButton+yg_IBInspectable.m in Sources */,
 				2DF9B83C1F1361640012950A /* UITableViewCell+yg_IBInspectable.m in Sources */,
@@ -2261,6 +2250,7 @@
 				2DF9B81E1F1361640012950A /* Config_Constant.m in Sources */,
 				2DF9B82E1F1361640012950A /* NSObject+KVCExceptionCatch.m in Sources */,
 				2DF9B85C1F1361640012950A /* YGAreaPickerView.m in Sources */,
+				69F631131FBAF01600A60EC8 /* SPGamepediaPlayable.m in Sources */,
 				2DF9B8CB1F1361640012950A /* SPWorkshopTagVC.m in Sources */,
 				2DF9B8791F1361640012950A /* YGRefreshComponent.m in Sources */,
 				2DF9B8801F1361640012950A /* TAPageControl.m in Sources */,
@@ -2338,7 +2328,6 @@
 				2DC0F6901F1B6A2D004DCD3C /* SPItemHeroPickerVC.m in Sources */,
 				2D6F1CAE1F20D72500E8F614 /* UIViewController+yg_StatusBar.m in Sources */,
 				692A55871F4D6C2E006914BF /* SPItemSearchViewCtrl.m in Sources */,
-				2D19E0141F34446000747B01 /* SPBundleItemsViewCtrl.m in Sources */,
 				690BD50D1FA71524007A4D5D /* SPGamepediaAPI.m in Sources */,
 				2DF9B8611F1361640012950A /* YGBubbleView.m in Sources */,
 				69A117031FA8747700A32747 /* SPItemSaleView.m in Sources */,
@@ -2349,7 +2338,6 @@
 				2DF9B82D1F1361640012950A /* NSCalendar+YGCategory.m in Sources */,
 				2DF9B85B1F1361640012950A /* YGAreaManager.m in Sources */,
 				2D91EB741F16263A0038B49C /* SPResourceManager.m in Sources */,
-				2D4B5CE31F2A323800A3D8C9 /* SPItemPriceCell.m in Sources */,
 				2DF9B8701F1361640012950A /* SPLeftAlignmentLayout.m in Sources */,
 				2DF9B8B51F1361640012950A /* SPPlayerListVC.m in Sources */,
 				2DF9B8981F1361640012950A /* YGBaseNaviCtrl.m in Sources */,

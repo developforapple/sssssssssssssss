@@ -273,54 +273,58 @@ static const NSInteger kInvalidValue = -1;
     self.infoView.alpha = alpha;
 }
 
+- (void)updateExtraImages:(NSArray<SPGamepediaImage *> *)extraImages
+{
+    NSMutableArray *images;
+    NSURL *URL = [self.itemData.item qiniuLargeURL];
+    if (extraImages) {
+        images = URL ? [NSMutableArray arrayWithObject:URL] : [NSMutableArray array];
+        for (SPGamepediaImage *aImage in extraImages) {
+            [images addObject:[aImage imageURL:SPGamepediaImageScaleBest]];
+        }
+    }else if (URL){
+        images = [NSMutableArray arrayWithObject:URL];
+    }
+
+    if (images == nil || images.count == 0 || images.count == 1) {
+        self.hasExtraImages = NO;
+        self.infoView.hidden = YES;
+    }else{
+        self.hasExtraImages = YES;
+        [self.infoView setHidden:NO animated:YES];
+    }
+    
+    NSMutableArray *infoList = [NSMutableArray array];
+    NSMutableArray *URLs = [NSMutableArray array];
+    for (NSInteger i = 0; i<images.count; i++) {
+        SPItemBannerImageInfo *info = [[SPItemBannerImageInfo alloc] init:images[i]];
+        info.index = i;
+        info.imageCount = images.count;
+        [infoList addObject:info];
+        [URLs addObject:images[i]];
+    }
+    self.imageInfoList = infoList;
+    self.imageURLs = URLs;
+    [self.collectionView reloadData];
+    if (infoList.count > 0) {
+        [self updateCurImageIndex:0];
+    }
+}
+
+- (void)updateExtraPlayables:(NSArray<SPGamepediaPlayable *> *)playables
+{
+    
+}
+
 - (void)update
 {
     ygweakify(self);
-    [[RACObserve(self.itemData, extraImages)
-      map:^id (NSArray<SPGamepediaImage *> *value) {
-          ygstrongify(self);
-          NSURL *URL = [self.itemData.item qiniuLargeURL];
-          if (value) {
-              NSMutableArray *imageURLs = URL ? [NSMutableArray arrayWithObject:URL] : [NSMutableArray array];
-              for (SPGamepediaImage *aImage in value) {
-                  [imageURLs addObject:[aImage imageURL:SPGamepediaImageScaleBest]];
-              }
-              return imageURLs;
-          }else if (URL){
-              return @[URL];
-          }else{
-              return nil;
-          }
-    }]
-     subscribeNext:^(NSArray<NSURL *> *x) {
+    [RACObserve(self.itemData, extraData)
+     subscribeNext:^(SPGamepediaData *data) {
          ygstrongify(self);
-         
-         if (x == nil || x.count == 0 || x.count == 1) {
-             self.hasExtraImages = NO;
-             self.infoView.hidden = YES;
-         }else{
-             self.hasExtraImages = YES;
-             [self.infoView setHidden:NO animated:YES];
-         }
-         
-         NSMutableArray *infoList = [NSMutableArray array];
-         NSMutableArray *URLs = [NSMutableArray array];
-         for (NSInteger i = 0; i<x.count; i++) {
-             SPItemBannerImageInfo *info = [[SPItemBannerImageInfo alloc] init:x[i]];
-             info.index = i;
-             info.imageCount = x.count;
-             [infoList addObject:info];
-             [URLs addObject:x[i]];
-         }
-         self.imageInfoList = infoList;
-         self.imageURLs = URLs;
-         [self.collectionView reloadData];
-         if (infoList.count > 0) {
-             [self updateCurImageIndex:0];
-         }
+         [self updateExtraImages:data.images];
+         [self updateExtraPlayables:data.playables];
      }];
-    
-    
 }
 
 - (void)updateImageInfoView
@@ -392,7 +396,7 @@ static const NSInteger kInvalidValue = -1;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SPItemBannerImageCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    SPItemBannerImageCell *cell = (SPItemBannerImageCell *)[collectionView cellForItemAtIndexPath:indexPath];
     IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:self.imageURLs animatedFromView:cell.imageView];
     [browser setInitialPageIndex:(int)indexPath.item];
     browser.delegate = self;

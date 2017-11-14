@@ -85,11 +85,11 @@
     
     // 可交易 tag
     // TODO
-    [tags addObject:[SPItemTag tag:@"可交易" color:color]];
+//    [tags addObject:[SPItemTag tag:@"可交易" color:color]];
     
     // 可出售 tag
     // TODO
-    [tags addObject:[SPItemTag tag:@"可出售" color:color]];
+//    [tags addObject:[SPItemTag tag:@"可出售" color:color]];
     
     self.tags = tags;
     [self.tagView reloadData];
