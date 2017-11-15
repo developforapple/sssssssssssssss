@@ -46,7 +46,7 @@
 {
     return @{@"action":@"parse",
              @"format":@"json",
-             @"prop":@"text|sections"};
+             @"prop":@"text|wikitext|parsetree"};
 }
 
 - (void)fetchItemInfo:(SPItem *)item
@@ -59,14 +59,18 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self defaultWebAPIParams]];
     dict[@"page"] = item.name;
     
+    AsyncBenchmarkTestBegin(SPGamepediaAPI)
+    
     ygweakify(self);
     [self.manager GET:@"api.php" parameters:dict progress:^(NSProgress *downloadProgress) {
         NSLog(@"GamepediaAPI progress: %@",downloadProgress.localizedAdditionalDescription);
     } success:^(NSURLSessionDataTask *task, id responseObject) {
+        AsyncBenchmarkTestEnd(SPGamepediaAPI)
         ygstrongify(self);
         NSLog(@"Did load Gamepedia content");
         [self handleFetchResult:responseObject ofItem:item completion:completion];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        AsyncBenchmarkTestEnd(SPGamepediaAPI)
         NSLog(@"Failed load Gamepedia content. error: %@",error);
         completion(NO,error,nil);
     }];
@@ -87,12 +91,22 @@
     SPGamepediaData *data = [SPGamepediaData new];
     
     NSString *html = [responseObject valueForKeyPath:@"parse.text.*"];
-    data.images = [self getGamepediaImages:html];
+    
+    NSLog(@"抓取Gamepedia图片资源开始");
+    YYBenchmark(^{
+        data.images = [self getGamepediaImages:html];
+    }, ^(double ms) {
+        NSLog(@"抓取Gamepedia图片资源结束，耗时 %.1f ms",ms);
+    });
     
     if ([item isPlayable]) {
-        data.playables = [self getGamepediaPlables:html];
+        NSLog(@"抓取Gamepedia可播放资源开始");
+        YYBenchmark(^{
+            data.playables = [self getGamepediaPlables:html];
+        }, ^(double ms) {
+            NSLog(@"抓取Gamepedia可播放资源结束，耗时 %.1f ms",ms);
+        });
     }
-    
     completion(YES,nil,data);
 }
 
@@ -135,21 +149,46 @@
     }
 }
 
+- (NSString *)plainTextOfElement:(TFHppleElement *)element
+{
+    if (element.isTextNode) {
+        return [element.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    }
+    
+    if ([[element objectForKey:@"title"] isEqualToString:@"Play"]) {
+        return @"";
+    }
+    
+    NSArray<TFHppleElement *> *children = element.children;
+    NSMutableArray *childrenTexts = [NSMutableArray array];
+    for (TFHppleElement *aChild in children) {
+        NSString *txt = [self plainTextOfElement:aChild];
+        if (txt.length > 0) {
+            [childrenTexts addObject:txt];
+        }
+    }
+    NSString *plainText = [[childrenTexts componentsJoinedByString:@" "] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return plainText;
+}
+
 - (NSArray *)getGamepediaPlables:(NSString *)html
 {
     NSMutableArray *contents = [NSMutableArray array];
     @try {
         NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
         TFHpple *root = [TFHpple hppleWithHTMLData:data];
-        NSArray<TFHppleElement *> *playableElements = [root searchWithXPathQuery:@"//a[@title='Play']"];
-        
+        NSArray<TFHppleElement *> *playableElements = [root searchWithXPathQuery:@"//a[@title='Play']/parent::*"];
         NSLog(@"Gamepedia content contain %d playable elements",(int)playableElements.count);
-        
         for (TFHppleElement *element in playableElements) {
-            
+            NSString *text = [self plainTextOfElement:element];
+            TFHppleElement *playNode = [element searchWithXPathQuery:@"//a[@title='Play']"].firstObject;
+            if (text && playNode) {
+                NSString *URL = [playNode objectForKey:@"href"];
+                SPGamepediaPlayable *aPlayable = [[SPGamepediaPlayable alloc] initWithURL:URL title:text];
+//                NSLog(@"Playable: %@ : %@",text,URL);
+                [contents addObject:aPlayable];
+            }
         }
-        
-        
     }@catch (NSException *e){
         NSLog(@"SPGamepediaAPI Exception : %@",e);
     }@finally{

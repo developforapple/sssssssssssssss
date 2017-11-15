@@ -19,6 +19,7 @@
 #import "SPItemDescPanel.h"
 #import "SPItemMoreItemsView.h"
 #import "SPItemBannerView.h"
+#import "SPItemPlayableView.h"
 
 @interface SPItemViewCtrl () <MXParallaxHeaderDelegate>
 
@@ -29,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet SPItemTitleView *titlePanel;
 @property (weak, nonatomic) IBOutlet SPItemSaleView *salePanel;
 @property (weak, nonatomic) IBOutlet SPItemDescPanel *descPanel;
+@property (weak, nonatomic) IBOutlet SPItemPlayableView *playablePanel;
 @property (weak, nonatomic) IBOutlet SPItemMoreItemsView *moreItemsPanel;
 
 @end
@@ -66,6 +68,7 @@
     self.titlePanel.itemData = self.itemData;
     self.salePanel.itemData = self.itemData;
     self.descPanel.itemData = self.itemData;
+    self.playablePanel.itemData = self.itemData;
     self.moreItemsPanel.itemData = self.itemData;
 }
 

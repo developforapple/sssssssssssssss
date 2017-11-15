@@ -91,7 +91,7 @@
     [self updateItems];
     
     [self loadPrices];
-    [self loadExtraImages];
+    [self loadExtraData];
 }
 
 - (void)updateItems
@@ -144,7 +144,7 @@
     
 }
 
-- (void)loadExtraImages
+- (void)loadExtraData
 {
     [[SPGamepediaAPI shared] fetchItemInfo:self.item completion:^(BOOL suc, NSError *error, SPGamepediaData *data) {
         if (suc) {
