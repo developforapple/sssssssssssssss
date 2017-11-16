@@ -229,6 +229,7 @@
 		699074401F3D902C00B64030 /* SPMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6990743F1F3D902C00B64030 /* SPMemoryCache.m */; };
 		699074431F3DA63500B64030 /* CALayer+SDWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 699074421F3DA63500B64030 /* CALayer+SDWebCache.m */; };
 		69A117031FA8747700A32747 /* SPItemSaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A117021FA8747700A32747 /* SPItemSaleView.m */; };
+		69ECA1C01FBD8E0500A9DFFC /* SPItemPlayablesViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ECA1BF1FBD8E0500A9DFFC /* SPItemPlayablesViewCtrl.m */; };
 		69F631131FBAF01600A60EC8 /* SPGamepediaPlayable.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F631121FBAF01600A60EC8 /* SPGamepediaPlayable.m */; };
 		69F631161FBAF4CE00A60EC8 /* SPGamepediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F631151FBAF4CE00A60EC8 /* SPGamepediaData.m */; };
 /* End PBXBuildFile section */
@@ -687,6 +688,8 @@
 		699074421F3DA63500B64030 /* CALayer+SDWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+SDWebCache.m"; sourceTree = "<group>"; };
 		69A117011FA8747700A32747 /* SPItemSaleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemSaleView.h; sourceTree = "<group>"; };
 		69A117021FA8747700A32747 /* SPItemSaleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemSaleView.m; sourceTree = "<group>"; };
+		69ECA1BE1FBD8E0500A9DFFC /* SPItemPlayablesViewCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemPlayablesViewCtrl.h; sourceTree = "<group>"; };
+		69ECA1BF1FBD8E0500A9DFFC /* SPItemPlayablesViewCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemPlayablesViewCtrl.m; sourceTree = "<group>"; };
 		69F631111FBAF01600A60EC8 /* SPGamepediaPlayable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaPlayable.h; sourceTree = "<group>"; };
 		69F631121FBAF01600A60EC8 /* SPGamepediaPlayable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPGamepediaPlayable.m; sourceTree = "<group>"; };
 		69F631141FBAF4CE00A60EC8 /* SPGamepediaData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaData.h; sourceTree = "<group>"; };
@@ -1541,6 +1544,8 @@
 				690BD5181FA841A1007A4D5D /* SPItemViewCtrl.m */,
 				2D0BD6F91FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.h */,
 				2D0BD6FA1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m */,
+				69ECA1BE1FBD8E0500A9DFFC /* SPItemPlayablesViewCtrl.h */,
+				69ECA1BF1FBD8E0500A9DFFC /* SPItemPlayablesViewCtrl.m */,
 				2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */,
 			);
 			path = Ctrls;
@@ -2304,6 +2309,7 @@
 				2DF9B8CE1F1361640012950A /* SPWorkshopCell.m in Sources */,
 				69819CC21FB99C4F00977873 /* SPItemBannerImageCell.m in Sources */,
 				2D48D2981CDE20D700190F0C /* main.m in Sources */,
+				69ECA1C01FBD8E0500A9DFFC /* SPItemPlayablesViewCtrl.m in Sources */,
 				2DF9B83D1F1361640012950A /* UIToolbar+yg_IBInspectable.m in Sources */,
 				2DC0F69A1F1C624A004DCD3C /* SPItemEntranceVC.m in Sources */,
 				2DF9B8AF1F1361640012950A /* SPPlayerAliasesVC.m in Sources */,

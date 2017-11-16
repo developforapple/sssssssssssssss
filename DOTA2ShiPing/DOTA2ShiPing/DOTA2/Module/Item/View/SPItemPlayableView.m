@@ -10,14 +10,16 @@
 #import "SPItemSharedData.h"
 @import ChameleonFramework;
 #import "SPItemPlayableCell.h"
-#import "SPLeftAlignmentLayout.h"
+#import "SPItemPlayablesViewCtrl.h"
 @import ReactiveObjC;
 @import AVKit;
 
-@interface SPItemPlayableView ()
+static NSInteger kMaxPlayableCount = 5;
+
+@interface SPItemPlayableView () <UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *itemsView;
-@property (weak, nonatomic) IBOutlet SPLeftAlignmentLayout *layout;
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *layout;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *itemsViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *zeroHeightConstraint;
 
@@ -34,8 +36,7 @@
 
 - (void)initUI
 {
-    self.layout.estimatedItemSize = self.layout.itemSize;
-    self.layout.maximumInteritemSpacing = 8.0;
+    
 }
 
 - (void)setItemData:(SPItemSharedData *)itemData
@@ -75,18 +76,38 @@
 #pragma mark - UICollectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.playables.count;
+    return MIN(kMaxPlayableCount, self.playables.count);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SPItemPlayableCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSPItemPlayableCell forIndexPath:indexPath];
-    cell.nameLabel.text = self.playables[indexPath.item].title;
+    if (indexPath.item == kMaxPlayableCount - 1 && self.playables.count > kMaxPlayableCount) {
+        cell.nameLabel.text = @"(查看更多音频内容)";
+    }else{
+        cell.nameLabel.text = self.playables[indexPath.item].title;
+    }
     return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat leftMargin = self.itemsView.contentInset.left + self.layout.sectionInset.left;
+    CGFloat rightMargin = self.itemsView.contentInset.right + self.layout.sectionInset.right;
+    CGFloat width = (CGRectGetWidth(self.itemsView.bounds) - leftMargin - rightMargin - self.layout.minimumInteritemSpacing) / 2;
+    CGFloat height = 44.f;
+    return CGSizeMake(width, height);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.playables.count > kMaxPlayableCount && indexPath.item == kMaxPlayableCount - 1) {
+        SPItemPlayablesViewCtrl *vc = [SPItemPlayablesViewCtrl instanceFromStoryboard];
+        vc.playables = self.playables;
+        [[[self viewController] navigationController] pushViewController:vc animated:YES];
+        return;
+    }
+    
     AVPlayerViewController *vc = [[AVPlayerViewController alloc] init];
     vc.player = [AVPlayer playerWithURL:[NSURL URLWithString:self.playables[indexPath.item].resource]];
     [[self viewController] presentViewController:vc animated:YES completion:nil];

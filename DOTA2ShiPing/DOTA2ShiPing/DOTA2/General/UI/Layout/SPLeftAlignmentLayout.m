@@ -10,16 +10,46 @@
 
 @implementation SPLeftAlignmentLayout
 
-- (void)awakeFromNib
+- (instancetype)init
 {
-    [super awakeFromNib];
-    self. maximumInteritemSpacing = 8.f;
+    self = [super init];
+    if (self) {
+        self.maximumInteritemSpacing = 8;
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        self.maximumInteritemSpacing = 8;
+    }
+    return self;
+}
+
+- (nullable UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewLayoutAttributes *attributes = [super layoutAttributesForItemAtIndexPath:indexPath];
+    
+    CGFloat maxWidth = self.collectionViewContentSize.width - self.sectionInset.left - self.collectionView.contentInset.left - self.sectionInset.right - self.collectionView.contentInset.right;
+    if (attributes.size.width > maxWidth) {
+        CGSize size = attributes.size;
+        size.width = maxWidth;
+        attributes.size = size;
+    }
+    return attributes;
 }
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
 {
     //使用系统帮我们计算好的结果。
     NSArray *attributes = [super layoutAttributesForElementsInRect:rect];
+    
+    CGSize contentSize = [self collectionViewContentSize];
+    
+    CGFloat leftMargin = self.sectionInset.left + self.collectionView.contentInset.left;
+    CGFloat rightMargin = self.sectionInset.right + self.collectionView.contentInset.right;
     
     //第0个cell没有上一个cell，所以从1开始
     for(int i = 1; i < [attributes count]; ++i) {
@@ -30,14 +60,22 @@
         NSInteger origin = CGRectGetMaxX(preAttr.frame);
         //根据  maximumInteritemSpacing 计算出的新的 x 位置
         CGFloat targetX = origin + _maximumInteritemSpacing;
-        // 只有系统计算的间距大于  maximumInteritemSpacing 时才进行调整
-        if (CGRectGetMinX(curAttr.frame) > targetX) {
-            // 换行时不用调整
-            if (targetX + CGRectGetWidth(curAttr.frame) < self.collectionViewContentSize.width) {
+        
+        if (targetX + CGRectGetWidth(curAttr.frame) + rightMargin <= contentSize.width) {
+            // 同一行
+            if (CGRectGetMinX(curAttr.frame) > targetX) {
                 CGRect frame = curAttr.frame;
                 frame.origin.x = targetX;
                 curAttr.frame = frame;
             }
+        }else{
+            // 不同行
+            if (CGRectGetMinX(curAttr.frame) > leftMargin){
+                CGRect frame = curAttr.frame;
+                frame.origin.x = self.collectionView.contentInset.left;
+                curAttr.frame = frame;
+            }
+            
         }
     }
     return attributes;
