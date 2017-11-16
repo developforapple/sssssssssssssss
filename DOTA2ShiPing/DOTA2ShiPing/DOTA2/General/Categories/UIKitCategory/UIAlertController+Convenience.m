@@ -27,7 +27,7 @@
              callback:(void(^)(void))callback
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"SURE", @"确认") style:UIAlertActionStyleCancel handler:^(id a){
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"确定", @"确认") style:UIAlertActionStyleCancel handler:^(id a){
         if (callback) {
             callback();
         }

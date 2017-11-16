@@ -12,4 +12,11 @@
 
 @implementation SPGamepediaData
 
++ (instancetype)error:(NSError *)error
+{
+    SPGamepediaData *data = [SPGamepediaData new];
+    data.error = error;
+    return data;
+}
+
 @end

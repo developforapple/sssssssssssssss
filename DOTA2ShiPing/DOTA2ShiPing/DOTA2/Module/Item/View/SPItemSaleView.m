@@ -12,6 +12,7 @@
 #import "SPItemPriceLoader.h"
 #import "SPWebHelper.h"
 #import "SPItemSteamPricesViewCtrl.h"
+#import "SPConfigManager.h"
 @import ReactiveObjC;
 @import ChameleonFramework;
 
@@ -29,12 +30,22 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading;
 @property (assign, nonatomic) SPItemPlatform platform;
 @property (strong, nonatomic) SPItem *item;
+@property (assign, nonatomic) BOOL isNoload;
 @end
 
 @implementation SPItemPlatformView
 
+- (void)noload
+{
+    _isNoload = YES;
+    self.errorLabel.hidden = YES;
+    [self.loading stopAnimating];
+    [self.btn setTitle:@"点击获取价格" forState:UIControlStateNormal];
+}
+
 - (void)updatePrice:(__kindof SPItemPriceBase *)priceObject
 {
+    _isNoload = NO;
     BOOL loading = priceObject == nil;
     self.loading.animating_ = loading;
     
@@ -70,34 +81,6 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
     }
 }
 
-- (IBAction)bgAction:(id)sender
-{
-    switch (self.platform) {
-        case SPItemPlatformDota2:{
-            [SPWebHelper openURL:[NSURL URLWithString:[self.item dota2MarketURL]] from:self.viewController.navigationController];
-        }   break;
-        case SPItemPlatformSteam:{
-            SPItemSteamPricesViewCtrl *vc = [SPItemSteamPricesViewCtrl instanceFromStoryboard];
-            vc.item = self.item;
-            [self.viewController.navigationController pushViewController:vc animated:YES];
-        }   break;
-        case SPItemPlatformTaobao:break;
-    }
-}
-
-- (IBAction)btnAction:(id)sender
-{
-    switch (self.platform) {
-        case SPItemPlatformDota2:{
-            [SPWebHelper openURL:[NSURL URLWithString:[self.item dota2MarketURL]] from:self.viewController.navigationController];
-        }   break;
-        case SPItemPlatformSteam:{
-            [SPWebHelper openURL:[NSURL URLWithString:[self.item steamMarketURL]] from:self.viewController.navigationController];
-        }   break;
-        case SPItemPlatformTaobao:break;
-    }
-}
-
 @end
 
 
@@ -129,17 +112,66 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
 
 - (void)update
 {
-    ygweakify(self);
-    [RACObserve(self.itemData, dota2Price)
-     subscribeNext:^(id x) {
-         ygstrongify(self);
-         [self.dota2View updatePrice:self.itemData.dota2Price];
-     }];
-    [RACObserve(self.itemData, steamPrice)
-     subscribeNext:^(id x) {
-         ygstrongify(self);
-         [self.steamView updatePrice:self.itemData.steamPrice];
-     }];
+    [self updateDota2Price:NO];
+    [self updateSteamPrice:NO];
+}
+
+- (void)updateDota2Price:(BOOL)forced
+{
+    if ( forced || Config.sp_config_item_detail_load_price_auto) {
+        ygweakify(self);
+        [RACObserve(self.itemData, dota2Price)
+         subscribeNext:^(id x) {
+             ygstrongify(self);
+             [self.dota2View updatePrice:self.itemData.dota2Price];
+         }];
+    }else{
+        [self.dota2View noload];
+    }
+}
+
+- (void)updateSteamPrice:(BOOL)forced
+{
+    if (forced || Config.sp_config_item_detail_load_price_auto) {
+        ygweakify(self);
+        [RACObserve(self.itemData, steamPrice)
+         subscribeNext:^(id x) {
+             ygstrongify(self);
+             [self.steamView updatePrice:self.itemData.steamPrice];
+         }];
+    }else{
+        [self.steamView noload];
+    }
+}
+
+- (IBAction)bgAction:(UIView *)bg
+{
+    if ([self.dota2View containView:bg]) {
+        [SPWebHelper openURL:[NSURL URLWithString:[self.itemData.item dota2MarketURL]] from:self.viewController.navigationController];
+    }else if ([self.steamView containView:bg]){
+        SPItemSteamPricesViewCtrl *vc = [SPItemSteamPricesViewCtrl instanceFromStoryboard];
+        vc.item = self.itemData.item;
+        [self.viewController.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+- (IBAction)btnAction:(UIButton *)btn
+{
+    if ([self.dota2View containView:btn]) {
+        if (self.dota2View.isNoload) {
+            [self.itemData loadDota2Price:YES];
+            [self updateDota2Price:YES];
+        }else{
+            [SPWebHelper openURL:[NSURL URLWithString:[self.itemData.item dota2MarketURL]] from:self.viewController.navigationController];
+        }
+    }else if ([self.steamView containView:btn]){
+        if (self.steamView.isNoload) {
+            [self.itemData loadSteamPrice:YES];
+            [self updateSteamPrice:YES];
+        }else{
+            [SPWebHelper openURL:[NSURL URLWithString:[self.itemData.item steamMarketURL]] from:self.viewController.navigationController];
+        }
+    }
 }
 
 @end

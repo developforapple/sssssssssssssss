@@ -18,7 +18,8 @@ NSString *const kSPItemPlayableCell = @"SPItemPlayableCell";
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.playIndicator.image = [[UIImage imageNamed:@"icon_play"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *image = [[UIImage imageNamed:@"icon_play"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    self.playIndicator.image = image;
     self.playIndicator.tintColor = [UIColor whiteColor];
 }
 

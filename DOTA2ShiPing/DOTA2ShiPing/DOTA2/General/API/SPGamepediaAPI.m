@@ -46,7 +46,7 @@
 {
     return @{@"action":@"parse",
              @"format":@"json",
-             @"prop":@"text|wikitext|parsetree"};
+             @"prop":@"text|parsetree|wikitext"};
 }
 
 - (void)fetchItemInfo:(SPItem *)item
@@ -72,7 +72,7 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         AsyncBenchmarkTestEnd(SPGamepediaAPI)
         NSLog(@"Failed load Gamepedia content. error: %@",error);
-        completion(NO,error,nil);
+        completion(NO,[SPGamepediaData error:error]);
     }];
 }
 
@@ -84,7 +84,7 @@
         NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain
                                              code:SPGamepediaAPIErrorCodeUnexpectedResponse
                                          userInfo:nil];
-        completion(NO,error,nil);
+        completion(NO,[SPGamepediaData error:error]);
         return;
     }
     
@@ -107,7 +107,7 @@
             NSLog(@"抓取Gamepedia可播放资源结束，耗时 %.1f ms",ms);
         });
     }
-    completion(YES,nil,data);
+    completion(YES,data);
 }
 
 - (NSArray *)getGamepediaImages:(NSString *)html

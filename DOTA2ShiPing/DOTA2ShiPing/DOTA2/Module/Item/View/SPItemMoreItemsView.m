@@ -96,13 +96,14 @@ static const NSInteger kMaxItems = 3 * 3;
     }
         
     self.items = items;
-    [UIView animateWithDuration:.1f animations:^{
-        [self.itemsView reloadData];
-    } completion:^(BOOL finished) {
+    
+    self.zeroHeightConstraint.priority = 200;
+    [self.itemsView reloadData];
+    RunAfter(.1f, ^{
         CGFloat h = self.itemsView.contentSize.height;
         self.itemsViewHeightConstraint.constant = h;
         [self layoutIfNeeded];
-    }];
+    });
 }
 
 - (BOOL)isItemCellIsMoreStyle:(NSIndexPath *)indexPath
@@ -118,8 +119,7 @@ static const NSInteger kMaxItems = 3 * 3;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = kSPBundleItemCell;
-    SPBundleItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    SPBundleItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSPBundleItemCell forIndexPath:indexPath];
     cell.item = self.items[indexPath.item];
     cell.isMoreStyle = [self isItemCellIsMoreStyle:indexPath];
     return cell;

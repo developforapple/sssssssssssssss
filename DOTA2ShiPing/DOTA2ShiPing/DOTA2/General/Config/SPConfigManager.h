@@ -1,0 +1,36 @@
+//
+//  SPConfigManager.h
+//  DOTA2ShiPing
+//
+//  Created by wwwbbat on 2017/11/16.
+//  Copyright © 2017年 wwwbbat. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+#define Config_BOOL_Option(NAME)        @property (assign,  nonatomic) BOOL         sp_config_##NAME ;
+#define Config_int_Option(NAME)         @property (assign,  nonatomic) NSInteger    sp_config_##NAME ;
+#define Config_double_Option(NAME)      @property (assign,  nonatomic) double       sp_config_##NAME ;
+#define Config_float_Option(NAME)       @property (assign,  nonatomic) float        sp_config_##NAME ;
+#define Config_NSString_Option(NAME)    @property (copy,    nonatomic) NSString *   sp_config_##NAME ;
+#define Config_NSNumber_Option(NAME)    @property (copy,    nonatomic) NSNumber *   sp_config_##NAME ;
+#define Config_id_Option(NAME)          @property (strong,  nonatomic) id           sp_config_##NAME ;
+
+#define Config [SPConfigManager manager]
+
+@interface SPConfigManager : NSObject 
+
++ (instancetype)manager;
+
+// 饰品详情页是否显示loading的提示文本 默认YES
+Config_BOOL_Option(item_detail_show_loading_tips)
+
+// 进入饰品详情页时，是否自动抓取额外数据 默认YES
+Config_BOOL_Option(item_detail_load_extra_data_auto)
+
+// 进入饰品详情页时，是否自动抓取价格数据 默认YES
+Config_BOOL_Option(item_detail_load_price_auto)
+
+
+@end
+

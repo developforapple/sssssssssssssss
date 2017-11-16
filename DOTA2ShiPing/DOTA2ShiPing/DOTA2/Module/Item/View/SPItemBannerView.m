@@ -313,7 +313,7 @@ static const NSInteger kInvalidValue = -1;
 
 - (void)updateExtraPlayables:(NSArray<SPGamepediaPlayable *> *)playables
 {
-    
+    // 显示在底部，不显示在这里了
 }
 
 - (void)update

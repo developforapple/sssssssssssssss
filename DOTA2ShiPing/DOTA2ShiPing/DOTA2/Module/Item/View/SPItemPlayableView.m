@@ -68,8 +68,11 @@ static NSInteger kMaxPlayableCount = 5;
         [self.itemsView reloadData];
     } completion:^(BOOL finished) {
         CGFloat h = self.itemsView.contentSize.height;
-        self.itemsViewHeightConstraint.constant = h;
-        [self layoutIfNeeded];
+        
+        [UIView animateWithDuration:.2f animations:^{
+            self.itemsViewHeightConstraint.constant = h;
+            [self layoutIfNeeded];
+        }];
     }];
 }
 

@@ -10,6 +10,7 @@
 #import "SPDataManager.h"
 #import "SPItemFilter.h"
 #import "SPGamepediaAPI.h"
+#import "SPConfigManager.h"
 
 @interface SPItemSharedData ()
 @property (strong, readwrite, nonatomic) SPItem *item;
@@ -90,8 +91,8 @@
     
     [self updateItems];
     
-    [self loadPrices];
-    [self loadExtraData];
+    [self loadPricesAuto];
+    [self loadExtraDataAuto];
 }
 
 - (void)updateItems
@@ -128,29 +129,46 @@
     }
 }
 
-- (void)loadPrices
+- (void)loadPricesAuto
 {
-    [SPItemPriceLoader loadDota2MarketPrice:self.item completion:^(SPItemDota2Price *price) {
-        self.dota2Price = price;
-    }];
-    
-    [SPItemPriceLoader loadSteamMarketPriceOverview:self.item completion:^(SPItemSteamPrice *price) {
-        self.steamPrice = price;
-    }];
-    
-//    [SPItemPriceLoader loadSteamMarketPrice:self.item completion:^(SPItemSteamPrice *price) {
-//        self.steamPrice = price;
-//    }];
-    
+    if (Config.sp_config_item_detail_load_price_auto) {
+        [self loadDota2Price:YES];
+        [self loadSteamPrice:YES];
+    }
 }
 
-- (void)loadExtraData
+- (void)loadDota2Price:(BOOL)forced
 {
-    [[SPGamepediaAPI shared] fetchItemInfo:self.item completion:^(BOOL suc, NSError *error, SPGamepediaData *data) {
-        if (suc) {
+    if (forced || Config.sp_config_item_detail_load_price_auto) {
+        [SPItemPriceLoader loadDota2MarketPrice:self.item completion:^(SPItemDota2Price *price) {
+            self.dota2Price = price;
+        }];
+    }
+}
+
+- (void)loadSteamPrice:(BOOL)forced
+{
+    if (forced || Config.sp_config_item_detail_load_price_auto) {
+        [SPItemPriceLoader loadSteamMarketPriceOverview:self.item completion:^(SPItemSteamPrice *price) {
+            self.steamPrice = price;
+        }];
+    }
+}
+
+- (void)loadExtraDataAuto
+{
+    if (Config.sp_config_item_detail_load_extra_data_auto) {
+        [self loadExtraData:YES];
+    }
+}
+
+- (void)loadExtraData:(BOOL)forced
+{
+    if (forced || Config.sp_config_item_detail_load_extra_data_auto) {
+        [[SPGamepediaAPI shared] fetchItemInfo:self.item completion:^(BOOL suc, SPGamepediaData *data) {
             self.extraData = data;
-        }
-    }];
+        }];
+    }
 }
 
 @end

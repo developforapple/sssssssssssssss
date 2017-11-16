@@ -12,7 +12,9 @@
 
 @interface SPGamepediaData : NSObject
 
++ (instancetype)error:(NSError *)error;
+
 @property (strong, nonatomic) NSArray<SPGamepediaImage *> *images;
 @property (strong, nonatomic) NSArray<SPGamepediaPlayable *> *playables;
-
+@property (strong, nonatomic) NSError *error;
 @end

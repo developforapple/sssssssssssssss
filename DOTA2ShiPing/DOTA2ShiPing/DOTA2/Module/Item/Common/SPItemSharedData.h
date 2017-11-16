@@ -51,4 +51,10 @@
 // 初始化很耗时
 - (instancetype)initWithItem:(SPItem *)item NS_DESIGNATED_INITIALIZER;
 
+
+- (void)loadPricesAuto;
+- (void)loadDota2Price:(BOOL)forced;
+- (void)loadSteamPrice:(BOOL)forced;
+- (void)loadExtraData:(BOOL)forced;
+
 @end

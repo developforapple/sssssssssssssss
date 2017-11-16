@@ -11,7 +11,7 @@
 
 @class SPItem;
 
-typedef void (^SPGamepediaAPICompletion)(BOOL suc, NSError *error, SPGamepediaData *data);
+typedef void (^SPGamepediaAPICompletion)(BOOL suc, SPGamepediaData *data);
 
 typedef NS_ENUM(NSUInteger, SPGamepediaAPIErrorCode) {
     SPGamepediaAPIErrorCodeUnexpectedResponse = 10086,

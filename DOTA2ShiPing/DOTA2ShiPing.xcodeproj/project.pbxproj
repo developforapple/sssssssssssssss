@@ -206,6 +206,8 @@
 		2DF9B8D51F1361640012950A /* workshoptags.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8151F1361640012950A /* workshoptags.json */; };
 		2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B81A1F1361640012950A /* Bugly.framework */; };
 		2DF9B8E31F1365CB0012950A /* CDTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8E21F1365CB0012950A /* CDTUser.m */; };
+		2DFE1C1D1FBDD52B00FEDE5C /* SPConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C1C1FBDD52B00FEDE5C /* SPConfigManager.m */; };
+		2DFE1C201FBDE41100FEDE5C /* SPItemLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C1F1FBDE41100FEDE5C /* SPItemLoadingView.m */; };
 		690BD50D1FA71524007A4D5D /* SPGamepediaAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD50C1FA71524007A4D5D /* SPGamepediaAPI.m */; };
 		690BD5101FA71666007A4D5D /* SPGamepediaSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD50F1FA71666007A4D5D /* SPGamepediaSerializer.m */; };
 		690BD5161FA71E6D007A4D5D /* SPGamepediaImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD5151FA71E6D007A4D5D /* SPGamepediaImage.m */; };
@@ -641,6 +643,10 @@
 		2DF9B8E01F13639E0012950A /* Steam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Steam.h; sourceTree = "<group>"; };
 		2DF9B8E11F1365CB0012950A /* CDTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDTUser.h; sourceTree = "<group>"; };
 		2DF9B8E21F1365CB0012950A /* CDTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDTUser.m; sourceTree = "<group>"; };
+		2DFE1C1B1FBDD52B00FEDE5C /* SPConfigManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPConfigManager.h; sourceTree = "<group>"; };
+		2DFE1C1C1FBDD52B00FEDE5C /* SPConfigManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPConfigManager.m; sourceTree = "<group>"; };
+		2DFE1C1E1FBDE41100FEDE5C /* SPItemLoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemLoadingView.h; sourceTree = "<group>"; };
+		2DFE1C1F1FBDE41100FEDE5C /* SPItemLoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemLoadingView.m; sourceTree = "<group>"; };
 		690BD50B1FA71524007A4D5D /* SPGamepediaAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaAPI.h; sourceTree = "<group>"; };
 		690BD50C1FA71524007A4D5D /* SPGamepediaAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPGamepediaAPI.m; sourceTree = "<group>"; };
 		690BD50E1FA71666007A4D5D /* SPGamepediaSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaSerializer.h; sourceTree = "<group>"; };
@@ -925,6 +931,7 @@
 		2DF9B65C1F1361640012950A /* General */ = {
 			isa = PBXGroup;
 			children = (
+				2DFE1C1A1FBDD50000FEDE5C /* Config */,
 				2D91EB781F1731570038B49C /* Localization */,
 				2D91EB711F1626270038B49C /* Resource */,
 				2DF9B65D1F1361640012950A /* API */,
@@ -1859,6 +1866,15 @@
 			path = Bugly;
 			sourceTree = "<group>";
 		};
+		2DFE1C1A1FBDD50000FEDE5C /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2DFE1C1B1FBDD52B00FEDE5C /* SPConfigManager.h */,
+				2DFE1C1C1FBDD52B00FEDE5C /* SPConfigManager.m */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		690BD51A1FA84210007A4D5D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1868,6 +1884,8 @@
 				690BD51C1FA84260007A4D5D /* SPItemTitleView.m */,
 				69A117011FA8747700A32747 /* SPItemSaleView.h */,
 				69A117021FA8747700A32747 /* SPItemSaleView.m */,
+				2DFE1C1E1FBDE41100FEDE5C /* SPItemLoadingView.h */,
+				2DFE1C1F1FBDE41100FEDE5C /* SPItemLoadingView.m */,
 				2D37AAB21FAEEB5E0043DDD4 /* SPItemDescPanel.h */,
 				2D37AAB31FAEEB5E0043DDD4 /* SPItemDescPanel.m */,
 				2D37AAB51FAEF5CC0043DDD4 /* SPItemMoreItemsView.h */,
@@ -2208,6 +2226,7 @@
 				2DF9B88A1F1361640012950A /* DDWebInspector.m in Sources */,
 				2DF9B8B91F1361640012950A /* SPPlayerCell.m in Sources */,
 				2DC0F6A51F1C625D004DCD3C /* SPItemEntranceConfig.m in Sources */,
+				2DFE1C1D1FBDD52B00FEDE5C /* SPConfigManager.m in Sources */,
 				2DF9B8AD1F1361640012950A /* SPPlayerManager.m in Sources */,
 				2DF9B81F1F1361640012950A /* Config_Network.m in Sources */,
 				2D91EB771F1724230038B49C /* SPBaseData.m in Sources */,
@@ -2358,6 +2377,7 @@
 				2D91EB741F16263A0038B49C /* SPResourceManager.m in Sources */,
 				2DF9B8701F1361640012950A /* SPLeftAlignmentLayout.m in Sources */,
 				2DF9B8B51F1361640012950A /* SPPlayerListVC.m in Sources */,
+				2DFE1C201FBDE41100FEDE5C /* SPItemLoadingView.m in Sources */,
 				2DF9B8981F1361640012950A /* YGBaseNaviCtrl.m in Sources */,
 				2DF9B8241F1361640012950A /* SPSteamAPI.m in Sources */,
 				2DF9B8481F1361640012950A /* UIView+YGGeometry.m in Sources */,
