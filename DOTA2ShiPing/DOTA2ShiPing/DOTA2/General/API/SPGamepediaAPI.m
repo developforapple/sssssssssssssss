@@ -159,6 +159,10 @@
         return @"";
     }
     
+    if ([element.tagName isEqualToString:@"small"]) {
+        return @"";
+    }
+    
     NSArray<TFHppleElement *> *children = element.children;
     NSMutableArray *childrenTexts = [NSMutableArray array];
     for (TFHppleElement *aChild in children) {
@@ -173,7 +177,8 @@
 
 - (NSArray *)getGamepediaPlables:(NSString *)html
 {
-    NSMutableArray *contents = [NSMutableArray array];
+    NSMutableArray<SPGamepediaPlayable *> *contents = [NSMutableArray array];
+    NSArray *result;
     @try {
         NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
         TFHpple *root = [TFHpple hppleWithHTMLData:data];
@@ -189,11 +194,23 @@
                 [contents addObject:aPlayable];
             }
         }
+        //去重
+        NSMutableSet *tmp = [NSMutableSet set];
+        NSIndexSet *indexes = [contents indexesOfObjectsPassingTest:^BOOL(SPGamepediaPlayable *obj, NSUInteger idx, BOOL *stop) {
+            if ([tmp containsObject:obj.resource]) {
+                return NO;
+            }
+            [tmp addObject:obj.resource];
+            return YES;
+        }];
+        NSLog(@"Gamepedia content 去重前 %d 个内容",(int)contents.count);
+        result = [contents objectsAtIndexes:indexes];
+        
     }@catch (NSException *e){
         NSLog(@"SPGamepediaAPI Exception : %@",e);
     }@finally{
-        NSLog(@"抓取到 SPGamepedia %d 张音频",(int)contents.count);
-        return contents;
+        NSLog(@"抓取到 SPGamepedia %d 张音频",(int)result.count);
+        return result;
     }
 }
 
