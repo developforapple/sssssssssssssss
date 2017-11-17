@@ -377,11 +377,10 @@ static const NSInteger kInvalidValue = -1;
     SPItemBannerImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSPItemBannerImageCell forIndexPath:indexPath];
     
     NSURL *url = self.imageURLs[indexPath.item];
-    SDWebImageOptions options = SDWebImageRetryFailed | SDWebImageProgressiveDownload | SDWebImageContinueInBackground | SDWebImageAllowInvalidSSLCertificates;
-    
+
     ygweakify(self);
     NSLog(@"load image: %@",url);
-    [cell.imageView sd_setImageWithURL:url placeholderImage:nil options:options progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *targetURL) {
+    [cell setImageWithURL:url progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *targetURL) {
         ygstrongify(self);
         RunOnMainQueue(^{
             [self loadingImage:targetURL received:receivedSize expected:expectedSize];

@@ -16,4 +16,10 @@ YG_EXTERN NSString *const kSPItemBannerImageCell;
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *playBtn;
 
+
+- (void)setImageWithURL:(nullable NSURL *)url
+               progress:(nullable SDWebImageDownloaderProgressBlock)progressBlock
+              completed:(nullable SDExternalCompletionBlock)completedBlock;
+
+
 @end

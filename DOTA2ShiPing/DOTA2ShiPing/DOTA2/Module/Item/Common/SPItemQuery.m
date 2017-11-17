@@ -19,7 +19,7 @@
 
 + (instancetype)queryWithHero:(SPHero *)hero
 {
-    SPItemQuery *query = [[SPItemQuery alloc] init];
+    SPItemQuery *query = [[[self class] alloc] init];
     query.hero = hero;
     query.queryTitle = hero.name_loc;
     return query;
@@ -27,14 +27,14 @@
 
 + (instancetype)queryWithPerfabs:(NSArray<SPItemPrefab *> *)prefabs
 {
-    SPItemQuery *query = [[SPItemQuery alloc] init];
+    SPItemQuery *query = [[[self class] alloc] init];
     query.prefabs = prefabs;
     return query;
 }
 
 + (instancetype)queryWithEvent:(SPDotaEvent *)event
 {
-    SPItemQuery *query = [SPItemQuery new];
+    SPItemQuery *query = [[[self class] alloc] init];
     query.event = event;
     query.queryTitle = event.name_loc;
     return query;
@@ -42,7 +42,7 @@
 
 + (instancetype)queryWithKeywords:(NSString *)keywords
 {
-    SPItemQuery *query = [[SPItemQuery alloc] init];
+    SPItemQuery *query = [[[self class] alloc] init];
     query.keywords = keywords;
     query.queryTitle = keywords;
     return query;
@@ -50,14 +50,14 @@
 
 + (instancetype)queryWithItemNames:(NSArray<NSString *> *)itemNames
 {
-    SPItemQuery *query = [[SPItemQuery alloc] init];
+    SPItemQuery *query = [[[self class] alloc] init];
     query.itemNames = itemNames;
     return query;
 }
 
 + (instancetype)importItems:(NSArray<SPItem *> *)items
 {
-    SPItemQuery *query = [[SPItemQuery alloc] init];
+    SPItemQuery *query = [[[self class] alloc] init];
     query.items = items;
     query.importItemsFlag = YES;
     return query;
@@ -165,9 +165,7 @@
 - (void)separateItem
 {
     if (_importItemsFlag) {
-        self.fullItems = @[self.items];
-        self.fullTitles = @[@"全部物品"];
-        [self filter:nil];
+        [self spearateItemForImportItems];
         return;
     }
     
@@ -246,6 +244,13 @@
     self.fullItems = temp;
     self.fullTitles = segmentTitles;
     [self filter:nil];
+}
+
+- (void)spearateItemForImportItems
+{
+    self.fullItems = @[self.items];
+    self.fullTitles = @[@"全部物品"];
+    [self filter:self.options];
 }
 
 - (void)spearateItemForHero
@@ -375,8 +380,9 @@
     NSArray *filteredItems = [newItems objectsAtIndexes:noEmptyIndexes];
     NSArray *filteredTitles = [self.fullTitles objectsAtIndexes:noEmptyIndexes];
     
-    self.filteredItems = filteredItems;
-    self.filteredTitles = filteredTitles;
+    // 这里要至少要有一个列表
+    self.filteredItems = filteredItems.count > 0 ? filteredItems : @[@[]];
+    self.filteredTitles = filteredTitles.count > 0 ? filteredTitles : @[@"全部物品"];
 }
 
 #pragma mark - Display
