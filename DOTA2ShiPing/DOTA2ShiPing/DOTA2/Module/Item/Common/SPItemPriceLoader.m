@@ -152,7 +152,7 @@
             return;
         }
         if (!overview.success) {
-            completion([SPItemSteamPrice error:@"未找到改物品"]);
+            completion([SPItemSteamPrice error:@"未找到该物品"]);
             return;
         }
         

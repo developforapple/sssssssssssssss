@@ -10,7 +10,7 @@
 
 #import "SPSearchEngine.h"
 #import "UIScrollView+EmptyDataSet.h"
-#import "SPItemFilter.h"
+#import "SPItemQuery.h"
 #import "SPPlayer.h"
 #import "SPSearchCell.h"
 #import "SPPlayerDetailInfoVC.h"
@@ -182,9 +182,9 @@ static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
 
 - (void)showItemList:(NSString *)keywords
 {
-    SPItemFilter *filter = [SPItemFilter filterWithKeywords:keywords];
+    SPItemQuery *query = [SPItemQuery queryWithKeywords:keywords];
     SPItemListVC *vc = [SPItemListVC instanceFromStoryboard];
-    vc.filter = filter;
+    vc.query = query;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -8,7 +8,7 @@
 
 #import "SPItemListVC.h"
 #import "DDSegmentScrollView.h"
-#import "SPItemFilter.h"
+#import "SPItemQuery.h"
 
 #import "SPItemListContainer.h"
 #import "Chameleon.h"
@@ -22,7 +22,6 @@
 @property (strong, nonatomic) NSMutableDictionary<NSNumber *,SPItemListContainer *> *vcs;
 @property (weak, nonatomic) IBOutlet DDSegmentScrollView *segmentView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *changModeButtonItem;
-@property (weak, nonatomic) IBOutlet UIButton *filterBtn;
 @property (weak, nonatomic) IBOutlet UILabel *emptyLabel;
 
 @property (strong, nonatomic) NSArray<SPFilterOption *> *options;
@@ -55,7 +54,7 @@
 {
     DDProgressHUD *HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
     ygweakify(self);
-    [self.filter asyncUpdateItems:^(BOOL suc, NSArray *items) {
+    [self.query asyncUpdateItems:^(BOOL suc, NSArray *items) {
         ygstrongify(self);
         [HUD hideAnimated:YES];
         if (suc) {
@@ -68,41 +67,8 @@
 
 - (void)update
 {
-    if (!self.options || self.options.count == 0) {
-        self.items = self.filter.separatedItems;
-    }else{
-        //根据options过滤一遍
-        
-        NSString *keywords;
-        SPHero *hero;
-        SPItemRarity *rarity;
-        SPDotaEvent *event;
-        for (SPFilterOption *option in self.options) {
-            switch (option.type) {
-                case SPFilterOptionTypeText: keywords = option.option;break;
-                case SPFilterOptionTypeHero: hero = option.option;break;
-                case SPFilterOptionTypeRarity: rarity = option.option;break;
-                case SPFilterOptionTypeEvent: event = option.option;break;
-            }
-        }
-        
-        NSMutableArray *newItems = [NSMutableArray array];
-        for (NSArray<SPItem *> *itemArray in self.filter.separatedItems) {
-            NSMutableArray *newItemArray = [NSMutableArray array];
-            [newItems addObject:newItemArray];
-            for (SPItem *aItem in itemArray) {
-                BOOL keywordsOK = !keywords.length || [aItem.item_name containsString:keywords] || [aItem.nameWithQualtity containsString:keywords];
-                BOOL heroOK = !hero || [aItem.heroes containsString:hero.name];
-                BOOL rarityOK = !rarity || [aItem.item_rarity isEqualToString:rarity.name];
-                BOOL eventOK = !event || [aItem.event_id isEqualToString:event.event_id];
-                if (keywordsOK && heroOK && rarityOK && eventOK) {
-                    [newItemArray addObject:aItem];
-                }
-            }
-        }
-        
-        self.items = newItems;
-    }
+    [self.query filter:self.options];
+    self.items = [self.query displayItems];
     self.emptyLabel.hidden = self.items.count;
     [self reloadData];
 }
@@ -113,8 +79,9 @@
         [self updateTitle];
         
         NSMutableArray *titles = [NSMutableArray array];
-        for (NSInteger i=0; i<self.filter.titles.count; i++) {
-            NSString *title = self.filter.titles[i];
+        NSArray *curTitles = [self.query displayTitles];
+        for (NSInteger i=0; i<curTitles.count; i++) {
+            NSString *title = curTitles[i];
             if (i < self.items.count && self.items[i].count != 0) {
                 [titles addObject:[NSString stringWithFormat:@"%@ %lu",title,(unsigned long)self.items[i].count]];
             }else{
@@ -122,31 +89,20 @@
             }
         }
         self.segmentView.titles = titles;
+        self.segmentView.currentIndex = 0;
         
-        if (self.vcs.count == 0) {
-            UIViewController *vc = [self viewControllerAtIndex:0];
-            if (vc) {
-                [self.pageVC setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-            }
-        }else{
-            for (NSNumber *key in self.vcs) {
-                SPItemListContainer *container = self.vcs[key];
-                [container update:self.mode data:self.items[key.integerValue]];
-            }
+        [self.vcs removeAllObjects];
+        UIViewController *vc = [self viewControllerAtIndex:0];
+        if (vc) {
+            [self.pageVC setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
         }
     });
 }
 
 - (void)updateTitle
 {
-    NSString *baseTitle = self.filter.filterTitle;
+    NSString *baseTitle = self.query.queryTitle;
     self.navigationItem.title = baseTitle;
-    
-//    if (self.filter.items.count != 0) {
-//        self.navigationItem.title = [NSString stringWithFormat:@"%@（%lu）",baseTitle,self.filter.items.count];
-//    }else{
-//        self.navigationItem.title = baseTitle;
-//    }
 }
 
 - (IBAction)changeDisplayMode:(UIBarButtonItem *)btnItem

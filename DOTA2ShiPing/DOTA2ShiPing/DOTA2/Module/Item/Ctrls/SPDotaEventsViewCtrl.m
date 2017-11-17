@@ -11,7 +11,7 @@
 #import "SPDotaEvent.h"
 #import "SPDataManager.h"
 #import "SPItemEntranceCell.h"
-#import "SPItemFilter.h"
+#import "SPItemQuery.h"
 #import "SPItemListVC.h"
 
 @interface SPDotaEventsViewCtrl ()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -62,16 +62,16 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SPDotaEvent *event = self.events[indexPath.item];
-    SPItemFilter *filter = [SPItemFilter filterWithEvent:event];
-    filter.filterTitle = event.name_loc;
-    [self showItemList:filter];
+    SPItemQuery *query = [SPItemQuery queryWithEvent:event];
+    query.queryTitle = event.name_loc;
+    [self showItemList:query];
 }
 
 #pragma mark - Segue
-- (void)showItemList:(SPItemFilter *)filter
+- (void)showItemList:(SPItemQuery *)query
 {
     SPItemListVC *vc = [SPItemListVC instanceFromStoryboard];
-    vc.filter = filter;
+    vc.query = query;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

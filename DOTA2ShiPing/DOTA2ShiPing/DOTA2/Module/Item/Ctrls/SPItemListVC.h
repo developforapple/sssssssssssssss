@@ -7,10 +7,10 @@
 //
 
 #import "YGBaseViewCtrl.h"
-#import "SPItemFilter.h"
+#import "SPItemQuery.h"
 
 @interface SPItemListVC : YGBaseViewCtrl
 
-@property (strong, nonatomic) SPItemFilter *filter;
+@property (strong, nonatomic) SPItemQuery *query;
 
 @end

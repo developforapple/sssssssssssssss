@@ -325,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SdS-if-V1j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4077" y="-687"/>
+            <point key="canvasLocation" x="4214" y="-687"/>
         </scene>
         <!--详情容器-->
         <scene sceneID="xQI-M2-3kT">
@@ -362,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R8L-X4-whA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4588" y="-691"/>
+            <point key="canvasLocation" x="4953" y="-687"/>
         </scene>
         <!--Item Detail-->
         <scene sceneID="oXr-nw-9ZG">
@@ -1571,7 +1571,7 @@
                     </connections>
                 </view>
             </objects>
-            <point key="canvasLocation" x="5224.8000000000002" y="-687.7061469265368"/>
+            <point key="canvasLocation" x="5754" y="-687"/>
         </scene>
         <!--Steam Market-->
         <scene sceneID="Fwz-Cf-2yI">
@@ -1736,7 +1736,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NYY-ka-aOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5838" y="-687"/>
+            <point key="canvasLocation" x="6577" y="-687"/>
         </scene>
         <!--音频内容-->
         <scene sceneID="Imv-xa-shr">
@@ -1834,7 +1834,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IM5-ey-inH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6545" y="-687"/>
+            <point key="canvasLocation" x="7398" y="-688"/>
         </scene>
         <!--Dota2事件-->
         <scene sceneID="vm9-ea-43p">

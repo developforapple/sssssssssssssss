@@ -85,8 +85,8 @@
             ygweakify(self);
             [SPItemHeroPickerVC bePushingIn:self.navigationController selectedCallback:^BOOL(SPHero *hero) {
                 ygstrongify(self);
-                SPItemFilter *filter = [SPItemFilter filterWithHero:hero];
-                [self showItemList:filter];
+                SPItemQuery *query = [SPItemQuery queryWithHero:hero];
+                [self showItemList:query];
                 return NO;
             }];
         }   break;
@@ -101,9 +101,9 @@
         case SPItemEntranceTypeTreasure:
         case SPItemEntranceTypeOther:{
             NSArray *prefabs = [[SPDataManager shared] prefabsOfEntranceType:type];
-            SPItemFilter *filter = [SPItemFilter filterWithPerfabs:prefabs];
-            filter.filterTitle = config.title;
-            [self showItemList:filter];
+            SPItemQuery *query = [SPItemQuery queryWithPerfabs:prefabs];
+            query.queryTitle = config.title;
+            [self showItemList:query];
         }   break;
         default:
             break;
@@ -111,10 +111,10 @@
 }
 
 #pragma mark - Segue
-- (void)showItemList:(SPItemFilter *)filter
+- (void)showItemList:(SPItemQuery *)query
 {
     SPItemListVC *vc = [SPItemListVC instanceFromStoryboard];
-    vc.filter = filter;
+    vc.query = query;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

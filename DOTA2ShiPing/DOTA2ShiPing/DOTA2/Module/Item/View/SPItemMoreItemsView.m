@@ -130,8 +130,8 @@ static const NSInteger kMaxItems = 3 * 3;
     if ([self isItemCellIsMoreStyle:indexPath]) {
         // 显示更多
         SPItemListVC *vc = [SPItemListVC instanceFromStoryboard];
-        vc.filter = [SPItemFilter importItems:self.items];
-        vc.filter.filterTitle = self.itemData.item.nameWithQualtity;
+        vc.query = [SPItemQuery importItems:self.items];
+        vc.query.queryTitle = self.itemData.item.nameWithQualtity;
         [[[self viewController] navigationController] pushViewController:vc animated:YES];
         return;
     }

@@ -14,7 +14,7 @@
 @import ReactiveObjC;
 @import AVKit;
 
-static NSInteger kMaxPlayableCount = 5;
+static NSInteger kMaxPlayableCount = 6;
 
 @interface SPItemPlayableView () <UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

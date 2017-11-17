@@ -8,7 +8,7 @@
 
 #import "SPItemSharedData.h"
 #import "SPDataManager.h"
-#import "SPItemFilter.h"
+#import "SPItemQuery.h"
 #import "SPGamepediaAPI.h"
 #import "SPConfigManager.h"
 
@@ -104,24 +104,24 @@
     if (bundleItems.length) {
         // 饰品是一个包
         NSArray *itemNames = [bundleItems componentsSeparatedByString:@"||"];
-        SPItemFilter *filter = [SPItemFilter filterWithItemNames:itemNames];
-        [filter updateItems];
-        self.bundleItems = filter.items;
+        SPItemQuery *query = [SPItemQuery queryWithItemNames:itemNames];
+        [query updateItems];
+        self.bundleItems = query.items;
         
     }else if (bundles.length){
         // 饰品属于一个包
         
         NSArray *itemNames = self.itemSet.items;
-        SPItemFilter *filter = [SPItemFilter filterWithItemNames:itemNames];
-        [filter updateItems];
-        self.bundleItems = filter.items;
+        SPItemQuery *query = [SPItemQuery queryWithItemNames:itemNames];
+        [query updateItems];
+        self.bundleItems = query.items;
         
     }else if (lootList.length){
         //包含一个掉落列表
         NSArray *itemNames = [[SPDataManager shared] itemsInLootlist:lootList];
-        SPItemFilter *filter = [SPItemFilter filterWithItemNames:itemNames];
-        [filter updateItems];
-        self.lootList = filter.items;
+        SPItemQuery *query = [SPItemQuery queryWithItemNames:itemNames];
+        [query updateItems];
+        self.lootList = query.items;
         
     }else{
         //不包含包内容

@@ -51,6 +51,13 @@
     CGFloat leftMargin = self.sectionInset.left + self.collectionView.contentInset.left;
     CGFloat rightMargin = self.sectionInset.right + self.collectionView.contentInset.right;
     
+    UICollectionViewLayoutAttributes *firstOne = attributes.firstObject;
+    if (firstOne) {
+        CGRect frame = firstOne.frame;
+        frame.origin.x = leftMargin;
+        firstOne.frame = frame;
+    }
+    
     //第0个cell没有上一个cell，所以从1开始
     for(int i = 1; i < [attributes count]; ++i) {
         //这里 UICollectionViewLayoutAttributes 的排列总是按照 indexPath的顺序来的。
@@ -72,7 +79,7 @@
             // 不同行
             if (CGRectGetMinX(curAttr.frame) > leftMargin){
                 CGRect frame = curAttr.frame;
-                frame.origin.x = self.collectionView.contentInset.left;
+                frame.origin.x = leftMargin;
                 curAttr.frame = frame;
             }
             

@@ -1,66 +1,66 @@
 //
-//  SPItemFilter.m
+//  SPItemQuery.m
 //  DOTA2ShiPing
 //
 //  Created by wwwbbat on 16/5/9.
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import "SPItemFilter.h"
+#import "SPItemQuery.h"
 
 #import "FMDB.h"
 #import "SPDataManager.h"
 
-@interface SPItemFilter ()
+@interface SPItemQuery ()
 @property (assign, nonatomic) BOOL importItemsFlag;
 @end
 
-@implementation SPItemFilter
+@implementation SPItemQuery
 
-+ (instancetype)filterWithHero:(SPHero *)hero
++ (instancetype)queryWithHero:(SPHero *)hero
 {
-    SPItemFilter *filter = [[SPItemFilter alloc] init];
-    filter.hero = hero;
-    filter.filterTitle = hero.name_loc;
-    return filter;
+    SPItemQuery *query = [[SPItemQuery alloc] init];
+    query.hero = hero;
+    query.queryTitle = hero.name_loc;
+    return query;
 }
 
-+ (instancetype)filterWithPerfabs:(NSArray<SPItemPrefab *> *)prefabs
++ (instancetype)queryWithPerfabs:(NSArray<SPItemPrefab *> *)prefabs
 {
-    SPItemFilter *filter = [[SPItemFilter alloc] init];
-    filter.prefabs = prefabs;
-    return filter;
+    SPItemQuery *query = [[SPItemQuery alloc] init];
+    query.prefabs = prefabs;
+    return query;
 }
 
-+ (instancetype)filterWithEvent:(SPDotaEvent *)event
++ (instancetype)queryWithEvent:(SPDotaEvent *)event
 {
-    SPItemFilter *filter = [SPItemFilter new];
-    filter.event = event;
-    filter.filterTitle = event.name_loc;
-    return filter;
+    SPItemQuery *query = [SPItemQuery new];
+    query.event = event;
+    query.queryTitle = event.name_loc;
+    return query;
 }
 
-+ (instancetype)filterWithKeywords:(NSString *)keywords
++ (instancetype)queryWithKeywords:(NSString *)keywords
 {
-    SPItemFilter *filter = [[SPItemFilter alloc] init];
-    filter.keywords = keywords;
-    filter.filterTitle = keywords;
-    return filter;
+    SPItemQuery *query = [[SPItemQuery alloc] init];
+    query.keywords = keywords;
+    query.queryTitle = keywords;
+    return query;
 }
 
-+ (instancetype)filterWithItemNames:(NSArray<NSString *> *)itemNames
++ (instancetype)queryWithItemNames:(NSArray<NSString *> *)itemNames
 {
-    SPItemFilter *filter = [[SPItemFilter alloc] init];
-    filter.itemNames = itemNames;
-    return filter;
+    SPItemQuery *query = [[SPItemQuery alloc] init];
+    query.itemNames = itemNames;
+    return query;
 }
 
 + (instancetype)importItems:(NSArray<SPItem *> *)items
 {
-    SPItemFilter *filter = [[SPItemFilter alloc] init];
-    filter.items = items;
-    filter.importItemsFlag = YES;
-    return filter;
+    SPItemQuery *query = [[SPItemQuery alloc] init];
+    query.items = items;
+    query.importItemsFlag = YES;
+    return query;
 }
 
 - (BOOL)updateItems
@@ -165,8 +165,9 @@
 - (void)separateItem
 {
     if (_importItemsFlag) {
-        self.separatedItems = @[self.items];
-        self.titles = @[@"全部物品"];
+        self.fullItems = @[self.items];
+        self.fullTitles = @[@"全部物品"];
+        [self filter:nil];
         return;
     }
     
@@ -242,8 +243,9 @@
 //        [segmentTitles addObject:[NSString stringWithFormat:@"%@ %lu",SPLOCALNONIL(@"dota_othertype"),(unsigned long)others.count]];
     }
     
-    self.separatedItems = temp;
-    self.titles = segmentTitles;
+    self.fullItems = temp;
+    self.fullTitles = segmentTitles;
+    [self filter:nil];
 }
 
 - (void)spearateItemForHero
@@ -315,8 +317,77 @@
         [items addObject:others];
     }
     
-    self.separatedItems = items;
-    self.titles = segmentTitles;
+    self.fullItems = items;
+    self.fullTitles = segmentTitles;
+    
+    [self filter:nil];
+}
+
+#pragma mark - Filter
+
+- (BOOL)needFilter
+{
+    return self.options && self.options.count > 0;
+}
+
+- (void)filter:(NSArray<SPFilterOption *> *)options
+{
+    self.options = options;
+    
+    if (![self needFilter]) {
+        self.filteredItems = nil;
+        self.filteredTitles = nil;
+        return;
+    }
+    
+    NSString *keywords;
+    SPHero *hero;
+    SPItemRarity *rarity;
+    SPDotaEvent *event;
+    for (SPFilterOption *option in self.options) {
+        switch (option.type) {
+            case SPFilterOptionTypeText: keywords = option.option;break;
+            case SPFilterOptionTypeHero: hero = option.option;break;
+            case SPFilterOptionTypeRarity: rarity = option.option;break;
+            case SPFilterOptionTypeEvent: event = option.option;break;
+        }
+    }
+    
+    NSMutableArray<NSArray *> *newItems = [NSMutableArray array];
+    for (NSArray<SPItem *> *itemArray in self.fullItems) {
+        NSMutableArray *newItemArray = [NSMutableArray array];
+        [newItems addObject:newItemArray];
+        for (SPItem *aItem in itemArray) {
+            BOOL keywordsOK = !keywords.length || [aItem.item_name containsString:keywords] || [aItem.nameWithQualtity containsString:keywords];
+            BOOL heroOK = !hero || [aItem.heroes containsString:hero.name];
+            BOOL rarityOK = !rarity || [aItem.item_rarity isEqualToString:rarity.name];
+            BOOL eventOK = !event || [aItem.event_id isEqualToString:event.event_id];
+            if (keywordsOK && heroOK && rarityOK && eventOK) {
+                [newItemArray addObject:aItem];
+            }
+        }
+    }
+    
+    // 去除空的分类
+    NSIndexSet *noEmptyIndexes = [newItems indexesOfObjectsPassingTest:^BOOL(NSArray *obj, NSUInteger idx, BOOL *stop) {
+        return obj.count > 0;
+    }];
+    NSArray *filteredItems = [newItems objectsAtIndexes:noEmptyIndexes];
+    NSArray *filteredTitles = [self.fullTitles objectsAtIndexes:noEmptyIndexes];
+    
+    self.filteredItems = filteredItems;
+    self.filteredTitles = filteredTitles;
+}
+
+#pragma mark - Display
+- (NSArray<NSArray<SPItem *> *> *)displayItems
+{
+    return [self needFilter] ? self.filteredItems : self.fullItems;
+}
+
+- (NSArray<NSString *> *)displayTitles
+{
+    return [self needFilter] ? self.filteredTitles : self.fullTitles;
 }
 
 @end
