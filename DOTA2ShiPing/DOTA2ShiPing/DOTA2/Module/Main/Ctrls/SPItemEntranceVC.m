@@ -16,6 +16,7 @@
 #import "SPItemListVC.h"
 #import "SPItemOffPriceVC.h"
 #import "SPDotaEventsViewCtrl.h"
+#import "SPDota2API.h"
 
 #define kSPItemOffPriceSegueID @"SPItemOffPriceSegueID"
 
@@ -42,7 +43,7 @@
 - (void)initUI
 {
     CGFloat width = Device_Width/2-0.5f;
-    CGFloat height = width;// width * 340 / 512.f;
+    CGFloat height = width;
     self.flowlayout.itemSize = CGSizeMake(width, height);
     self.flowlayout.minimumLineSpacing = 1.f;
     self.flowlayout.minimumInteritemSpacing = 0.f;
@@ -56,6 +57,32 @@
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     self.configure = [NSArray yy_modelArrayWithClass:[SPItemEntranceConfig class] json:json];
+    
+    [self loadSpecialPriceItem];
+}
+
+- (void)loadSpecialPriceItem
+{
+    if ([SPDota2MarketItem needUpdate]) {
+        [SPDota2API fetchDota2SpecilPriceItem:^(SPDota2MarketItem *item) {
+            [self updateSpecialPriceItem:item];
+        }];
+    }else{
+        [self updateSpecialPriceItem:[SPDota2MarketItem curItem]];
+    }
+}
+
+- (void)updateSpecialPriceItem:(SPDota2MarketItem *)item
+{
+    NSInteger index = 0;
+    for (SPItemEntranceConfig *aConfig in self.configure) {
+        if (aConfig.type == SPItemEntranceTypeOffPrice) {
+            aConfig.imageUrl = item.itemImageDropShadow;
+            index = [self.configure indexOfObject:aConfig];
+            break;
+        }
+    }
+    [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];
 }
 
 #pragma mark UICollectionView

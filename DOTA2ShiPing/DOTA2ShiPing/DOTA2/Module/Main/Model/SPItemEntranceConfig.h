@@ -14,5 +14,6 @@
 @property (assign, nonatomic) SPItemEntranceType type;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *image;
+@property (strong, nonatomic) NSString *imageUrl;
 
 @end

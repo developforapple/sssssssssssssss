@@ -16,7 +16,7 @@
 {
     if (!message) {
         self.removeFromSuperViewOnHide = YES;
-        [self hide:YES];
+        [self hideAnimated:YES];
         return;
     }
     
@@ -24,18 +24,19 @@
         UIWindow *w = [UIApplication sharedApplication].keyWindow;
         [w addSubview:self];
     }
-    [self show:YES];
+    [self showAnimated:YES];
     
     self.removeFromSuperViewOnHide = YES;
-    self.labelText = message;
+    self.label.text = message;
     self.mode = MBProgressHUDModeText;
-    [self hide:YES afterDelay:1.5];
+    [self hideAnimated:YES afterDelay:1.5];
 }
 
 + (void)showAutoHiddenHUDWithMessage:(NSString *)message
 {
 //    if ([DDUSM myStatus] != DDUserStatus_Invalid) {
-        DDProgressHUD *HUD = [[DDProgressHUD alloc] initWithWindow:[UIApplication sharedApplication].keyWindow];
+    
+        DDProgressHUD *HUD = [[DDProgressHUD alloc] initWithView:[UIApplication sharedApplication].keyWindow];
         [HUD showAutoHiddenHUDWithMessage:message];
 //    }
 }
@@ -51,7 +52,8 @@
     
     DDProgressHUD *HUD = [DDProgressHUD showHUDAddedTo:view animated:YES];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.opacity = 0.f;
+    HUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    HUD.bezelView.color = [UIColor clearColor];
     HUD.customView = indicator;
     return HUD;
 }

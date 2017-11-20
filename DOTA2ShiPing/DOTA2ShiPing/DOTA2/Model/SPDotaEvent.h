@@ -12,6 +12,6 @@
 @property (assign, nonatomic) NSInteger id;     //1
 @property (copy, nonatomic) NSString *event_id; //EVENT_ID_INTERNATIONAL_2017
 @property (copy, nonatomic) NSString *event_name;//DOTA_EventName_International2017
-@property (copy, nonatomic) NSString *picture;  //七牛的图片链接
+@property (copy, nonatomic) NSString *image_name;//本地图片名称
 @property (copy, nonatomic) NSString *name_loc; //2017年国际邀请赛
 @end

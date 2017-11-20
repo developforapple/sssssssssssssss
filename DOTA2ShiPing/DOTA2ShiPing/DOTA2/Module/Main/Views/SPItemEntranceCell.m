@@ -14,13 +14,17 @@
 - (void)configure:(SPItemEntranceConfig *)c
 {
     self.titleLabel.text = c.title;
-    self.imageView.image = [UIImage imageNamed:c.image];
+    if (c.imageUrl) {
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:c.imageUrl] placeholderImage:[UIImage imageNamed:c.image]];
+    }else{
+        self.imageView.image = [UIImage imageNamed:c.image];
+    }
 }
 
 - (void)configureWithEvent:(SPDotaEvent *)event
 {
     self.titleLabel.text = event.name_loc ? : event.event_id;
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:event.picture] placeholderImage:[UIImage imageNamed:@"Item_OffPrice"]];
+    self.imageView.image = [UIImage imageNamed:event.image_name] ?: [UIImage imageNamed:@"Item_OffPrice"];
 }
 
 - (void)setHighlighted:(BOOL)highlighted
