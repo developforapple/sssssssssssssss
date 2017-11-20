@@ -8,16 +8,21 @@
 
 #import "SPFocusVisualEffectVC.h"
 
-NSTimeInterval const kSPFocusAnimationDurtaion = .3f;
+NSTimeInterval const kSPFocusAnimationDurtaion = .25f;
 
 @interface SPFocusVisualEffectVC ()
 
-@property (strong, nonatomic) UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *effectView;
 
-- (UIVisualEffectView *)effectView;
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (strong, nonatomic) UIWindow *curWindow;
 @property (weak, nonatomic) UIWindow *preWindow;
+
+@property (strong, nonatomic) UIImage *image;
+@property (assign, nonatomic) CGRect imageFrame;
+@property (copy, nonatomic) void(^displayCompletion)(SPFocusVisualEffectVC *focusVC,UIView *focusView);
 
 @end
 
@@ -27,59 +32,69 @@ NSTimeInterval const kSPFocusAnimationDurtaion = .3f;
 {
     [super viewDidLoad];
     
-    [self.effectView.contentView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)]];
+    self.backBtn.enabled = NO;
+    self.effectView.effect = nil;
+    self.imageView.frame = self.imageFrame;
     
-    self.effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
 }
 
-- (UIImageView *)imageView
+- (void)viewDidAppear:(BOOL)animated
 {
-    if (!_imageView) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _imageView.layer.cornerRadius = 16.f;
-        _imageView.layer.masksToBounds = YES;
-        _imageView.contentMode = UIViewContentModeScaleAspectFill;
-        [self.effectView.contentView addSubview:_imageView];
-    }
-    return _imageView;
-}
-
-- (UIVisualEffectView *)effectView
-{
-    return (UIVisualEffectView *)[super view];
+    [super viewDidAppear:animated];
+    
+    [UIView animateWithDuration:kSPFocusAnimationDurtaion animations:^{
+        self.imageView.image = self.image;
+        self.imageView.cornerRadius_ = 16;
+        self.effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    } completion:^(BOOL finished) {
+        if (self.displayCompletion) {
+            self.displayCompletion(self, self.imageView);
+        }
+        self.backBtn.enabled = YES;
+    }];
 }
 
 - (void)showFocusView:(__weak UIView *)view
            completion:(void(^)(SPFocusVisualEffectVC *focusVC,UIView *focusView))completion
 {
     self.preWindow = view.window;
-    self.imageView.image = [view snapshotImage];
-    self.imageView.frame = [view convertRect:view.bounds toView:view.window];
+    self.image = [view snapshotImage];
+    self.imageFrame = [view convertRect:view.bounds toView:view.window];
+    self.displayCompletion = completion;
     
     self.curWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.curWindow.windowLevel = UIWindowLevelStatusBar;
     self.curWindow.rootViewController = self;
-    self.curWindow.alpha = 0.f;
+    self.curWindow.alpha = 1.f;
     [self.curWindow makeKeyAndVisible];
-    
+}
+
+- (IBAction)dismiss:(id)sender
+{
     [UIView animateWithDuration:kSPFocusAnimationDurtaion animations:^{
-        self.curWindow.alpha = 1.f;
+        
+        self.effectView.effect = nil;
+        self.imageView.cornerRadius_ = 0;
+        
     } completion:^(BOOL finished) {
-        if (completion) completion(self,self.imageView);
+        
+        ygweakify(self);
+        [self.imageView setHidden:YES animated:YES completion:^{
+            
+            ygstrongify(self);
+            [self.view removeFromSuperview];
+            self.curWindow.rootViewController = nil;
+            self.curWindow = nil;
+            
+            [self.preWindow makeKeyAndVisible];
+        
+        }];
     }];
 }
 
 - (void)dismiss
 {
-    [UIView animateWithDuration:kSPFocusAnimationDurtaion animations:^{
-        self.curWindow.alpha = 0.f;
-    } completion:^(BOOL finished) {
-        [self.view removeFromSuperview];
-        self.curWindow.rootViewController = nil;
-        self.curWindow = nil;
-        
-        [self.preWindow makeKeyAndVisible];
-    }];
+    [self dismiss:nil];
 }
 
 - (void)dealloc

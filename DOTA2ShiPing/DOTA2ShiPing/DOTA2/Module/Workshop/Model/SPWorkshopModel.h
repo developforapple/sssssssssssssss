@@ -73,6 +73,7 @@ typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
 
 #pragma mark - Unit Model
 @interface SPWorkshopUnit : NSObject <NSCopying,NSCoding>
+@property (strong, nonatomic) NSString *href;       
 @property (strong, nonatomic) NSNumber *id;         //id
 @property (strong, nonatomic) NSString *imageURL;   //图片url
 @property (strong, nonatomic) NSString *title;      //标题

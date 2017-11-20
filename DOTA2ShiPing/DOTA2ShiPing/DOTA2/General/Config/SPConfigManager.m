@@ -11,8 +11,8 @@
 #define Config_BOOL_Option_Setter(NAME)     \
     - (void)setSp_config_##NAME :(BOOL)value    { _sp_config_##NAME = value;            [self save];}
 
-#define Config_int_Option_Setter(NAME)      \
-    - (void)setSp_config_##NAME :(int)value     { _sp_config_##NAME = value;            [self save];}
+#define Config_NSInteger_Option_Setter(NAME)      \
+    - (void)setSp_config_##NAME :(NSInteger)value { _sp_config_##NAME = value;       /*这里不自动保存*/}
 
 #define Config_double_Option_Setter(NAME)   \
     - (void)setSp_config_##NAME :(double)value  { _sp_config_##NAME = value;            [self save];}
@@ -46,8 +46,15 @@ YYModelDefaultCode
     dispatch_once(&onceToken, ^{
         manager = [SPConfigManager new];
         [manager update];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:manager selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     });
     return manager;
+}
+
+- (void)applicationDidEnterBackground:(NSNotification *)noti
+{
+    [self save];
 }
 
 - (void)update
@@ -65,6 +72,7 @@ YYModelDefaultCode
     _sp_config_item_detail_show_loading_tips = YES;
     _sp_config_item_detail_load_extra_data_auto = YES;
     _sp_config_item_detail_load_price_auto = YES;
+    _sp_config_item_detail_load_image_failed_counter = 0;
     
     [self save];
 }
@@ -81,5 +89,6 @@ YYModelDefaultCode
 Config_BOOL_Option_Setter(item_detail_show_loading_tips)
 Config_BOOL_Option_Setter(item_detail_load_extra_data_auto)
 Config_BOOL_Option_Setter(item_detail_load_price_auto)
+Config_NSInteger_Option_Setter(item_detail_load_image_failed_counter)
 
 @end

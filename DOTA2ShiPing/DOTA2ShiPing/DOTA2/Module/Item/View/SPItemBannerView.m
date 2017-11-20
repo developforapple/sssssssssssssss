@@ -10,6 +10,7 @@
 #import "SPItemSharedData.h"
 #import "SPItemImageLoader.h"
 #import "SPItemBannerImageCell.h"
+#import "SPConfigManager.h"
 @import ReactiveObjC;
 @import IDMPhotoBrowser;
 
@@ -364,7 +365,6 @@ static const NSInteger kInvalidValue = -1;
     info.completed = YES;
 }
 
-
 #pragma mark - UICollectionView
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -377,7 +377,7 @@ static const NSInteger kInvalidValue = -1;
     SPItemBannerImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSPItemBannerImageCell forIndexPath:indexPath];
     
     NSURL *url = self.imageURLs[indexPath.item];
-
+    
     ygweakify(self);
     NSLog(@"load image: %@",url);
     [cell setImageWithURL:url progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *targetURL) {
@@ -388,6 +388,13 @@ static const NSInteger kInvalidValue = -1;
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         ygstrongify(self);
         [self didLoadImage:imageURL error:error];
+        
+        if (error && error.code == NSURLErrorTimedOut) {
+            Config.sp_config_item_detail_load_image_failed_counter ++;
+            if (Config.sp_config_item_detail_load_image_failed_counter % 5 == 0) {
+                [UIAlertController alert:@"图片加载失败！" message:@"您可能需要科学上网"];
+            }
+        }
     }];
     
     return cell;

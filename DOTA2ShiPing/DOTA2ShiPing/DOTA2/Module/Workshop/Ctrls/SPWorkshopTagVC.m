@@ -7,12 +7,13 @@
 //
 
 #import "SPWorkshopTagVC.h"
+#import "YGBaseViewCtrl.h"
 #import "SPItemHeroPickerVC.h"
 
 static NSString *const kSPWorkshopTagCell = @"SPWorkshopTagCell";
 
 #pragma mark - TVC
-@interface SPWorkshopTagTVC : UITableViewController
+@interface SPWorkshopTagTVC : YGBaseTableViewCtrl
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
 @property (assign, nonatomic) SPWorkshopSection section;
@@ -68,7 +69,7 @@ static NSString *const kSPWorkshopTagCell = @"SPWorkshopTagCell";
     self.completion = completion;
 }
 
-- (IBAction)exit:(id)sender
+- (IBAction)close:(id)sender
 {
     if (self.completion) {
         self.completion(YES,nil);

@@ -7,7 +7,7 @@
 
 @import UIKit;
 
-@interface YGBaseViewCtrl : UIViewController
+@protocol UIViewControllerBaseMethod <NSObject>
 
 - (void)leftNavButtonImg:(NSString *)img;
 - (void)rightNavButtonImg:(NSString *)img;
@@ -19,6 +19,13 @@
 - (void)doRightNaviBarItemAction;
 - (void)noLeftNavButton;
 
-- (void)setTitleImage:(NSString *)img;
+@end
 
+@interface YGBaseViewCtrl : UIViewController <UIViewControllerBaseMethod>
+@end
+
+@interface YGBaseTableViewCtrl : UITableViewController <UIViewControllerBaseMethod>
+@end
+
+@interface YGBaseCollectionViewCtrl : UICollectionViewController <UIViewControllerBaseMethod>
 @end

@@ -647,6 +647,7 @@
 		2DFE1C1C1FBDD52B00FEDE5C /* SPConfigManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPConfigManager.m; sourceTree = "<group>"; };
 		2DFE1C1E1FBDE41100FEDE5C /* SPItemLoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemLoadingView.h; sourceTree = "<group>"; };
 		2DFE1C1F1FBDE41100FEDE5C /* SPItemLoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemLoadingView.m; sourceTree = "<group>"; };
+		2DFE1C2A1FC0606C00FEDE5C /* TODOLIST */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODOLIST; sourceTree = "<group>"; };
 		690BD50B1FA71524007A4D5D /* SPGamepediaAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaAPI.h; sourceTree = "<group>"; };
 		690BD50C1FA71524007A4D5D /* SPGamepediaAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPGamepediaAPI.m; sourceTree = "<group>"; };
 		690BD50E1FA71666007A4D5D /* SPGamepediaSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaSerializer.h; sourceTree = "<group>"; };
@@ -741,6 +742,7 @@
 		2D48D2951CDE20D700190F0C /* DOTA2ShiPing */ = {
 			isa = PBXGroup;
 			children = (
+				2DFE1C2A1FC0606C00FEDE5C /* TODOLIST */,
 				2DF9B6421F1361640012950A /* DOTA2 */,
 				2D48D2961CDE20D700190F0C /* Supporting Files */,
 				2DF9B8D81F13616F0012950A /* Bugly */,
@@ -1796,14 +1798,14 @@
 		2DF9B7FE1F1361640012950A /* Ctrls */ = {
 			isa = PBXGroup;
 			children = (
+				2DF9B8051F1361640012950A /* SPWorkshopVC.h */,
+				2DF9B8061F1361640012950A /* SPWorkshopVC.m */,
 				2DF9B7FF1F1361640012950A /* SPFocusVisualEffectVC.h */,
 				2DF9B8001F1361640012950A /* SPFocusVisualEffectVC.m */,
 				2DF9B8011F1361640012950A /* SPWorkshopResourcesVC.h */,
 				2DF9B8021F1361640012950A /* SPWorkshopResourcesVC.m */,
 				2DF9B8031F1361640012950A /* SPWorkshopTagVC.h */,
 				2DF9B8041F1361640012950A /* SPWorkshopTagVC.m */,
-				2DF9B8051F1361640012950A /* SPWorkshopVC.h */,
-				2DF9B8061F1361640012950A /* SPWorkshopVC.m */,
 			);
 			path = Ctrls;
 			sourceTree = "<group>";

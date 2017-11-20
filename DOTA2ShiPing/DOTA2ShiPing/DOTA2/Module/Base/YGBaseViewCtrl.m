@@ -7,20 +7,17 @@
 
 #import "YGBaseViewCtrl.h"
 
-@interface YGBaseViewCtrl () <UIGestureRecognizerDelegate>
-
+@interface UIViewController (YGBase) <UIGestureRecognizerDelegate>
 @end
 
-@implementation YGBaseViewCtrl
+@implementation UIViewController (YGBase)
 
-- (void)viewDidLoad
+- (void)_onViewDidLoad
 {
-    [super viewDidLoad];
-
     if ([self.parentViewController isKindOfClass:[UINavigationController class]]) {
         
         if (self.navigationController.viewControllers.firstObject != self) {
-            [self leftNavButtonTemplateImg:@"icon_back_dark"];
+            [self _leftNavButtonTemplateImg:@"icon_back_dark"];
         }
         
         // 解决iOS11导航栏左侧按钮无响应的问题
@@ -31,7 +28,19 @@
     }
 }
 
-- (void)dealloc
+- (void)_onViewWillAppear:(BOOL)animated
+{}
+
+- (void)_onViewDidAppear:(BOOL)animated
+{}
+
+- (void)_onViewWillDisappear:(BOOL)animated
+{}
+
+- (void)_onViewDidDisappear:(BOOL)animated
+{}
+
+- (void)_onDealloc
 {
     if (IS_iOS8) {
         //iOS8下的一个bug
@@ -46,29 +55,29 @@
     NSLog(@"%@ 释放",NSStringFromClass([self class]));
 }
 
-- (void)leftNavButtonImg:(NSString*)img
+- (void)_leftNavButtonImg:(NSString*)img
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:img] style:UIBarButtonItemStylePlain target:self action:@selector(doLeftNaviBarItemAction)];
 }
 
-- (void)rightNavButtonImg:(NSString*)img
+- (void)_rightNavButtonImg:(NSString*)img
 {
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:img] style:UIBarButtonItemStylePlain target:self action:@selector(doRightNaviBarItemAction)];
 }
 
-- (void)leftNavButtonTemplateImg:(NSString*)img
+- (void)_leftNavButtonTemplateImg:(NSString*)img
 {
     UIImage *image = [[UIImage imageNamed:img] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(doLeftNaviBarItemAction)];
 }
 
-- (void)rightNavButtonTemplateImg:(NSString*)img
+- (void)_rightNavButtonTemplateImg:(NSString*)img
 {
     UIImage *image = [[UIImage imageNamed:img] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(doRightNaviBarItemAction)];
 }
 
-- (void)rightNavButtonText:(NSString *)text
+- (void)_rightNavButtonText:(NSString *)text
 {
     if (text) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:text style:UIBarButtonItemStylePlain target:self action:@selector(doRightNaviBarItemAction)];
@@ -77,12 +86,12 @@
     }
 }
 
-- (void)rightNavSystemItem:(UIBarButtonSystemItem)item
+- (void)_rightNavSystemItem:(UIBarButtonSystemItem)item
 {
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:item target:self action:@selector(doRightNaviBarItemAction)];
 }
 
-- (void)doLeftNaviBarItemAction
+- (void)_doLeftNaviBarItemAction
 {
     if (self.navigationController.viewControllers.firstObject == self &&
         self.navigationController.presentingViewController) {
@@ -92,17 +101,17 @@
     }
 }
 
-- (void)doRightNaviBarItemAction
+- (void)_doRightNaviBarItemAction
 {
     
 }
 
-- (void)noLeftNavButton
+- (void)_noLeftNavButton
 {
     self.navigationItem.leftBarButtonItem = nil;
 }
 
-- (void)setTitleImage:(NSString *)img
+- (void)_setTitleImage:(NSString *)img
 {
     UIImage *image = [UIImage imageNamed:img];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
@@ -111,4 +120,187 @@
     self.navigationItem.titleView = imageView;
 }
 
+@end
+
+@interface YGBaseViewCtrl () <UIGestureRecognizerDelegate>
+
+@end
+
+@implementation YGBaseViewCtrl
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self _onViewDidLoad];
+}
+
+- (void)dealloc
+{
+    [self _onDealloc];
+}
+
+- (void)leftNavButtonImg:(NSString *)img
+{
+    [self _leftNavButtonImg:img];
+}
+
+- (void)rightNavButtonImg:(NSString *)img
+{
+    [self _rightNavButtonImg:img];
+}
+
+- (void)leftNavButtonTemplateImg:(NSString *)img
+{
+    [self _leftNavButtonTemplateImg:img];
+}
+
+- (void)rightNavButtonTemplateImg:(NSString *)img
+{
+    [self _rightNavButtonTemplateImg:img];
+}
+
+- (void)rightNavButtonText:(NSString *)text
+{
+    [self _rightNavButtonText:text];
+}
+
+- (void)rightNavSystemItem:(UIBarButtonSystemItem)item
+{
+    [self _rightNavSystemItem:item];
+}
+
+- (void)doLeftNaviBarItemAction
+{
+    [self _doLeftNaviBarItemAction];
+}
+
+- (void)doRightNaviBarItemAction
+{
+    [self _doRightNaviBarItemAction];
+}
+
+- (void)noLeftNavButton
+{
+    [self _noLeftNavButton];
+}
+
+@end
+
+@implementation YGBaseTableViewCtrl
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self _onViewDidLoad];
+}
+
+- (void)dealloc
+{
+    [self _onDealloc];
+}
+
+- (void)leftNavButtonImg:(NSString *)img
+{
+    [self _leftNavButtonImg:img];
+}
+
+- (void)rightNavButtonImg:(NSString *)img
+{
+    [self _rightNavButtonImg:img];
+}
+
+- (void)leftNavButtonTemplateImg:(NSString *)img
+{
+    [self _leftNavButtonTemplateImg:img];
+}
+
+- (void)rightNavButtonTemplateImg:(NSString *)img
+{
+    [self _rightNavButtonTemplateImg:img];
+}
+
+- (void)rightNavButtonText:(NSString *)text
+{
+    [self _rightNavButtonText:text];
+}
+
+- (void)rightNavSystemItem:(UIBarButtonSystemItem)item
+{
+    [self _rightNavSystemItem:item];
+}
+
+- (void)doLeftNaviBarItemAction
+{
+    [self _doLeftNaviBarItemAction];
+}
+
+- (void)doRightNaviBarItemAction
+{
+    [self _doRightNaviBarItemAction];
+}
+
+- (void)noLeftNavButton
+{
+    [self _noLeftNavButton];
+}
+
+@end
+
+@implementation YGBaseCollectionViewCtrl
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self _onViewDidLoad];
+}
+
+- (void)dealloc
+{
+    [self _onDealloc];
+}
+
+- (void)leftNavButtonImg:(NSString *)img
+{
+    [self _leftNavButtonImg:img];
+}
+
+- (void)rightNavButtonImg:(NSString *)img
+{
+    [self _rightNavButtonImg:img];
+}
+
+- (void)leftNavButtonTemplateImg:(NSString *)img
+{
+    [self _leftNavButtonTemplateImg:img];
+}
+
+- (void)rightNavButtonTemplateImg:(NSString *)img
+{
+    [self _rightNavButtonTemplateImg:img];
+}
+
+- (void)rightNavButtonText:(NSString *)text
+{
+    [self _rightNavButtonText:text];
+}
+
+- (void)rightNavSystemItem:(UIBarButtonSystemItem)item
+{
+    [self _rightNavSystemItem:item];
+}
+
+- (void)doLeftNaviBarItemAction
+{
+    [self _doLeftNaviBarItemAction];
+}
+
+- (void)doRightNaviBarItemAction
+{
+    [self _doRightNaviBarItemAction];
+}
+
+- (void)noLeftNavButton
+{
+    [self _noLeftNavButton];
+}
 @end

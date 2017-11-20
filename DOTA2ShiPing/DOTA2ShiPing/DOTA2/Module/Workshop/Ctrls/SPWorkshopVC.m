@@ -76,7 +76,7 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
         
         [self.sectionBtn setTitle:[SPWorkshop sectionVisiblaTitle:self.workshop.query.section] forState:UIControlStateNormal];
         self.isLoading = NO;
-        [self.HUD hide:YES];
+        [self.HUD hideAnimated:YES];
     }];
     
     self.isLoading = YES;
@@ -176,7 +176,7 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
 
 - (IBAction)search:(UIBarButtonItem *)item
 {
-    //TODO
+    
 }
 
 - (void)navigationBarChangedOnSwip:(UIPanGestureRecognizer *)gr
@@ -238,6 +238,14 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    static BOOL lock = NO;
+    if (lock) {
+        RunAfter(.2f, ^{
+            lock = NO;
+        });
+        return;
+    }
+    
     ygweakify(self);
     NSArray *items = @[
                        [RWDropdownMenuItem itemWithText:@"查看视频和图片" image:nil action:^{

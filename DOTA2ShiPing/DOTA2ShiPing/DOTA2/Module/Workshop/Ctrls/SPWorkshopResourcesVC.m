@@ -26,25 +26,16 @@
 {
     [super viewDidLoad];
     
-//    [SPLogoHeader setLogoHeaderInScrollView:self.collectionView];
-
     if (self.unit.resources.count == 0) {
         DDProgressHUD *HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
         [SPWorkshop fetchResource:self.unit completion:^(BOOL suc, SPWorkshopUnit *unit) {
-            [HUD hide:YES];
+            [HUD hideAnimated:YES];
             self.navigationItem.title = [NSString stringWithFormat:@"视频和图片资源(%lu)",(unsigned long)unit.resources.count];
             [self.collectionView reloadData];
         }];
     }else{
         self.navigationItem.title = [NSString stringWithFormat:@"视频和图片资源(%lu)",(unsigned long)self.unit.resources.count];
     }
-}
-
-- (void)mjrefresh:(MJRefreshComponent *)mj
-{
-    NSLog(@"loadMore");
-    
-    [self.collectionView.mj_footer endRefreshing];
 }
 
 - (void)dealloc
@@ -71,16 +62,13 @@
     if ([resource isVideo]) {
         [SPWebHelper openURL:resource.fullURL from:self];
     }else{
-        
         SPWorkshopResourceCell *cell = (SPWorkshopResourceCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        
         NSArray *IDMPhotos = [self.unit imageResourceIDMPhotos];
-        for (IDMPhoto *p in IDMPhotos) {
+//        for (IDMPhoto *p in IDMPhotos) {
 //            p.manager = [SPDiskCacheControl workshopImageManager];
-        }
+//        }
         IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:IDMPhotos animatedFromView:cell.imageView];
-//        browser.currentPageIndex = [self.unit indexInImageResourcesOfResource:resource];
-        
+        [browser setInitialPageIndex:[self.unit indexInImageResourcesOfResource:resource]];
         [self presentViewController:browser animated:YES completion:nil];
     }
 }

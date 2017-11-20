@@ -20,7 +20,7 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
 
 @interface SPWorkshop ()
 @property (strong, nonatomic) YYCache *cache;
-@property (strong, readwrite, nonatomic) NSArray *units;     //当前内容
+@property (strong, readwrite, nonatomic) NSArray<SPWorkshopUnit *> *units;     //当前内容
 @property (assign, readwrite, nonatomic) BOOL isCacheData;   //当前是否是缓存数据
 @property (assign, readwrite, nonatomic) BOOL noMoreData;    //当前是否还有更多数据
 
@@ -56,10 +56,12 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
         willRequest = nil==data;
     }
 //TESTTESTESTSTSETSETSETSETSETSETSETSETSETSEES
-//    willRequest = YES;
+    willRequest = YES;
     
     if (willRequest) {
         [self.lastTask cancel];
+        
+        BOOL isCollections = query.section == SPWorkshopSectionCollections;
         
         ygweakify(self);
         self.lastTask = [[SPSteamAPI shared] fetchWorkShopContent:[query query] progress:^(NSProgress *progress) {
@@ -71,7 +73,13 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
                 return;
             }
             if (suc) {
-                NSArray *units = [self handleFetchResult:object];
+                NSArray<SPWorkshopUnit *> *units;
+                if (isCollections) {
+                    units = [self handleCollectionsFetchResult:object];
+                }else{
+                    units = [self handleFetchResult:object];
+                }
+                
                 if (isMore) {
                     NSMutableArray *tmp = [NSMutableArray arrayWithArray:self.units];
                     [tmp addObjectsFromArray:units];
@@ -133,6 +141,47 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
     [self loadQuery:query ignoreCache:YES isMore:YES];
 }
 
+// 合集列表请求结果
+- (NSArray *)handleCollectionsFetchResult:(TFHpple *)root
+{
+    NSArray<TFHppleElement *> *divs = [root searchWithXPathQuery:@"//div[contains(@class,'workshopItemCollection')]"];
+    NSArray<TFHppleElement *> *imgNodes = [root searchWithXPathQuery:@"//img[@class='workshopItemPreviewImage']"];
+    NSArray<TFHppleElement *> *titleDivs = [root searchWithXPathQuery:@"//div[contains(@class,'workshopItemTitle')]"];
+    NSArray<TFHppleElement *> *authorNodes = [root searchWithXPathQuery:@"(//div|//span)[@class='workshopItemAuthorName']"];
+    
+    NSMutableArray *result = [NSMutableArray array];
+    
+    NSString *rePattern = @"[\\s\\S]*'([\\s\\S]*)'";
+    NSRegularExpression *re = [NSRegularExpression regularExpressionWithPattern:rePattern options:kNilOptions error:nil];
+
+    [divs enumerateObjectsUsingBlock:^(TFHppleElement *aDiv, NSUInteger idx, BOOL *stop) {
+        
+        NSString *hrefIn = [aDiv objectForKey:@"onclick"];
+        NSTextCheckingResult *hrefResult = [re firstMatchInString:hrefIn options:kNilOptions range:NSMakeRange(0, hrefIn.length)];
+        NSString *href;
+        if (hrefResult.numberOfRanges > 1) {
+            href = [hrefIn substringWithRange:[hrefResult rangeAtIndex:1]];
+        }
+        
+        TFHppleElement *imgNode = imgNodes[idx];
+        TFHppleElement *titleDiv = titleDivs[idx];
+        TFHppleElement *authorNode = authorNodes[idx];
+        
+        NSString *imgURL = [imgNode objectForKey:@"src"];
+        NSString *title = titleDiv.content;
+        NSString *author = authorNode.content;
+        
+        [result addObject:@{@"href":href?:@"",
+                            @"imageURL":imgURL?:@"",
+                            @"title":title?:@"",
+                            @"authors":@[author?:@""]}];
+    }];
+    
+    NSArray *units = [NSArray yy_modelArrayWithClass:[SPWorkshopUnit class] json:result];
+    return units;
+}
+
+// 普通创意工坊列表请求结果
 - (NSArray *)handleFetchResult:(TFHpple *)root
 {
     NSArray *itemDivs = [root searchWithXPathQuery:@"//div[contains(@class,'workshopItemPreviewHolder')]"];
@@ -146,7 +195,7 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
         
         NSString *itemId = [divNode objectForKey:@"id"];
         NSString *idStr = [[itemId componentsSeparatedByString:@"_"] lastObject];
-        NSNumber *id = @([idStr longLongValue]);
+        NSNumber *idInt = @([idStr longLongValue]);
         
         TFHppleElement *imgNode = [divNode firstChildWithTagName:@"img"];
         NSString *imgURL = [imgNode objectForKey:@"src"];
@@ -167,21 +216,17 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
             }
         }
         
-        [result addObject:@{@"id":id,
+        [result addObject:@{@"id":idInt,
                             @"imageURL":imgURL?:@"",
                             @"title":title?:@"",
                             @"authors":@[author?:@""]}];
     }
     NSArray *units = [NSArray yy_modelArrayWithClass:[SPWorkshopUnit class] json:result];
-    
-    
-    
-    //TEST
-//    [self handleTag:root];
-    
     return units;
 }
 
+
+// 列表中右侧的标签
 - (void)handleTag:(TFHpple *)root
 {
     TFHppleElement *node = [[root searchWithXPathQuery:@"//div[@class='rightDetailsBlock']"] lastObject];
@@ -238,6 +283,7 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
     NSData *data = [NSJSONSerialization dataWithJSONObject:set options:kNilOptions error:nil];
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"");
+    //TTODO
 }
 
 - (void)callback:(BOOL)suc isMore:(BOOL)isMore
@@ -262,7 +308,7 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
 {
     switch (section) {
         case SPWorkshopSectionItem:        return @"物品";      break;
-        case SPWorkshopSectionGame:        return @"自定义游戏"; break;
+        case SPWorkshopSectionGame:        return @"自定义游戏与机器人脚本"; break;
         case SPWorkshopSectionMerchandise: return @"周边产品";   break;
         case SPWorkshopSectionCollections: return @"合集";      break;
     }

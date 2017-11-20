@@ -31,10 +31,12 @@
         NSURL *URL = isGif ? [resource fullURL] : [resource thumbURL] ;
         [self.imageView sd_setImageWithURL:URL placeholderImage:[UIImage imageNamed:@"logo"] options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageProgressiveDownload | SDWebImageContinueInBackground  progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *targetURL) {
             
-            ygstrongify(self);
-            CGFloat p = receivedSize/(CGFloat)expectedSize;
-            self.progressLabel.hidden = NO;
-            self.progressLabel.text = [NSString stringWithFormat:@"%.1f%%",p*100];
+            RunOnMainQueue(^{
+                ygstrongify(self);
+                CGFloat p = receivedSize/(CGFloat)expectedSize;
+                self.progressLabel.hidden = NO;
+                self.progressLabel.text = [NSString stringWithFormat:@"%.1f%%",p*100];
+            });
             
         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             

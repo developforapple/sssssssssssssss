@@ -69,15 +69,31 @@
                       "value": "Warhammer",
                       "text": "Warhammer"
                       }, {
+                      "id": "95680",
+                      "value": "Spring2017",
+                      "text": "Spring2017"
+                      }, {
+                      "id": "109743",
+                      "value": "Collectors Cache 2017",
+                      "text": "Collectors Cache 2017"
+                      }, {
+                      "id": "127649",
+                      "value": "Frostivus 2017",
+                      "text": "Frostivus 2017"
+                      }, {
                       "id": "13881",
                       "value": "Hero Build",
                       "text": "Hero Build"
                       }]
           }, {
-          "Custom Games": [{
+          "Custom Games and Bot Scripts": [{
                            "id": "27738",
                            "value": "Custom Game",
                            "text": "Custom Game"
+                           },{
+                           "id": "103458",
+                           "value": "Bot Script",
+                           "text": "Bot Script"
                            }]
           }, {
           "Branding": [{
@@ -98,6 +114,18 @@
                       "id": "48637",
                       "value": "Single Item",
                       "text": "Single Item"
+                      },{
+                      "id": "98257",
+                      "value": "Spring 2017",
+                      "text": "Spring 2017"
+                      },{
+                      "id": "109743",
+                      "value": "Collectors Cache 2017",
+                      "text": "Collectors Cache 2017"
+                      },{
+                      "id": "128803",
+                      "value": "Frostivus 2017 Hero Items",
+                      "text": "Frostivus 2017 Hero Items"
                       }, {
                       "id": "incompatibleCheckbox",
                       "value": "incompatible",
@@ -174,15 +202,31 @@
                       "value": "Warhammer",
                       "text": "Warhammer"
                       }, {
+                      "id": "95680",
+                      "value": "Spring2017",
+                      "text": "Spring2017"
+                      }, {
+                      "id": "109743",
+                      "value": "Collectors Cache 2017",
+                      "text": "Collectors Cache 2017"
+                      }, {
+                      "id": "127649",
+                      "value": "Frostivus 2017",
+                      "text": "Frostivus 2017"
+                      }, {
                       "id": "13881",
                       "value": "Hero Build",
                       "text": "Hero Build"
                       }]
           }, {
-          "Custom Games": [{
+          "Custom Games and Bot Scripts": [{
                            "id": "27738",
                            "value": "Custom Game",
                            "text": "Custom Game"
+                           },{
+                           "id": "103458",
+                           "value": "Bot Script",
+                           "text": "Bot Script"
                            }]
           }, {
           "Branding": [{
@@ -203,7 +247,19 @@
                       "id": "48637",
                       "value": "Single Item",
                       "text": "Single Item"
-                      }, {
+                      },{
+                      "id": "98257",
+                      "value": "Spring 2017",
+                      "text": "Spring 2017"
+                      },{
+                      "id": "109743",
+                      "value": "Collectors Cache 2017",
+                      "text": "Collectors Cache 2017"
+                      },{
+                      "id": "128803",
+                      "value": "Frostivus 2017 Hero Items",
+                      "text": "Frostivus 2017 Hero Items"
+                      },{
                       "id": "incompatibleCheckbox",
                       "value": "incompatible",
                       "text": "显示不兼容的物品"
@@ -295,17 +351,34 @@
                       "id": "70389",
                       "value": "Warhammer",
                       "text": "Warhammer"
+                      },{
+                      "id": "95680",
+                      "value": "Spring2017",
+                      "text": "Spring2017"
+                      }, {
+                      "id": "109743",
+                      "value": "Collectors Cache 2017",
+                      "text": "Collectors Cache 2017"
+                      }, {
+                      "id": "127649",
+                      "value": "Frostivus 2017",
+                      "text": "Frostivus 2017"
                       }, {
                       "id": "13881",
                       "value": "Hero Build",
                       "text": "Hero Build"
                       }]
           }, {
-          "Custom Games": [{
+          "Custom Games and Bot Scripts": [{
                            "id": "27738",
                            "value": "Custom Game",
                            "text": "Custom Game"
-                           }]
+                           },
+                                           {
+                                           "id": "103458",
+                                           "value": "Bot Script",
+                                           "text": "Bot Script"
+                                           }]
           }, {
           "Branding": [{
                        "id": "43816",
@@ -325,7 +398,19 @@
                       "id": "48637",
                       "value": "Single Item",
                       "text": "Single Item"
-                      }, {
+                      },{
+                      "id": "98257",
+                      "value": "Spring 2017",
+                      "text": "Spring 2017"
+                      },{
+                      "id": "109743",
+                      "value": "Collectors Cache 2017",
+                      "text": "Collectors Cache 2017"
+                      },{
+                      "id": "128803",
+                      "value": "Frostivus 2017 Hero Items",
+                      "text": "Frostivus 2017 Hero Items"
+                      },{
                       "id": "incompatibleCheckbox",
                       "value": "incompatible",
                       "text": "显示不兼容的物品"

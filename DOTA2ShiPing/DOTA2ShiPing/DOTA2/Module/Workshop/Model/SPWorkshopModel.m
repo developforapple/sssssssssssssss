@@ -150,13 +150,13 @@ YYModelDefaultCode
 #pragma mark - Sort
 @implementation SPWorkshopSort
 
-- (instancetype)initWithName:(NSString *)name sort:(NSString *)sort day:(NSUInteger)day isDefault:(BOOL)isDefault
+- (instancetype)initWithName:(NSString *)name sort:(NSString *)sort day:(NSInteger)day isDefault:(BOOL)isDefault
 {
     self = [super init];
     if (self) {
         self.name = name;
         self.actualsort = sort;
-        self.days = day<1?nil:@(day);
+        self.days = day==0?nil:@(day);
         self.isDefault = isDefault;
     }
     return self;
@@ -164,8 +164,8 @@ YYModelDefaultCode
 
 + (NSArray<SPWorkshopSort *> *)sortForSection:(SPWorkshopSection)section
 {
-    SPWorkshopSort *(^Create)(NSString *,NSString *,NSUInteger,BOOL) =
-    ^SPWorkshopSort *(NSString *name,NSString *sort,NSUInteger day,BOOL isDefault){
+    SPWorkshopSort *(^Create)(NSString *,NSString *,NSInteger,BOOL) =
+    ^SPWorkshopSort *(NSString *name,NSString *sort,NSInteger day,BOOL isDefault){
         return [[SPWorkshopSort alloc] initWithName:name sort:sort day:day isDefault:isDefault];
     };
     
@@ -181,6 +181,7 @@ YYModelDefaultCode
                      Create(@"最热门（三个月）",    @"trend",           90,NO),
                      Create(@"最热门（半年）",      @"trend",          180,NO),
                      Create(@"最热门（一年）",      @"trend",          365,NO),
+                     Create(@"最热门（所有时间）",   @"trend",          -1,NO),
                      Create(@"评分最高（发布至今）", @"toprated",         0,NO),
                      Create(@"最新",              @"mostrecent",       0,NO),
                      Create(@"最多订阅",           @"totaluniquesubscribers",0,NO)];
@@ -192,6 +193,7 @@ YYModelDefaultCode
                      Create(@"最热门（三个月）",    @"trend",           90,NO),
                      Create(@"最热门（半年）",      @"trend",          180,NO),
                      Create(@"最热门（一年）",      @"trend",          365,NO),
+                     Create(@"最热门（所有时间）",   @"trend",          -1,NO),
                      Create(@"评分最高（发布至今）", @"toprated",         0,NO),
                      Create(@"最新",              @"mostrecent",       0,NO)];
             break;
@@ -202,6 +204,7 @@ YYModelDefaultCode
                      Create(@"最热门（三个月）",    @"trend",           90,NO),
                      Create(@"最热门（半年）",      @"trend",          180,NO),
                      Create(@"最热门（一年）",      @"trend",          365,NO),
+                     Create(@"最热门（所有时间）",   @"trend",          -1,NO),
                      Create(@"评分最高（发布至今）", @"toprated",         0,NO),
                      Create(@"最新",              @"mostrecent",       0,NO)];
             break;
@@ -227,7 +230,24 @@ YYModelDefaultCode
 
 - (NSURL *)detailURL
 {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"http://steamcommunity.com/sharedfiles/filedetails/?id=%@",self.id]];
+    if (_id) {
+        return [NSURL URLWithString:[NSString stringWithFormat:@"http://steamcommunity.com/sharedfiles/filedetails/?id=%@",self.id]];
+    }
+    return [NSURL URLWithString:self.href];
+}
+
+- (NSNumber *)id
+{
+    if (!_id){
+        NSURLComponents *components = [NSURLComponents componentsWithString:self.href];
+        [components.queryItems enumerateObjectsUsingBlock:^(NSURLQueryItem *obj, NSUInteger idx, BOOL *stop) {
+            if ([obj.name isEqualToString:@"id"]){
+                _id = @([obj.value longLongValue]);
+                *stop = YES;
+            }
+        }];
+    }
+    return _id;
 }
 
 - (NSURL *)imageURLForSize:(CGSize)size

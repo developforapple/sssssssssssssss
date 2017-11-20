@@ -6,11 +6,11 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "YGBaseViewCtrl.h"
 
 UIKIT_EXTERN NSTimeInterval const kSPFocusAnimationDurtaion;
 
-@interface SPFocusVisualEffectVC : UIViewController
+@interface SPFocusVisualEffectVC : YGBaseViewCtrl
 
 - (void)showFocusView:(__weak UIView *)view
            completion:(void(^)(SPFocusVisualEffectVC *focusVC,UIView *focusView))completion;
