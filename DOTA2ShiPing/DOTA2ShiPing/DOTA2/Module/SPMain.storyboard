@@ -1372,16 +1372,31 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日特价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQ7-xb-4Om">
-                                                            <rect key="frame" x="117.66666666666669" y="140" width="65.333333333333314" height="19.666666666666657"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <rect key="frame" x="113" y="139.33333333333334" width="73.666666666666686" height="21.666666666666657"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
+                                                            <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius_">
+                                                                    <real key="value" value="16"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor_">
+                                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity_">
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset_">
+                                                                    <size key="value" width="0.0" height="0.0"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="lQ7-xb-4Om" firstAttribute="centerX" secondItem="YZr-D2-qNR" secondAttribute="centerX" id="hob-2K-t7Q"/>
-                                                        <constraint firstItem="lQ7-xb-4Om" firstAttribute="centerY" secondItem="YZr-D2-qNR" secondAttribute="centerY" id="wFx-il-Jvb"/>
+                                                        <constraint firstItem="lQ7-xb-4Om" firstAttribute="centerY" secondItem="YZr-D2-qNR" secondAttribute="centerY" id="NrQ-ob-byy"/>
+                                                        <constraint firstItem="lQ7-xb-4Om" firstAttribute="centerX" secondItem="YZr-D2-qNR" secondAttribute="centerX" id="y1S-uT-ygR"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>

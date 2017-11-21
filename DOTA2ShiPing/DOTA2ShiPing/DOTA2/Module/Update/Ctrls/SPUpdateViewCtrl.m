@@ -60,10 +60,12 @@
     [RACObserve(self.manager, needUpdate)
      subscribeNext:^(NSNumber *x) {
          ygstrongify(self);
-         if (x && x.boolValue) {
-             [self beginUpdate];
-         }else{
-             [self isLatestVersion];
+         if (x) {
+             if (x.boolValue) {
+                 [self beginUpdate];
+             }else{
+                 [self isLatestVersion];
+             }
          }
      }];
     [RACObserve(self.manager, progress)

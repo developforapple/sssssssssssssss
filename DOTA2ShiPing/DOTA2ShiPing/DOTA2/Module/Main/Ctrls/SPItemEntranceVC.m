@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
 
-@property (strong, nonatomic) NSArray<SPItemEntranceConfig *> *configure;
+@property (strong, nonatomic) SPItemEntranceConfig *config;
 
 @end
 
@@ -53,55 +53,38 @@
 
 - (void)loadConfigure
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"SPItemEntranceConfigure" ofType:nil];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    self.configure = [NSArray yy_modelArrayWithClass:[SPItemEntranceConfig class] json:json];
-    
-    [self loadSpecialPriceItem];
+    self.config = [SPItemEntranceConfig new];
+    ygweakify(self);
+    self.config.unitDidUpdated = ^(SPItemEntranceUnit *unit) {
+        ygstrongify(self);
+        [self didUpdateUnit:unit];
+    };
+    [self.config beginUpdateAuto];
 }
 
-- (void)loadSpecialPriceItem
+- (void)didUpdateUnit:(SPItemEntranceUnit *)unit
 {
-    if ([SPDota2MarketItem needUpdate]) {
-        [SPDota2API fetchDota2SpecilPriceItem:^(SPDota2MarketItem *item) {
-            [self updateSpecialPriceItem:item];
-        }];
-    }else{
-        [self updateSpecialPriceItem:[SPDota2MarketItem curItem]];
-    }
-}
-
-- (void)updateSpecialPriceItem:(SPDota2MarketItem *)item
-{
-    NSInteger index = 0;
-    for (SPItemEntranceConfig *aConfig in self.configure) {
-        if (aConfig.type == SPItemEntranceTypeOffPrice) {
-            aConfig.imageUrl = item.itemImageDropShadow;
-            index = [self.configure indexOfObject:aConfig];
-            break;
-        }
-    }
+    NSInteger index = [self.config.units indexOfObject:unit];
     [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];
 }
 
 #pragma mark UICollectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.configure.count;
+    return self.config.units.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SPItemEntranceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSPItemEntranceCell  forIndexPath:indexPath];
-    [cell configure:self.configure[indexPath.row]];
+    [cell configure:self.config.units[indexPath.row]];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SPItemEntranceConfig *config = self.configure[indexPath.item];
-    SPItemEntranceType type = config.type;
+    SPItemEntranceUnit *unit = self.config.units[indexPath.item];
+    SPItemEntranceType type = unit.type;
     
     switch (type) {
         case SPItemEntranceTypeOffPrice:{
@@ -125,11 +108,12 @@
         case SPItemEntranceTypeWorld:
         case SPItemEntranceTypeHud:
         case SPItemEntranceTypeAudio:
-        case SPItemEntranceTypeTreasure:
+        case SPItemEntranceTypeTreasureBundle:
+        case SPItemEntranceTypeLeague:
         case SPItemEntranceTypeOther:{
             NSArray *prefabs = [[SPDataManager shared] prefabsOfEntranceType:type];
             SPItemQuery *query = [SPItemQuery queryWithPerfabs:prefabs];
-            query.queryTitle = config.title;
+            query.queryTitle = unit.title;
             [self showItemList:query];
         }   break;
         default:

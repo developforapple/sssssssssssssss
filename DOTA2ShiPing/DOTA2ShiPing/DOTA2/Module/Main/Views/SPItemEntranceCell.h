@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIView *blurView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-- (void)configure:(SPItemEntranceConfig *)c;
+- (void)configure:(SPItemEntranceUnit *)c;
 - (void)configureWithEvent:(SPDotaEvent *)event;
 
 @end

@@ -9,11 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "SPItemCommon.h"
 
+@interface SPItemEntranceUnit : NSObject <NSCopying,NSCoding>
+@property (assign, nonatomic) SPItemEntranceType type;
+@property (copy, nonatomic) NSString *title;
+@property (copy, nonatomic) NSString *defaultImage;
+@property (copy, nonatomic) NSString *imageUrl;
+@property (strong, nonatomic) UIImage *lastImage;
+@end
+
 @interface SPItemEntranceConfig : NSObject
 
-@property (assign, nonatomic) SPItemEntranceType type;
-@property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *image;
-@property (strong, nonatomic) NSString *imageUrl;
+@property (strong, nonatomic) NSArray<SPItemEntranceUnit *> *units;
+@property (copy, nonatomic) void (^unitDidUpdated)(SPItemEntranceUnit *unit);
+
+- (SPItemEntranceUnit *)unitOfType:(SPItemEntranceType)type;
+
+- (void)beginUpdateAuto;
 
 @end
+

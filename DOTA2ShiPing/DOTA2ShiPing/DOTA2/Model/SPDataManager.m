@@ -209,11 +209,14 @@
         case SPItemEntranceTypeAudio:
             names = @[@"music",@"announcer"];
             break;
-        case SPItemEntranceTypeTreasure:
-            names = @[@"treasure_chest",@"retired_treasure_chest",@"key"];
+        case SPItemEntranceTypeTreasureBundle:
+            names = @[@"treasure_chest",@"retired_treasure_chest",@"key",@"bundle"];
+            break;
+        case SPItemEntranceTypeLeague:
+            names = @[@"league"];
             break;
         case SPItemEntranceTypeOther:
-            names = @[@"tool",@"taunt",@"emoticon_tool",@"player_card",@"misc",@"dynamic_recipe",@"league",@"passport_fantasy_team",@"socket_gem",@"bundle"];
+            names = @[@"tool",@"taunt",@"emoticon_tool",@"player_card",@"misc",@"dynamic_recipe",@"passport_fantasy_team",@"socket_gem"];
             break;
         default:
             break;
