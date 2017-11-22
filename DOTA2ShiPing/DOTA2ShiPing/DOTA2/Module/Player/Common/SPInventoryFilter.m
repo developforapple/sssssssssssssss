@@ -14,7 +14,7 @@
 @property (strong, nonatomic) NSArray<SPPlayerItemDetail *> *baseItems;
 
 // 分类排序过后的items
-@property (strong, readwrite, nonatomic) NSArray<NSArray<SPPlayerItemDetail *> *> *items;
+@property (strong, readwrite, nonatomic) NSArray<NSArray<SPPlayerItemDetail *> *> *playerItems;
 // 使用筛选条件进行筛选过后的items。没有进行分类和排序。
 @property (strong, nonatomic) NSArray<SPPlayerItemDetail *> *filteredItems;
 // 筛选排序过后的标题
@@ -164,6 +164,11 @@
 //    return items.count;
 }
 
+- (void)updateOriginItems
+{
+    //TODO
+}
+
 // 全部饰品
 - (void)showAllItems
 {
@@ -191,7 +196,8 @@
         [fullTitles addObject:title];
     }
     self.titles = fullTitles;
-    self.items = values;
+    self.playerItems = values;
+    [self updateOriginItems];
     
     if (self.updateCallback) {
         self.updateCallback();
@@ -232,7 +238,8 @@
     NSArray *eventTitles = [filterResult allKeys];
     NSArray *items = [filterResult objectsForKeys:eventTitles notFoundMarker:[NSArray array]];
     self.titles = eventTitles;
-    self.items = items;
+    self.playerItems = items;
+    [self updateOriginItems];
     if (self.updateCallback) {
         self.updateCallback();
     }
@@ -265,8 +272,8 @@
         [fullTitles addObject:title];
     }
     self.titles = fullTitles;
-    self.items = values;
-    
+    self.playerItems = values;
+    [self updateOriginItems];
     if (self.updateCallback) {
         self.updateCallback();
     }
@@ -305,7 +312,8 @@
     NSArray *titles = [dict allKeys];
     NSArray *items = [dict objectsForKeys:titles notFoundMarker:[NSArray array]];
     self.titles = titles;
-    self.items = items;
+    self.playerItems = items;
+    [self updateOriginItems];
     if (self.updateCallback) {
         self.updateCallback();
     }
@@ -329,7 +337,8 @@
     
     self.titles = @[[NSString stringWithFormat:@"可交易 %lu",(unsigned long)tradableList.count],
                     [NSString stringWithFormat:@"可出售 %lu",(unsigned long)marketableList.count]];
-    self.items = @[tradableList,marketableList];
+    self.playerItems = @[tradableList,marketableList];
+    [self updateOriginItems];
     if (self.updateCallback) {
         self.updateCallback();
     }
@@ -436,8 +445,9 @@
     
     NSArray<SPPlayerItemDetail *> *items = self.filteredItems;
     if (!items || items.count == 0) {
-        self.items = @[];
+        self.playerItems = @[];
         self.titles = @[];
+        [self updateOriginItems];
         if (self.updateCallback) {
             self.updateCallback();
         }
@@ -472,7 +482,8 @@
         }
         
         self.titles = fullTitles;
-        self.items = values;
+        self.playerItems = values;
+        [self updateOriginItems];
         
     }else{
         // 其他情况下 只有一个分类
@@ -493,7 +504,8 @@
         }
         NSString *title = [tmp componentsJoinedByString:@" + "];
         self.titles = @[title];
-        self.items = @[items];
+        self.playerItems = @[items];
+        [self updateOriginItems];
     }
     if (self.updateCallback) {
         self.updateCallback();

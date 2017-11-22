@@ -1625,6 +1625,8 @@
 		2DF9B7B91F1361640012950A /* Ctrls */ = {
 			isa = PBXGroup;
 			children = (
+				2DF9B7C81F1361640012950A /* SPPlayerListVC.h */,
+				2DF9B7C91F1361640012950A /* SPPlayerListVC.m */,
 				2DF9B7BA1F1361640012950A /* SPInventoryCategoryPickerVC.h */,
 				2DF9B7BB1F1361640012950A /* SPInventoryCategoryPickerVC.m */,
 				2DF9B7BC1F1361640012950A /* SPPlayerAliasesVC.h */,
@@ -1639,8 +1641,6 @@
 				2DF9B7C51F1361640012950A /* SPPlayerInventorySearchResultVC.m */,
 				2DF9B7C61F1361640012950A /* SPPlayerInventoryVC.h */,
 				2DF9B7C71F1361640012950A /* SPPlayerInventoryVC.m */,
-				2DF9B7C81F1361640012950A /* SPPlayerListVC.h */,
-				2DF9B7C91F1361640012950A /* SPPlayerListVC.m */,
 				2DF9B7CA1F1361640012950A /* Update */,
 			);
 			path = Ctrls;

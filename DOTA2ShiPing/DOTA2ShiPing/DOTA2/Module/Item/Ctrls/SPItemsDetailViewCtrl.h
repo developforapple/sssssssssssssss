@@ -9,7 +9,12 @@
 #import "YGBaseViewCtrl.h"
 
 @class SPItem;
+@class SPPlayerItemDetail;
 
 @interface SPItemsDetailViewCtrl : YGBaseViewCtrl
 @property (strong, nonatomic) SPItem *item;
+@property (strong, nonatomic) SPPlayerItemDetail *playerItem;
+
+- (void)setupItem:(id)item;
+
 @end

@@ -9,6 +9,7 @@
 #import "SPItemsDetailViewCtrl.h"
 #import "SPItemViewCtrl.h"
 #import "SPItem.h"
+#import "SPPlayerItems.h"
 
 @interface SPItemsDetailViewCtrl ()
 @property (strong, nonatomic) SPItemViewCtrl *infoViewCtrl;
@@ -19,6 +20,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)setupItem:(id)item
+{
+    if ([item isKindOfClass:[SPItem class]]) {
+        self.item = item;
+    }else if ([item isKindOfClass:[SPPlayerItemDetail class]]){
+        self.playerItem = item;
+    }
 }
 
 - (void)setItem:(SPItem *)item

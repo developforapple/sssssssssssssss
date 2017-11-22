@@ -19,9 +19,9 @@ typedef NS_ENUM(NSUInteger, SPImageType) {
 
 typedef void(^SPItemCacheCompletion)(NSString *urlString);
 
-YG_EXTERN YYCache *normalImageCache();
-YG_EXTERN YYCache *largeImageCache();
-YG_EXTERN YYCache *qiniuCache();
+YG_EXTERN YYCache *normalImageCache(void);
+YG_EXTERN YYCache *largeImageCache(void);
+YG_EXTERN YYCache *qiniuCache(void);
 YG_EXTERN YYCache *cacheForImageType(SPImageType type);
 YG_EXTERN UIImage *placeholderImage(CGSize size);
 

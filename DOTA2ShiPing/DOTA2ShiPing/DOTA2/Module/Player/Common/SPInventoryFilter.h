@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SPPlayer.h"
 #import "SPPlayerCommon.h"
+#import "SPItem.h"
 
 @class SPInventoryFilterCondition;
 
@@ -34,7 +35,12 @@
 - (NSInteger)updateWithCondition:(SPInventoryFilterCondition *)condition;
 
 @property (strong, readonly, nonatomic) NSArray *titles;
-@property (strong, readonly, nonatomic) NSArray<NSArray<SPPlayerItemDetail *> *> *items;
+@property (strong, readonly, nonatomic) NSArray<NSArray<SPPlayerItemDetail *> *> *playerItems;
+
+
+
+@property (strong, readonly, nonatomic) NSArray<NSArray<SPItem *> *> *items;
+
 
 // 独立的搜索。和上面的属性无关。
 - (NSArray *)itemsWithKeywords:(NSString *)keywords;

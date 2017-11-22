@@ -60,9 +60,6 @@ static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
 #pragma mark -
 - (void)initUI
 {
-    [self.navigationItem setHidesBackButton:YES animated:YES];
-    self.searchContainer.frame = CGRectMake(12.f, 0, Device_Width-12*2.f, 44.f);
-    
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.tableView.layoutMargins = UIEdgeInsetsZero;
 }
@@ -178,6 +175,8 @@ static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
 - (void)showItemDetail:(NSString *)name
 {
     NSLog(@"饰品详情 %@",name);
+    
+    //TODO
 }
 
 - (void)showItemList:(NSString *)keywords
@@ -195,7 +194,7 @@ static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
     [self.engine searchUserWithKeyword:keywords completion:^(BOOL suc, NSArray<SPPlayer *> *users) {
         ygstrongify(self);
         if (suc) {
-            [HUD hide:YES];
+            [HUD hideAnimated:YES];
             self.searchResults = users;
             [self.tableView reloadData];
         }else{

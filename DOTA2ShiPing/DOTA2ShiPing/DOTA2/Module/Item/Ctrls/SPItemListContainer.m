@@ -87,7 +87,7 @@ SPItemListMode const kSPItemListModeAuto = 10086;
     self.mode = mode = (mode==kSPItemListModeAuto) ? mode : ([[NSUserDefaults standardUserDefaults] integerForKey:kSPItemListModeKey]);
     
     NSMutableArray *cellModels = [NSMutableArray array];
-    [self.items enumerateObjectsUsingBlock:^(SPItem *obj, NSUInteger idx, BOOL *stop) {
+    [self.items enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         SPItemCellModel *aCellModel = [SPItemCellModel viewModelWithEntity:obj];
         if (aCellModel) {
             aCellModel.mode = mode;
@@ -122,9 +122,9 @@ SPItemListMode const kSPItemListModeAuto = 10086;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SPItem *item = self.items[indexPath.row];
+    id item = self.items[indexPath.row];
     SPItemsDetailViewCtrl *vc = [SPItemsDetailViewCtrl instanceFromStoryboard];
-    vc.item = item;
+    [vc setupItem:item];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

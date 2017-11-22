@@ -1181,7 +1181,7 @@
         <!--搜索-->
         <scene sceneID="XvY-pq-7LP">
             <objects>
-                <viewController storyboardIdentifier="SPSearchVC" hidesBottomBarWhenPushed="YES" id="pg1-rs-7yI" userLabel="搜索" customClass="SPSearchVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SPSearchVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pg1-rs-7yI" userLabel="搜索" customClass="SPSearchVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wHi-ob-ZYX"/>
                         <viewControllerLayoutGuide type="bottom" id="T6g-8r-lF9"/>
@@ -1257,40 +1257,69 @@
                                     <outlet property="emptyDataSetSource" destination="pg1-rs-7yI" id="ryG-PF-qub"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Us4-gW-lAn">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GBm-SE-bMC">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                        <items/>
+                                        <color key="barTintColor" red="0.13346317410469055" green="0.18231484293937683" blue="0.25190103054046631" alpha="1" colorSpace="calibratedRGB"/>
+                                    </toolbar>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jM-UK-Or3">
+                                        <rect key="frame" x="12" y="20" width="390" height="44"/>
+                                        <subviews>
+                                            <searchBar contentMode="redraw" placeholder="关键词" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CnS-mY-MVa" customClass="SPSearchBar">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="realBackgroundColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="pg1-rs-7yI" id="7ZZ-7Z-dFd"/>
+                                                </connections>
+                                            </searchBar>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="CnS-mY-MVa" secondAttribute="trailing" id="MXj-DV-uLA"/>
+                                            <constraint firstItem="CnS-mY-MVa" firstAttribute="leading" secondItem="7jM-UK-Or3" secondAttribute="leading" id="Nr6-TT-xzy"/>
+                                            <constraint firstAttribute="height" constant="44" id="j46-l8-0v6"/>
+                                            <constraint firstItem="CnS-mY-MVa" firstAttribute="top" secondItem="7jM-UK-Or3" secondAttribute="top" id="kKp-gy-Nop"/>
+                                            <constraint firstAttribute="bottom" secondItem="CnS-mY-MVa" secondAttribute="bottom" id="wOR-sa-Dcr"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="7jM-UK-Or3" firstAttribute="leading" secondItem="Us4-gW-lAn" secondAttribute="leading" constant="12" id="5bq-Ad-SC0"/>
+                                    <constraint firstItem="GBm-SE-bMC" firstAttribute="leading" secondItem="Us4-gW-lAn" secondAttribute="leading" id="7xH-2S-RfR"/>
+                                    <constraint firstAttribute="trailing" secondItem="GBm-SE-bMC" secondAttribute="trailing" id="9qK-JC-GzX"/>
+                                    <constraint firstAttribute="bottom" secondItem="GBm-SE-bMC" secondAttribute="bottom" id="DKY-u0-xrb"/>
+                                    <constraint firstAttribute="bottom" secondItem="7jM-UK-Or3" secondAttribute="bottom" id="LZu-QG-5bI"/>
+                                    <constraint firstAttribute="trailing" secondItem="7jM-UK-Or3" secondAttribute="trailing" constant="12" id="LaJ-vd-Zng"/>
+                                    <constraint firstAttribute="height" constant="64" id="c3W-1R-vJh"/>
+                                    <constraint firstItem="GBm-SE-bMC" firstAttribute="top" secondItem="Us4-gW-lAn" secondAttribute="top" id="oVY-Lh-Caf"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="aGt-PI-DcN" firstAttribute="top" secondItem="MVu-08-UmE" secondAttribute="top" id="0Km-JX-2J6"/>
                             <constraint firstItem="aGt-PI-DcN" firstAttribute="leading" secondItem="MVu-08-UmE" secondAttribute="leading" id="IuH-vo-H4g"/>
+                            <constraint firstAttribute="trailing" secondItem="Us4-gW-lAn" secondAttribute="trailing" id="Yvh-Ir-QkR"/>
+                            <constraint firstItem="Us4-gW-lAn" firstAttribute="leading" secondItem="MVu-08-UmE" secondAttribute="leading" id="dVG-G8-HIh"/>
+                            <constraint firstItem="Us4-gW-lAn" firstAttribute="top" secondItem="MVu-08-UmE" secondAttribute="top" id="duP-1s-h0U"/>
                             <constraint firstAttribute="trailing" secondItem="aGt-PI-DcN" secondAttribute="trailing" id="obB-aN-f2M"/>
                             <constraint firstAttribute="bottom" secondItem="aGt-PI-DcN" secondAttribute="bottom" id="rwB-sm-gGW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="NrS-ni-AUx">
-                        <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="7jM-UK-Or3">
-                            <rect key="frame" x="37" y="0.0" width="340" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <searchBar contentMode="redraw" placeholder="关键词" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CnS-mY-MVa" customClass="SPSearchBar">
-                                    <rect key="frame" x="0.0" y="0.0" width="340" height="44"/>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="pg1-rs-7yI" id="7ZZ-7Z-dFd"/>
-                                    </connections>
-                                </searchBar>
-                            </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="CnS-mY-MVa" secondAttribute="trailing" id="MXj-DV-uLA"/>
-                                <constraint firstItem="CnS-mY-MVa" firstAttribute="leading" secondItem="7jM-UK-Or3" secondAttribute="leading" id="Nr6-TT-xzy"/>
-                                <constraint firstItem="CnS-mY-MVa" firstAttribute="top" secondItem="7jM-UK-Or3" secondAttribute="top" id="kKp-gy-Nop"/>
-                                <constraint firstAttribute="bottom" secondItem="CnS-mY-MVa" secondAttribute="bottom" id="wOR-sa-Dcr"/>
-                            </constraints>
-                        </view>
-                    </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="jz_wantsNavigationBarVisible" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="searchBar" destination="CnS-mY-MVa" id="8jR-8B-I5o"/>
                         <outlet property="searchContainer" destination="7jM-UK-Or3" id="Yv8-OF-ELW"/>
@@ -1303,8 +1332,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VOg-eD-Eax">
-                            <rect key="frame" x="144" y="7.5" width="126" height="29"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VOg-eD-Eax">
+                            <rect key="frame" x="142.66666666666666" y="7.6666666666666679" width="128.99999999999997" height="29.000000000000004"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="没有找到？戳我试试"/>
                         </button>
@@ -2360,7 +2389,7 @@
         <image name="sort" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xxb-Qf-zZj"/>
-        <segue reference="evA-De-KHw"/>
+        <segue reference="b8f-RE-pTr"/>
+        <segue reference="Nbi-AR-hdo"/>
     </inferredMetricsTieBreakers>
 </document>
