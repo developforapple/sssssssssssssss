@@ -11,8 +11,24 @@
 
 @implementation SPItemEntranceCell
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    UIInterpolatingMotionEffect *xEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    xEffect.minimumRelativeValue = @-10;
+    xEffect.maximumRelativeValue = @10;
+    UIInterpolatingMotionEffect *yEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    yEffect.minimumRelativeValue = @-10;
+    yEffect.maximumRelativeValue = @10;
+    UIMotionEffectGroup *group = [[UIMotionEffectGroup alloc] init];
+    group.motionEffects = @[xEffect,yEffect];
+    [self.imageView addMotionEffect:group];
+}
+
 - (void)configure:(SPItemEntranceUnit *)c
 {
+    self.unit = c;
     self.titleLabel.text = c.title;
     if (c.imageUrl) {
         
@@ -20,18 +36,11 @@
         UIImage *placeholder = c.lastImage?:[UIImage imageNamed:c.defaultImage];
         SDWebImageOptions options = SDWebImageLowPriority | SDWebImageContinueInBackground | SDWebImageAvoidAutoSetImage;
         
-        NSInteger hash = URL.hash;
         ygweakify(self);
         [self.imageView sd_setImageWithURL:URL placeholderImage:placeholder options:options progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            NSInteger hash2 = imageURL.hash;
-            NSInteger hash3 = hash;
-            if (hash2 == hash3 && image) {
-                ygstrongify(self);
-                [UIView transitionWithView:self.imageView duration:.8f options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationOptionCurveEaseInOut animations:^{
-                    self.imageView.image = image;
-                } completion:^(BOOL finished) {
-                    c.lastImage = image;
-                }];
+            ygstrongify(self);
+            if (self.unit.imageUrl && [imageURL.absoluteString isEqualToString:self.unit.imageUrl]) {
+                [self setupImageViewImage:image];
             }
         }];
     }else{
@@ -39,10 +48,24 @@
     }
 }
 
+- (void)setupImageViewImage:(UIImage *)image
+{
+    RunOnGlobalQueue(^{
+        UIImage *scaledImage = [image imageByResizeToSize:CGSizeMake(self.imageView.bounds.size.width*2, self.imageView.bounds.size.width*2) contentMode:self.imageView.contentMode];
+        RunOnMainQueue(^{
+            [UIView transitionWithView:self.imageView duration:.6f options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationOptionCurveEaseInOut animations:^{
+                self.imageView.image = scaledImage;
+            } completion:^(BOOL finished) {
+                self.unit.lastImage = scaledImage;
+            }];
+        });
+    });
+}
+
 - (void)configureWithEvent:(SPDotaEvent *)event
 {
     self.titleLabel.text = event.name_loc ? : event.event_id;
-    self.imageView.image = [UIImage imageNamed:event.image_name] ?: [UIImage imageNamed:@"Item_OffPrice"];
+    self.imageView.image = [UIImage imageNamed:event.image_name] ?: [UIImage imageNamed:@"Unit_OffPrice"];
 }
 
 - (void)setHighlighted:(BOOL)highlighted

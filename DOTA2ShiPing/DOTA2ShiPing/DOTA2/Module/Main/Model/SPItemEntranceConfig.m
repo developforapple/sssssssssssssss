@@ -47,18 +47,18 @@ YYModelDefaultCode
     
     NSString *defaultImageName;
     switch (type) {
-        case SPItemEntranceTypeOffPrice:    defaultImageName = @"Item_OffPrice";    break;
+        case SPItemEntranceTypeOffPrice:    defaultImageName = @"Unit_OffPrice";    break;
         case SPItemEntranceTypeEvent:       defaultImageName = @"TI7";    break;
-        case SPItemEntranceTypeHeroItem:    defaultImageName = @"Item_Hero";    break;
-        case SPItemEntranceTypeCourier:     defaultImageName = @"Item_Courier";    break;
-        case SPItemEntranceTypeWorld:       defaultImageName = @"Item_World";    break;
-        case SPItemEntranceTypeHud:         defaultImageName = @"Item_Hud";    break;
-        case SPItemEntranceTypeAudio:       defaultImageName = @"Item_Audio";    break;
-        case SPItemEntranceTypeTreasureBundle:    defaultImageName = @"Item_Treasure";    break;
-        case SPItemEntranceTypeLeague:      defaultImageName = @"Item_Treasure";    break;
-        case SPItemEntranceTypeOther:       defaultImageName = @"Item_Other";    break;
-        case SPItemEntranceTypeOnSale:      defaultImageName = @"Item_OffPrice";    break;
-        case SPItemEntranceTypeMarket:      defaultImageName = @"Item_OffPrice";    break;
+        case SPItemEntranceTypeHeroItem:    defaultImageName = @"Unit_Hero";    break;
+        case SPItemEntranceTypeCourier:     defaultImageName = @"Unit_Courier";    break;
+        case SPItemEntranceTypeWorld:       defaultImageName = @"Unit_World";    break;
+        case SPItemEntranceTypeHud:         defaultImageName = @"Unit_Hud";    break;
+        case SPItemEntranceTypeAudio:       defaultImageName = @"Unit_Audio";    break;
+        case SPItemEntranceTypeTreasureBundle:    defaultImageName = @"Unit_Treasure";    break;
+        case SPItemEntranceTypeLeague:      defaultImageName = @"TI2";    break;
+        case SPItemEntranceTypeOther:       defaultImageName = @"Unit_Other";    break;
+        case SPItemEntranceTypeOnSale:      defaultImageName = @"Unit_Dota2";    break;
+        case SPItemEntranceTypeMarket:      defaultImageName = @"Unit_Steam";    break;
     }
     unit.defaultImage = defaultImageName;
     return unit;
@@ -66,7 +66,7 @@ YYModelDefaultCode
 
 @end
 
-NSString *const kSPItemEntranceConfigUnits = @"SPItemEntranceConfigUnits";
+NSString *const kSPItemEntranceConfigUnits = @"SPItemEntranceConfigUnitsV3";
 
 @implementation SPItemEntranceConfig
 
@@ -88,11 +88,22 @@ NSString *const kSPItemEntranceConfigUnits = @"SPItemEntranceConfigUnits";
                       [SPItemEntranceUnit unitWithType:SPItemEntranceTypeOther],
                       [SPItemEntranceUnit unitWithType:SPItemEntranceTypeOnSale],
                       [SPItemEntranceUnit unitWithType:SPItemEntranceTypeMarket]];
-            [SPItemEntranceConfig saveUnits:units];
         }
         self.units = units;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)applicationDidEnterBackground:(NSNotification *)noti
+{
+    [SPItemEntranceConfig saveUnits:self.units];
 }
 
 + (NSArray<SPItemEntranceUnit *> *)savedUnits
@@ -130,8 +141,8 @@ NSString *const kSPItemEntranceConfigUnits = @"SPItemEntranceConfigUnits";
 
 - (void)updateUnitDelay:(SPItemEntranceUnit *)unit
 {
-    uint32_t min = 30;
-    uint32_t max = 60;
+    uint32_t min = 10;
+    uint32_t max = 40;
     NSTimeInterval delay = min + arc4random_uniform((max-min)*1000+1) / 1000.0;
     RunAfter(delay, ^{
         [self updateUnit:unit];

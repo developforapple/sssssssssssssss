@@ -1365,8 +1365,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Item_OffPrice" translatesAutoresizingMaskIntoConstraints="NO" id="i7u-39-7A7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i7u-39-7A7">
+                                                    <rect key="frame" x="-10" y="-10" width="320" height="320"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZr-D2-qNR">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -1403,11 +1403,11 @@
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="YZr-D2-qNR" secondAttribute="bottom" id="7ho-0t-DHR"/>
-                                            <constraint firstItem="i7u-39-7A7" firstAttribute="leading" secondItem="KAI-8X-KdT" secondAttribute="leading" id="7xH-wq-DKv"/>
-                                            <constraint firstAttribute="bottom" secondItem="i7u-39-7A7" secondAttribute="bottom" id="9eW-w0-gEf"/>
+                                            <constraint firstItem="i7u-39-7A7" firstAttribute="leading" secondItem="KAI-8X-KdT" secondAttribute="leading" constant="-10" id="7xH-wq-DKv"/>
+                                            <constraint firstAttribute="bottom" secondItem="i7u-39-7A7" secondAttribute="bottom" constant="-10" id="9eW-w0-gEf"/>
                                             <constraint firstItem="YZr-D2-qNR" firstAttribute="top" secondItem="KAI-8X-KdT" secondAttribute="top" id="BLc-GQ-3Bi"/>
-                                            <constraint firstItem="i7u-39-7A7" firstAttribute="top" secondItem="KAI-8X-KdT" secondAttribute="top" id="Bd2-zx-Fwn"/>
-                                            <constraint firstAttribute="trailing" secondItem="i7u-39-7A7" secondAttribute="trailing" id="Nlk-Ug-0Jc"/>
+                                            <constraint firstItem="i7u-39-7A7" firstAttribute="top" secondItem="KAI-8X-KdT" secondAttribute="top" constant="-10" id="Bd2-zx-Fwn"/>
+                                            <constraint firstAttribute="trailing" secondItem="i7u-39-7A7" secondAttribute="trailing" constant="-10" id="Nlk-Ug-0Jc"/>
                                             <constraint firstItem="YZr-D2-qNR" firstAttribute="leading" secondItem="KAI-8X-KdT" secondAttribute="leading" id="Yga-G9-Oel"/>
                                             <constraint firstAttribute="trailing" secondItem="YZr-D2-qNR" secondAttribute="trailing" id="eGP-8t-Es8"/>
                                         </constraints>
@@ -2342,7 +2342,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Item_OffPrice" width="256" height="170"/>
         <image name="QRCode" width="124" height="123"/>
         <image name="about_left" width="90" height="322"/>
         <image name="about_right" width="90" height="322"/>

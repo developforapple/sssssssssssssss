@@ -1865,7 +1865,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Item_OffPrice" translatesAutoresizingMaskIntoConstraints="NO" id="7HA-h6-TnE">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7HA-h6-TnE">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f4E-jN-Xg3">
@@ -2079,7 +2079,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Item_OffPrice" width="256" height="170"/>
         <image name="filter" width="21" height="21"/>
         <image name="icon_arrow_more" width="8" height="14"/>
         <image name="icon_four_rectangle" width="21" height="21"/>
