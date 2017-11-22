@@ -141,8 +141,8 @@ NSString *const kSPItemEntranceConfigUnits = @"SPItemEntranceConfigUnitsV3";
 
 - (void)updateUnitDelay:(SPItemEntranceUnit *)unit
 {
-    uint32_t min = 10;
-    uint32_t max = 40;
+    uint32_t min = 30;
+    uint32_t max = 60;
     NSTimeInterval delay = min + arc4random_uniform((max-min)*1000+1) / 1000.0;
     RunAfter(delay, ^{
         [self updateUnit:unit];
@@ -188,42 +188,40 @@ NSString *const kSPItemEntranceConfigUnits = @"SPItemEntranceConfigUnitsV3";
     NSString *sql;
     switch (unit.type) {
         case SPItemEntranceTypeCourier:{
-            sql = @"SELECT * FROM items WHERE prefab = 'courier' ORDER BY RANDOM() LIMIT 1;";
+            sql = @"SELECT image_inventory FROM items WHERE prefab = 'courier' ORDER BY RANDOM() LIMIT 1;";
         }   break;
         case SPItemEntranceTypeWorld:{
-            sql = @"SELECT * FROM items WHERE prefab = 'ward' OR prefab = 'terrain' ORDER BY RANDOM() LIMIT 1;";
+            sql = @"SELECT image_inventory FROM items WHERE prefab = 'ward' OR prefab = 'terrain' ORDER BY RANDOM() LIMIT 1;";
         }   break;
         case SPItemEntranceTypeHud:{
-            sql = @"SELECT * FROM items WHERE prefab = 'loading_screen' OR prefab = 'hud_skin' ORDER BY RANDOM() LIMIT 1;";
+            sql = @"SELECT image_inventory FROM items WHERE prefab = 'loading_screen' OR prefab = 'hud_skin' ORDER BY RANDOM() LIMIT 1;";
         }   break;
         case SPItemEntranceTypeAudio:{
-            sql = @"SELECT * FROM items WHERE prefab = 'music' OR prefab = 'announcer' ORDER BY RANDOM() LIMIT 1;";
+            sql = @"SELECT image_inventory FROM items WHERE prefab = 'music' OR prefab = 'announcer' ORDER BY RANDOM() LIMIT 1;";
         }   break;
         case SPItemEntranceTypeTreasureBundle:{
-            sql = @"SELECT * FROM items WHERE prefab = 'treasure_chest' OR prefab = 'bundle' ORDER BY RANDOM() LIMIT 1;";
+            sql = @"SELECT image_inventory FROM items WHERE prefab = 'treasure_chest' OR prefab = 'bundle' ORDER BY RANDOM() LIMIT 1;";
         }   break;
         case SPItemEntranceTypeLeague:{
-            sql = @"SELECT * FROM items WHERE prefab = 'league' ORDER BY RANDOM() LIMIT 1;";
+            sql = @"SELECT image_inventory FROM items WHERE prefab = 'league' ORDER BY RANDOM() LIMIT 1;";
         }   break;
         case SPItemEntranceTypeOther:{
-            sql = @"SELECT * FROM items WHERE prefab = 'tool' OR prefab = 'taunt' OR prefab = 'misc' ORDER BY RANDOM() LIMIT 1;";
+            sql = @"SELECT image_inventory FROM items WHERE prefab = 'tool' OR prefab = 'taunt' OR prefab = 'misc' ORDER BY RANDOM() LIMIT 1;";
         }   break;
         default:
             break;
     }
     if (sql) {
         
-        __block SPItem *item;
+        SPItem *item;
         
-        SyncBenchmarkTestAndLog(^{
-            SPDBWITHOPEN
-            FMResultSet *result = [db executeQuery:sql];
-            if ([result next]) {
-                NSDictionary *dict = result.resultDictionary;
-                item = [SPItem yy_modelWithDictionary:dict];
-            }
-            SPDBCLOSE
-        });
+        SPDBWITHOPEN
+        FMResultSet *result = [db executeQuery:sql];
+        if ([result next]) {
+            NSDictionary *dict = result.resultDictionary;
+            item = [SPItem yy_modelWithDictionary:dict];
+        }
+        SPDBCLOSE
         
         unit.imageUrl = [item qiniuLargeURL].absoluteString;
         [self didUpdateUnit:unit];

@@ -1866,7 +1866,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7HA-h6-TnE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                    <rect key="frame" x="-10" y="-10" width="320" height="320"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f4E-jN-Xg3">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -1902,14 +1902,14 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="7HA-h6-TnE" firstAttribute="top" secondItem="9Ct-M4-NxQ" secondAttribute="top" id="HZz-ns-I6A"/>
+                                            <constraint firstItem="7HA-h6-TnE" firstAttribute="top" secondItem="9Ct-M4-NxQ" secondAttribute="top" constant="-10" id="HZz-ns-I6A"/>
                                             <constraint firstItem="f4E-jN-Xg3" firstAttribute="top" secondItem="9Ct-M4-NxQ" secondAttribute="top" id="Igh-Ed-A9N"/>
-                                            <constraint firstItem="7HA-h6-TnE" firstAttribute="leading" secondItem="9Ct-M4-NxQ" secondAttribute="leading" id="RCg-1s-rCd"/>
+                                            <constraint firstItem="7HA-h6-TnE" firstAttribute="leading" secondItem="9Ct-M4-NxQ" secondAttribute="leading" constant="-10" id="RCg-1s-rCd"/>
                                             <constraint firstAttribute="bottom" secondItem="f4E-jN-Xg3" secondAttribute="bottom" id="YwC-JY-xJA"/>
-                                            <constraint firstAttribute="trailing" secondItem="7HA-h6-TnE" secondAttribute="trailing" id="d0x-nW-KM3"/>
+                                            <constraint firstAttribute="trailing" secondItem="7HA-h6-TnE" secondAttribute="trailing" constant="-10" id="d0x-nW-KM3"/>
                                             <constraint firstItem="f4E-jN-Xg3" firstAttribute="leading" secondItem="9Ct-M4-NxQ" secondAttribute="leading" id="elq-74-abv"/>
                                             <constraint firstAttribute="trailing" secondItem="f4E-jN-Xg3" secondAttribute="trailing" id="hzp-fl-HWD"/>
-                                            <constraint firstAttribute="bottom" secondItem="7HA-h6-TnE" secondAttribute="bottom" id="qlT-XQ-gwJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="7HA-h6-TnE" secondAttribute="bottom" constant="-10" id="qlT-XQ-gwJ"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="blurView" destination="f4E-jN-Xg3" id="77P-Th-jUb"/>

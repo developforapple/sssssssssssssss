@@ -12,7 +12,113 @@
 #import "SPGamepediaImage.h"
 #import "SPGamepediaPlayable.h"
 #import "SPGamepediaData.h"
+#import <WebKit/WebKit.h>
 @import Hpple;
+
+@interface SPGamepediaAPIWebBrowser : NSObject <WKNavigationDelegate>
+@property (strong, nonatomic) WKWebView *webView;
+@property (copy, nonatomic) void (^completion)(NSString *text,NSError *error);
+@property (copy, nonatomic) NSURL *url;
+@end
+
+
+@implementation SPGamepediaAPIWebBrowser
+
++ (instancetype)browser
+{
+    static SPGamepediaAPIWebBrowser *browser;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        browser = [[SPGamepediaAPIWebBrowser alloc] init];
+    });
+    return browser;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        WKWebViewConfiguration *configure = [[WKWebViewConfiguration alloc] init];
+        if (iOS9) {
+            configure.applicationNameForUserAgent = @"Safari";
+        }
+        self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(-10, -10, 10, 10) configuration:configure];
+        self.webView.navigationDelegate = self;
+        self.webView.alpha = 0;
+    }
+    return self;
+}
+
+- (void)skipDDosProtection:(NSURL *)url completion:(void (^)(NSString *text,NSError *error))completion;
+{
+    [self.webView stopLoading];
+    self.url = url;
+    self.completion = completion;
+    if (!self.webView.superview) {
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        [window addSubview:self.webView];
+    }
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+    NSLog(@"decidePolicyForNavigationAction : %@",navigationAction.request.URL);
+    
+    decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
+{
+    NSLog(@"decidePolicyForNavigationResponse : %@",navigationResponse.response.URL);
+    
+    decisionHandler(WKNavigationResponsePolicyAllow);
+}
+
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation
+{
+    NSLog(@"didStartProvisionalNavigation");
+}
+
+- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(null_unspecified WKNavigation *)navigation
+{
+    NSLog(@"didReceiveServerRedirectForProvisionalNavigation");
+}
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error
+{
+    NSLog(@"didFailProvisionalNavigation : %@",error);
+}
+
+- (void)webView:(WKWebView *)webView didCommitNavigation:(null_unspecified WKNavigation *)navigation
+{
+    NSLog(@"didCommitNavigation");
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation
+{
+    NSLog(@"didFinishNavigation");
+    
+    if ([webView.URL.absoluteString isEqualToString:self.url.absoluteString]) {
+        ygweakify(self);
+        [webView evaluateJavaScript:@"document.body.outerText" completionHandler:^(id object, NSError *error) {
+            
+            ygstrongify(self);
+            if (self.completion) {
+                self.completion(object, error);
+            }
+            
+        }];
+    }
+}
+
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error
+{
+    NSLog(@"didFailNavigation : %@",error);
+}
+
+@end
+
 
 //https://dota2.gamepedia.com/api.php?action=parse&format=json&prop=text&page=Aria_of_the_Wild_Wind_Set
 
@@ -29,15 +135,16 @@
     dispatch_once(&onceToken, ^{
         shared = [SPGamepediaAPI new];
         
-        NSURL *baseURL = [NSURL URLWithString:@"https://dota2.gamepedia.com"];
-        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
-        [manager.requestSerializer setValue:@"dota2.gamepedia.com" forHTTPHeaderField:@"Host"];
-        [manager.requestSerializer setValue:@"Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E188a Safari/601.1" forHTTPHeaderField:@"User-Agent"];
-        [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-        [manager.requestSerializer setValue:@"zh-cn" forHTTPHeaderField:@"Accept-Language"];
-        [manager.requestSerializer setValue:@"gzip, deflate" forHTTPHeaderField:@"Accept-Encoding"];
-
-        shared.manager = manager;
+//        NSURL *baseURL = [NSURL URLWithString:@"https://dota2.gamepedia.com"];
+//        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
+//        [manager.requestSerializer setValue:@"dota2.gamepedia.com" forHTTPHeaderField:@"Host"];
+//        [manager.requestSerializer setValue:@"Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.3 Mobile/14E277 Safari/603.1.30" forHTTPHeaderField:@"User-Agent"];
+//        [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+//        [manager.requestSerializer setValue:@"zh-cn" forHTTPHeaderField:@"Accept-Language"];
+//        [manager.requestSerializer setValue:@"br, gzip, deflate" forHTTPHeaderField:@"Accept-Encoding"];
+//        [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+//
+//        shared.manager = manager;
     });
     return shared;
 }
@@ -59,21 +166,55 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self defaultWebAPIParams]];
     dict[@"page"] = item.name;
     
-    AsyncBenchmarkTestBegin(SPGamepediaAPI)
+    AsyncBenchmarkTestBegin(SPGamepediaAPI);
     
-    ygweakify(self);
-    [self.manager GET:@"api.php" parameters:dict progress:^(NSProgress *downloadProgress) {
-        NSLog(@"GamepediaAPI progress: %@",downloadProgress.localizedAdditionalDescription);
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
-        AsyncBenchmarkTestEnd(SPGamepediaAPI)
-        ygstrongify(self);
-        NSLog(@"Did load Gamepedia content");
-        [self handleFetchResult:responseObject ofItem:item completion:completion];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        AsyncBenchmarkTestEnd(SPGamepediaAPI)
-        NSLog(@"Failed load Gamepedia content. error: %@",error);
-        completion(NO,[SPGamepediaData error:error]);
+    NSURLComponents *compontents = [NSURLComponents componentsWithString:@"https://dota2.gamepedia.com/api.php"];
+    NSMutableArray *queryItems = [NSMutableArray array];
+    for (NSString *k in dict) {
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:k value:dict[k]]];
+    }
+    compontents.queryItems = queryItems;
+
+    [[SPGamepediaAPIWebBrowser browser] skipDDosProtection:compontents.URL completion:^(NSString *text, NSError *error) {
+        AsyncBenchmarkTestEnd(SPGamepediaAPI);
+        if (error) {
+            NSLog(@"Failed load Gamepedia content. error: %@",error);
+            completion(NO,[SPGamepediaData error:error]);
+        }else{
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:NULL];
+            [self handleFetchResult:dict ofItem:item completion:completion];
+        }
     }];
+    
+    return;
+    
+    
+//    ygweakify(self);
+//    [self.manager GET:@"api.php" parameters:dict progress:^(NSProgress *downloadProgress) {
+//        NSLog(@"GamepediaAPI progress: %@",downloadProgress.localizedAdditionalDescription);
+//    } success:^(NSURLSessionDataTask *task, id responseObject) {
+//        AsyncBenchmarkTestEnd(SPGamepediaAPI)
+//        ygstrongify(self);
+//        NSLog(@"Did load Gamepedia content");
+//        [self handleFetchResult:responseObject ofItem:item completion:completion];
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        AsyncBenchmarkTestEnd(SPGamepediaAPI)
+//        NSHTTPURLResponse *resp = (NSHTTPURLResponse *)task.response;
+//        if (resp.statusCode == 503) {
+//            // 需要跳过DDoS防护
+//            NSLog(@"需要跳过DDoS防护");
+//
+//            NSData *data = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+//            NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//
+//
+//
+//        }else{
+//
+//            NSLog(@"Failed load Gamepedia content. error: %@",error);
+//            completion(NO,[SPGamepediaData error:error]);
+//        }
+//    }];
 }
 
 - (void)handleFetchResult:(id)responseObject ofItem:(SPItem *)item completion:(SPGamepediaAPICompletion)completion

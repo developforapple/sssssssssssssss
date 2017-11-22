@@ -29,6 +29,7 @@
 @property (strong, readwrite, nonatomic) SPItemSteamPrice *steamPrice;
 
 @property (strong, readwrite, nonatomic) SPGamepediaData *extraData;
+@property (assign, readwrite, nonatomic) NSTimeInterval loadExtraDataConsumed;
 
 @end
 
@@ -165,7 +166,10 @@
 - (void)loadExtraData:(BOOL)forced
 {
     if (forced || Config.sp_config_item_detail_load_extra_data_auto) {
+        AsyncBenchmarkTestBegin(SPItemSharedDataLoadExtraData);
         [[SPGamepediaAPI shared] fetchItemInfo:self.item completion:^(BOOL suc, SPGamepediaData *data) {
+            AsyncBenchmarkTestEnd(SPItemSharedDataLoadExtraData);
+            self.loadExtraDataConsumed = __benchmarkResult_SPItemSharedDataLoadExtraData / 1000; //精确到秒
             self.extraData = data;
         }];
     }

@@ -50,16 +50,14 @@
 
 - (void)setupImageViewImage:(UIImage *)image
 {
-    RunOnGlobalQueue(^{
+    @autoreleasepool{
         UIImage *scaledImage = [image imageByResizeToSize:CGSizeMake(self.imageView.bounds.size.width*2, self.imageView.bounds.size.width*2) contentMode:self.imageView.contentMode];
-        RunOnMainQueue(^{
-            [UIView transitionWithView:self.imageView duration:.6f options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationOptionCurveEaseInOut animations:^{
-                self.imageView.image = scaledImage;
-            } completion:^(BOOL finished) {
-                self.unit.lastImage = scaledImage;
-            }];
-        });
-    });
+        [UIView transitionWithView:self.imageView duration:.6f options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.imageView.image = scaledImage;
+        } completion:^(BOOL finished) {
+            self.unit.lastImage = scaledImage;
+        }];
+    }
 }
 
 - (void)configureWithEvent:(SPDotaEvent *)event

@@ -127,7 +127,9 @@
         while ([result nextWithError:&error]) {
             NSDictionary *dict = result.resultDictionary;
             SPItem *item = [SPItem yy_modelWithDictionary:dict];
-            [items addObject:item];
+            if (item) {
+                [items addObject:item];
+            }
         }
         if (error) {
             [result close];

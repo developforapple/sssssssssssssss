@@ -43,6 +43,7 @@
 
 // 来自 Gamepedia 的数据 异步加载
 @property (strong, readonly, nonatomic) SPGamepediaData *extraData;
+@property (assign, readonly, nonatomic) NSTimeInterval loadExtraDataConsumed;
 
 
 - (instancetype)init NS_UNAVAILABLE;

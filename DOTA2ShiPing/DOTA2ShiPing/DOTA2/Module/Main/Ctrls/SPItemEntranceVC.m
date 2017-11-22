@@ -40,6 +40,12 @@
     [self loadConfigure];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[SDImageCache sharedImageCache] clearMemory];
+}
+
 - (void)initUI
 {
     CGFloat width = Device_Width/2-0.5f;
