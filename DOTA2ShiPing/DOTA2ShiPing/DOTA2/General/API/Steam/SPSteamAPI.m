@@ -217,6 +217,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[self defaultWebAPIParams]];
     params[@"steamid"] = steamid17;
+//    params[@"steamid"] = @"76561198059579364";
     
     void (^failure)(void) = ^{
         SPPlayerItemsList *list = [SPPlayerItemsList new];
@@ -359,7 +360,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
     NSMutableDictionary *params = [self defaultWebAPIParams].mutableCopy;
     params[@"steamids"] = [steamid17s componentsJoinedByString:@","];
     
-    [self.webAPIManager GET:@"ISteamUser/GetPlayerSummaries/v0002" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [self.webAPIManager GET:@"ISteamUser/GetPlayerSummaries/v0002" parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             NSArray *playersJson = responseObject[@"response"][@"players"];
             NSArray *players = [NSArray yy_modelArrayWithClass:[SPPlayerDetailInfo class] json:playersJson];
@@ -601,6 +602,9 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
 @end
 
 #pragma mark - SPJsonSerializer
+
+#include <iconv.h>
+
 @interface SPJsonSerializer ()
 @end
 
@@ -610,9 +614,40 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
                           error:(NSError *__autoreleasing *)error
 {
     id object = [super responseObjectForResponse:response data:data error:error];
+    
     response.MD5 = data.md5String;
+    if ( *error && (*error).code == 3840) {
+        NSData *theData = [self cleanUTF8:data];
+        if (theData && theData.length > 0) {
+            *error = nil;
+            object = [NSJSONSerialization JSONObjectWithData:theData options:self.readingOptions error:error];
+            response.MD5 = theData.md5String;
+        }
+    }
     return object;
 }
+
+- (NSData *)cleanUTF8:(NSData *)data {
+    iconv_t cd = iconv_open("UTF-8", "UTF-8"); // 从utf8转utf8
+    int one = 1;
+    iconvctl(cd, ICONV_SET_DISCARD_ILSEQ, &one); // 丢弃不正确的字符
+    
+    size_t inbytesleft, outbytesleft;
+    inbytesleft = outbytesleft = data.length;
+    char *inbuf  = (char *)data.bytes;
+    char *outbuf = malloc(sizeof(char) * data.length);
+    char *outptr = outbuf;
+    if (iconv(cd, &inbuf, &inbytesleft, &outptr, &outbytesleft)
+        == (size_t)-1) {
+        NSLog(@"this should not happen, seriously");
+        return nil;
+    }
+    NSData *result = [NSData dataWithBytes:outbuf length:data.length - outbytesleft];
+    iconv_close(cd);
+    free(outbuf);
+    return result;
+}
+
 @end
 
 

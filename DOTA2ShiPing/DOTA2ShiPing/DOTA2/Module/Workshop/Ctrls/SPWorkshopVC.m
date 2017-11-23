@@ -121,14 +121,10 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
 #pragma mark - Action
 - (IBAction)changeSection:(UIButton *)btn
 {
-    static NSArray *items;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        items = @[[RWDropdownMenuItem itemWithText:[SPWorkshop sectionVisiblaTitle:SPWorkshopSectionItem] image:nil action:nil],
-                  [RWDropdownMenuItem itemWithText:[SPWorkshop sectionVisiblaTitle:SPWorkshopSectionGame] image:nil action:nil],
-                  [RWDropdownMenuItem itemWithText:[SPWorkshop sectionVisiblaTitle:SPWorkshopSectionMerchandise] image:nil action:nil],
-                  [RWDropdownMenuItem itemWithText:[SPWorkshop sectionVisiblaTitle:SPWorkshopSectionCollections] image:nil action:nil],];
-    });
+    NSArray *items = @[[RWDropdownMenuItem itemWithText:[SPWorkshop sectionVisiblaTitle:SPWorkshopSectionItem] image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:[SPWorkshop sectionVisiblaTitle:SPWorkshopSectionGame] image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:[SPWorkshop sectionVisiblaTitle:SPWorkshopSectionMerchandise] image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:[SPWorkshop sectionVisiblaTitle:SPWorkshopSectionCollections] image:nil action:nil]];
     ygweakify(self);
     void (^action)(SPWorkshopSection) = ^(SPWorkshopSection section){
         ygstrongify(self);

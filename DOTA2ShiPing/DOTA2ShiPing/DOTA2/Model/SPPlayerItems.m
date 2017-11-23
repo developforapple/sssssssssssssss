@@ -8,7 +8,6 @@
 
 #import "SPPlayerItems.h"
 
-
 #pragma mark - 用户的库存清单
 @interface SPPlayerItemsList    ()
 @property (strong, nonatomic) NSMutableDictionary *mapping;
@@ -32,6 +31,14 @@
         }
     }
     return self.mapping[itemid];
+}
+
+- (void)removeHiddenItems:(NSSet<NSNumber *> *)defindexes;
+{
+    NSIndexSet *indexes = [self.items indexesOfObjectsPassingTest:^BOOL(SPPlayerItem *obj, NSUInteger idx, BOOL *stop) {
+        return ![defindexes containsObject:obj.defindex];
+    }];
+    self.items = [self.items objectsAtIndexes:indexes];
 }
 
 YYModelDefaultCode

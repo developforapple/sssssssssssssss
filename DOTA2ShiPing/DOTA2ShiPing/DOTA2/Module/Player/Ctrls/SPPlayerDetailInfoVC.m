@@ -102,7 +102,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
     // 用户信息
     [[SPSteamAPI shared] fetchPlayerSummarie:[self.player steamid17] completion:^(BOOL suc, id object) {
         if (suc) {
-            [HUD hide:YES];
+            [HUD hideAnimated:YES];
             self.info = object;
             [self update];
         }else{
@@ -250,7 +250,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
             }
             case SPPlayerItemsListStatusSuccess: {
                 self.showItemsDetailBtn.hidden = NO;
-                self.itemTitleLabel.text = [NSString stringWithFormat:@"物品库存：%lu 件",(unsigned long)[self.itemsList.items count]];
+                self.itemTitleLabel.text = [NSString stringWithFormat:@"物品库存：%lu 件(包含选手卡片)",(unsigned long)[self.itemsList.items count]];
                 self.itemTitleLabel.textAlignment = NSTextAlignmentLeft;
                 
                 CGRect frame = self.itemTagCollectionView.frame;
@@ -293,21 +293,43 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
 - (void)computeItemTags:(SPPlayerItemsList *)list
 {
     RunOnGlobalQueue(^{
-        SPDataManager *m = [SPDataManager shared];
-        FMDatabase *db = m.db;
+        
+        SPDBWITHOPEN
+        
+        {
+            // 去除隐藏的物品
+            
+            FMResultSet *hiddenResult = [db executeQuery:@"SELECT token FROM items WHERE hidden = 1"];
+            NSMutableSet *hiddenItems = [NSMutableSet set];
+            int tokenIndex = [hiddenResult columnIndexForName:@"token"];
+            while ([hiddenResult next]) {
+                int token = [hiddenResult intForColumnIndex:tokenIndex];
+                [hiddenItems addObject:@(token)];
+            }
+            [hiddenResult close];
+            [list removeHiddenItems:hiddenItems];
+        }
+        
         
         NSMutableDictionary *allItems = [NSMutableDictionary dictionary];
         FMResultSet *result = [db executeQuery:@"SELECT token,item_rarity FROM items"];
         
         int tokenIndex = [result columnIndexForName:@"token"];
         int rarityIndex = [result columnIndexForName:@"item_rarity"];
+        int hiddenIndex = [result columnIndexForName:@"hidden"];
         
         while ([result next]) {
+            NSString *hidden = [result stringForColumnIndex:hiddenIndex];
             NSUInteger token = [result intForColumnIndex:tokenIndex];
             NSString *rarity = [result stringForColumnIndex:rarityIndex];
             allItems[@(token)] = rarity;
         }
         [result close];
+        
+        SPDBCLOSE
+        
+        NSMutableArray *tmp = [NSMutableArray array];
+        NSMutableSet *set = [NSMutableSet set];
         
         NSMutableDictionary *tagsDict = [NSMutableDictionary dictionary];
         SPPlayerItemsList *theList = list;
@@ -315,15 +337,21 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
             NSString *rarity = allItems[item.defindex];
             rarity = rarity?:@"Unknown";
             tagsDict[rarity] = @(1 + [tagsDict[rarity] integerValue]);
+        
+            
+            if ([rarity isEqualToString:@"common"]) {
+                [tmp addObject:item.defindex];
+                [set addObject:item.defindex];
+            }
         }
         
         NSMutableArray *tags = [NSMutableArray array];
         for (NSString *rarityName in tagsDict) {
             NSNumber *count = tagsDict[rarityName];
             
-            SPItemRarity *rarity = [m rarityOfName:rarityName];
+            SPItemRarity *rarity = [[SPDataManager shared] rarityOfName:rarityName];
             if (rarity) {
-                SPItemColor *color = [m colorOfName:rarity.color];
+                SPItemColor *color = [[SPDataManager shared] colorOfName:rarity.color];
                 [tags addObject:@[rarity.name_loc,count,color.color,rarity.value]];
             }else{
                 //未知
@@ -360,7 +388,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
     DDProgressHUD *HUD = [DDProgressHUD showHUDAddedTo:self.view.window animated:YES];
     HUD.mode = MBProgressHUDModeIndeterminate;
     HUD.progress = 0;
-    HUD.labelText = @"正在获取...";
+    HUD.label.text = @"正在获取...";
     
     NSString *newMD5 = self.itemsList.MD5;
     NSString *oldMD5 = [[SPPlayerManager shared] itemsEigenvalueOfPlayer:self.player.steam_id];
@@ -372,7 +400,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
     BOOL notNeedUpdate = newMD5 && oldMD5 && [oldMD5 isEqualToString:newMD5] && nil!=self.player.inventory;
     if (notNeedUpdate) {
         NSLog(@"不需要更新库存");
-        [HUD hide:YES];
+        [HUD hideAnimated:YES];
         [self performSegueWithIdentifier:kSPPlayerInventorySegueID sender:self.player];
         return;
     }
@@ -388,7 +416,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
                                         
                                          HUD.mode = MBProgressHUDModeDeterminate;
                                          HUD.progress = completedPages/(CGFloat)totalPages;
-                                         HUD.labelText = [NSString stringWithFormat:@"第 %lu/%lu 页",(unsigned long)completedPages,(unsigned long)totalPages];
+                                         HUD.label.text = [NSString stringWithFormat:@"第 %lu/%lu 页",(unsigned long)completedPages,(unsigned long)totalPages];
                                      }
                                    completion:^(BOOL suc, id object) {
                                       
@@ -402,7 +430,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
                                            [[SPPlayerManager shared] saveArchivedPlayerInventory:self.player];
                                            [[SPPlayerManager shared] setItemsEigenvalue:newMD5 forPlayer:self.player.steam_id];
         
-                                           [HUD hide:YES];
+                                           [HUD hideAnimated:YES];
                                            [self performSegueWithIdentifier:kSPPlayerInventorySegueID sender:self.player];
                                            
                                        }else{

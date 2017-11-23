@@ -181,8 +181,6 @@
     if (!items) {
         
         NSArray<SPPlayerItemDetail *> *playerItems = self.playerItems[index];
-        
-        // 需要查表
         NSMutableArray *tokens = [NSMutableArray array];
         for (SPPlayerItemDetail *aPlayerItem in playerItems) {
             if (aPlayerItem.defindex) {

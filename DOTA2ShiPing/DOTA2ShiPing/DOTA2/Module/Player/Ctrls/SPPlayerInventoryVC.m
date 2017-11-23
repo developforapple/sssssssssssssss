@@ -18,6 +18,8 @@
 #import "SPPlayerInventorySearchResultVC.h"
 #import "ReactiveObjC.h"
 
+#import "RWDropdownMenu.h"
+
 static NSString *const kYGInventoryCategoryPickerSegueID = @"YGInventoryCategoryPickerSegueID";
 static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
@@ -62,8 +64,6 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 - (void)initUI
 {
-    self.segmentView.backgroundColor = [UIColor clearColor];
-    self.segmentView.highlightColor = kRedColor;
     self.pageVC.delegate = self;
     self.pageVC.dataSource = self;
     SPItemListMode mode = [[NSUserDefaults standardUserDefaults] integerForKey:kSPItemListModeKey];
@@ -74,6 +74,14 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 - (void)initData
 {
+    
+    
+    
+    
+    
+    
+    
+    
     ygweakify(self);
     self.filter = [[SPInventoryFilter alloc] initWithPlayer:self.player];
     [self.filter setUpdateCallback:^{
@@ -148,8 +156,41 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     }
 }
 
-- (IBAction)changeCategory:(UIButton *)sender
+- (IBAction)changeCategory:(UIButton *)btn
 {
+    NSArray *items = @[[RWDropdownMenuItem itemWithText:@"全部" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"事件" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"英雄" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"信使" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"世界" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"界面" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"音频" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"珍藏" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"其他" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"可交易" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"可出售" image:nil action:nil],
+                       [RWDropdownMenuItem itemWithText:@"自定义" image:nil action:nil]];
+    ygweakify(self);
+    void (^action)(NSInteger) = ^(NSInteger index){
+        ygstrongify(self);
+//        self.HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
+//        self.isLoading = YES;
+//        [self.workshop loadWorkshopSection:section ignoreCache:NO];
+    };
+    for (RWDropdownMenuItem *item in items) {
+        NSUInteger idx = [items indexOfObject:item];
+        [item setValue:^{action(idx);} forKey:@"action"];
+    }
+    [RWDropdownMenu presentInPopoverFromView:btn
+                                   direction:UIPopoverArrowDirectionAny
+                                       align:RWDropdownMenuCellAlignmentCenter
+                              presentingFrom:self
+                                   withItems:items
+                                  completion:nil];
+    
+    
+    
+    
     [self setCategoryPickerVisible:!self.categoryPicker.isVisible];
 }
 
@@ -225,7 +266,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     SPItemListContainer *vc = self.vcs[k];
     if (!vc) {
         vc = [SPItemListContainer instanceFromStoryboard];
-        vc.topInset = @(64.f+44.f);
+        vc.topInset = @(44.f);
         self.vcs[k] = vc;
     }
     [vc update:self.mode data:[self.filter itemAtPageIndex:index]];

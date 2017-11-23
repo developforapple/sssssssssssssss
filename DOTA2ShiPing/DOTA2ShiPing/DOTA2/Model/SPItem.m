@@ -22,6 +22,11 @@
 
 @implementation SPItem
 
+- (BOOL)isHidden
+{
+    return self.hidden.boolValue;
+}
+
 - (BOOL)isBundle
 {
     return [self.prefab isEqualToString:@"bundle"];

@@ -6,11 +6,11 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "YGBaseViewCtrl.h"
 
 @class SPPlayer;
 
-@interface SPPlayerDetailInfoVC : UITableViewController
+@interface SPPlayerDetailInfoVC : YGBaseTableViewCtrl
 
 @property (strong, nonatomic) SPPlayer *player;
 

@@ -6,11 +6,11 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "YGBaseViewCtrl.h"
 
 @class SPPlayer;
 
-@interface SPPlayerInventoryVC : UIViewController
+@interface SPPlayerInventoryVC : YGBaseViewCtrl
 
 @property (strong, nonatomic) SPPlayer *player;
 

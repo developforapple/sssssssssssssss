@@ -18,6 +18,7 @@ FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 
 @interface SPItem : NSObject
 
+- (BOOL)isHidden;   //该物品是否对用户不可见。目前不可见的物品主要是选手卡片。
 - (BOOL)isBundle;   //是否是一个套装
 - (BOOL)isInBundle; //是否包含于一个套装
 - (BOOL)isWearable; //是否是一个可穿戴的饰品
@@ -48,6 +49,7 @@ FOUNDATION_EXTERN NSMutableSet *kItemKeys;
 @property (strong, nonatomic) NSString *tournament_url;     //http://esportsviet.vn/vecl
 @property (strong, nonatomic) NSString *item_slot;          //neck
 @property (strong, nonatomic) NSString *item_quality;
+@property (strong, nonatomic) NSNumber *hidden;
 
 @property (strong, nonatomic) NSString *purchase_requirement_prompt_text;    //db name: prpt
 @property (strong, nonatomic) NSString *purchase_requires_owning_league_id;  //db name: proli

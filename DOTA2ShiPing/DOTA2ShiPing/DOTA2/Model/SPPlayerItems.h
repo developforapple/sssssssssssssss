@@ -36,6 +36,8 @@ typedef NS_ENUM(NSUInteger, SPPlayerItemsListStatus) {
 // 根据id查找defindex。不用考虑效率
 - (NSNumber *)defindexOfItemID:(NSNumber *)itemid;
 
+- (void)removeHiddenItems:(NSSet *)defindexes;
+
 @end
 
 @interface SPPlayerItem : NSObject <NSCopying,NSCoding,YYModel>
