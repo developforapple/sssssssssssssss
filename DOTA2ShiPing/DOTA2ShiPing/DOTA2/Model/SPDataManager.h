@@ -16,7 +16,7 @@
 #import "SPItemQuality.h"
 #import "SPLootList.h"
 #import "SPDotaEvent.h"
-
+#import "SPItem.h"
 #import "FMDB.h"
 
 /**
@@ -41,6 +41,8 @@
 - (NSArray<SPItemSets *> *)querySetsWithCondition:(NSString *)condition values:(NSArray *)values;
 
 - (NSArray<NSString *> *)itemsInLootlist:(NSString *)lootlist;
+
+- (NSArray<SPItem *> *)queryItems:(NSString *)condition values:(NSArray *)values;
 
 @end
 

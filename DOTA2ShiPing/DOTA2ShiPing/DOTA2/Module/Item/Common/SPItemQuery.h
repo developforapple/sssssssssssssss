@@ -36,12 +36,16 @@
 // 外部导入的物品
 + (instancetype)importItems:(NSArray<SPItem *> *)items;
 
+// 根据有序的tokens查找
++ (instancetype)queryWithOrderedTokens:(NSArray<NSNumber *> *)tokens;
+
 @property (strong, nonatomic) SPHero *hero;
 @property (strong, nonatomic) NSArray<SPItemPrefab *> *prefabs;
 @property (strong, nonatomic) SPItemRarity *rarity;
 @property (strong, nonatomic) SPDotaEvent *event;
 @property (strong, nonatomic) NSString *keywords;
 @property (strong, nonatomic) NSArray *itemNames;
+@property (strong, nonatomic) NSArray<NSNumber *> *orderedTokens;
 @property (strong, nonatomic) NSString *queryTitle;
 
 // 查询到的数据

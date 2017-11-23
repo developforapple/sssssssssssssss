@@ -321,6 +321,32 @@
     return array;
 }
 
+- (NSArray<SPItem *> *)queryItems:(NSString *)condition values:(NSArray *)values
+{
+    if (condition.length == 0) {
+        return @[];
+    }
+    
+    [self.db open];
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM items WHERE %@",condition];
+    
+    FMResultSet *result = [self.db executeQuery:sql withArgumentsInArray:values];
+    NSMutableArray *array = [NSMutableArray array];
+    
+    while ([result next]) {
+        NSDictionary *dict = [result resultDictionary];
+        SPItem *item = [SPItem yy_modelWithDictionary:dict];
+        if (item) {
+            [array addObject:item];
+        }
+    }
+    
+    [self.db close];
+    
+    return array;
+}
+
 @end
 
 @implementation SPDataManager (Local)

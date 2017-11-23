@@ -8,17 +8,21 @@
 
 #import "SPInventoryFilter.h"
 #import "SPDataManager.h"
+#import "SPItemQuery.h"
 
 @interface SPInventoryFilter ()
-// 库存数据
+// 全部物品
 @property (strong, nonatomic) NSArray<SPPlayerItemDetail *> *baseItems;
 
-// 分类排序过后的items
-@property (strong, readwrite, nonatomic) NSArray<NSArray<SPPlayerItemDetail *> *> *playerItems;
-// 使用筛选条件进行筛选过后的items。没有进行分类和排序。
+// 筛选后的全部物品。没有进行分类和排序。
 @property (strong, nonatomic) NSArray<SPPlayerItemDetail *> *filteredItems;
 // 筛选排序过后的标题
 @property (strong, readwrite, nonatomic) NSArray<NSString *> *titles;
+// 筛选后的物品，再进行了分类排序。
+@property (strong, readwrite, nonatomic) NSArray<NSArray<SPPlayerItemDetail *> *> *playerItems;
+
+// 用户筛选后的物品，对应的原始model
+@property (strong, nonatomic) NSMutableDictionary<NSNumber *, NSArray<SPItem *> *> *originItems;
 
 @property (strong, readwrite, nonatomic) SPPlayer *player;
 @property (assign, readwrite, nonatomic) SPInventoryCategory category;
@@ -164,9 +168,42 @@
 //    return items.count;
 }
 
+- (NSInteger)itemCount
+{
+    return self.playerItems.count;
+}
+
+- (NSArray<SPItem *> *)itemAtPageIndex:(NSInteger)index
+{
+    if (index < 0 || index >= self.itemCount) return nil;
+    
+    NSArray *items = self.originItems[@(index)];
+    if (!items) {
+        
+        NSArray<SPPlayerItemDetail *> *playerItems = self.playerItems[index];
+        
+        // 需要查表
+        NSMutableArray *tokens = [NSMutableArray array];
+        for (SPPlayerItemDetail *aPlayerItem in playerItems) {
+            if (aPlayerItem.defindex) {
+                [tokens addObject:aPlayerItem.defindex];
+            }
+        }
+        SPItemQuery *query = [SPItemQuery queryWithOrderedTokens:tokens];
+        [query updateItems];
+        items = query.items;
+        self.originItems[@(index)] = items;
+    }
+    return items;
+}
+
 - (void)updateOriginItems
 {
-    //TODO
+    if (self.originItems) {
+        [self.originItems removeAllObjects];
+    }else{
+        self.originItems = [NSMutableDictionary dictionary];
+    }
 }
 
 // 全部饰品

@@ -218,7 +218,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 #pragma mark - Page
 - (SPItemListContainer *)viewControllerAtIndex:(NSInteger)index
 {
-    if (index < 0 || index >= self.filter.items.count) {
+    if (index < 0 || index >= [self.filter itemCount]) {
         return nil;
     }
     NSNumber *k = @(index);
@@ -228,7 +228,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
         vc.topInset = @(64.f+44.f);
         self.vcs[k] = vc;
     }
-    [vc update:self.mode data:self.filter.items[index]];
+    [vc update:self.mode data:[self.filter itemAtPageIndex:index]];
     return vc;
 }
 

@@ -38,8 +38,8 @@
 @property (strong, readonly, nonatomic) NSArray<NSArray<SPPlayerItemDetail *> *> *playerItems;
 
 
-
-@property (strong, readonly, nonatomic) NSArray<NSArray<SPItem *> *> *items;
+- (NSInteger)itemCount;
+- (NSArray<SPItem *> *)itemAtPageIndex:(NSInteger)index;
 
 
 // 独立的搜索。和上面的属性无关。

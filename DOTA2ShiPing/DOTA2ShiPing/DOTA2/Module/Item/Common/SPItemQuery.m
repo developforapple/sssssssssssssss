@@ -13,6 +13,7 @@
 
 @interface SPItemQuery ()
 @property (assign, nonatomic) BOOL importItemsFlag;
+@property (assign, nonatomic) BOOL orderedTokensFlag;
 @end
 
 @implementation SPItemQuery
@@ -63,9 +64,21 @@
     return query;
 }
 
++ (instancetype)queryWithOrderedTokens:(NSArray<NSNumber *> *)tokens
+{
+    SPItemQuery *query = [[[self class] alloc] init];
+    query.orderedTokens = tokens;
+    query.orderedTokensFlag = YES;
+    return query;
+}
+
 - (BOOL)updateItems
 {
     if (_importItemsFlag) return YES;
+    
+    if (_orderedTokensFlag) {
+        return [self updateOrderedTokensItems];
+    }
     
     SPDBWITHOPEN
     
@@ -149,6 +162,37 @@
     return suc;
 }
 
+- (BOOL)updateOrderedTokensItems
+{
+    SPDBWITHOPEN
+    
+    AsyncBenchmarkTestBegin(SPItemQuery);
+    
+    NSMutableArray *result = [NSMutableArray array];
+    for (NSNumber *token in self.orderedTokens) {
+        
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM items WHERE token = %@;",token];
+        FMResultSet *resultSet = [db executeQuery:sql];
+        if ([resultSet next]) {
+            NSDictionary *dict = resultSet.resultDictionary;
+            SPItem *item = [SPItem yy_modelWithDictionary:dict];
+            if (item) {
+                [result addObject:item];
+            }
+        }
+        [resultSet close];
+    }
+    
+    AsyncBenchmarkTestEnd(SPItemQuery);
+    
+    SPDBCLOSE
+    
+    self.items = result;
+    self.fullItems = @[result];
+    self.fullTitles = @[@""];
+    return YES;
+}
+
 - (void)asyncUpdateItems:(void (^)(BOOL suc,NSArray *items))completion
 {
     RunOnGlobalQueue(^{
@@ -168,6 +212,10 @@
 {
     if (_importItemsFlag) {
         [self spearateItemForImportItems];
+        return;
+    }
+    
+    if (_orderedTokensFlag) {
         return;
     }
     
