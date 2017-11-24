@@ -2127,51 +2127,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xNW-AE-bZc" userLabel="Items">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNW-AE-bZc" userLabel="Items">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
                                 <connections>
                                     <segue destination="BLF-fa-1ew" kind="embed" identifier="YGInventoryPageVCSegueID" id="pnQ-yk-N8X"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IMx-W1-are" customClass="DDSegmentScrollView">
-                                <rect key="frame" x="0.0" y="64" width="414" height="44"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="3E7-qA-G1Q"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="translucent" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="normalFontSize">
-                                        <real key="value" value="14"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="highlightScale">
-                                        <real key="value" value="1.2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="titleMinimumHeight">
-                                        <real key="value" value="32"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showLineView" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="barTintColor">
-                                        <color key="value" red="0.13346317410469055" green="0.18231484293937683" blue="0.25190103054046631" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="segmentChanged:" destination="pIa-ra-Hi6" eventType="valueChanged" id="RKR-NL-Btf"/>
-                                </connections>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="IMx-W1-are" secondAttribute="trailing" id="COR-YM-Sqv"/>
-                            <constraint firstItem="IMx-W1-are" firstAttribute="leading" secondItem="rHe-pf-bco" secondAttribute="leading" id="MQz-Hn-Zux"/>
                             <constraint firstAttribute="trailing" secondItem="xNW-AE-bZc" secondAttribute="trailing" id="Pdu-mn-43f"/>
-                            <constraint firstItem="IMx-W1-are" firstAttribute="top" secondItem="jgo-4e-YSG" secondAttribute="bottom" id="RBb-4e-qPd"/>
                             <constraint firstItem="XBD-tV-n0B" firstAttribute="top" secondItem="xNW-AE-bZc" secondAttribute="bottom" id="eBc-Op-PoA"/>
                             <constraint firstItem="xNW-AE-bZc" firstAttribute="top" secondItem="rHe-pf-bco" secondAttribute="top" id="poZ-aB-77Y"/>
                             <constraint firstItem="xNW-AE-bZc" firstAttribute="leading" secondItem="rHe-pf-bco" secondAttribute="leading" id="q9y-hG-MVb"/>
@@ -2191,15 +2156,10 @@
                                         <action selector="changeCategory:" destination="pIa-ra-Hi6" eventType="touchUpInside" id="rSO-zy-OJd"/>
                                     </connections>
                                 </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow_bottom" translatesAutoresizingMaskIntoConstraints="NO" id="nyY-Ke-zvY">
-                                    <rect key="frame" x="95" y="27" width="10" height="6"/>
-                                </imageView>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="Pe1-LV-8uz" firstAttribute="top" secondItem="1CG-3V-Xe6" secondAttribute="top" id="93c-Cj-Iie"/>
                                 <constraint firstAttribute="bottom" secondItem="Pe1-LV-8uz" secondAttribute="bottom" constant="4" id="CAB-uK-chR"/>
-                                <constraint firstItem="nyY-Ke-zvY" firstAttribute="centerX" secondItem="1CG-3V-Xe6" secondAttribute="centerX" id="GpK-lc-Rou"/>
-                                <constraint firstAttribute="bottom" secondItem="nyY-Ke-zvY" secondAttribute="bottom" id="MA4-de-vWi"/>
                                 <constraint firstAttribute="trailing" secondItem="Pe1-LV-8uz" secondAttribute="trailing" id="eSB-gP-sM5"/>
                                 <constraint firstItem="Pe1-LV-8uz" firstAttribute="leading" secondItem="1CG-3V-Xe6" secondAttribute="leading" id="glm-WQ-gOi"/>
                             </constraints>
@@ -2221,10 +2181,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="categoryBtn" destination="Pe1-LV-8uz" id="1xU-Gq-SpG"/>
-                        <outlet property="categoryIndicator" destination="nyY-Ke-zvY" id="omX-SG-Ymc"/>
                         <outlet property="modeBtn" destination="tUd-dm-pFn" id="OTz-iP-vs8"/>
                         <outlet property="searchBtn" destination="bIq-wi-5Kj" id="A7o-LC-hkn"/>
-                        <outlet property="segmentView" destination="IMx-W1-are" id="EVM-XN-7Ru"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Wt-Ac-NUz" userLabel="First Responder" sceneMemberID="firstResponder"/>

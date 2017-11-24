@@ -20,26 +20,22 @@
 
 #import "RWDropdownMenu.h"
 
+#import "SPPlayerItemQuery.h"
+
 static NSString *const kYGInventoryCategoryPickerSegueID = @"YGInventoryCategoryPickerSegueID";
 static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
-@interface SPPlayerInventoryVC ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
+@interface SPPlayerInventoryVC ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,SPItemListContainerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *modeBtn;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *searchBtn;
 @property (weak, nonatomic) IBOutlet UIButton *categoryBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *categoryIndicator;
-@property (weak, nonatomic) IBOutlet DDSegmentScrollView *segmentView;
 
-@property (weak, nonatomic) IBOutlet UIView *categoryContainer;
-@property (strong, nonatomic) SPInventoryCategoryPickerVC *categoryPicker;
 @property (strong, nonatomic) UIPageViewController *pageVC;
-@property (strong, nonatomic) NSMutableDictionary<NSNumber *,SPItemListContainer *> *vcs;
-
-@property (assign, nonatomic) NSUInteger currentIndex;
+@property (strong, nonatomic) SPItemListContainer *container;
 
 @property (assign, nonatomic) SPItemListMode mode;
-
-@property (strong, nonatomic) SPInventoryFilter *filter;
+@property (strong, nonatomic) SPPlayerItemQuery *query;
 
 @end
 
@@ -49,11 +45,8 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 {
     [super viewDidLoad];
     
-    self.vcs = [NSMutableDictionary dictionary];
-    
     [self initUI];
     [self initData];
-    [self initSignal];
 }
 
 - (void)dealloc
@@ -69,129 +62,34 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     SPItemListMode mode = [[NSUserDefaults standardUserDefaults] integerForKey:kSPItemListModeKey];
     self.mode = mode;
     
+    self.container = [SPItemListContainer instanceFromStoryboard];
+    self.container.delegate = self;
+    self.container.supportLoadMore = YES;
+    
+    [self.pageVC setViewControllers:@[self.container] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
     self.categoryIndicator.layer.anchorPoint = CGPointMake(.5f, .5f);
 }
 
 - (void)initData
 {
-    
-    
-    
-    
-    
-    
-    
-    
-    ygweakify(self);
-    self.filter = [[SPInventoryFilter alloc] initWithPlayer:self.player];
-    [self.filter setUpdateCallback:^{
-        ygstrongify(self);
-        
-        if (self.filter.category == SPInventoryCategoryFilter &&
-            self.filter.condition == nil) {
-            [self search:self.searchBtn];
-        }else{
-            [self update];
-        }
-    }];
-    [self.filter updateWithCategory:SPInventoryCategoryAll];
+    SPPlayerItemSharedData *data = [SPPlayerItemSharedData new];
+    data.list = self.player.itemList;
+    data.inventory = self.player.inventory;
+    self.query = [SPPlayerItemQuery queryWithPlayerItems:data];
+    NSArray<SPItem *> *items = [self.query loadPage:0];
+    [self.container update:self.mode data:items];
 }
 
-- (void)initSignal
+- (void)itemListContainerWillLoadMore:(SPItemListContainer *)container
 {
-    ygweakify(self);
-    [RACObserve(self.categoryPicker, visible)
-     subscribeNext:^(NSNumber *x) {
-         ygstrongify(self);
-         if (x.boolValue) {
-             [UIView animateWithDuration:.2f animations:^{
-                 self.categoryIndicator.transform = CGAffineTransformMakeRotation(M_PI);
-             }];
-             [self.categoryContainer setHidden:NO animated:YES];
-             
-         }else{
-             [UIView animateWithDuration:.2f animations:^{
-                 self.categoryIndicator.transform = CGAffineTransformIdentity;
-             }];
-             [self.categoryContainer setHidden:YES animated:YES];
-         }
-     }];
-}
-
-- (void)update
-{
-    RunOnMainQueue(^{
-        self.segmentView.titles = self.filter.titles;
-        SPItemListContainer *vc = [self viewControllerAtIndex:0];
-        [self.pageVC setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-    });
-}
-
-#pragma mark - Update
-- (void)didChangedCategory:(SPInventoryCategory)type
-{
-    [self.categoryBtn setTitle:[self.categoryPicker titleForCategory:type] forState:UIControlStateNormal];
-    [self.filter updateWithCategory:type];
-}
-
-- (void)setCategoryPickerVisible:(BOOL)visible
-{
-    if (visible) {
-        [self.categoryPicker show];
-    }else{
-        [self.categoryPicker dismiss];
-    }
+    [self.query loadPage:self.query.pageNo+1];
 }
 
 #pragma mark - Action
-- (IBAction)segmentChanged:(DDSegmentScrollView *)segmentView
-{
-    UIViewController *vc = [self viewControllerAtIndex:segmentView.currentIndex];
-    if (vc) {
-        NSUInteger lastIndex = segmentView.lastIndex;
-        NSUInteger currentIndex = segmentView.currentIndex;
-        UIPageViewControllerNavigationDirection direction = lastIndex > currentIndex;
-        [self.pageVC setViewControllers:@[vc] direction:direction animated:YES completion:nil];
-        _currentIndex = currentIndex;
-    }
-}
-
 - (IBAction)changeCategory:(UIButton *)btn
 {
-    NSArray *items = @[[RWDropdownMenuItem itemWithText:@"全部" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"事件" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"英雄" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"信使" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"世界" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"界面" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"音频" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"珍藏" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"其他" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"可交易" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"可出售" image:nil action:nil],
-                       [RWDropdownMenuItem itemWithText:@"自定义" image:nil action:nil]];
-    ygweakify(self);
-    void (^action)(NSInteger) = ^(NSInteger index){
-        ygstrongify(self);
-//        self.HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
-//        self.isLoading = YES;
-//        [self.workshop loadWorkshopSection:section ignoreCache:NO];
-    };
-    for (RWDropdownMenuItem *item in items) {
-        NSUInteger idx = [items indexOfObject:item];
-        [item setValue:^{action(idx);} forKey:@"action"];
-    }
-    [RWDropdownMenu presentInPopoverFromView:btn
-                                   direction:UIPopoverArrowDirectionAny
-                                       align:RWDropdownMenuCellAlignmentCenter
-                              presentingFrom:self
-                                   withItems:items
-                                  completion:nil];
     
-    
-    
-    
-    [self setCategoryPickerVisible:!self.categoryPicker.isVisible];
 }
 
 - (IBAction)changeMode:(UIBarButtonItem *)sender
@@ -201,15 +99,13 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 - (IBAction)search:(UIBarButtonItem *)sender
 {
-    [self setCategoryPickerVisible:NO];
-    
     ygweakify(self);
     SPPlayerInventorySearchResultVC *resutVC = [SPPlayerInventorySearchResultVC instanceFromStoryboard];
-    resutVC.filter = self.filter;
+//    resutVC.filter = self.filter;
     resutVC.mode = self.mode;
     [resutVC setWillShowFilteredResult:^{
         ygstrongify(self);
-        [self didChangedCategory:SPInventoryCategoryFilter];
+//        [self didChangedCategory:SPInventoryCategoryFilter];
     }];
     
     UISearchController *vc = [[UISearchController alloc] initWithSearchResultsController:resutVC];
@@ -229,11 +125,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 {
     _mode = mode;
     [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:kSPItemListModeKey];
-    
-    for (NSNumber *key in self.vcs) {
-        SPItemListContainer *container = self.vcs[key];
-        [container update:mode data:nil];
-    }
+    [self.container update:mode data:nil];
     [UIView animateWithDuration:.2f animations:^{
         self.modeBtn.image = [UIImage imageNamed:self.mode!=SPItemListModeTable?@"icon_three_rectangle":@"icon_four_rectangle"];
     }];
@@ -242,79 +134,27 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    ygweakify(self);
-    if ([segue.identifier isEqualToString:kYGInventoryCategoryPickerSegueID]) {
-        self.categoryPicker = segue.destinationViewController;
-        [self.categoryPicker setDidSelectedCategory:^(SPInventoryCategory type) {
-            ygstrongify(self);
-            [self didChangedCategory:type];
-        }];
-    }else if ([segue.identifier isEqualToString:kYGInventoryPageVCSegueID]){
+    if ([segue.identifier isEqualToString:kYGInventoryPageVCSegueID]){
         self.pageVC = segue.destinationViewController;
         self.pageVC.delegate = self;
         self.pageVC.dataSource = self;
     }
 }
 
-#pragma mark - Page
-- (SPItemListContainer *)viewControllerAtIndex:(NSInteger)index
-{
-    if (index < 0 || index >= [self.filter itemCount]) {
-        return nil;
-    }
-    NSNumber *k = @(index);
-    SPItemListContainer *vc = self.vcs[k];
-    if (!vc) {
-        vc = [SPItemListContainer instanceFromStoryboard];
-        vc.topInset = @(44.f);
-        self.vcs[k] = vc;
-    }
-    [vc update:self.mode data:[self.filter itemAtPageIndex:index]];
-    return vc;
-}
-
-- (NSInteger)indexOfViewController:(UIViewController *)vc
-{
-    NSInteger index = NSNotFound;
-    for (NSNumber *k in self.vcs) {
-        UIViewController *viewController = self.vcs[k];
-        if (viewController == vc) {
-            index = k.integerValue;
-            break;
-        }
-    }
-    return index;
-}
-
-- (void)setCurrentIndex:(NSUInteger)currentIndex
-{
-    _currentIndex = currentIndex;
-    self.segmentView.currentIndex = currentIndex;
-}
-
 #pragma mark - UIPageViewController
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    NSInteger index = [self indexOfViewController:viewController];
-    if (index != NSNotFound) {
-        return [self viewControllerAtIndex:index+1];
-    }
     return nil;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    NSInteger index = [self indexOfViewController:viewController];
-    if (index != NSNotFound) {
-        return [self viewControllerAtIndex:index-1];
-    }
     return nil;
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed
 {
-    NSUInteger index = [self indexOfViewController:[pageViewController.viewControllers firstObject]];
-    [self setCurrentIndex:index];
+    
 }
 
 @end

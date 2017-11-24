@@ -122,6 +122,12 @@ YYModelDefaultCode
 YYModelDefaultCode
 @end
 
+NSString *const kSPPlayerItemRarityTag = @"Rarity";
+NSString *const kSPPlayerItemHeroTag = @"Hero";
+NSString *const kSPPlayerItemTypeTag = @"Type";
+NSString *const kSPPlayerItemQualityTag = @"Quality";
+NSString *const kSPPlayerItemSlotTag = @"Slot";
+
 @interface SPPlayerItemDetail ()
 @property (strong, nonatomic) SPPlayerInvertoryItemTag *rarityTag;
 @property (strong, nonatomic) SPPlayerInvertoryItemTag *heroTag;
@@ -144,55 +150,31 @@ YYModelDefaultCode
     return @[@"rarityTag",@"heroTag",@"typeTag",@"qualityTag"];
 }
 
-- (SPPlayerInvertoryItemTag *)tagOfName:(NSString *)name
+- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic
 {
-    if (!name) return nil;
+    [self initTags];
+    return YES;
+}
+
+- (void)initTags
+{
     for (SPPlayerInvertoryItemTag *tag in self.tags) {
-        if ([tag.category isEqualToString:name]) {
-            return tag;
+        if ( !_rarityTag && [tag.category isEqualToString:kSPPlayerItemRarityTag]) {
+            _rarityTag = tag;
+        }
+        else if (!_heroTag && [tag.category isEqualToString:kSPPlayerItemHeroTag]){
+            _heroTag = tag;
+        }
+        else if (!_typeTag && [tag.category isEqualToString:kSPPlayerItemTypeTag]){
+            _typeTag = tag;
+        }
+        else if (!_qualityTag && [tag.category isEqualToString:kSPPlayerItemQualityTag]){
+            _qualityTag = tag;
+        }
+        else if (!_slotTag && [tag.category isEqualToString:kSPPlayerItemSlotTag]){
+            _slotTag = tag;
         }
     }
-    return nil;
-}
-
-- (SPPlayerInvertoryItemTag *)rarityTag
-{
-    if (!_rarityTag) {
-        _rarityTag = [self tagOfName:@"Rarity"];
-    }
-    return _rarityTag;
-}
-
-- (SPPlayerInvertoryItemTag *)heroTag
-{
-    if (!_heroTag) {
-        _heroTag = [self tagOfName:@"Hero"];
-    }
-    return _heroTag;
-}
-
-- (SPPlayerInvertoryItemTag *)typeTag
-{
-    if (!_typeTag) {
-        _typeTag = [self tagOfName:@"Type"];
-    }
-    return _typeTag;
-}
-
-- (SPPlayerInvertoryItemTag *)qualityTag
-{
-    if (!_qualityTag) {
-        _qualityTag = [self tagOfName:@"Quality"];
-    }
-    return _qualityTag;
-}
-
-- (SPPlayerInvertoryItemTag *)slotTag
-{
-    if (!_slotTag) {
-        _slotTag = [self tagOfName:@"Slot"];
-    }
-    return _slotTag;
 }
 
 YYModelDefaultCode

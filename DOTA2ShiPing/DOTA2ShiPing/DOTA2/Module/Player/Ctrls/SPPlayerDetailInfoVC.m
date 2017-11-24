@@ -250,7 +250,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
             }
             case SPPlayerItemsListStatusSuccess: {
                 self.showItemsDetailBtn.hidden = NO;
-                self.itemTitleLabel.text = [NSString stringWithFormat:@"物品库存：%lu 件(包含选手卡片)",(unsigned long)[self.itemsList.items count]];
+                self.itemTitleLabel.text = [NSString stringWithFormat:@"物品库存：%lu 件",(unsigned long)[self.itemsList.items count]];
                 self.itemTitleLabel.textAlignment = NSTextAlignmentLeft;
                 
                 CGRect frame = self.itemTagCollectionView.frame;
@@ -296,9 +296,8 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
         
         SPDBWITHOPEN
         
+        // 去除隐藏的物品
         {
-            // 去除隐藏的物品
-            
             FMResultSet *hiddenResult = [db executeQuery:@"SELECT token FROM items WHERE hidden = 1"];
             NSMutableSet *hiddenItems = [NSMutableSet set];
             int tokenIndex = [hiddenResult columnIndexForName:@"token"];
@@ -310,58 +309,43 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
             [list removeHiddenItems:hiddenItems];
         }
         
+        NSMutableDictionary *rarityStat = [NSMutableDictionary dictionary];
         
-        NSMutableDictionary *allItems = [NSMutableDictionary dictionary];
-        FMResultSet *result = [db executeQuery:@"SELECT token,item_rarity FROM items"];
-        
-        int tokenIndex = [result columnIndexForName:@"token"];
-        int rarityIndex = [result columnIndexForName:@"item_rarity"];
-        int hiddenIndex = [result columnIndexForName:@"hidden"];
-        
-        while ([result next]) {
-            NSString *hidden = [result stringForColumnIndex:hiddenIndex];
-            NSUInteger token = [result intForColumnIndex:tokenIndex];
-            NSString *rarity = [result stringForColumnIndex:rarityIndex];
-            allItems[@(token)] = rarity;
+        // 统计数量
+        {
+            for (SPPlayerItem *aItem in list.items) {
+                NSString *sql = [NSString stringWithFormat:@"SELECT item_rarity FROM items WHERE token = %@",aItem.defindex];
+                FMResultSet *result = [db executeQuery:sql];
+                NSString *rarity;
+                if (![result next] ||
+                    !(rarity = [result stringForColumn:@"item_rarity"]) ) {
+                    rarity = @"Unknown";
+                }
+                [result close];
+                NSInteger count = [rarityStat[rarity] integerValue] + 1;
+                rarityStat[rarity] = @(count);
+            }
         }
-        [result close];
         
         SPDBCLOSE
         
-        NSMutableArray *tmp = [NSMutableArray array];
-        NSMutableSet *set = [NSMutableSet set];
-        
-        NSMutableDictionary *tagsDict = [NSMutableDictionary dictionary];
-        SPPlayerItemsList *theList = list;
-        for (SPPlayerItem *item in theList.items) {
-            NSString *rarity = allItems[item.defindex];
-            rarity = rarity?:@"Unknown";
-            tagsDict[rarity] = @(1 + [tagsDict[rarity] integerValue]);
-        
-            
-            if ([rarity isEqualToString:@"common"]) {
-                [tmp addObject:item.defindex];
-                [set addObject:item.defindex];
-            }
-        }
-        
         NSMutableArray *tags = [NSMutableArray array];
-        for (NSString *rarityName in tagsDict) {
-            NSNumber *count = tagsDict[rarityName];
-            
-            SPItemRarity *rarity = [[SPDataManager shared] rarityOfName:rarityName];
-            if (rarity) {
-                SPItemColor *color = [[SPDataManager shared] colorOfName:rarity.color];
-                [tags addObject:@[rarity.name_loc,count,color.color,rarity.value]];
-            }else{
-                //未知
-                [tags addObject:@[rarityName,count,[UIColor lightGrayColor],@(NSNotFound)]];
-            }
-        }
         
-        [tags sortUsingComparator:^NSComparisonResult(NSArray *obj1, NSArray *obj2) {
-            return [[obj1 lastObject] compare:[obj2 lastObject]];
-        }];
+        // 得到中文标签
+        {
+            for (NSString *rarityName in rarityStat) {
+                SPItemRarity *rarity = [[SPDataManager shared] rarityOfName:rarityName];
+                SPItemColor *color = [[SPDataManager shared] colorOfName:rarity.color];
+                [tags addObject:@[rarity.name_loc ?: rarityName,
+                                  rarityStat[rarityName],
+                                  color.color ?: [UIColor lightGrayColor],
+                                  rarity.value ?: @(NSNotFound)]];
+            }
+            
+            [tags sortUsingComparator:^NSComparisonResult(NSArray *obj1, NSArray *obj2) {
+                return [[obj1 lastObject] compare:[obj2 lastObject]];
+            }];
+        }
         
         RunOnMainQueue(^{
             self.itemsList = list;

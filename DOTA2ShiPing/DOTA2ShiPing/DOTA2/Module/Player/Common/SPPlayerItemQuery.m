@@ -11,23 +11,47 @@
 
 @import FMDB;
 
+@interface SPPlayerItemQuery ()
+
+// 默认是全部库存物品
+@property (strong, nonatomic) NSArray<SPPlayerItemDetail *> *filteredPlayerItems;
+
+@end
+
 @implementation SPPlayerItemQuery
 
-+ (instancetype)queryWithPlayerItems:(NSArray<SPPlayerItemDetail *> *)playerItems
++ (instancetype)queryWithPlayerItems:(SPPlayerItemSharedData *)data
 {
     SPPlayerItemQuery *query = [[self alloc] init];
-    query.tokens = [playerItems valueForKeyPath:@"defindex"];
+    query.playerItemData = data;
+    query.filteredPlayerItems = data.inventory.items;
     return query;
 }
 
-- (BOOL)updateItems
+- (NSArray<SPItem *> *)loadPage:(NSInteger)page
+{
+    static NSInteger perPage = 200;
+    
+    NSInteger total = self.filteredPlayerItems.count;
+    NSInteger loc = page * perPage;
+    if (loc >= total) return nil;
+    NSInteger len = (loc + perPage) > total ? (total - loc) : perPage ;
+    
+    NSArray<SPPlayerItemDetail *> *pagePlayerItems = [self.filteredPlayerItems subarrayWithRange:NSMakeRange(loc, len)];
+    NSArray<NSNumber *> *tokens = [pagePlayerItems valueForKeyPath:@"defindex"];
+    NSArray<SPItem *> *items = [self queryItems:tokens];
+    self.pageNo = page;
+    return items;
+}
+
+- (NSArray<SPItem *> *)queryItems:(NSArray<NSNumber *> *)tokens
 {
     SPDBWITHOPEN
     
     AsyncBenchmarkTestBegin(SPPlayerItemQuery);
     
     NSMutableArray *result = [NSMutableArray array];
-    for (NSNumber *token in self.orderedTokens) {
+    for (NSNumber *token in tokens) {
         
         NSString *sql = [NSString stringWithFormat:@"SELECT * FROM items WHERE token = %@;",token];
         FMResultSet *resultSet = [db executeQuery:sql];
@@ -42,18 +66,25 @@
     }
     
     AsyncBenchmarkTestEnd(SPPlayerItemQuery);
-    
     SPDBCLOSE
     
-    self.items = result;
-    self.fullItems = @[result];
-    self.fullTitles = @[@""];
-    return YES;
+    return result;
 }
 
-- (void)separateItem
+- (void)filter:(id)options
 {
-    
+    self.options = options;
+    if (options) {
+        self.filteredPlayerItems = [self excuteFilter];
+    }else{
+        self.filteredPlayerItems = self.playerItemData.inventory.items;
+    }
+    self.pageNo = 0;
+}
+
+- (NSArray<SPPlayerItemDetail *> *)excuteFilter
+{
+    return nil;
 }
 
 @end

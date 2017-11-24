@@ -45,6 +45,9 @@ typedef NS_ENUM(NSUInteger, SPPlayerItemsListStatus) {
 @property (strong, nonatomic) NSNumber *defindex;   //索引
 @end
 
+
+
+
 #pragma mark - 用户的库存详情
 // 库存数据
 @interface SPPlayerInventory : NSObject <NSCopying,NSCoding,YYModel>
@@ -63,6 +66,12 @@ typedef NS_ENUM(NSUInteger, SPPlayerItemsListStatus) {
 - (void)infuseItemList:(SPPlayerItemsList *)list;
 
 @end
+
+YG_EXTERN NSString *const kSPPlayerItemRarityTag;
+YG_EXTERN NSString *const kSPPlayerItemHeroTag;
+YG_EXTERN NSString *const kSPPlayerItemTypeTag;
+YG_EXTERN NSString *const kSPPlayerItemQualityTag;
+YG_EXTERN NSString *const kSPPlayerItemSlotTag;
 
 @interface SPPlayerItemDetail : NSObject <NSCopying, NSCoding, YYModel>
 
@@ -116,7 +125,7 @@ typedef NS_ENUM(NSUInteger, SPPlayerItemsListStatus) {
 
 // rgDescriptions 内的标签列表
 @interface SPPlayerInvertoryItemTag : NSObject <NSCopying,NSCoding,YYModel>
-@property (strong, nonatomic) NSString *internal_name;
+@property (strong, nonatomic) NSString *internal_name;   
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *category;
 @property (strong, nonatomic) NSString *color;

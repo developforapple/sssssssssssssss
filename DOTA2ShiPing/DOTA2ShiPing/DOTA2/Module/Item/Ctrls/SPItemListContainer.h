@@ -10,13 +10,24 @@
 #import "SPItem.h"
 #import "SPItemCommon.h"
 
+@class SPItemListContainer;
+
+@protocol SPItemListContainerDelegate <NSObject>
+@optional
+- (void)itemListContainerWillLoadMore:(SPItemListContainer *)container;
+@end
+
 // mode 为自动模式
 YG_EXTERN SPItemListMode const kSPItemListModeAuto;
 
 @interface SPItemListContainer : YGBaseViewCtrl
 
+@property (weak, nonatomic) id<SPItemListContainerDelegate> delegate;
 
-@property (strong, readonly, nonatomic) NSArray *items;
+// 是否支持loadMore 默认为NO
+@property (assign, nonatomic) BOOL supportLoadMore;
+
+@property (strong, readonly, nonatomic) NSArray<SPItem *> *items;
 @property (assign, readonly, nonatomic) SPItemListMode mode;
 
 @property (strong, nonatomic) NSAttributedString *emptyDataNote;
@@ -25,9 +36,11 @@ YG_EXTERN SPItemListMode const kSPItemListModeAuto;
 @property (strong, nonatomic) NSNumber *topInset;
 
 // item 可以穿nil
-- (void)update:(SPItemListMode)mode data:(NSArray *)items;
+- (void)update:(SPItemListMode)mode data:(NSArray<SPItem *> *)items;
 
 - (void)setupClearBackground;
 
+// 新增数据
+- (void)appendData:(NSArray<SPItem *> *)items;
 
 @end

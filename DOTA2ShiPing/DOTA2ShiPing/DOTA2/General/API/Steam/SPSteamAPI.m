@@ -254,6 +254,9 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
         return;
     }
     
+    // 另外一个类似接口
+    // http://steamcommunity.com/inventory/76561198093553906/570/2?l=schinese&count=75
+    
     NSString *url = [NSString stringWithFormat:@"profiles/%@/inventory/json/570/2",steamid17];
     NSDictionary *params = @{@"l":@"zh_CN",@"start":@(index)};
     

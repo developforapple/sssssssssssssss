@@ -226,6 +226,7 @@
 		692A558E1F4D712F006914BF /* SPItemSearchOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 692A558D1F4D712F006914BF /* SPItemSearchOption.m */; };
 		693062C81FBC30D3005987A1 /* SPItemPlayableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 693062C71FBC30D3005987A1 /* SPItemPlayableView.m */; };
 		693062CB1FBC3883005987A1 /* SPItemPlayableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 693062CA1FBC3883005987A1 /* SPItemPlayableCell.m */; };
+		695261EC1FC7EE8400F3C22B /* SPPlayerItemSharedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 695261EB1FC7EE8400F3C22B /* SPPlayerItemSharedData.m */; };
 		6954FCDF1F43EC5900DDB5D3 /* SPDotaEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCDE1F43EC5900DDB5D3 /* SPDotaEvent.m */; };
 		6954FCE21F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCE11F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m */; };
 		6954FCE51F44326D00DDB5D3 /* SPItemFilterViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCE41F44326D00DDB5D3 /* SPItemFilterViewCtrl.m */; };
@@ -689,6 +690,8 @@
 		693062C71FBC30D3005987A1 /* SPItemPlayableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemPlayableView.m; sourceTree = "<group>"; };
 		693062C91FBC3883005987A1 /* SPItemPlayableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemPlayableCell.h; sourceTree = "<group>"; };
 		693062CA1FBC3883005987A1 /* SPItemPlayableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemPlayableCell.m; sourceTree = "<group>"; };
+		695261EA1FC7EE8400F3C22B /* SPPlayerItemSharedData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPlayerItemSharedData.h; sourceTree = "<group>"; };
+		695261EB1FC7EE8400F3C22B /* SPPlayerItemSharedData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPPlayerItemSharedData.m; sourceTree = "<group>"; };
 		6954FCDD1F43EC5900DDB5D3 /* SPDotaEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDotaEvent.h; sourceTree = "<group>"; };
 		6954FCDE1F43EC5900DDB5D3 /* SPDotaEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDotaEvent.m; sourceTree = "<group>"; };
 		6954FCE01F4415A200DDB5D3 /* SPDotaEventsViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDotaEventsViewCtrl.h; sourceTree = "<group>"; };
@@ -1628,6 +1631,8 @@
 				2DF9B7B81F1361640012950A /* SPPlayerManager.m */,
 				2DFE1C371FC70B5600FEDE5C /* SPPlayerItemCategory.h */,
 				2DFE1C381FC70B5600FEDE5C /* SPPlayerItemCategory.m */,
+				695261EA1FC7EE8400F3C22B /* SPPlayerItemSharedData.h */,
+				695261EB1FC7EE8400F3C22B /* SPPlayerItemSharedData.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2417,6 +2422,7 @@
 				2DF9B88E1F1361640012950A /* SPHero.m in Sources */,
 				2DF9B8C21F1361640012950A /* SPMyStarredItemVC.m in Sources */,
 				2DF9B8411F1361640012950A /* UIButton+Event.m in Sources */,
+				695261EC1FC7EE8400F3C22B /* SPPlayerItemSharedData.m in Sources */,
 				2DF9B8741F1361640012950A /* SPPopoverView.m in Sources */,
 				2DF9B82D1F1361640012950A /* NSCalendar+YGCategory.m in Sources */,
 				2DF9B85B1F1361640012950A /* YGAreaManager.m in Sources */,

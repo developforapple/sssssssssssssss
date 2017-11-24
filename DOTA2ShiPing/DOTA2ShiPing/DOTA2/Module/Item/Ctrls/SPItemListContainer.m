@@ -13,10 +13,11 @@
 #import "SPItemsDetailViewCtrl.h"
 #import "SPItemImageLoader.h"
 #import "SPItemCellModel.h"
+#import "YGRefreshComponent.h"
 
 SPItemListMode const kSPItemListModeAuto = 10086;
 
-@interface SPItemListContainer ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDataSourcePrefetching,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate,UINavigationControllerDelegate>
+@interface SPItemListContainer ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDataSourcePrefetching,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate,UINavigationControllerDelegate,YGRefreshDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
@@ -51,6 +52,10 @@ SPItemListMode const kSPItemListModeAuto = 10086;
 - (void)initUI
 {
     [SPLogoHeader setLogoHeaderInScrollView:self.collectionView];
+    if (self.supportLoadMore) {
+        self.collectionView.refreshDelegate = self;
+        [self.collectionView setRefreshFooterEnable:YES];
+    }
     self.collectionView.emptyDataSetSource = self;
     self.collectionView.emptyDataSetDelegate = self;
     
@@ -83,7 +88,9 @@ SPItemListMode const kSPItemListModeAuto = 10086;
 
 - (void)update:(SPItemListMode)mode data:(NSArray *)items
 {
-    self.items = items ? : self.items;
+    if (items) {
+        self.items = [NSArray arrayWithArray:items];
+    }
     self.mode = mode = (mode==kSPItemListModeAuto) ? mode : ([[NSUserDefaults standardUserDefaults] integerForKey:kSPItemListModeKey]);
     
     NSMutableArray *cellModels = [NSMutableArray array];
@@ -98,6 +105,41 @@ SPItemListMode const kSPItemListModeAuto = 10086;
     }];
     self.cellModels = cellModels;
     [self updateLayout];
+    [self.collectionView endFooterRefreshing];
+    [self.collectionView reloadData];
+}
+
+- (void)refreshFooterBeginRefreshing:(UIScrollView *)scrollView
+{
+    if ([self.delegate respondsToSelector:@selector(itemListContainerWillLoadMore:)]) {
+        [self.delegate itemListContainerWillLoadMore:self];
+    }
+}
+
+- (void)appendData:(NSArray<SPItem *> *)items
+{
+    SPItemListMode mode = self.mode;
+    
+    NSMutableArray *cellModels = [NSMutableArray array];
+    [items enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        SPItemCellModel *aCellModel = [SPItemCellModel viewModelWithEntity:obj];
+        if (aCellModel) {
+            aCellModel.mode = mode;
+            aCellModel.lineHidden = idx%4==0;
+            [aCellModel create];
+            [cellModels addObject:aCellModel];
+        }
+    }];
+    
+    NSMutableArray *allCellModels = [NSMutableArray arrayWithArray:self.cellModels];
+    [allCellModels addObjectsFromArray:cellModels];
+    
+    NSMutableArray *allItems = [NSMutableArray arrayWithArray:self.items];
+    [allItems addObjectsFromArray:items];
+    
+    self.items = allItems;
+    self.cellModels = allCellModels;
+    [self.collectionView endFooterRefreshing];
     [self.collectionView reloadData];
 }
 
