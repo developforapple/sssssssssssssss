@@ -300,7 +300,7 @@
 {
     self.fullItems = @[self.items];
     self.fullTitles = @[@"全部物品"];
-    [self filter:self.options];
+    [self filter:self.filterUnits];
 }
 
 - (void)spearateItemForHero
@@ -382,12 +382,12 @@
 
 - (BOOL)needFilter
 {
-    return self.options && self.options.count > 0;
+    return self.filterUnits && self.filterUnits.count > 0;
 }
 
-- (void)filter:(NSArray<SPFilterOption *> *)options
+- (void)filter:(NSArray<SPItemFilterUnit *> *)units
 {
-    self.options = options;
+    self.filterUnits = units;
     
     if (![self needFilter]) {
         self.filteredItems = nil;
@@ -396,15 +396,22 @@
     }
     
     NSString *keywords;
-    SPHero *hero;
-    SPItemRarity *rarity;
-    SPDotaEvent *event;
-    for (SPFilterOption *option in self.options) {
-        switch (option.type) {
-            case SPFilterOptionTypeText: keywords = option.option;break;
-            case SPFilterOptionTypeHero: hero = option.option;break;
-            case SPFilterOptionTypeRarity: rarity = option.option;break;
-            case SPFilterOptionTypeEvent: event = option.option;break;
+    NSMutableArray *heroes = [NSMutableArray array];
+    NSMutableArray *rarities = [NSMutableArray array];
+    NSMutableArray *events = [NSMutableArray array];
+    
+    for (SPItemFilterUnit *unit in self.filterUnits) {
+        switch ([unit type]) {
+            case SPItemFilterTypeInput:    keywords    = unit.object; break;
+            case SPItemFilterTypeHero:     {
+                [heroes addObject:unit.object];
+            }   break;
+            case SPItemFilterTypeRarity:   {
+                [rarities addObject:unit.object];
+            }   break;
+            case SPItemFilterTypeEvent:    {
+                [events addObject:unit.object];
+            }   break;
         }
     }
     
@@ -413,13 +420,42 @@
         NSMutableArray *newItemArray = [NSMutableArray array];
         [newItems addObject:newItemArray];
         for (SPItem *aItem in itemArray) {
+            
+            // keywords
             BOOL keywordsOK = !keywords.length || [aItem.item_name containsString:keywords] || [aItem.nameWithQualtity containsString:keywords];
-            BOOL heroOK = !hero || [aItem.heroes containsString:hero.name];
-            BOOL rarityOK = !rarity || [aItem.item_rarity isEqualToString:rarity.name];
-            BOOL eventOK = !event || [aItem.event_id isEqualToString:event.event_id];
-            if (keywordsOK && heroOK && rarityOK && eventOK) {
-                [newItemArray addObject:aItem];
+            if ( !keywordsOK ) continue;
+            
+            // hero
+            BOOL heroOK = !heroes.count;
+            for (SPHero *hero in heroes) {
+                if ([aItem.heroes containsString:hero.name]) {
+                    heroOK = YES;
+                    break;
+                }
             }
+            if ( ! heroOK ) continue;
+            
+            // rarity
+            BOOL rarityOK = !rarities.count;
+            for (SPItemRarity *rarity in rarities) {
+                if ([aItem.item_rarity isEqualToString:rarity.name]) {
+                    rarityOK = YES;
+                    break;
+                }
+            }
+            if ( !rarityOK ) continue;
+            
+            // event
+            BOOL eventOK = !events.count;
+            for (SPDotaEvent *event in events) {
+                if ([aItem.event_id isEqualToString:event.event_id]) {
+                    eventOK = YES;
+                    break;
+                }
+            }
+            if ( !eventOK ) continue;
+            
+            [newItemArray addObject:aItem];
         }
     }
     

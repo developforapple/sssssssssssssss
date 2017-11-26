@@ -71,7 +71,7 @@
     NSError *error;
     NSString *desc = SPLOCALNONIL(self.itemData.item.item_description);
     NSData *descData = [desc dataUsingEncoding:NSUTF8StringEncoding];
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithData:descData?:@"" options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)} documentAttributes:nil error:&error];
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithData:descData?:[NSData data] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)} documentAttributes:nil error:&error];
     [string setAttributes:@{NSForegroundColorAttributeName:color,
                             NSFontAttributeName:[UIFont systemFontOfSize:14]}
                     range:NSMakeRange(0, string.length)];

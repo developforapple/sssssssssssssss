@@ -12,9 +12,11 @@
 
 #import "SPItemListContainer.h"
 #import "Chameleon.h"
-#import "SPItemFilterViewCtrl.h"
 
-@interface SPItemListVC () <UIPageViewControllerDelegate,UIPageViewControllerDataSource>
+#import "SPItemFilter.h"
+#import "SPFilterNaviCtrl.h"
+
+@interface SPItemListVC () <UIPageViewControllerDelegate,UIPageViewControllerDataSource,SPItemFilterDelegate>
 
 @property (assign, nonatomic) SPItemListMode mode;
 
@@ -24,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *changModeButtonItem;
 @property (weak, nonatomic) IBOutlet UILabel *emptyLabel;
 
-@property (strong, nonatomic) NSArray<SPFilterOption *> *options;
+@property (strong, nonatomic) NSArray<SPItemFilterUnit *> *filterUnits;
 // 分类过后的饰品数据
 @property (strong, nonatomic) NSArray<NSArray<SPItem *> *> *items;
 
@@ -67,7 +69,7 @@
 
 - (void)update
 {
-    [self.query filter:self.options];
+    [self.query filter:self.filterUnits];
     self.items = [self.query displayItems];
     self.emptyLabel.hidden = self.items.count;
     [self reloadData];
@@ -112,20 +114,19 @@
 
 - (IBAction)changeFilter:(UIButton *)btn
 {
-    ygweakify(self);
-    SPItemFilterNaviCtrl *navi = [SPItemFilterNaviCtrl instanceFromStoryboard];
-    [navi setup:SPFilterOptionTypeAll options:nil completion:^(BOOL canceled, NSArray<SPFilterOption *> *options) {
-        if (!canceled ) {
-            ygstrongify(self);
-            [self filter:options];
-        }
-    }];
+    SPItemFilter *filter = [[SPItemFilter alloc] init];
+    filter.delegate = self;
+    [filter setupTypes:SPItemFilterTypeAll];
+
+    SPFilterNaviCtrl *navi = [SPFilterNaviCtrl instanceFromStoryboard];
+    navi.filter = filter;
+    
     [self.navigationController presentViewController:navi animated:YES completion:nil];
 }
 
-- (void)filter:(NSArray<SPFilterOption *> *)options
+- (void)filter:(SPBaseFilter *)filter didCompleted:(NSArray<SPFilterUnit *> *)units
 {
-    self.options = options;
+    self.filterUnits = units;
     [self update];
 }
 

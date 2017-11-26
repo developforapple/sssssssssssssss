@@ -118,6 +118,11 @@ SPItemListMode const kSPItemListModeAuto = 10086;
 
 - (void)appendData:(NSArray<SPItem *> *)items
 {
+    if (!items || items.count == 0) {
+        [self.collectionView endFooterRefreshing];
+        return;
+    }
+    
     SPItemListMode mode = self.mode;
     
     NSMutableArray *cellModels = [NSMutableArray array];

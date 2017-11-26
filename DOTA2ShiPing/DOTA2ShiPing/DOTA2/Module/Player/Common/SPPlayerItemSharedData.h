@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "SPPlayerItems.h"
 
+@class SPPlayerItemFilterUnit;
+
 @interface SPPlayerItemSharedData : NSObject
 
 // GetPlayerItems 接口返回的数据
@@ -19,10 +21,11 @@
 
 @property (strong, readonly, nonatomic) NSArray<NSNumber *> *tokens;
 
-@property (strong, readonly, nonatomic) NSDictionary<NSString *,NSString *> *qualityTags;
-@property (strong, readonly, nonatomic) NSDictionary<NSString *,NSString *> *rarityTags;
-@property (strong, readonly, nonatomic) NSDictionary<NSString *,NSString *> *prefabTags;
-@property (strong, readonly, nonatomic) NSDictionary<NSString *,NSString *> *slotTags;
-@property (strong, readonly, nonatomic) NSDictionary<NSString *,NSString *> *heroTags;
+@property (strong, readonly, nonatomic) NSArray<SPPlayerItemFilterUnit *> *qualityTags;
+@property (strong, readonly, nonatomic) NSArray<SPPlayerItemFilterUnit *> *rarityTags;
+@property (strong, readonly, nonatomic) NSArray<SPPlayerItemFilterUnit *> *prefabTags;
+@property (strong, readonly, nonatomic) NSArray<SPPlayerItemFilterUnit *> *slotTags;
+@property (strong, readonly, nonatomic) NSArray<SPPlayerItemFilterUnit *> *heroTags;
 
 @end
+

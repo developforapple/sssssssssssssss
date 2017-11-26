@@ -81,40 +81,8 @@ YYModelDefaultCode
 }
 
 #pragma mark YYModel
-- (NSDictionary *)modelCustomWillTransformFromDictionary:(NSDictionary *)dic
-{
-    NSDictionary *rgInventory = dic[@"rgInventory"];
-    NSDictionary *rgDescriptions = dic[@"rgDescriptions"];
-    
-    NSMutableArray *items = [NSMutableArray array];
-    for (NSDictionary *aItem in [rgInventory allValues]) {
-        NSMutableDictionary *tmp = [NSMutableDictionary dictionaryWithDictionary:aItem];
-        NSString *k = [NSString stringWithFormat:@"%@_%@",tmp[@"classid"],tmp[@"instanceid"]];
-        NSDictionary *rgDescriptionDict = rgDescriptions[k];
-        if (!rgDescriptionDict) {
-            // 这里需要考虑多页的情况。如果多页的条件下 k 对应的 rgDescription 在其他页，就需要重写了。
-            NSLog(@"123123123");
-        }else{
-            [tmp addEntriesFromDictionary:rgDescriptionDict];
-        }
-        
-        [items addObject:tmp];
-    }
-    
-    [items sortUsingComparator:^NSComparisonResult(NSDictionary *obj1,NSDictionary *obj2) {
-        NSUInteger pos1 = [obj1[@"pos"] integerValue];
-        NSUInteger pos2 = [obj2[@"pos"] integerValue];
-        return [@(pos1) compare:@(pos2)];
-    }];
-    
-    NSMutableDictionary *mDict = [NSMutableDictionary dictionaryWithDictionary:dic];
-    mDict[@"items"] = items;
-    mDict[@"rgInventory"] = nil;
-    mDict[@"rgDescriptions"] = nil;
-    return mDict;
-}
 
-+ (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass
++ (NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass
 {
     return @{@"items":[SPPlayerItemDetail class]};
 }

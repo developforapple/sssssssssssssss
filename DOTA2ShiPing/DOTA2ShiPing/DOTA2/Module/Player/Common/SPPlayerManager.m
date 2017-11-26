@@ -123,8 +123,8 @@
 
 @end
 
-#define kDefaultInventoryFileName @"inventory.dat"
-#define kEigenvalueSaveKey @"SPEigenvalueListV2"
+#define kDefaultInventoryFileName @"inventory.json.v5"
+#define kEigenvalueSaveKey @"SPEigenvalueListv5"
 
 @implementation SPPlayerManager (Inventory)
 
@@ -201,10 +201,8 @@
     }
     
     NSString *inventoryPath = [playerFolder stringByAppendingPathComponent:kDefaultInventoryFileName];
-    NSException *e;
-    player.inventory = [NSKeyedUnarchiver unarchiveObjectWithFile:inventoryPath exception:&e];
-    
-    NSAssert(player.inventory, @"");
+    NSData *data = [NSData dataWithContentsOfFile:inventoryPath];
+    player.inventory = [SPPlayerInventory yy_modelWithJSON:data];
 }
 
 // 对从服务器获取且模型化的库存数据进行归档
@@ -219,10 +217,11 @@
     NSString *inventoryPath = [playerFolder stringByAppendingPathComponent:kDefaultInventoryFileName];
     [[NSFileManager defaultManager] removeItemAtPath:inventoryPath error:nil];
     
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:player.inventory];
     
+    NSData *data = [player.inventory yy_modelToJSONData];
     NSError *error;
-    [data writeToFile:inventoryPath options:NSDataWritingAtomic error:&error];
+    BOOL suc = [data writeToFile:inventoryPath options:NSDataWritingAtomic error:&error];
+    NSAssert(suc && !error, @"保存失败！");
     NSLog(@"保存库存归档成功");
 }
 

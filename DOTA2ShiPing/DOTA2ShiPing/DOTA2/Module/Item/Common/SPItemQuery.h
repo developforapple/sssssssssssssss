@@ -13,7 +13,7 @@
 #import "SPItemPrefab.h"
 #import "SPItemSets.h"
 #import "SPDotaEvent.h"
-#import "SPFilterOption.h"
+#import "SPItemFilterUnit.h"
 
 // 过滤器
 @interface SPItemQuery : NSObject
@@ -64,8 +64,9 @@
 @property (strong, nonatomic) NSArray<NSString *> *filteredTitles;
 
 #pragma mark - Filter
-@property (strong, nonatomic) NSArray<SPFilterOption *> *options;
-- (void)filter:(NSArray<SPFilterOption *> *)options;
+
+@property (strong, nonatomic) NSArray<SPItemFilterUnit *> *filterUnits;
+- (void)filter:(NSArray<SPItemFilterUnit *> *)units;
 
 #pragma mark - Display
 

@@ -7,14 +7,15 @@
 //
 
 #import "SPPlayerItemSharedData.h"
+#import "SPPlayerItemFilterUnit.h"
 
 @interface SPPlayerItemSharedData ()
 @property (strong, readwrite, nonatomic) NSArray<NSNumber *> *tokens;
-@property (strong, readwrite, nonatomic) NSDictionary<NSString *,NSString *> *qualityTags;
-@property (strong, readwrite, nonatomic) NSDictionary<NSString *,NSString *> *rarityTags;
-@property (strong, readwrite, nonatomic) NSDictionary<NSString *,NSString *> *prefabTags;
-@property (strong, readwrite, nonatomic) NSDictionary<NSString *,NSString *> *slotTags;
-@property (strong, readwrite, nonatomic) NSDictionary<NSString *,NSString *> *heroTags;
+@property (strong, readwrite, nonatomic) NSArray<SPPlayerItemFilterUnit *> *qualityTags;
+@property (strong, readwrite, nonatomic) NSArray<SPPlayerItemFilterUnit *> *rarityTags;
+@property (strong, readwrite, nonatomic) NSArray<SPPlayerItemFilterUnit *> *prefabTags;
+@property (strong, readwrite, nonatomic) NSArray<SPPlayerItemFilterUnit *> *slotTags;
+@property (strong, readwrite, nonatomic) NSArray<SPPlayerItemFilterUnit *> *heroTags;
 @end
 
 @implementation SPPlayerItemSharedData
@@ -53,11 +54,19 @@
         }
     }
     
-    self.qualityTags = qualityList;
-    self.rarityTags = rarityList;
-    self.prefabTags = prefabList;
-    self.slotTags = slotList;
-    self.heroTags = heroList;
+    static NSArray *(^getSimpleTags)(SPPlayerItemFilterType,NSDictionary *) = ^NSArray *(SPPlayerItemFilterType type,NSDictionary *dict){
+        NSMutableArray *array = [NSMutableArray array];
+        for (NSString *key in dict) {
+            [array addObject:[SPPlayerItemFilterUnit unit:type title:dict[key] object:key]];
+        }
+        return array;
+    };
+    
+    self.qualityTags = getSimpleTags(SPPlayerItemFilterTypeQuality, qualityList);
+    self.rarityTags  = getSimpleTags(SPPlayerItemFilterTypeRarity,  rarityList);
+    self.prefabTags  = getSimpleTags(SPPlayerItemFilterTypePrefab,  prefabList);
+    self.slotTags    = getSimpleTags(SPPlayerItemFilterTypeSlot,    slotList);
+    self.heroTags    = getSimpleTags(SPPlayerItemFilterTypeHero,    heroList);
 }
 
 - (NSArray<NSNumber *> *)tokens

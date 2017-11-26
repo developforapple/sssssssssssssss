@@ -7,11 +7,8 @@
 //
 
 #import "SPPlayerInventoryVC.h"
-
 #import "SPPlayer.h"
-
 #import "SPItemListContainer.h"
-#import "SPInventoryCategoryPickerVC.h"
 #import "DDSegmentScrollView.h"
 #import "SPInventoryFilter.h"
 #import "SPItemCommon.h"
@@ -19,17 +16,17 @@
 #import "ReactiveObjC.h"
 
 #import "RWDropdownMenu.h"
-
+#import "SPPlayerItemFilter.h"
+#import "SPFilterNaviCtrl.h"
 #import "SPPlayerItemQuery.h"
 
 static NSString *const kYGInventoryCategoryPickerSegueID = @"YGInventoryCategoryPickerSegueID";
 static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
-@interface SPPlayerInventoryVC ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,SPItemListContainerDelegate>
+@interface SPPlayerInventoryVC ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,SPItemListContainerDelegate,SPFilterDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *modeBtn;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *searchBtn;
 @property (weak, nonatomic) IBOutlet UIButton *categoryBtn;
-@property (weak, nonatomic) IBOutlet UIImageView *categoryIndicator;
 
 @property (strong, nonatomic) UIPageViewController *pageVC;
 @property (strong, nonatomic) SPItemListContainer *container;
@@ -51,8 +48,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 - (void)dealloc
 {
-    NSString *class = NSStringFromClass([self class]);
-    NSLog(@"%@释放！！！",class);
+    
 }
 
 - (void)initUI
@@ -67,8 +63,6 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     self.container.supportLoadMore = YES;
     
     [self.pageVC setViewControllers:@[self.container] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    self.categoryIndicator.layer.anchorPoint = CGPointMake(.5f, .5f);
 }
 
 - (void)initData
@@ -83,15 +77,11 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 - (void)itemListContainerWillLoadMore:(SPItemListContainer *)container
 {
-    [self.query loadPage:self.query.pageNo+1];
+    NSArray *items = [self.query loadPage:self.query.pageNo+1];
+    [container appendData:items];
 }
 
 #pragma mark - Action
-- (IBAction)changeCategory:(UIButton *)btn
-{
-    
-}
-
 - (IBAction)changeMode:(UIBarButtonItem *)sender
 {
     self.mode = (SPItemListMode)!self.mode;
@@ -99,6 +89,18 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 
 - (IBAction)search:(UIBarButtonItem *)sender
 {
+    SPPlayerItemFilter *filter = [SPPlayerItemFilter new];
+    filter.delegate = self;
+    [filter setupTypes:SPPlayerItemFilterTypeAll
+            sharedData:self.query.playerItemData];
+    
+    SPFilterNaviCtrl *navi = [SPFilterNaviCtrl instanceFromStoryboard];
+    navi.filter = filter;
+    [self.navigationController presentViewController:navi animated:YES completion:nil];
+    
+    return;
+    
+    
     ygweakify(self);
     SPPlayerInventorySearchResultVC *resutVC = [SPPlayerInventorySearchResultVC instanceFromStoryboard];
 //    resutVC.filter = self.filter;
@@ -129,6 +131,11 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     [UIView animateWithDuration:.2f animations:^{
         self.modeBtn.image = [UIImage imageNamed:self.mode!=SPItemListModeTable?@"icon_three_rectangle":@"icon_four_rectangle"];
     }];
+}
+
+- (void)filter:(SPBaseFilter *)filter didCompleted:(NSArray<SPFilterUnit *> *)units
+{
+    NSLog(@"");
 }
 
 #pragma mark - Segue

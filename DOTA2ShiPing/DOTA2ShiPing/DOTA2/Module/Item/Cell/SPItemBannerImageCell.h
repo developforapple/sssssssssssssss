@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 @import FLAnimatedImage;
 
+NS_ASSUME_NONNULL_BEGIN
+
 YG_EXTERN NSString *const kSPItemBannerImageCell;
 
 @interface SPItemBannerImageCell : UICollectionViewCell
@@ -23,3 +25,5 @@ YG_EXTERN NSString *const kSPItemBannerImageCell;
 
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -12,6 +12,19 @@
 		2D0BD6FE1FB3486E00A5DD99 /* SPItemSteamPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD6FD1FB3486E00A5DD99 /* SPItemSteamPriceCell.m */; };
 		2D0BD7011FB5FBCA00A5DD99 /* SPItemBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD7001FB5FBCA00A5DD99 /* SPItemBannerView.m */; };
 		2D19E0111F32F22A00747B01 /* SPPriceChartConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */; };
+		2D2451461FC994D900EF5438 /* SPFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D2451451FC994D900EF5438 /* SPFilter.storyboard */; };
+		2D24514D1FC994FE00EF5438 /* SPFilterNaviCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24514C1FC994FE00EF5438 /* SPFilterNaviCtrl.m */; };
+		2D2451501FC9951000EF5438 /* SPFilterViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24514F1FC9951000EF5438 /* SPFilterViewCtrl.m */; };
+		2D2451561FC9954B00EF5438 /* SPFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2451551FC9954B00EF5438 /* SPFilterCell.m */; };
+		2D2451591FC9956B00EF5438 /* SPBaseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2451581FC9956B00EF5438 /* SPBaseFilter.m */; };
+		2D24515F1FC9958F00EF5438 /* SPFilterUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24515E1FC9958F00EF5438 /* SPFilterUnit.m */; };
+		2D2451651FC995B000EF5438 /* SPFilterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2451641FC995B000EF5438 /* SPFilterGroup.m */; };
+		2D2451681FC995BE00EF5438 /* SPFilterConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2451671FC995BE00EF5438 /* SPFilterConfig.m */; };
+		2D24516B1FC995DC00EF5438 /* SPFilterHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24516A1FC995DC00EF5438 /* SPFilterHeader.m */; };
+		2D24516E1FC995E700EF5438 /* SPFilterFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24516D1FC995E700EF5438 /* SPFilterFooter.m */; };
+		2D2451731FC9A32800EF5438 /* SPItemFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2451721FC9A32800EF5438 /* SPItemFilter.m */; };
+		2D24517D1FC9AA3200EF5438 /* SPItemFilterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24517C1FC9AA3200EF5438 /* SPItemFilterGroup.m */; };
+		2D2451801FC9AA7200EF5438 /* SPItemFilterUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24517F1FC9AA7200EF5438 /* SPItemFilterUnit.m */; };
 		2D37AAB41FAEEB5E0043DDD4 /* SPItemDescPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D37AAB31FAEEB5E0043DDD4 /* SPItemDescPanel.m */; };
 		2D37AAB71FAEF5CC0043DDD4 /* SPItemMoreItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D37AAB61FAEF5CC0043DDD4 /* SPItemMoreItemsView.m */; };
 		2D40220E1F385D830006EFEF /* SPLootList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D40220D1F385D830006EFEF /* SPLootList.m */; };
@@ -166,7 +179,6 @@
 		2DF9B8AB1F1361640012950A /* SPInventoryFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7B31F1361640012950A /* SPInventoryFilter.m */; };
 		2DF9B8AC1F1361640012950A /* SPPlayer+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7B51F1361640012950A /* SPPlayer+More.m */; };
 		2DF9B8AD1F1361640012950A /* SPPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7B81F1361640012950A /* SPPlayerManager.m */; };
-		2DF9B8AE1F1361640012950A /* SPInventoryCategoryPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BB1F1361640012950A /* SPInventoryCategoryPickerVC.m */; };
 		2DF9B8AF1F1361640012950A /* SPPlayerAliasesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BD1F1361640012950A /* SPPlayerAliasesVC.m */; };
 		2DF9B8B01F1361640012950A /* SPPlayerDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BF1F1361640012950A /* SPPlayerDetailInfoVC.m */; };
 		2DF9B8B11F1361640012950A /* SPPlayerInventorySearchAllPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C11F1361640012950A /* SPPlayerInventorySearchAllPlayerVC.m */; };
@@ -211,6 +223,9 @@
 		2DFE1C361FC3135D00FEDE5C /* SPDota2MarketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C351FC3135D00FEDE5C /* SPDota2MarketItem.m */; };
 		2DFE1C391FC70B5600FEDE5C /* SPPlayerItemCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C381FC70B5600FEDE5C /* SPPlayerItemCategory.m */; };
 		2DFE1C3C1FC7117800FEDE5C /* SPPlayerItemQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C3B1FC7117800FEDE5C /* SPPlayerItemQuery.m */; };
+		2DFF65F61FCAF2AD006A0081 /* SPPlayerItemFilterUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65F51FCAF2AD006A0081 /* SPPlayerItemFilterUnit.m */; };
+		2DFF65F91FCAF2C0006A0081 /* SPPlayerItemFilterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65F81FCAF2C0006A0081 /* SPPlayerItemFilterGroup.m */; };
+		2DFF65FC1FCAF2D5006A0081 /* SPPlayerItemFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65FB1FCAF2D5006A0081 /* SPPlayerItemFilter.m */; };
 		690BD50D1FA71524007A4D5D /* SPGamepediaAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD50C1FA71524007A4D5D /* SPGamepediaAPI.m */; };
 		690BD5101FA71666007A4D5D /* SPGamepediaSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD50F1FA71666007A4D5D /* SPGamepediaSerializer.m */; };
 		690BD5161FA71E6D007A4D5D /* SPGamepediaImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD5151FA71E6D007A4D5D /* SPGamepediaImage.m */; };
@@ -229,8 +244,6 @@
 		695261EC1FC7EE8400F3C22B /* SPPlayerItemSharedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 695261EB1FC7EE8400F3C22B /* SPPlayerItemSharedData.m */; };
 		6954FCDF1F43EC5900DDB5D3 /* SPDotaEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCDE1F43EC5900DDB5D3 /* SPDotaEvent.m */; };
 		6954FCE21F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCE11F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m */; };
-		6954FCE51F44326D00DDB5D3 /* SPItemFilterViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCE41F44326D00DDB5D3 /* SPItemFilterViewCtrl.m */; };
-		6954FCE81F44329100DDB5D3 /* SPFilterOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCE71F44329100DDB5D3 /* SPFilterOption.m */; };
 		69819CC21FB99C4F00977873 /* SPItemBannerImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69819CC11FB99C4F00977873 /* SPItemBannerImageCell.m */; };
 		699074401F3D902C00B64030 /* SPMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6990743F1F3D902C00B64030 /* SPMemoryCache.m */; };
 		699074431F3DA63500B64030 /* CALayer+SDWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 699074421F3DA63500B64030 /* CALayer+SDWebCache.m */; };
@@ -252,6 +265,35 @@
 		2D0BD7001FB5FBCA00A5DD99 /* SPItemBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemBannerView.m; sourceTree = "<group>"; };
 		2D19E00F1F32F22A00747B01 /* SPPriceChartConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPriceChartConfig.h; sourceTree = "<group>"; };
 		2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPriceChartConfig.m; sourceTree = "<group>"; };
+		2D2451451FC994D900EF5438 /* SPFilter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SPFilter.storyboard; sourceTree = "<group>"; };
+		2D24514B1FC994FE00EF5438 /* SPFilterNaviCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFilterNaviCtrl.h; sourceTree = "<group>"; };
+		2D24514C1FC994FE00EF5438 /* SPFilterNaviCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPFilterNaviCtrl.m; sourceTree = "<group>"; };
+		2D24514E1FC9951000EF5438 /* SPFilterViewCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFilterViewCtrl.h; sourceTree = "<group>"; };
+		2D24514F1FC9951000EF5438 /* SPFilterViewCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPFilterViewCtrl.m; sourceTree = "<group>"; };
+		2D2451541FC9954B00EF5438 /* SPFilterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFilterCell.h; sourceTree = "<group>"; };
+		2D2451551FC9954B00EF5438 /* SPFilterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPFilterCell.m; sourceTree = "<group>"; };
+		2D2451571FC9956B00EF5438 /* SPBaseFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPBaseFilter.h; sourceTree = "<group>"; };
+		2D2451581FC9956B00EF5438 /* SPBaseFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPBaseFilter.m; sourceTree = "<group>"; };
+		2D24515D1FC9958F00EF5438 /* SPFilterUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFilterUnit.h; sourceTree = "<group>"; };
+		2D24515E1FC9958F00EF5438 /* SPFilterUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPFilterUnit.m; sourceTree = "<group>"; };
+		2D2451631FC995B000EF5438 /* SPFilterGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFilterGroup.h; sourceTree = "<group>"; };
+		2D2451641FC995B000EF5438 /* SPFilterGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPFilterGroup.m; sourceTree = "<group>"; };
+		2D2451661FC995BE00EF5438 /* SPFilterConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFilterConfig.h; sourceTree = "<group>"; };
+		2D2451671FC995BE00EF5438 /* SPFilterConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPFilterConfig.m; sourceTree = "<group>"; };
+		2D2451691FC995DC00EF5438 /* SPFilterHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFilterHeader.h; sourceTree = "<group>"; };
+		2D24516A1FC995DC00EF5438 /* SPFilterHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPFilterHeader.m; sourceTree = "<group>"; };
+		2D24516C1FC995E700EF5438 /* SPFilterFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFilterFooter.h; sourceTree = "<group>"; };
+		2D24516D1FC995E700EF5438 /* SPFilterFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPFilterFooter.m; sourceTree = "<group>"; };
+		2D24516F1FC996F300EF5438 /* SPFilterDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFilterDelegate.h; sourceTree = "<group>"; };
+		2D2451701FC99C4C00EF5438 /* SPFilterDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFilterDefine.h; sourceTree = "<group>"; };
+		2D2451711FC9A32800EF5438 /* SPItemFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemFilter.h; sourceTree = "<group>"; };
+		2D2451721FC9A32800EF5438 /* SPItemFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemFilter.m; sourceTree = "<group>"; };
+		2D24517A1FC9A65400EF5438 /* SPItemFilterDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemFilterDefine.h; sourceTree = "<group>"; };
+		2D24517B1FC9AA3200EF5438 /* SPItemFilterGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemFilterGroup.h; sourceTree = "<group>"; };
+		2D24517C1FC9AA3200EF5438 /* SPItemFilterGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemFilterGroup.m; sourceTree = "<group>"; };
+		2D24517E1FC9AA7200EF5438 /* SPItemFilterUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemFilterUnit.h; sourceTree = "<group>"; };
+		2D24517F1FC9AA7200EF5438 /* SPItemFilterUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemFilterUnit.m; sourceTree = "<group>"; };
+		2D2451811FC9AF6800EF5438 /* SPItemFilterDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemFilterDelegate.h; sourceTree = "<group>"; };
 		2D37AAB21FAEEB5E0043DDD4 /* SPItemDescPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemDescPanel.h; sourceTree = "<group>"; };
 		2D37AAB31FAEEB5E0043DDD4 /* SPItemDescPanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemDescPanel.m; sourceTree = "<group>"; };
 		2D37AAB51FAEF5CC0043DDD4 /* SPItemMoreItemsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemMoreItemsView.h; sourceTree = "<group>"; };
@@ -569,8 +611,6 @@
 		2DF9B7B61F1361640012950A /* SPPlayerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerCommon.h; sourceTree = "<group>"; };
 		2DF9B7B71F1361640012950A /* SPPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerManager.h; sourceTree = "<group>"; };
 		2DF9B7B81F1361640012950A /* SPPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerManager.m; sourceTree = "<group>"; };
-		2DF9B7BA1F1361640012950A /* SPInventoryCategoryPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInventoryCategoryPickerVC.h; sourceTree = "<group>"; };
-		2DF9B7BB1F1361640012950A /* SPInventoryCategoryPickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInventoryCategoryPickerVC.m; sourceTree = "<group>"; };
 		2DF9B7BC1F1361640012950A /* SPPlayerAliasesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerAliasesVC.h; sourceTree = "<group>"; };
 		2DF9B7BD1F1361640012950A /* SPPlayerAliasesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerAliasesVC.m; sourceTree = "<group>"; };
 		2DF9B7BE1F1361640012950A /* SPPlayerDetailInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerDetailInfoVC.h; sourceTree = "<group>"; };
@@ -659,6 +699,13 @@
 		2DFE1C381FC70B5600FEDE5C /* SPPlayerItemCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPPlayerItemCategory.m; sourceTree = "<group>"; };
 		2DFE1C3A1FC7117800FEDE5C /* SPPlayerItemQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPlayerItemQuery.h; sourceTree = "<group>"; };
 		2DFE1C3B1FC7117800FEDE5C /* SPPlayerItemQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPPlayerItemQuery.m; sourceTree = "<group>"; };
+		2DFF65F41FCAF2AD006A0081 /* SPPlayerItemFilterUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPlayerItemFilterUnit.h; sourceTree = "<group>"; };
+		2DFF65F51FCAF2AD006A0081 /* SPPlayerItemFilterUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPPlayerItemFilterUnit.m; sourceTree = "<group>"; };
+		2DFF65F71FCAF2C0006A0081 /* SPPlayerItemFilterGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPlayerItemFilterGroup.h; sourceTree = "<group>"; };
+		2DFF65F81FCAF2C0006A0081 /* SPPlayerItemFilterGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPPlayerItemFilterGroup.m; sourceTree = "<group>"; };
+		2DFF65FA1FCAF2D5006A0081 /* SPPlayerItemFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPlayerItemFilter.h; sourceTree = "<group>"; };
+		2DFF65FB1FCAF2D5006A0081 /* SPPlayerItemFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPPlayerItemFilter.m; sourceTree = "<group>"; };
+		2DFF65FD1FCAF2E6006A0081 /* SPPlayerItemFilterDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPlayerItemFilterDefine.h; sourceTree = "<group>"; };
 		690BD50B1FA71524007A4D5D /* SPGamepediaAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaAPI.h; sourceTree = "<group>"; };
 		690BD50C1FA71524007A4D5D /* SPGamepediaAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPGamepediaAPI.m; sourceTree = "<group>"; };
 		690BD50E1FA71666007A4D5D /* SPGamepediaSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaSerializer.h; sourceTree = "<group>"; };
@@ -696,10 +743,6 @@
 		6954FCDE1F43EC5900DDB5D3 /* SPDotaEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDotaEvent.m; sourceTree = "<group>"; };
 		6954FCE01F4415A200DDB5D3 /* SPDotaEventsViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDotaEventsViewCtrl.h; sourceTree = "<group>"; };
 		6954FCE11F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDotaEventsViewCtrl.m; sourceTree = "<group>"; };
-		6954FCE31F44326D00DDB5D3 /* SPItemFilterViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemFilterViewCtrl.h; sourceTree = "<group>"; };
-		6954FCE41F44326D00DDB5D3 /* SPItemFilterViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemFilterViewCtrl.m; sourceTree = "<group>"; };
-		6954FCE61F44329100DDB5D3 /* SPFilterOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFilterOption.h; sourceTree = "<group>"; };
-		6954FCE71F44329100DDB5D3 /* SPFilterOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFilterOption.m; sourceTree = "<group>"; };
 		69819CC01FB99C4F00977873 /* SPItemBannerImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemBannerImageCell.h; sourceTree = "<group>"; };
 		69819CC11FB99C4F00977873 /* SPItemBannerImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemBannerImageCell.m; sourceTree = "<group>"; };
 		6990743E1F3D902C00B64030 /* SPMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMemoryCache.h; sourceTree = "<group>"; };
@@ -734,6 +777,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D2451401FC92F8700EF5438 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2DFF65F41FCAF2AD006A0081 /* SPPlayerItemFilterUnit.h */,
+				2DFF65F51FCAF2AD006A0081 /* SPPlayerItemFilterUnit.m */,
+				2DFF65F71FCAF2C0006A0081 /* SPPlayerItemFilterGroup.h */,
+				2DFF65F81FCAF2C0006A0081 /* SPPlayerItemFilterGroup.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2D2451441FC994CE00EF5438 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				2D2451451FC994D900EF5438 /* SPFilter.storyboard */,
+				2D24514A1FC994ED00EF5438 /* Common */,
+				2D2451491FC994E800EF5438 /* Models */,
+				2D2451481FC994E100EF5438 /* Views */,
+				2D2451471FC994DC00EF5438 /* Ctrls */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		2D2451471FC994DC00EF5438 /* Ctrls */ = {
+			isa = PBXGroup;
+			children = (
+				2D24514B1FC994FE00EF5438 /* SPFilterNaviCtrl.h */,
+				2D24514C1FC994FE00EF5438 /* SPFilterNaviCtrl.m */,
+				2D24514E1FC9951000EF5438 /* SPFilterViewCtrl.h */,
+				2D24514F1FC9951000EF5438 /* SPFilterViewCtrl.m */,
+			);
+			path = Ctrls;
+			sourceTree = "<group>";
+		};
+		2D2451481FC994E100EF5438 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2D2451541FC9954B00EF5438 /* SPFilterCell.h */,
+				2D2451551FC9954B00EF5438 /* SPFilterCell.m */,
+				2D2451691FC995DC00EF5438 /* SPFilterHeader.h */,
+				2D24516A1FC995DC00EF5438 /* SPFilterHeader.m */,
+				2D24516C1FC995E700EF5438 /* SPFilterFooter.h */,
+				2D24516D1FC995E700EF5438 /* SPFilterFooter.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2D2451491FC994E800EF5438 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2D24515D1FC9958F00EF5438 /* SPFilterUnit.h */,
+				2D24515E1FC9958F00EF5438 /* SPFilterUnit.m */,
+				2D2451631FC995B000EF5438 /* SPFilterGroup.h */,
+				2D2451641FC995B000EF5438 /* SPFilterGroup.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2D24514A1FC994ED00EF5438 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2D2451571FC9956B00EF5438 /* SPBaseFilter.h */,
+				2D2451581FC9956B00EF5438 /* SPBaseFilter.m */,
+				2D2451661FC995BE00EF5438 /* SPFilterConfig.h */,
+				2D2451671FC995BE00EF5438 /* SPFilterConfig.m */,
+				2D24516F1FC996F300EF5438 /* SPFilterDelegate.h */,
+				2D2451701FC99C4C00EF5438 /* SPFilterDefine.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		2D48D28A1CDE20D600190F0C = {
 			isa = PBXGroup;
 			children = (
@@ -1449,6 +1563,7 @@
 		2DF9B77F1F1361640012950A /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				2D2451441FC994CE00EF5438 /* Filter */,
 				692A557E1F4D6C1C006914BF /* ItemSearch */,
 				2DF9B7FA1F1361640012950A /* Workshop */,
 				2D4B5D461F2A54CB00A3D8C9 /* Chart */,
@@ -1529,6 +1644,10 @@
 				690BD51F1FA84420007A4D5D /* SPItemSharedData.m */,
 				2D54622C1FAF234B006B2485 /* SPItemPriceLoader.h */,
 				2D54622D1FAF234B006B2485 /* SPItemPriceLoader.m */,
+				2D2451711FC9A32800EF5438 /* SPItemFilter.h */,
+				2D2451721FC9A32800EF5438 /* SPItemFilter.m */,
+				2D24517A1FC9A65400EF5438 /* SPItemFilterDefine.h */,
+				2D2451811FC9AF6800EF5438 /* SPItemFilterDelegate.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1544,8 +1663,6 @@
 				2DF9B7A01F1361640012950A /* SPItemListVC.m */,
 				2DF9B79D1F1361640012950A /* SPItemListContainer.h */,
 				2DF9B79E1F1361640012950A /* SPItemListContainer.m */,
-				6954FCE31F44326D00DDB5D3 /* SPItemFilterViewCtrl.h */,
-				6954FCE41F44326D00DDB5D3 /* SPItemFilterViewCtrl.m */,
 				2D4AD9CF1F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.h */,
 				2D4AD9D01F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m */,
 				690BD5171FA841A1007A4D5D /* SPItemViewCtrl.h */,
@@ -1566,8 +1683,10 @@
 				2D4B5C7B1F27B1F900A3D8C9 /* SPMarketItem.m */,
 				691DC39F1F418D8D00DF5E81 /* SPItemCellModel.h */,
 				691DC3A01F418D8D00DF5E81 /* SPItemCellModel.m */,
-				6954FCE61F44329100DDB5D3 /* SPFilterOption.h */,
-				6954FCE71F44329100DDB5D3 /* SPFilterOption.m */,
+				2D24517B1FC9AA3200EF5438 /* SPItemFilterGroup.h */,
+				2D24517C1FC9AA3200EF5438 /* SPItemFilterGroup.m */,
+				2D24517E1FC9AA7200EF5438 /* SPItemFilterUnit.h */,
+				2D24517F1FC9AA7200EF5438 /* SPItemFilterUnit.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1610,6 +1729,7 @@
 		2DF9B7B01F1361640012950A /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				2D2451401FC92F8700EF5438 /* Model */,
 				2DF9B7B11F1361640012950A /* Common */,
 				2DF9B7B91F1361640012950A /* Ctrls */,
 				2DF9B7D01F1361640012950A /* View */,
@@ -1633,6 +1753,9 @@
 				2DFE1C381FC70B5600FEDE5C /* SPPlayerItemCategory.m */,
 				695261EA1FC7EE8400F3C22B /* SPPlayerItemSharedData.h */,
 				695261EB1FC7EE8400F3C22B /* SPPlayerItemSharedData.m */,
+				2DFF65FA1FCAF2D5006A0081 /* SPPlayerItemFilter.h */,
+				2DFF65FB1FCAF2D5006A0081 /* SPPlayerItemFilter.m */,
+				2DFF65FD1FCAF2E6006A0081 /* SPPlayerItemFilterDefine.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1646,8 +1769,6 @@
 				2DF9B7BF1F1361640012950A /* SPPlayerDetailInfoVC.m */,
 				2DF9B7C61F1361640012950A /* SPPlayerInventoryVC.h */,
 				2DF9B7C71F1361640012950A /* SPPlayerInventoryVC.m */,
-				2DF9B7BA1F1361640012950A /* SPInventoryCategoryPickerVC.h */,
-				2DF9B7BB1F1361640012950A /* SPInventoryCategoryPickerVC.m */,
 				2DF9B7BC1F1361640012950A /* SPPlayerAliasesVC.h */,
 				2DF9B7BD1F1361640012950A /* SPPlayerAliasesVC.m */,
 				2DF9B7C01F1361640012950A /* SPPlayerInventorySearchAllPlayerVC.h */,
@@ -2095,6 +2216,7 @@
 				2D48D2A91CDE20D700190F0C /* LaunchScreen.storyboard in Resources */,
 				2D4B5D4C1F2A54CB00A3D8C9 /* SPChart.storyboard in Resources */,
 				2DF9B8C71F1361640012950A /* SPMain.storyboard in Resources */,
+				2D2451461FC994D900EF5438 /* SPFilter.storyboard in Resources */,
 				692A55841F4D6C1C006914BF /* SPItemSearch.storyboard in Resources */,
 				2D6B7B551F3207310048CEA9 /* DINPro-Regular.otf in Resources */,
 				2D6B7B541F3207310048CEA9 /* DINPro-Medium.otf in Resources */,
@@ -2231,6 +2353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D24514D1FC994FE00EF5438 /* SPFilterNaviCtrl.m in Sources */,
 				2DF9B8761F1361640012950A /* CDTAlertCtrl.m in Sources */,
 				2DC0F69D1F1C6254004DCD3C /* SPItemEntranceCell.m in Sources */,
 				2DF9B8731F1361640012950A /* YGLineView.m in Sources */,
@@ -2246,6 +2369,7 @@
 				2DF9B8381F1361640012950A /* UIScrollView+yg_IBInspectable.m in Sources */,
 				2DE373561F176B8600C8F653 /* SPUpdateViewCtrl.m in Sources */,
 				2DF9B87E1F1361640012950A /* TAAnimatedDotView.m in Sources */,
+				2D2451801FC9AA7200EF5438 /* SPItemFilterUnit.m in Sources */,
 				2DF9B8B31F1361640012950A /* SPPlayerInventorySearchResultVC.m in Sources */,
 				2DF9B8561F1361640012950A /* YGThirdPlatformProcessor.m in Sources */,
 				2DF9B8421F1361640012950A /* UIImage+Mask.m in Sources */,
@@ -2253,11 +2377,12 @@
 				2DF9B8281F1361640012950A /* YGCapabilityHelper.m in Sources */,
 				2DF9B8311F1361640012950A /* NSString+Utils.m in Sources */,
 				2DF9B82C1F1361640012950A /* NSArray+YYModelExt.m in Sources */,
+				2D24516B1FC995DC00EF5438 /* SPFilterHeader.m in Sources */,
 				2DF9B86E1F1361640012950A /* KDCycleBannerView.m in Sources */,
 				2DF9B8961F1361640012950A /* SPItemSlot.m in Sources */,
 				2DF9B89C1F1361640012950A /* YGTabBarCtrl.m in Sources */,
+				2D24517D1FC9AA3200EF5438 /* SPItemFilterGroup.m in Sources */,
 				2DC0F68F1F1B6A2D004DCD3C /* SPHeroCell.m in Sources */,
-				2DF9B8AE1F1361640012950A /* SPInventoryCategoryPickerVC.m in Sources */,
 				2DF9B84E1F1361640012950A /* DDRequestManager.m in Sources */,
 				2DF9B8361F1361640012950A /* UICollectionViewCell+yg_IBInspectable.m in Sources */,
 				699074431F3DA63500B64030 /* CALayer+SDWebCache.m in Sources */,
@@ -2266,9 +2391,9 @@
 				2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */,
 				2DF9B82A1F1361640012950A /* YGCoreMotionHelper.m in Sources */,
 				2D0BD6FB1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m in Sources */,
-				6954FCE81F44329100DDB5D3 /* SPFilterOption.m in Sources */,
 				690BD5161FA71E6D007A4D5D /* SPGamepediaImage.m in Sources */,
 				2D4B5C7C1F27B1F900A3D8C9 /* SPMarketItem.m in Sources */,
+				2DFF65F61FCAF2AD006A0081 /* SPPlayerItemFilterUnit.m in Sources */,
 				2DF9B8911F1361640012950A /* SPItemColor.m in Sources */,
 				2DF9B88A1F1361640012950A /* DDWebInspector.m in Sources */,
 				2DF9B8B91F1361640012950A /* SPPlayerCell.m in Sources */,
@@ -2279,6 +2404,7 @@
 				2D91EB771F1724230038B49C /* SPBaseData.m in Sources */,
 				692A558E1F4D712F006914BF /* SPItemSearchOption.m in Sources */,
 				2DF9B8CC1F1361640012950A /* SPWorkshopVC.m in Sources */,
+				2D2451651FC995B000EF5438 /* SPFilterGroup.m in Sources */,
 				2DF9B8291F1361640012950A /* YGCoreLocationHelper.m in Sources */,
 				690BD5201FA84420007A4D5D /* SPItemSharedData.m in Sources */,
 				2DF9B8B21F1361640012950A /* SPPlayerInventorySearchFilterVC.m in Sources */,
@@ -2286,6 +2412,7 @@
 				2DF9B8781F1361640012950A /* CDTAlertDefine.m in Sources */,
 				2DF9B8391F1361640012950A /* UISearchBar+yg_IBInspectable.m in Sources */,
 				2DF9B8321F1361640012950A /* UIDevice+Ext.m in Sources */,
+				2D2451731FC9A32800EF5438 /* SPItemFilter.m in Sources */,
 				2D0BD6FE1FB3486E00A5DD99 /* SPItemSteamPriceCell.m in Sources */,
 				693062C81FBC30D3005987A1 /* SPItemPlayableView.m in Sources */,
 				2DF9B8C91F1361640012950A /* SPFocusVisualEffectVC.m in Sources */,
@@ -2302,10 +2429,10 @@
 				2DF9B8891F1361640012950A /* SPWebHelper.m in Sources */,
 				6954FCDF1F43EC5900DDB5D3 /* SPDotaEvent.m in Sources */,
 				2DF9B8A41F1361640012950A /* SPItemListContainer.m in Sources */,
+				2DFF65FC1FCAF2D5006A0081 /* SPPlayerItemFilter.m in Sources */,
 				6954FCE21F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m in Sources */,
 				2D40220E1F385D830006EFEF /* SPLootList.m in Sources */,
 				2DF9B8461F1361640012950A /* UIView+BlockGesture.m in Sources */,
-				6954FCE51F44326D00DDB5D3 /* SPItemFilterViewCtrl.m in Sources */,
 				69F631161FBAF4CE00A60EC8 /* SPGamepediaData.m in Sources */,
 				2DF9B8371F1361640012950A /* UINavigationBar+yg_IBInspectable.m in Sources */,
 				2DDB45491F3C4EC9005E8460 /* SPItemImageLoader.m in Sources */,
@@ -2321,8 +2448,10 @@
 				691DC3A11F418D8D00DF5E81 /* SPItemCellModel.m in Sources */,
 				2DF9B8441F1361640012950A /* UINavigationController+Convenience.m in Sources */,
 				2DF9B8CA1F1361640012950A /* SPWorkshopResourcesVC.m in Sources */,
+				2D2451501FC9951000EF5438 /* SPFilterViewCtrl.m in Sources */,
 				2DF9B8621F1361640012950A /* DDProgressHUD.m in Sources */,
 				2D6F1CAB1F1F3D4200E8F614 /* SPItemTransition.m in Sources */,
+				2DFF65F91FCAF2C0006A0081 /* SPPlayerItemFilterGroup.m in Sources */,
 				2DF9B8491F1361640012950A /* UIViewController+Storyboard.m in Sources */,
 				2DF9B8BD1F1361640012950A /* SPSearchCell.m in Sources */,
 				2DF9B8BA1F1361640012950A /* SPSearchEngine.m in Sources */,
@@ -2360,6 +2489,8 @@
 				2D4B5D4F1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m in Sources */,
 				2DF9B8831F1361640012950A /* UIView+SDExtension.m in Sources */,
 				2DF9B8451F1361640012950A /* UIView+Animation.m in Sources */,
+				2D24516E1FC995E700EF5438 /* SPFilterFooter.m in Sources */,
+				2D2451681FC995BE00EF5438 /* SPFilterConfig.m in Sources */,
 				2DF9B8971F1361640012950A /* SPPlayerItems.m in Sources */,
 				2D4B5C761F2198CF00A3D8C9 /* SPItemStyle.m in Sources */,
 				2DF9B88B1F1361640012950A /* DDWebViewController.m in Sources */,
@@ -2368,6 +2499,8 @@
 				2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */,
 				2DF9B87D1F1361640012950A /* TAAbstractDotView.m in Sources */,
 				2DF9B87B1F1361640012950A /* RWDropdownMenuCell.m in Sources */,
+				2D2451561FC9954B00EF5438 /* SPFilterCell.m in Sources */,
+				2D24515F1FC9958F00EF5438 /* SPFilterUnit.m in Sources */,
 				2DF9B8401F1361640012950A /* UIAlertController+Convenience.m in Sources */,
 				2DF9B8C61F1361640012950A /* SPSettingUpgradeVC.m in Sources */,
 				2DF9B8951F1361640012950A /* SPItemSets.m in Sources */,
@@ -2398,6 +2531,7 @@
 				2DFE1C361FC3135D00FEDE5C /* SPDota2MarketItem.m in Sources */,
 				2DF9B8331F1361640012950A /* CoreLocation+Convert.m in Sources */,
 				2DF9B83B1F1361640012950A /* UITableView+yg_IBInspectable.m in Sources */,
+				2D2451591FC9956B00EF5438 /* SPBaseFilter.m in Sources */,
 				2DF9B8851F1361640012950A /* YGTextField.m in Sources */,
 				2D37AAB41FAEEB5E0043DDD4 /* SPItemDescPanel.m in Sources */,
 				2DF9B8871F1361640012950A /* UIImage+ImageEffects.m in Sources */,

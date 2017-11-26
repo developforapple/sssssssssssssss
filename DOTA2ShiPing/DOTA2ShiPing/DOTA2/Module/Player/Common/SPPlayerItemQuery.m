@@ -30,7 +30,7 @@
 
 - (NSArray<SPItem *> *)loadPage:(NSInteger)page
 {
-    static NSInteger perPage = 200;
+    static NSInteger perPage = 100;
     
     NSInteger total = self.filteredPlayerItems.count;
     NSInteger loc = page * perPage;
@@ -66,6 +66,7 @@
     }
     
     AsyncBenchmarkTestEnd(SPPlayerItemQuery);
+    
     SPDBCLOSE
     
     return result;

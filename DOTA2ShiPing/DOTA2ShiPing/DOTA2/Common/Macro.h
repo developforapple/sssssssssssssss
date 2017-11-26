@@ -173,6 +173,14 @@
 
     #define TIMESTAMP ([[NSDate date] timeIntervalSince1970])
 
+    #ifndef yes
+        #define yes YES
+    #endif
+
+    #ifndef no
+        #define no NO
+    #endif
+
 #endif //APP_CONVENIENT_MACRO
 
 
