@@ -176,7 +176,6 @@
 		2DF9B8A81F1361640012950A /* DDMainADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AA1F1361640012950A /* DDMainADVC.m */; };
 		2DF9B8A91F1361640012950A /* DDMainTBC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AC1F1361640012950A /* DDMainTBC.m */; };
 		2DF9B8AA1F1361640012950A /* SPLaunchADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AE1F1361640012950A /* SPLaunchADVC.m */; };
-		2DF9B8AB1F1361640012950A /* SPInventoryFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7B31F1361640012950A /* SPInventoryFilter.m */; };
 		2DF9B8AC1F1361640012950A /* SPPlayer+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7B51F1361640012950A /* SPPlayer+More.m */; };
 		2DF9B8AD1F1361640012950A /* SPPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7B81F1361640012950A /* SPPlayerManager.m */; };
 		2DF9B8AF1F1361640012950A /* SPPlayerAliasesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BD1F1361640012950A /* SPPlayerAliasesVC.m */; };
@@ -185,7 +184,6 @@
 		2DF9B8B51F1361640012950A /* SPPlayerListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C91F1361640012950A /* SPPlayerListVC.m */; };
 		2DF9B8B61F1361640012950A /* SPPlayerInventoryUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CC1F1361640012950A /* SPPlayerInventoryUpdateVC.m */; };
 		2DF9B8B71F1361640012950A /* SPPlayerSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CE1F1361640012950A /* SPPlayerSelectedVC.m */; };
-		2DF9B8B81F1361640012950A /* SPInventoryConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7D21F1361640012950A /* SPInventoryConditionCell.m */; };
 		2DF9B8B91F1361640012950A /* SPPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7D41F1361640012950A /* SPPlayerCell.m */; };
 		2DF9B8BA1F1361640012950A /* SPSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7D91F1361640012950A /* SPSearchEngine.m */; };
 		2DF9B8BB1F1361640012950A /* SPSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7DC1F1361640012950A /* SPSearchVC.m */; };
@@ -218,7 +216,6 @@
 		2DFE1C201FBDE41100FEDE5C /* SPItemLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C1F1FBDE41100FEDE5C /* SPItemLoadingView.m */; };
 		2DFE1C2F1FC312B300FEDE5C /* SPDota2API.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C2E1FC312B300FEDE5C /* SPDota2API.m */; };
 		2DFE1C361FC3135D00FEDE5C /* SPDota2MarketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C351FC3135D00FEDE5C /* SPDota2MarketItem.m */; };
-		2DFE1C391FC70B5600FEDE5C /* SPPlayerItemCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C381FC70B5600FEDE5C /* SPPlayerItemCategory.m */; };
 		2DFE1C3C1FC7117800FEDE5C /* SPPlayerItemQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C3B1FC7117800FEDE5C /* SPPlayerItemQuery.m */; };
 		2DFF65F61FCAF2AD006A0081 /* SPPlayerItemFilterUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65F51FCAF2AD006A0081 /* SPPlayerItemFilterUnit.m */; };
 		2DFF65F91FCAF2C0006A0081 /* SPPlayerItemFilterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65F81FCAF2C0006A0081 /* SPPlayerItemFilterGroup.m */; };
@@ -605,8 +602,6 @@
 		2DF9B7AC1F1361640012950A /* DDMainTBC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMainTBC.m; sourceTree = "<group>"; };
 		2DF9B7AD1F1361640012950A /* SPLaunchADVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLaunchADVC.h; sourceTree = "<group>"; };
 		2DF9B7AE1F1361640012950A /* SPLaunchADVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLaunchADVC.m; sourceTree = "<group>"; };
-		2DF9B7B21F1361640012950A /* SPInventoryFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInventoryFilter.h; sourceTree = "<group>"; };
-		2DF9B7B31F1361640012950A /* SPInventoryFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInventoryFilter.m; sourceTree = "<group>"; };
 		2DF9B7B41F1361640012950A /* SPPlayer+More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPPlayer+More.h"; sourceTree = "<group>"; };
 		2DF9B7B51F1361640012950A /* SPPlayer+More.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPPlayer+More.m"; sourceTree = "<group>"; };
 		2DF9B7B61F1361640012950A /* SPPlayerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerCommon.h; sourceTree = "<group>"; };
@@ -624,8 +619,6 @@
 		2DF9B7CC1F1361640012950A /* SPPlayerInventoryUpdateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventoryUpdateVC.m; sourceTree = "<group>"; };
 		2DF9B7CD1F1361640012950A /* SPPlayerSelectedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerSelectedVC.h; sourceTree = "<group>"; };
 		2DF9B7CE1F1361640012950A /* SPPlayerSelectedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerSelectedVC.m; sourceTree = "<group>"; };
-		2DF9B7D11F1361640012950A /* SPInventoryConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInventoryConditionCell.h; sourceTree = "<group>"; };
-		2DF9B7D21F1361640012950A /* SPInventoryConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInventoryConditionCell.m; sourceTree = "<group>"; };
 		2DF9B7D31F1361640012950A /* SPPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerCell.h; sourceTree = "<group>"; };
 		2DF9B7D41F1361640012950A /* SPPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerCell.m; sourceTree = "<group>"; };
 		2DF9B7D71F1361640012950A /* SPSearchCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSearchCommon.h; sourceTree = "<group>"; };
@@ -690,8 +683,6 @@
 		2DFE1C2E1FC312B300FEDE5C /* SPDota2API.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPDota2API.m; sourceTree = "<group>"; };
 		2DFE1C341FC3135D00FEDE5C /* SPDota2MarketItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPDota2MarketItem.h; sourceTree = "<group>"; };
 		2DFE1C351FC3135D00FEDE5C /* SPDota2MarketItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPDota2MarketItem.m; sourceTree = "<group>"; };
-		2DFE1C371FC70B5600FEDE5C /* SPPlayerItemCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPlayerItemCategory.h; sourceTree = "<group>"; };
-		2DFE1C381FC70B5600FEDE5C /* SPPlayerItemCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPPlayerItemCategory.m; sourceTree = "<group>"; };
 		2DFE1C3A1FC7117800FEDE5C /* SPPlayerItemQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPlayerItemQuery.h; sourceTree = "<group>"; };
 		2DFE1C3B1FC7117800FEDE5C /* SPPlayerItemQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPPlayerItemQuery.m; sourceTree = "<group>"; };
 		2DFF65F41FCAF2AD006A0081 /* SPPlayerItemFilterUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPlayerItemFilterUnit.h; sourceTree = "<group>"; };
@@ -1753,15 +1744,11 @@
 			children = (
 				2DFE1C3A1FC7117800FEDE5C /* SPPlayerItemQuery.h */,
 				2DFE1C3B1FC7117800FEDE5C /* SPPlayerItemQuery.m */,
-				2DF9B7B21F1361640012950A /* SPInventoryFilter.h */,
-				2DF9B7B31F1361640012950A /* SPInventoryFilter.m */,
 				2DF9B7B41F1361640012950A /* SPPlayer+More.h */,
 				2DF9B7B51F1361640012950A /* SPPlayer+More.m */,
 				2DF9B7B61F1361640012950A /* SPPlayerCommon.h */,
 				2DF9B7B71F1361640012950A /* SPPlayerManager.h */,
 				2DF9B7B81F1361640012950A /* SPPlayerManager.m */,
-				2DFE1C371FC70B5600FEDE5C /* SPPlayerItemCategory.h */,
-				2DFE1C381FC70B5600FEDE5C /* SPPlayerItemCategory.m */,
 				695261EA1FC7EE8400F3C22B /* SPPlayerItemSharedData.h */,
 				695261EB1FC7EE8400F3C22B /* SPPlayerItemSharedData.m */,
 				2DFF65FA1FCAF2D5006A0081 /* SPPlayerItemFilter.h */,
@@ -1801,8 +1788,6 @@
 		2DF9B7D01F1361640012950A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2DF9B7D11F1361640012950A /* SPInventoryConditionCell.h */,
-				2DF9B7D21F1361640012950A /* SPInventoryConditionCell.m */,
 				2DF9B7D31F1361640012950A /* SPPlayerCell.h */,
 				2DF9B7D41F1361640012950A /* SPPlayerCell.m */,
 			);
@@ -2369,7 +2354,6 @@
 				2DF9B8531F1361640012950A /* YGPaymentResult.m in Sources */,
 				699074401F3D902C00B64030 /* SPMemoryCache.m in Sources */,
 				2DF9B8261F1361640012950A /* TQLocationConverter.m in Sources */,
-				2DF9B8AB1F1361640012950A /* SPInventoryFilter.m in Sources */,
 				2DF9B8C51F1361640012950A /* SPSettingTableVC.m in Sources */,
 				2DF9B8381F1361640012950A /* UIScrollView+yg_IBInspectable.m in Sources */,
 				2DE373561F176B8600C8F653 /* SPUpdateViewCtrl.m in Sources */,
@@ -2487,7 +2471,6 @@
 				2DF9B8221F1361640012950A /* SPHTMLSerializer.m in Sources */,
 				2DF9B8211F1361640012950A /* SPDotabuffAPI.m in Sources */,
 				2DF9B83E1F1361640012950A /* UIView+yg_IBInspectable.m in Sources */,
-				2DFE1C391FC70B5600FEDE5C /* SPPlayerItemCategory.m in Sources */,
 				2DF9B8BE1F1361640012950A /* SPDiskCacheControl.m in Sources */,
 				2DF9B8821F1361640012950A /* SDCycleScrollView.m in Sources */,
 				2DF9B83A1F1361640012950A /* UITabBar+yg_IBInspectable.m in Sources */,
@@ -2547,7 +2530,6 @@
 				2DF9B8BC1F1361640012950A /* SPSearchBar.m in Sources */,
 				2DF9B8AA1F1361640012950A /* SPLaunchADVC.m in Sources */,
 				2DF9B8551F1361640012950A /* CDTUserSession.m in Sources */,
-				2DF9B8B81F1361640012950A /* SPInventoryConditionCell.m in Sources */,
 				2DF9B84C1F1361640012950A /* API.m in Sources */,
 				2DF9B8CF1F1361640012950A /* SPWorkshopResourceCell.m in Sources */,
 				2DF9B8931F1361640012950A /* SPItemQuality.m in Sources */,

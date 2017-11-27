@@ -10,7 +10,6 @@
 #import "SPPlayer.h"
 #import "SPItemListContainer.h"
 #import "DDSegmentScrollView.h"
-#import "SPInventoryFilter.h"
 #import "SPItemCommon.h"
 #import "ReactiveObjC.h"
 
