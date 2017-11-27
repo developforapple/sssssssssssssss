@@ -87,7 +87,7 @@ static NSString * const CellId = @"RWDropdownMenuCell";
 }
 @end
 
-@interface RWDropdownMenuPopoverHelper : NSObject <UIPopoverControllerDelegate,UIPopoverPresentationControllerDelegate,UIAdaptivePresentationControllerDelegate>
+@interface RWDropdownMenuPopoverHelper : SPObject <UIPopoverControllerDelegate,UIPopoverPresentationControllerDelegate,UIAdaptivePresentationControllerDelegate>
 
 + (instancetype)sharedInstance;
 

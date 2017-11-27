@@ -6,9 +6,13 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 
-@interface SPItemSlot : NSObject <NSCopying,NSCoding>
+@interface SPItemSlot : SPObject <NSCopying,NSCoding>
 
 // 2
 @property (assign, nonatomic) int SlotIndex;

@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, YGPayStatus) {
 @class BaseResp;
 @class PingppError;
 
-@interface YGPaymentResult : NSObject
+@interface YGPaymentResult : SPObject
 
 @property (strong, nonatomic) id originData;
 

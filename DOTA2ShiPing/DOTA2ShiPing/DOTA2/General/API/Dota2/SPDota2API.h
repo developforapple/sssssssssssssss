@@ -6,10 +6,14 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "SPDota2MarketItem.h"
 
-@interface SPDota2API : NSObject
+@interface SPDota2API : SPObject
 
 + (void)fetchDota2SpecilPriceItem:(void (^)(SPDota2MarketItem *item))completion;
 

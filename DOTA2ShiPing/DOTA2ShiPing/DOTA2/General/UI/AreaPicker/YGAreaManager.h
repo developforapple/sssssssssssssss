@@ -15,18 +15,18 @@
 
 typedef NSString YGAreaDistrict;
 
-@interface YGAreaProvince : NSObject <NSCoding,NSCopying,YYModel>
+@interface YGAreaProvince : SPObject <NSCoding,NSCopying,YYModel>
 @property (copy, nonatomic) NSString *province;
 @property (strong, nonatomic) NSArray<YGAreaCity *> *cities;
 @end
 
-@interface YGAreaCity : NSObject <NSCoding,NSCopying,YYModel>
+@interface YGAreaCity : SPObject <NSCoding,NSCopying,YYModel>
 @property (copy, nonatomic) NSString *city;
 @property (strong, nonatomic) NSArray<YGAreaDistrict *> *districts;
 @end
 
 #pragma mark - Data Interface
-@interface YGAreaManager : NSObject
+@interface YGAreaManager : SPObject
 
 + (instancetype)areaManager;
 
@@ -37,7 +37,7 @@ typedef NSString YGAreaDistrict;
                     district:(NSString *)districtName;
 @end
 
-@interface YGArea : NSObject
+@interface YGArea : SPObject
 @property (strong, nonatomic) YGAreaProvince *province;
 @property (strong, nonatomic) YGAreaCity *city;
 @property (strong, nonatomic) YGAreaDistrict *district;

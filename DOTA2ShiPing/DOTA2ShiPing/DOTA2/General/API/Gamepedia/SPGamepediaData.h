@@ -6,11 +6,15 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "SPGamepediaImage.h"
 #import "SPGamepediaPlayable.h"
 
-@interface SPGamepediaData : NSObject
+@interface SPGamepediaData : SPObject
 
 + (instancetype)error:(NSError *)error;
 

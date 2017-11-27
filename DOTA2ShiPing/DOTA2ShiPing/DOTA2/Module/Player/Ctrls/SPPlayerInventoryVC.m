@@ -133,9 +133,11 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     }];
 }
 
-- (void)filter:(SPBaseFilter *)filter didCompleted:(NSArray<SPFilterUnit *> *)units
+- (void)filter:(SPBaseFilter *)filter didCompleted:(NSArray<SPPlayerItemFilterUnit *> *)units
 {
-    NSLog(@"");
+    [self.query filter:units];
+    NSArray *items = [self.query loadPage:0];
+    [self.container update:self.mode data:items];
 }
 
 #pragma mark - Segue

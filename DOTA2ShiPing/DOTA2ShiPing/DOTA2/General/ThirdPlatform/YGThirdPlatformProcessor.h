@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-@interface YGThirdPlatformProcessor : NSObject
+@interface YGThirdPlatformProcessor : SPObject
 
 + (instancetype)processor;
 

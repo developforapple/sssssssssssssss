@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, CDTAlertType) {
     CDTAlertNetworkErr
 };
 
-@interface CDTAlertDefine : NSObject
+@interface CDTAlertDefine : SPObject
 
 - (instancetype)initWithType:(CDTAlertType)type;
 

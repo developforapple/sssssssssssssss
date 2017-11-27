@@ -6,9 +6,13 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 
-@interface SPLocale : NSObject
+@interface SPLocale : SPObject
 
 + (NSArray *)supportedLanguages;
 + (BOOL)isLangSupported:(NSString *)lang;

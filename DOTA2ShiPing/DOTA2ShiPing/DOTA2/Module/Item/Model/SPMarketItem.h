@@ -6,10 +6,14 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "SPItemColor.h"
 
-@interface SPMarketItem : NSObject
+@interface SPMarketItem : SPObject
 @property (copy, nonatomic) NSString *name;   //铭刻 小飞侠
 @property (copy, nonatomic) NSString *qty;    //41
 @property (copy, nonatomic) NSString *price;  //$0.21 USD

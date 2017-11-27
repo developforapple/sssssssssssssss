@@ -46,7 +46,7 @@ typedef NS_ENUM(NSUInteger, YGNotificaitonForegroundStyle) {
 @end
 
 // 兼容iOS7~iOS10的远程通知单例
-@interface YGRemoteNotificationHelper : NSObject
+@interface YGRemoteNotificationHelper : SPObject
 
 + (instancetype)shared;
 

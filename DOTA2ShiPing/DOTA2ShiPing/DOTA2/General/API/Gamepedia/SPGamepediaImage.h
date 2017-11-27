@@ -6,7 +6,11 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,7 +24,7 @@ typedef NS_ENUM(NSUInteger, SPGamepediaImageScale) {
     SPGamepediaImageScaleBest = 999
 };
 
-@interface SPGamepediaImage : NSObject
+@interface SPGamepediaImage : SPObject
 
 @property (copy, readonly, nonatomic) NSString *scheme;       //对应 scheme
 @property (copy, readonly, nonatomic) NSString *host;         //对应 dota2.gamepedia.com

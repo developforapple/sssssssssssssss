@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, DDRespResult) {
     DDRespResultNetworkErr = NSIntegerMax, // 网络连接错误
 };
 
-@interface DDResponse : NSObject
+@interface DDResponse : SPObject
 
 #pragma mark - 原始数据
 /**

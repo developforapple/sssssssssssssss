@@ -8,7 +8,7 @@
 
 @import UIKit;
 
-@interface YGCoreMotionHelper : NSObject
+@interface YGCoreMotionHelper : SPObject
 
 // 监听的灵敏度。越小越灵敏。默认为 1.s
 @property (assign, nonatomic) NSTimeInterval sensitivity;

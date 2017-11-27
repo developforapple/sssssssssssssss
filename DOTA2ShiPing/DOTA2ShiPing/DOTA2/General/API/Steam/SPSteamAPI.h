@@ -7,7 +7,11 @@
 //
 
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 
 @class SPPlayerItemsList;
 
@@ -15,7 +19,7 @@ typedef void (^SPSteamSearchUserCompletion)(BOOL suc, NSArray *list, NSString *m
 typedef void (^SPSteamFetchCompletion)(BOOL suc, id object);
 typedef void (^SPSteamFetchCompletion2)(BOOL suc, id object, NSString *taskDesc);
 
-@interface SPSteamAPI : NSObject
+@interface SPSteamAPI : SPObject
 
 + (instancetype)shared;
 - (void)searchUser:(NSString *)keywords
@@ -88,7 +92,7 @@ typedef void (^SPSteamFetchCompletion2)(BOOL suc, id object, NSString *taskDesc)
 
 
 
-@interface SPLocation : NSObject
+@interface SPLocation : SPObject
 @property (strong, nonatomic) NSString *country;
 @property (strong, nonatomic) NSString *countryKEY;
 @property (strong, nonatomic) NSString *state;

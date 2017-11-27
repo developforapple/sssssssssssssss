@@ -9,7 +9,7 @@
 @import Foundation;
 @import CoreLocation;
 
-@interface TQLocationConverter : NSObject
+@interface TQLocationConverter : SPObject
 
 /**
  *  判断是否在中国

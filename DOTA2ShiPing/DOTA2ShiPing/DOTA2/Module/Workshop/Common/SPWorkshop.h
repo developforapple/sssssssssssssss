@@ -6,11 +6,15 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "SPWorkshopModel.h"
 
 #pragma mark - Workshop
-@interface SPWorkshop : NSObject
+@interface SPWorkshop : SPObject
 
 @property (strong, readonly, nonatomic) NSArray<SPWorkshopUnit *> *units;     //当前内容
 @property (assign, readonly, nonatomic) BOOL isCacheData;   //当前是否是缓存数据

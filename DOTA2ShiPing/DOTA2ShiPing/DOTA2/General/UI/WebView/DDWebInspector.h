@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-@interface DDWebInspector : NSObject
+@interface DDWebInspector : SPObject
 
 + (instancetype)shared;
 

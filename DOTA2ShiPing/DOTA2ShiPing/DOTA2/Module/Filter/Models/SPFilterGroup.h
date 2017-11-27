@@ -6,11 +6,15 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 
 @class SPFilterUnit;
 
-@interface SPFilterGroup : NSObject
+@interface SPFilterGroup : SPObject
 
 @property (strong, nonatomic) NSArray<SPFilterUnit *> *units;
 

@@ -9,6 +9,11 @@
 #import "SPPlayerItemFilterUnit.h"
 #import "SPHero.h"
 
+NSString *const kSPFilterObjectTradableYES = @"t_yes";
+NSString *const kSPFilterObjectTradableNO = @"t_no";
+NSString *const kSPFilterObjectMarketableYES = @"m_yes";
+NSString *const kSPFilterObjectMarketableNO = @"m_no";
+
 @implementation SPPlayerItemFilterUnit
 
 + (instancetype)unit:(NSString *)name object:(NSString *)object
@@ -68,7 +73,7 @@
 {
     SPPlayerItemFilterUnit *unit = [SPPlayerItemFilterUnit new];
     unit.title = tradable ? @"可交易" : @"不可交易" ;
-    unit.object = @(tradable);
+    unit.object = tradable ? kSPFilterObjectTradableYES : kSPFilterObjectTradableNO ;
     unit.type = SPPlayerItemFilterTypeTradable;
     return unit;
 }
@@ -77,7 +82,7 @@
 {
     SPPlayerItemFilterUnit *unit = [SPPlayerItemFilterUnit new];
     unit.title = marketable ? @"可出售" : @"不可出售" ;
-    unit.object = @(marketable);
+    unit.object = marketable ? kSPFilterObjectMarketableYES : kSPFilterObjectMarketableNO ;
     unit.type = SPPlayerItemFilterTypeMarketable;
     return unit;
 }

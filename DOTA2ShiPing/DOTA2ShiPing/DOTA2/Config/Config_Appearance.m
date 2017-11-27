@@ -32,7 +32,7 @@ UIColor *kDisableColor;         //失效状态背景  dadada
 UIColor *kBarTintColor;
 UIColor *kTintColor;
 
-@interface _Config_Appearance : NSObject
+@interface _Config_Appearance : SPObject
 
 @end
 

@@ -14,7 +14,7 @@
 #define SESSION [CDTUserSession session]
 #define ME [SESSION user]
 
-@interface CDTUserSession : NSObject
+@interface CDTUserSession : SPObject
 
 + (instancetype)session;
 

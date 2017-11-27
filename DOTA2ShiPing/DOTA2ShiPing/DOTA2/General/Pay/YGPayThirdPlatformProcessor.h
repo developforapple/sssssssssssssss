@@ -23,7 +23,7 @@
 - (void)didReceivedThirdPayPlatformResult:(YGPaymentResult *)result platform:(YGPayThirdPlatform)platform;
 @end
 
-@interface YGPayThirdPlatformProcessor : NSObject
+@interface YGPayThirdPlatformProcessor : SPObject
 
 @property (weak, nonatomic) id<YGPayProcess> receiver;
 @property (weak, nonatomic) UIViewController *viewCtrl;

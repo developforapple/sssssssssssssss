@@ -11,7 +11,7 @@
 
 @class SPItem;
 
-@interface SPItemLayout : NSObject
+@interface SPItemLayout : SPObject
 @property (nonatomic) CGFloat lineSpacing;
 @property (nonatomic) CGFloat interitemSpacing;
 @property (nonatomic) CGSize itemSize;

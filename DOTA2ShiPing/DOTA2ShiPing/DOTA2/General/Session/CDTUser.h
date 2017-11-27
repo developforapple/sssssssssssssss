@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-@interface CDTUser : NSObject <NSCoding,NSCopying>
+@interface CDTUser : SPObject <NSCoding,NSCopying>
 
 @property (copy,    nonatomic)  NSString *  accessToken;
 @property (assign,  nonatomic)  NSInteger   age;

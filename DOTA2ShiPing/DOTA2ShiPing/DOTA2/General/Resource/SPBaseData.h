@@ -6,7 +6,11 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 
 // 文件结构
 /*  /Documents
@@ -25,7 +29,7 @@
  
  */
 
-@interface SPBaseData : NSObject
+@interface SPBaseData : SPObject
 
 // 根目录
 + (NSString *)rootFolder;

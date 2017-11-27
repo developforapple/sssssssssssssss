@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-@interface YGCapabilityHelper : NSObject
+@interface YGCapabilityHelper : SPObject
 
 + (void)call:(NSString *)phoneNumber;
 + (void)call:(NSString *)phoneNumber needConfirm:(BOOL)needConfirm;

@@ -6,13 +6,17 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "SPItemCommon.h"
 #import "SPItemSlot.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SPHero : NSObject
+@interface SPHero : SPObject
 
 // npc_dota_hero_earthshaker
 @property (copy, nonatomic) NSString *name;

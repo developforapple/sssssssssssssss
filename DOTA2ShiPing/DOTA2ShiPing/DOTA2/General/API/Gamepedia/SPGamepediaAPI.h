@@ -6,7 +6,11 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "SPGamepediaData.h"
 
 @class SPItem;
@@ -17,7 +21,7 @@ typedef NS_ENUM(NSUInteger, SPGamepediaAPIErrorCode) {
     SPGamepediaAPIErrorCodeUnexpectedResponse = 10086,
 };
 
-@interface SPGamepediaAPI : NSObject
+@interface SPGamepediaAPI : SPObject
 
 + (instancetype)shared;
 

@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-@interface CDTAlertAction : NSObject
+@interface CDTAlertAction : SPObject
 
 + (instancetype)action:(NSString *)title handler:(void (^)(void))handler;
 

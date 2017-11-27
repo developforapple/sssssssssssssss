@@ -6,11 +6,15 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 
 @class UIColor;
 
-@interface SPItemColor : NSObject
+@interface SPItemColor : SPObject
 
 // desc_legendary
 @property (strong, nonatomic) NSString *name;

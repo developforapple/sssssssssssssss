@@ -6,7 +6,11 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "AVOSCloud.h"
 
 
@@ -35,7 +39,7 @@
 /**
  应用需要使用和更新的资源
  */
-@interface SPResourceManager : NSObject
+@interface SPResourceManager : SPObject
 
 // 是否需要初始化数据库
 + (BOOL)needInitializeDatabase;

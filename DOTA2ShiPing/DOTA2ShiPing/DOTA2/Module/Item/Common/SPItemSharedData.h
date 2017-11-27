@@ -6,7 +6,11 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "SPItem.h"
 #import "SPHero.h"
 #import "SPItemRarity.h"
@@ -18,7 +22,7 @@
 #import "SPItemPriceLoader.h"
 #import "SPGamepediaData.h"
 
-@interface SPItemSharedData : NSObject
+@interface SPItemSharedData : SPObject
 
 @property (strong, readonly, nonatomic) SPItem *item;
 @property (strong, readonly, nonatomic) SPHero *hero;

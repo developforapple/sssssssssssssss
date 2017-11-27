@@ -6,11 +6,16 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "SPPlayerItemSharedData.h"
 #import "SPItem.h"
+#import "SPPlayerItemFilterUnit.h"
 
-@interface SPPlayerItemQuery : NSObject
+@interface SPPlayerItemQuery : SPObject
 
 + (instancetype)queryWithPlayerItems:(SPPlayerItemSharedData *)data;
 
@@ -20,11 +25,11 @@
 @property (assign, nonatomic) NSInteger pageNo;
 
 // 过滤选项
-@property (strong, nonatomic) id options;
+@property (strong, nonatomic) NSArray<SPPlayerItemFilterUnit *> *units;
 
 - (NSArray<SPItem *> *)loadPage:(NSInteger)page;
 
 // 更改过滤选项会刷新所有数据
-- (void)filter:(id)options;
+- (void)filter:(NSArray<SPPlayerItemFilterUnit *> *)units;
 
 @end

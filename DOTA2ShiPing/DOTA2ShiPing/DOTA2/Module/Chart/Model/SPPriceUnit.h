@@ -6,9 +6,13 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 
-@interface SPPriceUnit : NSObject <NSCoding,NSCopying>
+@interface SPPriceUnit : SPObject <NSCoding,NSCopying>
 
 @property (copy, nonatomic) NSString *dateStr;          //Oct 15 2016 01: +0
 @property (assign, nonatomic) float price;              //0.913

@@ -6,7 +6,11 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "SDWebImageManager.h"
 
 @class YYCache;
@@ -15,7 +19,7 @@ typedef void (^SPCompletion)(NSInteger cost);
 typedef void (^SPProgress)(int removed,int total);
 typedef void (^SPEndBlock)(BOOL suc);
 
-@interface SPDiskCacheControl : NSObject
+@interface SPDiskCacheControl : SPObject
 
 #pragma mark - Workshop
 + (SDImageCache *)workshopImageCache;

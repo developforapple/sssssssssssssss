@@ -226,6 +226,7 @@
 		2DFF65F61FCAF2AD006A0081 /* SPPlayerItemFilterUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65F51FCAF2AD006A0081 /* SPPlayerItemFilterUnit.m */; };
 		2DFF65F91FCAF2C0006A0081 /* SPPlayerItemFilterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65F81FCAF2C0006A0081 /* SPPlayerItemFilterGroup.m */; };
 		2DFF65FC1FCAF2D5006A0081 /* SPPlayerItemFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65FB1FCAF2D5006A0081 /* SPPlayerItemFilter.m */; };
+		2DFF66001FCC447B006A0081 /* SPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65FF1FCC447B006A0081 /* SPObject.m */; };
 		690BD50D1FA71524007A4D5D /* SPGamepediaAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD50C1FA71524007A4D5D /* SPGamepediaAPI.m */; };
 		690BD5101FA71666007A4D5D /* SPGamepediaSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD50F1FA71666007A4D5D /* SPGamepediaSerializer.m */; };
 		690BD5161FA71E6D007A4D5D /* SPGamepediaImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD5151FA71E6D007A4D5D /* SPGamepediaImage.m */; };
@@ -706,6 +707,8 @@
 		2DFF65FA1FCAF2D5006A0081 /* SPPlayerItemFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPlayerItemFilter.h; sourceTree = "<group>"; };
 		2DFF65FB1FCAF2D5006A0081 /* SPPlayerItemFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPPlayerItemFilter.m; sourceTree = "<group>"; };
 		2DFF65FD1FCAF2E6006A0081 /* SPPlayerItemFilterDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPlayerItemFilterDefine.h; sourceTree = "<group>"; };
+		2DFF65FE1FCC447B006A0081 /* SPObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPObject.h; sourceTree = "<group>"; };
+		2DFF65FF1FCC447B006A0081 /* SPObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPObject.m; sourceTree = "<group>"; };
 		690BD50B1FA71524007A4D5D /* SPGamepediaAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaAPI.h; sourceTree = "<group>"; };
 		690BD50C1FA71524007A4D5D /* SPGamepediaAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPGamepediaAPI.m; sourceTree = "<group>"; };
 		690BD50E1FA71666007A4D5D /* SPGamepediaSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaSerializer.h; sourceTree = "<group>"; };
@@ -1593,6 +1596,8 @@
 				2DF9B7881F1361640012950A /* YGBaseWebViewCtrl.m */,
 				2DF9B7891F1361640012950A /* YGTabBarCtrl.h */,
 				2DF9B78A1F1361640012950A /* YGTabBarCtrl.m */,
+				2DFF65FE1FCC447B006A0081 /* SPObject.h */,
+				2DFF65FF1FCC447B006A0081 /* SPObject.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2526,6 +2531,7 @@
 				2DF9B8BB1F1361640012950A /* SPSearchVC.m in Sources */,
 				2D0BD7011FB5FBCA00A5DD99 /* SPItemBannerView.m in Sources */,
 				2DF9B87C1F1361640012950A /* RWDropdownMenuTransitionController.m in Sources */,
+				2DFF66001FCC447B006A0081 /* SPObject.m in Sources */,
 				2DF9B87A1F1361640012950A /* RWDropdownMenu.m in Sources */,
 				2DF9B86F1F1361640012950A /* YGLabel.m in Sources */,
 				2DFE1C361FC3135D00FEDE5C /* SPDota2MarketItem.m in Sources */,

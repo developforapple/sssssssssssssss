@@ -6,7 +6,11 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "SPHero.h"
 #import "SPItemRarity.h"
 #import "SPItem.h"
@@ -16,7 +20,7 @@
 #import "SPItemFilterUnit.h"
 
 // 过滤器
-@interface SPItemQuery : NSObject
+@interface SPItemQuery : SPObject
 
 // 根据英雄筛选
 + (instancetype)queryWithHero:(SPHero *)hero;

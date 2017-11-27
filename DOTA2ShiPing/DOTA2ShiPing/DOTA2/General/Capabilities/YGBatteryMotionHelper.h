@@ -10,7 +10,7 @@
 
 typedef void(^YGBatteryInfoChangedHandler)(float level, UIDeviceBatteryState state, BOOL lowPowerMode);
 
-@interface YGBatteryMotionHelper : NSObject
+@interface YGBatteryMotionHelper : SPObject
 
 + (instancetype)helper;
 

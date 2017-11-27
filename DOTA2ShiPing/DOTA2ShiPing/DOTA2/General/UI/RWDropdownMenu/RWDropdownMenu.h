@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, RWDropdownMenuStyle) {
 /**
  *  Description of a menu item.
  */
-@interface RWDropdownMenuItem : NSObject
+@interface RWDropdownMenuItem : SPObject
 
 /**
  *  Item title.

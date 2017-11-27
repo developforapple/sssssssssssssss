@@ -6,14 +6,18 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "SPPlayer.h"
 #import "SPPlayerCommon.h"
 #import "SPItem.h"
 
 @class SPInventoryFilterCondition;
 
-@interface SPInventoryFilter : NSObject
+@interface SPInventoryFilter : SPObject
 
 - (instancetype)initWithPlayer:(SPPlayer *)player;
 
@@ -51,7 +55,7 @@
 #import "SPItemRarity.h"
 #import "SPItemQuality.h"
 
-@interface SPInventoryFilterCondition : NSObject
+@interface SPInventoryFilterCondition : SPObject
 @property (strong, nonatomic) SPHero *hero;
 @property (strong, nonatomic) SPItemRarity *rarity;
 @property (strong, nonatomic) SPItemQuality *quality;

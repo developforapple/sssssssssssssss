@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, SPItemBannerPlayable) {
     SPItemBannerPlayableAudio   //音频
 };
 
-@interface SPItemBannerImageInfo : NSObject
+@interface SPItemBannerImageInfo : SPObject
 @property (assign, nonatomic) NSInteger index;                  //索引
 @property (assign, nonatomic) NSInteger imageCount;             //图片数量
 @property (copy, nonatomic) NSURL *url;                      //资源URL

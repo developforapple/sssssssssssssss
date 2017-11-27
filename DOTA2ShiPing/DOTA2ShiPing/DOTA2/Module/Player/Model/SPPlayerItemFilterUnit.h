@@ -11,11 +11,14 @@
 
 @class SPHero;
 
+YG_EXTERN NSString *const kSPFilterObjectTradableYES;
+YG_EXTERN NSString *const kSPFilterObjectTradableNO;
+YG_EXTERN NSString *const kSPFilterObjectMarketableYES;
+YG_EXTERN NSString *const kSPFilterObjectMarketableNO;
+
 @interface SPPlayerItemFilterUnit : SPFilterUnit
 
 @property (assign, nonatomic) BOOL isPlaceholder;
-@property (assign, nonatomic) BOOL tradable;
-@property (assign, nonatomic) BOOL marketable;
 
 + (instancetype)inputUnit;
 + (instancetype)unit:(SPPlayerItemFilterType)type

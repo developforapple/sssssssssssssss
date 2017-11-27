@@ -6,12 +6,16 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import "SPPlayerItems.h"
 
 @class SPPlayerItemFilterUnit;
 
-@interface SPPlayerItemSharedData : NSObject
+@interface SPPlayerItemSharedData : SPObject
 
 // GetPlayerItems 接口返回的数据
 @property (strong, nonatomic) SPPlayerItemsList *list;

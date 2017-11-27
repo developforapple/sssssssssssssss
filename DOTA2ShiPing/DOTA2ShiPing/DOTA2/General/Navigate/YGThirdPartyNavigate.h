@@ -9,7 +9,11 @@
 @import Foundation;
 @import CoreLocation;
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 
 typedef NS_ENUM(NSUInteger, YGNavigateKind) {
     YGNavigateKindGaode,
@@ -17,7 +21,7 @@ typedef NS_ENUM(NSUInteger, YGNavigateKind) {
     YGNavigateKindApple,
 };
 
-@interface YGThirdPartyNavigate : NSObject
+@interface YGThirdPartyNavigate : SPObject
 
 // 传入GCJ坐标系
 + (void)navigateTo:(CLLocationCoordinate2D)coordinate name:(NSString *)name view:(UIView *)view;

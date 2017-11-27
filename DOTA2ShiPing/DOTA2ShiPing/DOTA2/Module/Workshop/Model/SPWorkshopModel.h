@@ -6,7 +6,11 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if __has_include("SPObject.h")
+    #import "SPObject.h"
+#else
+    #define NSObject SPObject
+#endif
 #import <CoreGraphics/CGGeometry.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -28,7 +32,7 @@ typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
 };
 
 #pragma mark - Query Model
-@interface SPWorkshopQuery : NSObject <NSCopying,NSCoding>
+@interface SPWorkshopQuery : SPObject <NSCopying,NSCoding>
 // query
 @property (assign, nonatomic) SPWorkshopSection section;
 @property (strong, nullable, nonatomic) NSArray<SPWorkshopTag *> *requiredtags;
@@ -44,7 +48,7 @@ typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
 @end
 
 #pragma mark - Tag Model
-@interface SPWorkshopTag : NSObject <NSCopying,NSCoding>
+@interface SPWorkshopTag : SPObject <NSCopying,NSCoding>
 @property (strong, nonatomic) NSString *id;    //查询时的tag
 @property (strong, nonatomic) NSString *value;   //显示的名字
 @property (strong, nonatomic) NSString *text;
@@ -60,7 +64,7 @@ typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
 
 #pragma mark - Sort Model
 
-@interface SPWorkshopSort : NSObject <NSCopying,NSCoding>
+@interface SPWorkshopSort : SPObject <NSCopying,NSCoding>
 @property (strong, nonatomic) NSString *name;           //显示的标题
 @property (strong, nonatomic) NSString *actualsort;     //不是已采纳的情况下也是browsesort字段的值
 @property (strong, nullable,nonatomic) NSNumber *days;  //为空时忽略该字段
@@ -72,7 +76,7 @@ typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
 @end
 
 #pragma mark - Unit Model
-@interface SPWorkshopUnit : NSObject <NSCopying,NSCoding>
+@interface SPWorkshopUnit : SPObject <NSCopying,NSCoding>
 @property (strong, nonatomic) NSString *href;       
 @property (strong, nonatomic) NSNumber *id;         //id
 @property (strong, nonatomic) NSString *imageURL;   //图片url
@@ -96,7 +100,7 @@ typedef NS_ENUM(NSUInteger, SPWorkshopSection) {
 /**
  *  创意工坊物品的视频和图片资源。
  */
-@interface SPWorkshopResource : NSObject <NSCopying, NSCoding>
+@interface SPWorkshopResource : SPObject <NSCopying, NSCoding>
 @property (strong, nonatomic) NSNumber *id;
 @property (strong, nonatomic) IDMPhoto *photo;
 
