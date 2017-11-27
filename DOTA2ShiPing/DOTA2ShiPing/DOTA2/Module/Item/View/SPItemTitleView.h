@@ -6,11 +6,12 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPCollectionViewCell.h"
+#import "SPView.h"
 
 @class SPItemSharedData;
 
-@interface SPItemTitleView : UIView
+@interface SPItemTitleView : SPView
 @property (strong, nonatomic) SPItemSharedData *itemData;
 @end
 
@@ -22,7 +23,7 @@
 
 UIKIT_EXTERN NSString *const kSPItemTagCell;
 
-@interface SPItemTagCell : UICollectionViewCell
+@interface SPItemTagCell : SPCollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *tagLabel;
 @property (strong, nonatomic) SPItemTag *tagInfo;
 @end

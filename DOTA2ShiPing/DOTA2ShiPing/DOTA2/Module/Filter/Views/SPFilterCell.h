@@ -6,14 +6,14 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPCollectionViewCell.h"
 
 @class SPFilterUnit;
 
 YG_EXTERN NSString *const kSPFilterCell;
 YG_EXTERN NSString *const kSPFilterInputCell;
 
-@interface SPFilterCell : UICollectionViewCell
+@interface SPFilterCell : SPCollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITextField *textField;

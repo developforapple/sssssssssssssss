@@ -6,10 +6,10 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPView.h"
 
 @class SPItemSharedData;
 
-@interface SPItemSaleView : UIView
+@interface SPItemSaleView : SPView
 @property (strong, nonatomic) SPItemSharedData *itemData;
 @end

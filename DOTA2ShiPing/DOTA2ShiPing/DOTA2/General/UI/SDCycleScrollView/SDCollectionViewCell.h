@@ -30,9 +30,9 @@
 
 
 
-#import <UIKit/UIKit.h>
+#import "SPCollectionViewCell.h"
 
-@interface SDCollectionViewCell : UICollectionViewCell
+@interface SDCollectionViewCell : SPCollectionViewCell
 
 @property (strong, nonatomic) UIImageView *imageView;
 @property (copy, nonatomic) NSString *title;

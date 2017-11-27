@@ -6,12 +6,12 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPCollectionViewCell.h"
 #import "SPInventoryFilter.h"
 
 FOUNDATION_EXTERN NSString *const kSPInventoryConditionCell;
 
-@interface SPInventoryConditionCell : UICollectionViewCell
+@interface SPInventoryConditionCell : SPCollectionViewCell
 @property (weak, nonatomic) IBOutlet UIView *imageContainer;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

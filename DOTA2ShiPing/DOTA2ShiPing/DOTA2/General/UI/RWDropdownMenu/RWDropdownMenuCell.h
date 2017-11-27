@@ -7,6 +7,7 @@
 //
 
 @import UIKit;
+#import "SPCollectionViewCell.h"
 
 /**
  *  Alignment of menu item title.
@@ -17,7 +18,7 @@ typedef NS_ENUM(NSInteger, RWDropdownMenuCellAlignment) {
     RWDropdownMenuCellAlignmentRight,
 };
 
-@interface RWDropdownMenuCell : UICollectionViewCell
+@interface RWDropdownMenuCell : SPCollectionViewCell
 
 @property (nonatomic, strong) UILabel *textLabel;
 @property (nonatomic, strong) UIImageView *imageView;

@@ -6,13 +6,13 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPTableViewCell.h"
 
 FOUNDATION_EXTERN NSString *const kSPPlayerCell;
 
 @class SPPlayer;
 
-@interface SPPlayerCell : UITableViewCell
+@interface SPPlayerCell : SPTableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *playerImageView;
 @property (weak, nonatomic) IBOutlet UILabel *playerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playerDescLabel;

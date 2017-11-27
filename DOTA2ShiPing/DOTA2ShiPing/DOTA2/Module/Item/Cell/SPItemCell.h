@@ -6,7 +6,7 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPCollectionViewCell.h"
 #import "SPItemCommon.h"
 #import "YGLineView.h"
 #import "SPItemCellModel.h"
@@ -17,7 +17,7 @@
 #define kSPItemCellLarge @"SPItemCellLarge"
 #define kSPItemCellNormal @"SPItemCellNormal"
 
-@interface SPItemCell : UICollectionViewCell
+@interface SPItemCell : SPCollectionViewCell
 @property (weak, nonatomic) IBOutlet UIView *backColorView;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
 @property (weak, nonatomic) IBOutlet UILabel *itemNameLabel;

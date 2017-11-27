@@ -6,14 +6,14 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPCollectionViewCell.h"
 #import "FLAnimatedImageView.h"
 
 @class SPWorkshopUnit;
 
 UIKIT_EXTERN NSString *const kSPWorkshopCell;
 
-@interface SPWorkshopCell : UICollectionViewCell
+@interface SPWorkshopCell : SPCollectionViewCell
 
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;
 

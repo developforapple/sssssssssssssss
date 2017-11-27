@@ -6,14 +6,14 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPCollectionViewCell.h"
 @import FLAnimatedImage;
 
 NS_ASSUME_NONNULL_BEGIN
 
 YG_EXTERN NSString *const kSPItemBannerImageCell;
 
-@interface SPItemBannerImageCell : UICollectionViewCell
+@interface SPItemBannerImageCell : SPCollectionViewCell
 
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *playBtn;

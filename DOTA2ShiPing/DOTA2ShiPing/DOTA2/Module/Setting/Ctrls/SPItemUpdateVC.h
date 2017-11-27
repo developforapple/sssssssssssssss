@@ -6,9 +6,9 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "YGBaseViewCtrl.h"
 
 // 饰品数据更新
-@interface SPItemUpdateVC : UIViewController
+@interface SPItemUpdateVC : YGBaseViewCtrl
 
 @end

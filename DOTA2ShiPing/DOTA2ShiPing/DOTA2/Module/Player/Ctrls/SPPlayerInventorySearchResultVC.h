@@ -6,13 +6,13 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "YGBaseViewCtrl.h"
 #import "SPItemCommon.h"
 
 @class SPInventoryFilter;
 
 // 显示搜索结果
-@interface SPPlayerInventorySearchResultVC : UIViewController <UISearchResultsUpdating,UISearchBarDelegate>
+@interface SPPlayerInventorySearchResultVC : YGBaseViewCtrl <UISearchResultsUpdating,UISearchBarDelegate>
 
 @property (strong, nonatomic) SPInventoryFilter *filter;
 

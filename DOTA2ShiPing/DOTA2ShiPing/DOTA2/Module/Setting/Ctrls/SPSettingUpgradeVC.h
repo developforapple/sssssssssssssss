@@ -6,9 +6,9 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "YGBaseViewCtrl.h"
 
 // 升级到专业版
-@interface SPSettingUpgradeVC : UIViewController
+@interface SPSettingUpgradeVC : YGBaseViewCtrl
 
 @end

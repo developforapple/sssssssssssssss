@@ -6,7 +6,7 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPView.h"
 #import "SDCycleScrollView.h"
 
 @class SPItemSharedData;
@@ -40,7 +40,7 @@ typedef NS_ENUM(NSUInteger, SPItemBannerPlayable) {
 - (BOOL)isPlayable;
 @end
 
-@interface SPItemBannerInfoUnit : UIView
+@interface SPItemBannerInfoUnit : SPView
 @property (assign, nonatomic) SPItemBannerInfoType type;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *effectView;
@@ -48,7 +48,7 @@ typedef NS_ENUM(NSUInteger, SPItemBannerPlayable) {
 @end
 
 
-@interface SPItemBannerInfoView : UIView
+@interface SPItemBannerInfoView : SPView
 @property (weak, nonatomic) IBOutlet SPItemBannerInfoUnit *progressUnit;
 @property (weak, nonatomic) IBOutlet SPItemBannerInfoUnit *playableUnit;
 @property (weak, nonatomic) IBOutlet SPItemBannerInfoUnit *sizeUnit;
@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, SPItemBannerPlayable) {
 
 @end
 
-@interface SPItemBannerView : UIView
+@interface SPItemBannerView : SPView
 @property (weak, nonatomic) IBOutlet SPItemBannerInfoView *infoView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *layout;

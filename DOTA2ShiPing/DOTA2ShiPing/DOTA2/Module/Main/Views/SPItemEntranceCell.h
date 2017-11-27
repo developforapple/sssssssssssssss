@@ -6,14 +6,14 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPCollectionViewCell.h"
 #import "SPItemEntranceConfig.h"
 
 @class SPDotaEvent;
 
 #define kSPItemEntranceCell @"SPItemEntranceCell"
 
-@interface SPItemEntranceCell : UICollectionViewCell
+@interface SPItemEntranceCell : SPCollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIView *blurView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

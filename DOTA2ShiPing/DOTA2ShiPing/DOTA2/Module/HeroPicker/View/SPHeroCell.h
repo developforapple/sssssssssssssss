@@ -6,12 +6,12 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPCollectionViewCell.h"
 #import "SPHero.h"
 
 #define kSPHeroCell @"SPHeroCell"
 
-@interface SPHeroCell : UICollectionViewCell
+@interface SPHeroCell : SPCollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIView *blurView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

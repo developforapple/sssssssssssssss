@@ -6,13 +6,13 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPTableViewCell.h"
 
 @class SPPlayer;
 
 FOUNDATION_EXTERN NSString *const kSPSearchCell;
 
-@interface SPSearchCell : UITableViewCell
+@interface SPSearchCell : SPTableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *spTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *spDetailTextLabel;

@@ -6,13 +6,13 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPCollectionViewCell.h"
 
 @class SPItem;
 
 YG_EXTERN NSString *const kSPBundleItemCell;
 
-@interface SPBundleItemCell : UICollectionViewCell
+@interface SPBundleItemCell : SPCollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
 @property (weak, nonatomic) IBOutlet UILabel *itemNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *moreItemsView;

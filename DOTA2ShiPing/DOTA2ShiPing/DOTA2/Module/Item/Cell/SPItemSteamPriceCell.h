@@ -6,13 +6,13 @@
 //  Copyright © 2017年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SPTableViewCell.h"
 
 @class SPMarketItem;
 
 YG_EXTERN NSString *const kSPItemSteamPriceCell;
 
-@interface SPItemSteamPriceCell : UITableViewCell
+@interface SPItemSteamPriceCell : SPTableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *itemNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
 @property (weak, nonatomic) IBOutlet UILabel *itemQtyLabel;

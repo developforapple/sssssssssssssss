@@ -6,9 +6,9 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "YGBaseViewCtrl.h"
 
 // 最新饰品
-@interface SPLastestItemVC : UIViewController
+@interface SPLastestItemVC : YGBaseViewCtrl
 
 @end

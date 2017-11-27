@@ -6,9 +6,9 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "YGBaseViewCtrl.h"
 
 // 反馈
-@interface SPSettingFeedbackVC : UIViewController
+@interface SPSettingFeedbackVC : YGBaseViewCtrl
 
 @end

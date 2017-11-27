@@ -6,6 +6,7 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
+#import "SPTableViewCell.h"
 #import "SPPlayerDetailInfoVC.h"
 #import "SPSteamAPI.h"
 #import "SPPlayer.h"
@@ -25,7 +26,7 @@ static NSString *SPPlayerDetailItemsTagCell = @"SPPlayerDetailItemsTagCell";
 static NSString *kSPPlayerAliasesListSegueID = @"SPPlayerAliasesListSegueID";
 static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
 
-@interface SPPlayerDetailInfoCel : UITableViewCell
+@interface SPPlayerDetailInfoCel : SPTableViewCell
 @end
 @implementation SPPlayerDetailInfoCel
 - (void)awakeFromNib
