@@ -181,9 +181,6 @@
 		2DF9B8AD1F1361640012950A /* SPPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7B81F1361640012950A /* SPPlayerManager.m */; };
 		2DF9B8AF1F1361640012950A /* SPPlayerAliasesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BD1F1361640012950A /* SPPlayerAliasesVC.m */; };
 		2DF9B8B01F1361640012950A /* SPPlayerDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BF1F1361640012950A /* SPPlayerDetailInfoVC.m */; };
-		2DF9B8B11F1361640012950A /* SPPlayerInventorySearchAllPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C11F1361640012950A /* SPPlayerInventorySearchAllPlayerVC.m */; };
-		2DF9B8B21F1361640012950A /* SPPlayerInventorySearchFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C31F1361640012950A /* SPPlayerInventorySearchFilterVC.m */; };
-		2DF9B8B31F1361640012950A /* SPPlayerInventorySearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C51F1361640012950A /* SPPlayerInventorySearchResultVC.m */; };
 		2DF9B8B41F1361640012950A /* SPPlayerInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C71F1361640012950A /* SPPlayerInventoryVC.m */; };
 		2DF9B8B51F1361640012950A /* SPPlayerListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C91F1361640012950A /* SPPlayerListVC.m */; };
 		2DF9B8B61F1361640012950A /* SPPlayerInventoryUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CC1F1361640012950A /* SPPlayerInventoryUpdateVC.m */; };
@@ -619,12 +616,6 @@
 		2DF9B7BD1F1361640012950A /* SPPlayerAliasesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerAliasesVC.m; sourceTree = "<group>"; };
 		2DF9B7BE1F1361640012950A /* SPPlayerDetailInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerDetailInfoVC.h; sourceTree = "<group>"; };
 		2DF9B7BF1F1361640012950A /* SPPlayerDetailInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerDetailInfoVC.m; sourceTree = "<group>"; };
-		2DF9B7C01F1361640012950A /* SPPlayerInventorySearchAllPlayerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventorySearchAllPlayerVC.h; sourceTree = "<group>"; };
-		2DF9B7C11F1361640012950A /* SPPlayerInventorySearchAllPlayerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventorySearchAllPlayerVC.m; sourceTree = "<group>"; };
-		2DF9B7C21F1361640012950A /* SPPlayerInventorySearchFilterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventorySearchFilterVC.h; sourceTree = "<group>"; };
-		2DF9B7C31F1361640012950A /* SPPlayerInventorySearchFilterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventorySearchFilterVC.m; sourceTree = "<group>"; };
-		2DF9B7C41F1361640012950A /* SPPlayerInventorySearchResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventorySearchResultVC.h; sourceTree = "<group>"; };
-		2DF9B7C51F1361640012950A /* SPPlayerInventorySearchResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventorySearchResultVC.m; sourceTree = "<group>"; };
 		2DF9B7C61F1361640012950A /* SPPlayerInventoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventoryVC.h; sourceTree = "<group>"; };
 		2DF9B7C71F1361640012950A /* SPPlayerInventoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventoryVC.m; sourceTree = "<group>"; };
 		2DF9B7C81F1361640012950A /* SPPlayerListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerListVC.h; sourceTree = "<group>"; };
@@ -1791,12 +1782,6 @@
 				2DF9B7C71F1361640012950A /* SPPlayerInventoryVC.m */,
 				2DF9B7BC1F1361640012950A /* SPPlayerAliasesVC.h */,
 				2DF9B7BD1F1361640012950A /* SPPlayerAliasesVC.m */,
-				2DF9B7C01F1361640012950A /* SPPlayerInventorySearchAllPlayerVC.h */,
-				2DF9B7C11F1361640012950A /* SPPlayerInventorySearchAllPlayerVC.m */,
-				2DF9B7C21F1361640012950A /* SPPlayerInventorySearchFilterVC.h */,
-				2DF9B7C31F1361640012950A /* SPPlayerInventorySearchFilterVC.m */,
-				2DF9B7C41F1361640012950A /* SPPlayerInventorySearchResultVC.h */,
-				2DF9B7C51F1361640012950A /* SPPlayerInventorySearchResultVC.m */,
 				2DF9B7CA1F1361640012950A /* Update */,
 			);
 			path = Ctrls;
@@ -2390,7 +2375,6 @@
 				2DE373561F176B8600C8F653 /* SPUpdateViewCtrl.m in Sources */,
 				2DF9B87E1F1361640012950A /* TAAnimatedDotView.m in Sources */,
 				2D2451801FC9AA7200EF5438 /* SPItemFilterUnit.m in Sources */,
-				2DF9B8B31F1361640012950A /* SPPlayerInventorySearchResultVC.m in Sources */,
 				2DF9B8561F1361640012950A /* YGThirdPlatformProcessor.m in Sources */,
 				2DF9B8421F1361640012950A /* UIImage+Mask.m in Sources */,
 				690BD5191FA841A1007A4D5D /* SPItemViewCtrl.m in Sources */,
@@ -2429,7 +2413,6 @@
 				2D2451651FC995B000EF5438 /* SPFilterGroup.m in Sources */,
 				2DF9B8291F1361640012950A /* YGCoreLocationHelper.m in Sources */,
 				690BD5201FA84420007A4D5D /* SPItemSharedData.m in Sources */,
-				2DF9B8B21F1361640012950A /* SPPlayerInventorySearchFilterVC.m in Sources */,
 				2DFE1C3C1FC7117800FEDE5C /* SPPlayerItemQuery.m in Sources */,
 				2DF9B8781F1361640012950A /* CDTAlertDefine.m in Sources */,
 				2DF9B8391F1361640012950A /* UISearchBar+yg_IBInspectable.m in Sources */,
@@ -2543,7 +2526,6 @@
 				2D37AAB71FAEF5CC0043DDD4 /* SPItemMoreItemsView.m in Sources */,
 				2DF9B84B1F1361640012950A /* YGThirdPartyNavigate.m in Sources */,
 				2DF9B8A91F1361640012950A /* DDMainTBC.m in Sources */,
-				2DF9B8B11F1361640012950A /* SPPlayerInventorySearchAllPlayerVC.m in Sources */,
 				691DC39E1F418D6F00DF5E81 /* DDViewModel.m in Sources */,
 				2DF9B88C1F1361640012950A /* SPPlayer.m in Sources */,
 				2DF9B8BB1F1361640012950A /* SPSearchVC.m in Sources */,

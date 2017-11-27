@@ -6,11 +6,11 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "YGBaseViewCtrl.h"
 
 @class SPPlayerAliase;
 
-@interface SPPlayerAliasesVC : UITableViewController
+@interface SPPlayerAliasesVC : YGBaseTableViewCtrl
 
 @property (strong, nonatomic) NSArray<SPPlayerAliase *> *aliasesList;
 

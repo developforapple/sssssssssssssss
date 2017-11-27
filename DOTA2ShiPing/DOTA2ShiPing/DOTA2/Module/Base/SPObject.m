@@ -12,10 +12,7 @@
 
 - (void)dealloc
 {
-    
-    
-    
-    
+    NSLog(@"%@ 释放",NSStringFromClass([self class]));
 }
 
 @end

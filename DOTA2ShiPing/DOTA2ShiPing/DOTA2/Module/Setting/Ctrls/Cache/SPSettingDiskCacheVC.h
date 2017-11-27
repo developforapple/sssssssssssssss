@@ -6,9 +6,9 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "YGBaseViewCtrl.h"
 
 // 缓存
-@interface SPSettingDiskCacheVC : UITableViewController
+@interface SPSettingDiskCacheVC : YGBaseTableViewCtrl
 
 @end

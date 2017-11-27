@@ -13,7 +13,6 @@
 #import "LCActionSheet.h"
 #import "SPPlayerCell.h"
 #import "SPLogoHeader.h"
-#import "SPPlayerInventorySearchAllPlayerVC.h"
 #import "SPPlayerDetailInfoVC.h"
 #import "SPPlayer+More.h"
 #import "PinYin4Objc.h"
@@ -51,20 +50,6 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
     self.tableView.layoutMargins = UIEdgeInsetsZero;
     
     [SPLogoHeader setLogoHeaderInScrollView:self.tableView];
-    
-//    SPPlayerInventorySearchAllPlayerVC *vc = [SPPlayerInventorySearchAllPlayerVC instanceFromStoryboard];
-//    self.searchCtrl = [[UISearchController alloc] initWithSearchResultsController:vc];
-//    vc.searchCtrl = self.searchCtrl;
-//    self.searchCtrl.searchResultsUpdater = vc;
-//    self.searchCtrl.delegate = self;
-//    self.searchCtrl.dimsBackgroundDuringPresentation = NO;
-//    
-//    self.definesPresentationContext = YES;
-//    
-//    [self.searchCtrl.searchBar sizeToFit];
-//    [self.searchCtrl.searchBar setBackgroundImage:[UIImage imageWithColor:RGBColor(247, 247, 247, 1)]];
-//    self.searchCtrl.searchBar.placeholder = @"在所有库存中搜索";
-//    self.tableView.tableHeaderView = self.searchCtrl.searchBar;
     
     ygweakify(self);
     [[SPPlayerManager shared] setStarredUpdatedCallback:^{

@@ -12,7 +12,6 @@
 #import "DDSegmentScrollView.h"
 #import "SPInventoryFilter.h"
 #import "SPItemCommon.h"
-#import "SPPlayerInventorySearchResultVC.h"
 #import "ReactiveObjC.h"
 
 #import "RWDropdownMenu.h"
@@ -97,30 +96,6 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     SPFilterNaviCtrl *navi = [SPFilterNaviCtrl instanceFromStoryboard];
     navi.filter = filter;
     [self.navigationController presentViewController:navi animated:YES completion:nil];
-    
-    return;
-    
-    
-    ygweakify(self);
-    SPPlayerInventorySearchResultVC *resutVC = [SPPlayerInventorySearchResultVC instanceFromStoryboard];
-//    resutVC.filter = self.filter;
-    resutVC.mode = self.mode;
-    [resutVC setWillShowFilteredResult:^{
-        ygstrongify(self);
-//        [self didChangedCategory:SPInventoryCategoryFilter];
-    }];
-    
-    UISearchController *vc = [[UISearchController alloc] initWithSearchResultsController:resutVC];
-    resutVC.searchCtrl = vc;
-    vc.searchResultsUpdater = resutVC;
-    vc.searchBar.placeholder = @"搜索关键词：名称/品质/英雄";
-    vc.searchBar.translucent = YES;
-    [vc.searchBar setBackgroundImage:nil];
-    vc.searchBar.barTintColor = kRedColor;
-    vc.searchBar.searchBarStyle = UISearchBarStyleProminent;
-    vc.dimsBackgroundDuringPresentation = NO;
-    vc.hidesNavigationBarDuringPresentation = NO;
-    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)setMode:(SPItemListMode)mode

@@ -244,7 +244,7 @@
     
     if ( !(checkYES || checkNO)) return input;
     
-    NSIndexSet *indexes = [input indexesOfObjectsPassingTest:^BOOL(SPPlayerItemDetail *obj, NSUInteger idx, BOOL *stop) {
+    NSIndexSet *indexes = [input indexesOfObjectsPassingTest:^BOOL(SPPlayerItemDetail * obj, NSUInteger idx, BOOL *stop) {
         BOOL boolv = obj.marketable.boolValue;
         return ( checkYES ? boolv : YES ) && ( checkNO ? !boolv : YES );
     }];
@@ -253,8 +253,22 @@
 
 - (NSArray<SPPlayerItemDetail *> *)filterWithHero:(NSArray<SPPlayerItemDetail *> *)input
 {
-    //TODO
-    return input;
+    if (input.count == 0) return input;
+    
+    NSMutableArray<NSString *> *condition = [NSMutableArray array];
+    for (SPPlayerItemFilterUnit *unit in self.units) {
+        if ([unit type] == SPPlayerItemFilterTypeHero) {
+            [condition addObject:[(SPHero *)unit.object name]];
+        }
+    }
+    
+    if (condition.count == 0) return input;
+    
+    NSIndexSet *indexes = [input indexesOfObjectsPassingTest:^BOOL(SPPlayerItemDetail *obj, NSUInteger idx, BOOL *stop) {
+        return                                                                                  
+        obj.heroTag.internal_name && [condition containsObject:obj.heroTag.internal_name];
+    }];
+    return [input objectsAtIndexes:indexes];
 }
 
 @end

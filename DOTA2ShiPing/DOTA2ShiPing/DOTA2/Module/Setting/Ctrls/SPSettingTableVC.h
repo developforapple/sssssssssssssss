@@ -6,8 +6,8 @@
 //  Copyright © 2016年 wwwbbat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "YGBaseViewCtrl.h"
 
-@interface SPSettingTableVC : UITableViewController
+@interface SPSettingTableVC : YGBaseTableViewCtrl
 
 @end

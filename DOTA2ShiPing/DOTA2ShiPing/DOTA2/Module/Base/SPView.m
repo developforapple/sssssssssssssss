@@ -10,4 +10,9 @@
 
 @implementation SPView
 
+- (void)dealloc
+{
+    
+}
+
 @end
