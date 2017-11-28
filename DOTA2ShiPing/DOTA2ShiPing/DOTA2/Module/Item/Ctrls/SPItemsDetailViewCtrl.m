@@ -22,19 +22,16 @@
     [super viewDidLoad];
 }
 
-- (void)setupItem:(id)item
-{
-    if ([item isKindOfClass:[SPItem class]]) {
-        self.item = item;
-    }else if ([item isKindOfClass:[SPPlayerItemDetail class]]){
-        self.playerItem = item;
-    }
-}
-
 - (void)setItem:(SPItem *)item
 {
     _item = item;
     self.infoViewCtrl.item = item;
+}
+
+- (void)setPlayerItem:(SPPlayerItemDetail *)playerItem
+{
+    _playerItem = playerItem;
+    self.infoViewCtrl.playerItem = playerItem;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -42,6 +39,7 @@
     if ([segue.identifier isEqualToString:@"SPItemInfoSegueID"]) {
         self.infoViewCtrl = segue.destinationViewController;
         self.infoViewCtrl.item = self.item;
+        self.infoViewCtrl.playerItem = self.playerItem;
     }
 }
 

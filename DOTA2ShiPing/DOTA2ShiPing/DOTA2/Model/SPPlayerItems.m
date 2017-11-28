@@ -150,6 +150,7 @@ YYModelDefaultCode
 
 @implementation SPPlayerInventoryItemDesc
 YYModelDefaultCode
+
 @end
 
 @implementation SPPlayerInvertoryItemTag

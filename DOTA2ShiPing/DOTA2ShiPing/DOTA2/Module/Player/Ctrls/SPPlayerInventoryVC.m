@@ -17,6 +17,7 @@
 #import "SPPlayerItemFilter.h"
 #import "SPFilterNaviCtrl.h"
 #import "SPPlayerItemQuery.h"
+#import "SPItemsDetailViewCtrl.h"
 
 static NSString *const kYGInventoryCategoryPickerSegueID = @"YGInventoryCategoryPickerSegueID";
 static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
@@ -24,7 +25,7 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
 @interface SPPlayerInventoryVC ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,SPItemListContainerDelegate,SPFilterDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *modeBtn;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *searchBtn;
-@property (weak, nonatomic) IBOutlet UIButton *categoryBtn;
+@property (weak, nonatomic) IBOutlet UIButton *titleBtn;
 
 @property (strong, nonatomic) UIPageViewController *pageVC;
 @property (strong, nonatomic) SPItemListContainer *container;
@@ -79,7 +80,23 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     [container appendData:items];
 }
 
+- (void)itemListContainer:(SPItemListContainer *)container didSelectedItem:(SPItem *)item
+{
+    NSInteger index = [container.items indexOfObject:item];
+    SPPlayerItemDetail *playerItem = self.query.filteredPlayerItems[index];
+    
+    SPItemsDetailViewCtrl *vc = [SPItemsDetailViewCtrl instanceFromStoryboard];
+    vc.item = item;
+    vc.playerItem = playerItem;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - Action
+- (IBAction)titleAction:(id)sender
+{
+    
+}
+
 - (IBAction)changeMode:(UIBarButtonItem *)sender
 {
     self.mode = (SPItemListMode)!self.mode;
@@ -112,6 +129,11 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     [self.query filter:units];
     NSArray *items = [self.query loadPage:0];
     [self.container update:self.mode data:items];
+    if (units.count > 0) {
+        [self.titleBtn setTitle:@"多个筛选项" forState:UIControlStateNormal];
+    }else{
+        [self.titleBtn setTitle:@"全部" forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - Segue

@@ -1220,6 +1220,13 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="directionDesc" value="top"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iTp-E3-BPv">
+                                                <rect key="frame" x="12" y="12" width="351" height="0.0"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" id="RgA-Vw-Qcj"/>
+                                                </constraints>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6x-30-572">
                                                 <rect key="frame" x="12" y="12" width="351" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1229,17 +1236,22 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="q6x-30-572" firstAttribute="top" secondItem="dTC-9A-WSU" secondAttribute="topMargin" id="46p-2N-sQ4"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="q6x-30-572" secondAttribute="trailing" id="JDm-VF-TEb"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="iTp-E3-BPv" secondAttribute="trailing" id="JEX-Hk-r5O"/>
+                                            <constraint firstItem="iTp-E3-BPv" firstAttribute="top" secondItem="dTC-9A-WSU" secondAttribute="topMargin" id="RKQ-vw-1BP"/>
                                             <constraint firstItem="5dP-4l-J4n" firstAttribute="leading" secondItem="dTC-9A-WSU" secondAttribute="leading" id="Vza-u4-eLi"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="q6x-30-572" secondAttribute="bottom" id="bUV-Sq-Mvh"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="q6x-30-572" secondAttribute="trailing" id="hUH-rf-uDj"/>
                                             <constraint firstItem="5dP-4l-J4n" firstAttribute="top" secondItem="dTC-9A-WSU" secondAttribute="top" id="mla-Jt-r2s"/>
                                             <constraint firstAttribute="trailing" secondItem="5dP-4l-J4n" secondAttribute="trailing" id="qj4-3H-O5W"/>
-                                            <constraint firstItem="q6x-30-572" firstAttribute="leading" secondItem="dTC-9A-WSU" secondAttribute="leadingMargin" id="wBx-Bf-lYR"/>
+                                            <constraint firstItem="q6x-30-572" firstAttribute="top" secondItem="iTp-E3-BPv" secondAttribute="bottom" id="qwI-c7-s1p"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="q6x-30-572" secondAttribute="bottom" id="w4g-Bv-f24"/>
+                                            <constraint firstItem="iTp-E3-BPv" firstAttribute="leading" secondItem="dTC-9A-WSU" secondAttribute="leadingMargin" id="wz1-qN-3q3"/>
+                                            <constraint firstItem="q6x-30-572" firstAttribute="leading" secondItem="dTC-9A-WSU" secondAttribute="leadingMargin" id="yNq-A2-m5q"/>
                                         </constraints>
                                         <edgeInsets key="layoutMargins" top="12" left="12" bottom="12" right="12"/>
                                         <connections>
-                                            <outlet property="descLabel" destination="q6x-30-572" id="vIS-FE-bFG"/>
+                                            <outlet property="descLabel" destination="q6x-30-572" id="SGY-sO-NnY"/>
+                                            <outlet property="webViewContainer" destination="iTp-E3-BPv" id="cr3-sr-tHr"/>
+                                            <outlet property="webViewHeightConstraint" destination="RgA-Vw-Qcj" id="n6U-5g-bS2"/>
                                         </connections>
                                     </view>
                                 </subviews>
@@ -1272,10 +1284,22 @@
                                     <constraint firstItem="NFI-1u-rHi" firstAttribute="leading" secondItem="Y7W-TE-jbX" secondAttribute="leading" id="wcW-J4-fDe"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6G7-sH-yDK">
+                                <rect key="frame" x="10" y="20" width="32" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Uua-kc-S7S"/>
+                                </constraints>
+                                <state key="normal" image="icon_back_light_2"/>
+                                <connections>
+                                    <action selector="doLeftNaviBarItemAction" destination="E1P-hu-hKJ" eventType="touchUpInside" id="oSb-4F-cgN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Y7W-TE-jbX" secondAttribute="bottom" id="7Lp-bF-hIN"/>
+                            <constraint firstItem="6G7-sH-yDK" firstAttribute="leading" secondItem="1Fu-3V-Q8U" secondAttribute="leading" constant="10" id="IIw-5C-FTB"/>
+                            <constraint firstItem="6G7-sH-yDK" firstAttribute="top" secondItem="FCe-XI-QP4" secondAttribute="bottom" id="TY3-7W-eMq"/>
                             <constraint firstItem="Y7W-TE-jbX" firstAttribute="top" secondItem="1Fu-3V-Q8U" secondAttribute="top" id="Vcq-SP-EHB"/>
                             <constraint firstItem="Y7W-TE-jbX" firstAttribute="leading" secondItem="1Fu-3V-Q8U" secondAttribute="leading" id="jQ3-HX-o6k"/>
                             <constraint firstAttribute="trailing" secondItem="Y7W-TE-jbX" secondAttribute="trailing" id="rTD-Iy-1eh"/>
@@ -1571,7 +1595,7 @@
                     </connections>
                 </view>
             </objects>
-            <point key="canvasLocation" x="5754" y="-687"/>
+            <point key="canvasLocation" x="5752.8000000000002" y="-687.7061469265368"/>
         </scene>
         <!--Steam Market-->
         <scene sceneID="Fwz-Cf-2yI">
@@ -1958,6 +1982,7 @@
     <resources>
         <image name="filter" width="21" height="21"/>
         <image name="icon_arrow_more" width="8" height="14"/>
+        <image name="icon_back_light_2" width="32" height="32"/>
         <image name="icon_four_rectangle" width="21" height="21"/>
         <image name="logo_dota2" width="256" height="256"/>
         <image name="logo_steam" width="85" height="85"/>

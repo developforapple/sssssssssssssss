@@ -170,9 +170,14 @@ SPItemListMode const kSPItemListModeAuto = 10086;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     id item = self.items[indexPath.row];
-    SPItemsDetailViewCtrl *vc = [SPItemsDetailViewCtrl instanceFromStoryboard];
-    [vc setupItem:item];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    if ([self.delegate respondsToSelector:@selector(itemListContainer:didSelectedItem:)]) {
+        [self.delegate itemListContainer:self didSelectedItem:item];
+    }else{
+        SPItemsDetailViewCtrl *vc = [SPItemsDetailViewCtrl instanceFromStoryboard];
+        vc.item = item;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths

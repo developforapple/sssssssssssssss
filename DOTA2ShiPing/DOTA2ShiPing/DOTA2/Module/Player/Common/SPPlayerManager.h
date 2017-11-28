@@ -47,6 +47,8 @@ typedef void(^SPCompletion)(BOOL suc, NSString *msg);
 // 库存数据更新日期。返回nil表示没有数据
 - (NSDate *)archivedPlayerInventoryUpdateDate:(SPPlayer *)player;
 
+// 存档是否存在
+- (BOOL)isArchivedPlayerInventoryExist:(SPPlayer *)player;
 // 读取
 - (void)readArchivedPlayerInventory:(SPPlayer *)player;
 // 保存

@@ -50,8 +50,6 @@ typedef NS_ENUM(NSUInteger, SPPlayerItemsListStatus) {
 @end
 
 
-
-
 #pragma mark - 用户的库存详情
 // 库存数据
 @interface SPPlayerInventory : SPObject <NSCopying,NSCoding,YYModel>

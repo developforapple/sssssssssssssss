@@ -259,6 +259,17 @@
     return nil;
 }
 
+- (SPDotaEvent *)eventOfId:(NSString *)eventId
+{
+    if (!eventId) return nil;
+    for (SPDotaEvent *event in self.events) {
+        if ([event.event_id isEqualToString:eventId]) {
+            return event;
+        }
+    }
+    return nil;
+}
+
 - (NSArray<SPItemSets *> *)querySetsWithCondition:(NSString *)condition values:(NSArray *)values
 {
     if (condition.length == 0) {

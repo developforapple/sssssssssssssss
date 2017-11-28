@@ -22,6 +22,7 @@
 #import "SPItemPlayableView.h"
 #import "SPItemLoadingView.h"
 #import "SPConfigManager.h"
+#import "SPPlayerItems.h"
 
 @import ReactiveObjC;
 
@@ -67,6 +68,7 @@ static NSString *const kLoadingTappedTipFlag = @"item_loading_tip_flag";
 - (void)loadData
 {
     self.itemData = [[SPItemSharedData alloc] initWithItem:self.item];
+    self.itemData.playerItem = self.playerItem;
 }
 
 - (void)updateUI

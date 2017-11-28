@@ -142,6 +142,7 @@
     }
     dict[steamid.stringValue] = value;
     [[NSUserDefaults standardUserDefaults] setObject:dict forKey:kEigenvalueSaveKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSString *)itemsEigenvalueOfPlayer:(NSNumber *)steamid
@@ -195,17 +196,19 @@
 {
     if (!player || !player.steam_id) return;
     
-    NSString *playerFolder = [self playerFolderPath:player.steam_id];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:playerFolder]) {
-        return;
-    }
-    
-    NSString *inventoryPath = [playerFolder stringByAppendingPathComponent:kDefaultInventoryFileName];
+    NSString *inventoryPath = [[self playerFolderPath:player.steam_id] stringByAppendingPathComponent:kDefaultInventoryFileName];
     NSData *data = [NSData dataWithContentsOfFile:inventoryPath];
     player.inventory = [SPPlayerInventory yy_modelWithJSON:data];
 }
 
-// 对从服务器获取且模型化的库存数据进行归档
+- (BOOL)isArchivedPlayerInventoryExist:(SPPlayer *)player
+{
+    if (!player || !player.steam_id) return NO;
+    
+    NSString *path = [[self playerFolderPath:player.steam_id] stringByAppendingPathComponent:kDefaultInventoryFileName];
+    return [[NSFileManager defaultManager] fileExistsAtPath:path];
+}
+
 - (void)saveArchivedPlayerInventory:(SPPlayer *)player
 {
     if (!player || !player.steam_id || !player.inventory) return;
@@ -222,7 +225,6 @@
     NSError *error;
     BOOL suc = [data writeToFile:inventoryPath options:NSDataWritingAtomic error:&error];
     NSAssert(suc && !error, @"保存失败！");
-    NSLog(@"保存库存归档成功");
 }
 
 @end

@@ -11,11 +11,35 @@
 #import "Chameleon.h"
 #import "SPDataManager.h"
 
-@interface SPItemDescPanel ()
+@import WebKit;
+@import ReactiveObjC;
+
+@interface SPItemDescPanel ()<WKNavigationDelegate>
+@property (weak, nonatomic) IBOutlet UIView *webViewContainer;
+@property (strong, nonatomic) WKWebView *webView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *webViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @end
 
 @implementation SPItemDescPanel
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+}
+
+- (WKWebView *)webView
+{
+    if (!_webView) {
+        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, Device_Width - self.layoutMargins.left - self.layoutMargins.right, 200)];
+        _webView.navigationDelegate = self;
+        if (iOS10) {
+            _webView.configuration.dataDetectorTypes = WKDataDetectorTypeNone;
+        }
+        
+    }
+    return _webView;
+}
 
 - (void)setItemData:(SPItemSharedData *)itemData
 {
@@ -31,7 +55,6 @@
     UIColor *color = FlatGray;
     
     // styles
-    SPItem *item = self.itemData.item;
     NSArray *styles = self.itemData.styles;
     if (styles.count != 0) {
         
@@ -67,22 +90,80 @@
         [content appendAttributedString:string];
     }
     
-    // desc
-    NSError *error;
-    NSString *desc = SPLOCALNONIL(self.itemData.item.item_description);
-    NSData *descData = [desc dataUsingEncoding:NSUTF8StringEncoding];
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithData:descData?:[NSData data] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)} documentAttributes:nil error:&error];
-    [string setAttributes:@{NSForegroundColorAttributeName:color,
-                            NSFontAttributeName:[UIFont systemFontOfSize:14]}
-                    range:NSMakeRange(0, string.length)];
+    if (self.itemData.playerItem) {
+        // 是否有宝石
+        
+        NSString *base = @"<meta name='viewport' content ='initial-scale = 1.0'/> "
+        "<style > span{color:rgb(149,165,166);font-size:14px} </style>"
+        "";
+        
+        NSMutableString *playerItemDesc = [NSMutableString stringWithString:base];
+        for (SPPlayerInventoryItemDesc *aDesc in self.itemData.playerItem.descriptions) {
+            if ([aDesc.type isEqualToString:@"html"] && 
+                [aDesc.value containsString:@"<div"]) {
+                [playerItemDesc appendString:aDesc.value];
+            }
+        }
+        if (playerItemDesc.length > 0) {
+            
+            NSString *result = [playerItemDesc stringByReplacingRegex:@"rgb\\(.*?\\)" options:kNilOptions withString:@"rgb(149,165,166)"];
+            result = [result stringByReplacingRegex:@"margin:(.*?)px" options:kNilOptions withString:@"margin:0px"];
+//            result = [result stringByReplacingRegex:@"font-size:(.*?)px" options:kNilOptions withString:@"font-size:14px"];
+            [self.webView loadHTMLString:result baseURL:nil];
+            ygweakify(self);
+            [RACObserve(self.webView.scrollView, contentSize)
+             subscribeNext:^(NSValue *x) {
+                 ygstrongify(self);
+                 [self showWebView:x.CGSizeValue.height];
+             }];
+            
+//            // 替换带background-image的div标签为img标签
+//            NSString *regex = @"(.*)(<div)(.*?)(background-image: url\\()(http.*?g)(\\)\\\".*?</div>)(.*)";
+//            NSString *result = [playerItemDesc stringByReplacingRegex:regex options:kNilOptions withString:@"$1<img$3\"src='$5'></img>$7"];
+//
+//            // 替换所有的颜色为默认颜色
+//            result = [result stringByReplacingRegex:@"rgb\\(.*?\\)" options:kNilOptions withString:@"rgb(149,165,166)"];
+        }
+    }
     
-    [content appendAttributedString:string];
+    // desc
+    {
+        NSError *error;
+        NSString *desc = SPLOCALNONIL(self.itemData.item.item_description);
+        NSData *descData = [desc dataUsingEncoding:NSUTF8StringEncoding];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithData:descData?:[NSData data] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)} documentAttributes:nil error:&error];
+        [string setAttributes:@{NSForegroundColorAttributeName:color,
+                                NSFontAttributeName:[UIFont systemFontOfSize:14]}
+                        range:NSMakeRange(0, string.length)];
+        
+        [content appendAttributedString:string];
+    }
     
     NSMutableParagraphStyle *p = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     p.lineSpacing = 4.f;
     [content addAttribute:NSParagraphStyleAttributeName value:p range:NSMakeRange(0, content.length)];
     
     self.descLabel.attributedText = content;
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation
+{
+
+
+}
+
+- (void)showWebView:(CGFloat)height
+{
+    if (!self.webView.superview) {
+        [self.webViewContainer addSubview:self.webView];
+        self.webView.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        [self.webViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":self.webView}]];
+        [self.webViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":self.webView}]];
+    }
+    
+    self.webViewHeightConstraint.constant = height;
+    [self.superview layoutIfNeeded];
 }
 
 @end

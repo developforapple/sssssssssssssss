@@ -22,10 +22,13 @@
 @end
 
 @interface YGBaseViewCtrl : UIViewController <UIViewControllerBaseMethod>
+- (IBAction)doLeftNaviBarItemAction;
 @end
 
 @interface YGBaseTableViewCtrl : UITableViewController <UIViewControllerBaseMethod>
+- (IBAction)doLeftNaviBarItemAction;
 @end
 
 @interface YGBaseCollectionViewCtrl : UICollectionViewController <UIViewControllerBaseMethod>
+- (IBAction)doLeftNaviBarItemAction;
 @end

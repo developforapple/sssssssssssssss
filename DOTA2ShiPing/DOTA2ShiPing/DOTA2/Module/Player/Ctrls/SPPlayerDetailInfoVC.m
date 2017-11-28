@@ -378,13 +378,14 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
     NSString *newMD5 = self.itemsList.MD5;
     NSString *oldMD5 = [[SPPlayerManager shared] itemsEigenvalueOfPlayer:self.player.steam_id];
     
-//    NSNumber *newValue = self.itemsList.eigenvalue;
-//    NSNumber *oldValue = [[SPPlayerManager shared] itemsEigenvalueOfPlayer:self.player.steam_id];
-    [[SPPlayerManager shared] readArchivedPlayerInventory:self.player];
+    BOOL needUpdate =  !(newMD5 &&
+                         oldMD5 &&
+                         [oldMD5 isEqualToString:newMD5] &&
+                         [[SPPlayerManager shared] isArchivedPlayerInventoryExist:self.player]);
     
-    BOOL notNeedUpdate = newMD5 && oldMD5 && [oldMD5 isEqualToString:newMD5] && nil!=self.player.inventory;
-    if (notNeedUpdate) {
+    if (!needUpdate) {
         NSLog(@"不需要更新库存");
+        [[SPPlayerManager shared] readArchivedPlayerInventory:self.player];
         [HUD hideAnimated:YES];
         [self performSegueWithIdentifier:kSPPlayerInventorySegueID sender:self.player];
         return;

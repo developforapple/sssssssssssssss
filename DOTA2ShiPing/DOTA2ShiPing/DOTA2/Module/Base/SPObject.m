@@ -15,4 +15,9 @@
     NSLog(@"%@ 释放",NSStringFromClass([self class]));
 }
 
+- (NSString *)description
+{
+    return [self yy_modelDescription];
+}
+
 @end

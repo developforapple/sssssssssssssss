@@ -15,6 +15,4 @@
 @property (strong, nonatomic) SPItem *item;
 @property (strong, nonatomic) SPPlayerItemDetail *playerItem;
 
-- (void)setupItem:(id)item;
-
 @end

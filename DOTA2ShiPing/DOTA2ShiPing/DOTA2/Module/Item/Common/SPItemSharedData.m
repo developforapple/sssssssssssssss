@@ -19,6 +19,7 @@
 @property (strong, readwrite, nonatomic) SPItemPrefab *prefab;
 @property (strong, readwrite, nonatomic) SPItemQuality *quality;
 @property (strong, readwrite, nonatomic) SPItemSlot *slot;
+@property (strong, readwrite, nonatomic) SPDotaEvent *event;
 @property (strong, readwrite, nonatomic) UIColor *color;
 @property (strong, readwrite, nonatomic) NSArray<SPItemStyle *> *styles;
 @property (strong, readwrite, nonatomic) SPItemSets *itemSet;
@@ -51,6 +52,7 @@
     SPItemRarity *rarity = [[SPDataManager shared] rarityOfName:self.item.item_rarity];
     SPItemPrefab *prefab = [[SPDataManager shared] prefabOfName:self.item.prefab];
     SPItemQuality *quality = [[SPDataManager shared] qualityOfName:self.item.item_quality];
+    SPDotaEvent *event = [[SPDataManager shared] eventOfId:self.item.event_id];
     UIColor *color = self.item.itemColor;
     
     SPItemSlot *slot;
@@ -74,6 +76,7 @@
     self.quality = quality;
     self.slot = slot;
     self.color = color;
+    self.event = event;
     
     if ([self.item.prefab isEqualToString:@"bundle"]) {
         NSArray *sets = [[SPDataManager shared] querySetsWithCondition:@"store_bundle = ?" values:@[self.item.name?:@""]];

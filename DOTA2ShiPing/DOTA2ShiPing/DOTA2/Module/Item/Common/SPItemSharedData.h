@@ -21,8 +21,12 @@
 #import "SPItemStyle.h"
 #import "SPItemPriceLoader.h"
 #import "SPGamepediaData.h"
+#import "SPDotaEvent.h"
+#import "SPPlayerItems.h"
 
 @interface SPItemSharedData : SPObject
+
+@property (strong, nonatomic) SPPlayerItemDetail *playerItem;
 
 @property (strong, readonly, nonatomic) SPItem *item;
 @property (strong, readonly, nonatomic) SPHero *hero;
@@ -37,6 +41,9 @@
 @property (strong, readonly, nonatomic) NSArray<SPItem *> *bundleItems;
 // 珍藏的掉落列表
 @property (strong, readonly, nonatomic) NSArray<SPItem *> *lootList;
+
+// 所属的事件
+@property (strong, readonly, nonatomic) SPDotaEvent *event;
 
 // 如果item是一个bundle，那么这里为bundle对应sets的内容
 @property (strong, readonly, nonatomic) SPItemSets *itemSet;

@@ -15,6 +15,8 @@
 @protocol SPItemListContainerDelegate <NSObject>
 @optional
 - (void)itemListContainerWillLoadMore:(SPItemListContainer *)container;
+// 默认实现是显示详情页。实现此代理方法可以替换默认实现。
+- (void)itemListContainer:(SPItemListContainer *)container didSelectedItem:(SPItem *)item;
 @end
 
 // mode 为自动模式

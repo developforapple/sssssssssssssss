@@ -43,7 +43,11 @@
 
 - (void)update
 {
-    self.titleLabel.text = self.itemData.item.nameWithQualtity;
+    if (self.itemData.playerItem) {
+        self.titleLabel.text = self.itemData.playerItem.market_name;
+    }else{
+        self.titleLabel.text = self.itemData.item.nameWithQualtity;
+    }
     self.subtitleLabel.text = self.itemData.item.enNameWithQuality;
     
     SPHero *hero = self.itemData.hero;
@@ -55,8 +59,14 @@
     
     UIColor *color = FlatGrayDark;//self.itemData.color;
     
-    // hero tag
     NSMutableArray *tags = [NSMutableArray array];
+    
+    if (self.itemData.playerItem) {
+        NSString *qualityName = self.itemData.playerItem.qualityTag.name;
+        [tags addObject:[SPItemTag tag:qualityName color:color]];
+    }
+    
+    // hero tag
     if (hero) {
         [tags addObject:[SPItemTag tag:hero.name_loc color:color]];
     }
@@ -83,13 +93,22 @@
         [tags addObject:[SPItemTag tag:self.itemData.itemSet.name_loc color:color]];
     }
     
+    //event tag
+    if (self.itemData.event) {
+        [tags addObject:[SPItemTag tag:self.itemData.event.name_loc color:color]];
+    }
+    
     // 可交易 tag
-    // TODO
-//    [tags addObject:[SPItemTag tag:@"可交易" color:color]];
+    if (self.itemData.playerItem) {
+        BOOL tradable = self.itemData.playerItem.tradable.boolValue;
+        [tags addObject:[SPItemTag tag:tradable ? @"可交易" : @"不可交易" color:color]];
+    }
     
     // 可出售 tag
-    // TODO
-//    [tags addObject:[SPItemTag tag:@"可出售" color:color]];
+    if (self.itemData.playerItem) {
+        BOOL marketable = self.itemData.playerItem.marketable.boolValue;
+        [tags addObject:[SPItemTag tag:marketable ? @"可出售" : @"不可出售"  color:color]];
+    }
     
     self.tags = tags;
     [self.tagView reloadData];

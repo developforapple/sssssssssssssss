@@ -4,7 +4,7 @@ inhibit_all_warnings!
 platform:ios, '8.0'
 
 target 'DOTA2ShiPing' do
-
+#    pod 'DTCoreText', '~> 1.6.21'
     pod 'ReactiveObjC'
     pod 'IAPHelper'       #https://github.com/saturngod/IAPHelper
     pod 'YYModel'         #https://github.com/ibireme/YYModel
@@ -55,6 +55,12 @@ post_install do |installer|
         target.build_configurations.each do |config|
             config.build_settings['SWIFT_VERSION'] = 'Swift 4.0'
             config.build_settings['VALID_ARCHS'] = 'armv7 arm64'
+            
+            # 解决 AVOSCloud 中无法使用sqlite3.framework的问题
+            if config.build_settings['PRODUCT_NAME'] == 'AVOSCloud'
+                config.build_settings['FRAMEWORK_SEARCH_PATHS'] = "$(inherited) $PODS_CONFIGURATION_BUILD_DIR/sqlite3"
+                config.build_settings['OTHER_CFLAGS'] = "$(inherited) -DFMDB_SQLITE_STANDALONE"
+            end
         end
     end
 end

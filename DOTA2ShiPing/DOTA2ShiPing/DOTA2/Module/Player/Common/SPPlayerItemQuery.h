@@ -20,6 +20,7 @@
 + (instancetype)queryWithPlayerItems:(SPPlayerItemSharedData *)data;
 
 @property (strong, nonatomic) SPPlayerItemSharedData *playerItemData;
+@property (strong, nonatomic) NSArray<SPPlayerItemDetail *> *filteredPlayerItems;
 
 // 从0开始，当前第几页
 @property (assign, nonatomic) NSInteger pageNo;

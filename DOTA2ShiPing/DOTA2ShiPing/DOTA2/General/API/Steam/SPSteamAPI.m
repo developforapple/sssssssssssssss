@@ -231,10 +231,6 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             NSDictionary *result = responseObject[@"result"];
             SPPlayerItemsList *list = [SPPlayerItemsList yy_modelWithDictionary:result];
-            
-//            NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
-//            NSString *length = response.allHeaderFields[@"Content-Length"];
-//            list.eigenvalue = @(length.longLongValue);
             list.MD5 = task.response.MD5;
             completion(list);
         }else{
@@ -654,7 +650,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
     id object = [super responseObjectForResponse:response data:data error:error];
     
     response.MD5 = data.md5String;
-    if ( *error && (*error).code == 3840) {
+    if ( *error && (*error).code == 3840) { // 3840为 NSJsonSerialization 无法解析json时的错误码
         NSData *theData = [self cleanUTF8:data];
         if (theData && theData.length > 0) {
             *error = nil;

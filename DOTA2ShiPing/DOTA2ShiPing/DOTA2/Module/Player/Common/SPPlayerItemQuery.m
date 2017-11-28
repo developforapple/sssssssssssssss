@@ -12,10 +12,6 @@
 @import FMDB;
 
 @interface SPPlayerItemQuery ()
-
-// 默认是全部库存物品
-@property (strong, nonatomic) NSArray<SPPlayerItemDetail *> *filteredPlayerItems;
-
 @end
 
 @implementation SPPlayerItemQuery
