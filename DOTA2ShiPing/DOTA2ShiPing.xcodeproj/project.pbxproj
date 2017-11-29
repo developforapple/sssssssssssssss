@@ -50,6 +50,7 @@
 		2D91EB741F16263A0038B49C /* SPResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB731F16263A0038B49C /* SPResourceManager.m */; };
 		2D91EB771F1724230038B49C /* SPBaseData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB761F1724230038B49C /* SPBaseData.m */; };
 		2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB7A1F1731880038B49C /* SPLocale.m */; };
+		2D93507E1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D93507D1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m */; };
 		2DC0F68F1F1B6A2D004DCD3C /* SPHeroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F68B1F1B6A2D004DCD3C /* SPHeroCell.m */; };
 		2DC0F6901F1B6A2D004DCD3C /* SPItemHeroPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F68E1F1B6A2D004DCD3C /* SPItemHeroPickerVC.m */; };
 		2DC0F6921F1B6A3D004DCD3C /* SPHero.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC0F6911F1B6A3D004DCD3C /* SPHero.storyboard */; };
@@ -224,6 +225,8 @@
 		2DFF66031FCC46DB006A0081 /* SPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF66021FCC46DB006A0081 /* SPTableViewCell.m */; };
 		2DFF66061FCC470D006A0081 /* SPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF66051FCC470D006A0081 /* SPCollectionViewCell.m */; };
 		2DFF66091FCC471A006A0081 /* SPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF66081FCC471A006A0081 /* SPView.m */; };
+		2DFF66181FCEE75E006A0081 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2DFF66171FCEE75E006A0081 /* LICENSE */; };
+		2DFF661E1FCEEDAB006A0081 /* SPLicenseViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF661D1FCEEDAB006A0081 /* SPLicenseViewCtrl.m */; };
 		690BD50D1FA71524007A4D5D /* SPGamepediaAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD50C1FA71524007A4D5D /* SPGamepediaAPI.m */; };
 		690BD5101FA71666007A4D5D /* SPGamepediaSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD50F1FA71666007A4D5D /* SPGamepediaSerializer.m */; };
 		690BD5161FA71E6D007A4D5D /* SPGamepediaImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD5151FA71E6D007A4D5D /* SPGamepediaImage.m */; };
@@ -336,6 +339,8 @@
 		2D91EB761F1724230038B49C /* SPBaseData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBaseData.m; sourceTree = "<group>"; };
 		2D91EB791F1731880038B49C /* SPLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLocale.h; sourceTree = "<group>"; };
 		2D91EB7A1F1731880038B49C /* SPLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLocale.m; sourceTree = "<group>"; };
+		2D93507C1FCF0C0500719EC5 /* SPFeedbackViewCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFeedbackViewCtrl.h; sourceTree = "<group>"; };
+		2D93507D1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPFeedbackViewCtrl.m; sourceTree = "<group>"; };
 		2DC0F68A1F1B6A2D004DCD3C /* SPHeroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHeroCell.h; sourceTree = "<group>"; };
 		2DC0F68B1F1B6A2D004DCD3C /* SPHeroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHeroCell.m; sourceTree = "<group>"; };
 		2DC0F68D1F1B6A2D004DCD3C /* SPItemHeroPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemHeroPickerVC.h; sourceTree = "<group>"; };
@@ -700,6 +705,9 @@
 		2DFF66051FCC470D006A0081 /* SPCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPCollectionViewCell.m; sourceTree = "<group>"; };
 		2DFF66071FCC471A006A0081 /* SPView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPView.h; sourceTree = "<group>"; };
 		2DFF66081FCC471A006A0081 /* SPView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPView.m; sourceTree = "<group>"; };
+		2DFF66171FCEE75E006A0081 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		2DFF661C1FCEEDAB006A0081 /* SPLicenseViewCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPLicenseViewCtrl.h; sourceTree = "<group>"; };
+		2DFF661D1FCEEDAB006A0081 /* SPLicenseViewCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPLicenseViewCtrl.m; sourceTree = "<group>"; };
 		690BD50B1FA71524007A4D5D /* SPGamepediaAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaAPI.h; sourceTree = "<group>"; };
 		690BD50C1FA71524007A4D5D /* SPGamepediaAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPGamepediaAPI.m; sourceTree = "<group>"; };
 		690BD50E1FA71666007A4D5D /* SPGamepediaSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaSerializer.h; sourceTree = "<group>"; };
@@ -1878,6 +1886,10 @@
 				2DF9B7F61F1361640012950A /* SPSettingTableVC.m */,
 				2DF9B7F71F1361640012950A /* SPSettingUpgradeVC.h */,
 				2DF9B7F81F1361640012950A /* SPSettingUpgradeVC.m */,
+				2DFF661C1FCEEDAB006A0081 /* SPLicenseViewCtrl.h */,
+				2DFF661D1FCEEDAB006A0081 /* SPLicenseViewCtrl.m */,
+				2D93507C1FCF0C0500719EC5 /* SPFeedbackViewCtrl.h */,
+				2D93507D1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m */,
 			);
 			path = Ctrls;
 			sourceTree = "<group>";
@@ -1955,6 +1967,7 @@
 				2DF9B8101F1361640012950A /* Assets.xcassets */,
 				2DF9B8131F1361640012950A /* heroMap.json */,
 				2DF9B8151F1361640012950A /* workshoptags.json */,
+				2DFF66171FCEE75E006A0081 /* LICENSE */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2208,6 +2221,7 @@
 				2DF9B8C71F1361640012950A /* SPMain.storyboard in Resources */,
 				2D2451461FC994D900EF5438 /* SPFilter.storyboard in Resources */,
 				692A55841F4D6C1C006914BF /* SPItemSearch.storyboard in Resources */,
+				2DFF66181FCEE75E006A0081 /* LICENSE in Resources */,
 				2D6B7B551F3207310048CEA9 /* DINPro-Regular.otf in Resources */,
 				2D6B7B541F3207310048CEA9 /* DINPro-Medium.otf in Resources */,
 				2D6B7B531F3207310048CEA9 /* DINPro-Bold.otf in Resources */,
@@ -2369,6 +2383,7 @@
 				2DF9B86E1F1361640012950A /* KDCycleBannerView.m in Sources */,
 				2DF9B8961F1361640012950A /* SPItemSlot.m in Sources */,
 				2DF9B89C1F1361640012950A /* YGTabBarCtrl.m in Sources */,
+				2D93507E1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m in Sources */,
 				2D24517D1FC9AA3200EF5438 /* SPItemFilterGroup.m in Sources */,
 				2DFF66091FCC471A006A0081 /* SPView.m in Sources */,
 				2DC0F68F1F1B6A2D004DCD3C /* SPHeroCell.m in Sources */,
@@ -2491,6 +2506,7 @@
 				2D2451561FC9954B00EF5438 /* SPFilterCell.m in Sources */,
 				2D24515F1FC9958F00EF5438 /* SPFilterUnit.m in Sources */,
 				2DF9B8401F1361640012950A /* UIAlertController+Convenience.m in Sources */,
+				2DFF661E1FCEEDAB006A0081 /* SPLicenseViewCtrl.m in Sources */,
 				2DF9B8C61F1361640012950A /* SPSettingUpgradeVC.m in Sources */,
 				2DF9B8951F1361640012950A /* SPItemSets.m in Sources */,
 				2DF9B8BF1F1361640012950A /* SPSettingDiskCacheVC.m in Sources */,

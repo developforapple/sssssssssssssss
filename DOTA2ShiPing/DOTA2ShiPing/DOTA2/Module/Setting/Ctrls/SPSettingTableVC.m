@@ -13,6 +13,7 @@
 
 @interface SPSettingTableVC () <SKStoreProductViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableViewCell *payCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *communityCell;
 @property (weak, nonatomic) IBOutlet UILabel *diskCacheLabel;
 @property (weak, nonatomic) IBOutlet UITableViewCell *appStoreCell;
@@ -86,7 +87,7 @@
         [skstore loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:AppleID}
                            completionBlock:^(BOOL result, NSError *error) {
                                if (result && !error) {
-                                   [HUD hide:YES];
+                                   [HUD hideAnimated:YES];
                                    [self presentViewController:skstore animated:YES completion:nil];
                                }else{
                                    [HUD showAutoHiddenHUDWithMessage:error.localizedDescription];
@@ -94,6 +95,23 @@
                            }];
     }else if (cell == self.communityCell){
 
+        
+//        LCUserFeedbackViewController *vc = [[LCUserFeedbackViewController alloc] init];
+//        vc.IQKeyboardEnabled = NO;
+//        vc.presented = YES;
+//        vc.hidesBottomBarWhenPushed = YES;
+//        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+//        if (iOS11) {
+//            navi.interactivePopGestureRecognizer.enabled = YES;
+//            navi.interactivePopGestureRecognizer.delegate = vc;
+//        }
+//        [self presentViewController:navi animated:YES completion:nil];
+        
+//        LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
+//        /* title 传 nil 表示将第一条消息作为反馈的标题。 contact 也可以传入 nil，由用户来填写联系方式。*/
+//        [agent showConversations:self title:nil contact:nil];
+        
+    }else if (cell == self.payCell){
         
     }
 }

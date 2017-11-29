@@ -10,6 +10,7 @@
 
 @interface SPSettingAboutVC ()
 @property (weak, nonatomic) IBOutlet UIImageView *QRCodeView;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
 
@@ -18,6 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.versionLabel.text = [NSString stringWithFormat:@"v%@ build %@",AppVersion,AppBuildVersion];
 }
 
 - (IBAction)steam:(id)sender

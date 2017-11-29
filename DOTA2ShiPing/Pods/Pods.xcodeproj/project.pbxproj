@@ -237,9 +237,9 @@
 		2D7722EFAC615A5BA81C6C44AB5367BF /* RACScopedDisposable.m in Sources */ = {isa = PBXBuildFile; fileRef = B421FD328557375EE043C7B5DE0097B7 /* RACScopedDisposable.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		2D87B45D50E5180A483A101B4B4F35A3 /* NSDate+YYAdd.h in Headers */ = {isa = PBXBuildFile; fileRef = 148168F256B2C5EEEDFA4770BCDD6570 /* NSDate+YYAdd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D8AE93E51ACD738BD56AA36E2DBD391 /* UINavigationController+JZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C227B445E7EA443A2D48150D592FDC /* UINavigationController+JZExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2D9350791FCF0AB200719EC5 /* sqlite3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573537589D49D69D573BA493D9B49571 /* sqlite3.framework */; };
 		2DF804603A22D62BC66546015A3CDF79 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3217F268133AA282A893BE12DE52BC7A /* UIButton+WebCache.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		2DFD7CF85F070C32DEFFDE0C01803A5B /* RACEagerSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = D24654C31F29758A60AF6B1AA187311F /* RACEagerSequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2DFF66161FCDE7F6006A0081 /* sqlite3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573537589D49D69D573BA493D9B49571 /* sqlite3.framework */; };
 		2E0C482BA4A49D6CF30D6AAF6315D4DD /* MJRefreshBackNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E73FCC8AB246211FB3DD47C7B21486DD /* MJRefreshBackNormalFooter.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		2E2A2F0BB8E32B2A325E6F0C7C07DCB2 /* DGActivityIndicatorBallPulseSyncAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E8FBB80E24C81D4177BD8C199A85F14 /* DGActivityIndicatorBallPulseSyncAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E37DDCAEA41FC578E488FA80CB89AB3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21766866A32B5384FDA6479C42E64172 /* CoreTelephony.framework */; };
@@ -1319,7 +1319,7 @@
 			remoteGlobalIDString = CF671F7E57B92905F1CC91D036D6B4A7;
 			remoteInfo = AFNetworking;
 		};
-		2DFF66141FCDE7EE006A0081 /* PBXContainerItemProxy */ = {
+		2D93507A1FCF0AB500719EC5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -3217,7 +3217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DFF66161FCDE7F6006A0081 /* sqlite3.framework in Frameworks */,
+				2D9350791FCF0AB200719EC5 /* sqlite3.framework in Frameworks */,
 				398D1EE73C5BB15AE85F531EE564E33A /* CFNetwork.framework in Frameworks */,
 				BA8AFF55CBB4C27BF1491DC27C382D5E /* CoreGraphics.framework in Frameworks */,
 				6105BD2DAE74BF676D3A32DA7B540437 /* CoreLocation.framework in Frameworks */,
@@ -6466,7 +6466,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				2DFF66151FCDE7EE006A0081 /* PBXTargetDependency */,
+				2D93507B1FCF0AB500719EC5 /* PBXTargetDependency */,
 			);
 			name = AVOSCloud;
 			productName = AVOSCloud;
@@ -7797,10 +7797,10 @@
 			target = 17CEAD1B3EC4E80098DF5F8AA00BE966 /* DACircularProgress */;
 			targetProxy = 0BF515FAE8E257CF01864795BE7A7D7A /* PBXContainerItemProxy */;
 		};
-		2DFF66151FCDE7EE006A0081 /* PBXTargetDependency */ = {
+		2D93507B1FCF0AB500719EC5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B32BDC90271A0CE47ABE9E57C4A4AFCE /* sqlite3 */;
-			targetProxy = 2DFF66141FCDE7EE006A0081 /* PBXContainerItemProxy */;
+			targetProxy = 2D93507A1FCF0AB500719EC5 /* PBXContainerItemProxy */;
 		};
 		381BD6C6A4C6D69B016F3F1CE751DB57 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
