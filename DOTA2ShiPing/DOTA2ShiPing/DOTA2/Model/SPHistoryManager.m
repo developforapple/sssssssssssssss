@@ -1,0 +1,96 @@
+//
+//  SPHistoryManager.m
+//  DOTA2ShiPing
+//
+//  Created by wwwbbat on 2017/11/30.
+//  Copyright © 2017年 wwwbbat. All rights reserved.
+//
+
+#import "SPHistoryManager.h"
+@import FMDB;
+
+@interface SPHistoryManager ()
+@property (strong, nonatomic) FMDatabase *db;
+@end
+
+@implementation SPHistoryManager
+
++ (instancetype)manager
+{
+    static SPHistoryManager *instance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [SPHistoryManager new];
+    });
+    return instance;
+}
+
+#pragma mark - db
+- (FMDatabase *)db
+{
+    if (!_db) {
+        _db = [self createDatabaseIfNeed];
+        _db.traceExecution = YES;
+    }
+    return _db;
+}
+
+- (FMDatabase *)createDatabaseIfNeed
+{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *dbFolder = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@".spzh.history.v1"];
+    if (![fm fileExistsAtPath:dbFolder]) {
+        [fm createDirectoryAtPath:dbFolder withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    NSString *dbPath = [dbFolder stringByAppendingPathComponent:@"history.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    [db open];
+    [db executeUpdate:@"CREATE TABLE history (  token text PRIMARY KEY,\
+                                                orderid integer)"];
+    [db close];
+    return db;
+}
+
+- (NSArray<NSString *> *)getHistory:(NSInteger)orderId
+                           pageSize:(int)pageSize
+{
+    [self.db open];
+    
+    NSString *sql;
+    if (orderId == 0) {
+        sql = [NSString stringWithFormat:@"SELECT token FROM history ORDER BY orderid DESC LIMIT %d",MAX(0, pageSize)];
+    }else{
+        sql = [NSString stringWithFormat:@"SELECT token FROM history WHERE orderid < %ld ORDER BY orderid DESC LIMIT %d",orderId,MAX(0, pageSize)];
+    }
+    NSMutableArray *array = [NSMutableArray array];
+    FMResultSet *result = [self.db executeQuery:sql];
+    int tokenIndex = [result columnIndexForName:@"token"];
+    while ([result next]) {
+        NSString *token = [result stringForColumnIndex:tokenIndex];
+        [array addObject:token];
+    }
+    [self.db close];
+    return array;
+}
+
+- (void)add:(NSString *)token
+{
+    [self.db open];
+    
+    long long maxId = 0;
+    FMResultSet *maxOrderIdSet = [self.db executeQuery:@"SELECT MAX(orderid) FROM history"];
+    if ([maxOrderIdSet next]) {
+        maxId = [maxOrderIdSet longLongIntForColumn:@"orderid"];
+    }
+    
+    long long orderid = maxId + 1;
+    NSString *sql = @"INSERT OR REPLACE INTO history(token,orderid)VALUES(?,?)";
+    BOOL result = [self.db executeUpdate:sql,token,@(orderid)];
+    if (!result) {
+        NSError *error = [self.db lastError];
+        NSLog(@"%@",error);
+    }
+    [self.db close];
+}
+
+@end

@@ -40,6 +40,7 @@ static NSString *const kLoadingTappedTipFlag = @"item_loading_tip_flag";
 @property (weak, nonatomic) IBOutlet SPItemDescPanel *descPanel;
 @property (weak, nonatomic) IBOutlet SPItemPlayableView *playablePanel;
 @property (weak, nonatomic) IBOutlet SPItemMoreItemsView *moreItemsPanel;
+@property (weak, nonatomic) IBOutlet UIButton *starBtn;
 
 @end
 
@@ -85,6 +86,11 @@ static NSString *const kLoadingTappedTipFlag = @"item_loading_tip_flag";
 - (void)parallaxHeaderDidScroll:(MXParallaxHeader *)parallaxHeader
 {
     [self.bannerPanel setScrollProgress:parallaxHeader.progress];
+}
+
+- (IBAction)starBtnAction:(id)sender
+{
+    
 }
 
 @end

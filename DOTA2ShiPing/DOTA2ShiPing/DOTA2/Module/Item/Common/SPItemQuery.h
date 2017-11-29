@@ -19,7 +19,6 @@
 #import "SPDotaEvent.h"
 #import "SPItemFilterUnit.h"
 
-// 过滤器
 @interface SPItemQuery : SPObject
 
 // 根据英雄筛选

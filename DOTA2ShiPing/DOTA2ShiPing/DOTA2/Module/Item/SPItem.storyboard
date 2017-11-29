@@ -1294,13 +1294,28 @@
                                     <action selector="doLeftNaviBarItemAction" destination="E1P-hu-hKJ" eventType="touchUpInside" id="oSb-4F-cgN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OW8-U3-d5z">
+                                <rect key="frame" x="321" y="20" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="JYD-u4-Yhd"/>
+                                    <constraint firstAttribute="height" constant="44" id="yiJ-wd-w0v"/>
+                                </constraints>
+                                <state key="normal" image="icon_title_collect_grey"/>
+                                <state key="selected" image="icon_title_collected_grey"/>
+                                <state key="highlighted" image="icon_title_collected_grey"/>
+                                <connections>
+                                    <action selector="starBtnAction:" destination="E1P-hu-hKJ" eventType="touchUpInside" id="9Sb-i6-ZDe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Y7W-TE-jbX" secondAttribute="bottom" id="7Lp-bF-hIN"/>
+                            <constraint firstItem="OW8-U3-d5z" firstAttribute="top" secondItem="FCe-XI-QP4" secondAttribute="bottom" id="CJd-uR-huP"/>
                             <constraint firstItem="6G7-sH-yDK" firstAttribute="leading" secondItem="1Fu-3V-Q8U" secondAttribute="leading" constant="10" id="IIw-5C-FTB"/>
                             <constraint firstItem="6G7-sH-yDK" firstAttribute="top" secondItem="FCe-XI-QP4" secondAttribute="bottom" id="TY3-7W-eMq"/>
                             <constraint firstItem="Y7W-TE-jbX" firstAttribute="top" secondItem="1Fu-3V-Q8U" secondAttribute="top" id="Vcq-SP-EHB"/>
+                            <constraint firstAttribute="trailing" secondItem="OW8-U3-d5z" secondAttribute="trailing" constant="10" id="Vxp-bH-QF2"/>
                             <constraint firstItem="Y7W-TE-jbX" firstAttribute="leading" secondItem="1Fu-3V-Q8U" secondAttribute="leading" id="jQ3-HX-o6k"/>
                             <constraint firstAttribute="trailing" secondItem="Y7W-TE-jbX" secondAttribute="trailing" id="rTD-Iy-1eh"/>
                         </constraints>
@@ -1313,6 +1328,7 @@
                         <outlet property="playablePanel" destination="au1-rQ-9wl" id="ZX6-cC-Nom"/>
                         <outlet property="salePanel" destination="9T0-47-oHZ" id="WxA-VG-j7X"/>
                         <outlet property="scrollView" destination="Y7W-TE-jbX" id="TkP-vB-Nlg"/>
+                        <outlet property="starBtn" destination="OW8-U3-d5z" id="bQu-aL-le8"/>
                         <outlet property="titlePanel" destination="BgS-XI-rf4" id="Tzg-Ce-XUW"/>
                         <segue destination="pDK-0w-k04" kind="show" id="N1P-Oc-Rs5"/>
                     </connections>
@@ -1984,6 +2000,8 @@
         <image name="icon_arrow_more" width="8" height="14"/>
         <image name="icon_back_light_2" width="32" height="32"/>
         <image name="icon_four_rectangle" width="21" height="21"/>
+        <image name="icon_title_collect_grey" width="40" height="40"/>
+        <image name="icon_title_collected_grey" width="40" height="40"/>
         <image name="logo_dota2" width="256" height="256"/>
         <image name="logo_steam" width="85" height="85"/>
         <image name="logo_steam_light" width="18" height="18"/>

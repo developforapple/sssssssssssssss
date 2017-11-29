@@ -40,9 +40,6 @@
 		2D54622E1FAF234B006B2485 /* SPItemPriceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D54622D1FAF234B006B2485 /* SPItemPriceLoader.m */; };
 		2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B211D435E95005FC6CA /* libiconv.tbd */; };
 		2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B231D435EAB005FC6CA /* libstdc++.tbd */; };
-		2D6B7B531F3207310048CEA9 /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2D6B7B501F3207310048CEA9 /* DINPro-Bold.otf */; };
-		2D6B7B541F3207310048CEA9 /* DINPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2D6B7B511F3207310048CEA9 /* DINPro-Medium.otf */; };
-		2D6B7B551F3207310048CEA9 /* DINPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2D6B7B521F3207310048CEA9 /* DINPro-Regular.otf */; };
 		2D6F1C9D1F1E6D3F00E8F614 /* Pods_DOTA2ShiPing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70FA08C933879E048D521D6 /* Pods_DOTA2ShiPing.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */; };
 		2D6F1CAB1F1F3D4200E8F614 /* SPItemTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */; };
@@ -51,6 +48,9 @@
 		2D91EB771F1724230038B49C /* SPBaseData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB761F1724230038B49C /* SPBaseData.m */; };
 		2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB7A1F1731880038B49C /* SPLocale.m */; };
 		2D93507E1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D93507D1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m */; };
+		2D9350811FCF1B9E00719EC5 /* SPHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9350801FCF1B9E00719EC5 /* SPHistoryManager.m */; };
+		2D9350841FCF1BAA00719EC5 /* SPStarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9350831FCF1BAA00719EC5 /* SPStarManager.m */; };
+		2D9350871FCF244000719EC5 /* SPHistoryViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9350861FCF244000719EC5 /* SPHistoryViewCtrl.m */; };
 		2DC0F68F1F1B6A2D004DCD3C /* SPHeroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F68B1F1B6A2D004DCD3C /* SPHeroCell.m */; };
 		2DC0F6901F1B6A2D004DCD3C /* SPItemHeroPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F68E1F1B6A2D004DCD3C /* SPItemHeroPickerVC.m */; };
 		2DC0F6921F1B6A3D004DCD3C /* SPHero.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC0F6911F1B6A3D004DCD3C /* SPHero.storyboard */; };
@@ -323,9 +323,6 @@
 		2D54622D1FAF234B006B2485 /* SPItemPriceLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemPriceLoader.m; sourceTree = "<group>"; };
 		2D563B211D435E95005FC6CA /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		2D563B231D435EAB005FC6CA /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
-		2D6B7B501F3207310048CEA9 /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
-		2D6B7B511F3207310048CEA9 /* DINPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Medium.otf"; sourceTree = "<group>"; };
-		2D6B7B521F3207310048CEA9 /* DINPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.otf"; sourceTree = "<group>"; };
 		2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOTA2ShiPing-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -341,6 +338,12 @@
 		2D91EB7A1F1731880038B49C /* SPLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLocale.m; sourceTree = "<group>"; };
 		2D93507C1FCF0C0500719EC5 /* SPFeedbackViewCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFeedbackViewCtrl.h; sourceTree = "<group>"; };
 		2D93507D1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPFeedbackViewCtrl.m; sourceTree = "<group>"; };
+		2D93507F1FCF1B9E00719EC5 /* SPHistoryManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPHistoryManager.h; sourceTree = "<group>"; };
+		2D9350801FCF1B9E00719EC5 /* SPHistoryManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPHistoryManager.m; sourceTree = "<group>"; };
+		2D9350821FCF1BAA00719EC5 /* SPStarManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPStarManager.h; sourceTree = "<group>"; };
+		2D9350831FCF1BAA00719EC5 /* SPStarManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPStarManager.m; sourceTree = "<group>"; };
+		2D9350851FCF244000719EC5 /* SPHistoryViewCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPHistoryViewCtrl.h; sourceTree = "<group>"; };
+		2D9350861FCF244000719EC5 /* SPHistoryViewCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPHistoryViewCtrl.m; sourceTree = "<group>"; };
 		2DC0F68A1F1B6A2D004DCD3C /* SPHeroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHeroCell.h; sourceTree = "<group>"; };
 		2DC0F68B1F1B6A2D004DCD3C /* SPHeroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHeroCell.m; sourceTree = "<group>"; };
 		2DC0F68D1F1B6A2D004DCD3C /* SPItemHeroPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemHeroPickerVC.h; sourceTree = "<group>"; };
@@ -1525,6 +1528,10 @@
 				2DF9B7661F1361640012950A /* MAXUser */,
 				2DF9B7691F1361640012950A /* SPDataManager.h */,
 				2DF9B76A1F1361640012950A /* SPDataManager.m */,
+				2D93507F1FCF1B9E00719EC5 /* SPHistoryManager.h */,
+				2D9350801FCF1B9E00719EC5 /* SPHistoryManager.m */,
+				2D9350821FCF1BAA00719EC5 /* SPStarManager.h */,
+				2D9350831FCF1BAA00719EC5 /* SPStarManager.m */,
 				2DF9B76B1F1361640012950A /* SPHero.h */,
 				2DF9B76C1F1361640012950A /* SPHero.m */,
 				2DF9B7711F1361640012950A /* SPItemColor.h */,
@@ -1878,6 +1885,8 @@
 				2DF9B7EE1F1361640012950A /* SPLastestItemVC.m */,
 				2DF9B7EF1F1361640012950A /* SPMyStarredItemVC.h */,
 				2DF9B7F01F1361640012950A /* SPMyStarredItemVC.m */,
+				2D9350851FCF244000719EC5 /* SPHistoryViewCtrl.h */,
+				2D9350861FCF244000719EC5 /* SPHistoryViewCtrl.m */,
 				2DF9B7F11F1361640012950A /* SPSettingAboutVC.h */,
 				2DF9B7F21F1361640012950A /* SPSettingAboutVC.m */,
 				2DF9B7F31F1361640012950A /* SPSettingFeedbackVC.h */,
@@ -1961,9 +1970,6 @@
 		2DF9B80F1F1361640012950A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				2D6B7B501F3207310048CEA9 /* DINPro-Bold.otf */,
-				2D6B7B511F3207310048CEA9 /* DINPro-Medium.otf */,
-				2D6B7B521F3207310048CEA9 /* DINPro-Regular.otf */,
 				2DF9B8101F1361640012950A /* Assets.xcassets */,
 				2DF9B8131F1361640012950A /* heroMap.json */,
 				2DF9B8151F1361640012950A /* workshoptags.json */,
@@ -2222,9 +2228,6 @@
 				2D2451461FC994D900EF5438 /* SPFilter.storyboard in Resources */,
 				692A55841F4D6C1C006914BF /* SPItemSearch.storyboard in Resources */,
 				2DFF66181FCEE75E006A0081 /* LICENSE in Resources */,
-				2D6B7B551F3207310048CEA9 /* DINPro-Regular.otf in Resources */,
-				2D6B7B541F3207310048CEA9 /* DINPro-Medium.otf in Resources */,
-				2D6B7B531F3207310048CEA9 /* DINPro-Bold.otf in Resources */,
 				2DF9B85F1F1361640012950A /* BingoBarItemView.xib in Resources */,
 				2DF9B8D51F1361640012950A /* workshoptags.json in Resources */,
 				2DF9B8711F1361640012950A /* LCActionSheet.bundle in Resources */,
@@ -2408,6 +2411,7 @@
 				2DF9B81F1F1361640012950A /* Config_Network.m in Sources */,
 				2D91EB771F1724230038B49C /* SPBaseData.m in Sources */,
 				692A558E1F4D712F006914BF /* SPItemSearchOption.m in Sources */,
+				2D9350871FCF244000719EC5 /* SPHistoryViewCtrl.m in Sources */,
 				2DF9B8CC1F1361640012950A /* SPWorkshopVC.m in Sources */,
 				2D2451651FC995B000EF5438 /* SPFilterGroup.m in Sources */,
 				2DF9B8291F1361640012950A /* YGCoreLocationHelper.m in Sources */,
@@ -2524,6 +2528,7 @@
 				2DF9B8301F1361640012950A /* NSString+STRegex.m in Sources */,
 				2D37AAB71FAEF5CC0043DDD4 /* SPItemMoreItemsView.m in Sources */,
 				2DF9B84B1F1361640012950A /* YGThirdPartyNavigate.m in Sources */,
+				2D9350811FCF1B9E00719EC5 /* SPHistoryManager.m in Sources */,
 				2DF9B8A91F1361640012950A /* DDMainTBC.m in Sources */,
 				691DC39E1F418D6F00DF5E81 /* DDViewModel.m in Sources */,
 				2DF9B88C1F1361640012950A /* SPPlayer.m in Sources */,
@@ -2540,6 +2545,7 @@
 				2DF9B8851F1361640012950A /* YGTextField.m in Sources */,
 				2D37AAB41FAEEB5E0043DDD4 /* SPItemDescPanel.m in Sources */,
 				2DF9B8871F1361640012950A /* UIImage+ImageEffects.m in Sources */,
+				2D9350841FCF1BAA00719EC5 /* SPStarManager.m in Sources */,
 				2DF9B87F1F1361640012950A /* TADotView.m in Sources */,
 				2DF9B8B41F1361640012950A /* SPPlayerInventoryVC.m in Sources */,
 				2DF9B8201F1361640012950A /* Config_ThirdParty.m in Sources */,

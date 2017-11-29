@@ -24,7 +24,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shared = [SPPlayerManager new];
-        [shared.db open];
     });
     return shared;
 }
@@ -63,6 +62,7 @@
 @implementation SPPlayerManager (Star)
 - (NSArray<SPPlayer *> *)starredPlayers
 {
+    [self.db open];
     NSMutableArray *favorites = [NSMutableArray array];
     FMResultSet *result = [self.db executeQuery:@"SELECT * FROM player WHERE star=1"];
     while ([result next]) {
@@ -71,6 +71,7 @@
         [favorites addObject:player];
     }
     [result close];
+    [self.db close];
     return favorites;
 }
 
@@ -78,12 +79,14 @@
 {
     if (!steamid) return NO;
     
+    [self.db open];
     BOOL isStarred = NO;
     FMResultSet *result = [self.db executeQuery:@"SELECT star FROM player WHERE steam_id=?",steamid];
     if ([result next]) {
         isStarred = [result boolForColumn:@"star"];
     }
     [result close];
+    [self.db close];
     return isStarred;
 }
 
@@ -95,9 +98,10 @@
 - (void)unstarPlayer:(NSNumber *)steamid
 {
     if (!steamid) return;
-    
+    [self.db open];
     [self.db executeUpdate:@"UPDATE player SET star=0 WHERE steam_id=?",steamid];
     [self callStarredUpdate];
+    [self.db close];
 }
 
 // 增加星标。只操作已有记录的用户
@@ -109,9 +113,11 @@
     
     NSDictionary *playerDict = [player yy_modelToJSONObject];
     
+    [self.db open];
     NSString *sql = @"INSERT OR REPLACE INTO player VALUES(:steam_id,:avatar_url,:name,:star)";
     [self.db executeUpdate:sql withParameterDictionary:playerDict];
     [self callStarredUpdate];
+    [self.db close];
 }
 
 - (void)callStarredUpdate
