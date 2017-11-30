@@ -58,16 +58,20 @@
     
     NSString *sql;
     if (orderId == 0) {
-        sql = [NSString stringWithFormat:@"SELECT token FROM history ORDER BY orderid DESC LIMIT %d",MAX(0, pageSize)];
+        sql = [NSString stringWithFormat:@"SELECT token,orderid FROM history ORDER BY orderid DESC LIMIT %d",MAX(0, pageSize)];
     }else{
-        sql = [NSString stringWithFormat:@"SELECT token FROM history WHERE orderid < %ld ORDER BY orderid DESC LIMIT %d",orderId,MAX(0, pageSize)];
+        sql = [NSString stringWithFormat:@"SELECT token,orderid FROM history WHERE orderid < %ld ORDER BY orderid DESC LIMIT %d",orderId,MAX(0, pageSize)];
     }
+    NSMutableArray *orderids = [NSMutableArray array];
     NSMutableArray *array = [NSMutableArray array];
     FMResultSet *result = [self.db executeQuery:sql];
     int tokenIndex = [result columnIndexForName:@"token"];
+    int orderidIndex = [result columnIndexForName:@"orderid"];
     while ([result next]) {
         NSString *token = [result stringForColumnIndex:tokenIndex];
+        long long theOrderId = [result longLongIntForColumnIndex:orderidIndex];
         [array addObject:token];
+        [orderids addObject:@(theOrderId)];
     }
     [self.db close];
     return array;
@@ -80,7 +84,7 @@
     long long maxId = 0;
     FMResultSet *maxOrderIdSet = [self.db executeQuery:@"SELECT MAX(orderid) FROM history"];
     if ([maxOrderIdSet next]) {
-        maxId = [maxOrderIdSet longLongIntForColumn:@"orderid"];
+        maxId = [[maxOrderIdSet resultDictionary][@"MAX(orderid)"] longLongValue];
     }
     
     long long orderid = maxId + 1;

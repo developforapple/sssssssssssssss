@@ -47,6 +47,8 @@ target 'DOTA2ShiPing' do
     pod 'MXParallaxHeader'
 
     pod 'Google-Mobile-Ads-SDK'
+    
+    pod 'FCUUID'
 
 end
 

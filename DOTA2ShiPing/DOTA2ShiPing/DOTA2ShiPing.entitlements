@@ -20,6 +20,7 @@
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)wwwbbat.DOTA2ShiPing</string>
+		<string>$(AppIdentifierPrefix)com.nana.V1.0itemsofdota2</string>
 	</array>
 </dict>
 </plist>

@@ -1,5 +1,5 @@
 //
-//  SPHistoryViewCtrl.h
+//  SPIAPViewCtrl.h
 //  DOTA2ShiPing
 //
 //  Created by wwwbbat on 2017/11/30.
@@ -8,6 +8,6 @@
 
 #import "YGBaseViewCtrl.h"
 
-@interface SPHistoryViewCtrl : YGBaseViewCtrl
+@interface SPIAPViewCtrl : YGBaseViewCtrl
 
 @end

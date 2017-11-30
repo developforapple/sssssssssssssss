@@ -40,6 +40,13 @@
 		2D54622E1FAF234B006B2485 /* SPItemPriceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D54622D1FAF234B006B2485 /* SPItemPriceLoader.m */; };
 		2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B211D435E95005FC6CA /* libiconv.tbd */; };
 		2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B231D435EAB005FC6CA /* libstdc++.tbd */; };
+		2D5A2A871FD055BE0021FCC9 /* SPSettingOptionsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A861FD055BE0021FCC9 /* SPSettingOptionsViewCtrl.m */; };
+		2D5A2A8D1FD056700021FCC9 /* SPIAPViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A8C1FD056700021FCC9 /* SPIAPViewCtrl.m */; };
+		2D5A2A911FD0593A0021FCC9 /* SPIAPCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A901FD0593A0021FCC9 /* SPIAPCell.m */; };
+		2D5A2A931FD05EF30021FCC9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5A2A921FD05EF30021FCC9 /* StoreKit.framework */; };
+		2D5A2A951FD05F1B0021FCC9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5A2A941FD05F1B0021FCC9 /* CloudKit.framework */; };
+		2D5A2A981FD066E60021FCC9 /* SPIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A971FD066E60021FCC9 /* SPIAPHelper.m */; };
+		2D5A2A9B1FD07C700021FCC9 /* SKPaymentTransaction+SPMore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A9A1FD07C700021FCC9 /* SKPaymentTransaction+SPMore.m */; };
 		2D6F1C9D1F1E6D3F00E8F614 /* Pods_DOTA2ShiPing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70FA08C933879E048D521D6 /* Pods_DOTA2ShiPing.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */; };
 		2D6F1CAB1F1F3D4200E8F614 /* SPItemTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */; };
@@ -50,7 +57,6 @@
 		2D93507E1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D93507D1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m */; };
 		2D9350811FCF1B9E00719EC5 /* SPHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9350801FCF1B9E00719EC5 /* SPHistoryManager.m */; };
 		2D9350841FCF1BAA00719EC5 /* SPStarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9350831FCF1BAA00719EC5 /* SPStarManager.m */; };
-		2D9350871FCF244000719EC5 /* SPHistoryViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9350861FCF244000719EC5 /* SPHistoryViewCtrl.m */; };
 		2DC0F68F1F1B6A2D004DCD3C /* SPHeroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F68B1F1B6A2D004DCD3C /* SPHeroCell.m */; };
 		2DC0F6901F1B6A2D004DCD3C /* SPItemHeroPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F68E1F1B6A2D004DCD3C /* SPItemHeroPickerVC.m */; };
 		2DC0F6921F1B6A3D004DCD3C /* SPHero.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC0F6911F1B6A3D004DCD3C /* SPHero.storyboard */; };
@@ -194,7 +200,6 @@
 		2DF9B8BF1F1361640012950A /* SPSettingDiskCacheVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7EA1F1361640012950A /* SPSettingDiskCacheVC.m */; };
 		2DF9B8C01F1361640012950A /* SPItemUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7EC1F1361640012950A /* SPItemUpdateVC.m */; };
 		2DF9B8C11F1361640012950A /* SPLastestItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7EE1F1361640012950A /* SPLastestItemVC.m */; };
-		2DF9B8C21F1361640012950A /* SPMyStarredItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7F01F1361640012950A /* SPMyStarredItemVC.m */; };
 		2DF9B8C31F1361640012950A /* SPSettingAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7F21F1361640012950A /* SPSettingAboutVC.m */; };
 		2DF9B8C41F1361640012950A /* SPSettingFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7F41F1361640012950A /* SPSettingFeedbackVC.m */; };
 		2DF9B8C51F1361640012950A /* SPSettingTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7F61F1361640012950A /* SPSettingTableVC.m */; };
@@ -323,6 +328,18 @@
 		2D54622D1FAF234B006B2485 /* SPItemPriceLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemPriceLoader.m; sourceTree = "<group>"; };
 		2D563B211D435E95005FC6CA /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		2D563B231D435EAB005FC6CA /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		2D5A2A851FD055BE0021FCC9 /* SPSettingOptionsViewCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPSettingOptionsViewCtrl.h; sourceTree = "<group>"; };
+		2D5A2A861FD055BE0021FCC9 /* SPSettingOptionsViewCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPSettingOptionsViewCtrl.m; sourceTree = "<group>"; };
+		2D5A2A8B1FD056700021FCC9 /* SPIAPViewCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPIAPViewCtrl.h; sourceTree = "<group>"; };
+		2D5A2A8C1FD056700021FCC9 /* SPIAPViewCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPIAPViewCtrl.m; sourceTree = "<group>"; };
+		2D5A2A8F1FD0593A0021FCC9 /* SPIAPCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPIAPCell.h; sourceTree = "<group>"; };
+		2D5A2A901FD0593A0021FCC9 /* SPIAPCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPIAPCell.m; sourceTree = "<group>"; };
+		2D5A2A921FD05EF30021FCC9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		2D5A2A941FD05F1B0021FCC9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		2D5A2A961FD066E60021FCC9 /* SPIAPHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPIAPHelper.h; sourceTree = "<group>"; };
+		2D5A2A971FD066E60021FCC9 /* SPIAPHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPIAPHelper.m; sourceTree = "<group>"; };
+		2D5A2A991FD07C700021FCC9 /* SKPaymentTransaction+SPMore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SKPaymentTransaction+SPMore.h"; sourceTree = "<group>"; };
+		2D5A2A9A1FD07C700021FCC9 /* SKPaymentTransaction+SPMore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SKPaymentTransaction+SPMore.m"; sourceTree = "<group>"; };
 		2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOTA2ShiPing-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -342,8 +359,6 @@
 		2D9350801FCF1B9E00719EC5 /* SPHistoryManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPHistoryManager.m; sourceTree = "<group>"; };
 		2D9350821FCF1BAA00719EC5 /* SPStarManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPStarManager.h; sourceTree = "<group>"; };
 		2D9350831FCF1BAA00719EC5 /* SPStarManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPStarManager.m; sourceTree = "<group>"; };
-		2D9350851FCF244000719EC5 /* SPHistoryViewCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPHistoryViewCtrl.h; sourceTree = "<group>"; };
-		2D9350861FCF244000719EC5 /* SPHistoryViewCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPHistoryViewCtrl.m; sourceTree = "<group>"; };
 		2DC0F68A1F1B6A2D004DCD3C /* SPHeroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHeroCell.h; sourceTree = "<group>"; };
 		2DC0F68B1F1B6A2D004DCD3C /* SPHeroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHeroCell.m; sourceTree = "<group>"; };
 		2DC0F68D1F1B6A2D004DCD3C /* SPItemHeroPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemHeroPickerVC.h; sourceTree = "<group>"; };
@@ -646,8 +661,6 @@
 		2DF9B7EC1F1361640012950A /* SPItemUpdateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemUpdateVC.m; sourceTree = "<group>"; };
 		2DF9B7ED1F1361640012950A /* SPLastestItemVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLastestItemVC.h; sourceTree = "<group>"; };
 		2DF9B7EE1F1361640012950A /* SPLastestItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLastestItemVC.m; sourceTree = "<group>"; };
-		2DF9B7EF1F1361640012950A /* SPMyStarredItemVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMyStarredItemVC.h; sourceTree = "<group>"; };
-		2DF9B7F01F1361640012950A /* SPMyStarredItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMyStarredItemVC.m; sourceTree = "<group>"; };
 		2DF9B7F11F1361640012950A /* SPSettingAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingAboutVC.h; sourceTree = "<group>"; };
 		2DF9B7F21F1361640012950A /* SPSettingAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingAboutVC.m; sourceTree = "<group>"; };
 		2DF9B7F31F1361640012950A /* SPSettingFeedbackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingFeedbackVC.h; sourceTree = "<group>"; };
@@ -771,9 +784,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */,
+				2D5A2A931FD05EF30021FCC9 /* StoreKit.framework in Frameworks */,
 				2D6F1C9D1F1E6D3F00E8F614 /* Pods_DOTA2ShiPing.framework in Frameworks */,
 				2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */,
 				2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */,
+				2D5A2A951FD05F1B0021FCC9 /* CloudKit.framework in Frameworks */,
 				2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */,
 				2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */,
 			);
@@ -924,6 +939,15 @@
 				2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2D5A2A8E1FD0591F0021FCC9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2D5A2A8F1FD0593A0021FCC9 /* SPIAPCell.h */,
+				2D5A2A901FD0593A0021FCC9 /* SPIAPCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2D91EB711F1626270038B49C /* Resource */ = {
@@ -1860,6 +1884,7 @@
 		2DF9B7E31F1361640012950A /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				2D5A2A8E1FD0591F0021FCC9 /* View */,
 				2DF9B7E41F1361640012950A /* Common */,
 				2DF9B7E71F1361640012950A /* Ctrls */,
 			);
@@ -1871,6 +1896,10 @@
 			children = (
 				2DF9B7E51F1361640012950A /* SPDiskCacheControl.h */,
 				2DF9B7E61F1361640012950A /* SPDiskCacheControl.m */,
+				2D5A2A961FD066E60021FCC9 /* SPIAPHelper.h */,
+				2D5A2A971FD066E60021FCC9 /* SPIAPHelper.m */,
+				2D5A2A991FD07C700021FCC9 /* SKPaymentTransaction+SPMore.h */,
+				2D5A2A9A1FD07C700021FCC9 /* SKPaymentTransaction+SPMore.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1883,10 +1912,6 @@
 				2DF9B7EC1F1361640012950A /* SPItemUpdateVC.m */,
 				2DF9B7ED1F1361640012950A /* SPLastestItemVC.h */,
 				2DF9B7EE1F1361640012950A /* SPLastestItemVC.m */,
-				2DF9B7EF1F1361640012950A /* SPMyStarredItemVC.h */,
-				2DF9B7F01F1361640012950A /* SPMyStarredItemVC.m */,
-				2D9350851FCF244000719EC5 /* SPHistoryViewCtrl.h */,
-				2D9350861FCF244000719EC5 /* SPHistoryViewCtrl.m */,
 				2DF9B7F11F1361640012950A /* SPSettingAboutVC.h */,
 				2DF9B7F21F1361640012950A /* SPSettingAboutVC.m */,
 				2DF9B7F31F1361640012950A /* SPSettingFeedbackVC.h */,
@@ -1899,6 +1924,10 @@
 				2DFF661D1FCEEDAB006A0081 /* SPLicenseViewCtrl.m */,
 				2D93507C1FCF0C0500719EC5 /* SPFeedbackViewCtrl.h */,
 				2D93507D1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m */,
+				2D5A2A851FD055BE0021FCC9 /* SPSettingOptionsViewCtrl.h */,
+				2D5A2A861FD055BE0021FCC9 /* SPSettingOptionsViewCtrl.m */,
+				2D5A2A8B1FD056700021FCC9 /* SPIAPViewCtrl.h */,
+				2D5A2A8C1FD056700021FCC9 /* SPIAPViewCtrl.m */,
 			);
 			path = Ctrls;
 			sourceTree = "<group>";
@@ -2125,6 +2154,8 @@
 		9DF9275624812581C6DA2B9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D5A2A941FD05F1B0021FCC9 /* CloudKit.framework */,
+				2D5A2A921FD05EF30021FCC9 /* StoreKit.framework */,
 				2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */,
 				2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */,
 				2D563B231D435EAB005FC6CA /* libstdc++.tbd */,
@@ -2183,6 +2214,9 @@
 						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
 							com.apple.Keychain = {
@@ -2272,6 +2306,7 @@
 				"${BUILT_PRODUCTS_DIR}/DGActivityIndicatorView/DGActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNWebViewController/DZNWebViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/FCUUID/FCUUID.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/IAPHelper/IAPHelper.framework",
@@ -2288,6 +2323,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
 				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
 				"${BUILT_PRODUCTS_DIR}/YYCategories/YYCategories.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
@@ -2306,6 +2342,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNWebViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FCUUID.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IAPHelper.framework",
@@ -2322,6 +2359,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCategories.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
@@ -2411,7 +2449,6 @@
 				2DF9B81F1F1361640012950A /* Config_Network.m in Sources */,
 				2D91EB771F1724230038B49C /* SPBaseData.m in Sources */,
 				692A558E1F4D712F006914BF /* SPItemSearchOption.m in Sources */,
-				2D9350871FCF244000719EC5 /* SPHistoryViewCtrl.m in Sources */,
 				2DF9B8CC1F1361640012950A /* SPWorkshopVC.m in Sources */,
 				2D2451651FC995B000EF5438 /* SPFilterGroup.m in Sources */,
 				2DF9B8291F1361640012950A /* YGCoreLocationHelper.m in Sources */,
@@ -2468,6 +2505,7 @@
 				693062CB1FBC3883005987A1 /* SPItemPlayableCell.m in Sources */,
 				2DF9B8811F1361640012950A /* SDCollectionViewCell.m in Sources */,
 				2DC0F6951F1B9C90004DCD3C /* SPItemHeroListVC.m in Sources */,
+				2D5A2A911FD0593A0021FCC9 /* SPIAPCell.m in Sources */,
 				2DF9B85E1F1361640012950A /* BingoBarItemView.m in Sources */,
 				2DF9B81E1F1361640012950A /* Config_Constant.m in Sources */,
 				2DF9B82E1F1361640012950A /* NSObject+KVCExceptionCatch.m in Sources */,
@@ -2483,6 +2521,7 @@
 				2D4AD9D11F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m in Sources */,
 				2DF9B8AC1F1361640012950A /* SPPlayer+More.m in Sources */,
 				2DF9B8E31F1365CB0012950A /* CDTUser.m in Sources */,
+				2D5A2A9B1FD07C700021FCC9 /* SKPaymentTransaction+SPMore.m in Sources */,
 				2DF9B8721F1361640012950A /* LCActionSheet.m in Sources */,
 				2DF9B8921F1361640012950A /* SPItemPrefab.m in Sources */,
 				2DF9B89B1F1361640012950A /* YGBaseWebViewCtrl.m in Sources */,
@@ -2507,6 +2546,7 @@
 				2D48D29B1CDE20D700190F0C /* AppDelegate.m in Sources */,
 				2DF9B87D1F1361640012950A /* TAAbstractDotView.m in Sources */,
 				2DF9B87B1F1361640012950A /* RWDropdownMenuCell.m in Sources */,
+				2D5A2A981FD066E60021FCC9 /* SPIAPHelper.m in Sources */,
 				2D2451561FC9954B00EF5438 /* SPFilterCell.m in Sources */,
 				2D24515F1FC9958F00EF5438 /* SPFilterUnit.m in Sources */,
 				2DF9B8401F1361640012950A /* UIAlertController+Convenience.m in Sources */,
@@ -2519,6 +2559,7 @@
 				2DF9B8511F1361640012950A /* NSObject+URLSessionTask.m in Sources */,
 				2DF9B8CE1F1361640012950A /* SPWorkshopCell.m in Sources */,
 				69819CC21FB99C4F00977873 /* SPItemBannerImageCell.m in Sources */,
+				2D5A2A8D1FD056700021FCC9 /* SPIAPViewCtrl.m in Sources */,
 				2D48D2981CDE20D700190F0C /* main.m in Sources */,
 				69ECA1C01FBD8E0500A9DFFC /* SPItemPlayablesViewCtrl.m in Sources */,
 				2DF9B83D1F1361640012950A /* UIToolbar+yg_IBInspectable.m in Sources */,
@@ -2546,6 +2587,7 @@
 				2D37AAB41FAEEB5E0043DDD4 /* SPItemDescPanel.m in Sources */,
 				2DF9B8871F1361640012950A /* UIImage+ImageEffects.m in Sources */,
 				2D9350841FCF1BAA00719EC5 /* SPStarManager.m in Sources */,
+				2D5A2A871FD055BE0021FCC9 /* SPSettingOptionsViewCtrl.m in Sources */,
 				2DF9B87F1F1361640012950A /* TADotView.m in Sources */,
 				2DF9B8B41F1361640012950A /* SPPlayerInventoryVC.m in Sources */,
 				2DF9B8201F1361640012950A /* Config_ThirdParty.m in Sources */,
@@ -2564,7 +2606,6 @@
 				2DF9B8611F1361640012950A /* YGBubbleView.m in Sources */,
 				69A117031FA8747700A32747 /* SPItemSaleView.m in Sources */,
 				2DF9B88E1F1361640012950A /* SPHero.m in Sources */,
-				2DF9B8C21F1361640012950A /* SPMyStarredItemVC.m in Sources */,
 				2DF9B8411F1361640012950A /* UIButton+Event.m in Sources */,
 				695261EC1FC7EE8400F3C22B /* SPPlayerItemSharedData.m in Sources */,
 				2DF9B8741F1361640012950A /* SPPopoverView.m in Sources */,
@@ -2764,7 +2805,7 @@
 					"-lstdc++",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = wwwbbat.ShiPing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nana.V1.0itemsofdota2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2830,7 +2871,7 @@
 					"-lstdc++",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = wwwbbat.ShiPing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nana.V1.0itemsofdota2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

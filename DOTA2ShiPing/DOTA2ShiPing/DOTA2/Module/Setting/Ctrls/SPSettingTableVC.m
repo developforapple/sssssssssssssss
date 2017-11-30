@@ -9,6 +9,9 @@
 #import "SPSettingTableVC.h"
 #import "SPDiskCacheControl.h"
 #import "DDProgressHUD.h"
+#import "SPItemListVC.h"
+#import "SPHistoryManager.h"
+#import "SPStarManager.h"
 #import <StoreKit/StoreKit.h>
 
 @interface SPSettingTableVC () <SKStoreProductViewControllerDelegate>
@@ -17,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *communityCell;
 @property (weak, nonatomic) IBOutlet UILabel *diskCacheLabel;
 @property (weak, nonatomic) IBOutlet UITableViewCell *appStoreCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *historyCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *starredCell;
 
 @end
 
@@ -94,24 +99,27 @@
                                }
                            }];
     }else if (cell == self.communityCell){
-
-        
-//        LCUserFeedbackViewController *vc = [[LCUserFeedbackViewController alloc] init];
-//        vc.IQKeyboardEnabled = NO;
-//        vc.presented = YES;
-//        vc.hidesBottomBarWhenPushed = YES;
-//        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
-//        if (iOS11) {
-//            navi.interactivePopGestureRecognizer.enabled = YES;
-//            navi.interactivePopGestureRecognizer.delegate = vc;
-//        }
-//        [self presentViewController:navi animated:YES completion:nil];
-        
-//        LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
-//        /* title 传 nil 表示将第一条消息作为反馈的标题。 contact 也可以传入 nil，由用户来填写联系方式。*/
-//        [agent showConversations:self title:nil contact:nil];
         
     }else if (cell == self.payCell){
+        
+    }else if (cell == self.historyCell){
+        
+        NSArray *tokens = [[SPHistoryManager manager] getHistory:0 pageSize:100];
+        SPItemQuery *query = [SPItemQuery queryWithOrderedTokens:tokens];
+        query.queryTitle = @"浏览历史";
+        SPItemListVC *vc = [SPItemListVC instanceFromStoryboard];
+        vc.query = query;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else if (cell == self.starredCell){
+        
+        NSArray *tokens = [[SPStarManager manager] getRecord:0 pageSize:100];
+        SPItemQuery *query = [SPItemQuery queryWithOrderedTokens:tokens];
+        query.queryTitle = @"我的收藏";
+        SPItemListVC *vc = [SPItemListVC instanceFromStoryboard];
+        vc.query = query;
+        
+        [self.navigationController pushViewController:vc animated:YES];
         
     }
 }
@@ -120,7 +128,6 @@
 - (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
 {
     [viewController dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"123");
 }
 
 @end

@@ -64,7 +64,7 @@
     return query;
 }
 
-+ (instancetype)queryWithOrderedTokens:(NSArray<NSNumber *> *)tokens
++ (instancetype)queryWithOrderedTokens:(NSArray<NSString *> *)tokens
 {
     SPItemQuery *query = [[[self class] alloc] init];
     query.orderedTokens = tokens;
@@ -169,7 +169,7 @@
     AsyncBenchmarkTestBegin(SPItemQuery);
     
     NSMutableArray *result = [NSMutableArray array];
-    for (NSNumber *token in self.orderedTokens) {
+    for (NSString *token in self.orderedTokens) {
         
         NSString *sql = [NSString stringWithFormat:@"SELECT * FROM items WHERE token = %@;",token];
         FMResultSet *resultSet = [db executeQuery:sql];
