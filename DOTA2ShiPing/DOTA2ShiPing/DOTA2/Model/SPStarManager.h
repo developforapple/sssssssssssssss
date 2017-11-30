@@ -18,4 +18,6 @@
 - (void)add:(NSString *)token;
 - (void)remove:(NSString *)token;
 
+- (BOOL)isStarred:(NSString *)token;
+
 @end

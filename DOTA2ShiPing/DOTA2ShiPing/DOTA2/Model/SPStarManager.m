@@ -106,4 +106,13 @@
     [self.db close];
 }
 
+- (BOOL)isStarred:(NSString *)token
+{
+    [self.db open];
+    FMResultSet *result = [self.db executeQuery:@"SELECT token FROM star WHERE token = ?",token];
+    BOOL starred = [result next];
+    [self.db close];
+    return starred;
+}
+
 @end

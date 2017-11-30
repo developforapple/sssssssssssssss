@@ -23,6 +23,8 @@
 #import "SPItemLoadingView.h"
 #import "SPConfigManager.h"
 #import "SPPlayerItems.h"
+#import "SPHistoryManager.h"
+#import "SPStarManager.h"
 
 @import ReactiveObjC;
 
@@ -53,6 +55,7 @@ static NSString *const kLoadingTappedTipFlag = @"item_loading_tip_flag";
     [self initUI];
     [self loadData];
     [self updateUI];
+    [self addToHistory];
 }
 
 - (void)initUI
@@ -81,6 +84,8 @@ static NSString *const kLoadingTappedTipFlag = @"item_loading_tip_flag";
     self.playablePanel.itemData = self.itemData;
     self.moreItemsPanel.itemData = self.itemData;
     self.descPanel.itemData = self.itemData;
+    
+    RAC(self.starBtn,selected) = RACObserve(self.itemData, starred);
 }
 
 - (void)parallaxHeaderDidScroll:(MXParallaxHeader *)parallaxHeader
@@ -88,9 +93,19 @@ static NSString *const kLoadingTappedTipFlag = @"item_loading_tip_flag";
     [self.bannerPanel setScrollProgress:parallaxHeader.progress];
 }
 
+- (void)addToHistory
+{
+    [[SPHistoryManager manager] add:self.itemData.item.token.stringValue];
+}
+
 - (IBAction)starBtnAction:(id)sender
 {
-    
+    if (self.itemData.starred){
+        [[SPStarManager manager] remove:self.itemData.item.token.stringValue];
+    }else{
+        [[SPStarManager manager] add:self.itemData.item.token.stringValue];
+    }
+    self.itemData.starred = !self.itemData.starred;
 }
 
 @end

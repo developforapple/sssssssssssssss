@@ -56,13 +56,14 @@
 @property (strong, readonly, nonatomic) SPGamepediaData *extraData;
 @property (assign, readonly, nonatomic) NSTimeInterval loadExtraDataConsumed;
 
+// nil 未查出
+@property (assign, nonatomic) BOOL starred;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
 // 初始化很耗时
 - (instancetype)initWithItem:(SPItem *)item NS_DESIGNATED_INITIALIZER;
-
 
 - (void)loadPricesAuto;
 - (void)loadDota2Price:(BOOL)forced;

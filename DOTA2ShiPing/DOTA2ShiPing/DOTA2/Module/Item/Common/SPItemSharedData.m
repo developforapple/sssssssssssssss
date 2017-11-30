@@ -11,6 +11,7 @@
 #import "SPItemQuery.h"
 #import "SPGamepediaAPI.h"
 #import "SPConfigManager.h"
+#import "SPStarManager.h"
 
 @interface SPItemSharedData ()
 @property (strong, readwrite, nonatomic) SPItem *item;
@@ -92,6 +93,8 @@
         return [@(obj1.index.intValue) compare:@(obj2.index.intValue)];
     }];
     self.styles = sortedStyles;
+    
+    self.starred = [[SPStarManager manager] isStarred:self.item.token.stringValue];
     
     [self updateItems];
     
