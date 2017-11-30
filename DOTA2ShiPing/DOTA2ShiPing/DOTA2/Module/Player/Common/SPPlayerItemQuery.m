@@ -29,8 +29,11 @@
     static NSInteger perPage = 100;
     
     NSInteger total = self.filteredPlayerItems.count;
+    if (total == 0) return @[];
+    
     NSInteger loc = page * perPage;
     if (loc >= total) return nil;
+    
     NSInteger len = (loc + perPage) > total ? (total - loc) : perPage ;
     
     NSArray<SPPlayerItemDetail *> *pagePlayerItems = [self.filteredPlayerItems subarrayWithRange:NSMakeRange(loc, len)];
