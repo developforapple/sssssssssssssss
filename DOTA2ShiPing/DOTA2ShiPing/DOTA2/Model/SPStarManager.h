@@ -10,4 +10,12 @@
 
 @interface SPStarManager : NSObject
 
++ (instancetype)manager;
+
+- (NSArray<NSString *> *)getRecord:(NSInteger)orderId
+                          pageSize:(int)pageSize;
+
+- (void)add:(NSString *)token;
+- (void)remove:(NSString *)token;
+
 @end

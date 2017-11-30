@@ -45,8 +45,8 @@
     NSString *dbPath = [dbFolder stringByAppendingPathComponent:@"history.db"];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
-    [db executeUpdate:@"CREATE TABLE history (  token text PRIMARY KEY,\
-                                                orderid integer)"];
+    [db executeUpdate:@"CREATE TABLE IF NOT EXISTS history (  token text PRIMARY KEY,\
+                                                              orderid integer)"];
     [db close];
     return db;
 }

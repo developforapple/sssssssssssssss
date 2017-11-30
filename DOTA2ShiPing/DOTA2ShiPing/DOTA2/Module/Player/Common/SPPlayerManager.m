@@ -49,10 +49,10 @@
     NSString *dbPath = [dbFolder stringByAppendingPathComponent:@"player.db"];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
-    [db executeUpdate:@"CREATE TABLE player (steam_id integer PRIMARY KEY,\
-                                             avatar_url text,\
-                                             name text,\
-                                             star integer)"];
+    [db executeUpdate:@"CREATE TABLE IF NOT EXISTS player (steam_id integer PRIMARY KEY,\
+                                                           avatar_url text,\
+                                                           name text,\
+                                                           star integer)"];
     [db close];
     return db;
 }
