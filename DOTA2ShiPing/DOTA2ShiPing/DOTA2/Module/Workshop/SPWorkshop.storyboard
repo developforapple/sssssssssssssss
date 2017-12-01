@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SD8-4c-ib0">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--创意工坊-->
+        <scene sceneID="xcZ-H7-85O">
+            <objects>
+                <navigationController storyboardIdentifier="_unused2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SD8-4c-ib0" customClass="YGBaseNaviCtrl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="创意工坊" image="icon_tab_workshop" selectedImage="icon_tab_workshop_pressed" id="2js-Pc-Aap"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AAc-xH-bB0">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="NFJ-dr-k8f" kind="relationship" relationship="rootViewController" id="8OB-rw-wGe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LMl-jF-Id1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="636" y="3417"/>
+        </scene>
+        <!--创意工坊-->
+        <scene sceneID="5P4-Ih-nCr">
+            <objects>
+                <viewController storyboardIdentifier="SPWorkshopVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NFJ-dr-k8f" userLabel="创意工坊" customClass="SPWorkshopVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="awF-l2-6cy"/>
+                        <viewControllerLayoutGuide type="bottom" id="SPT-aS-0H7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BFs-hC-4Vq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DTM-iD-4dF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="FCO-ha-4TA">
+                                    <size key="itemSize" width="160" height="160"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SPWorkshopCell" id="6FX-bz-FyG" customClass="SPWorkshopCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Yb-ZI-y2w" customClass="FLAnimatedImageView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="7Yb-ZI-y2w" firstAttribute="leading" secondItem="6FX-bz-FyG" secondAttribute="leading" id="I0a-uO-ynt"/>
+                                            <constraint firstAttribute="bottom" secondItem="7Yb-ZI-y2w" secondAttribute="bottom" id="NbI-v2-uUR"/>
+                                            <constraint firstItem="7Yb-ZI-y2w" firstAttribute="top" secondItem="6FX-bz-FyG" secondAttribute="top" id="PuJ-4w-baF"/>
+                                            <constraint firstAttribute="trailing" secondItem="7Yb-ZI-y2w" secondAttribute="trailing" id="i8a-z2-Vx5"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="7Yb-ZI-y2w" id="Fiq-af-GOc"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="NFJ-dr-k8f" id="N8A-ZP-lGI"/>
+                                    <outlet property="delegate" destination="NFJ-dr-k8f" id="1VK-eF-0te"/>
+                                    <outlet property="emptyDataSetDelegate" destination="NFJ-dr-k8f" id="EfB-6m-YiR"/>
+                                    <outlet property="emptyDataSetSource" destination="NFJ-dr-k8f" id="qDh-Bg-r1r"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DTM-iD-4dF" firstAttribute="top" secondItem="BFs-hC-4Vq" secondAttribute="top" id="7Z1-uo-44Y"/>
+                            <constraint firstItem="DTM-iD-4dF" firstAttribute="leading" secondItem="BFs-hC-4Vq" secondAttribute="leading" id="OEk-e7-RGE"/>
+                            <constraint firstAttribute="trailing" secondItem="DTM-iD-4dF" secondAttribute="trailing" id="mWf-AC-xou"/>
+                            <constraint firstAttribute="bottom" secondItem="DTM-iD-4dF" secondAttribute="bottom" id="zMP-9k-jI6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uyE-5p-OYH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sUb-ze-3Kb">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="   " id="Xp5-L7-bIq">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="search:" destination="NFJ-dr-k8f" id="4DG-GZ-abP"/>
+                            </connections>
+                        </barButtonItem>
+                        <view key="titleView" contentMode="scaleToFill" id="mNQ-4f-VqJ">
+                            <rect key="frame" x="127.5" y="5.5" width="120" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0u-pL-WOo">
+                                    <rect key="frame" x="0.0" y="0.0" width="120" height="33"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <state key="normal" title="物品"/>
+                                    <connections>
+                                        <action selector="changeSection:" destination="NFJ-dr-k8f" eventType="touchUpInside" id="9e3-l6-LMN"/>
+                                    </connections>
+                                </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow_bottom" translatesAutoresizingMaskIntoConstraints="NO" id="wBj-AM-Yp0">
+                                    <rect key="frame" x="55" y="27" width="10" height="6"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="6" id="9m9-mW-0Hy"/>
+                                        <constraint firstAttribute="width" constant="10" id="nxm-5i-Xs6"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="wBj-AM-Yp0" secondAttribute="bottom" id="1nS-bT-QvU"/>
+                                <constraint firstAttribute="bottom" secondItem="i0u-pL-WOo" secondAttribute="bottom" id="37a-AP-hGI"/>
+                                <constraint firstItem="i0u-pL-WOo" firstAttribute="leading" secondItem="mNQ-4f-VqJ" secondAttribute="leading" id="3dY-SN-94R"/>
+                                <constraint firstItem="i0u-pL-WOo" firstAttribute="top" secondItem="mNQ-4f-VqJ" secondAttribute="top" id="6TL-yr-Y7I"/>
+                                <constraint firstAttribute="trailing" secondItem="i0u-pL-WOo" secondAttribute="trailing" id="7D0-34-TwT"/>
+                                <constraint firstItem="wBj-AM-Yp0" firstAttribute="centerX" secondItem="mNQ-4f-VqJ" secondAttribute="centerX" id="M4Y-oO-MQA"/>
+                            </constraints>
+                        </view>
+                        <rightBarButtonItems>
+                            <barButtonItem image="filter" id="Ket-wd-hIr">
+                                <connections>
+                                    <action selector="filter:" destination="NFJ-dr-k8f" id="CpJ-Ap-sA9"/>
+                                    <segue destination="WWV-fB-YzB" kind="showDetail" identifier="SPWorkshopFilterSegueID" id="Fyn-Rl-q4b">
+                                        <nil key="action"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="sort" id="UW9-fB-SmP">
+                                <connections>
+                                    <action selector="sort:" destination="NFJ-dr-k8f" id="9nb-Jf-8Vx"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="DTM-iD-4dF" id="9Xk-uP-a1G"/>
+                        <outlet property="filterBtnItem" destination="Ket-wd-hIr" id="rKb-pC-VHP"/>
+                        <outlet property="flowLayout" destination="FCO-ha-4TA" id="Ps5-eY-CDz"/>
+                        <outlet property="searchBtnItem" destination="Xp5-L7-bIq" id="gv9-Dp-cCr"/>
+                        <outlet property="sectionBtn" destination="i0u-pL-WOo" id="j6F-kU-B2g"/>
+                        <outlet property="sortBtnItem" destination="UW9-fB-SmP" id="kFt-Pw-cI5"/>
+                        <segue destination="bA5-b8-VQM" kind="show" identifier="SPWorkshopResourcesSegueID" id="3AP-vB-fna">
+                            <nil key="action"/>
+                        </segue>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0ng-5r-Btd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1390" y="3417"/>
+        </scene>
+        <!--Workshop TagTVC-->
+        <scene sceneID="7yK-x1-X6m">
+            <objects>
+                <tableViewController storyboardIdentifier="SPWorkshopTagTVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ijb-rG-ATV" customClass="SPWorkshopTagTVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="32" sectionHeaderHeight="1" sectionFooterHeight="1" id="vmf-5q-buE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SPWorkshopTagCell" textLabel="ffT-4E-N0W" style="IBUITableViewCellStyleDefault" id="KnH-pW-axf">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KnH-pW-axf" id="ogj-6q-yYc">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="31.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Caster Branding" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="106" id="ffT-4E-N0W">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="31.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ijb-rG-ATV" id="KWB-GS-KY8"/>
+                            <outlet property="delegate" destination="Ijb-rG-ATV" id="gsy-eD-Nhx"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Alu-OW-mBa">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="q93-kf-UkT">
+                            <connections>
+                                <action selector="close:" destination="Ijb-rG-ATV" id="iVL-Qa-0bO"/>
+                            </connections>
+                        </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Sqb-fp-bGC">
+                            <rect key="frame" x="105" y="7" width="165" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="英雄"/>
+                                <segment title="其他"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentChanged:" destination="Ijb-rG-ATV" eventType="valueChanged" id="b0C-bR-XZf"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="jSy-xD-Q6J">
+                            <connections>
+                                <action selector="done:" destination="Ijb-rG-ATV" id="esu-wR-oBS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segment" destination="Sqb-fp-bGC" id="5mt-PU-N3d"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h3E-Xu-rsP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3070" y="3900"/>
+        </scene>
+        <!--创意工坊资源-->
+        <scene sceneID="iAw-cj-cqT">
+            <objects>
+                <collectionViewController storyboardIdentifier="SPWorkshopResourcesVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bA5-b8-VQM" userLabel="创意工坊资源" customClass="SPWorkshopResourcesVC" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="1QI-CX-qR4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="oDw-nx-KfY">
+                            <size key="itemSize" width="414" height="200"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SPWorkshopResourceCell" id="Mbp-hU-t6W" customClass="SPWorkshopResourceCell">
+                                <rect key="frame" x="-19.5" y="0.0" width="414" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="10086" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Bqd-Jb-PQ6" customClass="FLAnimatedImageView">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </imageView>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="10010" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAH-6u-8cR">
+                                            <rect key="frame" x="192" y="132.5" width="30.5" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Bqd-Jb-PQ6" secondAttribute="trailing" id="SUT-Xw-4CA"/>
+                                    <constraint firstItem="cAH-6u-8cR" firstAttribute="centerY" secondItem="Mbp-hU-t6W" secondAttribute="centerY" constant="40" id="Vnp-B8-Pm2"/>
+                                    <constraint firstItem="cAH-6u-8cR" firstAttribute="centerX" secondItem="Mbp-hU-t6W" secondAttribute="centerX" id="aHc-y4-XTZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Bqd-Jb-PQ6" secondAttribute="bottom" id="bt8-cf-DUP"/>
+                                    <constraint firstItem="Bqd-Jb-PQ6" firstAttribute="leading" secondItem="Mbp-hU-t6W" secondAttribute="leading" id="dhv-Oo-Zho"/>
+                                    <constraint firstItem="Bqd-Jb-PQ6" firstAttribute="top" secondItem="Mbp-hU-t6W" secondAttribute="top" id="efK-If-JJ6"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="Bqd-Jb-PQ6" id="kyk-jD-MgS"/>
+                                    <outlet property="progressLabel" destination="cAH-6u-8cR" id="aLT-Rp-2r2"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="bA5-b8-VQM" id="rly-3E-99M"/>
+                            <outlet property="delegate" destination="bA5-b8-VQM" id="Wli-g6-oIl"/>
+                            <outlet property="emptyDataSetDelegate" destination="bA5-b8-VQM" id="jMq-0b-PQd"/>
+                            <outlet property="emptyDataSetSource" destination="bA5-b8-VQM" id="yWc-Ra-2f0"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="视频与图片资源" id="wsn-4R-R7f"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jtG-Fg-wHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4294" y="3417"/>
+        </scene>
+        <!--Workshop TagVC-->
+        <scene sceneID="s8e-rA-7qa">
+            <objects>
+                <navigationController storyboardIdentifier="SPWorkshopTagVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WWV-fB-YzB" customClass="SPWorkshopTagVC" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kdz-rA-bGV">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Ijb-rG-ATV" kind="relationship" relationship="rootViewController" id="Vq6-Xr-AGG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XX8-eS-CPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2241" y="3900"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="filter" width="21" height="21"/>
+        <image name="icon_arrow_bottom" width="10" height="6"/>
+        <image name="icon_tab_workshop" width="32" height="25"/>
+        <image name="icon_tab_workshop_pressed" width="32" height="25"/>
+        <image name="logo" width="40" height="40"/>
+        <image name="sort" width="21" height="21"/>
+    </resources>
+</document>
