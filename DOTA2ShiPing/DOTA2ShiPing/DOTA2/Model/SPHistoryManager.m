@@ -46,7 +46,7 @@
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
     [db executeUpdate:@"CREATE TABLE IF NOT EXISTS history (  token text PRIMARY KEY,\
-                                                              orderid integer)"];
+                                                              orderid integer default 0)"];
     [db close];
     return db;
 }
@@ -84,7 +84,11 @@
     long long maxId = 0;
     FMResultSet *maxOrderIdSet = [self.db executeQuery:@"SELECT MAX(orderid) FROM history"];
     if ([maxOrderIdSet next]) {
-        maxId = [[maxOrderIdSet resultDictionary][@"MAX(orderid)"] longLongValue];
+        id orderid = [maxOrderIdSet resultDictionary][@"MAX(orderid)"];
+        if ([orderid isKindOfClass:[NSString class]] ||
+            [orderid isKindOfClass:[NSNumber class]]) {
+            maxId = [orderid longLongValue];
+        }
     }
     
     long long orderid = maxId + 1;
