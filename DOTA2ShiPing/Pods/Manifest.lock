@@ -15,7 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - AMPopTip (3.0.3)
-  - AVOSCloud (7.3.2)
+  - AVOSCloud (8.0.3)
   - ChameleonFramework (2.1.0):
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
@@ -28,7 +28,7 @@ PODS:
   - FLAnimatedImage (1.0.12)
   - FMDB/standalone (2.7.2):
     - sqlite3
-  - Google-Mobile-Ads-SDK (7.25.0)
+  - Google-Mobile-Ads-SDK (7.26.0)
   - hpple (0.3.0)
   - IAPHelper (1.1)
   - IDMPhotoBrowser (1.11.3):
@@ -65,7 +65,7 @@ PODS:
     - libwebp/core
   - libwebp/webp (0.6.0)
   - MBProgressHUD (1.1.0)
-  - MJRefresh (3.1.15)
+  - MJRefresh (3.1.15.1)
   - MXParallaxHeader (0.6.1)
   - PinYin4Objc (1.1.1)
   - pop (1.0.10)
@@ -138,7 +138,7 @@ CHECKOUT OPTIONS:
     :commit: ba66fa9d4a116d758f470cb664c31eb3e14909c9
     :git: https://github.com/topfunky/hpple.git
   IDMPhotoBrowser:
-    :commit: c41065ee1eb98fe191f7d1bf09f6033dcef045c7
+    :commit: c3a8837caafd8c120fb7b742412bb1b4e0552848
     :git: https://github.com/developforapple/IDMPhotoBrowser.git
   JBChartView:
     :commit: d2de9478745d9d4df157f72b3c09f0d3f107984d
@@ -150,7 +150,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AMPopTip: fcd04d6a6304d544173c4950645fe7e5b3e244cb
-  AVOSCloud: 8a18125408bac1fc73c19ceb897db4ec4e0e6044
+  AVOSCloud: ec8b794941e2c41e52cab9cf148a666ba141038e
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
@@ -159,7 +159,7 @@ SPEC CHECKSUMS:
   FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
-  Google-Mobile-Ads-SDK: 113804f266381a30f982ad3c18063d4e0155414f
+  Google-Mobile-Ads-SDK: 22d4a6fe18d526adcc12a86d8cc2d53872700966
   hpple: 37ac0a804d0f8a7f488712b5ff5f06129e1c9e31
   IAPHelper: fd74f53b0ac142eed085777b88b86a11746a2dd4
   IDMPhotoBrowser: 3dbfa3727f82ad0af16f16603878f92c11b16679
@@ -168,7 +168,7 @@ SPEC CHECKSUMS:
   JZNavigationExtension: 7b95d2b1c48846b8bedcb40d767448f14cb9a0b7
   libwebp: 1d5a07c2eb97f9c31bd5f154bb82efc0ea67c6a2
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  MJRefresh: 9af70f5f9327a2cf87f0fb5929f35fcc2fa638ea
+  MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   PinYin4Objc: 3fa9673610368330e2dfb688b1d19a35c3930a78
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
