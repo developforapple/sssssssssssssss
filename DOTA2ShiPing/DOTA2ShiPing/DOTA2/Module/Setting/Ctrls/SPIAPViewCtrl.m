@@ -144,6 +144,7 @@ static NSString *kIAPProductCoffee = @"coffee";
                     //验证成功
                     //刷新状态即可
                     NSLog(@"验证 ok");
+                    [UIAlertController alert:@"感谢您的支持！" message:@"广告已去除"];
                 }else{
                     NSLog(@"验证失败！");
                     [UIAlertController alert:@"验证失败！" message:@"您的购买凭据未通过验证。请重新购买或点击“恢复购买”。"];
