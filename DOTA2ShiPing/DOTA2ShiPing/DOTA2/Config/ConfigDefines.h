@@ -8,8 +8,6 @@
 #ifndef ConfigDefines_h
 #define ConfigDefines_h
 
-
-
 //0为测试环境 非0为生产环境
 #define ProductionEnvironment 1
 

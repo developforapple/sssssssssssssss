@@ -300,6 +300,67 @@
             </objects>
             <point key="canvasLocation" x="2241" y="3900"/>
         </scene>
+        <!--Focus Visual EffectVC-->
+        <scene sceneID="SDD-TV-03L">
+            <objects>
+                <viewController storyboardIdentifier="SPFocusVisualEffectVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qWu-qI-foH" customClass="SPFocusVisualEffectVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vcd-Pb-4sD"/>
+                        <viewControllerLayoutGuide type="bottom" id="DzJ-1n-BSn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nuw-Qr-qcN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R43-Z1-aw8">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Mzq-Kc-Yfv">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A5j-Ek-1nq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                            <connections>
+                                                <action selector="dismiss:" destination="qWu-qI-foH" eventType="touchUpInside" id="BWF-1S-YWC"/>
+                                            </connections>
+                                        </button>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rfu-aF-YTM">
+                                            <rect key="frame" x="85" y="332" width="200" height="200"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds_" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="A5j-Ek-1nq" firstAttribute="top" secondItem="Mzq-Kc-Yfv" secondAttribute="top" id="EkS-Ra-vAk"/>
+                                        <constraint firstAttribute="bottom" secondItem="A5j-Ek-1nq" secondAttribute="bottom" id="XWF-dc-ulc"/>
+                                        <constraint firstAttribute="trailing" secondItem="A5j-Ek-1nq" secondAttribute="trailing" id="Zdl-YT-mnM"/>
+                                        <constraint firstItem="A5j-Ek-1nq" firstAttribute="leading" secondItem="Mzq-Kc-Yfv" secondAttribute="leading" id="fX9-n4-zmj"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="R43-Z1-aw8" secondAttribute="trailing" id="D2s-ov-OMb"/>
+                            <constraint firstItem="R43-Z1-aw8" firstAttribute="top" secondItem="Nuw-Qr-qcN" secondAttribute="top" id="DuW-c4-UNb"/>
+                            <constraint firstItem="R43-Z1-aw8" firstAttribute="leading" secondItem="Nuw-Qr-qcN" secondAttribute="leading" id="VRE-Y0-S72"/>
+                            <constraint firstAttribute="bottom" secondItem="R43-Z1-aw8" secondAttribute="bottom" id="coc-FW-8dH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0tu-Ll-h7S"/>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="A5j-Ek-1nq" id="EWk-cd-P8i"/>
+                        <outlet property="effectView" destination="R43-Z1-aw8" id="X5z-cJ-KAU"/>
+                        <outlet property="imageView" destination="Rfu-aF-YTM" id="PQo-KB-Hsf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="exA-1Q-OY2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1488" y="107"/>
+        </scene>
     </scenes>
     <resources>
         <image name="filter" width="21" height="21"/>
