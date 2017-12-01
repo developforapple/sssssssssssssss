@@ -8,6 +8,13 @@
 
 #import <IAPHelper/IAPHelper.h>
 
+YG_EXTERN NSString *const kOLDProductID;
+YG_EXTERN NSString *const kIAPProductAD;
+YG_EXTERN NSString *const kIAPProductCoke;
+YG_EXTERN NSString *const kIAPProductCoffee;
+
 @interface SPIAPHelper : IAPHelper
+
++ (BOOL)isPurchased;
 
 @end

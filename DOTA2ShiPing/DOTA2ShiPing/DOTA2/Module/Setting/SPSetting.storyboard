@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d3H-xA-HVG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="d3H-xA-HVG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -312,10 +311,10 @@
             </objects>
             <point key="canvasLocation" x="1390" y="5428"/>
         </scene>
-        <!--升级到专业版-->
+        <!--购买项目-->
         <scene sceneID="nLd-hs-PWR">
             <objects>
-                <viewController storyboardIdentifier="SPIAPViewCtrl" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sss-20-WgO" userLabel="升级到专业版" customClass="SPIAPViewCtrl" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SPIAPViewCtrl" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sss-20-WgO" userLabel="购买项目" customClass="SPIAPViewCtrl" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zPy-pQ-o9l"/>
                         <viewControllerLayoutGuide type="bottom" id="nro-Fi-d7Z"/>
@@ -332,10 +331,10 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vi-uR-btM">
-                                            <rect key="frame" x="20" y="28" width="335" height="32"/>
+                                            <rect key="frame" x="20" y="26" width="335" height="36"/>
                                             <color key="backgroundColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="32" id="63y-gB-8Zu"/>
+                                                <constraint firstAttribute="height" constant="36" id="63y-gB-8Zu"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <state key="normal" title="恢复购买"/>
@@ -457,7 +456,6 @@
                             <constraint firstAttribute="bottom" secondItem="SEm-Oq-UHC" secondAttribute="bottom" id="ghd-vB-gsI"/>
                             <constraint firstItem="7HO-Vu-9jx" firstAttribute="centerX" secondItem="4WQ-ja-B3v" secondAttribute="centerX" id="vpE-r8-aDO"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="9hw-OV-mVd"/>
                     </view>
                     <navigationItem key="navigationItem" title="饰品总汇" id="LG3-L7-3VR"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -803,7 +801,6 @@
                             <constraint firstItem="R2R-2U-IdT" firstAttribute="leading" secondItem="WM9-Bv-Xpr" secondAttribute="trailing" id="wux-3v-0qs"/>
                             <constraint firstAttribute="trailing" secondItem="7a2-1X-CoN" secondAttribute="trailing" id="y2v-Hk-1Li"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="097-nv-eSI"/>
                     </view>
                     <navigationItem key="navigationItem" id="jdU-mk-DUK"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -918,7 +915,6 @@
                             <constraint firstAttribute="trailing" secondItem="hvp-xu-07C" secondAttribute="trailing" id="fla-m9-TL3"/>
                             <constraint firstItem="o79-kI-1JA" firstAttribute="leading" secondItem="Cn0-uQ-V7b" secondAttribute="leading" constant="14" id="joK-GL-avx"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="7jy-az-5Gt"/>
                     </view>
                     <navigationItem key="navigationItem" title="反馈" id="lBx-LG-u2d"/>
                     <connections>
@@ -958,7 +954,6 @@
                             <constraint firstAttribute="bottom" secondItem="su0-uk-RGD" secondAttribute="bottom" id="Ja0-uo-TT5"/>
                             <constraint firstAttribute="trailing" secondItem="su0-uk-RGD" secondAttribute="trailing" id="mUO-Gl-H3E"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="xXk-uz-TT2"/>
                     </view>
                     <navigationItem key="navigationItem" title="Licenses" id="Wkd-j2-3oJ"/>
                     <connections>
@@ -996,7 +991,6 @@
                             <constraint firstItem="qp0-dN-n5s" firstAttribute="top" secondItem="USa-yq-Zg6" secondAttribute="bottom" id="Wxl-Bo-avm"/>
                             <constraint firstItem="0Zu-m1-qFL" firstAttribute="top" secondItem="qp0-dN-n5s" secondAttribute="bottom" id="nou-Pf-6G7"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="D3E-VR-DDp"/>
                     </view>
                     <navigationItem key="navigationItem" title="Copyright" id="9PA-OJ-ICj"/>
                 </viewController>

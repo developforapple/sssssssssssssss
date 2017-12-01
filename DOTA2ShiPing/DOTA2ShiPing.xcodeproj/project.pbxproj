@@ -46,9 +46,9 @@
 		2D5A2A931FD05EF30021FCC9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5A2A921FD05EF30021FCC9 /* StoreKit.framework */; };
 		2D5A2A951FD05F1B0021FCC9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5A2A941FD05F1B0021FCC9 /* CloudKit.framework */; };
 		2D5A2A981FD066E60021FCC9 /* SPIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A971FD066E60021FCC9 /* SPIAPHelper.m */; };
-		2D5A2A9B1FD07C700021FCC9 /* SKPaymentTransaction+SPMore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A9A1FD07C700021FCC9 /* SKPaymentTransaction+SPMore.m */; };
 		2D5A2A9D1FD1864E0021FCC9 /* SPSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D5A2A9C1FD1864E0021FCC9 /* SPSetting.storyboard */; };
 		2D5A2A9F1FD18A0A0021FCC9 /* SPWorkshop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D5A2A9E1FD18A0A0021FCC9 /* SPWorkshop.storyboard */; };
+		2D5A2AA21FD198820021FCC9 /* SPIAPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2AA11FD198820021FCC9 /* SPIAPObject.m */; };
 		2D6F1C9D1F1E6D3F00E8F614 /* Pods_DOTA2ShiPing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70FA08C933879E048D521D6 /* Pods_DOTA2ShiPing.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */; };
 		2D6F1CAB1F1F3D4200E8F614 /* SPItemTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */; };
@@ -340,10 +340,10 @@
 		2D5A2A941FD05F1B0021FCC9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2D5A2A961FD066E60021FCC9 /* SPIAPHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPIAPHelper.h; sourceTree = "<group>"; };
 		2D5A2A971FD066E60021FCC9 /* SPIAPHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPIAPHelper.m; sourceTree = "<group>"; };
-		2D5A2A991FD07C700021FCC9 /* SKPaymentTransaction+SPMore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SKPaymentTransaction+SPMore.h"; sourceTree = "<group>"; };
-		2D5A2A9A1FD07C700021FCC9 /* SKPaymentTransaction+SPMore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SKPaymentTransaction+SPMore.m"; sourceTree = "<group>"; };
 		2D5A2A9C1FD1864E0021FCC9 /* SPSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SPSetting.storyboard; sourceTree = "<group>"; };
 		2D5A2A9E1FD18A0A0021FCC9 /* SPWorkshop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SPWorkshop.storyboard; sourceTree = "<group>"; };
+		2D5A2AA01FD198820021FCC9 /* SPIAPObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPIAPObject.h; sourceTree = "<group>"; };
+		2D5A2AA11FD198820021FCC9 /* SPIAPObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPIAPObject.m; sourceTree = "<group>"; };
 		2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOTA2ShiPing-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1600,6 +1600,7 @@
 		2DF9B77F1F1361640012950A /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				2DF9B7F91F1361640012950A /* SPMain.storyboard */,
 				2D2451441FC994CE00EF5438 /* Filter */,
 				692A557E1F4D6C1C006914BF /* ItemSearch */,
 				2DF9B7FA1F1361640012950A /* Workshop */,
@@ -1612,7 +1613,6 @@
 				2DF9B7B01F1361640012950A /* Player */,
 				2DF9B7D51F1361640012950A /* Search */,
 				2DF9B7E31F1361640012950A /* Setting */,
-				2DF9B7F91F1361640012950A /* SPMain.storyboard */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -1903,8 +1903,8 @@
 				2DF9B7E61F1361640012950A /* SPDiskCacheControl.m */,
 				2D5A2A961FD066E60021FCC9 /* SPIAPHelper.h */,
 				2D5A2A971FD066E60021FCC9 /* SPIAPHelper.m */,
-				2D5A2A991FD07C700021FCC9 /* SKPaymentTransaction+SPMore.h */,
-				2D5A2A9A1FD07C700021FCC9 /* SKPaymentTransaction+SPMore.m */,
+				2D5A2AA01FD198820021FCC9 /* SPIAPObject.h */,
+				2D5A2AA11FD198820021FCC9 /* SPIAPObject.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2529,7 +2529,6 @@
 				2D4AD9D11F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m in Sources */,
 				2DF9B8AC1F1361640012950A /* SPPlayer+More.m in Sources */,
 				2DF9B8E31F1365CB0012950A /* CDTUser.m in Sources */,
-				2D5A2A9B1FD07C700021FCC9 /* SKPaymentTransaction+SPMore.m in Sources */,
 				2DF9B8721F1361640012950A /* LCActionSheet.m in Sources */,
 				2DF9B8921F1361640012950A /* SPItemPrefab.m in Sources */,
 				2DF9B89B1F1361640012950A /* YGBaseWebViewCtrl.m in Sources */,
@@ -2586,6 +2585,7 @@
 				2DF9B87C1F1361640012950A /* RWDropdownMenuTransitionController.m in Sources */,
 				2DFF66001FCC447B006A0081 /* SPObject.m in Sources */,
 				2DF9B87A1F1361640012950A /* RWDropdownMenu.m in Sources */,
+				2D5A2AA21FD198820021FCC9 /* SPIAPObject.m in Sources */,
 				2DF9B86F1F1361640012950A /* YGLabel.m in Sources */,
 				2DFE1C361FC3135D00FEDE5C /* SPDota2MarketItem.m in Sources */,
 				2DF9B8331F1361640012950A /* CoreLocation+Convert.m in Sources */,

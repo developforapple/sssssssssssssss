@@ -11,13 +11,7 @@
 @import IAPHelper;
 @import AVOSCloud.AVObject;
 #import "SPIAPHelper.h"
-#import "SKPaymentTransaction+SPMore.h"
-
-static NSString *kOLDProductID = @"com.itemofdota2.proversion";
-
-static NSString *kIAPProductAD = @"advertising";
-static NSString *kIAPProductCoke = @"coke";
-static NSString *kIAPProductCoffee = @"coffee";
+#import "SPIAPObject.h"
 
 @interface SPIAPViewCtrl () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -161,13 +155,7 @@ static NSString *kIAPProductCoffee = @"coffee";
 
 + (void)refreshState
 {
-    BOOL old = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kOLDProductID];
-    BOOL ad = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kAdMobAppID];
-    BOOL coke = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoke];
-    BOOL coffee = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoffee];
-    
-    BOOL ok = old || ad || coke || coffee;
-    if (ok) {
+    if ([SPIAPHelper isPurchased]) {
         //无广告
         NSLog(@"设置为无广告版本");
         //todo
@@ -181,16 +169,7 @@ static NSString *kIAPProductCoffee = @"coffee";
 + (void)uploadCheckResponse:(NSString *)response transaction:(SKPaymentTransaction *)transaction
 {
     NSLog(@"上传response");
-    AVObject *object = transaction.avobject;
-    [object setObject:response forKey:@"response"];
-    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (!succeeded || error) {
-            NSLog(@"上传response失败！%@",error);
-        }else{
-            NSLog(@"上传response成功");
-        }
-    }];
-    [transaction setAVObject:nil];
+    [SPIAPObject saveTransaction:transaction verification:response];
 }
 
 
