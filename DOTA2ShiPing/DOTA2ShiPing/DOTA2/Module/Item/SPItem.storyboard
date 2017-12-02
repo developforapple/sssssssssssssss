@@ -1998,7 +1998,8 @@
         <scene sceneID="C7I-Sy-V3m">
             <objects>
                 <navigationController storyboardIdentifier="_unused0" id="zp9-C0-px3" customClass="YGBaseNaviCtrl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="饰品" image="icon_tab_home" selectedImage="icon_tab_home_pressed" id="57d-xc-zbt"/>
+                    <tabBarItem key="tabBarItem" title="饰品" image="icon_tab_home" id="57d-xc-zbt"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aRZ-36-Egd">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2136,8 +2137,7 @@
         <image name="icon_arrow_more" width="8" height="14"/>
         <image name="icon_back_light_2" width="32" height="32"/>
         <image name="icon_four_rectangle" width="21" height="21"/>
-        <image name="icon_tab_home" width="32" height="25"/>
-        <image name="icon_tab_home_pressed" width="32" height="25"/>
+        <image name="icon_tab_home" width="24" height="24"/>
         <image name="icon_title_collect_grey" width="40" height="40"/>
         <image name="icon_title_collected_grey" width="40" height="40"/>
         <image name="logo_dota2" width="256" height="256"/>

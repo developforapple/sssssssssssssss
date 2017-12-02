@@ -24,7 +24,6 @@ NSString *const kIAPProductCoffee = @"coffee";
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kAdMobAppID] ||
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoke] ||
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoffee];
-    
 }
 
 // 重写此方法。保存凭据到客户端

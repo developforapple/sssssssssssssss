@@ -14,7 +14,8 @@
         <scene sceneID="xcZ-H7-85O">
             <objects>
                 <navigationController storyboardIdentifier="_unused2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SD8-4c-ib0" customClass="YGBaseNaviCtrl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="创意工坊" image="icon_tab_workshop" selectedImage="icon_tab_workshop_pressed" id="2js-Pc-Aap"/>
+                    <tabBarItem key="tabBarItem" title="创意工坊" image="icon_tab_workshop" id="2js-Pc-Aap"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AAc-xH-bB0">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -362,8 +363,7 @@
     <resources>
         <image name="filter" width="21" height="21"/>
         <image name="icon_arrow_bottom" width="10" height="6"/>
-        <image name="icon_tab_workshop" width="32" height="25"/>
-        <image name="icon_tab_workshop_pressed" width="32" height="25"/>
+        <image name="icon_tab_workshop" width="24" height="24"/>
         <image name="logo" width="40" height="40"/>
         <image name="sort" width="21" height="21"/>
     </resources>

@@ -14,7 +14,7 @@
         <scene sceneID="Ll9-Mh-aGQ">
             <objects>
                 <navigationController storyboardIdentifier="_unused3" id="d3H-xA-HVG" customClass="YGBaseNaviCtrl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="更多" selectedImage="icon_tab_me_pressed" id="e9B-EM-Qud"/>
+                    <tabBarItem key="tabBarItem" title="更多" image="icon_tab_me" id="e9B-EM-Qud"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fDD-w3-F0O">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1004,6 +1004,6 @@
         <image name="about_left" width="90" height="322"/>
         <image name="about_right" width="90" height="322"/>
         <image name="icon_back_light_2" width="32" height="32"/>
-        <image name="icon_tab_me_pressed" width="32" height="25"/>
+        <image name="icon_tab_me" width="24" height="24"/>
     </resources>
 </document>

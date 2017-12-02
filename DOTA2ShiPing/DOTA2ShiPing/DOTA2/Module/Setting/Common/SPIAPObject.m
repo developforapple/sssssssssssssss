@@ -31,6 +31,7 @@
         [object setObject:transaction.transactionDate forKey:@"transactionDate"];
         [object setObject:response forKey:@"response"];
         [object setObject:[FCUUID uuidForDevice] forKey:@"UUID"];
+        [object setObject:transaction.payment.productIdentifier forKey:@"product"];
         
         AVFile *file = [AVFile fileWithData:data];
         [object setObject:file forKey:@"transactionReceipt"];
