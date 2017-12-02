@@ -9,7 +9,7 @@
 #import "SPWebHelper.h"
 #import "DZNWebViewController.h"
 #import <UIKit/UIKit.h>
-#import <SafariServices/SafariServices.h>
+@import SafariServices;
 
 @implementation SPWebHelper
 

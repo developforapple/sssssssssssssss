@@ -17,6 +17,7 @@
 #import "SPItemOffPriceVC.h"
 #import "SPDotaEventsViewCtrl.h"
 #import "SPDota2API.h"
+#import "SPWebHelper.h"
 
 #define kSPItemOffPriceSegueID @"SPItemOffPriceSegueID"
 
@@ -122,8 +123,14 @@
             query.queryTitle = unit.title;
             [self showItemList:query];
         }   break;
-        default:
-            break;
+        case SPItemEntranceTypeOnSale:{
+            NSString *url = @"http://dota2.com/store";
+            [SPWebHelper openURL:[NSURL URLWithString:url] from:self];
+        }   break;
+        case SPItemEntranceTypeMarket:{
+            NSString *url = @"http://steamcommunity.com/market/search?appid=570";
+            [SPWebHelper openURL:[NSURL URLWithString:url] from:self];
+        }   break;
     }
 }
 

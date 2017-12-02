@@ -46,7 +46,7 @@
 
 - (void)initUI
 {
-    self.segmentView.barTintColor = FlatNavyBlueDark;
+    self.segmentView.barTintColor = FlatNavyBlue;
     [self updateTitle];
     SPItemListMode mode = [[NSUserDefaults standardUserDefaults] integerForKey:kSPItemListModeKey];
     self.mode = mode;

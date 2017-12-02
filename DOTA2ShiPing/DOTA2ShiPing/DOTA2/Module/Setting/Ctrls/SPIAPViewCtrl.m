@@ -158,12 +158,11 @@
     if ([SPIAPHelper isPurchased]) {
         //无广告
         NSLog(@"设置为无广告版本");
-        //todo
     }else{
         //有广告
         NSLog(@"设置为有广告版本");
-        //todo
     }
+    [SPIAPHelper sendNotification];
 }
 
 + (void)uploadCheckResponse:(NSString *)response transaction:(SKPaymentTransaction *)transaction

@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--MainADVC-->
+        <!--Ad Size Delegate-->
         <scene sceneID="Fe2-tR-S6B">
             <objects>
                 <viewController storyboardIdentifier="DDMainADVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GDj-Ya-DFG" customClass="DDMainADVC" sceneMemberID="viewController">
@@ -24,25 +24,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u7Y-YS-8Sq">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
-                                <connections>
-                                    <segue destination="4cc-Op-c3n" kind="embed" identifier="MainTabBarCtrlSegueID" id="vnM-uo-0yh"/>
-                                </connections>
-                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WMQ-7R-IIf">
                                 <rect key="frame" x="0.0" y="686" width="414" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ME-OU-Ag2" customClass="GADBannerView">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="adSizeDelegate" destination="GDj-Ya-DFG" id="xOB-BM-GlV"/>
+                                            <outlet property="delegate" destination="GDj-Ya-DFG" id="h3P-RY-K7R"/>
+                                            <outlet property="rootViewController" destination="GDj-Ya-DFG" id="vNc-u1-UHf"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6Le-PL-AxL"/>
+                                    <constraint firstAttribute="bottom" secondItem="3ME-OU-Ag2" secondAttribute="bottom" id="QTn-ka-BzF"/>
+                                    <constraint firstItem="3ME-OU-Ag2" firstAttribute="leading" secondItem="WMQ-7R-IIf" secondAttribute="leading" id="TJO-0d-uIX"/>
+                                    <constraint firstAttribute="trailing" secondItem="3ME-OU-Ag2" secondAttribute="trailing" id="WSx-J2-ybD"/>
+                                    <constraint firstItem="3ME-OU-Ag2" firstAttribute="top" secondItem="WMQ-7R-IIf" secondAttribute="top" id="fPA-ue-IBZ"/>
                                 </constraints>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u7Y-YS-8Sq">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <connections>
+                                    <segue destination="4cc-Op-c3n" kind="embed" identifier="MainTabBarCtrlSegueID" id="j7U-vr-rlK"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WMQ-7R-IIf" firstAttribute="leading" secondItem="xr6-Lk-khc" secondAttribute="leading" id="6SB-mz-7Jo"/>
                             <constraint firstItem="u7Y-YS-8Sq" firstAttribute="leading" secondItem="xr6-Lk-khc" secondAttribute="leading" id="8Nn-lJ-uPP"/>
-                            <constraint firstItem="WMQ-7R-IIf" firstAttribute="top" secondItem="u7Y-YS-8Sq" secondAttribute="bottom" id="N1r-DV-KJI"/>
+                            <constraint firstAttribute="bottom" secondItem="u7Y-YS-8Sq" secondAttribute="bottom" priority="900" id="Bir-t4-J8s"/>
+                            <constraint firstItem="WMQ-7R-IIf" firstAttribute="top" secondItem="u7Y-YS-8Sq" secondAttribute="bottom" priority="800" id="N1r-DV-KJI"/>
                             <constraint firstAttribute="bottom" secondItem="WMQ-7R-IIf" secondAttribute="bottom" id="NUb-99-jxg"/>
                             <constraint firstAttribute="trailing" secondItem="u7Y-YS-8Sq" secondAttribute="trailing" id="PvK-FO-xSR"/>
                             <constraint firstItem="u7Y-YS-8Sq" firstAttribute="top" secondItem="xr6-Lk-khc" secondAttribute="top" id="po9-ii-nnp"/>
@@ -50,8 +69,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="adContainer" destination="WMQ-7R-IIf" id="yt3-19-39Q"/>
-                        <outlet property="adContainerHeightConstraint" destination="6Le-PL-AxL" id="fSp-aM-GK4"/>
+                        <outlet property="adView" destination="WMQ-7R-IIf" id="qn2-sF-uIf"/>
+                        <outlet property="googleAd" destination="3ME-OU-Ag2" id="i5V-ai-7im"/>
+                        <outlet property="mainContainer" destination="u7Y-YS-8Sq" id="JYC-P5-JA2"/>
+                        <outlet property="mainContainerFullSizeConstraint" destination="Bir-t4-J8s" id="tps-9C-pfW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HjD-6M-Gwd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -155,11 +176,11 @@
                         <viewControllerLayoutGuide type="bottom" id="oIA-HB-9Re"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6Xo-q0-uPD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="24" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="gZX-5x-m8A">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="FR6-X5-sxg">
@@ -291,11 +312,11 @@
                         <viewControllerLayoutGuide type="bottom" id="T6g-8r-lF9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MVu-08-UmE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="aGt-PI-DcN">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Uag-VL-iLE">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
@@ -466,7 +487,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SPPlayerDetailInfoVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6Km-P9-x2X" customClass="SPPlayerDetailInfoVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="1Wm-4L-YmL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -813,10 +834,10 @@
                         <viewControllerLayoutGuide type="bottom" id="mCE-bO-UVq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="La1-nA-iMB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" sectionHeaderHeight="5" sectionFooterHeight="5" translatesAutoresizingMaskIntoConstraints="NO" id="bEn-f9-Afh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" sectionHeaderHeight="5" sectionFooterHeight="5" translatesAutoresizingMaskIntoConstraints="NO" id="bEn-f9-Afh">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -900,7 +921,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SPPlayerSelectedVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XJb-A9-Kxx" customClass="SPPlayerSelectedVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="hgL-Nl-gri">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="gi1-SE-YQU">
@@ -1003,7 +1024,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SPPlayerAliasesVC" title="曾用名" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kwZ-Tc-5sR" customClass="SPPlayerAliasesVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="36" sectionHeaderHeight="1" sectionFooterHeight="1" id="hAH-vY-gTB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -1051,11 +1072,11 @@
                         <viewControllerLayoutGuide type="bottom" id="XBD-tV-n0B"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rHe-pf-bco">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNW-AE-bZc" userLabel="Items">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <connections>
                                     <segue destination="BLF-fa-1ew" kind="embed" identifier="YGInventoryPageVCSegueID" id="pnQ-yk-N8X"/>
                                 </connections>

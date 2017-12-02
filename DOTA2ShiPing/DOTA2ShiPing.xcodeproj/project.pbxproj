@@ -207,7 +207,6 @@
 		2DF9B8C31F1361640012950A /* SPSettingAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7F21F1361640012950A /* SPSettingAboutVC.m */; };
 		2DF9B8C41F1361640012950A /* SPSettingFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7F41F1361640012950A /* SPSettingFeedbackVC.m */; };
 		2DF9B8C51F1361640012950A /* SPSettingTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7F61F1361640012950A /* SPSettingTableVC.m */; };
-		2DF9B8C61F1361640012950A /* SPSettingUpgradeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7F81F1361640012950A /* SPSettingUpgradeVC.m */; };
 		2DF9B8C71F1361640012950A /* SPMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B7F91F1361640012950A /* SPMain.storyboard */; };
 		2DF9B8C81F1361640012950A /* SPWorkshop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7FD1F1361640012950A /* SPWorkshop.m */; };
 		2DF9B8C91F1361640012950A /* SPFocusVisualEffectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8001F1361640012950A /* SPFocusVisualEffectVC.m */; };
@@ -684,8 +683,6 @@
 		2DF9B7F41F1361640012950A /* SPSettingFeedbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingFeedbackVC.m; sourceTree = "<group>"; };
 		2DF9B7F51F1361640012950A /* SPSettingTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingTableVC.h; sourceTree = "<group>"; };
 		2DF9B7F61F1361640012950A /* SPSettingTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingTableVC.m; sourceTree = "<group>"; };
-		2DF9B7F71F1361640012950A /* SPSettingUpgradeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingUpgradeVC.h; sourceTree = "<group>"; };
-		2DF9B7F81F1361640012950A /* SPSettingUpgradeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingUpgradeVC.m; sourceTree = "<group>"; };
 		2DF9B7F91F1361640012950A /* SPMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SPMain.storyboard; sourceTree = "<group>"; };
 		2DF9B7FC1F1361640012950A /* SPWorkshop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWorkshop.h; sourceTree = "<group>"; };
 		2DF9B7FD1F1361640012950A /* SPWorkshop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWorkshop.m; sourceTree = "<group>"; };
@@ -1732,6 +1729,8 @@
 		2DF9B7981F1361640012950A /* Ctrls */ = {
 			isa = PBXGroup;
 			children = (
+				2DC0F6981F1C624A004DCD3C /* SPItemEntranceVC.h */,
+				2DC0F6991F1C624A004DCD3C /* SPItemEntranceVC.m */,
 				2DF9B7A11F1361640012950A /* SPItemOffPriceVC.h */,
 				2DF9B7A21F1361640012950A /* SPItemOffPriceVC.m */,
 				6954FCE01F4415A200DDB5D3 /* SPDotaEventsViewCtrl.h */,
@@ -1788,8 +1787,6 @@
 				2DF9B7AC1F1361640012950A /* DDMainTBC.m */,
 				2DF9B7AD1F1361640012950A /* SPLaunchADVC.h */,
 				2DF9B7AE1F1361640012950A /* SPLaunchADVC.m */,
-				2DC0F6981F1C624A004DCD3C /* SPItemEntranceVC.h */,
-				2DC0F6991F1C624A004DCD3C /* SPItemEntranceVC.m */,
 			);
 			path = Ctrls;
 			sourceTree = "<group>";
@@ -1955,8 +1952,6 @@
 				2DF9B7F41F1361640012950A /* SPSettingFeedbackVC.m */,
 				2DF9B7F51F1361640012950A /* SPSettingTableVC.h */,
 				2DF9B7F61F1361640012950A /* SPSettingTableVC.m */,
-				2DF9B7F71F1361640012950A /* SPSettingUpgradeVC.h */,
-				2DF9B7F81F1361640012950A /* SPSettingUpgradeVC.m */,
 				2DFF661C1FCEEDAB006A0081 /* SPLicenseViewCtrl.h */,
 				2DFF661D1FCEEDAB006A0081 /* SPLicenseViewCtrl.m */,
 				2D93507C1FCF0C0500719EC5 /* SPFeedbackViewCtrl.h */,
@@ -2592,7 +2587,6 @@
 				2D24515F1FC9958F00EF5438 /* SPFilterUnit.m in Sources */,
 				2DF9B8401F1361640012950A /* UIAlertController+Convenience.m in Sources */,
 				2DFF661E1FCEEDAB006A0081 /* SPLicenseViewCtrl.m in Sources */,
-				2DF9B8C61F1361640012950A /* SPSettingUpgradeVC.m in Sources */,
 				2DF9B8951F1361640012950A /* SPItemSets.m in Sources */,
 				2DF9B8BF1F1361640012950A /* SPSettingDiskCacheVC.m in Sources */,
 				2DF9B89E1F1361640012950A /* SPItemCell.m in Sources */,

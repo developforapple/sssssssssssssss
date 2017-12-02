@@ -8,9 +8,12 @@
 
 #import "DDMainTBC.h"
 #import "SPUpdateViewCtrl.h"
+#import "SPResourceManager.h"
+@import ReactiveObjC;
 
 @interface DDMainTBC ()
-
+@property (strong, nonatomic) SPResourceManager *manager;
+@property (assign, nonatomic) NSTimeInterval lastCheckTime;
 @end
 
 @implementation DDMainTBC
@@ -19,67 +22,66 @@
 {
     [super viewDidLoad];
     
-    
+    self.manager = [[SPResourceManager alloc] init];
+    [self initSignal];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-//    if ([SPUpdateViewCtrl needUpdateNecessary]) {
-//        [[SPUpdateViewCtrl instanceFromStoryboard] show];
-//    }
+    if ([SPUpdateViewCtrl needUpdateNecessary]) {
+        _lastCheckTime = [[NSDate date] timeIntervalSince1970];
+        [[SPUpdateViewCtrl instanceFromStoryboard] show];
+    }else{
+        NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+        if (time - _lastCheckTime > 1 * 60 * 60) {
+            _lastCheckTime = time;
+            [self.manager checkUpdate];
+        }
+    }
+}
+
+- (void)initSignal
+{
+    ygweakify(self);
+    [RACObserve(self.manager, needUpdate)
+     subscribeNext:^(id  x) {
+         ygstrongify(self);
+         
+         if (!x) {
+             return;
+         }
+         
+         if ([x boolValue]) {
+             [self noticeNeedUpdate];
+         }
+     }];
+}
+
+- (void)noticeNeedUpdate
+{
+    [UIAlertController confirm:@"饰品数据库需要更新"
+                       message:@""
+                        cancel:@"取消"
+                          done:@"更新"
+                      callback:^(BOOL isDone) {
+                          if (isDone) {
+                              [self beginUpdateData];
+                          }else{
+                              [self addNeedUpdateBadge];
+                          }
+                      }];
+}
+
+- (void)beginUpdateData
+{
+    [[SPUpdateViewCtrl instanceFromStoryboard] show];
+}
+
+- (void)addNeedUpdateBadge
+{
     
-//    [[SPUpdateViewCtrl instanceFromStoryboard] show];
 }
 
 @end
-
-//@implementation UITabBarController (TabBarHidden)
-//
-//- (void)setTabBarHidden:(BOOL)hidden
-//{
-//    [self setTabBarHidden:hidden animate:YES];
-//}
-//
-//- (void)setTabBarHidden:(BOOL)hidden animate:(BOOL)animate
-//{
-////    if (animate) {
-////        [UIView beginAnimations:nil context:NULL];
-////        [UIView setAnimationDuration:.2f];
-////    }
-////    for (UIView *view in self.view.subviews) {
-////        if ([view isKindOfClass:[UITabBar class]]) {
-////            CGRect frame = view.frame;
-////            if (hidden) {
-////                view.frame = CGRectMake(CGRectGetMinX(frame),
-////                                        DeviceHeight - kADViewHeight,
-////                                        CGRectGetWidth(frame),
-////                                        CGRectGetHeight(frame));
-////            }else{
-////                view.frame = CGRectMake(CGRectGetMinX(frame),
-////                                        DeviceHeight-CGRectGetHeight(frame) - kADViewHeight,
-////                                        CGRectGetWidth(frame),
-////                                        CGRectGetHeight(frame));
-////            }
-////        }else if ([view isKindOfClass:NSClassFromString(@"UITransitionView")]){
-//////            CGRect frame = view.frame;
-//////            if (hidden) {
-//////                view.frame = CGRectMake(CGRectGetMinX(frame),
-//////                                        CGRectGetMinY(frame),
-//////                                        CGRectGetWidth(frame),
-//////                                        DeviceHeight);
-//////            }else{
-//////                view.frame = CGRectMake(CGRectGetMinX(frame),
-//////                                        CGRectGetMinY(frame),
-//////                                        CGRectGetWidth(frame),
-//////                                        DeviceHeight - 49.f);
-//////            }
-////        }
-////    }
-////    if (animate) {
-////        [UIView commitAnimations];
-////    }
-//}
-//
-//@end

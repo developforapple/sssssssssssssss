@@ -7,6 +7,7 @@
 //
 
 #import "SPConfigManager.h"
+#import "SPIAPHelper.h"
 
 #define Config_BOOL_Option_Setter(NAME)     \
     - (void)setSp_config_##NAME :(BOOL)value    { _sp_config_##NAME = value;            [self save];}

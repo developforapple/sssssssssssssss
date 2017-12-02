@@ -7,6 +7,7 @@
 //
 
 #import "SPSettingOptionsViewCtrl.h"
+#import "SPConfigManager.h"
 
 @interface SPSettingOptionsViewCtrl ()
 @property (weak, nonatomic) IBOutlet UISwitch *apnsSwitch;
@@ -18,9 +19,12 @@
 
 @implementation SPSettingOptionsViewCtrl
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
+    self.autoPriceSwitch.on = Config.sp_config_item_detail_load_price_auto;
+    self.extraInfoSwitch.on = Config.sp_config_item_detail_load_extra_data_auto;
 }
 
 - (IBAction)apnsOn:(id)sender
@@ -30,12 +34,12 @@
 
 - (IBAction)autoPriceOn:(id)sender
 {
-    
+    Config.sp_config_item_detail_load_price_auto = self.autoPriceSwitch.on;
 }
 
 - (IBAction)extraInfoOn:(id)sender
 {
-    
+    Config.sp_config_item_detail_load_extra_data_auto = self.extraInfoSwitch.on;
 }
 
 @end
