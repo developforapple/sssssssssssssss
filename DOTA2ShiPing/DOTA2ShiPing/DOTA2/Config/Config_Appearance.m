@@ -57,7 +57,7 @@ UIColor *kTintColor;
     kLineColor      = [UIColor colorWithHexString:@"F5F5F5"];
     kDisableColor   = [UIColor colorWithHexString:@"dadada"];
     
-    kBarTintColor = FlatNavyBlueDark;
+    kBarTintColor = FlatNavyBlue; //FlatNavyBlueDark;
     kTintColor = [UIColor whiteColor];
 }
 

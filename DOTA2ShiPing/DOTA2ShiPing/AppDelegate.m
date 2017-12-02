@@ -23,25 +23,27 @@
 #endif
 
 #import "Chameleon.h"
+#import "GDTSplashAd.h"
 
 @import SDWebImage;
 
 @interface AppDelegate ()
 @property (strong, nonatomic) SPLaunchADVC *adVC;
-@property (strong, nonatomic) UIView *test;
+@property (strong, nonatomic) GDTSplashAd *ad;
 @end
 
 @implementation AppDelegate
 
 + (instancetype)instance
 {
-    return [UIApplication sharedApplication].delegate;
+    return (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     [self _setupUIAppearance];
-    [self _setupADSplash];
     [self _setup3rdParty];
+    [self _loadSplashAd];
     return YES;
 }
 
@@ -78,14 +80,6 @@
     [[SDWebImageDownloader sharedDownloader] setDownloadTimeout:60];
 }
 
-- (void)_setupADSplash
-{
-    self.test = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 414, 414)];
-    [self.window addSubview:self.test];
-    
-    [GADMobileAds configureWithApplicationID:kAdMobAppID];
-}
-
 - (void)_setup3rdParty
 {
     [AVOSCloud setAllLogsEnabled:NO];
@@ -97,10 +91,113 @@
     [SDWebImageManager sharedManager].imageDownloader.maxConcurrentDownloads = 20;
     [SDWebImagePrefetcher sharedImagePrefetcher].maxConcurrentDownloads = 4;
     [SDWebImagePrefetcher sharedImagePrefetcher].prefetcherQueue = dispatch_queue_create("SDWebImagePrefetcherQueue", DISPATCH_QUEUE_CONCURRENT);
+    
+    [GADMobileAds configureWithApplicationID:kAdMobAppID];
 }
 
 - (void)uploadPushToken
 {}
 
+- (void)_loadSplashAd
+{
+    self.ad = [[GDTSplashAd alloc] initWithAppkey:kTencentGDTAppKey placementId:kTencentGDTLaunchPOSID];
+    self.ad.fetchDelay = 3;
+    self.ad.delegate = self;
+    [self.ad loadAdAndShowInWindow:self.window];
+}
 
 @end
+
+
+@interface AppDelegate (GDTSplashAd) <GDTSplashAdDelegate>
+@end
+
+@implementation AppDelegate (GDTSplashAd)
+-(void)splashAdSuccessPresentScreen:(GDTSplashAd *)splashAd
+{
+    NSLog(@"成功展示启动广告");
+}
+
+/**
+ *  开屏广告展示失败
+ */
+-(void)splashAdFailToPresent:(GDTSplashAd *)splashAd withError:(NSError *)error
+{
+    NSLog(@"展示启动广告失败！%@",error);
+}
+
+/**
+ *  应用进入后台时回调
+ *  详解: 当点击下载应用时会调用系统程序打开，应用切换到后台
+ */
+- (void)splashAdApplicationWillEnterBackground:(GDTSplashAd *)splashAd
+{
+    NSLog(@"启动广告进入后台");
+}
+
+/**
+ *  开屏广告点击回调
+ */
+- (void)splashAdClicked:(GDTSplashAd *)splashAd
+{
+    NSLog(@"点击启动广告");
+}
+
+/**
+ *  开屏广告将要关闭回调
+ */
+- (void)splashAdWillClosed:(GDTSplashAd *)splashAd
+{
+    NSLog(@"启动广告将要关闭");
+}
+
+/**
+ *  开屏广告关闭回调
+ */
+- (void)splashAdClosed:(GDTSplashAd *)splashAd
+{
+    NSLog(@"启动广告已关闭");
+}
+
+/**
+ *  开屏广告点击以后即将弹出全屏广告页
+ */
+- (void)splashAdWillPresentFullScreenModal:(GDTSplashAd *)splashAd
+{
+    NSLog(@"启动广告点击后展示全屏广告页");
+}
+
+/**
+ *  开屏广告点击以后弹出全屏广告页
+ */
+- (void)splashAdDidPresentFullScreenModal:(GDTSplashAd *)splashAd
+{
+    NSLog(@"启动广告点击后展示全屏广告页成功");
+}
+
+/**
+ *  点击以后全屏广告页将要关闭
+ */
+- (void)splashAdWillDismissFullScreenModal:(GDTSplashAd *)splashAd
+{
+    NSLog(@"启动广告点击后展示全屏广告页将要关闭");
+}
+
+/**
+ *  点击以后全屏广告页已经关闭
+ */
+- (void)splashAdDidDismissFullScreenModal:(GDTSplashAd *)splashAd
+{
+    NSLog(@"启动广告点击后展示全屏广告页已关闭");
+}
+
+/**
+ * 开屏广告剩余时间回调
+ */
+- (void)splashAdLifeTime:(NSUInteger)time
+{
+    NSLog(@"全屏广告还剩%d秒",time);
+}
+
+@end
+

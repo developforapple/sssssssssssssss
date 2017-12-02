@@ -76,7 +76,7 @@
 + (void)handleRestorePayment:(SKPaymentQueue *)paymentQueue
 {
     BOOL old = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kOLDProductID];
-    BOOL ad = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kAdMobAppID];
+    BOOL ad = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductAD];
     BOOL coke = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoke];
     BOOL coffee = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoffee];
     
@@ -142,7 +142,7 @@
                 }else{
                     NSLog(@"验证失败！");
                     [UIAlertController alert:@"验证失败！" message:@"您的购买凭据未通过验证。请重新购买或点击“恢复购买”。"];
-                    [[IAPShare sharedHelper].iap clearSavedPurchasedProductByID:kAdMobAppID];
+                    [[IAPShare sharedHelper].iap clearSavedPurchasedProductByID:kIAPProductAD];
                 }
             }
             
@@ -193,8 +193,8 @@
     
     [cell.iapMoneyBtn setTitle:formattedString forState:UIControlStateNormal];
     
-    if ([product.productIdentifier isEqualToString:kAdMobAppID] &&
-        [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kAdMobAppID]) {
+    if ([product.productIdentifier isEqualToString:kIAPProductAD] &&
+        [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductAD]) {
         [cell.iapMoneyBtn setTitle:@"已购买" forState:UIControlStateNormal];
     }
     

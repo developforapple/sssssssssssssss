@@ -49,6 +49,8 @@
 		2D5A2A9D1FD1864E0021FCC9 /* SPSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D5A2A9C1FD1864E0021FCC9 /* SPSetting.storyboard */; };
 		2D5A2A9F1FD18A0A0021FCC9 /* SPWorkshop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D5A2A9E1FD18A0A0021FCC9 /* SPWorkshop.storyboard */; };
 		2D5A2AA21FD198820021FCC9 /* SPIAPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2AA11FD198820021FCC9 /* SPIAPObject.m */; };
+		2D5A2AA51FD25D960021FCC9 /* SPRewardADView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2AA41FD25D960021FCC9 /* SPRewardADView.m */; };
+		2D5A2AB11FD288BF0021FCC9 /* libGDTMobSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5A2AAF1FD286900021FCC9 /* libGDTMobSDK.a */; };
 		2D6F1C9D1F1E6D3F00E8F614 /* Pods_DOTA2ShiPing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70FA08C933879E048D521D6 /* Pods_DOTA2ShiPing.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */; };
 		2D6F1CAB1F1F3D4200E8F614 /* SPItemTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */; };
@@ -344,6 +346,17 @@
 		2D5A2A9E1FD18A0A0021FCC9 /* SPWorkshop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SPWorkshop.storyboard; sourceTree = "<group>"; };
 		2D5A2AA01FD198820021FCC9 /* SPIAPObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPIAPObject.h; sourceTree = "<group>"; };
 		2D5A2AA11FD198820021FCC9 /* SPIAPObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPIAPObject.m; sourceTree = "<group>"; };
+		2D5A2AA31FD25D960021FCC9 /* SPRewardADView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPRewardADView.h; sourceTree = "<group>"; };
+		2D5A2AA41FD25D960021FCC9 /* SPRewardADView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPRewardADView.m; sourceTree = "<group>"; };
+		2D5A2AA71FD286900021FCC9 /* GDTNativeExpressAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTNativeExpressAdView.h; sourceTree = "<group>"; };
+		2D5A2AA81FD286900021FCC9 /* GDTMobBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTMobBannerView.h; sourceTree = "<group>"; };
+		2D5A2AA91FD286900021FCC9 /* GDTTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTTrack.h; sourceTree = "<group>"; };
+		2D5A2AAA1FD286900021FCC9 /* GDTNativeAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTNativeAd.h; sourceTree = "<group>"; };
+		2D5A2AAB1FD286900021FCC9 /* GDTSDKConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTSDKConfig.h; sourceTree = "<group>"; };
+		2D5A2AAC1FD286900021FCC9 /* GDTMobInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTMobInterstitial.h; sourceTree = "<group>"; };
+		2D5A2AAD1FD286900021FCC9 /* GDTSplashAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTSplashAd.h; sourceTree = "<group>"; };
+		2D5A2AAE1FD286900021FCC9 /* GDTNativeExpressAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTNativeExpressAd.h; sourceTree = "<group>"; };
+		2D5A2AAF1FD286900021FCC9 /* libGDTMobSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGDTMobSDK.a; sourceTree = "<group>"; };
 		2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOTA2ShiPing-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -795,6 +808,7 @@
 				2D5A2A951FD05F1B0021FCC9 /* CloudKit.framework in Frameworks */,
 				2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */,
 				2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */,
+				2D5A2AB11FD288BF0021FCC9 /* libGDTMobSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,8 +964,26 @@
 			children = (
 				2D5A2A8F1FD0593A0021FCC9 /* SPIAPCell.h */,
 				2D5A2A901FD0593A0021FCC9 /* SPIAPCell.m */,
+				2D5A2AA31FD25D960021FCC9 /* SPRewardADView.h */,
+				2D5A2AA41FD25D960021FCC9 /* SPRewardADView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2D5A2AA61FD286900021FCC9 /* TencentGDT */ = {
+			isa = PBXGroup;
+			children = (
+				2D5A2AA71FD286900021FCC9 /* GDTNativeExpressAdView.h */,
+				2D5A2AA81FD286900021FCC9 /* GDTMobBannerView.h */,
+				2D5A2AA91FD286900021FCC9 /* GDTTrack.h */,
+				2D5A2AAA1FD286900021FCC9 /* GDTNativeAd.h */,
+				2D5A2AAB1FD286900021FCC9 /* GDTSDKConfig.h */,
+				2D5A2AAC1FD286900021FCC9 /* GDTMobInterstitial.h */,
+				2D5A2AAD1FD286900021FCC9 /* GDTSplashAd.h */,
+				2D5A2AAE1FD286900021FCC9 /* GDTNativeExpressAd.h */,
+				2D5A2AAF1FD286900021FCC9 /* libGDTMobSDK.a */,
+			);
+			path = TencentGDT;
 			sourceTree = "<group>";
 		};
 		2D91EB711F1626270038B49C /* Resource */ = {
@@ -2016,6 +2048,7 @@
 		2DF9B8161F1361640012950A /* Third-Party */ = {
 			isa = PBXGroup;
 			children = (
+				2D5A2AA61FD286900021FCC9 /* TencentGDT */,
 				2DF9B8191F1361640012950A /* Bugly_2.4.8 */,
 			);
 			path = "Third-Party";
@@ -2409,6 +2442,7 @@
 				2D24514D1FC994FE00EF5438 /* SPFilterNaviCtrl.m in Sources */,
 				2DF9B8761F1361640012950A /* CDTAlertCtrl.m in Sources */,
 				2DC0F69D1F1C6254004DCD3C /* SPItemEntranceCell.m in Sources */,
+				2D5A2AA51FD25D960021FCC9 /* SPRewardADView.m in Sources */,
 				2DF9B8731F1361640012950A /* YGLineView.m in Sources */,
 				690BD51D1FA84260007A4D5D /* SPItemTitleView.m in Sources */,
 				2DF9B8C11F1361640012950A /* SPLastestItemVC.m in Sources */,
@@ -2785,7 +2819,10 @@
 				INFOPLIST_FILE = DOTA2ShiPing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/TencentGDT",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2851,7 +2888,10 @@
 				INFOPLIST_FILE = DOTA2ShiPing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/TencentGDT",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

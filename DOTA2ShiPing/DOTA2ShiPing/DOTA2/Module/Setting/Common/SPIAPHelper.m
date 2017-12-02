@@ -21,7 +21,7 @@ NSString *const kIAPProductCoffee = @"coffee";
 {
     return
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kOLDProductID] ||
-    [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kAdMobAppID] ||
+    [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductAD] ||
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoke] ||
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoffee];
 }

@@ -63,3 +63,16 @@ NSString *const kGaodeMapKey = @"4119abb7eb3fbe01e0c28ab9b5b9c629";
 #endif
 
 NSString *const kAdMobAppID = @"ca-app-pub-3317628345096940~4597769315";
+#if 0//DEBUG_MODE
+NSString *const kAdMobBannerUnitID = @"ca-app-pub-3940256099942544/6300978111";
+NSString *const kAdMobRewardVideoUnitID = @"ca-app-pub-3940256099942544/4411468910";
+NSString *const kAdMobLaunchADUnitID = @"ca-app-pub-3940256099942544/4411468910";
+#else
+NSString *const kAdMobBannerUnitID = @"ca-app-pub-3317628345096940/6074502516";
+NSString *const kAdMobRewardVideoUnitID = @"ca-app-pub-3317628345096940/6527269232";
+NSString *const kAdMobLaunchADUnitID = @"ca-app-pub-3317628345096940/4910935239";
+#endif
+
+
+NSString *const kTencentGDTAppKey = @"1106570472";
+NSString *const kTencentGDTLaunchPOSID = @"8020528862264174";

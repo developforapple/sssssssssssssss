@@ -31,12 +31,7 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
     
     GADAdSize size = GADAdSizeFromCGSize(CGSizeMake(Device_Width, 50.f));
     self.adView = [[GADBannerView alloc] initWithAdSize:size];
-#if DEBUG_MODE
-    // 谷歌提供的测试广告单元
-    self.adView.adUnitID = @"ca-app-pub-3940256099942544/6300978111";
-#else
-    self.adView.adUnitID = @"ca-app-pub-3317628345096940/6074502516";
-#endif
+    self.adView.adUnitID = kAdMobBannerUnitID;
     self.adView.rootViewController = self;
     self.adView.delegate = self;
     

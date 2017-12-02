@@ -144,8 +144,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="购买项目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2t1-GN-rOh">
-                                                    <rect key="frame" x="16" y="12" width="65.5" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="激励" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2t1-GN-rOh">
+                                                    <rect key="frame" x="16" y="12" width="33" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
@@ -326,8 +326,82 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SEm-Oq-UHC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gaS-UE-orB" customClass="SPRewardADView">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GoK-dv-igo">
+                                            <rect key="frame" x="20" y="20" width="335" height="130"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="900" verticalHuggingPriority="900" horizontalCompressionResistancePriority="900" verticalCompressionResistancePriority="900" insetsLayoutMarginsFromSafeArea="NO" text="观看视频" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5NY-XS-iIg">
+                                                    <rect key="frame" x="16" y="16" width="97.5" height="31.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="YWZ-ru-fYM"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                    <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="观看完整视频，可在未来三天内去除应用内广告。不可叠加，从观看结束时间起开始计时。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6y5-03-WPe">
+                                                    <rect key="frame" x="16" y="63.5" width="303" height="50.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Y1-26-AVh">
+                                                    <rect key="frame" x="231" y="16" width="88" height="32"/>
+                                                    <color key="backgroundColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="DoK-gd-Aoe"/>
+                                                        <constraint firstAttribute="width" constant="88" id="vwk-Wc-QUy"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <state key="normal" title="观看"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds_" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius_">
+                                                            <real key="value" value="4"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="showAD:" destination="gaS-UE-orB" eventType="touchUpInside" id="mUI-bg-ZKq"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="5NY-XS-iIg" firstAttribute="leading" secondItem="GoK-dv-igo" secondAttribute="leadingMargin" id="1rP-ic-uXB"/>
+                                                <constraint firstItem="6y5-03-WPe" firstAttribute="leading" secondItem="GoK-dv-igo" secondAttribute="leadingMargin" id="3KC-zB-c90"/>
+                                                <constraint firstItem="5NY-XS-iIg" firstAttribute="top" secondItem="GoK-dv-igo" secondAttribute="topMargin" id="422-aF-gbY"/>
+                                                <constraint firstItem="8Y1-26-AVh" firstAttribute="top" secondItem="GoK-dv-igo" secondAttribute="topMargin" id="4j2-Yg-HQ0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8Y1-26-AVh" secondAttribute="trailing" id="Xbl-58-BG2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6y5-03-WPe" secondAttribute="trailing" id="hhW-RQ-dIh"/>
+                                                <constraint firstItem="6y5-03-WPe" firstAttribute="top" secondItem="5NY-XS-iIg" secondAttribute="bottom" constant="16" id="i4x-XH-fda"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="6y5-03-WPe" secondAttribute="bottom" id="kG4-dt-g8t"/>
+                                            </constraints>
+                                            <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds_" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius_">
+                                                    <real key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="GoK-dv-igo" firstAttribute="top" secondItem="gaS-UE-orB" secondAttribute="topMargin" id="1mI-WE-ucd"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="GoK-dv-igo" secondAttribute="bottom" id="pNG-1u-99M"/>
+                                        <constraint firstItem="GoK-dv-igo" firstAttribute="leading" secondItem="gaS-UE-orB" secondAttribute="leadingMargin" id="pl5-62-5YF"/>
+                                        <constraint firstItem="GoK-dv-igo" firstAttribute="trailing" secondItem="gaS-UE-orB" secondAttribute="trailingMargin" id="yQk-OE-YYY"/>
+                                    </constraints>
+                                    <edgeInsets key="layoutMargins" top="20" left="20" bottom="10" right="20"/>
+                                    <connections>
+                                        <outlet property="btn" destination="8Y1-26-AVh" id="Uzo-XW-eSX"/>
+                                    </connections>
+                                </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Se4-DH-ta0">
-                                    <rect key="frame" x="0.0" y="228" width="375" height="88"/>
+                                    <rect key="frame" x="0.0" y="388" width="375" height="88"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vi-uR-btM">
@@ -359,7 +433,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SPIAPCell" rowHeight="200" id="0Lj-nw-sA3" customClass="SPIAPCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="200"/>
+                                        <rect key="frame" x="0.0" y="188" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Lj-nw-sA3" id="ECg-cv-URT">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
@@ -457,7 +531,7 @@
                             <constraint firstItem="7HO-Vu-9jx" firstAttribute="centerX" secondItem="4WQ-ja-B3v" secondAttribute="centerX" id="vpE-r8-aDO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="饰品总汇" id="LG3-L7-3VR"/>
+                    <navigationItem key="navigationItem" title="激励" id="LG3-L7-3VR"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="loading" destination="7HO-Vu-9jx" id="Ijs-kP-xMp"/>
@@ -467,7 +541,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpp-u1-lqY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2217" y="5394"/>
+            <point key="canvasLocation" x="2238" y="5427"/>
         </scene>
         <!--设置-->
         <scene sceneID="vha-wd-4O9">
@@ -586,7 +660,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NnA-Eq-iMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3164" y="5394"/>
+            <point key="canvasLocation" x="3167" y="5427"/>
         </scene>
         <!--缓存-->
         <scene sceneID="Uwl-a7-ytY">

@@ -65,5 +65,12 @@ YG_EXTERN NSString *const kGaodeMapKey;
 
 // 谷歌AdMob
 YG_EXTERN NSString *const kAdMobAppID;
+YG_EXTERN NSString *const kAdMobBannerUnitID;
+YG_EXTERN NSString *const kAdMobRewardVideoUnitID;
+YG_EXTERN NSString *const kAdMobLaunchADUnitID;
+
+// 腾讯广告联盟
+YG_EXTERN NSString *const kTencentGDTAppKey;
+YG_EXTERN NSString *const kTencentGDTLaunchPOSID;
 
 #endif /* Config_ThirdParty_h */
