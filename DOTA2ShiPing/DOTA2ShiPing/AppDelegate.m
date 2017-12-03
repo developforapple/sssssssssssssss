@@ -22,6 +22,11 @@
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #endif
 
+#if PgySDK_Enabled
+#import <PgySDK/PgyManager.h>
+#import <PgyUpdate/PgyUpdateManager.h>
+#endif
+
 #import "Chameleon.h"
 #import "GDTSplashAd.h"
 
@@ -93,6 +98,14 @@
     [SDWebImagePrefetcher sharedImagePrefetcher].prefetcherQueue = dispatch_queue_create("SDWebImagePrefetcherQueue", DISPATCH_QUEUE_CONCURRENT);
     
     [GADMobileAds configureWithApplicationID:kAdMobAppID];
+    
+#if PgySDK_Enabled
+    [[PgyManager sharedPgyManager] startManagerWithAppId:kPgyAppID];
+    [PgyManager sharedPgyManager].themeColor = kBarTintColor;
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:kPgyAppID];
+    [[PgyUpdateManager sharedPgyManager] checkUpdate];
+#endif
+    
 }
 
 - (void)uploadPushToken

@@ -37,7 +37,7 @@ NSString *const kBaiduAppKey = @"NmswvpnTFoL022wAf8yGhGwj";
 NSString *const kBaiduAppKey = @"XP5AeSOEo7KKjpjBIXdvR6Lx";
 #endif
 
-NSString *const kPgyAppID = @"7936b38af35806197a1d09f044ca9a7b";
+NSString *const kPgyAppID = @"135c524b9eee318314b4f22ffc044ae3";
 
 NSString *const kAlipayScheme = @"cdtalipay";
 

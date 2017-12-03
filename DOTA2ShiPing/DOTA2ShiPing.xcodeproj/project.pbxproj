@@ -68,6 +68,9 @@
 		2DC0F69A1F1C624A004DCD3C /* SPItemEntranceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F6991F1C624A004DCD3C /* SPItemEntranceVC.m */; };
 		2DC0F69D1F1C6254004DCD3C /* SPItemEntranceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F69C1F1C6254004DCD3C /* SPItemEntranceCell.m */; };
 		2DC0F6A51F1C625D004DCD3C /* SPItemEntranceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F6A31F1C625D004DCD3C /* SPItemEntranceConfig.m */; };
+		2DD662D51FD436D6000E7223 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD662D31FD436D6000E7223 /* PgySDK.framework */; };
+		2DD662D61FD436D6000E7223 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD662D41FD436D6000E7223 /* PgyUpdate.framework */; };
+		2DD662D81FD43776000E7223 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD662D71FD4376D000E7223 /* OpenGLES.framework */; };
 		2DDB45491F3C4EC9005E8460 /* SPItemImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDB45481F3C4EC9005E8460 /* SPItemImageLoader.m */; };
 		2DE373531F176B5800C8F653 /* SPUpdate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE373521F176B5800C8F653 /* SPUpdate.storyboard */; };
 		2DE373561F176B8600C8F653 /* SPUpdateViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE373551F176B8600C8F653 /* SPUpdateViewCtrl.m */; };
@@ -385,6 +388,9 @@
 		2DC0F69F1F1C625D004DCD3C /* SPItemCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemCommon.h; sourceTree = "<group>"; };
 		2DC0F6A21F1C625D004DCD3C /* SPItemEntranceConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemEntranceConfig.h; sourceTree = "<group>"; };
 		2DC0F6A31F1C625D004DCD3C /* SPItemEntranceConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemEntranceConfig.m; sourceTree = "<group>"; };
+		2DD662D31FD436D6000E7223 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
+		2DD662D41FD436D6000E7223 /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgyUpdate.framework; sourceTree = "<group>"; };
+		2DD662D71FD4376D000E7223 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		2DDB45471F3C4EC9005E8460 /* SPItemImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemImageLoader.h; sourceTree = "<group>"; };
 		2DDB45481F3C4EC9005E8460 /* SPItemImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemImageLoader.m; sourceTree = "<group>"; };
 		2DE373521F176B5800C8F653 /* SPUpdate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SPUpdate.storyboard; sourceTree = "<group>"; };
@@ -786,13 +792,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DD662D81FD43776000E7223 /* OpenGLES.framework in Frameworks */,
 				2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */,
 				2D5A2A931FD05EF30021FCC9 /* StoreKit.framework in Frameworks */,
 				2D6F1C9D1F1E6D3F00E8F614 /* Pods_DOTA2ShiPing.framework in Frameworks */,
 				2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */,
+				2DD662D61FD436D6000E7223 /* PgyUpdate.framework in Frameworks */,
 				2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */,
 				2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */,
 				2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */,
+				2DD662D51FD436D6000E7223 /* PgySDK.framework in Frameworks */,
 				2D5A2AB11FD288BF0021FCC9 /* libGDTMobSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1036,6 +1045,15 @@
 				2DC0F6A31F1C625D004DCD3C /* SPItemEntranceConfig.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2DD662D21FD436C4000E7223 /* Pgy */ = {
+			isa = PBXGroup;
+			children = (
+				2DD662D31FD436D6000E7223 /* PgySDK.framework */,
+				2DD662D41FD436D6000E7223 /* PgyUpdate.framework */,
+			);
+			path = Pgy;
 			sourceTree = "<group>";
 		};
 		2DE373501F176B4A00C8F653 /* Update */ = {
@@ -2025,6 +2043,7 @@
 		2DF9B8161F1361640012950A /* Third-Party */ = {
 			isa = PBXGroup;
 			children = (
+				2DD662D21FD436C4000E7223 /* Pgy */,
 				2D5A2AA61FD286900021FCC9 /* TencentGDT */,
 				2DF9B8191F1361640012950A /* Bugly_2.4.8 */,
 			);
@@ -2170,6 +2189,7 @@
 		9DF9275624812581C6DA2B9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2DD662D71FD4376D000E7223 /* OpenGLES.framework */,
 				2D5A2A921FD05EF30021FCC9 /* StoreKit.framework */,
 				2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */,
 				2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */,
@@ -2784,6 +2804,7 @@
 					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/AdMob",
 					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/Bugly_2.4.8",
 					"$(PROJECT_DIR)/DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking",
+					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/Pgy",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2853,6 +2874,7 @@
 					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/AdMob",
 					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/Bugly_2.4.8",
 					"$(PROJECT_DIR)/DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking",
+					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/Pgy",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
