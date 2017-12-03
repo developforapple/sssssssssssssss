@@ -7,27 +7,52 @@
 //
 
 #import "SPDota2API.h"
+
+@import Hpple;
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @implementation SPDota2API
 
-+ (void)fetchDota2SpecilPriceItem:(void (^)(SPDota2MarketItem *item))completion
++ (void)fetchDota2SpecilPriceItem:(void (^)(SPDota2SpotlightItem *item))completion
 {
     RunOnGlobalQueue(^{
         
-        NSString *string = [NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://members.dota2.com.cn/dota/spotlight?jsonpCallback=%%20&r=%d",arc4random_uniform(999999)]] encoding:NSUTF8StringEncoding error:nil];
-        NSString *js = [NSString stringWithFormat:@"var abc = %@",string];
-        JSContext *ctx = [[JSContext alloc] init];
-        [ctx evaluateScript:js];
-        NSDictionary *dict = [[ctx globalObject] toDictionary][@"abc"];
-        SPDota2MarketItem *item = [SPDota2MarketItem yy_modelWithJSON:dict];
-        [item save];
+        long long time = (long long)[[NSDate date] timeIntervalSince1970];
+        NSString *url = [NSString stringWithFormat:@"http://store.dota2.com.cn/featured/?ajax=1&l=schinese&c=RMB&v=_M%lld",time];
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
         
-        RunOnMainQueue(^{
-            if (completion) {
-                completion(item);
-            }
-        });
+        NSError *error;
+        id obj = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        if (obj && [obj isKindOfClass:[NSDictionary class]]) {
+            NSString *html = obj[@"spotlight"][@"html"];
+            
+            NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
+            TFHpple *root = [TFHpple hppleWithHTMLData:data];
+            
+            TFHppleElement *aNode = [root searchWithXPathQuery:@"//a[contains(@class,'ItemImage')]"].firstObject;
+            NSString *href = [aNode objectForKey:@"href"];
+            
+            TFHppleElement *imgNode = [root searchWithXPathQuery:@"//img[@class='ItemImageDropShadow']"].firstObject;
+            NSString *src = [imgNode objectForKey:@"src"];
+            
+            SPDota2SpotlightItem *item = [SPDota2SpotlightItem new];
+            item.href = href;
+            item.src = src;
+            [item save];
+            
+            RunOnMainQueue(^{
+                if (completion) {
+                    completion(item);
+                }
+            });
+            
+        }else{
+            RunOnMainQueue(^{
+                if (completion) {
+                    completion(nil);
+                }
+            });
+        }
     });
 }
 

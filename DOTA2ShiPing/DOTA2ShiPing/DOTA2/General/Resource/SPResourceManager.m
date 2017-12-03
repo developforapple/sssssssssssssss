@@ -38,7 +38,17 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 
 + (BOOL)needInitializeDatabase
 {
-    return nil == [[NSUserDefaults standardUserDefaults] objectForKey:kDataVersionKey];
+    return !([SPBaseData isBaseDataValid] && [SPBaseData isLangDataValid:GetLang]);
+}
+
++ (instancetype)manager
+{
+    static SPResourceManager *manager;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        manager = [[SPResourceManager alloc] init];
+    });
+    return manager;
 }
 
 - (NSString *)lang
@@ -428,8 +438,17 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
     return YES;
 }
 
-- (void)cleanTmp
+- (void)clean
 {
+    self.needUpdate = nil;
+    self.progress = 0;
+    self.downloadCompleted = nil;
+    self.unzipCompleted = nil;
+    self.completion = nil;
+    self.baseDataFile = nil;
+    self.langFile = nil;
+    self.langPatchFile = nil;
+    self.error = nil;
     [FileManager removeItemAtPath:[SPBaseData tmpFolder] error:nil];
 }
 
@@ -449,7 +468,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
         self.completion();
     }
     
-    [self cleanTmp];
+    [self clean];
 }
 
 - (void)serializeData

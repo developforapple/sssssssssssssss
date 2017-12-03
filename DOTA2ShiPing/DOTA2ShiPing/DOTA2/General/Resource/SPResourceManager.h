@@ -41,6 +41,8 @@
  */
 @interface SPResourceManager : SPObject
 
++ (instancetype)manager;
+
 // 是否需要初始化数据库
 + (BOOL)needInitializeDatabase;
 

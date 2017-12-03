@@ -15,6 +15,6 @@
 
 @interface SPDota2API : SPObject
 
-+ (void)fetchDota2SpecilPriceItem:(void (^)(SPDota2MarketItem *item))completion;
++ (void)fetchDota2SpecilPriceItem:(void (^)(SPDota2SpotlightItem *item))completion;
 
 @end

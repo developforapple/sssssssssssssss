@@ -7,43 +7,46 @@
 
 @import UIKit;
 
-typedef NS_ENUM(NSUInteger, BingoTabType) {
+typedef NS_ENUM(NSUInteger, SPTabType) {
     // 对应tab的索引值
-    BingoTabTypeHome = 0,
+    SPTabTypeItem = 0,
+    SPTabTypePlayer = 1,
+    SPTabTypeWorkshop = 2,
+    SPTabTypeMore = 3
 };
 
 #ifndef DefaultTabBarCtrl
     #define DefaultTabBarCtrl [YGTabBarCtrl defaultTabBarCtrl]
 #endif
 
-#ifndef BingoCurNaviCtrl
-    #define BingoCurNaviCtrl [DefaultTabBarCtrl navigationOfTab:(BingoTabType)[DefaultTabBarCtrl selectedIndex]]
+#ifndef SPCurNaviCtrl
+    #define SPCurNaviCtrl [DefaultTabBarCtrl navigationOfTab:(SPTabType)[DefaultTabBarCtrl selectedIndex]]
 #endif
 
-#ifndef BingoHomeNaviCtrl
-    #define BingoHomeNaviCtrl [DefaultTabBarCtrl navigationOfTab:BingoTabTypeHome]
+#ifndef SPItemNaviCtrl
+    #define SPItemNaviCtrl [DefaultTabBarCtrl navigationOfTab:SPTabTypeItem]
 #endif
 
-#ifndef BingoMallNaviCtrl
-    #define BingoMallNaviCtrl [DefaultTabBarCtrl navigationOfTab:BingoTabTypeMall]
+#ifndef SPPlayerNaviCtrl
+    #define SPPlayerNaviCtrl [DefaultTabBarCtrl navigationOfTab:SPTabTypePlayer]
 #endif
 
-#ifndef BingoPowerNaviCtrl
-    #define BingoPowerNaviCtrl [DefaultTabBarCtrl navigationOfTab:BingoTabTypePower]
+#ifndef SPWorkshopNaviCtrl
+    #define SPWorkshopNaviCtrl [DefaultTabBarCtrl navigationOfTab:SPTabTypeWorkshop]
 #endif
 
-#ifndef BingoRentNaviCtrl
-    #define BingoRentNaviCtrl [DefaultTabBarCtrl navigationOfTab:BingoTabTypeRent]
+#ifndef SPMoreNaviCtrl
+    #define SPMoreNaviCtrl [DefaultTabBarCtrl navigationOfTab:SPTabTypeMore]
 #endif
 
-#ifndef BingoMineNaviCtrl
-    #define BingoMineNaviCtrl [DefaultTabBarCtrl navigationOfTab:BingoTabTypeMine]
-#endif
+@interface YGTabBarCtrl : UITabBarController <UINavigationControllerDelegate>
 
-@interface YGTabBarCtrl : UITabBarController
++ (instancetype)getDefaultTabBarCtrl;
 
-+ (instancetype)defaultTabBarCtrl;
+- (UINavigationController *)navigationOfTab:(SPTabType)type;
 
-- (UINavigationController *)navigationOfTab:(BingoTabType)type;
+- (UITabBarItem *)tabBarItemOfTab:(SPTabType)type;
+
+- (void)rootViewControllerDidAppear:(UINavigationController *)navi YG_Abstract_Method;
 
 @end

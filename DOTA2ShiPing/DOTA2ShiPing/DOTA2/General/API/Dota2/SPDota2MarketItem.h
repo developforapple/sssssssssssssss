@@ -12,6 +12,7 @@
     #define NSObject SPObject
 #endif
 
+YG_DEPRECATED("", "")
 @interface SPDota2MarketItem : SPObject <NSCopying,NSCoding>
 
 @property (copy, nonatomic) NSString *discountTagBase;
@@ -28,5 +29,17 @@
 + (BOOL)needUpdate;
 - (void)save;
 
+@end
+
+
+@interface SPDota2SpotlightItem : SPObject <NSCopying,NSCoding>
+
+@property (copy, nonatomic) NSString *href;
+@property (copy, nonatomic) NSString *src;
+
++ (instancetype)curItem;
+
++ (BOOL)needUpdate;
+- (void)save;
 
 @end

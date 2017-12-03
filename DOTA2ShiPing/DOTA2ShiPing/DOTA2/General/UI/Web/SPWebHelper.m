@@ -17,22 +17,26 @@
 {
     if (!URL || !viewController) return;
     
-    Class safari = NSClassFromString(@"SFSafariViewController");
-    if (safari) {
-        void (^open)(void) = ^{
-            SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:URL entersReaderIfAvailable:NO];
-            if (iOS10) {
-                vc.preferredBarTintColor = kBarTintColor;
-            }
-            [viewController presentViewController:vc animated:YES completion:nil];
-        };
-        open();
+    if (iOS9) {
+        SFSafariViewController *vc;
+        if (iOS11) {
+            SFSafariViewControllerConfiguration *config = [SFSafariViewControllerConfiguration new];
+            config.entersReaderIfAvailable = YES;
+            config.barCollapsingEnabled = YES;
+            vc = [[SFSafariViewController alloc] initWithURL:URL configuration:config];
+        }else{
+            vc = [[SFSafariViewController alloc] initWithURL:URL entersReaderIfAvailable:YES];
+        }
+        if (iOS10) {
+            vc.preferredBarTintColor = kBarTintColor;
+        }
+        if (iOS11) {
+            vc.dismissButtonStyle = SFSafariViewControllerDismissButtonStyleClose;
+        }
+        [viewController presentViewController:vc animated:YES completion:nil];
     }else{
-        void (^open)(void) = ^{
-            DZNWebViewController *vc = [[DZNWebViewController alloc] initWithURL:URL];
-            [viewController.navigationController pushViewController:vc animated:YES];
-        };
-        open();
+        DZNWebViewController *vc = [[DZNWebViewController alloc] initWithURL:URL];
+        [viewController.navigationController pushViewController:vc animated:YES];
     }
 }
 

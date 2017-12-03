@@ -12,10 +12,17 @@
 #import "SPItemListVC.h"
 #import "SPHistoryManager.h"
 #import "SPStarManager.h"
-#import <StoreKit/StoreKit.h>
+#import "SPResourceManager.h"
+#import "SPUpdateViewCtrl.h"
+@import StoreKit;
 
 @interface SPSettingTableVC () <SKStoreProductViewControllerDelegate>
 
+@property (assign, nonatomic) BOOL needUpdateData;
+@property (copy, nonatomic) SPResourceManager *manager;
+
+@property (weak, nonatomic) IBOutlet UITableViewCell *updateCell;
+@property (weak, nonatomic) IBOutlet UIView *updateIndicator;
 @property (weak, nonatomic) IBOutlet UITableViewCell *payCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *communityCell;
 @property (weak, nonatomic) IBOutlet UILabel *diskCacheLabel;
@@ -36,6 +43,12 @@
 {
     [super viewWillAppear:animated];
     [self loadDiskCacheCost];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.updateIndicator.hidden = ![[SPResourceManager manager].needUpdate boolValue];
 }
 
 #pragma mark - Cache Cost
@@ -121,6 +134,14 @@
         
         [self.navigationController pushViewController:vc animated:YES];
         
+    }else if (cell == self.updateCell){
+        ygweakify(self);
+        SPUpdateViewCtrl *vc = [SPUpdateViewCtrl instanceFromStoryboard];
+        vc.didDismissed = ^(YGBasePopViewCtrl *p) {
+            ygstrongify(self);
+            self.updateIndicator.hidden = ![[SPResourceManager manager].needUpdate boolValue];
+        };
+        [vc show];
     }
 }
 

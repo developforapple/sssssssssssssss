@@ -231,13 +231,14 @@ NSString *const kSPItemEntranceConfigUnits = @"SPItemEntranceConfigUnitsV3";
 - (void)updateSpecialPriceUnit
 {
     SPItemEntranceUnit *unit = [self unitOfType:SPItemEntranceTypeOffPrice];
-    if ([SPDota2MarketItem needUpdate]) {
-        [SPDota2API fetchDota2SpecilPriceItem:^(SPDota2MarketItem *item) {
-            unit.imageUrl = item.itemImageDropShadow;
+    if ([SPDota2SpotlightItem needUpdate]) {
+        [SPDota2API fetchDota2SpecilPriceItem:^(SPDota2SpotlightItem *item) {
+            unit.imageUrl = item.src;
+            unit.href = item.href;
             [self didUpdateUnit:unit];
         }];
     }else{
-        NSString *url = [SPDota2MarketItem curItem].itemImageDropShadow;
+        NSString *url = [SPDota2SpotlightItem curItem].src;
         if ([unit.imageUrl isEqualToString:url]) {
             [self updateUnitDelay:unit];
         }else{

@@ -10,7 +10,7 @@
 #import "SPIAPObject.h"
 @import IAPHelper;
 
-NSString *const kSPPurchasedNotification = @"SPPurchasedNotification";
+NSString *const kSPPurchaseUpdateNotification = @"SPPurchasedNotification";
 
 NSString *const kOLDProductID = @"com.itemofdota2.proversion";
 NSString *const kIAPProductAD = @"advertising";

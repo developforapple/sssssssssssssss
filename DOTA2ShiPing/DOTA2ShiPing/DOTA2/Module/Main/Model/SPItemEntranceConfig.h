@@ -19,6 +19,7 @@
 @property (copy, nonatomic) NSString *defaultImage;
 @property (copy, nonatomic) NSString *imageUrl;
 @property (strong, nonatomic) UIImage *lastImage;
+@property (copy, nonatomic) NSString *href;
 @end
 
 @interface SPItemEntranceConfig : SPObject

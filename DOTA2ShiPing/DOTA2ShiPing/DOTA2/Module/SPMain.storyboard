@@ -30,9 +30,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ME-OU-Ag2" customClass="GADBannerView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="adSizeDelegate" destination="GDj-Ya-DFG" id="xOB-BM-GlV"/>
                                             <outlet property="delegate" destination="GDj-Ya-DFG" id="h3P-RY-K7R"/>

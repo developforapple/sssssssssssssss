@@ -6,7 +6,6 @@
 //
 
 #import "YGTabBarCtrl.h"
-//#import "BingoLoginNaviCtrl.h"
 
 @interface YGTabBarCtrl () <UITabBarControllerDelegate>
 
@@ -14,7 +13,7 @@
 
 @implementation YGTabBarCtrl
 
-+ (instancetype)defaultTabBarCtrl
++ (instancetype)getDefaultTabBarCtrl
 {
     static YGTabBarCtrl *instance;
     static dispatch_once_t onceToken;
@@ -28,15 +27,35 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    for (UINavigationController *navi in self.viewControllers) {
+        if ([navi isKindOfClass:[UINavigationController class]]) {
+            navi.delegate = self;
+        }
+    }
 }
 
-- (UINavigationController *)navigationOfTab:(BingoTabType)type
+- (UINavigationController *)navigationOfTab:(SPTabType)type
 {
     NSArray *vcs = [self viewControllers];
     if (type < vcs.count) {
         return vcs[type];
     }
     return nil;
+}
+
+- (UITabBarItem *)tabBarItemOfTab:(SPTabType)type
+{
+    NSArray *items = self.tabBar.items;
+    if (type < items.count) {
+        return items[type];
+    }
+    return nil;
+}
+
+- (void)rootViewControllerDidAppear:(UINavigationController *)navi YG_Abstract_Method
+{
+    
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
@@ -47,6 +66,20 @@
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
 
+
+}
+
+#pragma mark - UINavigationDelegate
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    
+}
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if (viewController == navigationController.viewControllers.firstObject) {
+        [self rootViewControllerDidAppear:navigationController];
+    }
 }
 
 @end

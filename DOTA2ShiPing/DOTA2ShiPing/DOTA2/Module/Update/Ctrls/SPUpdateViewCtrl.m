@@ -14,8 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 
-@property (strong, nonatomic) SPResourceManager *manager;
-
 @end
 
 @implementation SPUpdateViewCtrl
@@ -36,7 +34,6 @@
     }
     self.progressLabel.text = @"";
     
-    self.manager = [[SPResourceManager alloc] init];
     [self initSignal];
 }
 
@@ -48,8 +45,9 @@
 
 - (void)initSignal
 {
+    SPResourceManager *manager = [SPResourceManager manager];
     ygweakify(self);
-    [RACObserve(self.manager, error)
+    [RACObserve(manager, error)
      subscribeNext:^(NSError *x) {
          if (x) {
              ygstrongify(self);
@@ -57,7 +55,7 @@
              [self showError];
          }
      }];
-    [RACObserve(self.manager, needUpdate)
+    [RACObserve(manager, needUpdate)
      subscribeNext:^(NSNumber *x) {
          ygstrongify(self);
          if (x) {
@@ -68,30 +66,40 @@
              }
          }
      }];
-    [RACObserve(self.manager, progress)
+    [RACObserve(manager, progress)
      subscribeNext:^(NSNumber *x) {
          ygstrongify(self);
          self.progressLabel.text = [NSString stringWithFormat:@"%02d%%",(int)(x.floatValue*100)];
      }];
-    self.manager.downloadCompleted = ^{
+    manager.downloadCompleted = ^{
         ygstrongify(self);
         self.progressLabel.text = @"解压缩中...";
-        [self.manager beginUnzip];
+        [self beginUnzip];
     };
-    self.manager.unzipCompleted = ^{
+    manager.unzipCompleted = ^{
         ygstrongify(self);
         self.progressLabel.text = @"保存中...";
-        [self.manager saveData];
+        [self saveData];
     };
-    self.manager.completion = ^{
+    manager.completion = ^{
         ygstrongify(self);
         [self done];
     };
 }
 
+- (void)beginUnzip
+{
+    [[SPResourceManager manager] beginUnzip];
+}
+
+- (void)saveData
+{
+    [[SPResourceManager manager] saveData];
+}
+
 - (void)checkUpdate
 {
-    [self.manager checkUpdate];
+    [[SPResourceManager manager] checkUpdate];
 }
 
 - (void)showError
@@ -101,7 +109,7 @@
 
 - (void)beginUpdate
 {
-    [self.manager beginUpdate];
+    [[SPResourceManager manager] beginUpdate];
 }
 
 - (void)isLatestVersion

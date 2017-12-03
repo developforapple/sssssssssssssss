@@ -12,7 +12,6 @@
 @import ReactiveObjC;
 
 @interface DDMainTBC ()
-@property (strong, nonatomic) SPResourceManager *manager;
 @property (assign, nonatomic) NSTimeInterval lastCheckTime;
 @end
 
@@ -21,42 +20,38 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.manager = [[SPResourceManager alloc] init];
-    [self initSignal];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)rootViewControllerDidAppear:(UINavigationController *)navi
 {
-    [super viewDidAppear:animated];
-    
+    [self checkUpdateIfNeed];
+}
+
+- (void)checkUpdateIfNeed
+{
     if ([SPUpdateViewCtrl needUpdateNecessary]) {
         _lastCheckTime = [[NSDate date] timeIntervalSince1970];
         [[SPUpdateViewCtrl instanceFromStoryboard] show];
     }else{
         NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
-        if (time - _lastCheckTime > 1 * 60 * 60) {
+        if (time - _lastCheckTime > 2*60*60 ) {
             _lastCheckTime = time;
-            [self.manager checkUpdate];
+            ygweakify(self);
+            [RACObserve([SPResourceManager manager], needUpdate)
+             subscribeNext:^(id  x) {
+                 ygstrongify(self);
+                 
+                 if (!x) {
+                     return;
+                 }
+                 
+                 if ([x boolValue]) {
+                     [self noticeNeedUpdate];
+                 }
+             }];
+            [[SPResourceManager manager] checkUpdate];
         }
     }
-}
-
-- (void)initSignal
-{
-    ygweakify(self);
-    [RACObserve(self.manager, needUpdate)
-     subscribeNext:^(id  x) {
-         ygstrongify(self);
-         
-         if (!x) {
-             return;
-         }
-         
-         if ([x boolValue]) {
-             [self noticeNeedUpdate];
-         }
-     }];
 }
 
 - (void)noticeNeedUpdate
@@ -81,7 +76,8 @@
 
 - (void)addNeedUpdateBadge
 {
-    
+    UITabBarItem *item = [self tabBarItemOfTab:SPTabTypeMore];
+    item.badgeValue = @"1";
 }
 
 @end

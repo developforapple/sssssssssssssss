@@ -1879,7 +1879,7 @@
         <!--Dota2事件-->
         <scene sceneID="vm9-ea-43p">
             <objects>
-                <viewController storyboardIdentifier="SPDotaEventsViewCtrl" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rw8-Xv-VUi" customClass="SPDotaEventsViewCtrl" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SPDotaEventsViewCtrl" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rw8-Xv-VUi" userLabel="Dota2事件" customClass="SPDotaEventsViewCtrl" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7B0-on-JTe"/>
                         <viewControllerLayoutGuide type="bottom" id="1hH-x3-zgF"/>
@@ -1982,9 +1982,8 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Dota2事件" id="Fla-mC-ekV">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="fgT-Y4-89h"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="DeT-eD-muI"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="a2J-Vh-0MX" id="aQY-FN-O61"/>
                         <outlet property="flowlayout" destination="kou-bK-4K7" id="8xY-fu-00R"/>
@@ -2119,9 +2118,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="饰品" id="fmz-Vb-5dq">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="gKE-jz-Fju"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="饰品" id="fmz-Vb-5dq"/>
                     <connections>
                         <outlet property="collectionView" destination="X6I-Qs-CU1" id="Lz4-B7-xd9"/>
                         <outlet property="flowlayout" destination="EMK-gC-utY" id="ipl-nd-LEj"/>

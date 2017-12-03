@@ -95,8 +95,11 @@
     
     switch (type) {
         case SPItemEntranceTypeOffPrice:{
-            SPItemOffPriceVC *vc = [SPItemOffPriceVC instanceFromStoryboard];
-            [self.navigationController pushViewController:vc animated:YES];
+            NSURL *URL = [NSURL URLWithString:unit.href];
+            if (!URL) {
+                URL = [NSURL URLWithString:[@"http://dota2.com/store" stringByAppendingFormat:@"/?random=%d",arc4random_uniform(10000)]];
+            }
+            [SPWebHelper openURL:URL from:self];
         }   break;
         case SPItemEntranceTypeHeroItem:{
             ygweakify(self);
@@ -124,7 +127,7 @@
             [self showItemList:query];
         }   break;
         case SPItemEntranceTypeOnSale:{
-            NSString *url = @"http://dota2.com/store";
+            NSString *url = [@"http://dota2.com/store" stringByAppendingFormat:@"/?random=%d",arc4random_uniform(10000)];
             [SPWebHelper openURL:[NSURL URLWithString:url] from:self];
         }   break;
         case SPItemEntranceTypeMarket:{
