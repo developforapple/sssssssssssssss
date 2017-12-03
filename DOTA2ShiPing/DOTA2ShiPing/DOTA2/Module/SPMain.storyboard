@@ -1063,7 +1063,7 @@
         <!--库存列表-->
         <scene sceneID="Phb-9P-qsl">
             <objects>
-                <viewController storyboardIdentifier="SPPlayerInventoryVC" title="库存列表" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pIa-ra-Hi6" customClass="SPPlayerInventoryVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SPPlayerInventoryVC" title="库存列表" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pIa-ra-Hi6" customClass="SPPlayerInventoryVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jgo-4e-YSG"/>
                         <viewControllerLayoutGuide type="bottom" id="XBD-tV-n0B"/>
