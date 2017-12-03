@@ -34,7 +34,7 @@ YG_EXTERN SPItemListMode const kSPItemListModeAuto;
 
 @property (strong, nonatomic) NSAttributedString *emptyDataNote;
 
-@property (strong, nonatomic) NSNumber *topInset;
+@property (assign, nonatomic) UIEdgeInsets safeInset;
 
 // item 可以穿nil
 - (void)update:(SPItemListMode)mode data:(NSArray<SPItem *> *)items;

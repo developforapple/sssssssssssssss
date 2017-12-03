@@ -43,6 +43,8 @@
     //状态栏高度，一般为20，在iPhoneX上是44，隐藏状态栏时为0
     #define StatusBar_Height        (CGRectGetHeight([UIApplication sharedApplication].statusBarFrame))
 
+    #define NaviBar_Height          44
+
     #define IS_Phone_UI             (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
     #define IS_Pad_UI               (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 

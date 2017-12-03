@@ -59,14 +59,8 @@ SPItemListMode const kSPItemListModeAuto = 10086;
     self.collectionView.emptyDataSetSource = self;
     self.collectionView.emptyDataSetDelegate = self;
     
-    if (self.topInset) {
-        UIEdgeInsets insets = self.collectionView.contentInset;
-        insets.top = self.topInset.floatValue;
-        if (iOS11){}else {
-            insets.top += 64.f;
-        }
-        self.collectionView.contentInset = insets;
-    }
+    self.collectionView.contentInset = self.safeInset;
+    
     if (iOS10) {
         self.collectionView.prefetchDataSource = self;
     }

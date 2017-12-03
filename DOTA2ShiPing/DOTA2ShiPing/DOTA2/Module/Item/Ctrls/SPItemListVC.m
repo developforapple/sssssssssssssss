@@ -177,7 +177,13 @@
     if (!vc) {
         vc = [SPItemListContainer instanceFromStoryboard];
         [vc update:self.mode data:self.items[index]];
-        vc.topInset = @(CGRectGetHeight(self.segmentView.bounds));
+        
+        UIEdgeInsets inset = UIEdgeInsetsZero;
+        inset.top += CGRectGetHeight(self.segmentView.bounds);
+        inset.top += StatusBar_Height;
+        inset.top += NaviBar_Height;
+        vc.safeInset = inset;
+        
         self.vcs[k] = vc;
     }
     return vc;
