@@ -340,7 +340,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
                 [tags addObject:@[rarity.name_loc ?: rarityName,
                                   rarityStat[rarityName],
                                   color.color ?: [UIColor lightGrayColor],
-                                  rarity.value ?: @(NSNotFound)]];
+                                  rarity.value ?: @"9999999"]];
             }
             
             [tags sortUsingComparator:^NSComparisonResult(NSArray *obj1, NSArray *obj2) {

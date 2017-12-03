@@ -81,7 +81,10 @@
     long long maxId = 0;
     FMResultSet *maxOrderIdSet = [self.db executeQuery:@"SELECT MAX(orderid) FROM star"];
     if ([maxOrderIdSet next]) {
-        maxId = [[maxOrderIdSet resultDictionary][@"MAX(orderid)"] longLongValue];
+        id obj = [maxOrderIdSet resultDictionary][@"MAX(orderid)"];
+        if ([obj respondsToSelector:@selector(longLongValue)]) {
+            maxId = [obj longLongValue];
+        }
     }
     
     long long orderid = maxId + 1;

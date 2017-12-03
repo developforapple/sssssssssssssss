@@ -21,12 +21,15 @@
 #import "SPPopoverView.h"
 #import <SafariServices/SafariServices.h>
 
+@import DZNEmptyDataSet;
+@import ChameleonFramework;
+
 // 搜索用户
 static NSString *const kSPPlayerSearchSegueID = @"SPPlayerSearchSegueID";
 // 用户个人信息详情
 static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
 
-@interface SPPlayerListVC () <UITableViewDelegate,UITableViewDataSource,UISearchControllerDelegate>
+@interface SPPlayerListVC () <UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addBtnItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *tagBtnItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *updateBtnItem;
@@ -41,6 +44,9 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
     
     self.tableView.sectionIndexMinimumDisplayRowCount = 2;
     self.tableView.sectionIndexColor = kRedColor;
@@ -147,53 +153,6 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
     [RWDropdownMenuItem itemWithText:@"Dotabuff" image:nil action:^{action(SPSearchTypeDotabuffPlayer);}],
     [RWDropdownMenuItem itemWithText:@"Steam" image:nil action:^{action(SPSearchTypeSteamCommunityPlayer);}]];
     [RWDropdownMenu presentInPopoverFromBarButtonItem:btnItem presentingFrom:self withItems:items completion: nil];
-    return;
-    
-    
-    
-//    ygweakify(self);
-//    void (^action)(SPSearchType type) = ^(SPSearchType type){
-//        ygstrongify(self);
-//        if (IsSearchPlayer(type)) {
-//            [self segueToSearchWithType:type];
-//        }
-//    };
-//    
-//    PopoverView *view = [[PopoverView alloc] init];
-//    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:16],
-//                                NSForegroundColorAttributeName:[UIColor whiteColor]};
-//    view.attributedMenuTitles = @[  [[NSAttributedString alloc] initWithString:@"DotaMax" attributes:attribute],
-//                                    [[NSAttributedString alloc] initWithString:@"Dotabuff" attributes:attribute],
-//                                    [[NSAttributedString alloc] initWithString:@"Steam" attributes:attribute]];
-//    view.popoverBackgroundColor = kRedColor2;
-//    view.borderHidden = YES;
-//    
-//    [view showFromRectOfScreen:CGRectMake(Device_Width-8-40, 27, 40, 30) selected:^(NSInteger index) {
-//        action(index);
-//    }];
-//    return;
-
-//    // 如果配置了搜索方式，使用这个搜索方式。否则，让用户选择搜索方式。
-//    SPSearchType type = UserSearchType();
-//    if (IsSearchPlayer(type)) {
-//        [self segueToSearchWithType:type];
-//    }else{
-//        LCActionSheet *sheet = [[LCActionSheet alloc] initWithTitle:@"数据来源\n你可以在设置内配置默认来源站点" buttonTitles:@[@"DotaMax",@"Dotabuff",@"Steam Community"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
-//            SPSearchType theType = -1;
-//            if (buttonIndex == 0) {
-//                theType = SPSearchTypeMaxPlusPlayer;
-//            }else if (buttonIndex == 1){
-//                theType = SPSearchTypeDotabuffPlayer;
-//            }else if (buttonIndex == 2){
-//                theType = SPSearchTypeSteamCommunityPlayer;
-//            }
-//            if (IsSearchPlayer(theType)) {
-//                [self segueToSearchWithType:theType];
-//            }
-//        }];
-//        sheet.textFont = [UIFont systemFontOfSize:16];
-//        [sheet show];
-//    }
 }
 
 - (void)segueToSearchWithType:(SPSearchType)type
@@ -255,27 +214,24 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
     NSLog(@"%@",player.name);
 }
 
-#pragma mark - UISearchController
-- (void)willPresentSearchController:(UISearchController *)searchController
+#pragma mark - Empty
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
 {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
-    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
+    return self.playerList.count == 0;
 }
 
-- (void)didPresentSearchController:(UISearchController *)searchController
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
 {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
-    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"点击 “+” 搜索玩家库存"];
+    [string addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:24] range:NSMakeRange(0, string.length)];
+    [string addAttribute:NSForegroundColorAttributeName value:FlatGray range:NSMakeRange(0, string.length)];
+    return string;
 }
-- (void)willDismissSearchController:(UISearchController *)searchController
+
+- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView
 {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
-    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
-}
-- (void)didDismissSearchController:(UISearchController *)searchController
-{
-    NSLog(@"%@",NSStringFromSelector(_cmd));
-    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
+    return -64.f;
 }
 
 @end

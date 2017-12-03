@@ -44,7 +44,6 @@
 		2D5A2A8D1FD056700021FCC9 /* SPIAPViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A8C1FD056700021FCC9 /* SPIAPViewCtrl.m */; };
 		2D5A2A911FD0593A0021FCC9 /* SPIAPCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A901FD0593A0021FCC9 /* SPIAPCell.m */; };
 		2D5A2A931FD05EF30021FCC9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5A2A921FD05EF30021FCC9 /* StoreKit.framework */; };
-		2D5A2A951FD05F1B0021FCC9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5A2A941FD05F1B0021FCC9 /* CloudKit.framework */; };
 		2D5A2A981FD066E60021FCC9 /* SPIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A971FD066E60021FCC9 /* SPIAPHelper.m */; };
 		2D5A2A9D1FD1864E0021FCC9 /* SPSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D5A2A9C1FD1864E0021FCC9 /* SPSetting.storyboard */; };
 		2D5A2A9F1FD18A0A0021FCC9 /* SPWorkshop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D5A2A9E1FD18A0A0021FCC9 /* SPWorkshop.storyboard */; };
@@ -338,7 +337,6 @@
 		2D5A2A8F1FD0593A0021FCC9 /* SPIAPCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPIAPCell.h; sourceTree = "<group>"; };
 		2D5A2A901FD0593A0021FCC9 /* SPIAPCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPIAPCell.m; sourceTree = "<group>"; };
 		2D5A2A921FD05EF30021FCC9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		2D5A2A941FD05F1B0021FCC9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2D5A2A961FD066E60021FCC9 /* SPIAPHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPIAPHelper.h; sourceTree = "<group>"; };
 		2D5A2A971FD066E60021FCC9 /* SPIAPHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPIAPHelper.m; sourceTree = "<group>"; };
 		2D5A2A9C1FD1864E0021FCC9 /* SPSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SPSetting.storyboard; sourceTree = "<group>"; };
@@ -802,7 +800,6 @@
 				2D6F1C9D1F1E6D3F00E8F614 /* Pods_DOTA2ShiPing.framework in Frameworks */,
 				2D563B241D435EAB005FC6CA /* libstdc++.tbd in Frameworks */,
 				2D563B221D435E95005FC6CA /* libiconv.tbd in Frameworks */,
-				2D5A2A951FD05F1B0021FCC9 /* CloudKit.framework in Frameworks */,
 				2DF9B8D71F1361640012950A /* Bugly.framework in Frameworks */,
 				2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */,
 				2D5A2AB11FD288BF0021FCC9 /* libGDTMobSDK.a in Frameworks */,
@@ -2188,7 +2185,6 @@
 		9DF9275624812581C6DA2B9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2D5A2A941FD05F1B0021FCC9 /* CloudKit.framework */,
 				2D5A2A921FD05EF30021FCC9 /* StoreKit.framework */,
 				2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */,
 				2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */,
@@ -2244,7 +2240,7 @@
 				TargetAttributes = {
 					2D48D2921CDE20D600190F0C = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 8QP3ZT6EXM;
+						DevelopmentTeam = 274KUV28NC;
 						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -2260,7 +2256,7 @@
 								enabled = 0;
 							};
 							com.apple.iCloud = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -2799,7 +2795,7 @@
 				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
+				DEVELOPMENT_TEAM = 274KUV28NC;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2844,7 +2840,7 @@
 					"-lstdc++",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nana.V1.0itemsofdota2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiny.sp.beta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2868,7 +2864,7 @@
 				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
+				DEVELOPMENT_TEAM = 274KUV28NC;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2913,7 +2909,7 @@
 					"-lstdc++",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nana.V1.0itemsofdota2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiny.sp.beta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

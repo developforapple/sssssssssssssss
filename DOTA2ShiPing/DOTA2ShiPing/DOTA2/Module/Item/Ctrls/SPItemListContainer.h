@@ -34,7 +34,6 @@ YG_EXTERN SPItemListMode const kSPItemListModeAuto;
 
 @property (strong, nonatomic) NSAttributedString *emptyDataNote;
 
-// 一般不用设置。当需要segment透明的时候设置为一个合适的值
 @property (strong, nonatomic) NSNumber *topInset;
 
 // item 可以穿nil

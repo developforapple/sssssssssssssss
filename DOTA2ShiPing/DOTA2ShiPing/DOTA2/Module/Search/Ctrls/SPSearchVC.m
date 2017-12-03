@@ -42,15 +42,6 @@ static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
     [self initUI];
 }
 
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    
-    UIEdgeInsets insets = self.tableView.contentInset;
-    insets.bottom = 0.f;
-    self.tableView.contentInset = insets;
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];

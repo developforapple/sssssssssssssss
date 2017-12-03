@@ -84,7 +84,7 @@
     
         if (!_gLayer) {
             _gLayer = [CAGradientLayer layer];
-            _gLayer.frame = self.backColorView.bounds;
+            _gLayer.frame = CGRectMake(0, 0, Device_Width, CGRectGetHeight(self.backColorView.bounds));
             _gLayer.startPoint = CGPointMake(0, .5f);
             _gLayer.endPoint = CGPointMake(1, .5f);
             _gLayer.locations = @[@0,@1];

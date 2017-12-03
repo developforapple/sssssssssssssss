@@ -62,6 +62,9 @@ SPItemListMode const kSPItemListModeAuto = 10086;
     if (self.topInset) {
         UIEdgeInsets insets = self.collectionView.contentInset;
         insets.top = self.topInset.floatValue;
+        if (iOS11){}else {
+            insets.top += 64.f;
+        }
         self.collectionView.contentInset = insets;
     }
     if (iOS10) {

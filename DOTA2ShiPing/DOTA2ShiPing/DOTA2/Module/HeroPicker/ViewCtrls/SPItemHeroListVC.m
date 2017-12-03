@@ -46,6 +46,10 @@
     self.flowlayout.minimumLineSpacing = lineSpacing;
     self.flowlayout.minimumInteritemSpacing = itemSpacing;
     
+    if (iOS11){}else {
+        self.collectionView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);
+    }
+    
     self.collectionView.emptyDataSetSource = self;
     self.collectionView.emptyDataSetDelegate = self;
     

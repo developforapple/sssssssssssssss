@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--英雄选择-->
         <scene sceneID="Yaf-ZU-Q5j">
             <objects>
-                <viewController storyboardIdentifier="SPItemHeroPickerVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MeQ-SV-SWf" userLabel="英雄选择" customClass="SPItemHeroPickerVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SPItemHeroPickerVC" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MeQ-SV-SWf" userLabel="英雄选择" customClass="SPItemHeroPickerVC" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="MkJ-E7-arT"/>
-                        <viewControllerLayoutGuide type="bottom" id="HoM-Nn-F0o"/>
+                        <viewControllerLayoutGuide type="top" id="BHe-J2-0eD"/>
+                        <viewControllerLayoutGuide type="bottom" id="PDN-dS-tgr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ez4-r9-pJB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -71,18 +71,18 @@
         <!--Page View Controller-->
         <scene sceneID="eBO-mS-rB5">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="V9k-jc-iCV" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="V9k-jc-iCV" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ZC-3r-o5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3101" y="-2408"/>
+            <point key="canvasLocation" x="2978" y="-2439"/>
         </scene>
         <!--英雄列表-->
         <scene sceneID="LCl-f5-1Re">
             <objects>
-                <viewController storyboardIdentifier="SPItemHeroListVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Ea-C7-JH0" userLabel="英雄列表" customClass="SPItemHeroListVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SPItemHeroListVC" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Ea-C7-JH0" userLabel="英雄列表" customClass="SPItemHeroListVC" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TMq-hs-rd0"/>
-                        <viewControllerLayoutGuide type="bottom" id="aGu-tw-dHw"/>
+                        <viewControllerLayoutGuide type="top" id="gP5-2e-x20"/>
+                        <viewControllerLayoutGuide type="bottom" id="IZi-ux-nkw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wjR-QW-aPw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -195,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6P-f5-a2N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3980" y="-2439"/>
+            <point key="canvasLocation" x="3750" y="-2439"/>
         </scene>
     </scenes>
 </document>

@@ -85,8 +85,7 @@
     FMResultSet *maxOrderIdSet = [self.db executeQuery:@"SELECT MAX(orderid) FROM history"];
     if ([maxOrderIdSet next]) {
         id orderid = [maxOrderIdSet resultDictionary][@"MAX(orderid)"];
-        if ([orderid isKindOfClass:[NSString class]] ||
-            [orderid isKindOfClass:[NSNumber class]]) {
+        if ([orderid respondsToSelector:@selector(longLongValue)]) {
             maxId = [orderid longLongValue];
         }
     }
