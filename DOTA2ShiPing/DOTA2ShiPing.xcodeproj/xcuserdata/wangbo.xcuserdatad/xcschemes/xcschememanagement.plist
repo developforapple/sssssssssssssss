@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>36</integer>
 		</dict>
+		<key>SPAd copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>39</integer>
+		</dict>
 		<key>SPAd.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +28,11 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>SPOld.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>40</integer>
 		</dict>
 		<key>SPPro.xcscheme</key>
 		<dict>

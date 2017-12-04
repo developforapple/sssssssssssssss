@@ -38,9 +38,9 @@
     IAPHelper *helper = [IAPShare sharedHelper].iap;
     if (!helper) {
         NSMutableSet *set = [NSMutableSet set];
-        [set addObject:kIAPProductAD];
-        [set addObject:kIAPProductCoke];
-        [set addObject:kIAPProductCoffee];
+        kIAPProductAD ? [set addObject:kIAPProductAD] : 0;
+        kIAPProductCoke ? [set addObject:kIAPProductCoke] : 0;
+        kIAPProductCoffee ? [set addObject:kIAPProductCoffee] : 0;
         helper = [[SPIAPHelper alloc] initWithProductIdentifiers:set];
         [IAPShare sharedHelper].iap = helper;
     }
@@ -88,7 +88,7 @@
         // 验证
         SKPaymentTransaction *transaction;
         for (SKPaymentTransaction *aTransaction in paymentQueue.transactions) {
-            if ([aTransaction.payment.productIdentifier isEqualToString:kIAPProductAD] &&
+            if ([kIAPProductAD isEqualToString:aTransaction.payment.productIdentifier] &&
                 aTransaction.transactionState == SKPaymentTransactionStatePurchased) {
                 transaction = aTransaction;
                 break;
@@ -98,13 +98,21 @@
         if (transaction) {
             [SPIAPViewCtrl checkReceipt:transaction];
         }else{
+#if TARGET_PRO
+            [UIAlertController alert:@"感谢您的支持！" message:nil];
+#else
             [UIAlertController alert:@"感谢您的支持！" message:@"广告已去除"];
+#endif
             [SPIAPViewCtrl refreshState];
         }
         
     }else if (coke || coffee){
         NSLog(@"coke or coffee");
+#if TARGET_PRO
+        [UIAlertController alert:@"感谢您的支持！" message:nil];
+#else
         [UIAlertController alert:@"感谢您的支持！" message:@"广告已去除"];
+#endif
         [SPIAPViewCtrl refreshState];
     }else if(paymentQueue.transactions.count == 0){
         NSLog(@"队列为空");
@@ -138,7 +146,11 @@
                     //验证成功
                     //刷新状态即可
                     NSLog(@"验证 ok");
+#if TARGET_PRO
+                    [UIAlertController alert:@"感谢您的支持！" message:nil];
+#else
                     [UIAlertController alert:@"感谢您的支持！" message:@"广告已去除"];
+#endif
                 }else{
                     NSLog(@"验证失败！");
                     [UIAlertController alert:@"验证失败！" message:@"您的购买凭据未通过验证。请重新购买或点击“恢复购买”。"];
@@ -192,7 +204,7 @@
     
     [cell.iapMoneyBtn setTitle:formattedString forState:UIControlStateNormal];
     
-    if ([product.productIdentifier isEqualToString:kIAPProductAD] &&
+    if ([kIAPProductAD isEqualToString:product.productIdentifier] &&
         [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductAD]) {
         [cell.iapMoneyBtn setTitle:@"已购买" forState:UIControlStateNormal];
     }

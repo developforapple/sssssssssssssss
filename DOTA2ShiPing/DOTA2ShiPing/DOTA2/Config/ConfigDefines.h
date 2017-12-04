@@ -14,7 +14,7 @@
 
 //0为AppStore版 1为企业版
 //修改bundleid后请调整，否则可能出现第三方框架appkey不正确的情况
-#define InHouseVersion 1
+#define InHouseVersion 0
 
 
 //只有打包发布到AppStore时才是非debug模式。

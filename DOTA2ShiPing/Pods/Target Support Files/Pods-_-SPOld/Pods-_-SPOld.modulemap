@@ -1,0 +1,6 @@
+framework module Pods___SPOld {
+  umbrella header "Pods-_-SPOld-umbrella.h"
+
+  export *
+  module * { export * }
+}

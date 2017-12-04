@@ -57,6 +57,10 @@ abstract_target '_' do
         pod 'Google-Mobile-Ads-SDK'
     end
     
+    target 'SPOld' do
+        pod 'Google-Mobile-Ads-SDK'
+    end
+    
     target 'SPPro' do
     
     end

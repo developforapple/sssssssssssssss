@@ -111,7 +111,13 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 
 - (BOOL)shouldLoadAd
 {
-    return !(InHouseVersion || [SPIAPHelper isPurchased]);
+#if TARGET_PRO
+    return NO;
+#elif InHouseVersion
+    return NO;
+#else
+    return ![SPIAPHelper isPurchased];
+#endif
 }
 
 - (BOOL)isAdReady

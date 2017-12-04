@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C52840718CFCBA4C1208D58 /* Pods___SPOld.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212893AFFB20F4F54F3FA493 /* Pods___SPOld.framework */; };
 		2D0A82871CDF325700F26BD1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82861CDF325700F26BD1 /* libz.tbd */; };
 		2D0BD6FB1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD6FA1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m */; };
 		2D0BD6FE1FB3486E00A5DD99 /* SPItemSteamPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD6FD1FB3486E00A5DD99 /* SPItemSteamPriceCell.m */; };
@@ -53,6 +54,257 @@
 		2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */; };
 		2D6F1CAB1F1F3D4200E8F614 /* SPItemTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */; };
 		2D6F1CAE1F20D72500E8F614 /* UIViewController+yg_StatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAD1F20D72500E8F614 /* UIViewController+yg_StatusBar.m */; };
+		2D8080F51FD5B92500078A50 /* SPFilterNaviCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24514C1FC994FE00EF5438 /* SPFilterNaviCtrl.m */; };
+		2D8080F61FD5B92500078A50 /* CDTAlertCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B72A1F1361640012950A /* CDTAlertCtrl.m */; };
+		2D8080F71FD5B92500078A50 /* SPItemEntranceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F69C1F1C6254004DCD3C /* SPItemEntranceCell.m */; };
+		2D8080F81FD5B92500078A50 /* SPRewardADView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2AA41FD25D960021FCC9 /* SPRewardADView.m */; };
+		2D8080F91FD5B92500078A50 /* YGLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7221F1361640012950A /* YGLineView.m */; };
+		2D8080FA1FD5B92500078A50 /* SPItemTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD51C1FA84260007A4D5D /* SPItemTitleView.m */; };
+		2D8080FB1FD5B92500078A50 /* UIViewController+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6A51F1361640012950A /* UIViewController+yg_IBInspectable.m */; };
+		2D8080FC1FD5B92500078A50 /* SPLogoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B75B1F1361640012950A /* SPLogoHeader.m */; };
+		2D8080FD1FD5B92500078A50 /* YGPaymentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6D41F1361640012950A /* YGPaymentResult.m */; };
+		2D8080FE1FD5B92500078A50 /* SPMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6990743F1F3D902C00B64030 /* SPMemoryCache.m */; };
+		2D8080FF1FD5B92500078A50 /* TQLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B66B1F1361640012950A /* TQLocationConverter.m */; };
+		2D8081001FD5B92500078A50 /* SPSettingTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7F61F1361640012950A /* SPSettingTableVC.m */; };
+		2D8081011FD5B92500078A50 /* UIScrollView+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6971F1361640012950A /* UIScrollView+yg_IBInspectable.m */; };
+		2D8081021FD5B92500078A50 /* SPUpdateViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE373551F176B8600C8F653 /* SPUpdateViewCtrl.m */; };
+		2D8081031FD5B92500078A50 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B73D1F1361640012950A /* TAAnimatedDotView.m */; };
+		2D8081041FD5B92500078A50 /* SPItemFilterUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24517F1FC9AA7200EF5438 /* SPItemFilterUnit.m */; };
+		2D8081051FD5B92500078A50 /* YGThirdPlatformProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6DE1F1361640012950A /* YGThirdPlatformProcessor.m */; };
+		2D8081061FD5B92500078A50 /* UIImage+Mask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6AB1F1361640012950A /* UIImage+Mask.m */; };
+		2D8081071FD5B92500078A50 /* SPItemViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD5181FA841A1007A4D5D /* SPItemViewCtrl.m */; };
+		2D8081081FD5B92500078A50 /* YGCapabilityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B66F1F1361640012950A /* YGCapabilityHelper.m */; };
+		2D8081091FD5B92500078A50 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6831F1361640012950A /* NSString+Utils.m */; };
+		2D80810A1FD5B92500078A50 /* NSArray+YYModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6791F1361640012950A /* NSArray+YYModelExt.m */; };
+		2D80810B1FD5B92500078A50 /* SPFilterHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24516A1FC995DC00EF5438 /* SPFilterHeader.m */; };
+		2D80810C1FD5B92500078A50 /* KDCycleBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7151F1361640012950A /* KDCycleBannerView.m */; };
+		2D80810D1FD5B92500078A50 /* SPItemSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B77C1F1361640012950A /* SPItemSlot.m */; };
+		2D80810E1FD5B92500078A50 /* YGTabBarCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B78A1F1361640012950A /* YGTabBarCtrl.m */; };
+		2D80810F1FD5B92500078A50 /* SPFeedbackViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D93507D1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m */; };
+		2D8081101FD5B92500078A50 /* SPItemFilterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24517C1FC9AA3200EF5438 /* SPItemFilterGroup.m */; };
+		2D8081111FD5B92500078A50 /* SPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF66081FCC471A006A0081 /* SPView.m */; };
+		2D8081121FD5B92500078A50 /* SPHeroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F68B1F1B6A2D004DCD3C /* SPHeroCell.m */; };
+		2D8081131FD5B92500078A50 /* DDRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6C81F1361640012950A /* DDRequestManager.m */; };
+		2D8081141FD5B92500078A50 /* UICollectionViewCell+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6921F1361640012950A /* UICollectionViewCell+yg_IBInspectable.m */; };
+		2D8081151FD5B92500078A50 /* CALayer+SDWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 699074421F3DA63500B64030 /* CALayer+SDWebCache.m */; };
+		2D8081161FD5B92500078A50 /* SPItemPriceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D54622D1FAF234B006B2485 /* SPItemPriceLoader.m */; };
+		2D8081171FD5B92500078A50 /* SPDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B76A1F1361640012950A /* SPDataManager.m */; };
+		2D8081181FD5B92500078A50 /* SPLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB7A1F1731880038B49C /* SPLocale.m */; };
+		2D8081191FD5B92500078A50 /* YGCoreMotionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6731F1361640012950A /* YGCoreMotionHelper.m */; };
+		2D80811A1FD5B92500078A50 /* SPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF66021FCC46DB006A0081 /* SPTableViewCell.m */; };
+		2D80811B1FD5B92500078A50 /* SPItemSteamPricesViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD6FA1FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.m */; };
+		2D80811C1FD5B92500078A50 /* SPGamepediaImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD5151FA71E6D007A4D5D /* SPGamepediaImage.m */; };
+		2D80811D1FD5B92500078A50 /* SPMarketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5C7B1F27B1F900A3D8C9 /* SPMarketItem.m */; };
+		2D80811E1FD5B92500078A50 /* SPPlayerItemFilterUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65F51FCAF2AD006A0081 /* SPPlayerItemFilterUnit.m */; };
+		2D80811F1FD5B92500078A50 /* SPItemColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7721F1361640012950A /* SPItemColor.m */; };
+		2D8081201FD5B92500078A50 /* DDWebInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7611F1361640012950A /* DDWebInspector.m */; };
+		2D8081211FD5B92500078A50 /* SPPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7D41F1361640012950A /* SPPlayerCell.m */; };
+		2D8081221FD5B92500078A50 /* SPItemEntranceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F6A31F1C625D004DCD3C /* SPItemEntranceConfig.m */; };
+		2D8081231FD5B92500078A50 /* SPConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C1C1FBDD52B00FEDE5C /* SPConfigManager.m */; };
+		2D8081241FD5B92500078A50 /* SPPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7B81F1361640012950A /* SPPlayerManager.m */; };
+		2D8081251FD5B92500078A50 /* Config_Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6581F1361640012950A /* Config_Network.m */; };
+		2D8081261FD5B92500078A50 /* SPBaseData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB761F1724230038B49C /* SPBaseData.m */; };
+		2D8081271FD5B92500078A50 /* SPItemSearchOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 692A558D1F4D712F006914BF /* SPItemSearchOption.m */; };
+		2D8081281FD5B92500078A50 /* SPWorkshopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8061F1361640012950A /* SPWorkshopVC.m */; };
+		2D8081291FD5B92500078A50 /* SPFilterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2451641FC995B000EF5438 /* SPFilterGroup.m */; };
+		2D80812A1FD5B92500078A50 /* YGCoreLocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6711F1361640012950A /* YGCoreLocationHelper.m */; };
+		2D80812B1FD5B92500078A50 /* SPItemSharedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD51F1FA84420007A4D5D /* SPItemSharedData.m */; };
+		2D80812C1FD5B92500078A50 /* SPPlayerItemQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C3B1FC7117800FEDE5C /* SPPlayerItemQuery.m */; };
+		2D80812D1FD5B92500078A50 /* CDTAlertDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B72D1F1361640012950A /* CDTAlertDefine.m */; };
+		2D80812E1FD5B92500078A50 /* UISearchBar+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6991F1361640012950A /* UISearchBar+yg_IBInspectable.m */; };
+		2D80812F1FD5B92500078A50 /* SPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF66051FCC470D006A0081 /* SPCollectionViewCell.m */; };
+		2D8081301FD5B92500078A50 /* UIDevice+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6851F1361640012950A /* UIDevice+Ext.m */; };
+		2D8081311FD5B92500078A50 /* SPItemFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2451721FC9A32800EF5438 /* SPItemFilter.m */; };
+		2D8081321FD5B92500078A50 /* SPItemSteamPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD6FD1FB3486E00A5DD99 /* SPItemSteamPriceCell.m */; };
+		2D8081331FD5B92500078A50 /* SPItemPlayableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 693062C71FBC30D3005987A1 /* SPItemPlayableView.m */; };
+		2D8081341FD5B92500078A50 /* SPFocusVisualEffectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8001F1361640012950A /* SPFocusVisualEffectVC.m */; };
+		2D8081351FD5B92500078A50 /* YGPayThirdPlatformProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6D71F1361640012950A /* YGPayThirdPlatformProcessor.m */; };
+		2D8081361FD5B92500078A50 /* SPItemQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7971F1361640012950A /* SPItemQuery.m */; };
+		2D8081371FD5B92500078A50 /* NSObject+YGPerformBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B67F1F1361640012950A /* NSObject+YGPerformBlock.m */; };
+		2D8081381FD5B92500078A50 /* YGBasePopViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7841F1361640012950A /* YGBasePopViewCtrl.m */; };
+		2D8081391FD5B92500078A50 /* YGBatteryMotionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B66D1F1361640012950A /* YGBatteryMotionHelper.m */; };
+		2D80813A1FD5B92500078A50 /* SPMaxPlusAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6631F1361640012950A /* SPMaxPlusAPI.m */; };
+		2D80813B1FD5B92500078A50 /* Config_Archive.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6541F1361640012950A /* Config_Archive.m */; };
+		2D80813C1FD5B92500078A50 /* SPPriceChartConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D19E0101F32F22A00747B01 /* SPPriceChartConfig.m */; };
+		2D80813D1FD5B92500078A50 /* SPItemListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7A01F1361640012950A /* SPItemListVC.m */; };
+		2D80813E1FD5B92500078A50 /* SPWebHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B75E1F1361640012950A /* SPWebHelper.m */; };
+		2D80813F1FD5B92500078A50 /* SPDotaEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCDE1F43EC5900DDB5D3 /* SPDotaEvent.m */; };
+		2D8081401FD5B92500078A50 /* SPItemListContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B79E1F1361640012950A /* SPItemListContainer.m */; };
+		2D8081411FD5B92500078A50 /* SPPlayerItemFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65FB1FCAF2D5006A0081 /* SPPlayerItemFilter.m */; };
+		2D8081421FD5B92500078A50 /* SPDotaEventsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954FCE11F4415A200DDB5D3 /* SPDotaEventsViewCtrl.m */; };
+		2D8081431FD5B92500078A50 /* SPLootList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D40220D1F385D830006EFEF /* SPLootList.m */; };
+		2D8081441FD5B92500078A50 /* UIView+BlockGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6B31F1361640012950A /* UIView+BlockGesture.m */; };
+		2D8081451FD5B92500078A50 /* SPGamepediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F631151FBAF4CE00A60EC8 /* SPGamepediaData.m */; };
+		2D8081461FD5B92500078A50 /* UINavigationBar+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6951F1361640012950A /* UINavigationBar+yg_IBInspectable.m */; };
+		2D8081471FD5B92500078A50 /* SPItemImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDB45481F3C4EC9005E8460 /* SPItemImageLoader.m */; };
+		2D8081481FD5B92500078A50 /* SPPlayerInventoryUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CC1F1361640012950A /* SPPlayerInventoryUpdateVC.m */; };
+		2D8081491FD5B92500078A50 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6B51F1361640012950A /* UIView+Hierarchy.m */; };
+		2D80814A1FD5B92500078A50 /* YGBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6F61F1361640012950A /* YGBubble.m */; };
+		2D80814B1FD5B92500078A50 /* SPWorkshopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8091F1361640012950A /* SPWorkshopModel.m */; };
+		2D80814C1FD5B92500078A50 /* SPItemOffPriceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7A21F1361640012950A /* SPItemOffPriceVC.m */; };
+		2D80814D1FD5B92500078A50 /* UIButton+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6901F1361640012950A /* UIButton+yg_IBInspectable.m */; };
+		2D80814E1FD5B92500078A50 /* UITableViewCell+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B69F1F1361640012950A /* UITableViewCell+yg_IBInspectable.m */; };
+		2D80814F1FD5B92500078A50 /* DDSegmentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B74A1F1361640012950A /* DDSegmentScrollView.m */; };
+		2D8081501FD5B92500078A50 /* CDTAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7281F1361640012950A /* CDTAlertAction.m */; };
+		2D8081511FD5B92500078A50 /* SPItemCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 691DC3A01F418D8D00DF5E81 /* SPItemCellModel.m */; };
+		2D8081521FD5B92500078A50 /* UINavigationController+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6AF1F1361640012950A /* UINavigationController+Convenience.m */; };
+		2D8081531FD5B92500078A50 /* SPWorkshopResourcesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8021F1361640012950A /* SPWorkshopResourcesVC.m */; };
+		2D8081541FD5B92500078A50 /* SPFilterViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24514F1FC9951000EF5438 /* SPFilterViewCtrl.m */; };
+		2D8081551FD5B92500078A50 /* DDProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6FB1F1361640012950A /* DDProgressHUD.m */; };
+		2D8081561FD5B92500078A50 /* SPItemTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */; };
+		2D8081571FD5B92500078A50 /* SPPlayerItemFilterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65F81FCAF2C0006A0081 /* SPPlayerItemFilterGroup.m */; };
+		2D8081581FD5B92500078A50 /* UIViewController+Storyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6B91F1361640012950A /* UIViewController+Storyboard.m */; };
+		2D8081591FD5B92500078A50 /* SPSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7E21F1361640012950A /* SPSearchCell.m */; };
+		2D80815A1FD5B92500078A50 /* SPSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7D91F1361640012950A /* SPSearchEngine.m */; };
+		2D80815B1FD5B92500078A50 /* SPItemSearchOptionViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 692A55891F4D6C7A006914BF /* SPItemSearchOptionViewCtrl.m */; };
+		2D80815C1FD5B92500078A50 /* SPItemPlayableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 693062CA1FBC3883005987A1 /* SPItemPlayableCell.m */; };
+		2D80815D1FD5B92500078A50 /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7431F1361640012950A /* SDCollectionViewCell.m */; };
+		2D80815E1FD5B92500078A50 /* SPItemHeroListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F6941F1B9C90004DCD3C /* SPItemHeroListVC.m */; };
+		2D80815F1FD5B92500078A50 /* SPIAPCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A901FD0593A0021FCC9 /* SPIAPCell.m */; };
+		2D8081601FD5B92500078A50 /* BingoBarItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6F21F1361640012950A /* BingoBarItemView.m */; };
+		2D8081611FD5B92500078A50 /* Config_Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6561F1361640012950A /* Config_Constant.m */; };
+		2D8081621FD5B92500078A50 /* NSObject+KVCExceptionCatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B67D1F1361640012950A /* NSObject+KVCExceptionCatch.m */; };
+		2D8081631FD5B92500078A50 /* YGAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6ED1F1361640012950A /* YGAreaPickerView.m */; };
+		2D8081641FD5B92500078A50 /* SPGamepediaPlayable.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F631121FBAF01600A60EC8 /* SPGamepediaPlayable.m */; };
+		2D8081651FD5B92500078A50 /* SPWorkshopTagVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8041F1361640012950A /* SPWorkshopTagVC.m */; };
+		2D8081661FD5B92500078A50 /* YGRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7301F1361640012950A /* YGRefreshComponent.m */; };
+		2D8081671FD5B92500078A50 /* TAPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7411F1361640012950A /* TAPageControl.m */; };
+		2D8081681FD5B92500078A50 /* SPDota2API.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C2E1FC312B300FEDE5C /* SPDota2API.m */; };
+		2D8081691FD5B92500078A50 /* YGRemoteNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6751F1361640012950A /* YGRemoteNotificationHelper.m */; };
+		2D80816A1FD5B92500078A50 /* UIActivityIndicatorView+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B68E1F1361640012950A /* UIActivityIndicatorView+yg_IBInspectable.m */; };
+		2D80816B1FD5B92500078A50 /* SPItemsDetailViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4AD9D01F1E63DE00FF3EDF /* SPItemsDetailViewCtrl.m */; };
+		2D80816C1FD5B92500078A50 /* SPPlayer+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7B51F1361640012950A /* SPPlayer+More.m */; };
+		2D80816D1FD5B92500078A50 /* CDTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8E21F1365CB0012950A /* CDTUser.m */; };
+		2D80816E1FD5B92500078A50 /* LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B71F1F1361640012950A /* LCActionSheet.m */; };
+		2D80816F1FD5B92500078A50 /* SPItemPrefab.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7741F1361640012950A /* SPItemPrefab.m */; };
+		2D8081701FD5B92500078A50 /* YGBaseWebViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7881F1361640012950A /* YGBaseWebViewCtrl.m */; };
+		2D8081711FD5B92500078A50 /* SPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7701F1361640012950A /* SPItem.m */; };
+		2D8081721FD5B92500078A50 /* SPHTMLSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6611F1361640012950A /* SPHTMLSerializer.m */; };
+		2D8081731FD5B92500078A50 /* SPDotabuffAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B65F1F1361640012950A /* SPDotabuffAPI.m */; };
+		2D8081741FD5B92500078A50 /* UIView+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6A31F1361640012950A /* UIView+yg_IBInspectable.m */; };
+		2D8081751FD5B92500078A50 /* SPDiskCacheControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7E61F1361640012950A /* SPDiskCacheControl.m */; };
+		2D8081761FD5B92500078A50 /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7451F1361640012950A /* SDCycleScrollView.m */; };
+		2D8081771FD5B92500078A50 /* UITabBar+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B69B1F1361640012950A /* UITabBar+yg_IBInspectable.m */; };
+		2D8081781FD5B92500078A50 /* BingoBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6F01F1361640012950A /* BingoBarItem.m */; };
+		2D8081791FD5B92500078A50 /* SPPriceChartViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5D4E1F2A54EB00A3D8C9 /* SPPriceChartViewCtrl.m */; };
+		2D80817A1FD5B92500078A50 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7471F1361640012950A /* UIView+SDExtension.m */; };
+		2D80817B1FD5B92500078A50 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6B11F1361640012950A /* UIView+Animation.m */; };
+		2D80817C1FD5B92500078A50 /* SPFilterFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24516D1FC995E700EF5438 /* SPFilterFooter.m */; };
+		2D80817D1FD5B92500078A50 /* SPFilterConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2451671FC995BE00EF5438 /* SPFilterConfig.m */; };
+		2D80817E1FD5B92500078A50 /* SPPlayerItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B77E1F1361640012950A /* SPPlayerItems.m */; };
+		2D80817F1FD5B92500078A50 /* SPItemStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5C751F2198CF00A3D8C9 /* SPItemStyle.m */; };
+		2D8081801FD5B92500078A50 /* DDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7631F1361640012950A /* DDWebViewController.m */; };
+		2D8081811FD5B92500078A50 /* SPGamepediaSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD50F1FA71666007A4D5D /* SPGamepediaSerializer.m */; };
+		2D8081821FD5B92500078A50 /* SPItemRarity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7781F1361640012950A /* SPItemRarity.m */; };
+		2D8081831FD5B92500078A50 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D29A1CDE20D700190F0C /* AppDelegate.m */; };
+		2D8081841FD5B92500078A50 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B73B1F1361640012950A /* TAAbstractDotView.m */; };
+		2D8081851FD5B92500078A50 /* RWDropdownMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7351F1361640012950A /* RWDropdownMenuCell.m */; };
+		2D8081861FD5B92500078A50 /* SPIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A971FD066E60021FCC9 /* SPIAPHelper.m */; };
+		2D8081871FD5B92500078A50 /* SPFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2451551FC9954B00EF5438 /* SPFilterCell.m */; };
+		2D8081881FD5B92500078A50 /* SPFilterUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D24515E1FC9958F00EF5438 /* SPFilterUnit.m */; };
+		2D8081891FD5B92500078A50 /* UIAlertController+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6A71F1361640012950A /* UIAlertController+Convenience.m */; };
+		2D80818A1FD5B92500078A50 /* SPLicenseViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF661D1FCEEDAB006A0081 /* SPLicenseViewCtrl.m */; };
+		2D80818B1FD5B92500078A50 /* SPItemSets.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B77A1F1361640012950A /* SPItemSets.m */; };
+		2D80818C1FD5B92500078A50 /* SPSettingDiskCacheVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7EA1F1361640012950A /* SPSettingDiskCacheVC.m */; };
+		2D80818D1FD5B92500078A50 /* SPItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7901F1361640012950A /* SPItemCell.m */; };
+		2D80818E1FD5B92500078A50 /* YGBaseViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7861F1361640012950A /* YGBaseViewCtrl.m */; };
+		2D80818F1FD5B92500078A50 /* NSObject+URLSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6CF1F1361640012950A /* NSObject+URLSessionTask.m */; };
+		2D8081901FD5B92500078A50 /* SPWorkshopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B80C1F1361640012950A /* SPWorkshopCell.m */; };
+		2D8081911FD5B92500078A50 /* SPItemBannerImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69819CC11FB99C4F00977873 /* SPItemBannerImageCell.m */; };
+		2D8081921FD5B92500078A50 /* SPIAPViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A8C1FD056700021FCC9 /* SPIAPViewCtrl.m */; };
+		2D8081931FD5B92500078A50 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48D2971CDE20D700190F0C /* main.m */; };
+		2D8081941FD5B92500078A50 /* SPItemPlayablesViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ECA1BF1FBD8E0500A9DFFC /* SPItemPlayablesViewCtrl.m */; };
+		2D8081951FD5B92500078A50 /* UIToolbar+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6A11F1361640012950A /* UIToolbar+yg_IBInspectable.m */; };
+		2D8081961FD5B92500078A50 /* SPItemEntranceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F6991F1C624A004DCD3C /* SPItemEntranceVC.m */; };
+		2D8081971FD5B92500078A50 /* SPPlayerAliasesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BD1F1361640012950A /* SPPlayerAliasesVC.m */; };
+		2D8081981FD5B92500078A50 /* SPWorkshop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7FD1F1361640012950A /* SPWorkshop.m */; };
+		2D8081991FD5B92500078A50 /* NSString+STRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6811F1361640012950A /* NSString+STRegex.m */; };
+		2D80819A1FD5B92500078A50 /* SPItemMoreItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D37AAB61FAEF5CC0043DDD4 /* SPItemMoreItemsView.m */; };
+		2D80819B1FD5B92500078A50 /* YGThirdPartyNavigate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6C11F1361640012950A /* YGThirdPartyNavigate.m */; };
+		2D80819C1FD5B92500078A50 /* SPHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9350801FCF1B9E00719EC5 /* SPHistoryManager.m */; };
+		2D80819D1FD5B92500078A50 /* DDMainTBC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AC1F1361640012950A /* DDMainTBC.m */; };
+		2D80819E1FD5B92500078A50 /* DDViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 691DC39D1F418D6F00DF5E81 /* DDViewModel.m */; };
+		2D80819F1FD5B92500078A50 /* SPPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7681F1361640012950A /* SPPlayer.m */; };
+		2D8081A01FD5B92500078A50 /* SPSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7DC1F1361640012950A /* SPSearchVC.m */; };
+		2D8081A11FD5B92500078A50 /* SPItemBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BD7001FB5FBCA00A5DD99 /* SPItemBannerView.m */; };
+		2D8081A21FD5B92500078A50 /* RWDropdownMenuTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7371F1361640012950A /* RWDropdownMenuTransitionController.m */; };
+		2D8081A31FD5B92500078A50 /* SPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF65FF1FCC447B006A0081 /* SPObject.m */; };
+		2D8081A41FD5B92500078A50 /* RWDropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7331F1361640012950A /* RWDropdownMenu.m */; };
+		2D8081A51FD5B92500078A50 /* SPIAPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2AA11FD198820021FCC9 /* SPIAPObject.m */; };
+		2D8081A61FD5B92500078A50 /* YGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7181F1361640012950A /* YGLabel.m */; };
+		2D8081A71FD5B92500078A50 /* SPDota2MarketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C351FC3135D00FEDE5C /* SPDota2MarketItem.m */; };
+		2D8081A81FD5B92500078A50 /* CoreLocation+Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6891F1361640012950A /* CoreLocation+Convert.m */; };
+		2D8081A91FD5B92500078A50 /* UITableView+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B69D1F1361640012950A /* UITableView+yg_IBInspectable.m */; };
+		2D8081AA1FD5B92500078A50 /* SPBaseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2451581FC9956B00EF5438 /* SPBaseFilter.m */; };
+		2D8081AB1FD5B92500078A50 /* YGTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7521F1361640012950A /* YGTextField.m */; };
+		2D8081AC1FD5B92500078A50 /* SPItemDescPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D37AAB31FAEEB5E0043DDD4 /* SPItemDescPanel.m */; };
+		2D8081AD1FD5B92500078A50 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7581F1361640012950A /* UIImage+ImageEffects.m */; };
+		2D8081AE1FD5B92500078A50 /* SPStarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9350831FCF1BAA00719EC5 /* SPStarManager.m */; };
+		2D8081AF1FD5B92500078A50 /* SPSettingOptionsViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2A861FD055BE0021FCC9 /* SPSettingOptionsViewCtrl.m */; };
+		2D8081B01FD5B92500078A50 /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B73F1F1361640012950A /* TADotView.m */; };
+		2D8081B11FD5B92500078A50 /* SPPlayerInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C71F1361640012950A /* SPPlayerInventoryVC.m */; };
+		2D8081B21FD5B92500078A50 /* Config_ThirdParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B65A1F1361640012950A /* Config_ThirdParty.m */; settings = {COMPILER_FLAGS = "-D'MACRO_BUGLY_APP_ID=@\"$(BUGLY_APP_ID)\""; }; };
+		2D8081B31FD5B92500078A50 /* SPSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7E01F1361640012950A /* SPSearchBar.m */; };
+		2D8081B41FD5B92500078A50 /* SPLaunchADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AE1F1361640012950A /* SPLaunchADVC.m */; };
+		2D8081B51FD5B92500078A50 /* CDTUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6DB1F1361640012950A /* CDTUserSession.m */; };
+		2D8081B61FD5B92500078A50 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6C41F1361640012950A /* API.m */; };
+		2D8081B71FD5B92500078A50 /* SPWorkshopResourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B80E1F1361640012950A /* SPWorkshopResourceCell.m */; };
+		2D8081B81FD5B92500078A50 /* SPItemQuality.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7761F1361640012950A /* SPItemQuality.m */; };
+		2D8081B91FD5B92500078A50 /* SPBundleItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6919742A1F42A96E00FB5007 /* SPBundleItemCell.m */; };
+		2D8081BA1FD5B92500078A50 /* DDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6CA1F1361640012950A /* DDResponse.m */; };
+		2D8081BB1FD5B92500078A50 /* SPItemHeroPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F68E1F1B6A2D004DCD3C /* SPItemHeroPickerVC.m */; };
+		2D8081BC1FD5B92500078A50 /* UIViewController+yg_StatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAD1F20D72500E8F614 /* UIViewController+yg_StatusBar.m */; };
+		2D8081BD1FD5B92500078A50 /* SPItemSearchViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 692A55861F4D6C2E006914BF /* SPItemSearchViewCtrl.m */; };
+		2D8081BE1FD5B92500078A50 /* SPGamepediaAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BD50C1FA71524007A4D5D /* SPGamepediaAPI.m */; };
+		2D8081BF1FD5B92500078A50 /* YGBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6F81F1361640012950A /* YGBubbleView.m */; };
+		2D8081C01FD5B92500078A50 /* SPItemSaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A117021FA8747700A32747 /* SPItemSaleView.m */; };
+		2D8081C11FD5B92500078A50 /* SPHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B76C1F1361640012950A /* SPHero.m */; };
+		2D8081C21FD5B92500078A50 /* UIButton+Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6A91F1361640012950A /* UIButton+Event.m */; };
+		2D8081C31FD5B92500078A50 /* SPPlayerItemSharedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 695261EB1FC7EE8400F3C22B /* SPPlayerItemSharedData.m */; };
+		2D8081C41FD5B92500078A50 /* SPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7251F1361640012950A /* SPPopoverView.m */; };
+		2D8081C51FD5B92500078A50 /* NSCalendar+YGCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B67B1F1361640012950A /* NSCalendar+YGCategory.m */; };
+		2D8081C61FD5B92500078A50 /* YGAreaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6EB1F1361640012950A /* YGAreaManager.m */; };
+		2D8081C71FD5B92500078A50 /* SPResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB731F16263A0038B49C /* SPResourceManager.m */; };
+		2D8081C81FD5B92500078A50 /* SPLeftAlignmentLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B71B1F1361640012950A /* SPLeftAlignmentLayout.m */; };
+		2D8081C91FD5B92500078A50 /* SPPlayerListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C91F1361640012950A /* SPPlayerListVC.m */; };
+		2D8081CA1FD5B92500078A50 /* SPItemLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE1C1F1FBDE41100FEDE5C /* SPItemLoadingView.m */; };
+		2D8081CB1FD5B92500078A50 /* YGBaseNaviCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7821F1361640012950A /* YGBaseNaviCtrl.m */; };
+		2D8081CC1FD5B92500078A50 /* SPSteamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6651F1361640012950A /* SPSteamAPI.m */; };
+		2D8081CD1FD5B92500078A50 /* UIView+YGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6B71F1361640012950A /* UIView+YGGeometry.m */; };
+		2D8081CE1FD5B92500078A50 /* SPPlayerSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CE1F1361640012950A /* SPPlayerSelectedVC.m */; };
+		2D8081CF1FD5B92500078A50 /* SPPlayerDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BF1F1361640012950A /* SPPlayerDetailInfoVC.m */; };
+		2D8081D01FD5B92500078A50 /* Config_Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6521F1361640012950A /* Config_Appearance.m */; };
+		2D8081D11FD5B92500078A50 /* DDMainADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AA1F1361640012950A /* DDMainADVC.m */; };
+		2D8081D21FD5B92500078A50 /* SPPriceUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B5D531F2E2C8100A3D8C9 /* SPPriceUnit.m */; };
+		2D8081D31FD5B92500078A50 /* SPSettingAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7F21F1361640012950A /* SPSettingAboutVC.m */; };
+		2D8081D41FD5B92500078A50 /* DDError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6C61F1361640012950A /* DDError.m */; };
+		2D8081D61FD5B92500078A50 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD662D71FD4376D000E7223 /* OpenGLES.framework */; };
+		2D8081D71FD5B92500078A50 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */; };
+		2D8081D81FD5B92500078A50 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5A2A921FD05EF30021FCC9 /* StoreKit.framework */; };
+		2D8081D91FD5B92500078A50 /* libGDTMobSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5A2AAF1FD286900021FCC9 /* libGDTMobSDK.a */; };
+		2D8081DA1FD5B92500078A50 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B231D435EAB005FC6CA /* libstdc++.tbd */; };
+		2D8081DB1FD5B92500078A50 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D563B211D435E95005FC6CA /* libiconv.tbd */; };
+		2D8081DC1FD5B92500078A50 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF9B81A1F1361640012950A /* Bugly.framework */; };
+		2D8081DD1FD5B92500078A50 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0A82861CDF325700F26BD1 /* libz.tbd */; };
+		2D8081DE1FD5B92500078A50 /* Pods___SPAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BFB8F71EB198F30CE6A495 /* Pods___SPAd.framework */; };
+		2D8081E01FD5B92500078A50 /* SPUpdate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE373521F176B5800C8F653 /* SPUpdate.storyboard */; };
+		2D8081E11FD5B92500078A50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48D2A71CDE20D700190F0C /* LaunchScreen.storyboard */; };
+		2D8081E21FD5B92500078A50 /* SPChart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D4B5D4A1F2A54CB00A3D8C9 /* SPChart.storyboard */; };
+		2D8081E31FD5B92500078A50 /* SPMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B7F91F1361640012950A /* SPMain.storyboard */; };
+		2D8081E41FD5B92500078A50 /* SPFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D2451451FC994D900EF5438 /* SPFilter.storyboard */; };
+		2D8081E51FD5B92500078A50 /* SPItemSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 692A55821F4D6C1C006914BF /* SPItemSearch.storyboard */; };
+		2D8081E61FD5B92500078A50 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2DFF66171FCEE75E006A0081 /* LICENSE */; };
+		2D8081E71FD5B92500078A50 /* BingoBarItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B6F31F1361640012950A /* BingoBarItemView.xib */; };
+		2D8081E81FD5B92500078A50 /* workshoptags.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8151F1361640012950A /* workshoptags.json */; };
+		2D8081E91FD5B92500078A50 /* LCActionSheet.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B71D1F1361640012950A /* LCActionSheet.bundle */; };
+		2D8081EA1FD5B92500078A50 /* AppIconAd.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DD664F51FD5870E000E7223 /* AppIconAd.xcassets */; };
+		2D8081EB1FD5B92500078A50 /* SPWorkshop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D5A2A9E1FD18A0A0021FCC9 /* SPWorkshop.storyboard */; };
+		2D8081EC1FD5B92500078A50 /* SPHero.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC0F6911F1B6A3D004DCD3C /* SPHero.storyboard */; };
+		2D8081ED1FD5B92500078A50 /* SPSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D5A2A9C1FD1864E0021FCC9 /* SPSetting.storyboard */; };
+		2D8081EE1FD5B92500078A50 /* heroMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8131F1361640012950A /* heroMap.json */; };
+		2D8081EF1FD5B92500078A50 /* CDTAlertCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B72B1F1361640012950A /* CDTAlertCtrl.xib */; };
+		2D8081F01FD5B92500078A50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B8101F1361640012950A /* Assets.xcassets */; };
+		2D8081F11FD5B92500078A50 /* SPItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC0F6961F1C5F82004DCD3C /* SPItem.storyboard */; };
 		2D91EB741F16263A0038B49C /* SPResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB731F16263A0038B49C /* SPResourceManager.m */; };
 		2D91EB771F1724230038B49C /* SPBaseData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB761F1724230038B49C /* SPBaseData.m */; };
 		2D91EB7B1F1731880038B49C /* SPLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D91EB7A1F1731880038B49C /* SPLocale.m */; };
@@ -765,6 +1017,8 @@
 
 /* Begin PBXFileReference section */
 		07AE11536F9F2C37F7ED1D08 /* Pods-_-SPAd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-_-SPAd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-_-SPAd/Pods-_-SPAd.debug.xcconfig"; sourceTree = "<group>"; };
+		193F5CED732A1AD8A2454FC0 /* Pods-_-SPOld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-_-SPOld.debug.xcconfig"; path = "Pods/Target Support Files/Pods-_-SPOld/Pods-_-SPOld.debug.xcconfig"; sourceTree = "<group>"; };
+		212893AFFB20F4F54F3FA493 /* Pods___SPOld.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___SPOld.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28B8620B250CF5F9169025DD /* Pods-_-SPPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-_-SPPro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-_-SPPro/Pods-_-SPPro.debug.xcconfig"; sourceTree = "<group>"; };
 		2D0A82861CDF325700F26BD1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		2D0BD6F91FB343C700A5DD99 /* SPItemSteamPricesViewCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemSteamPricesViewCtrl.h; sourceTree = "<group>"; };
@@ -863,6 +1117,8 @@
 		2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemTransition.m; sourceTree = "<group>"; };
 		2D6F1CAC1F20D72500E8F614 /* UIViewController+yg_StatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+yg_StatusBar.h"; sourceTree = "<group>"; };
 		2D6F1CAD1F20D72500E8F614 /* UIViewController+yg_StatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+yg_StatusBar.m"; sourceTree = "<group>"; };
+		2D8081F81FD5B92500078A50 /* SPOld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPOld.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D8081FA1FD5B98000078A50 /* Info_old.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info_old.plist; sourceTree = "<group>"; };
 		2D91EB721F16263A0038B49C /* SPResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPResourceManager.h; sourceTree = "<group>"; };
 		2D91EB731F16263A0038B49C /* SPResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPResourceManager.m; sourceTree = "<group>"; };
 		2D91EB751F1724230038B49C /* SPBaseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBaseData.h; sourceTree = "<group>"; };
@@ -1298,6 +1554,7 @@
 		69F631141FBAF4CE00A60EC8 /* SPGamepediaData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPGamepediaData.h; sourceTree = "<group>"; };
 		69F631151FBAF4CE00A60EC8 /* SPGamepediaData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPGamepediaData.m; sourceTree = "<group>"; };
 		742F1C063083391FB481695D /* Pods_Common_SPPro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_SPPro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82B42E539D9D6A328C99E218 /* Pods-_-SPOld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-_-SPOld.release.xcconfig"; path = "Pods/Target Support Files/Pods-_-SPOld/Pods-_-SPOld.release.xcconfig"; sourceTree = "<group>"; };
 		89BFB8F71EB198F30CE6A495 /* Pods___SPAd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___SPAd.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91B49B5FCEC765CD5DEC038F /* Pods___SPDev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___SPDev.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B73E501B87FF7A7E94635FB /* Pods-Common-SPAd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-SPAd.release.xcconfig"; path = "Pods/Target Support Files/Pods-Common-SPAd/Pods-Common-SPAd.release.xcconfig"; sourceTree = "<group>"; };
@@ -1327,6 +1584,23 @@
 				2DD662D51FD436D6000E7223 /* PgySDK.framework in Frameworks */,
 				2D5A2AB11FD288BF0021FCC9 /* libGDTMobSDK.a in Frameworks */,
 				E75226B7079559C480356AF4 /* Pods___SPDev.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D8081D51FD5B92500078A50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D8081D61FD5B92500078A50 /* OpenGLES.framework in Frameworks */,
+				2D8081D71FD5B92500078A50 /* libsqlite3.tbd in Frameworks */,
+				2D8081D81FD5B92500078A50 /* StoreKit.framework in Frameworks */,
+				2D8081D91FD5B92500078A50 /* libGDTMobSDK.a in Frameworks */,
+				2D8081DA1FD5B92500078A50 /* libstdc++.tbd in Frameworks */,
+				2D8081DB1FD5B92500078A50 /* libiconv.tbd in Frameworks */,
+				2D8081DC1FD5B92500078A50 /* Bugly.framework in Frameworks */,
+				2D8081DD1FD5B92500078A50 /* libz.tbd in Frameworks */,
+				2D8081DE1FD5B92500078A50 /* Pods___SPAd.framework in Frameworks */,
+				2C52840718CFCBA4C1208D58 /* Pods___SPOld.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1451,6 +1725,7 @@
 				2D48D2931CDE20D600190F0C /* SPDev.app */,
 				2DD663E01FD57D62000E7223 /* SPPro.app */,
 				2DD664E91FD57D83000E7223 /* SPAd.app */,
+				2D8081F81FD5B92500078A50 /* SPOld.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1469,6 +1744,7 @@
 		2D48D2961CDE20D700190F0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2D8081FA1FD5B98000078A50 /* Info_old.plist */,
 				2DD664EC1FD58033000E7223 /* Info_ad.plist */,
 				2DD664EB1FD58033000E7223 /* Info_pro.plist */,
 				2D4506D21D3683C4000971B9 /* DOTA2ShiPing.entitlements */,
@@ -2764,6 +3040,7 @@
 				89BFB8F71EB198F30CE6A495 /* Pods___SPAd.framework */,
 				91B49B5FCEC765CD5DEC038F /* Pods___SPDev.framework */,
 				A32501C3838DCC7527294DD7 /* Pods___SPPro.framework */,
+				212893AFFB20F4F54F3FA493 /* Pods___SPOld.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2783,6 +3060,8 @@
 				CA8E5A4B31AFB6FDA9127238 /* Pods-_-SPDev.release.xcconfig */,
 				28B8620B250CF5F9169025DD /* Pods-_-SPPro.debug.xcconfig */,
 				65EBF911AF1C5D60FFAD2FBB /* Pods-_-SPPro.release.xcconfig */,
+				193F5CED732A1AD8A2454FC0 /* Pods-_-SPOld.debug.xcconfig */,
+				82B42E539D9D6A328C99E218 /* Pods-_-SPOld.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2809,6 +3088,27 @@
 			name = SPDev;
 			productName = DOTA2ShiPing;
 			productReference = 2D48D2931CDE20D600190F0C /* SPDev.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2D8080F21FD5B92500078A50 /* SPOld */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D8081F51FD5B92500078A50 /* Build configuration list for PBXNativeTarget "SPOld" */;
+			buildPhases = (
+				2D8080F31FD5B92500078A50 /* [CP] Check Pods Manifest.lock */,
+				2D8080F41FD5B92500078A50 /* Sources */,
+				2D8081D51FD5B92500078A50 /* Frameworks */,
+				2D8081DF1FD5B92500078A50 /* Resources */,
+				2D8081F21FD5B92500078A50 /* [CP] Embed Pods Frameworks */,
+				2D8081F31FD5B92500078A50 /* [CP] Copy Pods Resources */,
+				2D8081F41FD5B92500078A50 /* Bugly Upload dSYM */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SPOld;
+			productName = DOTA2ShiPing;
+			productReference = 2D8081F81FD5B92500078A50 /* SPOld.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2DD662D91FD57D62000E7223 /* SPPro */ = {
@@ -2885,6 +3185,9 @@
 							};
 						};
 					};
+					2D8080F21FD5B92500078A50 = {
+						DevelopmentTeam = 8QP3ZT6EXM;
+					};
 					2DD662D91FD57D62000E7223 = {
 						DevelopmentTeam = 8QP3ZT6EXM;
 					};
@@ -2909,6 +3212,7 @@
 				2D48D2921CDE20D600190F0C /* SPDev */,
 				2DD662D91FD57D62000E7223 /* SPPro */,
 				2DD663E21FD57D83000E7223 /* SPAd */,
+				2D8080F21FD5B92500078A50 /* SPOld */,
 			);
 		};
 /* End PBXProject section */
@@ -2936,6 +3240,31 @@
 				2DF9B8D31F1361640012950A /* heroMap.json in Resources */,
 				2DF9B8771F1361640012950A /* CDTAlertCtrl.xib in Resources */,
 				2DC0F6971F1C5F82004DCD3C /* SPItem.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D8081DF1FD5B92500078A50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D8081E01FD5B92500078A50 /* SPUpdate.storyboard in Resources */,
+				2D8081E11FD5B92500078A50 /* LaunchScreen.storyboard in Resources */,
+				2D8081E21FD5B92500078A50 /* SPChart.storyboard in Resources */,
+				2D8081E31FD5B92500078A50 /* SPMain.storyboard in Resources */,
+				2D8081E41FD5B92500078A50 /* SPFilter.storyboard in Resources */,
+				2D8081E51FD5B92500078A50 /* SPItemSearch.storyboard in Resources */,
+				2D8081E61FD5B92500078A50 /* LICENSE in Resources */,
+				2D8081E71FD5B92500078A50 /* BingoBarItemView.xib in Resources */,
+				2D8081E81FD5B92500078A50 /* workshoptags.json in Resources */,
+				2D8081E91FD5B92500078A50 /* LCActionSheet.bundle in Resources */,
+				2D8081EA1FD5B92500078A50 /* AppIconAd.xcassets in Resources */,
+				2D8081EB1FD5B92500078A50 /* SPWorkshop.storyboard in Resources */,
+				2D8081EC1FD5B92500078A50 /* SPHero.storyboard in Resources */,
+				2D8081ED1FD5B92500078A50 /* SPSetting.storyboard in Resources */,
+				2D8081EE1FD5B92500078A50 /* heroMap.json in Resources */,
+				2D8081EF1FD5B92500078A50 /* CDTAlertCtrl.xib in Resources */,
+				2D8081F01FD5B92500078A50 /* Assets.xcassets in Resources */,
+				2D8081F11FD5B92500078A50 /* SPItem.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2992,6 +3321,135 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2D8080F31FD5B92500078A50 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-_-SPOld-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D8081F21FD5B92500078A50 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-_-SPOld/Pods-_-SPOld-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/AMPopTip/AMPopTip.framework",
+				"${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/DGActivityIndicatorView/DGActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/DZNWebViewController/DZNWebViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/FCUUID/FCUUID.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/IAPHelper/IAPHelper.framework",
+				"${BUILT_PRODUCTS_DIR}/IDMPhotoBrowser/IDMPhotoBrowser.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/JBChartView/JBChartView.framework",
+				"${BUILT_PRODUCTS_DIR}/JZNavigationExtension/JZNavigationExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/MXParallaxHeader/MXParallaxHeader.framework",
+				"${BUILT_PRODUCTS_DIR}/PinYin4Objc/PinYin4Objc.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/SAMKeychain/SAMKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
+				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
+				"${BUILT_PRODUCTS_DIR}/YYCategories/YYCategories.framework",
+				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
+				"${BUILT_PRODUCTS_DIR}/hpple/Hpple.framework",
+				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
+				"${BUILT_PRODUCTS_DIR}/sqlite3/sqlite3.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AMPopTip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloud.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNWebViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FCUUID.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IAPHelper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IDMPhotoBrowser.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JBChartView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JZNavigationExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MXParallaxHeader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinYin4Objc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAMKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCategories.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hpple.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/sqlite3.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-_-SPOld/Pods-_-SPOld-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D8081F31FD5B92500078A50 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-_-SPOld/Pods-_-SPOld-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D8081F41FD5B92500078A50 /* Bugly Upload dSYM */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bugly Upload dSYM";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ ${BUGLY_ENABLED} -eq 1 ]; then\n\nif [ ! -f ${BUGLY_SHELL_PATH} -o  ! -f ${BUGLY_JAR_PATH} ]; then\n\necho 'Build Phases / Bugly Upload dSYM  Bugly脚本或jar路径不正确'\necho '如果要自动上传dSYM文件，请在BuildSetting的User-Defined中设置 BUGLY_SHELL_PATH 和 BUGLY_SHELL_PATH 为正确的路径。'\necho '如果不需要上传，请修改参数 BUGLY_ENABLED 为 0'\nexit 1\n\nfi\n\n#https://bugly.qq.com/docs/user-guide/symbol-configuration-ios/?v=20170223160322\nchmod 777 ${BUGLY_SHELL_PATH}\n${BUGLY_SHELL_PATH}\nfi";
+		};
 		2DD663DC1FD57D62000E7223 /* Bugly Upload dSYM */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3613,6 +4071,237 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2D8080F41FD5B92500078A50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D8080F51FD5B92500078A50 /* SPFilterNaviCtrl.m in Sources */,
+				2D8080F61FD5B92500078A50 /* CDTAlertCtrl.m in Sources */,
+				2D8080F71FD5B92500078A50 /* SPItemEntranceCell.m in Sources */,
+				2D8080F81FD5B92500078A50 /* SPRewardADView.m in Sources */,
+				2D8080F91FD5B92500078A50 /* YGLineView.m in Sources */,
+				2D8080FA1FD5B92500078A50 /* SPItemTitleView.m in Sources */,
+				2D8080FB1FD5B92500078A50 /* UIViewController+yg_IBInspectable.m in Sources */,
+				2D8080FC1FD5B92500078A50 /* SPLogoHeader.m in Sources */,
+				2D8080FD1FD5B92500078A50 /* YGPaymentResult.m in Sources */,
+				2D8080FE1FD5B92500078A50 /* SPMemoryCache.m in Sources */,
+				2D8080FF1FD5B92500078A50 /* TQLocationConverter.m in Sources */,
+				2D8081001FD5B92500078A50 /* SPSettingTableVC.m in Sources */,
+				2D8081011FD5B92500078A50 /* UIScrollView+yg_IBInspectable.m in Sources */,
+				2D8081021FD5B92500078A50 /* SPUpdateViewCtrl.m in Sources */,
+				2D8081031FD5B92500078A50 /* TAAnimatedDotView.m in Sources */,
+				2D8081041FD5B92500078A50 /* SPItemFilterUnit.m in Sources */,
+				2D8081051FD5B92500078A50 /* YGThirdPlatformProcessor.m in Sources */,
+				2D8081061FD5B92500078A50 /* UIImage+Mask.m in Sources */,
+				2D8081071FD5B92500078A50 /* SPItemViewCtrl.m in Sources */,
+				2D8081081FD5B92500078A50 /* YGCapabilityHelper.m in Sources */,
+				2D8081091FD5B92500078A50 /* NSString+Utils.m in Sources */,
+				2D80810A1FD5B92500078A50 /* NSArray+YYModelExt.m in Sources */,
+				2D80810B1FD5B92500078A50 /* SPFilterHeader.m in Sources */,
+				2D80810C1FD5B92500078A50 /* KDCycleBannerView.m in Sources */,
+				2D80810D1FD5B92500078A50 /* SPItemSlot.m in Sources */,
+				2D80810E1FD5B92500078A50 /* YGTabBarCtrl.m in Sources */,
+				2D80810F1FD5B92500078A50 /* SPFeedbackViewCtrl.m in Sources */,
+				2D8081101FD5B92500078A50 /* SPItemFilterGroup.m in Sources */,
+				2D8081111FD5B92500078A50 /* SPView.m in Sources */,
+				2D8081121FD5B92500078A50 /* SPHeroCell.m in Sources */,
+				2D8081131FD5B92500078A50 /* DDRequestManager.m in Sources */,
+				2D8081141FD5B92500078A50 /* UICollectionViewCell+yg_IBInspectable.m in Sources */,
+				2D8081151FD5B92500078A50 /* CALayer+SDWebCache.m in Sources */,
+				2D8081161FD5B92500078A50 /* SPItemPriceLoader.m in Sources */,
+				2D8081171FD5B92500078A50 /* SPDataManager.m in Sources */,
+				2D8081181FD5B92500078A50 /* SPLocale.m in Sources */,
+				2D8081191FD5B92500078A50 /* YGCoreMotionHelper.m in Sources */,
+				2D80811A1FD5B92500078A50 /* SPTableViewCell.m in Sources */,
+				2D80811B1FD5B92500078A50 /* SPItemSteamPricesViewCtrl.m in Sources */,
+				2D80811C1FD5B92500078A50 /* SPGamepediaImage.m in Sources */,
+				2D80811D1FD5B92500078A50 /* SPMarketItem.m in Sources */,
+				2D80811E1FD5B92500078A50 /* SPPlayerItemFilterUnit.m in Sources */,
+				2D80811F1FD5B92500078A50 /* SPItemColor.m in Sources */,
+				2D8081201FD5B92500078A50 /* DDWebInspector.m in Sources */,
+				2D8081211FD5B92500078A50 /* SPPlayerCell.m in Sources */,
+				2D8081221FD5B92500078A50 /* SPItemEntranceConfig.m in Sources */,
+				2D8081231FD5B92500078A50 /* SPConfigManager.m in Sources */,
+				2D8081241FD5B92500078A50 /* SPPlayerManager.m in Sources */,
+				2D8081251FD5B92500078A50 /* Config_Network.m in Sources */,
+				2D8081261FD5B92500078A50 /* SPBaseData.m in Sources */,
+				2D8081271FD5B92500078A50 /* SPItemSearchOption.m in Sources */,
+				2D8081281FD5B92500078A50 /* SPWorkshopVC.m in Sources */,
+				2D8081291FD5B92500078A50 /* SPFilterGroup.m in Sources */,
+				2D80812A1FD5B92500078A50 /* YGCoreLocationHelper.m in Sources */,
+				2D80812B1FD5B92500078A50 /* SPItemSharedData.m in Sources */,
+				2D80812C1FD5B92500078A50 /* SPPlayerItemQuery.m in Sources */,
+				2D80812D1FD5B92500078A50 /* CDTAlertDefine.m in Sources */,
+				2D80812E1FD5B92500078A50 /* UISearchBar+yg_IBInspectable.m in Sources */,
+				2D80812F1FD5B92500078A50 /* SPCollectionViewCell.m in Sources */,
+				2D8081301FD5B92500078A50 /* UIDevice+Ext.m in Sources */,
+				2D8081311FD5B92500078A50 /* SPItemFilter.m in Sources */,
+				2D8081321FD5B92500078A50 /* SPItemSteamPriceCell.m in Sources */,
+				2D8081331FD5B92500078A50 /* SPItemPlayableView.m in Sources */,
+				2D8081341FD5B92500078A50 /* SPFocusVisualEffectVC.m in Sources */,
+				2D8081351FD5B92500078A50 /* YGPayThirdPlatformProcessor.m in Sources */,
+				2D8081361FD5B92500078A50 /* SPItemQuery.m in Sources */,
+				2D8081371FD5B92500078A50 /* NSObject+YGPerformBlock.m in Sources */,
+				2D8081381FD5B92500078A50 /* YGBasePopViewCtrl.m in Sources */,
+				2D8081391FD5B92500078A50 /* YGBatteryMotionHelper.m in Sources */,
+				2D80813A1FD5B92500078A50 /* SPMaxPlusAPI.m in Sources */,
+				2D80813B1FD5B92500078A50 /* Config_Archive.m in Sources */,
+				2D80813C1FD5B92500078A50 /* SPPriceChartConfig.m in Sources */,
+				2D80813D1FD5B92500078A50 /* SPItemListVC.m in Sources */,
+				2D80813E1FD5B92500078A50 /* SPWebHelper.m in Sources */,
+				2D80813F1FD5B92500078A50 /* SPDotaEvent.m in Sources */,
+				2D8081401FD5B92500078A50 /* SPItemListContainer.m in Sources */,
+				2D8081411FD5B92500078A50 /* SPPlayerItemFilter.m in Sources */,
+				2D8081421FD5B92500078A50 /* SPDotaEventsViewCtrl.m in Sources */,
+				2D8081431FD5B92500078A50 /* SPLootList.m in Sources */,
+				2D8081441FD5B92500078A50 /* UIView+BlockGesture.m in Sources */,
+				2D8081451FD5B92500078A50 /* SPGamepediaData.m in Sources */,
+				2D8081461FD5B92500078A50 /* UINavigationBar+yg_IBInspectable.m in Sources */,
+				2D8081471FD5B92500078A50 /* SPItemImageLoader.m in Sources */,
+				2D8081481FD5B92500078A50 /* SPPlayerInventoryUpdateVC.m in Sources */,
+				2D8081491FD5B92500078A50 /* UIView+Hierarchy.m in Sources */,
+				2D80814A1FD5B92500078A50 /* YGBubble.m in Sources */,
+				2D80814B1FD5B92500078A50 /* SPWorkshopModel.m in Sources */,
+				2D80814C1FD5B92500078A50 /* SPItemOffPriceVC.m in Sources */,
+				2D80814D1FD5B92500078A50 /* UIButton+yg_IBInspectable.m in Sources */,
+				2D80814E1FD5B92500078A50 /* UITableViewCell+yg_IBInspectable.m in Sources */,
+				2D80814F1FD5B92500078A50 /* DDSegmentScrollView.m in Sources */,
+				2D8081501FD5B92500078A50 /* CDTAlertAction.m in Sources */,
+				2D8081511FD5B92500078A50 /* SPItemCellModel.m in Sources */,
+				2D8081521FD5B92500078A50 /* UINavigationController+Convenience.m in Sources */,
+				2D8081531FD5B92500078A50 /* SPWorkshopResourcesVC.m in Sources */,
+				2D8081541FD5B92500078A50 /* SPFilterViewCtrl.m in Sources */,
+				2D8081551FD5B92500078A50 /* DDProgressHUD.m in Sources */,
+				2D8081561FD5B92500078A50 /* SPItemTransition.m in Sources */,
+				2D8081571FD5B92500078A50 /* SPPlayerItemFilterGroup.m in Sources */,
+				2D8081581FD5B92500078A50 /* UIViewController+Storyboard.m in Sources */,
+				2D8081591FD5B92500078A50 /* SPSearchCell.m in Sources */,
+				2D80815A1FD5B92500078A50 /* SPSearchEngine.m in Sources */,
+				2D80815B1FD5B92500078A50 /* SPItemSearchOptionViewCtrl.m in Sources */,
+				2D80815C1FD5B92500078A50 /* SPItemPlayableCell.m in Sources */,
+				2D80815D1FD5B92500078A50 /* SDCollectionViewCell.m in Sources */,
+				2D80815E1FD5B92500078A50 /* SPItemHeroListVC.m in Sources */,
+				2D80815F1FD5B92500078A50 /* SPIAPCell.m in Sources */,
+				2D8081601FD5B92500078A50 /* BingoBarItemView.m in Sources */,
+				2D8081611FD5B92500078A50 /* Config_Constant.m in Sources */,
+				2D8081621FD5B92500078A50 /* NSObject+KVCExceptionCatch.m in Sources */,
+				2D8081631FD5B92500078A50 /* YGAreaPickerView.m in Sources */,
+				2D8081641FD5B92500078A50 /* SPGamepediaPlayable.m in Sources */,
+				2D8081651FD5B92500078A50 /* SPWorkshopTagVC.m in Sources */,
+				2D8081661FD5B92500078A50 /* YGRefreshComponent.m in Sources */,
+				2D8081671FD5B92500078A50 /* TAPageControl.m in Sources */,
+				2D8081681FD5B92500078A50 /* SPDota2API.m in Sources */,
+				2D8081691FD5B92500078A50 /* YGRemoteNotificationHelper.m in Sources */,
+				2D80816A1FD5B92500078A50 /* UIActivityIndicatorView+yg_IBInspectable.m in Sources */,
+				2D80816B1FD5B92500078A50 /* SPItemsDetailViewCtrl.m in Sources */,
+				2D80816C1FD5B92500078A50 /* SPPlayer+More.m in Sources */,
+				2D80816D1FD5B92500078A50 /* CDTUser.m in Sources */,
+				2D80816E1FD5B92500078A50 /* LCActionSheet.m in Sources */,
+				2D80816F1FD5B92500078A50 /* SPItemPrefab.m in Sources */,
+				2D8081701FD5B92500078A50 /* YGBaseWebViewCtrl.m in Sources */,
+				2D8081711FD5B92500078A50 /* SPItem.m in Sources */,
+				2D8081721FD5B92500078A50 /* SPHTMLSerializer.m in Sources */,
+				2D8081731FD5B92500078A50 /* SPDotabuffAPI.m in Sources */,
+				2D8081741FD5B92500078A50 /* UIView+yg_IBInspectable.m in Sources */,
+				2D8081751FD5B92500078A50 /* SPDiskCacheControl.m in Sources */,
+				2D8081761FD5B92500078A50 /* SDCycleScrollView.m in Sources */,
+				2D8081771FD5B92500078A50 /* UITabBar+yg_IBInspectable.m in Sources */,
+				2D8081781FD5B92500078A50 /* BingoBarItem.m in Sources */,
+				2D8081791FD5B92500078A50 /* SPPriceChartViewCtrl.m in Sources */,
+				2D80817A1FD5B92500078A50 /* UIView+SDExtension.m in Sources */,
+				2D80817B1FD5B92500078A50 /* UIView+Animation.m in Sources */,
+				2D80817C1FD5B92500078A50 /* SPFilterFooter.m in Sources */,
+				2D80817D1FD5B92500078A50 /* SPFilterConfig.m in Sources */,
+				2D80817E1FD5B92500078A50 /* SPPlayerItems.m in Sources */,
+				2D80817F1FD5B92500078A50 /* SPItemStyle.m in Sources */,
+				2D8081801FD5B92500078A50 /* DDWebViewController.m in Sources */,
+				2D8081811FD5B92500078A50 /* SPGamepediaSerializer.m in Sources */,
+				2D8081821FD5B92500078A50 /* SPItemRarity.m in Sources */,
+				2D8081831FD5B92500078A50 /* AppDelegate.m in Sources */,
+				2D8081841FD5B92500078A50 /* TAAbstractDotView.m in Sources */,
+				2D8081851FD5B92500078A50 /* RWDropdownMenuCell.m in Sources */,
+				2D8081861FD5B92500078A50 /* SPIAPHelper.m in Sources */,
+				2D8081871FD5B92500078A50 /* SPFilterCell.m in Sources */,
+				2D8081881FD5B92500078A50 /* SPFilterUnit.m in Sources */,
+				2D8081891FD5B92500078A50 /* UIAlertController+Convenience.m in Sources */,
+				2D80818A1FD5B92500078A50 /* SPLicenseViewCtrl.m in Sources */,
+				2D80818B1FD5B92500078A50 /* SPItemSets.m in Sources */,
+				2D80818C1FD5B92500078A50 /* SPSettingDiskCacheVC.m in Sources */,
+				2D80818D1FD5B92500078A50 /* SPItemCell.m in Sources */,
+				2D80818E1FD5B92500078A50 /* YGBaseViewCtrl.m in Sources */,
+				2D80818F1FD5B92500078A50 /* NSObject+URLSessionTask.m in Sources */,
+				2D8081901FD5B92500078A50 /* SPWorkshopCell.m in Sources */,
+				2D8081911FD5B92500078A50 /* SPItemBannerImageCell.m in Sources */,
+				2D8081921FD5B92500078A50 /* SPIAPViewCtrl.m in Sources */,
+				2D8081931FD5B92500078A50 /* main.m in Sources */,
+				2D8081941FD5B92500078A50 /* SPItemPlayablesViewCtrl.m in Sources */,
+				2D8081951FD5B92500078A50 /* UIToolbar+yg_IBInspectable.m in Sources */,
+				2D8081961FD5B92500078A50 /* SPItemEntranceVC.m in Sources */,
+				2D8081971FD5B92500078A50 /* SPPlayerAliasesVC.m in Sources */,
+				2D8081981FD5B92500078A50 /* SPWorkshop.m in Sources */,
+				2D8081991FD5B92500078A50 /* NSString+STRegex.m in Sources */,
+				2D80819A1FD5B92500078A50 /* SPItemMoreItemsView.m in Sources */,
+				2D80819B1FD5B92500078A50 /* YGThirdPartyNavigate.m in Sources */,
+				2D80819C1FD5B92500078A50 /* SPHistoryManager.m in Sources */,
+				2D80819D1FD5B92500078A50 /* DDMainTBC.m in Sources */,
+				2D80819E1FD5B92500078A50 /* DDViewModel.m in Sources */,
+				2D80819F1FD5B92500078A50 /* SPPlayer.m in Sources */,
+				2D8081A01FD5B92500078A50 /* SPSearchVC.m in Sources */,
+				2D8081A11FD5B92500078A50 /* SPItemBannerView.m in Sources */,
+				2D8081A21FD5B92500078A50 /* RWDropdownMenuTransitionController.m in Sources */,
+				2D8081A31FD5B92500078A50 /* SPObject.m in Sources */,
+				2D8081A41FD5B92500078A50 /* RWDropdownMenu.m in Sources */,
+				2D8081A51FD5B92500078A50 /* SPIAPObject.m in Sources */,
+				2D8081A61FD5B92500078A50 /* YGLabel.m in Sources */,
+				2D8081A71FD5B92500078A50 /* SPDota2MarketItem.m in Sources */,
+				2D8081A81FD5B92500078A50 /* CoreLocation+Convert.m in Sources */,
+				2D8081A91FD5B92500078A50 /* UITableView+yg_IBInspectable.m in Sources */,
+				2D8081AA1FD5B92500078A50 /* SPBaseFilter.m in Sources */,
+				2D8081AB1FD5B92500078A50 /* YGTextField.m in Sources */,
+				2D8081AC1FD5B92500078A50 /* SPItemDescPanel.m in Sources */,
+				2D8081AD1FD5B92500078A50 /* UIImage+ImageEffects.m in Sources */,
+				2D8081AE1FD5B92500078A50 /* SPStarManager.m in Sources */,
+				2D8081AF1FD5B92500078A50 /* SPSettingOptionsViewCtrl.m in Sources */,
+				2D8081B01FD5B92500078A50 /* TADotView.m in Sources */,
+				2D8081B11FD5B92500078A50 /* SPPlayerInventoryVC.m in Sources */,
+				2D8081B21FD5B92500078A50 /* Config_ThirdParty.m in Sources */,
+				2D8081B31FD5B92500078A50 /* SPSearchBar.m in Sources */,
+				2D8081B41FD5B92500078A50 /* SPLaunchADVC.m in Sources */,
+				2D8081B51FD5B92500078A50 /* CDTUserSession.m in Sources */,
+				2D8081B61FD5B92500078A50 /* API.m in Sources */,
+				2D8081B71FD5B92500078A50 /* SPWorkshopResourceCell.m in Sources */,
+				2D8081B81FD5B92500078A50 /* SPItemQuality.m in Sources */,
+				2D8081B91FD5B92500078A50 /* SPBundleItemCell.m in Sources */,
+				2D8081BA1FD5B92500078A50 /* DDResponse.m in Sources */,
+				2D8081BB1FD5B92500078A50 /* SPItemHeroPickerVC.m in Sources */,
+				2D8081BC1FD5B92500078A50 /* UIViewController+yg_StatusBar.m in Sources */,
+				2D8081BD1FD5B92500078A50 /* SPItemSearchViewCtrl.m in Sources */,
+				2D8081BE1FD5B92500078A50 /* SPGamepediaAPI.m in Sources */,
+				2D8081BF1FD5B92500078A50 /* YGBubbleView.m in Sources */,
+				2D8081C01FD5B92500078A50 /* SPItemSaleView.m in Sources */,
+				2D8081C11FD5B92500078A50 /* SPHero.m in Sources */,
+				2D8081C21FD5B92500078A50 /* UIButton+Event.m in Sources */,
+				2D8081C31FD5B92500078A50 /* SPPlayerItemSharedData.m in Sources */,
+				2D8081C41FD5B92500078A50 /* SPPopoverView.m in Sources */,
+				2D8081C51FD5B92500078A50 /* NSCalendar+YGCategory.m in Sources */,
+				2D8081C61FD5B92500078A50 /* YGAreaManager.m in Sources */,
+				2D8081C71FD5B92500078A50 /* SPResourceManager.m in Sources */,
+				2D8081C81FD5B92500078A50 /* SPLeftAlignmentLayout.m in Sources */,
+				2D8081C91FD5B92500078A50 /* SPPlayerListVC.m in Sources */,
+				2D8081CA1FD5B92500078A50 /* SPItemLoadingView.m in Sources */,
+				2D8081CB1FD5B92500078A50 /* YGBaseNaviCtrl.m in Sources */,
+				2D8081CC1FD5B92500078A50 /* SPSteamAPI.m in Sources */,
+				2D8081CD1FD5B92500078A50 /* UIView+YGGeometry.m in Sources */,
+				2D8081CE1FD5B92500078A50 /* SPPlayerSelectedVC.m in Sources */,
+				2D8081CF1FD5B92500078A50 /* SPPlayerDetailInfoVC.m in Sources */,
+				2D8081D01FD5B92500078A50 /* Config_Appearance.m in Sources */,
+				2D8081D11FD5B92500078A50 /* DDMainADVC.m in Sources */,
+				2D8081D21FD5B92500078A50 /* SPPriceUnit.m in Sources */,
+				2D8081D31FD5B92500078A50 /* SPSettingAboutVC.m in Sources */,
+				2D8081D41FD5B92500078A50 /* DDError.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2DD662DB1FD57D62000E7223 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4224,6 +4913,9 @@
 					"$(inherited)",
 					"SD_WEBP=1",
 					"TARGET_PRO=0",
+					"TARGET_OLD=0",
+					"TARGET_AD=0",
+					"TARGET_DEV=1",
 				);
 				INFOPLIST_FILE = DOTA2ShiPing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -4264,7 +4956,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
@@ -4300,6 +4992,9 @@
 					"$(inherited)",
 					"SD_WEBP=1",
 					"TARGET_PRO=0",
+					"TARGET_OLD=0",
+					"TARGET_AD=0",
+					"TARGET_DEV=1",
 				);
 				INFOPLIST_FILE = DOTA2ShiPing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -4339,7 +5034,162 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
+				VALID_ARCHS = "arm64 armv7";
+			};
+			name = Release;
+		};
+		2D8081F61FD5B92500078A50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 193F5CED732A1AD8A2454FC0 /* Pods-_-SPOld.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconAd;
+				BUGLY_APP_BUNDLE_ID = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				BUGLY_APP_ID = 900001243;
+				BUGLY_APP_KEY = eTjNESyocWJz4dLu;
+				BUGLY_ENABLED = 1;
+				BUGLY_JAR_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/buglySymboliOS.jar";
+				BUGLY_SHELL_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/dSYMUpload.sh";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/Bugly_2.4.8",
+				);
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DOTA2ShiPing/DOTA2ShiPing-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"$(inherited)",
+					"SD_WEBP=1",
+					"TARGET_PRO=0",
+					"TARGET_OLD=1",
+					"TARGET_AD=0",
+					"TARGET_DEV=0",
+				);
+				INFOPLIST_FILE = DOTA2ShiPing/Info_old.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/TencentGDT",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-lstdc++",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nana.V1.0itemsofdota2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
+				VALID_ARCHS = "arm64 armv7";
+			};
+			name = Debug;
+		};
+		2D8081F71FD5B92500078A50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82B42E539D9D6A328C99E218 /* Pods-_-SPOld.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconAd;
+				BUGLY_APP_BUNDLE_ID = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				BUGLY_APP_ID = 900001243;
+				BUGLY_APP_KEY = eTjNESyocWJz4dLu;
+				BUGLY_ENABLED = 1;
+				BUGLY_JAR_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/buglySymboliOS.jar";
+				BUGLY_SHELL_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/dSYMUpload.sh";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/Bugly_2.4.8",
+				);
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DOTA2ShiPing/DOTA2ShiPing-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"$(inherited)",
+					"SD_WEBP=1",
+					"TARGET_PRO=0",
+					"TARGET_OLD=1",
+					"TARGET_AD=0",
+					"TARGET_DEV=0",
+				);
+				INFOPLIST_FILE = DOTA2ShiPing/Info_old.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DOTA2ShiPing/DOTA2/Third-Party/TencentGDT",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-lstdc++",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nana.V1.0itemsofdota2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
@@ -4373,6 +5223,9 @@
 					"$(inherited)",
 					"SD_WEBP=1",
 					"TARGET_PRO=1",
+					"TARGET_OLD=0",
+					"TARGET_AD=0",
+					"TARGET_DEV=0",
 				);
 				INFOPLIST_FILE = DOTA2ShiPing/Info_pro.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -4410,7 +5263,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
@@ -4444,6 +5297,9 @@
 					"$(inherited)",
 					"SD_WEBP=1",
 					"TARGET_PRO=1",
+					"TARGET_OLD=0",
+					"TARGET_AD=0",
+					"TARGET_DEV=0",
 				);
 				INFOPLIST_FILE = DOTA2ShiPing/Info_pro.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -4480,7 +5336,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
@@ -4515,6 +5371,9 @@
 					"$(inherited)",
 					"SD_WEBP=1",
 					"TARGET_PRO=0",
+					"TARGET_OLD=0",
+					"TARGET_AD=1",
+					"TARGET_DEV=0",
 				);
 				INFOPLIST_FILE = DOTA2ShiPing/Info_ad.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -4555,7 +5414,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
@@ -4590,6 +5449,9 @@
 					"$(inherited)",
 					"SD_WEBP=1",
 					"TARGET_PRO=0",
+					"TARGET_OLD=0",
+					"TARGET_AD=1",
+					"TARGET_DEV=0",
 				);
 				INFOPLIST_FILE = DOTA2ShiPing/Info_ad.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -4629,7 +5491,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
@@ -4651,6 +5513,15 @@
 			buildConfigurations = (
 				2D48D2AE1CDE20D700190F0C /* Debug */,
 				2D48D2AF1CDE20D700190F0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8081F51FD5B92500078A50 /* Build configuration list for PBXNativeTarget "SPOld" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D8081F61FD5B92500078A50 /* Debug */,
+				2D8081F71FD5B92500078A50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

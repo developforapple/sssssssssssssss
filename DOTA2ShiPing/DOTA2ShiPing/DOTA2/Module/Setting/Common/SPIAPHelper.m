@@ -12,10 +12,31 @@
 
 NSString *const kSPPurchaseUpdateNotification = @"SPPurchasedNotification";
 
-NSString *const kOLDProductID = @"com.itemofdota2.proversion";
-NSString *const kIAPProductAD = @"advertising";
-NSString *const kIAPProductCoke = @"coke";
-NSString *const kIAPProductCoffee = @"coffee";
+#if TARGET_PRO
+// 付费版
+NSString *const kOLDProductID       ;
+NSString *const kIAPProductAD       ;
+NSString *const kIAPProductCoke     = @"com.wwwbbat.sp.pro.coke";
+NSString *const kIAPProductCoffee   = @"com.wwwbbat.sp.pro.coffee";
+#elif TARGET_AD
+// 免费广告版
+NSString *const kOLDProductID       ;
+NSString *const kIAPProductAD       = @"com.wwwbbat.sp.ad.remove";
+NSString *const kIAPProductCoke     = @"com.wwwbbat.sp.ad.coke";
+NSString *const kIAPProductCoffee   = @"com.wwwbbat.sp.ad.coffee";
+#elif TARGET_OLD
+// 旧版
+NSString *const kOLDProductID       = @"com.itemofdota2.proversion";
+NSString *const kIAPProductAD       = @"advertising";
+NSString *const kIAPProductCoke     = @"coke";
+NSString *const kIAPProductCoffee   = @"coffee";
+#else
+// 企业版
+NSString *const kOLDProductID       ;
+NSString *const kIAPProductAD       ;
+NSString *const kIAPProductCoke     ;
+NSString *const kIAPProductCoffee   ;
+#endif
 
 @implementation SPIAPHelper
 
