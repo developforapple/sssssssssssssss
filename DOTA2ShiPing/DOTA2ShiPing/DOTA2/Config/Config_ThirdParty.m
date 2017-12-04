@@ -51,8 +51,19 @@ NSString *const kPayPalClientID = @"AUcpLj-DFofxPW8u6g17_Xv5FKyx3ii731oBUjHDxIim
 NSString *const kPayPalClientID = @"AfmR3k1azm3liMETPeKE4gOXwXTXdK9eZgBjsj1kL6X4HGzw-8Bdc9yW87zZYQI5G7TI3-mMwyR4SCih";
 #endif
 
+#if TARGET_PRO
+// pro 359826224@qq.com 刀塔饰品Pro
+NSString *const kLeanCloudAppID = @"nyAIoo7OddnRAE0Ch7WOTjRx-gzGzoHsz";
+NSString *const kLeanCloudAppKey = @"IVLqzHqTqdjbXch8YekoUEdf";
+#elif InHouseVersion
+// dev developforapple@163.com 饰品总汇
 NSString *const kLeanCloudAppID = @"uy7j0G50gYzI8jOopjxUNPpT-gzGzoHsz";
 NSString *const kLeanCloudAppKey = @"RkF7f6l3KjnnOKA7jTD1YFn7";
+#else
+// ad 359826224@qq.com 刀塔饰品Ad
+NSString *const kLeanCloudAppID = @"K1mtJOrizsvrywTyYq85j3xL-gzGzoHsz";
+NSString *const kLeanCloudAppKey = @"6VNgktNuzuT7exKg1fTF8x4q";
+#endif
 
 NSString *const kPingppAppID = @"app_vL4CG01iD8mTW9SW";
 

@@ -4356,7 +4356,6 @@
 				BUGLY_JAR_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/buglySymboliOS.jar";
 				BUGLY_SHELL_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/dSYMUpload.sh";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
@@ -4428,7 +4427,6 @@
 				BUGLY_JAR_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/buglySymboliOS.jar";
 				BUGLY_SHELL_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/dSYMUpload.sh";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = DOTA2ShiPing/DOTA2ShiPing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
