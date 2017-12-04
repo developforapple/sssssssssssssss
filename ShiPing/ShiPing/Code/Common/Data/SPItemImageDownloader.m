@@ -1,0 +1,286 @@
+//
+//  SPItemImageDownloader.m
+//  ShiPing
+//
+//  Created by wwwbbat on 2017/7/17.
+//  Copyright © 2017年 wwwbbat. All rights reserved.
+//
+
+#import "SPItemImageDownloader.h"
+#import <FMDatabase.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <UIKit/UIKit.h>
+
+#define FileManager [NSFileManager defaultManager]
+
+static NSString *getQiniuName(NSString *inventory){
+    return [NSString stringWithFormat:@"%lu",(unsigned long)[[inventory stringByAppendingString:@"_0123456789"] hash]];
+}
+
+@implementation SPItemImageDownloader
+
++ (void)createFolderIfNeed:(NSString *)path
+{
+    BOOL isDirectory = NO;
+    BOOL exists = [FileManager fileExistsAtPath:path isDirectory:&isDirectory];
+    if (!exists) {
+        [FileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    }else if(!isDirectory){
+        [FileManager removeItemAtPath:path error:nil];
+        [FileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+}
+
++ (NSString *)root
+{
+    NSString *path = @"/Users/wangbo/Desktop/DOTA.tmp/image";
+    [self createFolderIfNeed:path];
+    return path;
+}
+
++ (NSString *)normalPath
+{
+    NSString *path = [[self root] stringByAppendingPathComponent:@"normal"];
+    [self createFolderIfNeed:path];
+    return path;
+}
+
++ (NSString *)largePath
+{
+    NSString *path = [[self root] stringByAppendingPathComponent:@"large"];
+    [self createFolderIfNeed:path];
+    return path;
+}
+
++ (NSDictionary *)itemImageMap:(NSString *)dbPath
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    [db open];
+    
+    FMResultSet *result = [db executeQuery:@"SELECT token,image_inventory FROM items"];
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    while ([result next]) {
+        NSString *token = [result stringForColumn:@"token"];
+        NSString *image_inventory = [result stringForColumn:@"image_inventory"];
+        dict[token] = image_inventory;
+    }
+    [result close];
+    [db close];
+    return dict;
+}
+
++ (void)compressImages
+{
+    NSString *imageFolder = @"/Users/wangbo/Desktop/DOTA.tmp/image/large";
+    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:imageFolder];
+    
+    long long pre = 0;
+    long long cur = 0;
+    
+    for (NSString *aFile in files) {
+        
+        if ([aFile isEqualToString:@".DS_Store"]) {
+            continue;
+        }
+        
+        BOOL directory = NO;
+        NSString *path = [imageFolder stringByAppendingPathComponent:aFile];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&directory] && !directory) {
+            
+            NSNumber *size = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil][NSFileSize];
+            long preSize = size.longValue;
+            
+            UIImage *image = [UIImage imageWithContentsOfFile:path];
+            NSData *data = UIImageJPEGRepresentation(image, 0.90);
+            
+            long curSize = data.length;
+            
+            NSLog(@"原始大小: %d kb",preSize/1024);
+            NSLog(@"压缩后大小：%d kb",curSize/1024);
+            NSLog(@"压缩率：%.1f%%",curSize/(float)preSize*100);
+            
+            [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+            [data writeToFile:path atomically:YES];
+            
+            pre += preSize;
+            cur += curSize;
+        }
+    }
+    
+    NSLog(@"压缩前：%d Mb", pre / 1024 / 1024);
+    NSLog(@"压缩后：%d Mb", cur / 1024 / 1024);
+    NSLog(@"总压缩率： %.1f %%",cur/(double)pre * 100);
+    
+    NSLog(@"Done");
+}
+
++ (void)download:(NSString *)dbPath
+{
+    NSLog(@"下载图片！");
+    
+    NSLog(@"读取数据库");
+    NSDictionary *map = [self itemImageMap:dbPath];
+    NSLog(@"共找到 %d 个饰品",map.count);
+    
+    NSArray *allKeys = [map allKeys];
+    NSInteger count = allKeys.count;
+    
+    NSInteger idx = 0;
+    NSInteger length = 0;
+    
+    while (idx < count) {
+        
+        length = (idx+2000) < count ? 2000 : (count-idx) ;
+        
+        NSArray *subKeys = [allKeys subarrayWithRange:NSMakeRange(idx, length)];
+        NSArray *subValues = [map objectsForKeys:subKeys notFoundMarker:@""];
+        
+        NSDictionary *subDict = [NSDictionary dictionaryWithObjects:subValues forKeys:subKeys];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self downloadThread:subDict identifier:[NSString stringWithFormat:@"%lld-%lld",idx,(idx+2000)]];
+        });
+        
+        idx += length;
+    }
+}
+
++ (void)downloadThread:(NSDictionary *)map identifier:(NSString *)identifier
+{
+    //    NSString *normalDonePath = [[self root] stringByAppendingPathComponent:[NSString stringWithFormat:@"normalDone_%@",identifier]];
+    NSString *largeDonePath = [[self root] stringByAppendingPathComponent:[NSString stringWithFormat:@"largeDone_%@",identifier]];
+    //    NSMutableArray *normalDone = [NSMutableArray arrayWithArray:[NSArray arrayWithContentsOfFile:normalDonePath]];
+    NSMutableArray *largeDone = [NSMutableArray arrayWithArray:[NSArray arrayWithContentsOfFile:largeDonePath]];
+    
+    //    NSLog(@"本轮下载开始，还有 %d 个小图未完成",(map.count-normalDone.count));
+    NSLog(@"%@，还有 %d 个大图未完成",identifier,(map.count-largeDone.count));
+    
+    //    NSString *normalFolder = [self normalPath];
+    NSString *largeFolder = [[self largePath] stringByAppendingPathComponent:identifier];
+    [self createFolderIfNeed:largeFolder];
+    
+    for (NSString *token in map) {
+        
+        //        BOOL hasNormalImage = [normalDone containsObject:token];
+        BOOL hasLargeImage = [largeDone containsObject:token];
+        
+        if ( hasLargeImage) {
+            continue;
+        }
+        
+        NSString *imageInventory = map[token];
+        
+        
+        // 旧的命名方式
+        // NSString *qiniuName = [imageInventory stringByReplacingOccurrencesOfString:@"/" withString:@"%%2F"];
+        // 新的命名方式
+        NSString *qiniuName = getQiniuName(imageInventory);
+
+        NSString *name = [[imageInventory lastPathComponent] lowercaseString];
+        
+        //        NSString *normalPath = [normalFolder stringByAppendingPathComponent:qiniuName];
+        NSString *largePath = [largeFolder stringByAppendingPathComponent:qiniuName];
+    
+        if ([[NSFileManager defaultManager] fileExistsAtPath:largePath]) {
+            [largeDone addObject:token];
+            continue;
+        }
+        
+        //        int normalDownloadResult = [self downloadImageNamed:name type:0 toPath:normalPath];
+        int largeDownloadResult = [self downloadImageNamed:name type:1 toPath:largePath];
+        
+        //        if (normalDownloadResult) {
+        //            [normalDone addObject:token];
+        //
+        //            NSLog(@"小图进度： %d / %d",normalDone.count,map.count);
+        //        }
+        if (largeDownloadResult) {
+            [largeDone addObject:token];
+            
+            NSLog(@"\t%@ ： %d / %d",identifier,largeDone.count,map.count);
+        }
+    }
+    
+    //    [FileManager removeItemAtPath:normalDonePath error:nil];
+    [FileManager removeItemAtPath:largeDonePath error:nil];
+    //    [normalDone writeToFile:normalDonePath atomically:YES];
+    [largeDone writeToFile:largeDonePath atomically:YES];
+    
+    //    NSLog(@"本轮下载结束，还有 %d 个小图未完成",(map.count-normalDone.count));
+    NSLog(@"\t%@结束，还有 %d 个大图未完成",identifier,(map.count-largeDone.count));
+}
+
+
+/**
+ 下载图片
+
+ @param name 图片名
+ @param type 0小图 1大图 2ingame
+ @param path 保存位置
+ @return 0：错误 1：成功 2：不需要下载
+ */
++ (int)downloadImageNamed:(NSString *)name type:(int)type toPath:(NSString *)path
+{
+    if (name.length == 0) {
+        return 2;
+    }
+    
+    NSString *imageURL;
+    
+    // 获取图片链接
+    {
+        NSString *key = arc4random_uniform(10)%2==0?@"CD9010FD71FA1583192F9BDB87ED8164":@"D46675A241E560655ABD306C2A275D60";
+        NSString *URL = [@"https://api.steampowered.com/IEconDOTA2_570/GetItemIconPath/v1?" stringByAppendingFormat:@"key=%@&iconname=%@&icontype=%d",key,name,type];
+        NSError *error;
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:URL] options:NSDataReadingUncached error:&error];
+        if (error || !data) {
+            if (type == 1) {
+                // 大图没找到，下载小图
+                [self downloadImageNamed:name type:0 toPath:path];
+                return 0;
+            }
+            NSLog(@"data出错了！%@",error);
+            return 0;
+        }
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        if (error) {
+            if (type == 1) {
+                // 大图没找到，下载小图
+                [self downloadImageNamed:name type:0 toPath:path];
+                return 0;
+            }
+            NSLog(@"dict出错了！");
+            return 0;
+        }
+        NSString *imageRemotePath = dict[@"result"][@"path"];
+        if (imageRemotePath.length == 0) {
+            if (type == 1) {
+                // 大图没找到，下载小图
+                [self downloadImageNamed:name type:0 toPath:path];
+                return 0;
+            }
+            return 0;
+        }
+        
+        imageURL = [@"http://cdn.dota2.com/apps/570/" stringByAppendingString:imageRemotePath];
+    }
+    
+    // 下载图片
+    {
+        NSError *error;
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL] options:NSDataReadingUncached error:&error];
+        if (error || !data) {
+            NSLog(@"下载图片出错了！%@",error);
+            return 0;
+        }
+        [FileManager removeItemAtPath:path error:nil];
+        
+        UIImage *image = [UIImage imageWithData:data];
+        NSData *jpegData = UIImageJPEGRepresentation(image, 0.90);
+        [jpegData writeToFile:path atomically:YES];
+    }
+    return 1;
+}
+
+@end

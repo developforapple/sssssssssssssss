@@ -1,0 +1,10 @@
+target 'ShiPing' do
+
+pod 'SDWebImage', '~> 4.0'
+pod 'FMDB'
+pod 'Qiniu', '~> 7.1.5'
+pod 'YYModel'
+pod 'SSZipArchive', '~> 1.8.1'
+pod 'AVOSCloud'
+
+end
