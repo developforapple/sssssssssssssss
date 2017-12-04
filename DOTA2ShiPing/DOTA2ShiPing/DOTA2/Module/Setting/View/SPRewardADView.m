@@ -8,14 +8,17 @@
 
 #import "SPRewardADView.h"
 
-@import GoogleMobileAds;
+#if AdMobSDK_Enabled
+    @import GoogleMobileAds;
 
 @interface SPRewardADView () <GADInterstitialDelegate>
 @property (strong, nonatomic) GADInterstitial *ad;
 @end
+#endif
 
 @implementation SPRewardADView
 
+#if AdMobSDK_Enabled
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -68,5 +71,6 @@
 {
     NSLog(@"点击了激励广告，离开应用");
 }
+#endif
 
 @end

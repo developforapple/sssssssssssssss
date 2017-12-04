@@ -1,0 +1,6 @@
+framework module Pods___SPDev {
+  umbrella header "Pods-_-SPDev-umbrella.h"
+
+  export *
+  module * { export * }
+}

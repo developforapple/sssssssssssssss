@@ -4,15 +4,45 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>DOTA2ShiPing.xcscheme</key>
+		<key>DOTA2ShiPing copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>35</integer>
+		</dict>
+		<key>DOTA2ShiPing_Pro copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>36</integer>
+		</dict>
+		<key>SPAd.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>SPDev.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>SPPro.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>2D48D2921CDE20D600190F0C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2DD662D91FD57D62000E7223</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2DD663E21FD57D83000E7223</key>
 		<dict>
 			<key>primary</key>
 			<true/>

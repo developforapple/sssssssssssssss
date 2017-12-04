@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_DOTA2ShiPingVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_DOTA2ShiPingVersionString[];
+FOUNDATION_EXPORT double Pods___SPAdVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods___SPAdVersionString[];
 

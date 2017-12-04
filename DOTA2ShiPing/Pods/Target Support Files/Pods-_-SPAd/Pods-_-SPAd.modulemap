@@ -1,0 +1,6 @@
+framework module Pods___SPAd {
+  umbrella header "Pods-_-SPAd-umbrella.h"
+
+  export *
+  module * { export * }
+}

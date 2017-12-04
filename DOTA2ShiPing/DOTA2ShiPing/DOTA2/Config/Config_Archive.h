@@ -16,7 +16,8 @@ YG_EXTERN NSString *const kAppAppleID;
 YG_EXTERN NSString *const kAppChannel;
 // 渠道id。AppStore：1 InHouse：0
 YG_EXTERN NSString *const kAppChannelID;
-// 应用的id
-YG_EXTERN NSString *const kAppBundleID;
+
+YG_EXTERN BOOL isProVersion(void);
+
 
 #endif /* Config_Archive_h */

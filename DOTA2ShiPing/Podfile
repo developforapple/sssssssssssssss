@@ -3,8 +3,9 @@ use_frameworks!
 inhibit_all_warnings!
 platform:ios, '9.0'
 
-target 'DOTA2ShiPing' do
-#    pod 'DTCoreText', '~> 1.6.21'
+abstract_target '_' do
+
+    #    pod 'DTCoreText', '~> 1.6.21'
     pod 'ReactiveObjC'
     pod 'IAPHelper'       #https://github.com/saturngod/IAPHelper
     pod 'YYModel'         #https://github.com/ibireme/YYModel
@@ -46,9 +47,19 @@ target 'DOTA2ShiPing' do
 
     pod 'MXParallaxHeader'
 
-    pod 'Google-Mobile-Ads-SDK'
-    
     pod 'FCUUID'
+    
+    target 'SPDev' do
+        pod 'Google-Mobile-Ads-SDK'
+    end
+    
+    target 'SPAd' do
+        pod 'Google-Mobile-Ads-SDK'
+    end
+    
+    target 'SPPro' do
+    
+    end
 
 end
 

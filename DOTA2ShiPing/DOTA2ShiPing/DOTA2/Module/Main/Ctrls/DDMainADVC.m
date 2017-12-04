@@ -7,28 +7,46 @@
 //
 
 #import "DDMainADVC.h"
-#import "GDTMobBannerView.h"
 #import "SPConfigManager.h"
 #import "SPIAPHelper.h"
 
-#if AdMobSDK_Enabled
-#import <GoogleMobileAds/GoogleMobileAds.h>
+#if TARGET_PRO
+    @interface GADBannerView : UIView
+    @end
+    @implementation GADBannerView
+    @end
+#else
+    #import <GoogleMobileAds/GoogleMobileAds.h>
+    #import "GDTMobBannerView.h"
 #endif
 
 static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 
-@interface DDMainADVC () <GADAdSizeDelegate,GADBannerViewDelegate,GDTMobBannerViewDelegate>
+@interface DDMainADVC ()
+
+#if !TARGET_PRO
+<
+    GADAdSizeDelegate,
+    GADBannerViewDelegate,
+    GDTMobBannerViewDelegate
+>
+#endif
+
 @property (weak, nonatomic) IBOutlet UIView *mainContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainContainerFullSizeConstraint;
 @property (strong, nonatomic) UITabBarController *tabBarCtrl;
 
 @property (weak, nonatomic) IBOutlet UIView *adView;
+
+#if TARGET_PRO
+@property (weak, nonatomic) IBOutlet UIView *googleAd;
+#else
 @property (weak, nonatomic) IBOutlet GADBannerView *googleAd;
 @property (strong, nonatomic) GDTMobBannerView *tencentAd;
+#endif
 
 @property (assign, nonatomic) BOOL googleAdReady;
 @property (assign, nonatomic) BOOL tencentAdReady;
-
 @end
 
 @implementation DDMainADVC
@@ -39,9 +57,11 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(purchaseUpdate:) name:kSPPurchaseUpdateNotification object:nil];
     
     if ([self shouldLoadAd]) {
+
+#if !TARGET_PRO
         self.googleAd.autoloadEnabled = YES;
         self.googleAd.adUnitID = kAdMobBannerUnitID;
-        
+
         self.tencentAd = [[GDTMobBannerView alloc] initWithFrame:self.adView.bounds
                                                           appkey:kTencentGDTAppKey
                                                      placementId:kTencentGDTLaunchPOSID];
@@ -50,8 +70,14 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
         self.tencentAd.isGpsOn = YES;
         [self.tencentAd loadAdAndShow];
         [self addTencentAdConstraint];
+#endif
+        
     }else{
+        
+#if !TARGET_PRO
         self.googleAd.autoloadEnabled = NO;
+#endif
+        
     }
     [self updateAdView];
     
@@ -60,10 +86,12 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 
 - (void)addTencentAdConstraint
 {
+#if !TARGET_PRO
     [self.adView addSubview:self.tencentAd];
     self.tencentAd.translatesAutoresizingMaskIntoConstraints = NO;
     [self.adView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":self.tencentAd}]];
     [self.adView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":self.tencentAd}]];
+#endif
 }
 
 - (void)addTabBarCtrlConstraint
@@ -102,7 +130,9 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 
 - (void)updateAdView
 {
+
     if ([self shouldLoadAd]) {
+#if !TARGET_PRO
         [self setAdViewDisplay:[self isAdReady]];
         
         if (self.googleAdReady) {
@@ -111,19 +141,21 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
             [self.adView bringSubviewToFront:self.tencentAd];
         }
         [self.adView setHidden:NO animated:YES];
+#endif
     }else{
         [self setAdViewDisplay:NO];
         [self.adView setHidden:YES];
     }
 }
 
-#pragma mark - GADAdSizeDelegate
+#if !TARGET_PRO
+
+#pragma mark - ADMob Delegate
 - (void)adView:(GADBannerView *)bannerView willChangeAdSizeTo:(GADAdSize)size
 {
     
 }
 
-#pragma mark - GADBannerViewDelegate
 - (void)adViewDidReceiveAd:(GADBannerView *)bannerView
 {
     NSLog(@"收到了ad");
@@ -217,6 +249,7 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 {
     NSLog(@"GDT Banner 全屏广告页 已关闭");
 }
+#endif // !TARGET_PRO
 
 #pragma mark -
 - (UIViewController *)childViewControllerForStatusBarStyle

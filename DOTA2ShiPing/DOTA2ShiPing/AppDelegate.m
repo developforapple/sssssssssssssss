@@ -10,37 +10,38 @@
 #import "UIImage+ImageEffects.h"
 #import "SPLaunchADVC.h"
 #import "SPSteamAPI.h"
-#import "JZNavigationExtension.h"
 #import "SPItemImageLoader.h"
-#import <SDWebImage/SDWebImagePrefetcher.h>
 
 #if LeanCloudSDK_Enabled
-#import "AVOSCloud.h"
+    #import "AVOSCloud.h"
 #endif
 
-#if AdMobSDK_Enabled
-#import <GoogleMobileAds/GoogleMobileAds.h>
+#if !TARGET_PRO
+    #import <GoogleMobileAds/GoogleMobileAds.h>
+    #import "GDTSplashAd.h"
 #endif
 
 #if PgySDK_Enabled
-#import <PgySDK/PgyManager.h>
-#import <PgyUpdate/PgyUpdateManager.h>
+    #import <PgySDK/PgyManager.h>
+    #import <PgyUpdate/PgyUpdateManager.h>
 #endif
 
 #if BuglySDK_Enabled
-#import <Bugly/Bugly.h>
+    #import <Bugly/Bugly.h>
 #endif
 
+@import JZNavigationExtension;
 @import FCUUID;
-
-#import "Chameleon.h"
-#import "GDTSplashAd.h"
-
+@import ChameleonFramework;
 @import SDWebImage;
 
 @interface AppDelegate ()
 @property (strong, nonatomic) SPLaunchADVC *adVC;
+
+#if !TARGET_PRO
 @property (strong, nonatomic) GDTSplashAd *ad;
+#endif
+
 @end
 
 @implementation AppDelegate
@@ -103,7 +104,9 @@
     [SDWebImagePrefetcher sharedImagePrefetcher].maxConcurrentDownloads = 4;
     [SDWebImagePrefetcher sharedImagePrefetcher].prefetcherQueue = dispatch_queue_create("SDWebImagePrefetcherQueue", DISPATCH_QUEUE_CONCURRENT);
     
+#if !TARGET_PRO
     [GADMobileAds configureWithApplicationID:kAdMobAppID];
+#endif
     
 #if PgySDK_Enabled
     [[PgyManager sharedPgyManager] startManagerWithAppId:kPgyAppID];
@@ -125,15 +128,18 @@
 
 - (void)_loadSplashAd
 {
+#if !TARGET_PRO
     self.ad = [[GDTSplashAd alloc] initWithAppkey:kTencentGDTAppKey placementId:kTencentGDTLaunchPOSID];
     self.ad.fetchDelay = 3;
     self.ad.delegate = self;
     [self.ad loadAdAndShowInWindow:self.window];
+#endif
 }
 
 @end
 
 
+#if !TARGET_PRO
 @interface AppDelegate (GDTSplashAd) <GDTSplashAdDelegate>
 @end
 
@@ -221,8 +227,8 @@
  */
 - (void)splashAdLifeTime:(NSUInteger)time
 {
-    NSLog(@"全屏广告还剩%d秒",time);
+    NSLog(@"全屏广告还剩%d秒",(int)time);
 }
 
 @end
-
+#endif // !TARGET_PRO

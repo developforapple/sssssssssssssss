@@ -65,5 +65,8 @@
 // 谷歌AdMob
 #define AdMobSDK_Enabled    YG_SDK_ENABLED     (GoogleMobileAds/GoogleMobileAds.h)
 
+// 腾讯广点通平台
+#define GDTSDK_Enabled      YG_SDK_ENABLED     (GDTMobBannerView.h)
+
 #endif /* ThirdParty_h */
 

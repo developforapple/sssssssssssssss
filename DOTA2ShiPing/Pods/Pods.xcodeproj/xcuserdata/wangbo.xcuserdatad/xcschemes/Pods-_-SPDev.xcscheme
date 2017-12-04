@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0910"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D48D2921CDE20D600190F0C"
-               BuildableName = "DOTA2ShiPing.app"
-               BlueprintName = "DOTA2ShiPing"
-               ReferencedContainer = "container:DOTA2ShiPing.xcodeproj">
+               BlueprintIdentifier = "F7BF4CB1EEEDA50DC961A3DF8481BFE6"
+               BuildableName = "Pods___SPDev.framework"
+               BlueprintName = "Pods-_-SPDev"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -30,15 +30,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D48D2921CDE20D600190F0C"
-            BuildableName = "DOTA2ShiPing.app"
-            BlueprintName = "DOTA2ShiPing"
-            ReferencedContainer = "container:DOTA2ShiPing.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -53,16 +44,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D48D2921CDE20D600190F0C"
-            BuildableName = "DOTA2ShiPing.app"
-            BlueprintName = "DOTA2ShiPing"
-            ReferencedContainer = "container:DOTA2ShiPing.xcodeproj">
+            BlueprintIdentifier = "F7BF4CB1EEEDA50DC961A3DF8481BFE6"
+            BuildableName = "Pods___SPDev.framework"
+            BlueprintName = "Pods-_-SPDev"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -72,16 +62,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D48D2921CDE20D600190F0C"
-            BuildableName = "DOTA2ShiPing.app"
-            BlueprintName = "DOTA2ShiPing"
-            ReferencedContainer = "container:DOTA2ShiPing.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -21,11 +21,15 @@ NSString *const kIAPProductCoffee = @"coffee";
 
 + (BOOL)isPurchased
 {
+#if TARGET_PRO
+    return YES;
+#else
     return
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kOLDProductID] ||
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductAD] ||
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoke] ||
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoffee];
+#endif
 }
 
 + (void)sendNotification
