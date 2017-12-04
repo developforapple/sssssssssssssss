@@ -32,14 +32,17 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 @property (copy, nonatomic) NSString *langDataTmpPath;
 @property (copy, nonatomic) NSString *langPatchTmpPath;
 
+@property (strong, nonatomic) AVQuery *baseDataVersionQuery;
+@property (strong, nonatomic) AVQuery *langDataVersionQuery;
+@property (strong, nonatomic) AVQuery *langPatchVersionQuery;
+
+@property (strong, nonatomic) AVQuery *baseDataQuery;
+@property (strong, nonatomic) AVQuery *langDataQuery;
+@property (strong, nonatomic) AVQuery *langPatchQuery;
+
 @end
 
 @implementation SPResourceManager
-
-+ (BOOL)needInitializeDatabase
-{
-    return !([SPBaseData isBaseDataValid] && [SPBaseData isLangDataValid:GetLang]);
-}
 
 + (instancetype)manager
 {
@@ -82,9 +85,11 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 {
     if (!completion) return;
     
+    ygweakify(self);
     AVQuery *query = [AVQuery queryWithClassName:@"Version"];
     [query whereKey:@"name" equalTo:@"base_data_version"];
     [query findObjectsInBackgroundWithBlock:^(NSArray<AVObject *> *objects, NSError *error) {
+        ygstrongify(self);
         if (error) {
             completion(nil,error,0);
             return;
@@ -104,19 +109,23 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
                 }
                 completion(objects2.firstObject,nil,version);
             }];
+            self.baseDataQuery = query2;
         }else{
             completion(nil,nil,version);
         }
     }];
+    self.baseDataVersionQuery = query;
 }
 
 - (void)checkLangMainFileUpdate:(void (^)(AVFile *,NSError *, long long version))completion
 {
     if (!completion) return;
     
+    ygweakify(self);
     AVQuery *query = [AVQuery queryWithClassName:@"Version"];
     [query whereKey:@"name" equalTo:[NSString stringWithFormat:@"lang_version_%@",self.lang]];
     [query findObjectsInBackgroundWithBlock:^(NSArray<AVObject *> *objects, NSError *error) {
+        ygstrongify(self);
         if (error) {
             completion(nil,error, 0);
             return ;
@@ -135,20 +144,23 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
                 }
                 completion(objects2.firstObject,nil,version);
             }];
-            
+            self.langDataQuery = query2;
         }else{
             completion(nil,nil,version);
         }
     }];
+    self.langDataVersionQuery = query;
 }
 
 - (void)checkLangPatchFile:(long long)version completion:(void (^)(AVFile *,NSError *, long long version))completion
 {
     if (!completion) return;
     
+    ygweakify(self);
     AVQuery *query = [AVQuery queryWithClassName:@"Version"];
     [query whereKey:@"name" equalTo:[NSString stringWithFormat:@"lang_patch_version_%@",self.lang]];
     [query findObjectsInBackgroundWithBlock:^(NSArray<AVObject *> *objects, NSError *error) {
+        ygstrongify(self);
         if (error) {
             completion(nil,error, 0);
             return ;
@@ -166,11 +178,12 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
                 }
                 completion(objects2.firstObject,nil,version);
             }];
-            
+            self.langPatchQuery = query2;
         }else{
             completion(nil,nil,version);
         }
     }];
+    self.langPatchVersionQuery = query;
 }
 
 - (void)checkUpdate
@@ -260,7 +273,9 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
         [self.baseDataFile getDataStreamInBackgroundWithBlock:^(NSInputStream *stream, NSError *error) {
             ygstrongify(self);
             self.error = error;
-            completion?completion(error==nil):0;
+            NSString  *filePath = [self.baseDataFile localPath];
+            BOOL suc = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+            completion?completion(error==nil && suc):0;
         } progressBlock:^(NSInteger percentDone) {
             ygstrongify(self);
             self.baseDataProgress = percentDone/100.f;
@@ -280,7 +295,9 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
         [self.langFile getDataStreamInBackgroundWithBlock:^(NSInputStream *stream, NSError *error) {
             ygstrongify(self);
             self.error = error;
-            completion?completion(error==nil):0;
+            NSString  *filePath = [self.langFile localPath];
+            BOOL suc = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+            completion?completion(error==nil && suc):0;
         } progressBlock:^(NSInteger percentDone) {
             ygstrongify(self);
             self.langFileProgress = percentDone/100.f;
@@ -300,7 +317,9 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
         [self.langPatchFile getDataStreamInBackgroundWithBlock:^(NSInputStream *stream, NSError *error) {
             ygstrongify(self);
             self.error = error;
-            completion?completion(error==nil):0;
+            NSString  *filePath = [self.langPatchFile localPath];
+            BOOL suc = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+            completion?completion(error==nil && suc):0;
         } progressBlock:^(NSInteger percentDone) {
             ygstrongify(self);
             self.langPatchProgress = percentDone/100.f;
@@ -449,6 +468,12 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
     self.langFile = nil;
     self.langPatchFile = nil;
     self.error = nil;
+    self.baseDataQuery = nil;
+    self.langDataQuery = nil;
+    self.langPatchQuery = nil;
+    self.baseDataVersionQuery = nil;
+    self.langPatchVersionQuery = nil;
+    self.langDataVersionQuery = nil;
     [FileManager removeItemAtPath:[SPBaseData tmpFolder] error:nil];
 }
 

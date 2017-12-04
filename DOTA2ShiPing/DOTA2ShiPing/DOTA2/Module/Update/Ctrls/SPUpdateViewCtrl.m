@@ -8,33 +8,35 @@
 
 #import "SPUpdateViewCtrl.h"
 #import "SPResourceManager.h"
+#import "SPDataManager.h"
 #import "ReactiveObjC.h"
 
+@import AFNetworking.AFNetworkReachabilityManager;
+
 @interface SPUpdateViewCtrl ()
+@property (weak, nonatomic) IBOutlet UIView *updateView;
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
+@property (weak, nonatomic) IBOutlet UIButton *retryBtn;
 
 @end
 
 @implementation SPUpdateViewCtrl
 
-+ (BOOL)needUpdateNecessary
-{
-    return [SPResourceManager needInitializeDatabase];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    if ([SPResourceManager needInitializeDatabase]) {
+    if ([SPDataManager isDataValid]) {
         self.stateLabel.text = @"首次使用，需要下载基础数据";
     }else{
         self.stateLabel.text = @"正在获取更新信息";
     }
     self.progressLabel.text = @"";
+    self.retryBtn.hidden = YES;
     
     [self initSignal];
+    [self setupCompletion];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -71,6 +73,12 @@
          ygstrongify(self);
          self.progressLabel.text = [NSString stringWithFormat:@"%02d%%",(int)(x.floatValue*100)];
      }];
+}
+
+- (void)setupCompletion
+{
+    ygweakify(self);
+    SPResourceManager *manager = [SPResourceManager manager];
     manager.downloadCompleted = ^{
         ygstrongify(self);
         self.progressLabel.text = @"解压缩中...";
@@ -104,7 +112,8 @@
 
 - (void)showError
 {
-    
+    [self.updateView setHidden:YES animated:YES];
+    [self.retryBtn setHidden:NO animated:YES];
 }
 
 - (void)beginUpdate
@@ -126,6 +135,17 @@
     [self dismiss:^{
         [SVProgressHUD showSuccessWithStatus:@"更新完成"];
     }];
+}
+
+- (IBAction)retry:(id)sender
+{
+    [[SPResourceManager manager] clean];
+    [self setupCompletion];
+    
+    [self.retryBtn setHidden:YES animated:YES];
+    [self.updateView setHidden:NO animated:YES];
+    self.progressLabel.text = @"";
+    [self checkUpdate];
 }
 
 @end

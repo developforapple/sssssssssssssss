@@ -28,6 +28,8 @@
  */
 @interface SPDataManager : SPObject
 
++ (BOOL)isDataValid;
+
 + (instancetype)shared;
 
 - (void)reloadData;

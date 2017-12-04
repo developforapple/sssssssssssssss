@@ -43,9 +43,6 @@
 
 + (instancetype)manager;
 
-// 是否需要初始化数据库
-+ (BOOL)needInitializeDatabase;
-
 // 当前本地化语言
 @property (copy, readonly, nonatomic) NSString *lang;
 
@@ -72,5 +69,7 @@
 - (void)beginUnzip;
 - (void)saveData;
 - (void)serializeData;
+
+- (void)clean;
 
 @end

@@ -9,6 +9,7 @@
 #import "DDMainTBC.h"
 #import "SPUpdateViewCtrl.h"
 #import "SPResourceManager.h"
+#import "SPDataManager.h"
 @import ReactiveObjC;
 @import AVOSCloud;
 
@@ -31,7 +32,7 @@
 
 - (void)checkUpdateIfNeed
 {
-    if ([SPUpdateViewCtrl needUpdateNecessary]) {
+    if (![SPDataManager isDataValid]) {
         _lastCheckTime = [[NSDate date] timeIntervalSince1970];
         [[SPUpdateViewCtrl instanceFromStoryboard] show];
     }else{
@@ -42,11 +43,9 @@
             [RACObserve([SPResourceManager manager], needUpdate)
              subscribeNext:^(id  x) {
                  ygstrongify(self);
-                 
                  if (!x) {
                      return;
                  }
-                 
                  if ([x boolValue]) {
                      [self noticeNeedUpdate];
                  }

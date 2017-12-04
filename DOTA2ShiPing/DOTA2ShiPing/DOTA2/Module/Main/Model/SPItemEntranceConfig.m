@@ -173,6 +173,8 @@ NSString *const kSPItemEntranceConfigUnits = @"SPItemEntranceConfigUnitsV3";
 
 - (void)updateHeroUnit
 {
+    if (![SPDataManager isDataValid]) return;
+    
     SPItemEntranceUnit *unit = [self unitOfType:SPItemEntranceTypeHeroItem];
     RunOnGlobalQueue(^{
         NSArray *heroes = [SPDataManager shared].heroes;
@@ -185,6 +187,8 @@ NSString *const kSPItemEntranceConfigUnits = @"SPItemEntranceConfigUnitsV3";
 
 - (void)updateItemsUnit:(SPItemEntranceUnit *)unit
 {
+    if (![SPDataManager isDataValid]) return;
+    
     NSString *sql;
     switch (unit.type) {
         case SPItemEntranceTypeCourier:{

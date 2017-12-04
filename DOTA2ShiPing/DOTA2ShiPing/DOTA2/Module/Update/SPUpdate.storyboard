@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -67,12 +67,12 @@
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="PNl-pv-Y0L">
                                                 <rect key="frame" x="142" y="0.0" width="37" height="37"/>
-                                                <color key="color" red="0.015686274510000001" green="0.51764705879999995" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="color" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
                                             </activityIndicatorView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99.9%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hxz-aT-OTr">
-                                                <rect key="frame" x="131.5" y="57" width="57.5" height="24"/>
+                                                <rect key="frame" x="131" y="57" width="58.5" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <color key="textColor" red="0.015686274510000001" green="0.51764705879999995" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -85,12 +85,24 @@
                                             <constraint firstAttribute="bottom" secondItem="Hxz-aT-OTr" secondAttribute="bottom" id="s1Q-f7-bCA"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HOt-2E-oDL">
+                                        <rect key="frame" x="139.5" y="95.5" width="41" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="重试">
+                                            <color key="titleColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="retry:" destination="IeP-PJ-KlD" eventType="touchUpInside" id="8IX-Ey-pTt"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="yLu-Cf-NnH" firstAttribute="leading" secondItem="vkt-8r-DDc" secondAttribute="leading" id="1vo-lg-Veh"/>
+                                    <constraint firstItem="HOt-2E-oDL" firstAttribute="centerX" secondItem="vkt-8r-DDc" secondAttribute="centerX" id="Ow2-Nd-5DJ"/>
                                     <constraint firstAttribute="trailing" secondItem="yLu-Cf-NnH" secondAttribute="trailing" id="R0S-7b-7jf"/>
                                     <constraint firstItem="yLu-Cf-NnH" firstAttribute="centerY" secondItem="vkt-8r-DDc" secondAttribute="centerY" id="XsJ-7Z-IZY"/>
+                                    <constraint firstItem="HOt-2E-oDL" firstAttribute="centerY" secondItem="vkt-8r-DDc" secondAttribute="centerY" id="soo-yX-HOn"/>
                                     <constraint firstItem="yLu-Cf-NnH" firstAttribute="centerX" secondItem="vkt-8r-DDc" secondAttribute="centerX" id="yhM-eT-AMi"/>
                                 </constraints>
                             </view>
@@ -109,7 +121,9 @@
                     </view>
                     <connections>
                         <outlet property="progressLabel" destination="Hxz-aT-OTr" id="kgB-1w-7Re"/>
+                        <outlet property="retryBtn" destination="HOt-2E-oDL" id="HAT-eQ-bIy"/>
                         <outlet property="stateLabel" destination="Mp9-xp-RgL" id="nU9-dp-ifr"/>
+                        <outlet property="updateView" destination="yLu-Cf-NnH" id="aYa-mg-2vW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QK2-En-bOi" userLabel="First Responder" sceneMemberID="firstResponder"/>

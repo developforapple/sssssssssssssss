@@ -2223,6 +2223,7 @@
 				2D48D2911CDE20D600190F0C /* Resources */,
 				A52B809E02EAF2FCBDDFB959 /* [CP] Embed Pods Frameworks */,
 				3F0A27494A6243F91DBDB826 /* [CP] Copy Pods Resources */,
+				69CFEC471FD504F2004093E6 /* Bugly Upload dSYM */,
 			);
 			buildRules = (
 			);
@@ -2327,6 +2328,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DOTA2ShiPing/Pods-DOTA2ShiPing-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		69CFEC471FD504F2004093E6 /* Bugly Upload dSYM */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bugly Upload dSYM";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ ${BUGLY_ENABLED} -eq 1 ]; then\n\nif [ ! -f ${BUGLY_SHELL_PATH} -o  ! -f ${BUGLY_JAR_PATH} ]; then\n\necho 'Build Phases / Bugly Upload dSYM  Bugly脚本或jar路径不正确'\necho '如果要自动上传dSYM文件，请在BuildSetting的User-Defined中设置 BUGLY_SHELL_PATH 和 BUGLY_SHELL_PATH 为正确的路径。'\necho '如果不需要上传，请修改参数 BUGLY_ENABLED 为 0'\nexit 1\n\nfi\n\n#https://bugly.qq.com/docs/user-guide/symbol-configuration-ios/?v=20170223160322\nchmod 777 ${BUGLY_SHELL_PATH}\n${BUGLY_SHELL_PATH}\nfi";
 		};
 		A52B809E02EAF2FCBDDFB959 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2788,9 +2803,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUGLY_APP_BUNDLE_ID = "$(PRODUCT_BUNDLE_IDENTIFIER)";
-				BUGLY_APP_ID = todo;
-				BUGLY_APP_KEY = todo;
-				BUGLY_ENABLED = 0;
+				BUGLY_APP_ID = 900001243;
+				BUGLY_APP_KEY = eTjNESyocWJz4dLu;
+				BUGLY_ENABLED = 1;
 				BUGLY_JAR_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/buglySymboliOS.jar";
 				BUGLY_SHELL_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/dSYMUpload.sh";
 				CLANG_ENABLE_MODULES = YES;
@@ -2858,9 +2873,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUGLY_APP_BUNDLE_ID = "$(PRODUCT_BUNDLE_IDENTIFIER)";
-				BUGLY_APP_ID = todo;
-				BUGLY_APP_KEY = todo;
-				BUGLY_ENABLED = 0;
+				BUGLY_APP_ID = 900001243;
+				BUGLY_APP_KEY = eTjNESyocWJz4dLu;
+				BUGLY_ENABLED = 1;
 				BUGLY_JAR_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/buglySymboliOS.jar";
 				BUGLY_SHELL_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/dSYMUpload.sh";
 				CLANG_ENABLE_MODULES = YES;

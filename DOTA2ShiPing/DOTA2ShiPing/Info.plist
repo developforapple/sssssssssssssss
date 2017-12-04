@@ -32,7 +32,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>400001</string>
+	<string>400004</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>
@@ -80,8 +80,22 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>使用媒体库</string>
+	<key>NSCameraUsageDescription</key>
+	<string>使用相机</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>使用定位</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string></string>
+	<key>NSLocationUsageDescription</key>
+	<string>使用定位</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>使用麦克风</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>使用相册</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>使用相册</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>DINPro-Bold.otf</string>

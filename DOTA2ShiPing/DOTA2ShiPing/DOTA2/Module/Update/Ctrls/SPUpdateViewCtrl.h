@@ -10,6 +10,4 @@
 
 @interface SPUpdateViewCtrl : YGBasePopViewCtrl
 
-+ (BOOL)needUpdateNecessary;
-
 @end

@@ -28,6 +28,11 @@
 
 @implementation SPDataManager
 
++ (BOOL)isDataValid
+{
+    return [SPBaseData isBaseDataValid] && [SPBaseData isLangDataValid:GetLang];
+}
+
 + (instancetype)shared
 {
     static SPDataManager *shared;

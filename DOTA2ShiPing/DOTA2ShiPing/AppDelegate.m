@@ -27,6 +27,12 @@
 #import <PgyUpdate/PgyUpdateManager.h>
 #endif
 
+#if BuglySDK_Enabled
+#import <Bugly/Bugly.h>
+#endif
+
+@import FCUUID;
+
 #import "Chameleon.h"
 #import "GDTSplashAd.h"
 
@@ -104,6 +110,12 @@
     [PgyManager sharedPgyManager].themeColor = kBarTintColor;
     [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:kPgyAppID];
     [[PgyUpdateManager sharedPgyManager] checkUpdate];
+#endif
+    
+#if BuglySDK_Enabled
+    [Bugly startWithAppId:kBuglyAppID];
+    [Bugly setUserIdentifier:Device_UUID];
+    [Bugly updateAppVersion:AppBuildVersion];
 #endif
     
 }

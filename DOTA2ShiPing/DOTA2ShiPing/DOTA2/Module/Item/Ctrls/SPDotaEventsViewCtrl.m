@@ -61,6 +61,11 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (![SPDataManager isDataValid]) {
+        [UIAlertController alert:@"数据不完整" message:@"请关闭应用后重试"];
+        return;
+    }
+    
     SPDotaEvent *event = self.events[indexPath.item];
     SPItemQuery *query = [SPItemQuery queryWithEvent:event];
     query.queryTitle = event.name_loc;

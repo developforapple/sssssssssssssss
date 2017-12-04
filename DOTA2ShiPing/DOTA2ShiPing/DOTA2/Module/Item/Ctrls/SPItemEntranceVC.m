@@ -121,10 +121,15 @@
         case SPItemEntranceTypeTreasureBundle:
         case SPItemEntranceTypeLeague:
         case SPItemEntranceTypeOther:{
-            NSArray *prefabs = [[SPDataManager shared] prefabsOfEntranceType:type];
-            SPItemQuery *query = [SPItemQuery queryWithPerfabs:prefabs];
-            query.queryTitle = unit.title;
-            [self showItemList:query];
+            if ([SPDataManager isDataValid]) {
+                NSArray *prefabs = [[SPDataManager shared] prefabsOfEntranceType:type];
+                SPItemQuery *query = [SPItemQuery queryWithPerfabs:prefabs];
+                query.queryTitle = unit.title;
+                [self showItemList:query];
+            }else{
+                //数据不完整
+                [UIAlertController alert:@"数据不完整" message:@"请关闭应用后重试"];
+            }
         }   break;
         case SPItemEntranceTypeOnSale:{
             NSString *url = [@"http://dota2.com/store" stringByAppendingFormat:@"/?random=%d",arc4random_uniform(10000)];

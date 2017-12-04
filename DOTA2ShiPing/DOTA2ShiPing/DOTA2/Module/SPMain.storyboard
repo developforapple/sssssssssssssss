@@ -1150,7 +1150,7 @@
         <image name="icon_title_more" width="22" height="5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xxb-Qf-zZj"/>
+        <segue reference="b8f-RE-pTr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
 </document>
