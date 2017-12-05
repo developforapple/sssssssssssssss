@@ -437,6 +437,11 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     NSLog(@"开始计算更新的内容");
     [self calculateDif:archivePath];
     
+    // 删除旧文件
+    if (archivePath) {
+        [FileManager removeItemAtPath:archivePath error:nil];
+    }
+    
     [self saveVersion:@{@"version":@(thisVersion)}];
     SPLog(@"数据更新完成，版本：%lld",thisVersion);
     
@@ -445,94 +450,94 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
 
 - (void)calculateDif:(NSString *)archivePath
 {
-    // 比较archivePath 的db 和 dbPath 的db 的差异
+    NSMutableArray *add = [NSMutableArray array];
+    NSMutableArray *modify = [NSMutableArray array];
     
-    NSMutableSet *oldTokens = [NSMutableSet set];
-    {
-        FMDatabase *oldDB = [FMDatabase databaseWithPath:archivePath];
-        [oldDB open];
-        FMResultSet *result = [oldDB executeQuery:@"SELECT token FROM items"];
-        int index = [result columnIndexForName:@"token"];
-        while ([result next]) {
-            [oldTokens addObject:[result stringForColumnIndex:index]];
+    if (archivePath){
+        // 比较archivePath 的db 和 dbPath 的db 的差异
+        NSMutableSet *oldTokens = [NSMutableSet set];
+        {
+            FMDatabase *oldDB = [FMDatabase databaseWithPath:archivePath];
+            [oldDB open];
+            FMResultSet *result = [oldDB executeQuery:@"SELECT token FROM items"];
+            int index = [result columnIndexForName:@"token"];
+            while ([result next]) {
+                [oldTokens addObject:[result stringForColumnIndex:index]];
+            }
+            [oldDB close];
         }
-        [oldDB close];
-    }
-    
-    NSMutableSet *langChangeKeys = [NSMutableSet set];
-    {
-        long long v = [[SPLocalMapping langVersion][[NSString stringWithFormat:@"%@_patch",kSPLanguageSchinese]] longLongValue];
-        NSString *path = [SPLocalMapping changeLogFilePath:kSPLanguageSchinese version:v];
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:kNilOptions error:nil];
-        if (dict && [dict isKindOfClass:[NSDictionary class]]) {
-            NSArray *adds = dict[@"add"];
-            NSArray *modify = dict[@"modify"];
-            [langChangeKeys addObjectsFromArray:adds];
-            [langChangeKeys addObjectsFromArray:modify];
-        }
-    }
-    
-    {
-        NSMutableArray *add = [NSMutableArray array];
-        NSMutableArray *modify = [NSMutableArray array];
         
-        FMDatabase *db = [FMDatabase databaseWithPath:[self dbPath]];
-        [db open];
-        FMResultSet *result = [db executeQuery:@"SELECT token,item_description,item_name,item_type_name FROM items"];
-        int tokenIndex = [result columnIndexForName:@"token"];
-        int descIndex = [result columnIndexForName:@"item_description"];
-        int nameIndex = [result columnIndexForName:@"item_name"];
-        int typeIndex = [result columnIndexForName:@"item_type_name"];
-        while ([result next]) {
-            NSString *token = [result stringForColumnIndex:tokenIndex];
-            BOOL isNew = [oldTokens containsObject:token];
-            if (isNew) {
-                // 新饰品
-                [add addObject:token];
-                continue;
-            }
-            //旧饰品
-            {
-                NSString *text = [result stringForColumnIndex:descIndex];
-                if (![text isKindOfClass:[NSNull class]] &&
-                    text.length > 0 &&
-                    [langChangeKeys containsObject:text]) {
-                    //修改了描述
-                    [modify addObject:token];
-                    continue;
-                }
-            }
-            {
-                NSString *text = [result stringForColumnIndex:nameIndex];
-                if (![text isKindOfClass:[NSNull class]] &&
-                    text.length > 0 &&
-                    [langChangeKeys containsObject:text]) {
-                    //修改了名称
-                    [modify addObject:token];
-                    continue;
-                }
-            }
-            {
-                NSString *text = [result stringForColumnIndex:typeIndex];
-                if (![text isKindOfClass:[NSNull class]] &&
-                    text.length > 0 &&
-                    [langChangeKeys containsObject:text]) {
-                    //修改了类型
-                    [modify addObject:token];
-                    continue;
-                }
+        NSMutableSet *langChangeKeys = [NSMutableSet set];
+        {
+            long long v = [[SPLocalMapping langVersion][[NSString stringWithFormat:@"%@_patch",kSPLanguageSchinese]] longLongValue];
+            NSString *path = [SPLocalMapping changeLogFilePath:kSPLanguageSchinese version:v];
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:kNilOptions error:nil];
+            if (dict && [dict isKindOfClass:[NSDictionary class]]) {
+                NSArray *_add = dict[@"add"];
+                NSArray *_modify = dict[@"modify"];
+                [langChangeKeys addObjectsFromArray:_add];
+                [langChangeKeys addObjectsFromArray:_modify];
             }
         }
         
-        NSDictionary *change = @{@"add":add,
-                                 @"modify":modify};
-        NSData *data = [NSJSONSerialization dataWithJSONObject:change options:kNilOptions error:nil];
-        NSAssert(data, @"解析出错了！");
-        NSString *path = [self changeLogPath];
-        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
-        BOOL suc = [data writeToFile:path atomically:YES];
-        NSAssert(suc, @"保存出错了！");
+        {
+            FMDatabase *db = [FMDatabase databaseWithPath:[self dbPath]];
+            [db open];
+            FMResultSet *result = [db executeQuery:@"SELECT token,item_description,item_name,item_type_name FROM items"];
+            int tokenIndex = [result columnIndexForName:@"token"];
+            int descIndex = [result columnIndexForName:@"item_description"];
+            int nameIndex = [result columnIndexForName:@"item_name"];
+            int typeIndex = [result columnIndexForName:@"item_type_name"];
+            while ([result next]) {
+                NSString *token = [result stringForColumnIndex:tokenIndex];
+                BOOL isNew = [oldTokens containsObject:token];
+                if (isNew) {
+                    // 新饰品
+                    [add addObject:token];
+                    continue;
+                }
+                //旧饰品
+                {
+                    NSString *text = [result stringForColumnIndex:descIndex];
+                    if (![text isKindOfClass:[NSNull class]] &&
+                        text.length > 0 &&
+                        [langChangeKeys containsObject:text]) {
+                        //修改了描述
+                        [modify addObject:token];
+                        continue;
+                    }
+                }
+                {
+                    NSString *text = [result stringForColumnIndex:nameIndex];
+                    if (![text isKindOfClass:[NSNull class]] &&
+                        text.length > 0 &&
+                        [langChangeKeys containsObject:text]) {
+                        //修改了名称
+                        [modify addObject:token];
+                        continue;
+                    }
+                }
+                {
+                    NSString *text = [result stringForColumnIndex:typeIndex];
+                    if (![text isKindOfClass:[NSNull class]] &&
+                        text.length > 0 &&
+                        [langChangeKeys containsObject:text]) {
+                        //修改了类型
+                        [modify addObject:token];
+                        continue;
+                    }
+                }
+            }
+        }
     }
+    
+    NSDictionary *change = @{@"add":add,@"modify":modify};
+    NSData *data = [NSJSONSerialization dataWithJSONObject:change options:kNilOptions error:nil];
+    NSAssert(data, @"解析出错了！");
+    NSString *path = [self changeLogPath];
+    [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+    BOOL suc = [data writeToFile:path atomically:YES];
+    NSAssert(suc, @"保存出错了！");
 }
 
 - (NSString *)jsondataPath
