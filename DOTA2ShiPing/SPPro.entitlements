@@ -6,7 +6,7 @@
 	<string>development</string>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.wwwbbat.sp.ad</string>
+		<string>$(AppIdentifierPrefix)com.wwwbbat.sp.pro</string>
 	</array>
 </dict>
 </plist>

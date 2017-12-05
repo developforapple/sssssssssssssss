@@ -1131,6 +1131,7 @@
 		2D9350801FCF1B9E00719EC5 /* SPHistoryManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPHistoryManager.m; sourceTree = "<group>"; };
 		2D9350821FCF1BAA00719EC5 /* SPStarManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPStarManager.h; sourceTree = "<group>"; };
 		2D9350831FCF1BAA00719EC5 /* SPStarManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPStarManager.m; sourceTree = "<group>"; };
+		2DB4164F1FD705E500B08D63 /* SPPro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SPPro.entitlements; sourceTree = "<group>"; };
 		2DC0F68A1F1B6A2D004DCD3C /* SPHeroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHeroCell.h; sourceTree = "<group>"; };
 		2DC0F68B1F1B6A2D004DCD3C /* SPHeroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHeroCell.m; sourceTree = "<group>"; };
 		2DC0F68D1F1B6A2D004DCD3C /* SPItemHeroPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemHeroPickerVC.h; sourceTree = "<group>"; };
@@ -1712,6 +1713,7 @@
 		2D48D28A1CDE20D600190F0C = {
 			isa = PBXGroup;
 			children = (
+				2DB4164F1FD705E500B08D63 /* SPPro.entitlements */,
 				2D48D2951CDE20D700190F0C /* DOTA2ShiPing */,
 				2D48D2941CDE20D600190F0C /* Products */,
 				9DF9275624812581C6DA2B9C /* Frameworks */,
@@ -3187,12 +3189,45 @@
 					};
 					2D8080F21FD5B92500078A50 = {
 						DevelopmentTeam = 8QP3ZT6EXM;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2DD662D91FD57D62000E7223 = {
 						DevelopmentTeam = 8QP3ZT6EXM;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2DD663E21FD57D83000E7223 = {
 						DevelopmentTeam = 8QP3ZT6EXM;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -5210,6 +5245,7 @@
 				BUGLY_JAR_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/buglySymboliOS.jar";
 				BUGLY_SHELL_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/dSYMUpload.sh";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SPPro.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
@@ -5285,6 +5321,7 @@
 				BUGLY_JAR_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/buglySymboliOS.jar";
 				BUGLY_SHELL_PATH = "${SRCROOT}/DOTA2ShiPing/Bugly/dSYMUpload.sh";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SPPro.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8QP3ZT6EXM;

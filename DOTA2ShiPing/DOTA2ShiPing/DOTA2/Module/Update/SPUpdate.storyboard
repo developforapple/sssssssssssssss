@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -95,13 +95,66 @@
                                             <action selector="retry:" destination="IeP-PJ-KlD" eventType="touchUpInside" id="8IX-Ey-pTt"/>
                                         </connections>
                                     </button>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qls-pg-4mT">
+                                        <rect key="frame" x="111" y="74.5" width="98" height="77"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h6a-cH-Rob">
+                                                <rect key="frame" x="0.0" y="0.0" width="98" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="nKF-nK-56N"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                                <state key="normal" title="开启通知">
+                                                    <color key="titleColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds_" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius_">
+                                                        <real key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth_">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor_">
+                                                        <color key="value" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="openPushNotificaiton:" destination="IeP-PJ-KlD" eventType="touchUpInside" id="Vpg-ET-MrB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8X-aH-sPt">
+                                                <rect key="frame" x="0.0" y="48" width="98" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="关闭">
+                                                    <color key="titleColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="close:" destination="IeP-PJ-KlD" eventType="touchUpInside" id="eJK-1e-4yp"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="h6a-cH-Rob" firstAttribute="top" secondItem="qls-pg-4mT" secondAttribute="top" id="G86-Lj-2Z9"/>
+                                            <constraint firstAttribute="trailing" secondItem="Y8X-aH-sPt" secondAttribute="trailing" id="HGa-ez-Bt0"/>
+                                            <constraint firstAttribute="trailing" secondItem="h6a-cH-Rob" secondAttribute="trailing" id="JpJ-vo-Cku"/>
+                                            <constraint firstItem="Y8X-aH-sPt" firstAttribute="top" secondItem="h6a-cH-Rob" secondAttribute="bottom" constant="16" id="Qrr-8k-ljw"/>
+                                            <constraint firstItem="h6a-cH-Rob" firstAttribute="leading" secondItem="qls-pg-4mT" secondAttribute="leading" id="QuI-5j-wGj"/>
+                                            <constraint firstItem="Y8X-aH-sPt" firstAttribute="leading" secondItem="qls-pg-4mT" secondAttribute="leading" id="UF4-TW-jBh"/>
+                                            <constraint firstAttribute="bottom" secondItem="Y8X-aH-sPt" secondAttribute="bottom" id="WeL-ap-ncm"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="yLu-Cf-NnH" firstAttribute="leading" secondItem="vkt-8r-DDc" secondAttribute="leading" id="1vo-lg-Veh"/>
+                                    <constraint firstItem="qls-pg-4mT" firstAttribute="centerX" secondItem="vkt-8r-DDc" secondAttribute="centerX" id="Is9-RX-bKM"/>
                                     <constraint firstItem="HOt-2E-oDL" firstAttribute="centerX" secondItem="vkt-8r-DDc" secondAttribute="centerX" id="Ow2-Nd-5DJ"/>
                                     <constraint firstAttribute="trailing" secondItem="yLu-Cf-NnH" secondAttribute="trailing" id="R0S-7b-7jf"/>
                                     <constraint firstItem="yLu-Cf-NnH" firstAttribute="centerY" secondItem="vkt-8r-DDc" secondAttribute="centerY" id="XsJ-7Z-IZY"/>
+                                    <constraint firstItem="qls-pg-4mT" firstAttribute="centerY" secondItem="vkt-8r-DDc" secondAttribute="centerY" id="jjV-tJ-k9j"/>
                                     <constraint firstItem="HOt-2E-oDL" firstAttribute="centerY" secondItem="vkt-8r-DDc" secondAttribute="centerY" id="soo-yX-HOn"/>
                                     <constraint firstItem="yLu-Cf-NnH" firstAttribute="centerX" secondItem="vkt-8r-DDc" secondAttribute="centerX" id="yhM-eT-AMi"/>
                                 </constraints>
@@ -120,15 +173,20 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="apnsView" destination="qls-pg-4mT" id="Zzk-Cj-LVB"/>
+                        <outlet property="closeBtn" destination="Y8X-aH-sPt" id="mkX-Fc-Lf7"/>
+                        <outlet property="openApnsBtn" destination="h6a-cH-Rob" id="9qc-5I-0Nz"/>
                         <outlet property="progressLabel" destination="Hxz-aT-OTr" id="kgB-1w-7Re"/>
                         <outlet property="retryBtn" destination="HOt-2E-oDL" id="HAT-eQ-bIy"/>
                         <outlet property="stateLabel" destination="Mp9-xp-RgL" id="nU9-dp-ifr"/>
+                        <outlet property="subtitleLabel" destination="Mp9-xp-RgL" id="xZx-SO-XTR"/>
+                        <outlet property="titleLabel" destination="M7l-Oy-hsu" id="mme-vH-VLb"/>
                         <outlet property="updateView" destination="yLu-Cf-NnH" id="aYa-mg-2vW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QK2-En-bOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-260" y="172.26386806596702"/>
+            <point key="canvasLocation" x="-260.625" y="172.18309859154931"/>
         </scene>
     </scenes>
 </document>

@@ -23,6 +23,11 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     return [[SPPathManager langPath:lang] stringByAppendingPathComponent:@"lang.json"];
 }
 
++ (NSString *)langPatchFilePath:(NSString *)lang
+{
+    return [[SPPathManager langPath:lang] stringByAppendingPathComponent:@"lang_patch.json"];
+}
+
 + (NSString *)langPatchFilePath:(NSString *)lang version:(long long)version
 {
     return [[SPPathManager langPath:lang] stringByAppendingPathComponent:[NSString stringWithFormat:@"lang_patch_%lld.json",version]];
@@ -271,9 +276,15 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     SPLog(@"创建补丁文件压缩包：%@",lang);
     NSString *filePath = [self langPatchFilePath:lang version:version];
     NSAssert([FileManager fileExistsAtPath:filePath], @"补丁文件不存在！");
+    
+    NSString *renameFilePath = [self langPatchFilePath:lang];
+    [FileManager removeItemAtPath:renameFilePath error:nil];
+    [FileManager copyItemAtPath:filePath toPath:renameFilePath error:nil];
+    NSAssert([FileManager fileExistsAtPath:renameFilePath], @"补丁文件复制出错！");
+    
     NSString *zipPath = [self langPatchFileZipPath:lang];
     [FileManager removeItemAtPath:zipPath error:nil];
-    BOOL suc = [SSZipArchive createZipFileAtPath:zipPath withFilesAtPaths:@[filePath] withPassword:pwd];
+    BOOL suc = [SSZipArchive createZipFileAtPath:zipPath withFilesAtPaths:@[renameFilePath] withPassword:pwd];
     NSAssert(suc, @"创建补丁文件压缩包失败！");
     SPLog(@"创建补丁文件压缩包完成");
 }

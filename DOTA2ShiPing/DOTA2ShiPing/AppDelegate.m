@@ -11,6 +11,9 @@
 #import "SPLaunchADVC.h"
 #import "SPSteamAPI.h"
 #import "SPItemImageLoader.h"
+#import "YGRemoteNotificationHelper.h"
+#import "SPIAPHelper.h"
+#import "SPDataManager.h"
 
 #if LeanCloudSDK_Enabled
     #import "AVOSCloud.h"
@@ -35,7 +38,7 @@
 @import ChameleonFramework;
 @import SDWebImage;
 
-@interface AppDelegate ()
+@interface AppDelegate () <YGRemoteNotificationHelperDelegate>
 @property (strong, nonatomic) SPLaunchADVC *adVC;
 
 #if !TARGET_PRO
@@ -56,6 +59,7 @@
     [self _setupUIAppearance];
     [self _setup3rdParty];
     [self _loadSplashAd];
+    [self _setupNotificaiton:launchOptions];
     return YES;
 }
 
@@ -123,8 +127,38 @@
     
 }
 
-- (void)uploadPushToken
-{}
+- (void)_setupNotificaiton:(NSDictionary *)launchOptions
+{
+    [YGRemoteNotificationHelper shared].delegate = self;
+    [[YGRemoteNotificationHelper shared] setup:launchOptions];
+    
+    if ([SPDataManager isDataValid]) {
+        [[YGRemoteNotificationHelper shared] registerNotificationType:YGNotificationTypeAll];
+    }
+}
+
+- (void)notificationHelper:(YGRemoteNotificationHelper *)helper didReceivedDeviceToken:(NSString *)str
+{
+    [AVOSCloud handleRemoteNotificationsWithDeviceToken:helper.deviceToken constructingInstallationWithBlock:^(AVInstallation *currentInstallation) {
+        
+#if TARGET_PRO
+        [currentInstallation addUniqueObject:@"Pro_Channel" forKey:@"channels"];
+#elif TARGET_AD
+        [currentInstallation addUniqueObject:@"Ad_Channel" forKey:@"channels"];
+#else
+        [currentInstallation addUniqueObject:@"Old_Channel" forKey:@"channels"];
+#endif
+        if ([SPIAPHelper isPurchased]) {
+            [currentInstallation addUniqueObject:@"Pur_Channel" forKey:@"channels"];
+        }
+        [currentInstallation setObject:Device_UUID forKey:@"UUID"];
+    }];
+}
+
+- (void)notificationHelper:(YGRemoteNotificationHelper *)helper didReceivedRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"");
+}
 
 - (void)_loadSplashAd
 {

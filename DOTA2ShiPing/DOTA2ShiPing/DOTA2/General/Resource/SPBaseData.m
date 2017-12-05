@@ -9,6 +9,8 @@
 #import "SPBaseData.h"
 #import "SPLocale.h"
 
+@import FCUUID;
+
 @interface SPBaseData ()
 
 @end
@@ -71,16 +73,22 @@
     return path;
 }
 
++ (NSString *)randomString
+{
+    long long time = [[NSDate date] timeIntervalSince1970] * 1000;
+    uint32_t random = arc4random_uniform(UINT32_MAX);
+    NSString *name = [NSString stringWithFormat:@"%lld_%ld",time,random];
+    return name;
+}
+
 + (NSString *)randomTmpFilePath
 {
-    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
-    return [[self tmpFolder] stringByAppendingPathComponent:[@(time) stringValue]];
+    return [[self tmpFolder] stringByAppendingPathComponent:[self randomString]];
 }
 
 + (NSString *)randomTmpFolder
 {
-    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
-    NSString *path = [[self tmpFolder] stringByAppendingPathComponent:[@(time) stringValue]];
+    NSString *path = [[self tmpFolder] stringByAppendingPathComponent:[self randomString]];
     [self createFolderIfNeed:path];
     return path;
 }

@@ -10,14 +10,21 @@
 #import "SPResourceManager.h"
 #import "SPDataManager.h"
 #import "ReactiveObjC.h"
-
-@import AFNetworking.AFNetworkReachabilityManager;
+#import "YGRemoteNotificationHelper.h"
 
 @interface SPUpdateViewCtrl ()
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
+
 @property (weak, nonatomic) IBOutlet UIView *updateView;
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *retryBtn;
+
+@property (weak, nonatomic) IBOutlet UIView *apnsView;
+@property (weak, nonatomic) IBOutlet UIButton *openApnsBtn;
+@property (weak, nonatomic) IBOutlet UIButton *closeBtn;
 
 @end
 
@@ -131,10 +138,19 @@
 
 - (void)done
 {
-    self.progressLabel.text = @"更新完成";
-    [self dismiss:^{
-        [SVProgressHUD showSuccessWithStatus:@"更新完成"];
-    }];
+    if ([[YGRemoteNotificationHelper shared] isRegisteredForRemoteNotifications]) {
+        self.progressLabel.text = @"更新完成";
+        [self dismiss:^{
+            [SVProgressHUD showSuccessWithStatus:@"更新完成"];
+        }];
+    }else{
+        self.titleLabel.text = @"更新完成";
+        self.subtitleLabel.text = @"打开推送以接收数据更新通知";
+        
+        self.updateView.hidden = YES;
+        self.retryBtn.hidden = YES;
+        [self.apnsView setHidden:NO animated:YES];
+    }
 }
 
 - (IBAction)retry:(id)sender
@@ -147,5 +163,19 @@
     self.progressLabel.text = @"";
     [self checkUpdate];
 }
+
+- (IBAction)openPushNotificaiton:(id)sender
+{
+    [[YGRemoteNotificationHelper shared] registerNotificationType:YGNotificationTypeAll];
+    RunAfter(.5f, ^{
+        [self dismiss];
+    });
+}
+
+- (IBAction)close:(id)sender
+{
+    [self dismiss];
+}
+
 
 @end
