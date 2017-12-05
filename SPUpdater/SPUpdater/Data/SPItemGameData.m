@@ -501,30 +501,40 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
                     NSString *text = [result stringForColumnIndex:descIndex];
                     if (![text isKindOfClass:[NSNull class]] &&
                         text.length > 0 &&
-                        [langChangeKeys containsObject:text]) {
-                        //修改了描述
-                        [modify addObject:token];
-                        continue;
+                        [text hasPrefix:@"#"]) {
+                        
+                        NSString *str = [[text substringFromIndex:1] lowercaseString];
+                        if ([langChangeKeys containsObject:str]) {
+                            //修改了描述
+                            [modify addObject:str];
+                            continue;
+                        }
                     }
                 }
                 {
                     NSString *text = [result stringForColumnIndex:nameIndex];
                     if (![text isKindOfClass:[NSNull class]] &&
                         text.length > 0 &&
-                        [langChangeKeys containsObject:text]) {
-                        //修改了名称
-                        [modify addObject:token];
-                        continue;
+                        [text hasPrefix:@"#"]) {
+                        NSString *str = [[text substringFromIndex:1] lowercaseString];
+                        if ([langChangeKeys containsObject:str]) {
+                            //修改了名称
+                            [modify addObject:str];
+                            continue;
+                        }
                     }
                 }
                 {
                     NSString *text = [result stringForColumnIndex:typeIndex];
                     if (![text isKindOfClass:[NSNull class]] &&
                         text.length > 0 &&
-                        [langChangeKeys containsObject:text]) {
-                        //修改了类型
-                        [modify addObject:token];
-                        continue;
+                        [text hasPrefix:@"#"]) {
+                        NSString *str = [[text substringFromIndex:1] lowercaseString];
+                        if ([langChangeKeys containsObject:str]) {
+                            //修改了名称
+                            [modify addObject:str];
+                            continue;
+                        }
                     }
                 }
             }
@@ -538,6 +548,9 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
     BOOL suc = [data writeToFile:path atomically:YES];
     NSAssert(suc, @"保存出错了！");
+    
+    self.addCount = add.count;
+    self.modifyCount = modify.count;
 }
 
 - (NSString *)jsondataPath

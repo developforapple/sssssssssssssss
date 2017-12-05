@@ -200,17 +200,9 @@ void SPLog(NSString *format, ...){
     SPLog(@"step4：创建数据文件");
     [[SPItemGameData shared].model save];
     
-    
     // 将数据库上传到服务器
     // none -> old -> ad -> pro -> 完成
     [self uploadToServiceNextOf:ServiceTypeOld];
-}
-
-- (void)analyze:(long long)newVersion oldVersion:(long long)oldVersion
-{
-    // 分析饰品的增删改情况
-    
-    
 }
 
 - (void)uploadToServiceNextOf:(ServiceType)type
@@ -226,9 +218,7 @@ void SPLog(NSString *format, ...){
         next = kNoneType;
     }
     
-    if (next == kNoneType) {
-        return;
-    }
+    if (next == kNoneType) return;
     
     [self uploadToService:next];
 }
@@ -415,6 +405,12 @@ void SPLog(NSString *format, ...){
             
             NSString *logString = logStringForServiceType(type);
             SPLog(@"%@ 更新完成！！",logString);
+            
+            
+            // 发送推送通知
+            NSInteger addCount = [SPItemGameData shared].model.addCount;
+            NSInteger modifyCount = [SPItemGameData shared].model.modifyCount;
+            // TODO
             
             [self uploadToServiceNextOf:type];
             

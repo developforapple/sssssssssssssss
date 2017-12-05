@@ -78,6 +78,9 @@
 @property (strong, nonatomic) NSString *dbPath;
 @property (strong, nonatomic) NSData *jsonData;
 
+@property (assign, nonatomic) NSInteger addCount;
+@property (assign, nonatomic) NSInteger modifyCount;
+
 - (void)save;
 
 - (NSString *)versionPath;
