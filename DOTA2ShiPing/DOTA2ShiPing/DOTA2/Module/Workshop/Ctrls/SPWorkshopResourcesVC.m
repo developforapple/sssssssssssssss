@@ -68,6 +68,7 @@
 //            p.manager = [SPDiskCacheControl workshopImageManager];
 //        }
         IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:IDMPhotos animatedFromView:cell.imageView];
+        browser.doneButtonTopInset = StatusBar_Height + 12;
         [browser setInitialPageIndex:[self.unit indexInImageResourcesOfResource:resource]];
         [self presentViewController:browser animated:YES completion:nil];
     }

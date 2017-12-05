@@ -99,7 +99,7 @@ static const NSInteger kMaxItems = 3 * 3;
     
     self.zeroHeightConstraint.priority = 200;
     [self.itemsView reloadData];
-    RunAfter(.1f, ^{
+    RunAfter(.5f, ^{
         CGFloat h = self.itemsView.contentSize.height;
         self.itemsViewHeightConstraint.constant = h;
         [self layoutIfNeeded];

@@ -116,7 +116,7 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 #elif InHouseVersion
     return NO;
 #else
-    return ![SPIAPHelper isPurchased];
+    return !IS_5_8_INCH_SCREEN &&  ![SPIAPHelper isPurchased];
 #endif
 }
 

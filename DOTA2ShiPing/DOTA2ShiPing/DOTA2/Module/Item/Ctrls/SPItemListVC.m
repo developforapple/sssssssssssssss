@@ -182,6 +182,9 @@
         inset.top += CGRectGetHeight(self.segmentView.bounds);
         inset.top += StatusBar_Height;
         inset.top += NaviBar_Height;
+        if (IS_5_8_INCH_SCREEN) {
+            inset.bottom += 44.f;
+        }
         vc.safeInset = inset;
         
         self.vcs[k] = vc;

@@ -58,7 +58,11 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     self.mode = mode;
     
     self.container = [SPItemListContainer instanceFromStoryboard];
-    self.container.safeInset = UIEdgeInsetsMake(StatusBar_Height + NaviBar_Height, 0, 0, 0);
+    UIEdgeInsets insets = UIEdgeInsetsMake(StatusBar_Height + NaviBar_Height, 0, 0, 0);
+    if (IS_5_8_INCH_SCREEN) {
+        insets.bottom = 44.f;
+    }
+    self.container.safeInset = insets;
     self.container.delegate = self;
     self.container.supportLoadMore = YES;
     

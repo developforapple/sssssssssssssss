@@ -404,6 +404,7 @@ static const NSInteger kInvalidValue = -1;
 {
     SPItemBannerImageCell *cell = (SPItemBannerImageCell *)[collectionView cellForItemAtIndexPath:indexPath];
     IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:self.imageURLs animatedFromView:cell.imageView];
+    browser.doneButtonTopInset = StatusBar_Height + 12;
     [browser setInitialPageIndex:(int)indexPath.item];
     browser.delegate = self;
     [[self viewController] presentViewController:browser animated:YES completion:nil];

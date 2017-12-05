@@ -20,6 +20,8 @@
 static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
 
 @interface SPSearchVC () <UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate,UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *customNaviBar;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *customNaviBarHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet UIView *searchContainer;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -35,6 +37,8 @@ static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.customNaviBarHeightConstraint.constant = NaviBar_Height + StatusBar_Height;
     
     self.engine = [[SPSearchEngine alloc] initWithType:self.type];
     self.searchResults = [self.engine itemNamesSearchHistory];

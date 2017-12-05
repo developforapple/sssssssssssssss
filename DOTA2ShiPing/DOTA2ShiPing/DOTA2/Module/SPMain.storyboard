@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GDj-Ya-DFG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GDj-Ya-DFG">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -443,6 +443,8 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="jz_wantsNavigationBarVisible" value="NO"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="customNaviBar" destination="Us4-gW-lAn" id="31u-oE-uSi"/>
+                        <outlet property="customNaviBarHeightConstraint" destination="c3W-1R-vJh" id="qvj-Tm-Jt2"/>
                         <outlet property="searchBar" destination="CnS-mY-MVa" id="8jR-8B-I5o"/>
                         <outlet property="searchContainer" destination="7jM-UK-Or3" id="Yv8-OF-ELW"/>
                         <outlet property="tableView" destination="aGt-PI-DcN" id="8qI-1Q-QzL"/>
@@ -1082,7 +1084,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="xNW-AE-bZc" secondAttribute="trailing" id="Pdu-mn-43f"/>
-                            <constraint firstItem="XBD-tV-n0B" firstAttribute="top" secondItem="xNW-AE-bZc" secondAttribute="bottom" id="eBc-Op-PoA"/>
+                            <constraint firstAttribute="bottom" secondItem="xNW-AE-bZc" secondAttribute="bottom" id="li8-nN-qQK"/>
                             <constraint firstItem="xNW-AE-bZc" firstAttribute="top" secondItem="rHe-pf-bco" secondAttribute="top" id="poZ-aB-77Y"/>
                             <constraint firstItem="xNW-AE-bZc" firstAttribute="leading" secondItem="rHe-pf-bco" secondAttribute="leading" id="q9y-hG-MVb"/>
                         </constraints>
@@ -1090,7 +1092,7 @@
                     <navigationItem key="navigationItem" id="cWs-zx-5MM">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="1CG-3V-Xe6">
-                            <rect key="frame" x="107" y="5.6666666666666679" width="200" height="33"/>
+                            <rect key="frame" x="105" y="5.6666666666666679" width="200" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pe1-LV-8uz">
@@ -1150,7 +1152,7 @@
         <image name="icon_title_more" width="22" height="5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="b8f-RE-pTr"/>
+        <segue reference="xxb-Qf-zZj"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
 </document>

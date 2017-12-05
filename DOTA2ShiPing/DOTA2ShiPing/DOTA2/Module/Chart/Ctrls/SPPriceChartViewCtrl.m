@@ -18,6 +18,7 @@
 @interface SPPriceChartViewCtrl () <JBLineChartViewDelegate,JBLineChartViewDataSource>
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading;
 @property (weak, nonatomic) IBOutlet UIView *container;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @property (weak, nonatomic) IBOutlet JBLineChartView *chartView;
 @property (weak, nonatomic) IBOutlet UIView *pricePreviewView;
@@ -30,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *maximumDateLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *priceRangeView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *priceContainerTopConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *maximumPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *minimumPriceLabel;
 
@@ -52,6 +54,7 @@
 {
     [super viewDidLoad];
     
+    self.priceContainerTopConstraint.constant = StatusBar_Height + NaviBar_Height;
     [self.view layoutIfNeeded];
     
     self.nameLabel.text = self.marketItem.name;
@@ -65,7 +68,7 @@
     self.chartView.minimumValue = 0.f;
     self.chartView.maximumValue = 100.f;
     
-    self.container.backgroundColor = [self.item.itemColor colorWithAlphaComponent:0.5f];
+    self.bgView.backgroundColor = [self.item.itemColor colorWithAlphaComponent:0.5f];
     
     [self updateCurPrice];
     
