@@ -490,7 +490,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
             int typeIndex = [result columnIndexForName:@"item_type_name"];
             while ([result next]) {
                 NSString *token = [result stringForColumnIndex:tokenIndex];
-                BOOL isNew = [oldTokens containsObject:token];
+                BOOL isNew = ![oldTokens containsObject:token];
                 if (isNew) {
                     // 新饰品
                     [add addObject:token];
