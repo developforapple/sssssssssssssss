@@ -6,13 +6,37 @@
 	<dict>
 		<key>DOTA2ShiPing.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
 		<key>Demo.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+		<key>SPAd.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>35</integer>
+		</dict>
+		<key>SPDev.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>43</integer>
+		</dict>
+		<key>SPOld.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>36</integer>
+		</dict>
+		<key>SPPro.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>34</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

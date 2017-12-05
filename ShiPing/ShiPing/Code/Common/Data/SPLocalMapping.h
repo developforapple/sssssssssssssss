@@ -22,11 +22,7 @@
 // key: schinese_patch 语言补丁版本
 + (NSDictionary *)langVersion;
 
-+ (NSString *)langMainFilePath:(NSString *)lang;
-+ (NSString *)langPatchFilePath:(NSString *)lang;
-
 + (NSString *)langVersionPath;
-
 
 + (NSString *)langMainFileZipPath:(NSString *)lang;
 + (NSString *)langPatchFileZipPath:(NSString *)lang;

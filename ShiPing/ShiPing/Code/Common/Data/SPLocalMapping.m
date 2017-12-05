@@ -9,51 +9,33 @@
 #import "SPLocalMapping.h"
 #import "VDFParser.h"
 #import <SSZipArchive.h>
+#import "SPPathManager.h"
+
+static const long long kMagicNumber = 1010110203019LL;
 
 static NSString *pwd = @"wwwbbat.DOTA2.19880920";
 #define FileManager [NSFileManager defaultManager]
 
 @implementation SPLocalMapping
 
-+ (void)createFolderIfNeed:(NSString *)path
-{
-    BOOL isDirectory = NO;
-    BOOL exists = [FileManager fileExistsAtPath:path isDirectory:&isDirectory];
-    if (!exists) {
-        [FileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-    }else if(!isDirectory){
-        [FileManager removeItemAtPath:path error:nil];
-        [FileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-}
-
-+ (NSString *)langRoot
-{
-    NSString *path = @"/Users/wangbo/Desktop/DOTA.tmp/lang";
-    [self createFolderIfNeed:path];
-    return path;
-}
-
-+ (NSString *)langFolder:(NSString *)lang
-{
-    NSString *path = [[self langRoot] stringByAppendingPathComponent:lang];
-    [self createFolderIfNeed:path];
-    return path;
-}
-
 + (NSString *)langMainFilePath:(NSString *)lang
 {
-    return [[self langFolder:lang] stringByAppendingPathComponent:@"lang.json"];
+    return [[SPPathManager langPath:lang] stringByAppendingPathComponent:@"lang.json"];
 }
 
-+ (NSString *)langPatchFilePath:(NSString *)lang
++ (NSString *)langPatchFilePath:(NSString *)lang version:(long long)version
 {
-    return [[self langFolder:lang] stringByAppendingPathComponent:@"lang_patch.json"];
+    return [[SPPathManager langPath:lang] stringByAppendingPathComponent:[NSString stringWithFormat:@"lang_patch_%lld.json",version]];
+}
+
++ (NSString *)changeLogFilePath:(NSString *)lang version:(long long)version
+{
+    return [[SPPathManager langPath:lang] stringByAppendingPathComponent:[NSString stringWithFormat:@"change_log_%lld.json",version]];
 }
 
 + (NSString *)langVersionPath
 {
-    return [[self langRoot] stringByAppendingPathComponent:@"lang_version.txt"];
+    return [[SPPathManager langRoot] stringByAppendingPathComponent:@"lang_version.txt"];
 }
 
 + (NSDictionary *)langVersion
@@ -69,8 +51,9 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
 + (void)saveLangVersion:(NSDictionary *)langVersion
 {
     NSString *path = [self langVersionPath];
-    [FileManager removeItemAtPath:path error:nil];
     NSData *data = [NSJSONSerialization dataWithJSONObject:langVersion options:kNilOptions error:nil];
+    NSAssert(data, @"数据不能为空");
+    [FileManager removeItemAtPath:path error:nil];
     [data writeToFile:path atomically:YES];
     NSLog(@"保存主文件版本完成");
 }
@@ -80,6 +63,12 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     // 生成最新的本地化数据
     NSLog(@"准备更新本地化文件，语言：%@",lang);
     NSDictionary *newLangDict = [self loadLocalDataWithLang:lang];
+    
+    long long time = [[NSDate date] timeIntervalSince1970] * 1000;
+    // 主版本号，如果需要更新主文件，就用此版本号。不需要更新主文件，依然用旧主版本号
+    long long mainVersion = time - kMagicNumber;
+    // 补丁版本号，更新后总是使用此版本号
+    long long patchVersion = time - kMagicNumber;
     
     NSString *langPath = [self langMainFilePath:lang];
     if (![FileManager fileExistsAtPath:langPath]) {
@@ -96,21 +85,20 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         
         // 创建一个空的补丁文件
         NSLog(@"准备创建补丁文件");
-        NSDictionary *dif = [NSDictionary dictionary];
+        NSDictionary *dif = @{};
         NSData *difData = [NSJSONSerialization dataWithJSONObject:dif options:kNilOptions error:&error];
         NSAssert(difData && !error, @"生成补丁文件失败！");
-        NSString *langPatchFilePath = [self langPatchFilePath:lang];
+        NSString *langPatchFilePath = [self langPatchFilePath:lang version:patchVersion];
         [FileManager removeItemAtPath:langPatchFilePath error:nil];
         BOOL suc = [difData writeToFile:langPatchFilePath atomically:YES];
         NSAssert(suc, @"补丁文件保存失败！");
         NSLog(@"创建补丁文件完成");
         
         // 更新版本号
-        NSLog(@"更新版本号");
-        long long time = [[NSDate date] timeIntervalSince1970] * 1000;
+        NSLog(@"更新语言版本号");
         NSMutableDictionary *langVersion = [NSMutableDictionary dictionaryWithDictionary:[self langVersion]];
-        langVersion[lang] = @(time - 1010110203019LL);
-        langVersion[[NSString stringWithFormat:@"%@_patch",lang]] = @(time - 1010110203019LL);
+        langVersion[lang] = @(mainVersion);
+        langVersion[[NSString stringWithFormat:@"%@_patch",lang]] = @(patchVersion);
         NSLog(@"文件版本：%@",langVersion);
         [self saveLangVersion:langVersion];
         
@@ -124,42 +112,89 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         NSDictionary *oldLangDict = [NSJSONSerialization JSONObjectWithData:oldLangData options:kNilOptions error:&error];
         NSAssert(!error, @"读取旧本地化文件失败！");
         
-        // 这是个长时间任务
-        NSLog(@"比较旧主文件和新主文件差异");
-        NSMutableDictionary *dif = [NSMutableDictionary dictionary];
         
-        for (NSString *newKey in newLangDict) {
-            NSString *newValue = newLangDict[newKey];
-            NSString *oldValue = oldLangDict[newKey];
-            
-            if (!oldValue) {
-                //这是个新出现的key
-                dif[newKey] = newValue;
-            }else if (![oldValue isEqualToString:newValue]){
-                //旧的key，但是value变了
-                dif[newKey] = newValue;
+        // 比较旧主文件和新主文件的差异，差异部分即为此次的补丁内容。
+        NSLog(@"比较旧主文件和新主文件差异");
+        NSMutableDictionary *newPatch = [NSMutableDictionary dictionary];
+        {
+            for (NSString *newKey in newLangDict) {
+                NSString *newValue = newLangDict[newKey];
+                NSString *oldValue = oldLangDict[newKey];
+                if (!oldValue || ![oldValue isEqualToString:newValue]) {
+                    // 新出现的key
+                    // 旧的key，但是value变了
+                    newPatch[newKey] = newValue;
+                }
             }
         }
+        NSLog(@"共有%d条补丁条目",(int)newPatch.count);
         
-        NSLog(@"差异：%d 项",dif.count);
-        NSLog(@"准备创建补丁文件");
-        NSData *difData = [NSJSONSerialization dataWithJSONObject:dif options:kNilOptions error:&error];
-        NSAssert( difData && !error, @"生成补丁文件失败！");
-        NSString *langPatchFilePath = [self langPatchFilePath:lang];
-        [FileManager removeItemAtPath:langPatchFilePath error:nil];
-        BOOL suc = [difData writeToFile:langPatchFilePath atomically:YES];
-        NSAssert(suc, @"补丁文件保存失败！");
-        NSLog(@"创建补丁文件完成");
         
-        NSLog(@"更新版本号");
-        long long time = [[NSDate date] timeIntervalSince1970] * 1000;
-        NSMutableDictionary *langVersion = [NSMutableDictionary dictionaryWithDictionary:[self langVersion]];
-        langVersion[[NSString stringWithFormat:@"%@_patch",lang]] = @(time - 1010110203019LL);
-        NSLog(@"文件版本：%@",langVersion);
-        [self saveLangVersion:langVersion];
+        // 保存补丁到文件
+        {
+            NSLog(@"准备创建补丁文件");
+            NSData *patchData = [NSJSONSerialization dataWithJSONObject:newPatch options:kNilOptions error:&error];
+            NSAssert( patchData && !error, @"生成补丁文件失败！");
+            NSString *langPatchFilePath = [self langPatchFilePath:lang version:patchVersion];
+            [FileManager removeItemAtPath:langPatchFilePath error:nil];
+            BOOL suc = [patchData writeToFile:langPatchFilePath atomically:YES];
+            NSAssert(suc, @"补丁文件保存失败！");
+            NSLog(@"创建补丁文件完成");
+        }
+        
+
+        // 对比旧patch和新patch，计算本次更新的更新内容
+        {
+            // 新增部分
+            NSMutableSet *add = [NSMutableSet set];
+            // 修改部分
+            NSMutableSet *modify = [NSMutableSet set];
+            
+            long long oldPatchVersion = [[self langVersion][[NSString stringWithFormat:@"%@_patch",lang]] longLongValue];
+            NSData *oldPatchData = [NSData dataWithContentsOfFile:[self langPatchFilePath:lang version:oldPatchVersion]];
+            if (oldPatchData) {
+                NSDictionary *oldPatch = [NSJSONSerialization JSONObjectWithData:oldPatchData options:kNilOptions error:nil];
+                if (oldPatch && [oldPatch isKindOfClass:[NSDictionary class]]) {
+                    // 旧的补丁存在，才计算本次更新的内容
+                    for (NSString *key in newPatch) {
+                        NSString *newValue = newPatch[key];
+                        NSString *oldValue = oldPatch[key];
+                        
+                        if (!oldValue) {
+                            // 新增的内容
+                            [add addObject:key];
+                        }else if (![oldValue isEqualToString:newValue]){
+                            // 修改的内容
+                            [modify addObject:key];
+                        }
+                    }
+                }
+            }
+            
+            // 保存
+            NSLog(@"保存 Change Log");
+            NSMutableDictionary *changeLog = [NSMutableDictionary dictionary];
+            changeLog[@"add"] = add;
+            changeLog[@"modify"] = modify;
+            NSData *changeLogData = [NSJSONSerialization dataWithJSONObject:changeLog options:kNilOptions error:nil];
+            NSAssert(changeLogData, @"出错了！");
+            NSString *changeLogPath = [self changeLogFilePath:lang version:patchVersion];
+            [FileManager removeItemAtPath:changeLogPath error:nil];
+            BOOL suc = [changeLogData writeToFile:changeLogPath atomically:YES];
+            NSAssert(suc, @"保存 Change Log出错");
+        }
+        
+        // 更新版本号
+        {
+            NSLog(@"更新版本号");
+            NSMutableDictionary *langVersion = [NSMutableDictionary dictionaryWithDictionary:[self langVersion]];
+            langVersion[[NSString stringWithFormat:@"%@_patch",lang]] = @(patchVersion);
+            [self saveLangVersion:langVersion];
+            NSLog(@"文件版本：%@",langVersion);
+        }
     }
 
-    [self createLangPatchZipFile:lang];
+    [self createLangPatchZipFile:lang version:patchVersion];
 }
 
 + (NSDictionary *)loadLocalDataWithLang:(NSString *)lang
@@ -173,7 +208,6 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     
     NSString *dotaPath = @"/Applications/SteamLibrary/SteamApps/common/dota 2 beta/game/dota";
     NSFileManager *fm = [NSFileManager defaultManager];
-    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     {
@@ -192,7 +226,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         VDFNode *dota = [root firstChildWithKey:@"dota"];
         NSDictionary *tokens = [dota datasDict];
         [dict addEntriesFromDictionary:tokens];
-        NSLog(@"文件1找到 %d 条数据",tokens.count);
+        NSLog(@"文件1找到 %d 条数据",(int)tokens.count);
         [dict addEntriesFromDictionary:tokens];
     }
     
@@ -211,7 +245,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         VDFNode *lang = [root firstChildWithKey:@"lang"];
         VDFNode *Tokens = [lang firstChildWithKey:@"Tokens"];
         NSDictionary *tokens = [Tokens datasDict];
-        NSLog(@"文件2找到 %d 条数据",tokens.count);
+        NSLog(@"文件2找到 %d 条数据",(int)tokens.count);
         [dict addEntriesFromDictionary:tokens];
     }
     
@@ -230,11 +264,11 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         VDFNode *lang = [root firstChildWithKey:@"lang"];
         VDFNode *Tokens = [lang firstChildWithKey:@"Tokens"];
         NSDictionary *tokens = [Tokens datasDict];
-        NSLog(@"文件3找到 %d 条数据",tokens.count);
+        NSLog(@"文件3找到 %d 条数据",(int)tokens.count);
         [dict addEntriesFromDictionary:tokens];
     }
     
-    NSLog(@"创建本地化映射成功，共 %d 条数据",dict.count);
+    NSLog(@"创建本地化映射成功，共 %d 条数据",(int)dict.count);
     return dict;
 }
 
@@ -250,10 +284,10 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     NSLog(@"创建主文件压缩包完成");
 }
 
-+ (void)createLangPatchZipFile:(NSString *)lang
++ (void)createLangPatchZipFile:(NSString *)lang version:(long long )version
 {
     NSLog(@"创建补丁文件压缩包：%@",lang);
-    NSString *filePath = [self langPatchFilePath:lang];
+    NSString *filePath = [self langPatchFilePath:lang version:version];
     NSAssert([FileManager fileExistsAtPath:filePath], @"补丁文件不存在！");
     NSString *zipPath = [self langPatchFileZipPath:lang];
     [FileManager removeItemAtPath:zipPath error:nil];
@@ -266,7 +300,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
 {
     NSDictionary *langVersion = [self langVersion];
     NSNumber *version = langVersion[lang];
-    return [[self langFolder:lang] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@.zip",lang,version]];
+    return [[SPPathManager langPath:lang] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@.zip",lang,version]];
 }
 
 + (NSString *)langPatchFileZipPath:(NSString *)lang
@@ -274,7 +308,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     NSDictionary *langVersion = [self langVersion];
     NSNumber *version = langVersion[lang];
     NSNumber *patchVersion = langVersion[[NSString stringWithFormat:@"%@_patch",lang]];
-    return [[self langFolder:lang] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@_%@_patch.zip",lang,version,patchVersion]];
+    return [[SPPathManager langPath:lang] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@_%@_patch.zip",lang,version,patchVersion]];
 }
 
 @end

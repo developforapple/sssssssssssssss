@@ -7,14 +7,23 @@
 //
 
 #import "SPHeroImageDownloader.h"
+#import "SPPathManager.h"
 
 @implementation SPHeroImageDownloader
 
++ (NSString *)heroPath
+{
+    NSString *path = [[SPPathManager imagePath] stringByAppendingPathComponent:@"hero"];
+    [SPPathManager createFolderIfNeed:path];
+    return path;
+}
+
 + (void)downloadImages
 {
-    NSString *folder = @"/Users/wangbo/Desktop/DOTA.tmp/image/hero";
+    NSString *folder = [self heroPath];
+    NSString *dataPath = [[SPPathManager baseDataPath] stringByAppendingPathComponent:@"data.json"];
     
-    NSData *data = [NSData dataWithContentsOfFile:@"/Users/wangbo/Desktop/DOTA.tmp/basedata/data.json"];
+    NSData *data = [NSData dataWithContentsOfFile:dataPath];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     NSArray *heroes = dict[@"heroes"];
     

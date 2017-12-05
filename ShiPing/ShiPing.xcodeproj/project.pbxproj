@@ -37,6 +37,7 @@
 		2DA6C7761FB71F2A00BDA2B1 /* uploadimage.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2DA6C7751FB71F2100BDA2B1 /* uploadimage.sh */; };
 		2DC0F6D01F1CC219004DCD3C /* SPItemImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0F6CF1F1CC219004DCD3C /* SPItemImageDownloader.m */; };
 		2DF862C01F43EE28009FADBC /* SPDotaEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF862BF1F43EE28009FADBC /* SPDotaEvent.m */; };
+		699ED1351FD65C460036DA1C /* SPPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 699ED1341FD65C460036DA1C /* SPPathManager.m */; };
 		ECE2451EBFFCB632E24FEADC /* libPods-ShiPing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E11DE0FF8D1BD249738E319 /* libPods-ShiPing.a */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,8 @@
 		2DC0F6CF1F1CC219004DCD3C /* SPItemImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemImageDownloader.m; sourceTree = "<group>"; };
 		2DF862BE1F43EE28009FADBC /* SPDotaEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDotaEvent.h; sourceTree = "<group>"; };
 		2DF862BF1F43EE28009FADBC /* SPDotaEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDotaEvent.m; sourceTree = "<group>"; };
+		699ED1331FD65C460036DA1C /* SPPathManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPPathManager.h; sourceTree = "<group>"; };
+		699ED1341FD65C460036DA1C /* SPPathManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPPathManager.m; sourceTree = "<group>"; };
 		787F3D3582B6D65004D2DFF8 /* Pods-ShiPing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShiPing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShiPing/Pods-ShiPing.debug.xcconfig"; sourceTree = "<group>"; };
 		8E11DE0FF8D1BD249738E319 /* libPods-ShiPing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShiPing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -165,19 +168,9 @@
 			isa = PBXGroup;
 			children = (
 				2D1265AF1CBE99BB00D272A3 /* Utils */,
-				2D1265AB1CBE99BB00D272A3 /* 3rd */,
 				2D1265AC1CBE99BB00D272A3 /* Common */,
-				2D1265AD1CBE99BB00D272A3 /* Model */,
-				2D1265AE1CBE99BB00D272A3 /* Module */,
 			);
 			path = Code;
-			sourceTree = "<group>";
-		};
-		2D1265AB1CBE99BB00D272A3 /* 3rd */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = 3rd;
 			sourceTree = "<group>";
 		};
 		2D1265AC1CBE99BB00D272A3 /* Common */ = {
@@ -186,20 +179,6 @@
 				2D1265BC1CBEA34600D272A3 /* Data */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		2D1265AD1CBE99BB00D272A3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		2D1265AE1CBE99BB00D272A3 /* Module */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Module;
 			sourceTree = "<group>";
 		};
 		2D1265AF1CBE99BB00D272A3 /* Utils */ = {
@@ -228,6 +207,8 @@
 		2D1265BC1CBEA34600D272A3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				699ED1331FD65C460036DA1C /* SPPathManager.h */,
+				699ED1341FD65C460036DA1C /* SPPathManager.m */,
 				2D1265BD1CBEA34600D272A3 /* SPLocalMapping.h */,
 				2D1265BE1CBEA34600D272A3 /* SPLocalMapping.m */,
 				2D1265C21CBEA5D900D272A3 /* SPItemGameData.h */,
@@ -315,6 +296,7 @@
 				TargetAttributes = {
 					2D12658C1CBE994100D272A3 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 8QP3ZT6EXM;
 					};
 				};
 			};
@@ -411,6 +393,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				699ED1351FD65C460036DA1C /* SPPathManager.m in Sources */,
 				2D9A00D31CDDC86A00ABDC3B /* SPVDFResponseSerializer.m in Sources */,
 				2D12659B1CBE994100D272A3 /* SecondViewController.m in Sources */,
 				2D1265D31CBFD02000D272A3 /* SPItemSets.m in Sources */,
@@ -549,6 +532,7 @@
 			baseConfigurationReference = 787F3D3582B6D65004D2DFF8 /* Pods-ShiPing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
 				INFOPLIST_FILE = ShiPing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wwwbbat.ShiPing;
@@ -561,6 +545,7 @@
 			baseConfigurationReference = 176C0E2F597D301EE806EB8A /* Pods-ShiPing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8QP3ZT6EXM;
 				INFOPLIST_FILE = ShiPing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wwwbbat.ShiPing;

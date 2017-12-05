@@ -10,6 +10,7 @@
 #import <FMDatabase.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <UIKit/UIKit.h>
+#import "SPPathManager.h"
 
 #define FileManager [NSFileManager defaultManager]
 
@@ -19,36 +20,18 @@ static NSString *getQiniuName(NSString *inventory){
 
 @implementation SPItemImageDownloader
 
-+ (void)createFolderIfNeed:(NSString *)path
-{
-    BOOL isDirectory = NO;
-    BOOL exists = [FileManager fileExistsAtPath:path isDirectory:&isDirectory];
-    if (!exists) {
-        [FileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-    }else if(!isDirectory){
-        [FileManager removeItemAtPath:path error:nil];
-        [FileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-}
-
-+ (NSString *)root
-{
-    NSString *path = @"/Users/wangbo/Desktop/DOTA.tmp/image";
-    [self createFolderIfNeed:path];
-    return path;
-}
 
 + (NSString *)normalPath
 {
-    NSString *path = [[self root] stringByAppendingPathComponent:@"normal"];
-    [self createFolderIfNeed:path];
+    NSString *path = [[SPPathManager imagePath] stringByAppendingPathComponent:@"normal"];
+    [SPPathManager createFolderIfNeed:path];
     return path;
 }
 
 + (NSString *)largePath
 {
-    NSString *path = [[self root] stringByAppendingPathComponent:@"large"];
-    [self createFolderIfNeed:path];
+    NSString *path = [[SPPathManager imagePath] stringByAppendingPathComponent:@"large"];
+    [SPPathManager createFolderIfNeed:path];
     return path;
 }
 
@@ -72,7 +55,7 @@ static NSString *getQiniuName(NSString *inventory){
 
 + (void)compressImages
 {
-    NSString *imageFolder = @"/Users/wangbo/Desktop/DOTA.tmp/image/large";
+    NSString *imageFolder = [self largePath];
     NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:imageFolder];
     
     long long pre = 0;
@@ -96,8 +79,8 @@ static NSString *getQiniuName(NSString *inventory){
             
             long curSize = data.length;
             
-            NSLog(@"原始大小: %d kb",preSize/1024);
-            NSLog(@"压缩后大小：%d kb",curSize/1024);
+            NSLog(@"原始大小: %d kb",(int)preSize/1024);
+            NSLog(@"压缩后大小：%d kb",(int)curSize/1024);
             NSLog(@"压缩率：%.1f%%",curSize/(float)preSize*100);
             
             [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
@@ -108,8 +91,8 @@ static NSString *getQiniuName(NSString *inventory){
         }
     }
     
-    NSLog(@"压缩前：%d Mb", pre / 1024 / 1024);
-    NSLog(@"压缩后：%d Mb", cur / 1024 / 1024);
+    NSLog(@"压缩前：%d Mb", (int)pre / 1024 / 1024);
+    NSLog(@"压缩后：%d Mb", (int)cur / 1024 / 1024);
     NSLog(@"总压缩率： %.1f %%",cur/(double)pre * 100);
     
     NSLog(@"Done");
@@ -121,7 +104,7 @@ static NSString *getQiniuName(NSString *inventory){
     
     NSLog(@"读取数据库");
     NSDictionary *map = [self itemImageMap:dbPath];
-    NSLog(@"共找到 %d 个饰品",map.count);
+    NSLog(@"共找到 %d 个饰品",(int)map.count);
     
     NSArray *allKeys = [map allKeys];
     NSInteger count = allKeys.count;
@@ -139,7 +122,7 @@ static NSString *getQiniuName(NSString *inventory){
         NSDictionary *subDict = [NSDictionary dictionaryWithObjects:subValues forKeys:subKeys];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self downloadThread:subDict identifier:[NSString stringWithFormat:@"%lld-%lld",idx,(idx+2000)]];
+            [self downloadThread:subDict identifier:[NSString stringWithFormat:@"%d-%d",(int)idx,(int)(idx+2000)]];
         });
         
         idx += length;
@@ -149,16 +132,16 @@ static NSString *getQiniuName(NSString *inventory){
 + (void)downloadThread:(NSDictionary *)map identifier:(NSString *)identifier
 {
     //    NSString *normalDonePath = [[self root] stringByAppendingPathComponent:[NSString stringWithFormat:@"normalDone_%@",identifier]];
-    NSString *largeDonePath = [[self root] stringByAppendingPathComponent:[NSString stringWithFormat:@"largeDone_%@",identifier]];
+    NSString *largeDonePath = [[SPPathManager imagePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"largeDone_%@",identifier]];
     //    NSMutableArray *normalDone = [NSMutableArray arrayWithArray:[NSArray arrayWithContentsOfFile:normalDonePath]];
     NSMutableArray *largeDone = [NSMutableArray arrayWithArray:[NSArray arrayWithContentsOfFile:largeDonePath]];
     
     //    NSLog(@"本轮下载开始，还有 %d 个小图未完成",(map.count-normalDone.count));
-    NSLog(@"%@，还有 %d 个大图未完成",identifier,(map.count-largeDone.count));
+    NSLog(@"%@，还有 %d 个大图未完成",identifier,(int)(map.count-largeDone.count));
     
     //    NSString *normalFolder = [self normalPath];
     NSString *largeFolder = [[self largePath] stringByAppendingPathComponent:identifier];
-    [self createFolderIfNeed:largeFolder];
+    [SPPathManager createFolderIfNeed:largeFolder];
     
     for (NSString *token in map) {
         
@@ -198,7 +181,7 @@ static NSString *getQiniuName(NSString *inventory){
         if (largeDownloadResult) {
             [largeDone addObject:token];
             
-            NSLog(@"\t%@ ： %d / %d",identifier,largeDone.count,map.count);
+            NSLog(@"\t%@ ： %d / %d",identifier,(int)largeDone.count,(int)map.count);
         }
     }
     
@@ -208,7 +191,7 @@ static NSString *getQiniuName(NSString *inventory){
     [largeDone writeToFile:largeDonePath atomically:YES];
     
     //    NSLog(@"本轮下载结束，还有 %d 个小图未完成",(map.count-normalDone.count));
-    NSLog(@"\t%@结束，还有 %d 个大图未完成",identifier,(map.count-largeDone.count));
+    NSLog(@"\t%@结束，还有 %d 个大图未完成",identifier,(int)(map.count-largeDone.count));
 }
 
 

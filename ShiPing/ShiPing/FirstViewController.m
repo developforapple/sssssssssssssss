@@ -16,6 +16,7 @@
 #import "SPHeroImageDownloader.h"
 #import <SSZipArchive.h>
 #import <AVOSCloud.h>
+#import "SPPathManager.h"
 
 typedef NS_ENUM(NSInteger, ServiceType) {
     ServiceTypeOld,
@@ -70,10 +71,6 @@ NSString *maskterKeyForServiceType(ServiceType type){
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    //zip查询测试
-//    [self testDownloadZip];
-//    return;
-    
 //    // 下载图片。需要先生成数据库
 //    [SPItemImageDownloader compressImages];
 //    [SPItemImageDownloader download:@"/Users/wangbo/Desktop/DOTA.tmp/basedata/item.db"];
@@ -113,14 +110,13 @@ NSString *maskterKeyForServiceType(ServiceType type){
     AFURLSessionManager *manager = [AFURLSessionManager new];
     
     NSURLSessionDownloadTask *task =
-    [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager downloadTaskWithRequest:request progress:^(NSProgress *downloadProgress) {
         
         NSLog(@"%@",downloadProgress.localizedAdditionalDescription);
         
     } destination:^NSURL *(NSURL * targetPath, NSURLResponse *response) {
-
         NSString *name = response.URL.lastPathComponent;
-        NSString *path = [@"/Users/wangbo/Desktop/DOTA.tmp/download" stringByAppendingPathComponent:name];
+        NSString *path = [[SPPathManager downloadPath] stringByAppendingPathComponent:name];
         return [NSURL fileURLWithPath:path];
         
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
@@ -152,12 +148,22 @@ NSString *maskterKeyForServiceType(ServiceType type){
     NSLog(@"step4：创建数据文件");
     [[SPItemGameData shared].model save];
     
-    // 第5步：将数据库上传到app服务器
     
-    [self nextUpload:kNoneType];
+    
+    
+    // 将数据库上传到服务器
+    // none -> old -> ad -> pro -> 完成
+    [self uploadToServiceNextOf:ServiceTypeOld];
 }
 
-- (void)nextUpload:(ServiceType)type
+- (void)analyze:(long long)newVersion oldVersion:(long long)oldVersion
+{
+    // 分析饰品的增删改情况
+    
+    
+}
+
+- (void)uploadToServiceNextOf:(ServiceType)type
 {
     ServiceType next = kNoneType;
     if (type == kNoneType) {
@@ -174,10 +180,10 @@ NSString *maskterKeyForServiceType(ServiceType type){
         return;
     }
     
-    [self choiceService:next];
+    [self uploadToService:next];
 }
 
-- (void)choiceService:(ServiceType)type
+- (void)uploadToService:(ServiceType)type
 {
     NSLog(@"准备上传 %@ 的数据",logStringForServiceType(type));
     
@@ -185,7 +191,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
     NSString *appkey = keyForServiceType(type);
     
     [AVOSCloud setApplicationId:appid clientKey:appkey];
-    [AVOSCloud setAllLogsEnabled:YES];
+    [AVOSCloud setAllLogsEnabled:NO];
     
     [self upload:type];
 }
@@ -321,7 +327,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
                 }
                 
             } progressBlock:^(NSInteger percentDone) {
-                NSLog(@"上传语言补丁：%d%%",percentDone);
+                NSLog(@"上传语言补丁：%d%%",(int)percentDone);
             }];
             
         }
@@ -360,57 +366,13 @@ NSString *maskterKeyForServiceType(ServiceType type){
             NSString *logString = logStringForServiceType(type);
             NSLog(@"%@ 更新完成！！",logString);
             
-            [self nextUpload:type];
+            [self uploadToServiceNextOf:type];
             
             
         } progressBlock:^(NSInteger percentDone) {
-            NSLog(@"%d%%",percentDone);
+            NSLog(@"%d%%",(int)percentDone);
         }];
     }
 }
-
-- (void)testDownloadZip
-{
-    NSError *error;
-    AVQuery *query = [AVQuery queryWithClassName:@"_File"];
-    
-    [query whereKey:@"name" hasPrefix:@"dota_base_data"];
-    NSArray *object = [query findObjects:&error];
-    NSLog(@"");
-}
-
-- (void)uploadItemImage
-{
-    NSString *version = @"201605151800";;
-    
-    NSString *imageUploadFolder = @"/Users/wangbo/Documents/Project/ShiPing/imagesUpload";
-    
-    NSString *imageFolder = @"/Users/wangbo/Documents/Project/ShiPing/images";
-    NSFileManager *fm = [NSFileManager defaultManager];
-    
-    NSArray *subPaths = [fm subpathsAtPath:imageFolder];
-    
-    for (NSString *path in subPaths) {
-        
-        NSString *fullPath = [imageFolder stringByAppendingPathComponent:path];
-        
-        BOOL isDirectory;
-        [fm fileExistsAtPath:fullPath isDirectory:&isDirectory];
-        if (!isDirectory) {
-            
-            NSString *name = [path stringByReplacingOccurrencesOfString:@"/" withString:@"%%2F"];
-            
-            NSString *uploadPath = [imageUploadFolder stringByAppendingPathComponent:name];
-            
-            NSError *error;
-            [fm moveItemAtPath:fullPath toPath:uploadPath error:&error];
-            
-            
-            NSLog(@"");
-        }
-    }
-}
-
-
 
 @end

@@ -14,6 +14,7 @@
 #import "SPLootList.h"
 #import "SPItemSlot.h"
 #import "SPDotaEvent.h"
+#import "SPPathManager.h"
 #import <SSZipArchive.h>
 
 #define FileManager [NSFileManager defaultManager]
@@ -197,8 +198,8 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     self.item_sets = itemSets;
     self.item_sets_map = mapping;
     
-    NSLog(@"生成包列表完成，共%d个包",itemSets.count);
-    NSLog(@"生成饰品-包映射完成，共%d条映射",mapping.count);
+    NSLog(@"生成包列表完成，共%d个包",(int)itemSets.count);
+    NSLog(@"生成饰品-包映射完成，共%d条映射",(int)mapping.count);
 }
 
 - (void)createLootList:(VDFNode *)data
@@ -229,7 +230,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     NSArray *entities = [NSArray yy_modelArrayWithClass:[SPItem class] json:array];
     self.items = entities;
     
-    NSLog(@"生成%d个饰品",entities.count);
+    NSLog(@"生成%d个饰品",(int)entities.count);
     
     for (SPItem *item in self.items) {
         if (item.event_id && ![item.event_id isEqualToString:@"EVENT_ID_NONE"]) {
@@ -388,29 +389,9 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     NSLog(@"jsonData 保存完成！");
 }
 
-
-- (void)createFolderIfNeed:(NSString *)path
-{
-    BOOL isDirectory = NO;
-    BOOL exists = [FileManager fileExistsAtPath:path isDirectory:&isDirectory];
-    if (!exists) {
-        [FileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-    }else if(!isDirectory){
-        [FileManager removeItemAtPath:path error:nil];
-        [FileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-}
-
-- (NSString *)root
-{
-    NSString *path = @"/Users/wangbo/Desktop/DOTA.tmp/basedata";
-    [self createFolderIfNeed:path];
-    return path;
-}
-
 - (NSString *)versionPath
 {
-    return [[self root] stringByAppendingPathComponent:@"base_data_version.txt"];
+    return [[SPPathManager baseDataPath] stringByAppendingPathComponent:@"base_data_version.txt"];
 }
 
 - (NSDictionary *)version
@@ -450,18 +431,18 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
 
 - (NSString *)jsondataPath
 {
-    return [[self root] stringByAppendingPathComponent:@"data.json"];
+    return [[SPPathManager baseDataPath] stringByAppendingPathComponent:@"data.json"];
 }
 
 - (NSString *)dbPath
 {
-    return [[self root] stringByAppendingPathComponent:@"item.db"];
+    return [[SPPathManager baseDataPath] stringByAppendingPathComponent:@"item.db"];
 }
 
 - (NSString *)zipFilePath
 {
     NSNumber *v = [self version][@"version"];
-    NSString *zipPath = [[self root] stringByAppendingPathComponent:[NSString stringWithFormat:@"base_data_%@.zip",v]];
+    NSString *zipPath = [[SPPathManager baseDataPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"base_data_%@.zip",v]];
     return zipPath;
 }
 
