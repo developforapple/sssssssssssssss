@@ -379,7 +379,7 @@ static const NSInteger kInvalidValue = -1;
     NSURL *url = self.imageURLs[indexPath.item];
     
     ygweakify(self);
-    NSLog(@"load image: %@",url);
+    SPLog(@"load image: %@",url);
     [cell setImageWithURL:url progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *targetURL) {
         ygstrongify(self);
         RunOnMainQueue(^{

@@ -134,7 +134,7 @@
         }   break;
     }
 #if DEBUG_MODE
-    NSLog(@"REQUEST : %@",task.currentRequest.URL.absoluteString);
+    SPLog(@"REQUEST : %@",task.currentRequest.URL.absoluteString);
 #endif
     return task;
 }

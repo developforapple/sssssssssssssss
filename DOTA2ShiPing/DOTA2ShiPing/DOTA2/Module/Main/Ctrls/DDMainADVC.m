@@ -9,6 +9,7 @@
 #import "DDMainADVC.h"
 #import "SPConfigManager.h"
 #import "SPIAPHelper.h"
+@import AVOSCloud.AVAnalytics;
 
 #if TARGET_PRO
     @interface GADBannerView : UIView
@@ -31,6 +32,9 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
     GDTMobBannerViewDelegate
 >
 #endif
+{
+    BOOL _tabCtrlSetConstraintFlag;
+}
 
 @property (weak, nonatomic) IBOutlet UIView *mainContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainContainerFullSizeConstraint;
@@ -80,8 +84,20 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
         
     }
     [self updateAdView];
-    
-    [self addTabBarCtrlConstraint];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // 这里加约束，当adview隐藏和显示切换的时候，顶部tabController的内容区域也相应变化
+    if ([self shouldLoadAd]) {
+        if (!_tabCtrlSetConstraintFlag) {
+            _tabCtrlSetConstraintFlag = YES;
+            RunAfter(.5f, ^{
+                [self addTabBarCtrlConstraint];
+            });
+        }
+    }
 }
 
 - (void)addTencentAdConstraint
@@ -99,8 +115,10 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
     UIView *view = self.tabBarCtrl.view;
     view.translatesAutoresizingMaskIntoConstraints = NO;
     if (view.superview == self.mainContainer) {
-        [self.mainContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":view}]];
-        [self.mainContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":view}]];
+        [UIView performWithoutAnimation:^{
+            [self.mainContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":view}]];
+            [self.mainContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":view}]];
+        }];
     }
 }
 
@@ -137,23 +155,23 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 - (void)updateAdView
 {
     if ([self shouldLoadAd]) {
-        NSLog(@"app带广告！");
+        SPLog(@"app带广告！");
 #if !TARGET_PRO
         [self setAdViewDisplay:[self isAdReady]];
         
         if (self.googleAdReady) {
-            NSLog(@"Google广告就位");
+            SPLog(@"Google广告就位");
             [self.adView bringSubviewToFront:self.googleAd];
         }else if (self.tencentAdReady){
-            NSLog(@"广点通广告就位");
+            SPLog(@"广点通广告就位");
             [self.adView bringSubviewToFront:self.tencentAd];
         }else{
-            NSLog(@"没有可显示的广告内容");
+            SPLog(@"没有可显示的广告内容");
         }
         [self.adView setHidden:NO animated:YES];
 #endif
     }else{
-        NSLog(@"app不带广告！");
+        SPLog(@"app不带广告！");
         [self setAdViewDisplay:NO];
         [self.adView setHidden:YES];
     }
@@ -169,96 +187,106 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 
 - (void)adViewDidReceiveAd:(GADBannerView *)bannerView
 {
-    NSLog(@"收到了ad");
+    SPLog(@"收到了ad");
     self.googleAdReady = YES;
     [self updateAdView];
+    
+    SPBP(Event_AdMob, Label_AdMob_Received);
 }
 
 - (void)adView:(GADBannerView *)bannerView didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    NSLog(@"接收ad失败：%@",error);
+    SPLog(@"接收ad失败：%@",error);
     self.googleAdReady = NO;
     [self updateAdView];
+    
+    SPBP(Event_AdMob, Label_AdMob_Failed);
 }
 
 - (void)adViewWillPresentScreen:(GADBannerView *)bannerView
 {
-    NSLog(@"AD即将全屏");
+    SPLog(@"AD即将全屏");
+    SPBP(Event_AdMob, Label_AdMob_Present);
 }
 
 - (void)adViewWillDismissScreen:(GADBannerView *)bannerView
 {
-    NSLog(@"AD即将退出全屏");
+    SPLog(@"AD即将退出全屏");
 }
 
 - (void)adViewDidDismissScreen:(GADBannerView *)bannerView
 {
-    NSLog(@"AD已经退出全屏");
+    SPLog(@"AD已经退出全屏");
 }
 
 - (void)adViewWillLeaveApplication:(GADBannerView *)bannerView
 {
-    NSLog(@"点击AD即将离开应用");
+    SPLog(@"点击AD即将离开应用");
+    SPBP(Event_AdMob, Label_AdMob_Tapped);
 }
 
 #pragma mark - GDT
 - (void)bannerViewMemoryWarning
 {
-    NSLog(@"GDT Banner 内存警告");
+    SPLog(@"GDT Banner 内存警告");
 }
 
 - (void)bannerViewDidReceived
 {
-    NSLog(@"GDT Banner 收到了广告");
+    SPLog(@"GDT Banner 收到了广告");
     self.tencentAdReady = YES;
     [self updateAdView];
+    SPBP(Event_GDT, Label_GDT_Received);
 }
 
 - (void)bannerViewFailToReceived:(NSError *)error
 {
-    NSLog(@"GDT Banner 接收广告失败！%@",error);
+    SPLog(@"GDT Banner 接收广告失败！%@",error);
     self.tencentAdReady = NO;
     [self updateAdView];
+    SPBP(Event_GDT, Label_GDT_Failed);
 }
 
 - (void)bannerViewWillLeaveApplication
 {
-    NSLog(@"GDT Banner 点击广告离开应用");
+    SPLog(@"GDT Banner 点击广告离开应用");
+    SPBP(Event_GDT, Label_GDT_Tapped);
 }
 
 - (void)bannerViewWillClose
 {
-    NSLog(@"GDT Banner 被手动关闭");
+    SPLog(@"GDT Banner 被手动关闭");
 }
 
 - (void)bannerViewWillExposure
 {
-    NSLog(@"GDT Banner 曝光回调");
+    SPLog(@"GDT Banner 曝光回调");
 }
 
 - (void)bannerViewClicked
 {
-    NSLog(@"GDT Banner 被点击");
+    SPLog(@"GDT Banner 被点击");
 }
 
 - (void)bannerViewWillPresentFullScreenModal
 {
-    NSLog(@"GDT Banner 被点击 将要显示全屏广告页");
+    SPLog(@"GDT Banner 被点击 将要显示全屏广告页");
+    SPBP(Event_GDT, Label_GDT_Present);
 }
 
 - (void)bannerViewDidPresentFullScreenModal
 {
-    NSLog(@"GDT Banner 被点击 已显示全屏广告页");
+    SPLog(@"GDT Banner 被点击 已显示全屏广告页");
 }
 
 - (void)bannerViewWillDismissFullScreenModal
 {
-    NSLog(@"GDT Banner 全屏广告页 将被关闭");
+    SPLog(@"GDT Banner 全屏广告页 将被关闭");
 }
 
 - (void)bannerViewDidDismissFullScreenModal
 {
-    NSLog(@"GDT Banner 全屏广告页 已关闭");
+    SPLog(@"GDT Banner 全屏广告页 已关闭");
 }
 #endif // !TARGET_PRO
 

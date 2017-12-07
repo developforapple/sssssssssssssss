@@ -2027,31 +2027,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="X6I-Qs-CU1">
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="X6I-Qs-CU1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="EMK-gC-utY">
-                                    <size key="itemSize" width="300" height="300"/>
+                                    <size key="itemSize" width="187" height="187"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SPItemEntranceCell" id="q6U-T8-3Um" customClass="SPItemEntranceCell">
-                                        <rect key="frame" x="37.5" y="0.0" width="300" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="187" height="187"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="187" height="187"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0lx-4T-Jx8">
-                                                    <rect key="frame" x="-10" y="-10" width="320" height="320"/>
+                                                    <rect key="frame" x="-10" y="-10" width="207" height="207"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bwl-L2-xmf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="187" height="187"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日特价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLN-WP-ZKZ">
-                                                            <rect key="frame" x="113" y="139.5" width="73.5" height="21.5"/>
+                                                            <rect key="frame" x="56.5" y="83" width="73.5" height="21.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -2102,29 +2102,26 @@
                                     <outlet property="delegate" destination="G1s-nW-EnR" id="5EN-JL-ivu"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zCh-H5-rRX">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                <color key="color" red="0.15868747234344482" green="0.21822044253349304" blue="0.30320093035697937" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="X6I-Qs-CU1" secondAttribute="bottom" id="6nS-O0-9Jf"/>
-                            <constraint firstItem="muQ-ga-KNR" firstAttribute="top" secondItem="X6I-Qs-CU1" secondAttribute="bottom" id="IdI-Dr-2Am"/>
-                            <constraint firstItem="X6I-Qs-CU1" firstAttribute="top" secondItem="KvL-bF-njf" secondAttribute="bottom" id="Ro5-WQ-a96"/>
                             <constraint firstAttribute="trailing" secondItem="X6I-Qs-CU1" secondAttribute="trailing" id="Ykn-X8-HSO"/>
+                            <constraint firstItem="zCh-H5-rRX" firstAttribute="centerY" secondItem="lbG-WE-iWj" secondAttribute="centerY" id="n8z-pX-9Pe"/>
+                            <constraint firstItem="zCh-H5-rRX" firstAttribute="centerX" secondItem="lbG-WE-iWj" secondAttribute="centerX" id="nU5-kx-NJq"/>
                             <constraint firstAttribute="bottom" secondItem="X6I-Qs-CU1" secondAttribute="bottom" id="oC4-6a-Tl2"/>
                             <constraint firstItem="X6I-Qs-CU1" firstAttribute="leading" secondItem="lbG-WE-iWj" secondAttribute="leading" id="qbb-Ja-29W"/>
                             <constraint firstItem="X6I-Qs-CU1" firstAttribute="top" secondItem="lbG-WE-iWj" secondAttribute="top" id="sbk-Eg-rY3"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="6nS-O0-9Jf"/>
-                                <exclude reference="Ro5-WQ-a96"/>
-                                <exclude reference="IdI-Dr-2Am"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="饰品" id="fmz-Vb-5dq"/>
                     <connections>
                         <outlet property="collectionView" destination="X6I-Qs-CU1" id="Lz4-B7-xd9"/>
                         <outlet property="flowlayout" destination="EMK-gC-utY" id="ipl-nd-LEj"/>
+                        <outlet property="loading" destination="zCh-H5-rRX" id="lva-1v-7ob"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YDI-ok-m83" userLabel="First Responder" sceneMemberID="firstResponder"/>

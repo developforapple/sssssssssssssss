@@ -71,7 +71,7 @@ static NSString *const kUsersKey = @"users";
     FMResultSet *result = [[SPDataManager shared].db executeQuery:sql values:params error:&error];
     if (error) {
         [result close];
-        NSLog(@"%@",error);
+        SPLog(@"%@",error);
         return nil;
     }
     

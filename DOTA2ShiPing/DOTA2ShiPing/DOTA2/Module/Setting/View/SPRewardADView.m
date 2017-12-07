@@ -39,37 +39,37 @@
 
 - (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    NSLog(@"加载激励广告失败：%@",error);
+    SPLog(@"加载激励广告失败：%@",error);
 }
 
 - (void)interstitialDidReceiveAd:(GADInterstitial *)ad
 {
-    NSLog(@"收到激励广告");
+    SPLog(@"收到激励广告");
 }
 
 - (void)interstitialWillPresentScreen:(GADInterstitial *)ad
 {
-    NSLog(@"打开激励广告");
+    SPLog(@"打开激励广告");
 }
 
 - (void)interstitialDidFailToPresentScreen:(GADInterstitial *)ad
 {
-    NSLog(@"打开激励广告失败！");
+    SPLog(@"打开激励广告失败！");
 }
 
 - (void)interstitialWillDismissScreen:(GADInterstitial *)ad
 {
-    NSLog(@"激励广告将被移除");
+    SPLog(@"激励广告将被移除");
 }
 
 - (void)interstitialDidDismissScreen:(GADInterstitial *)ad
 {
-    NSLog(@"激励广告已移除");
+    SPLog(@"激励广告已移除");
 }
 
 - (void)interstitialWillLeaveApplication:(GADInterstitial *)ad
 {
-    NSLog(@"点击了激励广告，离开应用");
+    SPLog(@"点击了激励广告，离开应用");
 }
 #endif
 

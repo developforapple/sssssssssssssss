@@ -7,7 +7,7 @@
 //
 
 #import "SPItemQuery.h"
-
+#import <Bugly/Bugly.h>
 #import "FMDB.h"
 #import "SPDataManager.h"
 
@@ -132,22 +132,28 @@
         if (error) {
             [result close];
             SPDBCLOSE
-            NSLog(@"%@",error);
+            SPLog(@"%@",error);
             suc = NO;
             return ;
         }
         NSMutableArray *items = [NSMutableArray array];
-        while ([result nextWithError:&error]) {
-            NSDictionary *dict = result.resultDictionary;
-            SPItem *item = [SPItem yy_modelWithDictionary:dict];
-            if (item) {
-                [items addObject:item];
+        
+        @try{
+            while ([result nextWithError:&error]) {
+                NSDictionary *dict = result.resultDictionary;
+                SPItem *item = [SPItem yy_modelWithDictionary:dict];
+                if (item) {
+                    [items addObject:item];
+                }
             }
+        }@catch(NSException *e){
+            
+            [Bugly reportException:e];
         }
         if (error) {
             [result close];
             SPDBCLOSE
-            NSLog(@"%@",error);
+            SPLog(@"%@",error);
             suc = NO;
             return;
         }
@@ -156,7 +162,7 @@
         SPDBCLOSE
         
     }, ^(double ms) {
-        NSLog(@"\n\n\tsql:%@ \n\n\t耗时：%.3f ms\n\n ",sql,ms);
+        SPLog(@"\n\n\tsql:%@ \n\n\t耗时：%.3f ms\n\n ",sql,ms);
     });
     
     return suc;
@@ -327,7 +333,7 @@
                 [slotItems[index] addObject:item];
             }else{
                 [others addObject:item];
-                NSLog(@"找到一个未知 itemSlot ： %@",itemslot);
+                SPLog(@"找到一个未知 itemSlot ： %@",itemslot);
             }
         }else if([item isTaunt]){
             NSInteger index = [slotNames indexOfObject:@"taunt"];
@@ -335,7 +341,7 @@
                 [slotItems[index] addObject:item];
             }else{
                 [others addObject:item];
-                NSLog(@"饰品为嘲讽，但是英雄没有嘲讽槽位。需要解决这个问题！");
+                SPLog(@"饰品为嘲讽，但是英雄没有嘲讽槽位。需要解决这个问题！");
             }
             
         }else{

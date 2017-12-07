@@ -62,24 +62,5 @@ typedef void(^SPCompletion)(BOOL suc, NSString *msg);
 - (NSArray<NSNumber *> *)updateListPlayers;
 - (void)setUpdateListPlayers:(NSArray<NSNumber *> *)players;
 
-
-// cloudKit 是否可用
-// 不可用时，无法进行同步。
-- (BOOL)cloudKitAvaliable;
-
-// 要使用同步功能，必须使用微信授权，根据微信授权
-- (NSString *)wechatId;
-
-// 支持的账号数量
-// 普通版本：1个位置。高级版本：5个位置。 额外的：6元每5个位置。
-// 每个用户的数量保存在钥匙串里。使用iCloud在多设备之间进行同步。
-- (NSUInteger)supportAccountCount;
-// 支持的设备数量。
-// 普通版本：1个位置。高级版：2个位置。额外的：6元每1个位置。
-// 设备数量保存在钥匙串里。
-- (NSUInteger)supportDeviceCount;
-
-@property (assign, readonly, nonatomic) BOOL check;
-
 @end
 

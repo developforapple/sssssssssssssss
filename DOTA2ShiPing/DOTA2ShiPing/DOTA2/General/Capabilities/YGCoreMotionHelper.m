@@ -51,7 +51,7 @@
         double y = motion.gravity.y;
         
         if (self.logEnabled) {
-            NSLog(@"x:%.2f y:%.2f",x,y);
+            SPLog(@"x:%.2f y:%.2f",x,y);
         }
         
         if (fabs(x) < .2f && fabs(y) < .2f) {
@@ -65,18 +65,18 @@
             
             if (self.logEnabled) {
                 if (y >= 0){
-                    NSLog(@"PortraitUpsideDown");
+                    SPLog(@"PortraitUpsideDown");
                 }else{
-                    NSLog(@"Portrait");
+                    SPLog(@"Portrait");
                 }
             }
         }else{
             orientation = x>=0?UIDeviceOrientationLandscapeRight:UIDeviceOrientationLandscapeLeft;
             if (self.logEnabled) {
                 if (x >= 0){
-                    NSLog(@"LandscapeRight");
+                    SPLog(@"LandscapeRight");
                 } else{
-                    NSLog(@"LandscapeLeft");
+                    SPLog(@"LandscapeLeft");
                 }
             }
         }

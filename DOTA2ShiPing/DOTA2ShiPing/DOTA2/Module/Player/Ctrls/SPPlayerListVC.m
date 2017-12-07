@@ -211,7 +211,7 @@ static NSString *const kSPPlayerDetailSegueID = @"SPPlayerDetailSegueID";
     NSDictionary *d = self.playerList[indexPath.section];
     SPPlayer *player = [[d allValues] firstObject][indexPath.row];
     [self performSegueWithIdentifier:kSPPlayerDetailSegueID sender:player];
-    NSLog(@"%@",player.name);
+    SPLog(@"%@",player.name);
 }
 
 #pragma mark - Empty

@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 //@property NSUInteger countLimit;
 @property BOOL evictsObjectsWithDiscardedContent;
 
++ (instancetype)getSDImageCache;
+
 @end
 
 NS_ASSUME_NONNULL_END

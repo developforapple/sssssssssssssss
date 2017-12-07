@@ -45,11 +45,6 @@ static NSString *const kYGInventoryPageVCSegueID = @"YGInventoryPageVCSegueID";
     [self initData];
 }
 
-- (void)dealloc
-{
-    
-}
-
 - (void)initUI
 {
     self.pageVC.delegate = self;

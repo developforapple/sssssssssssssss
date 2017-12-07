@@ -16,6 +16,8 @@
 + (void)openURL:(NSURL *)URL from:(UIViewController *)viewController
 {
     if (!URL || !viewController) return;
+
+    SPBP(Event_Website, [URL.host stringByAppendingPathComponent:URL.path]);
     
     if (iOS9) {
         SFSafariViewController *vc;

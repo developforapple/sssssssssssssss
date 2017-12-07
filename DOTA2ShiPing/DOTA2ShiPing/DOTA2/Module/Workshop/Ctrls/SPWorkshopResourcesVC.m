@@ -38,11 +38,6 @@
     }
 }
 
-- (void)dealloc
-{
-    NSLog(@"%@释放",NSStringFromClass(self.class));
-}
-
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {

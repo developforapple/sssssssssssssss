@@ -417,7 +417,7 @@ static NSString *kWKWebViewProgressKeyPath = @"estimatedProgress";
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
 {
-    NSLog(@"%s,%@",__FUNCTION__,navigation);
+    SPLog(@"%s,%@",__FUNCTION__,navigation);
     if (webView == self.wkWebView) {
         [self.progressView setProgress:.1f animated:YES];
     }
@@ -425,7 +425,7 @@ static NSString *kWKWebViewProgressKeyPath = @"estimatedProgress";
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
-    NSLog(@"%s,%@,%@",__FUNCTION__,navigation,error);
+    SPLog(@"%s,%@,%@",__FUNCTION__,navigation,error);
     if (webView == self.wkWebView) {
         if ([self.delegate respondsToSelector:@selector(webViewController:didFailToLoadURL:error:)]) {
             [self.delegate webViewController:self didFailToLoadURL:webView.URL error:error];
@@ -435,7 +435,7 @@ static NSString *kWKWebViewProgressKeyPath = @"estimatedProgress";
 
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation
 {
-    NSLog(@"%s,%@",__FUNCTION__,navigation);
+    SPLog(@"%s,%@",__FUNCTION__,navigation);
     if (webView == self.wkWebView) {
         if ([self.delegate respondsToSelector:@selector(webViewController:didStartLoadingURL:)]) {
             [self.delegate webViewController:self didStartLoadingURL:webView.URL];
@@ -445,7 +445,7 @@ static NSString *kWKWebViewProgressKeyPath = @"estimatedProgress";
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
-    NSLog(@"%s,%@",__FUNCTION__,navigation);
+    SPLog(@"%s,%@",__FUNCTION__,navigation);
     if (webView == self.wkWebView) {
         if ([self.delegate respondsToSelector:@selector(webViewController:didFinishLoadingURL:)]) {
             [self.delegate webViewController:self didFinishLoadingURL:webView.URL];
@@ -455,7 +455,7 @@ static NSString *kWKWebViewProgressKeyPath = @"estimatedProgress";
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
-    NSLog(@"%s:%@,%@",__FUNCTION__,navigation,error);
+    SPLog(@"%s:%@,%@",__FUNCTION__,navigation,error);
     if (webView == self.wkWebView) {
         if ([self.delegate respondsToSelector:@selector(webViewController:didFailToLoadURL:error:)]) {
             [self.delegate webViewController:self didFailToLoadURL:webView.URL error:error];
@@ -465,7 +465,7 @@ static NSString *kWKWebViewProgressKeyPath = @"estimatedProgress";
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-    NSLog(@"%s:%@",__FUNCTION__,navigationAction);
+    SPLog(@"%s:%@",__FUNCTION__,navigationAction);
     
     NSURL *URL = navigationAction.request.URL;
     NSString *host = URL.absoluteString;
@@ -527,25 +527,25 @@ static NSString *kWKWebViewProgressKeyPath = @"estimatedProgress";
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
 {
-    NSLog(@"%s:%@",__FUNCTION__,navigationResponse.response.URL);
+    SPLog(@"%s:%@",__FUNCTION__,navigationResponse.response.URL);
     decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *__nullable credential))completionHandler
 {
-    NSLog(@"%s",__FUNCTION__);
+    SPLog(@"%s",__FUNCTION__);
     NSURLCredential *cre = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
     completionHandler(NSURLSessionAuthChallengeUseCredential,cre);
 }
 
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(null_unspecified WKNavigation *)navigation
 {
-    NSLog(@"%s:%@",__FUNCTION__,navigation);
+    SPLog(@"%s:%@",__FUNCTION__,navigation);
 }
 
 - (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures
 {
-    NSLog(@"%s\n%@\n%@\n%@",__FUNCTION__,configuration,navigationAction,windowFeatures);
+    SPLog(@"%s\n%@\n%@\n%@",__FUNCTION__,configuration,navigationAction,windowFeatures);
     
     if (navigationAction.request.URL.absoluteString.length != 0) {
         [webView loadRequest:navigationAction.request];

@@ -223,7 +223,7 @@
             NSError *error;
             NSArray *tmp = [NSJSONSerialization JSONObjectWithData:[aSources dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
             if (error || !tmp || ![tmp isKindOfClass:[NSArray class]]) {
-                NSLog(@"解析价格数组出错！error:%@",error);
+                SPLog(@"解析价格数组出错！error:%@",error);
             }else{
                 NSArray *theUnits = [SPPriceUnit unitsWithDatas:tmp];
                 if (theUnits.count > 0) {

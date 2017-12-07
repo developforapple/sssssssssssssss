@@ -260,10 +260,4 @@ static NSString *const kSPPlayerUpdateListSaveKey = @"kSPPlayerUpdateListSaveKey
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (NSUInteger)supportAccountCount
-{
-    //TODO
-    return 5;
-}
-
 @end

@@ -36,6 +36,9 @@
         if (iOS10) {
             _webView.configuration.dataDetectorTypes = WKDataDetectorTypeNone;
         }
+        _webView.scrollView.scrollEnabled = NO;
+        _webView.scrollView.showsVerticalScrollIndicator = NO;
+        _webView.scrollView.showsHorizontalScrollIndicator = NO;
         
     }
     return _webView;

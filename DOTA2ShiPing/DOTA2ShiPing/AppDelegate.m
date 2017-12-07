@@ -78,8 +78,6 @@
     [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:nil];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:kTintColor,NSFontAttributeName:[UIFont boldSystemFontOfSize:18]}];
     
-    [[UISearchBar appearance] setBackgroundImage:[UIImage imageWithColor:kRedColor] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
-    
     [UIViewController setDefaultStatusBarStyle:UIStatusBarStyleLightContent];
     [UIViewController setDefaultNavigationBarTintColor:kBarTintColor];
     [UIViewController setDefaultNavigationBarLineHidden:YES];
@@ -120,10 +118,22 @@
 #endif
     
 #if BuglySDK_Enabled
-    [Bugly startWithAppId:kBuglyAppID];
-    [Bugly setUserIdentifier:Device_UUID];
-    [Bugly updateAppVersion:AppBuildVersion];
-#endif
+    BuglyConfig *bc = [BuglyConfig new];
+    bc.deviceIdentifier = Device_UUID;
+    bc.version = AppBuildVersion;
+    bc.channel = kAppChannel;
+    bc.blockMonitorEnable = YES;
+    bc.unexpectedTerminatingDetectionEnable = YES;
+    bc.reportLogLevel = BuglyLogLevelInfo;
+    [Bugly startWithAppId:kBuglyAppID config:bc];
+    
+    #if DEBUG_MODE
+        [BuglyLog initLogger:BuglyLogLevelInfo consolePrint:YES];
+    #else
+        [BuglyLog initLogger:BuglyLogLevelInfo consolePrint:NO]
+    #endif
+    
+#endif //BuglySDK_Enabled
     
 }
 
@@ -154,15 +164,15 @@
         [currentInstallation setObject:Device_UUID forKey:@"UUID"];
         [currentInstallation setObject:@YES forKey:@"On"];
         
-        NSLog(@"注册APNS成功");
-        NSLog(@"DeviceToken:%@",str);
-        NSLog(@"UUID:%@",Device_UUID);
+        SPLog(@"注册APNS成功");
+        SPLog(@"DeviceToken:%@",str);
+        SPLog(@"UUID:%@",Device_UUID);
     }];
 }
 
 - (void)notificationHelper:(YGRemoteNotificationHelper *)helper didReceivedRemoteNotification:(NSDictionary *)userInfo
 {
-    NSLog(@"收到推送通知：%@",userInfo);
+    SPLog(@"收到推送通知：%@",userInfo);
 }
 
 - (void)_loadSplashAd
@@ -185,7 +195,7 @@
 @implementation AppDelegate (GDTSplashAd)
 -(void)splashAdSuccessPresentScreen:(GDTSplashAd *)splashAd
 {
-    NSLog(@"成功展示启动广告");
+    SPLog(@"成功展示启动广告");
 }
 
 /**
@@ -193,7 +203,7 @@
  */
 -(void)splashAdFailToPresent:(GDTSplashAd *)splashAd withError:(NSError *)error
 {
-    NSLog(@"展示启动广告失败！%@",error);
+    SPLog(@"展示启动广告失败！%@",error);
 }
 
 /**
@@ -202,7 +212,7 @@
  */
 - (void)splashAdApplicationWillEnterBackground:(GDTSplashAd *)splashAd
 {
-    NSLog(@"启动广告进入后台");
+    SPLog(@"启动广告进入后台");
 }
 
 /**
@@ -210,7 +220,7 @@
  */
 - (void)splashAdClicked:(GDTSplashAd *)splashAd
 {
-    NSLog(@"点击启动广告");
+    SPLog(@"点击启动广告");
 }
 
 /**
@@ -218,7 +228,7 @@
  */
 - (void)splashAdWillClosed:(GDTSplashAd *)splashAd
 {
-    NSLog(@"启动广告将要关闭");
+    SPLog(@"启动广告将要关闭");
 }
 
 /**
@@ -226,7 +236,7 @@
  */
 - (void)splashAdClosed:(GDTSplashAd *)splashAd
 {
-    NSLog(@"启动广告已关闭");
+    SPLog(@"启动广告已关闭");
 }
 
 /**
@@ -234,7 +244,7 @@
  */
 - (void)splashAdWillPresentFullScreenModal:(GDTSplashAd *)splashAd
 {
-    NSLog(@"启动广告点击后展示全屏广告页");
+    SPLog(@"启动广告点击后展示全屏广告页");
 }
 
 /**
@@ -242,7 +252,7 @@
  */
 - (void)splashAdDidPresentFullScreenModal:(GDTSplashAd *)splashAd
 {
-    NSLog(@"启动广告点击后展示全屏广告页成功");
+    SPLog(@"启动广告点击后展示全屏广告页成功");
 }
 
 /**
@@ -250,7 +260,7 @@
  */
 - (void)splashAdWillDismissFullScreenModal:(GDTSplashAd *)splashAd
 {
-    NSLog(@"启动广告点击后展示全屏广告页将要关闭");
+    SPLog(@"启动广告点击后展示全屏广告页将要关闭");
 }
 
 /**
@@ -258,7 +268,7 @@
  */
 - (void)splashAdDidDismissFullScreenModal:(GDTSplashAd *)splashAd
 {
-    NSLog(@"启动广告点击后展示全屏广告页已关闭");
+    SPLog(@"启动广告点击后展示全屏广告页已关闭");
 }
 
 /**
@@ -266,7 +276,7 @@
  */
 - (void)splashAdLifeTime:(NSUInteger)time
 {
-    NSLog(@"全屏广告还剩%d秒",(int)time);
+    SPLog(@"全屏广告还剩%d秒",(int)time);
 }
 
 @end

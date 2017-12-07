@@ -35,16 +35,16 @@
         
         AVFile *file = [AVFile fileWithData:data];
         [object setObject:file forKey:@"transactionReceipt"];
-        NSLog(@"上传购买凭据:");
-        NSLog(@"transactionState: %d",(int)transaction.transactionState);
-        NSLog(@"transactionIdentifier : %@",transaction.transactionIdentifier);
-        NSLog(@"UUID : %@",[FCUUID uuidForDevice]);
+        SPLog(@"上传购买凭据:");
+        SPLog(@"transactionState: %d",(int)transaction.transactionState);
+        SPLog(@"transactionIdentifier : %@",transaction.transactionIdentifier);
+        SPLog(@"UUID : %@",[FCUUID uuidForDevice]);
         
         [object saveInBackgroundWithOption:nil eventually:yes block:^(BOOL succeeded, NSError *error) {
             if (!succeeded || error) {
-                NSLog(@"上传购买凭据发生错误：%@",error);
+                SPLog(@"上传购买凭据发生错误：%@",error);
             }else{
-                NSLog(@"上传购买凭据成功");
+                SPLog(@"上传购买凭据成功");
             }
         }];
     }

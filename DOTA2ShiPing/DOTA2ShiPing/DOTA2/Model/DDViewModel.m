@@ -38,23 +38,23 @@
 
 - (void)create
 {
-//    NSLog(@"子类需要重写方法：%@",NSStringFromSelector(_cmd));
+//    SPLog(@"子类需要重写方法：%@",NSStringFromSelector(_cmd));
 }
 
 - (void)update
 {
-//    NSLog(@"子类需要重写方法：%@",NSStringFromSelector(_cmd));
+//    SPLog(@"子类需要重写方法：%@",NSStringFromSelector(_cmd));
 }
 
 - (CGFloat)containerHeight
 {
-//    NSLog(@"子类需要重写方法：%@",NSStringFromSelector(_cmd));
+//    SPLog(@"子类需要重写方法：%@",NSStringFromSelector(_cmd));
     return 1.5f;
 }
 
 - (CGSize)size
 {
-//    NSLog(@"子类需要重写方法：%@",NSStringFromSelector(_cmd));
+//    SPLog(@"子类需要重写方法：%@",NSStringFromSelector(_cmd));
     return CGSizeZero;
 }
 

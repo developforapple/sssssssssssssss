@@ -8,6 +8,7 @@
 #ifndef Common_h
 #define Common_h
 
+#include "Log.h"
 #include "Warning.h"
 #include "Defines.h"
 #include "ConfigDefines.h"

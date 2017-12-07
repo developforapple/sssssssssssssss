@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,20 +21,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刀塔饰品  for Dota2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3EI-p2-qbQ">
-                                <rect key="frame" x="108" y="311.5" width="159" height="44"/>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMI-3L-Gsu">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="饰品" image="icon_tab_home" id="QBv-Hl-tNt"/>
+                                    <tabBarItem title="库存" image="icon_tab_user" id="rjq-MG-zke"/>
+                                    <tabBarItem title="创意工坊" image="icon_tab_workshop" id="NAX-TU-1kY"/>
+                                    <tabBarItem title="更多" image="icon_tab_me" id="y0L-dF-i46"/>
+                                </items>
+                            </tabBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SEA-9M-7gF">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="VCz-lJ-Ixa"/>
+                                    <constraint firstAttribute="height" constant="44" id="2cK-Pr-IHq"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAH-ux-tZ0">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W36-ld-zOH">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                        <items/>
+                                        <color key="barTintColor" red="0.15868747234344482" green="0.21822044253349304" blue="0.30320093035697937" alpha="1" colorSpace="calibratedRGB"/>
+                                    </toolbar>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="饰品" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fG-Rx-bhQ">
+                                        <rect key="frame" x="168.5" y="20" width="37" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="ifx-Zl-JWF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="9fG-Rx-bhQ" secondAttribute="bottom" id="71s-PJ-fJs"/>
+                                    <constraint firstAttribute="trailing" secondItem="W36-ld-zOH" secondAttribute="trailing" id="Eyl-TI-tTs"/>
+                                    <constraint firstItem="W36-ld-zOH" firstAttribute="top" secondItem="gAH-ux-tZ0" secondAttribute="top" id="H9b-vm-aBc"/>
+                                    <constraint firstAttribute="bottom" secondItem="W36-ld-zOH" secondAttribute="bottom" id="S0N-fR-Qh7"/>
+                                    <constraint firstItem="9fG-Rx-bhQ" firstAttribute="centerX" secondItem="gAH-ux-tZ0" secondAttribute="centerX" id="abB-bG-wSi"/>
+                                    <constraint firstItem="W36-ld-zOH" firstAttribute="leading" secondItem="gAH-ux-tZ0" secondAttribute="leading" id="kOs-4U-kaN"/>
+                                </constraints>
+                            </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="VRR-J7-aPZ">
+                                <rect key="frame" x="177" y="323.5" width="20" height="20"/>
+                                <color key="color" red="0.15868747234344482" green="0.21822044253349304" blue="0.30320093035697937" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3EI-p2-qbQ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="rLw-Wd-R0k"/>
-                            <constraint firstItem="3EI-p2-qbQ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xYT-W6-0gS"/>
+                            <constraint firstAttribute="trailing" secondItem="bMI-3L-Gsu" secondAttribute="trailing" id="1tG-VL-yUp"/>
+                            <constraint firstAttribute="trailing" secondItem="gAH-ux-tZ0" secondAttribute="trailing" id="640-ta-6bt"/>
+                            <constraint firstItem="bMI-3L-Gsu" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="KFW-1B-Kba"/>
+                            <constraint firstAttribute="trailing" secondItem="SEA-9M-7gF" secondAttribute="trailing" id="OQe-yi-5DN"/>
+                            <constraint firstItem="SEA-9M-7gF" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="TD5-KF-G86"/>
+                            <constraint firstItem="gAH-ux-tZ0" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="TS4-oh-Tcb"/>
+                            <constraint firstItem="gAH-ux-tZ0" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="YAk-Zd-WJJ"/>
+                            <constraint firstItem="VRR-J7-aPZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="bOV-no-Tw7"/>
+                            <constraint firstItem="gAH-ux-tZ0" firstAttribute="bottom" secondItem="SEA-9M-7gF" secondAttribute="bottom" id="cwc-if-4Qi"/>
+                            <constraint firstItem="SEA-9M-7gF" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="k8n-so-Gga"/>
+                            <constraint firstAttribute="bottom" secondItem="bMI-3L-Gsu" secondAttribute="bottom" id="syp-FT-4uG"/>
+                            <constraint firstItem="VRR-J7-aPZ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="yn0-LD-nSf"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -43,4 +93,10 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_tab_home" width="24" height="24"/>
+        <image name="icon_tab_me" width="24" height="24"/>
+        <image name="icon_tab_user" width="24" height="24"/>
+        <image name="icon_tab_workshop" width="24" height="24"/>
+    </resources>
 </document>

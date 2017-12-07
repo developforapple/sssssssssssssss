@@ -51,7 +51,7 @@
     self.executeJSCode = executeCode;
     self.completion = completion;
     
-    NSLog(@"预备获取网页资源内容，原始链接：%@",URLString);
+    SPLog(@"预备获取网页资源内容，原始链接：%@",URLString);
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
     if (request) {

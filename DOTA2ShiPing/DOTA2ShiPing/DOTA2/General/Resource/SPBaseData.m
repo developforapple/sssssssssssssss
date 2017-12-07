@@ -137,12 +137,12 @@
     NSError *error;
     NSData *data = [NSData dataWithContentsOfFile:[self dataPath] options:NSDataReadingMappedIfSafe error:&error];
     if (!data || error) {
-        NSLog(@"读取基础数据错误：%@",error);
+        SPLog(@"读取基础数据错误：%@",error);
         return nil;
     }
     id object = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if (!object || error) {
-        NSLog(@"解析基础数据错误：%@",error);
+        SPLog(@"解析基础数据错误：%@",error);
         return nil;
     }
     return object;
@@ -160,12 +160,12 @@
     
     NSData *mainData = [NSData dataWithContentsOfFile:mainFilePath options:NSDataReadingMappedIfSafe error:&error];
     if (!mainData || error) {
-        NSLog(@"读取语言主数据失败！：%@",error);
+        SPLog(@"读取语言主数据失败！：%@",error);
         return nil;
     }
     NSMutableDictionary *mainObject = [NSJSONSerialization JSONObjectWithData:mainData options:NSJSONReadingMutableContainers error:&error];
     if (!mainObject || error) {
-        NSLog(@"解析语言主数据失败！：%@",error);
+        SPLog(@"解析语言主数据失败！：%@",error);
         return  nil;
     }
     
@@ -173,12 +173,12 @@
     
     NSData *patchData = [NSData dataWithContentsOfFile:patchFilePath options:NSDataReadingMappedIfSafe error:&error];
     if (!patchData || error) {
-        NSLog(@"读取语言补丁数据失败！%@：%@",patchFilePath,error);
+        SPLog(@"读取语言补丁数据失败！%@：%@",patchFilePath,error);
         return nil;
     }
     NSMutableDictionary *patchObject = [NSJSONSerialization JSONObjectWithData:patchData options:kNilOptions error:&error];
     if (!patchObject || error) {
-        NSLog(@"解析语言补丁数据失败！%@：%@",patchFilePath,error);
+        SPLog(@"解析语言补丁数据失败！%@：%@",patchFilePath,error);
         return nil;
     }
     [mainObject addEntriesFromDictionary:patchObject];

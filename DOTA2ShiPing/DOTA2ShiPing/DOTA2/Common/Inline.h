@@ -72,7 +72,7 @@ double SyncBenchmarkTest(void (^block)(void)){
 ALWAYS_INLINE
 void SyncBenchmarkTestAndLog(void (^block)(void)){
     double ms = SyncBenchmarkTest(block);
-    NSLog(@"Benchmark result: %.2f ms",ms);
+    SPLog(@"Benchmark result: %.2f ms",ms);
 }
 
 ALWAYS_INLINE
@@ -105,12 +105,12 @@ double _AsyncBenchmarkTestEnd(struct timeval begin){
 // AsyncBenchmarkTestEnd(AnyTag)
 
 #define AsyncBenchmarkTestBegin(TAG)     \
-    NSLog(@"Benchmark Test Begin! Tag: %@",@#TAG);  \
+    SPLog(@"Benchmark Test Begin! Tag: %@",@#TAG);  \
     struct timeval __benchmarkTag_##TAG = _AsyncBenchmarkTestBegin();
 
 #define AsyncBenchmarkTestEnd(TAG)       \
     double __benchmarkResult_##TAG = _AsyncBenchmarkTestEnd( __benchmarkTag_##TAG ) ;    \
-    NSLog(@"Benchmark Test End! Tag: %@ Result:%.2f ms" , @#TAG , __benchmarkResult_##TAG );
+    SPLog(@"Benchmark Test End! Tag: %@ Result:%.2f ms" , @#TAG , __benchmarkResult_##TAG );
 
 NS_ASSUME_NONNULL_END
 

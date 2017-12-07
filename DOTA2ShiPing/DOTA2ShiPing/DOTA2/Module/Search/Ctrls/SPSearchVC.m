@@ -169,7 +169,7 @@ static NSString *kSPSearchPlayerDetailSegueID = @"SPSearchPlayerDetailSegueID";
 #pragma mark - Segue
 - (void)showItemDetail:(NSString *)name
 {
-    NSLog(@"饰品详情 %@",name);
+    SPLog(@"饰品详情 %@",name);
     
     //TODO
 }

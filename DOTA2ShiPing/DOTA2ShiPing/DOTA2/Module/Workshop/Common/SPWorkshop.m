@@ -99,7 +99,7 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
             }
         }];
         self.lastTask.taskDescription = cacheKey;
-        NSLog(@"Fetch: %@",self.lastTask.currentRequest.URL);
+        SPLog(@"Fetch: %@",self.lastTask.currentRequest.URL);
         
     }else{
         NSUInteger count = data.count;
@@ -282,7 +282,7 @@ static NSTimeInterval const kSPWorkshopExpirTime = 2*60*60;
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:set options:kNilOptions error:nil];
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"");
+    SPLog(@"");
     //TTODO
 }
 

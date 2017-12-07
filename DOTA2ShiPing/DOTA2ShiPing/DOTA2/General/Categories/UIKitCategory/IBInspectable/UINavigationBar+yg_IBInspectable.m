@@ -43,7 +43,7 @@ static void *backgroundAlphaKey = &backgroundAlphaKey;
         UIView *view = [self valueForKey:@"_backgroundView"];
         return view;
     } @catch (NSException *exception) {
-        NSLog(@"%@",exception);
+        SPLog(@"%@",exception);
         return nil;
     }
 }

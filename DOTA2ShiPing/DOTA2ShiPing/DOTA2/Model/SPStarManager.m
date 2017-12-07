@@ -92,7 +92,7 @@
     BOOL result = [self.db executeUpdate:sql,token,@(orderid)];
     if (!result) {
         NSError *error = [self.db lastError];
-        NSLog(@"%@",error);
+        SPLog(@"%@",error);
     }
     [self.db close];
 }
@@ -104,7 +104,7 @@
     BOOL result = [self.db executeUpdate:@"DELETE FROM star WHERE token = ?",token];
     if (!result) {
         NSError *error = [self.db lastError];
-        NSLog(@"%@",error);
+        SPLog(@"%@",error);
     }
     [self.db close];
 }

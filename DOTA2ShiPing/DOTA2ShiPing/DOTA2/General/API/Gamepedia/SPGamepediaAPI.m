@@ -63,41 +63,41 @@
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-    NSLog(@"decidePolicyForNavigationAction : %@",navigationAction.request.URL);
+    SPLog(@"decidePolicyForNavigationAction : %@",navigationAction.request.URL);
     
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
 {
-    NSLog(@"decidePolicyForNavigationResponse : %@",navigationResponse.response.URL);
+    SPLog(@"decidePolicyForNavigationResponse : %@",navigationResponse.response.URL);
     
     decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation
 {
-    NSLog(@"didStartProvisionalNavigation");
+    SPLog(@"didStartProvisionalNavigation");
 }
 
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(null_unspecified WKNavigation *)navigation
 {
-    NSLog(@"didReceiveServerRedirectForProvisionalNavigation");
+    SPLog(@"didReceiveServerRedirectForProvisionalNavigation");
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error
 {
-    NSLog(@"didFailProvisionalNavigation : %@",error);
+    SPLog(@"didFailProvisionalNavigation : %@",error);
 }
 
 - (void)webView:(WKWebView *)webView didCommitNavigation:(null_unspecified WKNavigation *)navigation
 {
-    NSLog(@"didCommitNavigation");
+    SPLog(@"didCommitNavigation");
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation
 {
-    NSLog(@"didFinishNavigation");
+    SPLog(@"didFinishNavigation");
     
     if ([webView.URL.absoluteString isEqualToString:self.url.absoluteString]) {
         ygweakify(self);
@@ -114,7 +114,7 @@
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error
 {
-    NSLog(@"didFailNavigation : %@",error);
+    SPLog(@"didFailNavigation : %@",error);
 }
 
 @end
@@ -161,7 +161,7 @@
 {
     if (!completion) return;
     
-    NSLog(@"Begin load Gamepedia content of item: %@",item.name);
+    SPLog(@"Begin load Gamepedia content of item: %@",item.name);
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self defaultWebAPIParams]];
     dict[@"page"] = item.name;
@@ -178,7 +178,7 @@
     [[SPGamepediaAPIWebBrowser browser] skipDDosProtection:compontents.URL completion:^(NSString *text, NSError *error) {
         AsyncBenchmarkTestEnd(SPGamepediaAPI);
         if (error) {
-            NSLog(@"Failed load Gamepedia content. error: %@",error);
+            SPLog(@"Failed load Gamepedia content. error: %@",error);
             completion(NO,[SPGamepediaData error:error]);
         }else{
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:NULL];
@@ -191,18 +191,18 @@
     
 //    ygweakify(self);
 //    [self.manager GET:@"api.php" parameters:dict progress:^(NSProgress *downloadProgress) {
-//        NSLog(@"GamepediaAPI progress: %@",downloadProgress.localizedAdditionalDescription);
+//        SPLog(@"GamepediaAPI progress: %@",downloadProgress.localizedAdditionalDescription);
 //    } success:^(NSURLSessionDataTask *task, id responseObject) {
 //        AsyncBenchmarkTestEnd(SPGamepediaAPI)
 //        ygstrongify(self);
-//        NSLog(@"Did load Gamepedia content");
+//        SPLog(@"Did load Gamepedia content");
 //        [self handleFetchResult:responseObject ofItem:item completion:completion];
 //    } failure:^(NSURLSessionDataTask *task, NSError *error) {
 //        AsyncBenchmarkTestEnd(SPGamepediaAPI)
 //        NSHTTPURLResponse *resp = (NSHTTPURLResponse *)task.response;
 //        if (resp.statusCode == 503) {
 //            // 需要跳过DDoS防护
-//            NSLog(@"需要跳过DDoS防护");
+//            SPLog(@"需要跳过DDoS防护");
 //
 //            NSData *data = error.userInfo[@"com.alamofire.serialization.response.error.data"];
 //            NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -211,7 +211,7 @@
 //
 //        }else{
 //
-//            NSLog(@"Failed load Gamepedia content. error: %@",error);
+//            SPLog(@"Failed load Gamepedia content. error: %@",error);
 //            completion(NO,[SPGamepediaData error:error]);
 //        }
 //    }];
@@ -233,19 +233,19 @@
     
     NSString *html = [responseObject valueForKeyPath:@"parse.text.*"];
     
-    NSLog(@"抓取Gamepedia图片资源开始");
+    SPLog(@"抓取Gamepedia图片资源开始");
     YYBenchmark(^{
         data.images = [self getGamepediaImages:html];
     }, ^(double ms) {
-        NSLog(@"抓取Gamepedia图片资源结束，耗时 %.1f ms",ms);
+        SPLog(@"抓取Gamepedia图片资源结束，耗时 %.1f ms",ms);
     });
     
     if ([item isPlayable]) {
-        NSLog(@"抓取Gamepedia可播放资源开始");
+        SPLog(@"抓取Gamepedia可播放资源开始");
         YYBenchmark(^{
             data.playables = [self getGamepediaPlables:html];
         }, ^(double ms) {
-            NSLog(@"抓取Gamepedia可播放资源结束，耗时 %.1f ms",ms);
+            SPLog(@"抓取Gamepedia可播放资源结束，耗时 %.1f ms",ms);
         });
     }
     completion(YES,data);
@@ -260,8 +260,8 @@
         NSArray<TFHppleElement *> *effectsBoxes = [root searchWithXPathQuery:@"//table[@class='wikitable']//a[@class='image']//img"];
         NSArray<TFHppleElement *> *galleryboxes = [root searchWithXPathQuery:@"//li[@class='gallerybox']//a[@class='image']//img"];
         
-        NSLog(@"Gamepedia content contain %d effect boxes",(int)effectsBoxes.count);
-        NSLog(@"Gamepedia content contain %d gallery boxes",(int)galleryboxes.count);
+        SPLog(@"Gamepedia content contain %d effect boxes",(int)effectsBoxes.count);
+        SPLog(@"Gamepedia content contain %d gallery boxes",(int)galleryboxes.count);
 
         for (TFHppleElement *element in effectsBoxes) {
             NSString *src = [element objectForKey:@"src"];
@@ -283,9 +283,9 @@
             }
         }
     }@catch (NSException *e){
-        NSLog(@"SPGamepediaAPI Exception : %@",e);
+        SPLog(@"SPGamepediaAPI Exception : %@",e);
     }@finally{
-        NSLog(@"抓取到 SPGamepedia %d 张图片",(int)images.count);
+        SPLog(@"抓取到 SPGamepedia %d 张图片",(int)images.count);
         return images;
     }
 }
@@ -324,14 +324,14 @@
         NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
         TFHpple *root = [TFHpple hppleWithHTMLData:data];
         NSArray<TFHppleElement *> *playableElements = [root searchWithXPathQuery:@"//a[@title='Play']/parent::*"];
-        NSLog(@"Gamepedia content contain %d playable elements",(int)playableElements.count);
+        SPLog(@"Gamepedia content contain %d playable elements",(int)playableElements.count);
         for (TFHppleElement *element in playableElements) {
             NSString *text = [self plainTextOfElement:element];
             TFHppleElement *playNode = [element searchWithXPathQuery:@"//a[@title='Play']"].firstObject;
             if (text && playNode) {
                 NSString *URL = [playNode objectForKey:@"href"];
                 SPGamepediaPlayable *aPlayable = [[SPGamepediaPlayable alloc] initWithURL:URL title:text];
-//                NSLog(@"Playable: %@ : %@",text,URL);
+//                SPLog(@"Playable: %@ : %@",text,URL);
                 [contents addObject:aPlayable];
             }
         }
@@ -344,13 +344,13 @@
             [tmp addObject:obj.resource];
             return YES;
         }];
-        NSLog(@"Gamepedia content 去重前 %d 个内容",(int)contents.count);
+        SPLog(@"Gamepedia content 去重前 %d 个内容",(int)contents.count);
         result = [contents objectsAtIndexes:indexes];
         
     }@catch (NSException *e){
-        NSLog(@"SPGamepediaAPI Exception : %@",e);
+        SPLog(@"SPGamepediaAPI Exception : %@",e);
     }@finally{
-        NSLog(@"抓取到 SPGamepedia %d 张音频",(int)result.count);
+        SPLog(@"抓取到 SPGamepedia %d 张音频",(int)result.count);
         return result;
     }
 }

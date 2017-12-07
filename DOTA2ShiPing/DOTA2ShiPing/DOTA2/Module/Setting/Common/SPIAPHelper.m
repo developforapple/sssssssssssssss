@@ -45,7 +45,7 @@ static BOOL kIsProduction = YES;
 
 + (void)setProduction:(BOOL)isProduction
 {
-    NSLog(@"当前为%@环境",isProduction?@"生产":@"开发");
+    SPLog(@"当前为%@环境",isProduction?@"生产":@"开发");
     kIsProduction = isProduction;
 }
 

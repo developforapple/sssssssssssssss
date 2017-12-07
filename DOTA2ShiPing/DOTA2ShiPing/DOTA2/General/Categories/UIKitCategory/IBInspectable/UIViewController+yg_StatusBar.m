@@ -223,7 +223,7 @@ NO_WARNING_END
 #pragma mark View controller-based method
 - (BOOL)yg_prefersStatusBarHidden
 {
-    //    NSLog(@"%@\t yg_prefersStatusBarHidden",NSStringFromClass([self class]));
+    //    SPLog(@"%@\t yg_prefersStatusBarHidden",NSStringFromClass([self class]));
     switch ([UIViewController statusBarControlMode]) {
         case YGStatusBarControlModeApplication:{
             return [UIApplication sharedApplication].statusBarHidden;
@@ -240,7 +240,7 @@ NO_WARNING_END
 
 - (UIViewController *)yg_childViewControllerForStatusBarHidden
 {
-    //    NSLog(@"%@\t yg_childViewControllerForStatusBarHidden",NSStringFromClass([self class]));
+    //    SPLog(@"%@\t yg_childViewControllerForStatusBarHidden",NSStringFromClass([self class]));
     if ([UIViewController statusBarControlMode] == YGStatusBarControlModeAuto) {
         if ([self isKindOfClass:[UINavigationController class]]) {
             return [(UINavigationController *)self topViewController];
@@ -255,7 +255,7 @@ NO_WARNING_END
 
 - (UIStatusBarStyle)yg_preferredStatusBarStyle
 {
-//    NSLog(@"%@\t yg_preferredStatusBarStyle",NSStringFromClass([self class]));
+//    SPLog(@"%@\t yg_preferredStatusBarStyle",NSStringFromClass([self class]));
     switch ([UIViewController statusBarControlMode]) {
         case YGStatusBarControlModeApplication:{
             return [UIApplication sharedApplication].statusBarStyle;
@@ -272,7 +272,7 @@ NO_WARNING_END
 
 - (UIViewController *)yg_childViewControllerForStatusBarStyle
 {
-//    NSLog(@"%@\t yg_childViewControllerForStatusBarStyle",NSStringFromClass([self class]));
+//    SPLog(@"%@\t yg_childViewControllerForStatusBarStyle",NSStringFromClass([self class]));
     if ([UIViewController statusBarControlMode] == YGStatusBarControlModeAuto) {
         if ([self isKindOfClass:[UINavigationController class]]) {
             return [(UINavigationController *)self topViewController];

@@ -95,7 +95,7 @@
     BOOL result = [self.db executeUpdate:sql,token,@(orderid)];
     if (!result) {
         NSError *error = [self.db lastError];
-        NSLog(@"%@",error);
+        SPLog(@"%@",error);
     }
     [self.db close];
 }

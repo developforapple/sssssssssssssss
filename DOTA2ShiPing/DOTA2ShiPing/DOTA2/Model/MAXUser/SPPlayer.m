@@ -42,6 +42,12 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.dotabuff.com/players/%@",self.steam_id]];
 }
 
+- (void)cleanMemory
+{
+    _inventory = nil;
+    _itemList = nil;
+}
+
 YYModelDefaultCode
 @end
 

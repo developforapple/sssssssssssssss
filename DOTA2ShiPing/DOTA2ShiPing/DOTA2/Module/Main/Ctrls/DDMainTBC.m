@@ -15,6 +15,7 @@
 @import ReactiveObjC;
 @import AVOSCloud;
 @import StoreKit;
+@import SDWebImage;
 
 @interface DDMainTBC () <SKStoreProductViewControllerDelegate>
 @property (assign, nonatomic) NSTimeInterval lastCheckTime;
@@ -32,6 +33,7 @@
 - (void)rootViewControllerDidAppear:(UINavigationController *)navi
 {
     [self checkUpdateIfNeed];
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
 }
 
 - (void)checkUpdateIfNeed
@@ -91,7 +93,7 @@
     [query whereKey:@"Key" equalTo:AppBundleID];
     [query getFirstObjectInBackgroundWithBlock:^(AVObject *object, NSError *error) {
         if (error || !object){
-            NSLog(@"查询 Availability 出错！");
+            SPLog(@"查询 Availability 出错！");
             return ;
         }
         
@@ -102,9 +104,9 @@
         id minV = [object objectForKey:@"MinVersion"];
         id maxV = [object objectForKey:@"MaxVersion"];
         
-        NSLog(@"当前app版本：%lld",curVersion);
-        NSLog(@"最小支持版本：%@",minV);
-        NSLog(@"最大线上版本：%@",maxV);
+        SPLog(@"当前app版本：%lld",curVersion);
+        SPLog(@"最小支持版本：%@",minV);
+        SPLog(@"最大线上版本：%@",maxV);
         
         if ([minV respondsToSelector:@selector(longLongValue)]){
             long long minVersion = [minV longLongValue];

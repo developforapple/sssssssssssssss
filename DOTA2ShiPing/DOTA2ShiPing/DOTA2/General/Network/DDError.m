@@ -16,7 +16,7 @@
     error.error = err;
     error.errcode = err.code;
     error.msg = [NSString stringWithFormat:NSLocalizedString(@"网络错误 code:%ld", nil),(long)err.code];
-    NSLog(@"%@",err);
+    SPLog(@"%@",err);
     return error;
 }
 

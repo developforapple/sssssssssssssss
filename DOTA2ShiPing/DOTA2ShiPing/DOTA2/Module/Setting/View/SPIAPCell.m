@@ -15,8 +15,8 @@ NSString *const kSPIAPCell = @"SPIAPCell";
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
-    
+    [self layoutIfNeeded];
+    self.iapDesc.preferredMaxLayoutWidth = CGRectGetWidth(self.iapDesc.bounds);
 }
 
 @end

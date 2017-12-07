@@ -202,7 +202,7 @@ static NSMutableSet<Class> *kIgnoredViewControllerClasses;
     if (self.navigationController &&
         self.parentViewController == self.navigationController &&
         self.navigationController.topViewController == self) {
-//        NSLog(@"viewDidAppear");
+//        SPLog(@"viewDidAppear");
         
         if (![self.navigationController nextAppearIsPush]) {
             [UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -239,7 +239,7 @@ static NSMutableSet<Class> *kIgnoredViewControllerClasses;
         self.parentViewController == self.navigationController) {
         
         BOOL isPush = [self.navigationController.viewControllers containsObject:self];
-//        NSLog(@"%@",isPush?@"PUSH":@"POP");
+//        SPLog(@"%@",isPush?@"PUSH":@"POP");
         self.navigationController.nextAppearIsPush = isPush;
     }
 }

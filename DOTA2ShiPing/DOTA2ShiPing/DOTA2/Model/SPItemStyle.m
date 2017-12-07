@@ -22,12 +22,12 @@ YYModelDefaultCode
     NSDictionary *unlockDict = info[@"child"][@"unlock"];
     
     if (unlockDict) {
-//        NSLog(@"%@",unlockDict.allKeys);
+//        SPLog(@"%@",unlockDict.allKeys);
         
         SPItemStyleUnlock *unlockObj = [SPItemStyleUnlock new];
         
         NSDictionary *childInfo = unlockDict[@"child"];
-//        NSLog(@"%@",childInfo.allKeys);
+//        SPLog(@"%@",childInfo.allKeys);
         
         NSDictionary *gemInfo = childInfo[@"gem"];
         if (gemInfo) {

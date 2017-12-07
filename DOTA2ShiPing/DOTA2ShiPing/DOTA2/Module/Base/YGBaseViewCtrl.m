@@ -6,39 +6,66 @@
 //
 
 #import "YGBaseViewCtrl.h"
+@import AVOSCloud.AVAnalytics;
 
 @interface UIViewController (YGBase) <UIGestureRecognizerDelegate>
 @end
 
 @implementation UIViewController (YGBase)
 
+- (BOOL)sp_isInNavigationController
+{
+    return [self.parentViewController isKindOfClass:[UINavigationController class]];
+}
+
+- (BOOL)sp_isRootViewController
+{
+    return [self sp_isInNavigationController] && self.navigationController.viewControllers.firstObject == self;
+}
+
+- (BOOL)sp_isTopViewController
+{
+    return [self sp_isInNavigationController] && self.navigationController.viewControllers.lastObject == self;
+}
+
 - (void)_onViewDidLoad
 {
-    if ([self.parentViewController isKindOfClass:[UINavigationController class]]) {
-        
-        if (self.navigationController.viewControllers.firstObject != self) {
-            [self _leftNavButtonTemplateImg:@"icon_back_dark"];
-        }
-        
-        // 解决iOS11导航栏左侧按钮无响应的问题
-        if (iOS11) {
+    if ([self sp_isInNavigationController] && ![self sp_isRootViewController]) {
+        [self _leftNavButtonTemplateImg:@"icon_back_dark"];
+    }
+}
+
+- (void)_onViewWillAppear:(BOOL)animated
+{
+    [AVAnalytics beginLogPageView:NSStringFromClass(self.class)];
+}
+
+- (void)_onViewDidAppear:(BOOL)animated
+{
+    // 解决iOS11导航栏左侧按钮无响应的问题
+    // 解决jz的bug：控制在导航控制器第一页时，pop手势打开，使用pop手势，会造成界面错乱，响应缓慢。
+    if ([self sp_isInNavigationController]) {
+        if ([self sp_isRootViewController]) {
+            self.interactivePopEnabled_ = NO;
+            self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+            self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+        }else{
+            self.interactivePopEnabled_ = YES;
             self.navigationController.interactivePopGestureRecognizer.enabled = YES;
             self.navigationController.interactivePopGestureRecognizer.delegate = self;
         }
     }
 }
 
-- (void)_onViewWillAppear:(BOOL)animated
-{}
-
-- (void)_onViewDidAppear:(BOOL)animated
-{}
-
 - (void)_onViewWillDisappear:(BOOL)animated
-{}
+{
+    
+}
 
 - (void)_onViewDidDisappear:(BOOL)animated
-{}
+{
+    [AVAnalytics endLogPageView:NSStringFromClass(self.class)];
+}
 
 - (void)_onDealloc
 {
@@ -52,7 +79,7 @@
             }
         }
     }
-    NSLog(@"%@ 释放",NSStringFromClass([self class]));
+    SPLog(@"%@ 释放",NSStringFromClass([self class]));
 }
 
 - (void)_leftNavButtonImg:(NSString*)img
@@ -134,6 +161,30 @@
     [self _onViewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self _onViewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self _onViewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self _onViewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self _onViewDidDisappear:animated];
+}
+
 - (void)dealloc
 {
     [self _onDealloc];
@@ -194,6 +245,30 @@
     [self _onViewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self _onViewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self _onViewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self _onViewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self _onViewDidDisappear:animated];
+}
+
 - (void)dealloc
 {
     [self _onDealloc];
@@ -252,6 +327,30 @@
 {
     [super viewDidLoad];
     [self _onViewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self _onViewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self _onViewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self _onViewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self _onViewDidDisappear:animated];
 }
 
 - (void)dealloc

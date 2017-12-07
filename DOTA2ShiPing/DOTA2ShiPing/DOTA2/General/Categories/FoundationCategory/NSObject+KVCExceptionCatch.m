@@ -33,8 +33,8 @@ YGSwizzleMethod
         [self yg_setValue:value forUndefinedKey:key];
     }
     @catch (NSException *exception) {
-        NSLog(@"KVC Error Key: %@",key);
-        NSLog(@"exception: %@",exception);
+        SPLog(@"KVC Error Key: %@",key);
+        SPLog(@"exception: %@",exception);
     }
 }
 

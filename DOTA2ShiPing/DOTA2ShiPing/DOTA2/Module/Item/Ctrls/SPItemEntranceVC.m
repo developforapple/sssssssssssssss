@@ -22,7 +22,10 @@
 #define kSPItemOffPriceSegueID @"SPItemOffPriceSegueID"
 
 @interface SPItemEntranceVC ()<UICollectionViewDelegate,UICollectionViewDataSource>
-
+{
+    BOOL _loadFlag;
+}
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
 
@@ -45,6 +48,19 @@
 {
     [super viewDidDisappear:animated];
     [[SDImageCache sharedImageCache] clearMemory];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (!_loadFlag) {
+        _loadFlag = YES;
+        RunAfter(.6f, ^{
+            [self.collectionView setHidden:NO animated:YES];
+            [self.loading stopAnimating];
+        });
+    }
 }
 
 - (void)initUI
@@ -92,6 +108,8 @@
 {
     SPItemEntranceUnit *unit = self.config.units[indexPath.item];
     SPItemEntranceType type = unit.type;
+    
+    SPBP(Event_Item_Entrance, unit.title);
     
     switch (type) {
         case SPItemEntranceTypeOffPrice:{

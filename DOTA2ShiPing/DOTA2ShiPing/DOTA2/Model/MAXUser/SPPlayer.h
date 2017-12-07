@@ -30,6 +30,8 @@
 - (NSURL *)dotamaxProfile;
 - (NSURL *)dotabuffProfile;
 
+- (void)cleanMemory;
+
 @end
 
 // 用户的steam社区资料可见性

@@ -59,7 +59,7 @@
 //
 //- (void)splashSuccessPresentScreen:(BaiduMobAdSplash *)splash
 //{
-//    NSLog(@"半开屏广告展示成功");
+//    SPLog(@"半开屏广告展示成功");
 //    
 //    [UIView animateWithDuration:.4f animations:^{
 //        self.appTitleBottomConstraint.priority = 950;
@@ -71,19 +71,19 @@
 //
 //- (void)splashDidClicked:(BaiduMobAdSplash *)splash
 //{
-//    NSLog(@"半开屏广告点击");
+//    SPLog(@"半开屏广告点击");
 ////    [self dismiss];
 //}
 //
 //- (void)splashDidDismissScreen:(BaiduMobAdSplash *)splash
 //{
-//    NSLog(@"半开屏广告结束展示");
+//    SPLog(@"半开屏广告结束展示");
 ////    [self dismiss];
 //}
 //
 //- (void)splashlFailPresentScreen:(BaiduMobAdSplash *)splash withError:(BaiduMobFailReason) reason
 //{
-//    NSLog(@"半开屏广告展示失败");
+//    SPLog(@"半开屏广告展示失败");
 //    
 ////    [self dismiss];
 //}

@@ -97,9 +97,4 @@ NSTimeInterval const kSPFocusAnimationDurtaion = .25f;
     [self dismiss:nil];
 }
 
-- (void)dealloc
-{
-    NSLog(@"%@释放",NSStringFromClass(self.class));
-}
-
 @end

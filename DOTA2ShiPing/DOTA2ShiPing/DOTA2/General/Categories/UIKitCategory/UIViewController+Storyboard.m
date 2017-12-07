@@ -102,7 +102,7 @@ FOUNDATION_EXTERN NSString *const kAppBundleID;
         return nil;
     }
     @catch (NSException *exception) {
-        NSLog(@"%@",exception);
+        SPLog(@"%@",exception);
         return nil;
     }
 }

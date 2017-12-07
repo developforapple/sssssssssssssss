@@ -137,7 +137,6 @@
 		2D8081451FD5B92500078A50 /* SPGamepediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F631151FBAF4CE00A60EC8 /* SPGamepediaData.m */; };
 		2D8081461FD5B92500078A50 /* UINavigationBar+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6951F1361640012950A /* UINavigationBar+yg_IBInspectable.m */; };
 		2D8081471FD5B92500078A50 /* SPItemImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDB45481F3C4EC9005E8460 /* SPItemImageLoader.m */; };
-		2D8081481FD5B92500078A50 /* SPPlayerInventoryUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CC1F1361640012950A /* SPPlayerInventoryUpdateVC.m */; };
 		2D8081491FD5B92500078A50 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6B51F1361640012950A /* UIView+Hierarchy.m */; };
 		2D80814A1FD5B92500078A50 /* YGBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6F61F1361640012950A /* YGBubble.m */; };
 		2D80814B1FD5B92500078A50 /* SPWorkshopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8091F1361640012950A /* SPWorkshopModel.m */; };
@@ -271,7 +270,6 @@
 		2D8081CB1FD5B92500078A50 /* YGBaseNaviCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7821F1361640012950A /* YGBaseNaviCtrl.m */; };
 		2D8081CC1FD5B92500078A50 /* SPSteamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6651F1361640012950A /* SPSteamAPI.m */; };
 		2D8081CD1FD5B92500078A50 /* UIView+YGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6B71F1361640012950A /* UIView+YGGeometry.m */; };
-		2D8081CE1FD5B92500078A50 /* SPPlayerSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CE1F1361640012950A /* SPPlayerSelectedVC.m */; };
 		2D8081CF1FD5B92500078A50 /* SPPlayerDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BF1F1361640012950A /* SPPlayerDetailInfoVC.m */; };
 		2D8081D01FD5B92500078A50 /* Config_Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6521F1361640012950A /* Config_Appearance.m */; };
 		2D8081D11FD5B92500078A50 /* DDMainADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AA1F1361640012950A /* DDMainADVC.m */; };
@@ -405,7 +403,6 @@
 		2DD6632C1FD57D62000E7223 /* SPGamepediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F631151FBAF4CE00A60EC8 /* SPGamepediaData.m */; };
 		2DD6632D1FD57D62000E7223 /* UINavigationBar+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6951F1361640012950A /* UINavigationBar+yg_IBInspectable.m */; };
 		2DD6632E1FD57D62000E7223 /* SPItemImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDB45481F3C4EC9005E8460 /* SPItemImageLoader.m */; };
-		2DD6632F1FD57D62000E7223 /* SPPlayerInventoryUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CC1F1361640012950A /* SPPlayerInventoryUpdateVC.m */; };
 		2DD663301FD57D62000E7223 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6B51F1361640012950A /* UIView+Hierarchy.m */; };
 		2DD663311FD57D62000E7223 /* YGBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6F61F1361640012950A /* YGBubble.m */; };
 		2DD663321FD57D62000E7223 /* SPWorkshopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8091F1361640012950A /* SPWorkshopModel.m */; };
@@ -539,7 +536,6 @@
 		2DD663B21FD57D62000E7223 /* YGBaseNaviCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7821F1361640012950A /* YGBaseNaviCtrl.m */; };
 		2DD663B31FD57D62000E7223 /* SPSteamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6651F1361640012950A /* SPSteamAPI.m */; };
 		2DD663B41FD57D62000E7223 /* UIView+YGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6B71F1361640012950A /* UIView+YGGeometry.m */; };
-		2DD663B51FD57D62000E7223 /* SPPlayerSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CE1F1361640012950A /* SPPlayerSelectedVC.m */; };
 		2DD663B61FD57D62000E7223 /* SPPlayerDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BF1F1361640012950A /* SPPlayerDetailInfoVC.m */; };
 		2DD663B71FD57D62000E7223 /* Config_Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6521F1361640012950A /* Config_Appearance.m */; };
 		2DD663B81FD57D62000E7223 /* DDMainADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AA1F1361640012950A /* DDMainADVC.m */; };
@@ -652,7 +648,6 @@
 		2DD664351FD57D83000E7223 /* SPGamepediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F631151FBAF4CE00A60EC8 /* SPGamepediaData.m */; };
 		2DD664361FD57D83000E7223 /* UINavigationBar+yg_IBInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6951F1361640012950A /* UINavigationBar+yg_IBInspectable.m */; };
 		2DD664371FD57D83000E7223 /* SPItemImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDB45481F3C4EC9005E8460 /* SPItemImageLoader.m */; };
-		2DD664381FD57D83000E7223 /* SPPlayerInventoryUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CC1F1361640012950A /* SPPlayerInventoryUpdateVC.m */; };
 		2DD664391FD57D83000E7223 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6B51F1361640012950A /* UIView+Hierarchy.m */; };
 		2DD6643A1FD57D83000E7223 /* YGBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6F61F1361640012950A /* YGBubble.m */; };
 		2DD6643B1FD57D83000E7223 /* SPWorkshopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B8091F1361640012950A /* SPWorkshopModel.m */; };
@@ -786,7 +781,6 @@
 		2DD664BB1FD57D83000E7223 /* YGBaseNaviCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7821F1361640012950A /* YGBaseNaviCtrl.m */; };
 		2DD664BC1FD57D83000E7223 /* SPSteamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6651F1361640012950A /* SPSteamAPI.m */; };
 		2DD664BD1FD57D83000E7223 /* UIView+YGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6B71F1361640012950A /* UIView+YGGeometry.m */; };
-		2DD664BE1FD57D83000E7223 /* SPPlayerSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CE1F1361640012950A /* SPPlayerSelectedVC.m */; };
 		2DD664BF1FD57D83000E7223 /* SPPlayerDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BF1F1361640012950A /* SPPlayerDetailInfoVC.m */; };
 		2DD664C01FD57D83000E7223 /* Config_Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6521F1361640012950A /* Config_Appearance.m */; };
 		2DD664C11FD57D83000E7223 /* DDMainADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AA1F1361640012950A /* DDMainADVC.m */; };
@@ -947,8 +941,6 @@
 		2DF9B8B01F1361640012950A /* SPPlayerDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BF1F1361640012950A /* SPPlayerDetailInfoVC.m */; };
 		2DF9B8B41F1361640012950A /* SPPlayerInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C71F1361640012950A /* SPPlayerInventoryVC.m */; };
 		2DF9B8B51F1361640012950A /* SPPlayerListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C91F1361640012950A /* SPPlayerListVC.m */; };
-		2DF9B8B61F1361640012950A /* SPPlayerInventoryUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CC1F1361640012950A /* SPPlayerInventoryUpdateVC.m */; };
-		2DF9B8B71F1361640012950A /* SPPlayerSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7CE1F1361640012950A /* SPPlayerSelectedVC.m */; };
 		2DF9B8B91F1361640012950A /* SPPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7D41F1361640012950A /* SPPlayerCell.m */; };
 		2DF9B8BA1F1361640012950A /* SPSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7D91F1361640012950A /* SPSearchEngine.m */; };
 		2DF9B8BB1F1361640012950A /* SPSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7DC1F1361640012950A /* SPSearchVC.m */; };
@@ -1110,6 +1102,7 @@
 		2D5A2AAD1FD286900021FCC9 /* GDTSplashAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTSplashAd.h; sourceTree = "<group>"; };
 		2D5A2AAE1FD286900021FCC9 /* GDTNativeExpressAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTNativeExpressAd.h; sourceTree = "<group>"; };
 		2D5A2AAF1FD286900021FCC9 /* libGDTMobSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGDTMobSDK.a; sourceTree = "<group>"; };
+		2D675BC51FD97E2C00C6E541 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		2D6F1CA21F1E709F00E8F614 /* DOTA2ShiPing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOTA2ShiPing-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1420,10 +1413,6 @@
 		2DF9B7C71F1361640012950A /* SPPlayerInventoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventoryVC.m; sourceTree = "<group>"; };
 		2DF9B7C81F1361640012950A /* SPPlayerListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerListVC.h; sourceTree = "<group>"; };
 		2DF9B7C91F1361640012950A /* SPPlayerListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerListVC.m; sourceTree = "<group>"; };
-		2DF9B7CB1F1361640012950A /* SPPlayerInventoryUpdateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerInventoryUpdateVC.h; sourceTree = "<group>"; };
-		2DF9B7CC1F1361640012950A /* SPPlayerInventoryUpdateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerInventoryUpdateVC.m; sourceTree = "<group>"; };
-		2DF9B7CD1F1361640012950A /* SPPlayerSelectedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerSelectedVC.h; sourceTree = "<group>"; };
-		2DF9B7CE1F1361640012950A /* SPPlayerSelectedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerSelectedVC.m; sourceTree = "<group>"; };
 		2DF9B7D31F1361640012950A /* SPPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerCell.h; sourceTree = "<group>"; };
 		2DF9B7D41F1361640012950A /* SPPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayerCell.m; sourceTree = "<group>"; };
 		2DF9B7D71F1361640012950A /* SPSearchCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSearchCommon.h; sourceTree = "<group>"; };
@@ -1938,6 +1927,7 @@
 				2DF9B64D1F1361640012950A /* Unit.h */,
 				2DF9B64E1F1361640012950A /* Warning.h */,
 				2DF9B8E01F13639E0012950A /* Steam.h */,
+				2D675BC51FD97E2C00C6E541 /* Log.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2684,20 +2674,8 @@
 				2DF9B7C71F1361640012950A /* SPPlayerInventoryVC.m */,
 				2DF9B7BC1F1361640012950A /* SPPlayerAliasesVC.h */,
 				2DF9B7BD1F1361640012950A /* SPPlayerAliasesVC.m */,
-				2DF9B7CA1F1361640012950A /* Update */,
 			);
 			path = Ctrls;
-			sourceTree = "<group>";
-		};
-		2DF9B7CA1F1361640012950A /* Update */ = {
-			isa = PBXGroup;
-			children = (
-				2DF9B7CB1F1361640012950A /* SPPlayerInventoryUpdateVC.h */,
-				2DF9B7CC1F1361640012950A /* SPPlayerInventoryUpdateVC.m */,
-				2DF9B7CD1F1361640012950A /* SPPlayerSelectedVC.h */,
-				2DF9B7CE1F1361640012950A /* SPPlayerSelectedVC.m */,
-			);
-			path = Update;
 			sourceTree = "<group>";
 		};
 		2DF9B7D01F1361640012950A /* View */ = {
@@ -3962,7 +3940,6 @@
 				69F631161FBAF4CE00A60EC8 /* SPGamepediaData.m in Sources */,
 				2DF9B8371F1361640012950A /* UINavigationBar+yg_IBInspectable.m in Sources */,
 				2DDB45491F3C4EC9005E8460 /* SPItemImageLoader.m in Sources */,
-				2DF9B8B61F1361640012950A /* SPPlayerInventoryUpdateVC.m in Sources */,
 				2DF9B8471F1361640012950A /* UIView+Hierarchy.m in Sources */,
 				2DF9B8601F1361640012950A /* YGBubble.m in Sources */,
 				2DF9B8CD1F1361640012950A /* SPWorkshopModel.m in Sources */,
@@ -4096,7 +4073,6 @@
 				2DF9B8981F1361640012950A /* YGBaseNaviCtrl.m in Sources */,
 				2DF9B8241F1361640012950A /* SPSteamAPI.m in Sources */,
 				2DF9B8481F1361640012950A /* UIView+YGGeometry.m in Sources */,
-				2DF9B8B71F1361640012950A /* SPPlayerSelectedVC.m in Sources */,
 				2DF9B8B01F1361640012950A /* SPPlayerDetailInfoVC.m in Sources */,
 				2DF9B81C1F1361640012950A /* Config_Appearance.m in Sources */,
 				2DF9B8A81F1361640012950A /* DDMainADVC.m in Sources */,
@@ -4193,7 +4169,6 @@
 				2D8081451FD5B92500078A50 /* SPGamepediaData.m in Sources */,
 				2D8081461FD5B92500078A50 /* UINavigationBar+yg_IBInspectable.m in Sources */,
 				2D8081471FD5B92500078A50 /* SPItemImageLoader.m in Sources */,
-				2D8081481FD5B92500078A50 /* SPPlayerInventoryUpdateVC.m in Sources */,
 				2D8081491FD5B92500078A50 /* UIView+Hierarchy.m in Sources */,
 				2D80814A1FD5B92500078A50 /* YGBubble.m in Sources */,
 				2D80814B1FD5B92500078A50 /* SPWorkshopModel.m in Sources */,
@@ -4327,7 +4302,6 @@
 				2D8081CB1FD5B92500078A50 /* YGBaseNaviCtrl.m in Sources */,
 				2D8081CC1FD5B92500078A50 /* SPSteamAPI.m in Sources */,
 				2D8081CD1FD5B92500078A50 /* UIView+YGGeometry.m in Sources */,
-				2D8081CE1FD5B92500078A50 /* SPPlayerSelectedVC.m in Sources */,
 				2D8081CF1FD5B92500078A50 /* SPPlayerDetailInfoVC.m in Sources */,
 				2D8081D01FD5B92500078A50 /* Config_Appearance.m in Sources */,
 				2D8081D11FD5B92500078A50 /* DDMainADVC.m in Sources */,
@@ -4424,7 +4398,6 @@
 				2DD6632C1FD57D62000E7223 /* SPGamepediaData.m in Sources */,
 				2DD6632D1FD57D62000E7223 /* UINavigationBar+yg_IBInspectable.m in Sources */,
 				2DD6632E1FD57D62000E7223 /* SPItemImageLoader.m in Sources */,
-				2DD6632F1FD57D62000E7223 /* SPPlayerInventoryUpdateVC.m in Sources */,
 				2DD663301FD57D62000E7223 /* UIView+Hierarchy.m in Sources */,
 				2DD663311FD57D62000E7223 /* YGBubble.m in Sources */,
 				2DD663321FD57D62000E7223 /* SPWorkshopModel.m in Sources */,
@@ -4558,7 +4531,6 @@
 				2DD663B21FD57D62000E7223 /* YGBaseNaviCtrl.m in Sources */,
 				2DD663B31FD57D62000E7223 /* SPSteamAPI.m in Sources */,
 				2DD663B41FD57D62000E7223 /* UIView+YGGeometry.m in Sources */,
-				2DD663B51FD57D62000E7223 /* SPPlayerSelectedVC.m in Sources */,
 				2DD663B61FD57D62000E7223 /* SPPlayerDetailInfoVC.m in Sources */,
 				2DD663B71FD57D62000E7223 /* Config_Appearance.m in Sources */,
 				2DD663B81FD57D62000E7223 /* DDMainADVC.m in Sources */,
@@ -4655,7 +4627,6 @@
 				2DD664351FD57D83000E7223 /* SPGamepediaData.m in Sources */,
 				2DD664361FD57D83000E7223 /* UINavigationBar+yg_IBInspectable.m in Sources */,
 				2DD664371FD57D83000E7223 /* SPItemImageLoader.m in Sources */,
-				2DD664381FD57D83000E7223 /* SPPlayerInventoryUpdateVC.m in Sources */,
 				2DD664391FD57D83000E7223 /* UIView+Hierarchy.m in Sources */,
 				2DD6643A1FD57D83000E7223 /* YGBubble.m in Sources */,
 				2DD6643B1FD57D83000E7223 /* SPWorkshopModel.m in Sources */,
@@ -4789,7 +4760,6 @@
 				2DD664BB1FD57D83000E7223 /* YGBaseNaviCtrl.m in Sources */,
 				2DD664BC1FD57D83000E7223 /* SPSteamAPI.m in Sources */,
 				2DD664BD1FD57D83000E7223 /* UIView+YGGeometry.m in Sources */,
-				2DD664BE1FD57D83000E7223 /* SPPlayerSelectedVC.m in Sources */,
 				2DD664BF1FD57D83000E7223 /* SPPlayerDetailInfoVC.m in Sources */,
 				2DD664C01FD57D83000E7223 /* Config_Appearance.m in Sources */,
 				2DD664C11FD57D83000E7223 /* DDMainADVC.m in Sources */,

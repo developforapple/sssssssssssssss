@@ -256,14 +256,14 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
     NSString *url = [NSString stringWithFormat:@"profiles/%@/inventory/json/570/2",steamid17];
     NSDictionary *params = @{@"l":@"zh_CN",@"start":@(index)};
     
-    NSLog(@"开始请求 start: %lu",(unsigned long)index);
+    SPLog(@"开始请求 start: %lu",(unsigned long)index);
     
     [self.manager GET:url parameters:params progress:^(NSProgress *downloadProgress) {
         
         NSInteger c = downloadProgress.completedUnitCount;
         NSInteger t = downloadProgress.totalUnitCount;
         
-        NSLog(@"%ld/%ld  %.2f%%",(long)c,t,100*c/(CGFloat)t);
+        SPLog(@"%ld/%ld  %.2f%%",(long)c,t,100*c/(CGFloat)t);
         
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         
@@ -280,7 +280,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
                 NSDictionary *rgDescriptionDict = rgDescriptions[k];
                 if (!rgDescriptionDict) {
                     // 这里需要考虑多页的情况。如果多页的条件下 k 对应的 rgDescription 在其他页，就需要重写了。
-                    NSLog(@"123123123");
+                    SPLog(@"123123123");
                 }else{
                     [tmp addEntriesFromDictionary:rgDescriptionDict];
                 }
@@ -310,7 +310,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
         NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
         NSDictionary *header = [HTTPResponse allHeaderFields];
         long long length = [header[@"Content-Length"] longLongValue];
-        NSLog(@"文件长度：%lld",length);
+        SPLog(@"文件长度：%lld",length);
         return NSURLSessionResponseAllow;
     }];
 }
@@ -333,13 +333,13 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
 
     Recursion = ^(NSUInteger idx){
         
-        NSLog(@"准备请求：第 %lld 页",theProgress.completedUnitCount);
+        SPLog(@"准备请求：第 %lld 页",theProgress.completedUnitCount);
         
         [self fetchInventoryOfUser:steamid17 fromIndex:idx completion:^(BOOL suc, id object) {
             
             // 网络错误
             if (!suc){
-                NSLog(@"网络错误!");
+                SPLog(@"网络错误!");
                 completion(NO,@"网络错误");
                 return;
             }
@@ -347,7 +347,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
             // 数据错误
             SPPlayerInventory *inventory = object;
             if (!inventory || !inventory.success.boolValue) {
-                NSLog(@"数据错误!");
+                SPLog(@"数据错误!");
                 completion(NO,@"数据错误");
                 return;
             }
@@ -355,12 +355,12 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
             BOOL more = inventory.more.boolValue;
             NSUInteger moreStart = inventory.more_start.integerValue;
             
-            NSLog(@"本次获取完成 moreStart: %lu",(unsigned long)moreStart);
+            SPLog(@"本次获取完成 moreStart: %lu",(unsigned long)moreStart);
             
             // 还有下一页
             if (more && moreStart > idx) {
                 
-                NSLog(@"第 %lld 页 请求完成",theProgress.completedUnitCount);
+                SPLog(@"第 %lld 页 请求完成",theProgress.completedUnitCount);
                 
                 RunOnMainQueue(^{
                     // 进度回调
@@ -374,7 +374,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
                 Recursion(moreStart);
             }else {
                 
-                NSLog(@"全部数据请求完成！！！！！！回调");
+                SPLog(@"全部数据请求完成！！！！！！回调");
                 
                 // 库存拉取完成。合并后返回。
                 SPPlayerInventory *final = [SPPlayerInventory merge:inventories];
@@ -603,7 +603,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
         NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
         
         if ([response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 429) {
-            NSLog(@"%@", response.allHeaderFields);
+            SPLog(@"%@", response.allHeaderFields);
             completion(NO,@"您最近作出的请求太多了。请稍候再重试您的请求。",task.taskDescription);
         }else{
             completion(NO,@"网络错误",task.taskDescription);
@@ -673,7 +673,7 @@ static void *kNSURLResponseMD5Key = &kNSURLResponseMD5Key;
     char *outptr = outbuf;
     if (iconv(cd, &inbuf, &inbytesleft, &outptr, &outbytesleft)
         == (size_t)-1) {
-        NSLog(@"this should not happen, seriously");
+        SPLog(@"this should not happen, seriously");
         return nil;
     }
     NSData *result = [NSData dataWithBytes:outbuf length:data.length - outbytesleft];

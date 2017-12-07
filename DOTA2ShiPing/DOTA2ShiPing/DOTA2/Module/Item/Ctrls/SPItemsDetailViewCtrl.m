@@ -26,6 +26,8 @@
 {
     _item = item;
     self.infoViewCtrl.item = item;
+    SPBP(Event_Item, item.name);
+    SPBP(Event_Item_Rarity, item.item_rarity);
 }
 
 - (void)setPlayerItem:(SPPlayerItemDetail *)playerItem

@@ -100,13 +100,13 @@ static NSString *const kDefaultCoordinateBaiduKey = @"kDefaultCoordinateBaiduKey
 
 - (void)updateLocation
 {
-    NSLog(@"外部请求刷新位置");
+    SPLog(@"外部请求刷新位置");
     NSTimeInterval cur = [[NSDate date] timeIntervalSince1970];
     if (cur - self.lastUpdateTime >= self.minimumInterval) {
         if (YGLocationNotDetermined) {
             [self.manager requestWhenInUseAuthorization];
         }else{
-            NSLog(@"启动定位");
+            SPLog(@"启动定位");
             self.locating = YES;
             [self.manager startUpdatingLocation];
         }
@@ -162,10 +162,10 @@ static NSString *const kDefaultCoordinateBaiduKey = @"kDefaultCoordinateBaiduKey
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
-    NSLog(@"定位结果：");
+    SPLog(@"定位结果：");
 #if DEBUG_MODE
     for (CLLocation *aLocation in locations) {
-        NSLog(@"la: %.8f  long:%.8f",aLocation.coordinate.latitude,aLocation.coordinate.longitude);
+        SPLog(@"la: %.8f  long:%.8f",aLocation.coordinate.latitude,aLocation.coordinate.longitude);
     }
 #endif
     

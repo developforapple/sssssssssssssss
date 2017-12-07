@@ -16,12 +16,6 @@ static NSString *kSPPlayerAliaseCell = @"SPPlayerAliaseCell";
 
 @implementation SPPlayerAliasesVC
 
-- (void)dealloc
-{
-    NSString *class = NSStringFromClass([self class]);
-    NSLog(@"%@释放！！！",class);
-}
-
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

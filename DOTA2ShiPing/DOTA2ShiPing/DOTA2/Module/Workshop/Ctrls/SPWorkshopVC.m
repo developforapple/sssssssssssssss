@@ -192,7 +192,7 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
 
 - (void)showResources:(SPWorkshopUnit *)unit
 {
-    NSLog(@"一共%lu个资源",(unsigned long)unit.resources.count);
+    SPLog(@"一共%lu个资源",(unsigned long)unit.resources.count);
     [self performSegueWithIdentifier:kSPWorkshopResourcesSegueID sender:unit];
 }
 

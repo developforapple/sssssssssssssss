@@ -20,6 +20,7 @@
 #import "SPWebHelper.h"
 #import <SafariServices/SafariServices.h>
 #import "DZNWebViewController.h"
+@import SDWebImage;
 
 static NSString *SPPlayerDetailItemsTagCell = @"SPPlayerDetailItemsTagCell";
 
@@ -141,8 +142,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
 
 - (void)dealloc
 {
-    NSString *class = NSStringFromClass([self class]);
-    NSLog(@"%@释放！！！",class);
+    [_player cleanMemory];
 }
 
 - (void)update
@@ -384,7 +384,7 @@ static NSString *kSPPlayerInventorySegueID = @"SPPlayerInventorySegueID";
                          [[SPPlayerManager shared] isArchivedPlayerInventoryExist:self.player]);
     
     if (!needUpdate) {
-        NSLog(@"不需要更新库存");
+        SPLog(@"不需要更新库存");
         [[SPPlayerManager shared] readArchivedPlayerInventory:self.player];
         [HUD hideAnimated:YES];
         [self performSegueWithIdentifier:kSPPlayerInventorySegueID sender:self.player];

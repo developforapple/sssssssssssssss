@@ -83,7 +83,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 #pragma mark - Check
 - (void)checkBaseDataUpdate:(void (^)(AVFile *, NSError *, long long version))completion
 {
-    NSLog(@"---------检查基础数据更新---------");
+    SPLog(@"---------检查基础数据更新---------");
     if (!completion) return;
     
     ygweakify(self);
@@ -92,31 +92,31 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
     [query findObjectsInBackgroundWithBlock:^(NSArray<AVObject *> *objects, NSError *error) {
         ygstrongify(self);
         if (error) {
-            NSLog(@"获取版本号出错：%@",error);
+            SPLog(@"获取版本号出错：%@",error);
             completion(nil,error,0);
             return;
         }
         AVObject *obj = objects.firstObject;
         long long version = obj ? [[obj objectForKey:@"version"] longLongValue] : self.version;
-        NSLog(@"新版本号：%lld, 当前版本号:%lld",version,self.version);
+        SPLog(@"新版本号：%lld, 当前版本号:%lld",version,self.version);
         
         if (version > self.version) {
             NSString *name2 = [NSString stringWithFormat:@"base_data_%lld.zip",version];
-            NSLog(@"需要更新 :%@",name2);
+            SPLog(@"需要更新 :%@",name2);
             AVFileQuery *query2 = [AVFileQuery query];
             [query2 whereKey:@"name" equalTo:name2];
             [query2 findFilesInBackgroundWithBlock:^(NSArray<AVFile *> *objects2, NSError *error2) {
                 if (error2) {
-                    NSLog(@"获取基础数据 出错：%@",error2);
+                    SPLog(@"获取基础数据 出错：%@",error2);
                     completion(nil,error2,version);
                     return;
                 }
-                NSLog(@"获取基础数据 完成");
+                SPLog(@"获取基础数据 完成");
                 completion(objects2.firstObject,nil,version);
             }];
             self.baseDataQuery = query2;
         }else{
-            NSLog(@"不需要更新");
+            SPLog(@"不需要更新");
             completion(nil,nil,version);
         }
     }];
@@ -125,7 +125,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 
 - (void)checkLangMainFileUpdate:(void (^)(AVFile *,NSError *, long long version))completion
 {
-    NSLog(@"---------检查主语言文件更新---------");
+    SPLog(@"---------检查主语言文件更新---------");
     if (!completion) return;
     
     ygweakify(self);
@@ -134,32 +134,32 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
     [query findObjectsInBackgroundWithBlock:^(NSArray<AVObject *> *objects, NSError *error) {
         ygstrongify(self);
         if (error) {
-            NSLog(@"获取版本号出错：%@",error);
+            SPLog(@"获取版本号出错：%@",error);
             completion(nil,error, 0);
             return ;
         }
         AVObject *obj = objects.firstObject;
         long long version = obj ? [[obj objectForKey:@"version"] longLongValue] : self.langVersion;
-        NSLog(@"新版本号：%lld, 当前版本号:%lld",version,self.version);
+        SPLog(@"新版本号：%lld, 当前版本号:%lld",version,self.version);
         
         if (version > self.langVersion) {
             //需要更新语言主文件
             NSString *name2 = [NSString stringWithFormat:@"%@_%lld.zip",self.lang,version];
-            NSLog(@"需要更新 :%@",name2);
+            SPLog(@"需要更新 :%@",name2);
             AVFileQuery *query2 = [AVFileQuery query];
             [query2 whereKey:@"name" equalTo:name2];
             [query2 findFilesInBackgroundWithBlock:^(NSArray<AVFile *> *objects2, NSError *error2) {
                 if (error2) {
-                    NSLog(@"获取主语言文件 出错：%@",error2);
+                    SPLog(@"获取主语言文件 出错：%@",error2);
                     completion(nil,error2,version);
                     return ;
                 }
-                NSLog(@"获取主语言文件 完成");
+                SPLog(@"获取主语言文件 完成");
                 completion(objects2.firstObject,nil,version);
             }];
             self.langDataQuery = query2;
         }else{
-            NSLog(@"不需要更新");
+            SPLog(@"不需要更新");
             completion(nil,nil,version);
         }
     }];
@@ -168,7 +168,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 
 - (void)checkLangPatchFile:(long long)version completion:(void (^)(AVFile *,NSError *, long long version))completion
 {
-    NSLog(@"---------检查语言补丁文件更新---------");
+    SPLog(@"---------检查语言补丁文件更新---------");
     if (!completion) return;
     
     ygweakify(self);
@@ -177,31 +177,31 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
     [query findObjectsInBackgroundWithBlock:^(NSArray<AVObject *> *objects, NSError *error) {
         ygstrongify(self);
         if (error) {
-            NSLog(@"获取版本号出错：%@",error);
+            SPLog(@"获取版本号出错：%@",error);
             completion(nil,error, 0);
             return ;
         }
         AVObject *obj = objects.firstObject;
         long long version = obj ? [[obj objectForKey:@"version"] longLongValue] : self.langPatchVersion;
-        NSLog(@"新版本号：%lld, 当前版本号:%lld",version,self.version);
+        SPLog(@"新版本号：%lld, 当前版本号:%lld",version,self.version);
         
         if (version > self.langPatchVersion) {
             NSString *name2 = [NSString stringWithFormat:@"%@_%lld_%lld_patch.zip",self.lang,self.latestLangVersion,version];
-            NSLog(@"需要更新 :%@",name2);
+            SPLog(@"需要更新 :%@",name2);
             AVFileQuery *query2 = [AVFileQuery query];
             [query2 whereKey:@"name" equalTo:name2];
             [query2 findFilesInBackgroundWithBlock:^(NSArray<AVFile *> *objects2, NSError *error2) {
                 if (error2) {
-                    NSLog(@"获取语言补丁 出错：%@",error2);
+                    SPLog(@"获取语言补丁 出错：%@",error2);
                     completion(nil,error2,version);
                     return ;
                 }
-                NSLog(@"获取语言补丁 完成");
+                SPLog(@"获取语言补丁 完成");
                 completion(objects2.firstObject,nil,version);
             }];
             self.langPatchQuery = query2;
         }else{
-            NSLog(@"不需要更新");
+            SPLog(@"不需要更新");
             completion(nil,nil,version);
         }
     }];
@@ -222,7 +222,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
             return;
         }
         
-        NSLog(@"基础数据：%@",file);
+        SPLog(@"基础数据：%@",file);
         
         self.baseDataFile = file;
         self.latestVersion = version;
@@ -237,7 +237,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
                 return;
             }
             
-            NSLog(@"语言数据：%@",file2);
+            SPLog(@"语言数据：%@",file2);
             self.langFile = file2;
             self.latestLangVersion = version2;
             
@@ -251,7 +251,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
                     return ;
                 }
                 
-                NSLog(@"语言补丁：%@",file3);
+                SPLog(@"语言补丁：%@",file3);
                 self.langPatchFile = file3;
                 self.latestLangPatchVersion = version3;
                 
@@ -264,10 +264,10 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 - (void)decideNeedUpdate
 {
     if (!self.error && (self.baseDataFile || self.langFile || self.langPatchFile) ) {
-        NSLog(@"需要更新");
+        SPLog(@"需要更新");
         self.needUpdate = @YES;
     }else{
-        NSLog(@"不要更新");
+        SPLog(@"不要更新");
         self.needUpdate = @NO;
     }
 }
@@ -275,7 +275,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 #pragma mark - Update
 - (void)beginUpdate
 {
-    NSLog(@"---------开始下载----------");
+    SPLog(@"---------开始下载----------");
     
     self.baseDataProgress = 0.f;
     self.langFileProgress = 0.f;
@@ -291,7 +291,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
             [self getLangPatchData:^(BOOL suc) {
                 if (!suc) return ;
                 ygstrongify(self);
-                NSLog(@"--------结束下载---------");
+                SPLog(@"--------结束下载---------");
                 [self downloadDidCompleted];
             }];
         }];
@@ -301,7 +301,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 - (void)getBaseData:(void (^)(BOOL suc))completion
 {
     if (self.baseDataFile) {
-        NSLog(@"开始下载基础数据：%@",self.baseDataFile);
+        SPLog(@"开始下载基础数据：%@",self.baseDataFile);
         ygweakify(self);
         [self.baseDataFile getDataStreamInBackgroundWithBlock:^(NSInputStream *stream, NSError *error) {
             ygstrongify(self);
@@ -309,19 +309,19 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
             NSString  *filePath = [self.baseDataFile localPath];
             BOOL suc = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
             if (suc) {
-                NSLog(@"下载完成，路径：%@",filePath);
+                SPLog(@"下载完成，路径：%@",filePath);
             }else{
-                NSLog(@"下载出错，文件不存在：%@",filePath);
+                SPLog(@"下载出错，文件不存在：%@",filePath);
             }
             completion?completion(error==nil && suc):0;
         } progressBlock:^(NSInteger percentDone) {
             ygstrongify(self);
-            NSLog(@"基础数据：%d%%",(int)percentDone);
+            SPLog(@"基础数据：%d%%",(int)percentDone);
             self.baseDataProgress = percentDone/100.f;
             [self updateProgress];
         }];
     }else{
-        NSLog(@"跳过基础数据");
+        SPLog(@"跳过基础数据");
         self.baseDataProgress = 1.f;
         [self updateProgress];
         completion?completion(YES):0;
@@ -331,7 +331,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 - (void)getLangMainData:(void (^)(BOOL suc))completion
 {
     if (self.langFile) {
-        NSLog(@"开始下载主语言文件：%@",self.langFile);
+        SPLog(@"开始下载主语言文件：%@",self.langFile);
         ygweakify(self);
         [self.langFile getDataStreamInBackgroundWithBlock:^(NSInputStream *stream, NSError *error) {
             ygstrongify(self);
@@ -339,19 +339,19 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
             NSString  *filePath = [self.langFile localPath];
             BOOL suc = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
             if (suc) {
-                NSLog(@"下载完成，路径：%@",filePath);
+                SPLog(@"下载完成，路径：%@",filePath);
             }else{
-                NSLog(@"下载出错，文件不存在：%@",filePath);
+                SPLog(@"下载出错，文件不存在：%@",filePath);
             }
             completion?completion(error==nil && suc):0;
         } progressBlock:^(NSInteger percentDone) {
             ygstrongify(self);
-            NSLog(@"主语言文件：%d%%",(int)percentDone);
+            SPLog(@"主语言文件：%d%%",(int)percentDone);
             self.langFileProgress = percentDone/100.f;
             [self updateProgress];
         }];
     }else{
-        NSLog(@"跳过主语言文件");
+        SPLog(@"跳过主语言文件");
         self.langFileProgress = 1.f;
         [self updateProgress];
         completion?completion(YES):0;
@@ -361,7 +361,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 - (void)getLangPatchData:(void (^)(BOOL suc))completion
 {
     if (self.langPatchFile) {
-        NSLog(@"开始下载语言补丁：%@",self.langFile);
+        SPLog(@"开始下载语言补丁：%@",self.langFile);
         ygweakify(self);
         [self.langPatchFile getDataStreamInBackgroundWithBlock:^(NSInputStream *stream, NSError *error) {
             ygstrongify(self);
@@ -369,19 +369,19 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
             NSString  *filePath = [self.langPatchFile localPath];
             BOOL suc = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
             if (suc) {
-                NSLog(@"下载完成，路径：%@",filePath);
+                SPLog(@"下载完成，路径：%@",filePath);
             }else{
-                NSLog(@"下载出错，文件不存在：%@",filePath);
+                SPLog(@"下载出错，文件不存在：%@",filePath);
             }
             completion?completion(error==nil && suc):0;
         } progressBlock:^(NSInteger percentDone) {
             ygstrongify(self);
-            NSLog(@"语言补丁：%d%%",(int)percentDone);
+            SPLog(@"语言补丁：%d%%",(int)percentDone);
             self.langPatchProgress = percentDone/100.f;
             [self updateProgress];
         }];
     }else{
-        NSLog(@"跳过语言补丁");
+        SPLog(@"跳过语言补丁");
         self.langPatchProgress = 1.f;
         [self updateProgress];
         completion?completion(YES):0;
@@ -403,7 +403,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 #pragma mark - Unzip
 - (void)beginUnzip
 {
-    NSLog(@"-------开始解压缩--------");
+    SPLog(@"-------开始解压缩--------");
     // 延迟0.1秒为了防止生成的随机目录发生重复
     ygweakify(self);
     [self unzipBaseData:^(BOOL suc) {
@@ -417,7 +417,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
                     [self unzipLangPatchData:^(BOOL suc) {
                         if (!suc) return ;
                         ygstrongify(self);
-                        NSLog(@"--------解压缩完成---------");
+                        SPLog(@"--------解压缩完成---------");
                         RunAfter(.1, ^{
                             [self unzipDidCompleted];
                         });
@@ -431,7 +431,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 - (void)unzipBaseData:(void (^)(BOOL suc))completion
 {
     if (self.baseDataFile) {
-        NSLog(@"解压缩基础数据");
+        SPLog(@"解压缩基础数据");
         NSString *tmpFolder = [SPBaseData randomTmpFolder];
         NSString *zipPath = self.baseDataFile.localPath;
         [SSZipArchive unzipFileAtPath:zipPath toDestination:tmpFolder overwrite:YES password:zipPassword progressHandler:^(NSString *entry, unz_file_info zipInfo, long entryNumber, long total) {
@@ -441,14 +441,14 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
             self.baseDataTmpPath = [tmpFolder stringByAppendingPathComponent:@"data.json"];
             self.dbDataTmpPath = [tmpFolder stringByAppendingPathComponent:@"item.db"];
             if (error) {
-                NSLog(@"解压缩基础数据出错：%@",error);
+                SPLog(@"解压缩基础数据出错：%@",error);
             }else{
-                NSLog(@"解压缩基础数据完成");
+                SPLog(@"解压缩基础数据完成");
             }
             completion?completion(succeeded):0;
         }];
     }else{
-        NSLog(@"跳过基础数据");
+        SPLog(@"跳过基础数据");
         completion(YES);
     }
 }
@@ -456,7 +456,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 - (void)unzipLangMainData:(void (^)(BOOL suc))completion
 {
     if (self.langFile) {
-        NSLog(@"解压缩主语言文件");
+        SPLog(@"解压缩主语言文件");
         NSString *tmpFolder = [SPBaseData randomTmpFolder];
         NSString *zipPath = self.langFile.localPath;
         [SSZipArchive unzipFileAtPath:zipPath toDestination:tmpFolder overwrite:YES password:zipPassword progressHandler:^(NSString *entry, unz_file_info zipInfo, long entryNumber, long total) {
@@ -465,14 +465,14 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
             self.error = error;
             self.langDataTmpPath = [tmpFolder stringByAppendingPathComponent:@"lang.json"];
             if (error) {
-                NSLog(@"解压缩主语言文件出错：%@",error);
+                SPLog(@"解压缩主语言文件出错：%@",error);
             }else{
-                NSLog(@"解压缩主语言文件完成");
+                SPLog(@"解压缩主语言文件完成");
             }
             completion?completion(succeeded):0;
         }];
     }else{
-        NSLog(@"跳过主语言文件");
+        SPLog(@"跳过主语言文件");
         completion(YES);
     }
 }
@@ -480,7 +480,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 - (void)unzipLangPatchData:(void (^)(BOOL suc))completion
 {
     if (self.langPatchFile) {
-        NSLog(@"解压缩语言补丁");
+        SPLog(@"解压缩语言补丁");
         NSString *tmpFolder = [SPBaseData randomTmpFolder];
         NSString *zipPath = self.langPatchFile.localPath;
         [SSZipArchive unzipFileAtPath:zipPath toDestination:tmpFolder overwrite:YES password:zipPassword progressHandler:^(NSString *entry, unz_file_info zipInfo, long entryNumber, long total) {
@@ -489,14 +489,14 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
             self.error = error;
             self.langPatchTmpPath = [tmpFolder stringByAppendingPathComponent:@"lang_patch.json"];
             if (error) {
-                NSLog(@"解压缩语言补丁出错：%@",error);
+                SPLog(@"解压缩语言补丁出错：%@",error);
             }else{
-                NSLog(@"解压缩语言补丁完成");
+                SPLog(@"解压缩语言补丁完成");
             }
             completion?completion(YES):0;
         }];
     }else{
-        NSLog(@"跳过语言补丁");
+        SPLog(@"跳过语言补丁");
         completion(YES);
     }
 }
@@ -511,23 +511,23 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 #pragma mark - Save
 - (void)saveData
 {
-    NSLog(@"-------开始保存数据-------");
+    SPLog(@"-------开始保存数据-------");
     [self saveBaseData];
     [self saveLangMainData];
     [self saveLangPatchData];
     
-    NSLog(@"-------保存数据完成-------");
+    SPLog(@"-------保存数据完成-------");
     [self updateDidCompleted];
 }
 
 - (BOOL)saveBaseData
 {
     if (self.baseDataFile) {
-        NSLog(@"保存基础数据");
+        SPLog(@"保存基础数据");
         [SPBaseData saveDataJSONfrom:self.baseDataTmpPath];
         [SPBaseData saveDBFrom:self.dbDataTmpPath];
     }else{
-        NSLog(@"跳过基础数据");
+        SPLog(@"跳过基础数据");
     }
     return YES;
 }
@@ -535,10 +535,10 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 - (BOOL)saveLangMainData
 {
     if (self.langFile) {
-        NSLog(@"保存主语言文件");
+        SPLog(@"保存主语言文件");
         [SPBaseData saveLangDataFrom:self.langDataTmpPath lang:self.lang];
     }else{
-        NSLog(@"跳过主语言文件");
+        SPLog(@"跳过主语言文件");
     }
     return YES;
 }
@@ -546,10 +546,10 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 - (BOOL)saveLangPatchData
 {
     if (self.langPatchFile) {
-        NSLog(@"保存语言补丁");
+        SPLog(@"保存语言补丁");
         [SPBaseData saveLangPatchDataFrom:self.langPatchTmpPath lang:self.lang];
     }else{
-        NSLog(@"跳过语言补丁");
+        SPLog(@"跳过语言补丁");
     }
     return YES;
 }
@@ -578,17 +578,17 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
 
 - (void)updateDidCompleted
 {
-    NSLog(@"更新版本号");
+    SPLog(@"更新版本号");
     
-    NSLog(@"基础数据版本：%lld",self.latestVersion);
+    SPLog(@"基础数据版本：%lld",self.latestVersion);
     self.version = self.latestVersion;
     [[NSUserDefaults standardUserDefaults] setObject:@(self.version) forKey:kDataVersionKey];
     
-    NSLog(@"主语言文件版本：%lld",self.latestLangVersion);
+    SPLog(@"主语言文件版本：%lld",self.latestLangVersion);
     self.langVersion = self.latestLangVersion;
     [[NSUserDefaults standardUserDefaults] setObject:@(self.langVersion) forKey:[self langVersionKey:self.lang]];
     
-    NSLog(@"语言补丁版本：%lld",self.latestLangPatchVersion);
+    SPLog(@"语言补丁版本：%lld",self.latestLangPatchVersion);
     self.langPatchVersion = self.latestLangPatchVersion;
     [[NSUserDefaults standardUserDefaults] setObject:@(self.langPatchVersion) forKey:[self langPatchVersionKey:self.lang]];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -597,7 +597,7 @@ static NSString *const zipPassword = @"wwwbbat.DOTA2.19880920";
         self.completion();
     }
     
-    NSLog(@"-----清理-------");
+    SPLog(@"-----清理-------");
     [self clean];
 }
 
