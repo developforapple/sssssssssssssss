@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D09EC1D1FD83C7500D2EE5C /* IconMake.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D09EC1C1FD83C7500D2EE5C /* IconMake.storyboard */; };
 		69E026E31FD7A7D900FB14A3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E026E21FD7A7D800FB14A3 /* AppDelegate.m */; };
 		69E026E61FD7A7D900FB14A3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E026E51FD7A7D900FB14A3 /* ViewController.m */; };
 		69E026E91FD7A7D900FB14A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69E026E71FD7A7D900FB14A3 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D09EC1C1FD83C7500D2EE5C /* IconMake.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = IconMake.storyboard; sourceTree = "<group>"; };
 		69E026DE1FD7A7D800FB14A3 /* AppStorePicMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStorePicMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69E026E11FD7A7D800FB14A3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		69E026E21FD7A7D800FB14A3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				69E026F91FD7F8F100FB14A3 /* ATPMViewCtrl.h */,
 				69E026FA1FD7F8F100FB14A3 /* ATPMViewCtrl.m */,
 				69E026E71FD7A7D900FB14A3 /* Main.storyboard */,
+				2D09EC1C1FD83C7500D2EE5C /* IconMake.storyboard */,
 				69E026EA1FD7A7D900FB14A3 /* Assets.xcassets */,
 				69E026EC1FD7A7D900FB14A3 /* LaunchScreen.storyboard */,
 				69E026EF1FD7A7D900FB14A3 /* Info.plist */,
@@ -139,6 +142,7 @@
 			files = (
 				69E026EE1FD7A7D900FB14A3 /* LaunchScreen.storyboard in Resources */,
 				69E026EB1FD7A7D900FB14A3 /* Assets.xcassets in Resources */,
+				2D09EC1D1FD83C7500D2EE5C /* IconMake.storyboard in Resources */,
 				69E026E91FD7A7D900FB14A3 /* Main.storyboard in Resources */,
 				69E026F81FD7DA8D00FB14A3 /* slogan.json in Resources */,
 			);
