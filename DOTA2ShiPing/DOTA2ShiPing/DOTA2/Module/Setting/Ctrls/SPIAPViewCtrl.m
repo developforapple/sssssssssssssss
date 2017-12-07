@@ -35,17 +35,7 @@
 
 - (void)initProducts
 {
-    IAPHelper *helper = [IAPShare sharedHelper].iap;
-    if (!helper) {
-        NSMutableSet *set = [NSMutableSet set];
-        kIAPProductAD       ? [set addObject:kIAPProductAD]     : 0;
-        kIAPProductCoke     ? [set addObject:kIAPProductCoke]   : 0;
-        kIAPProductCoffee   ? [set addObject:kIAPProductCoffee] : 0;
-        helper = [[SPIAPHelper alloc] initWithProductIdentifiers:set];
-        [IAPShare sharedHelper].iap = helper;
-    }
-    
-    [helper requestProductsWithCompletion:^(SKProductsRequest *request, SKProductsResponse *response) {
+    [SPIAP requestProductsWithCompletion:^(SKProductsRequest *request, SKProductsResponse *response) {
         NSArray *products = response.products;
         self.products = products;
         [self.tableView reloadData];
@@ -61,7 +51,7 @@
     
     NSLog(@"准备恢复");
     ygweakify(self);
-    [[IAPShare sharedHelper].iap restoreProductsWithCompletion:^(SKPaymentQueue *payment, NSError *error) {
+    [SPIAP restoreProductsWithCompletion:^(SKPaymentQueue *payment, NSError *error) {
         ygstrongify(self);
         [self.HUD hideAnimated:YES];
         if (error) {
@@ -75,12 +65,12 @@
 
 + (void)handleRestorePayment:(SKPaymentQueue *)paymentQueue
 {
-    BOOL old = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kOLDProductID];
-    BOOL ad = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductAD];
+    BOOL old = [SPIAP isPurchasedProductsIdentifier:kOLDProductID];
+    BOOL ad = [SPIAP isPurchasedProductsIdentifier:kIAPProductAD];
     
     // 下面两个不会出现在恢复列表中
-//    BOOL coke = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoke];
-//    BOOL coffee = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoffee];
+//    BOOL coke = [SPIAP isPurchasedProductsIdentifier:kIAPProductCoke];
+//    BOOL coffee = [SPIAP isPurchasedProductsIdentifier:kIAPProductCoffee];
     
     if (old) {
         NSLog(@"旧版本专业版用户");
@@ -119,7 +109,7 @@
     
 #if TARGET_PRO
     NSLog(@"PRO版本，不验证凭据");
-    [[IAPShare sharedHelper].iap provideContentWithTransaction:transaction];
+    [SPIAP provideContentWithTransaction:transaction];
     [SPIAPViewCtrl uploadCheckResponse:@"target pro. Don't need check" transaction:transaction];
     [SPIAPViewCtrl refreshState];
     [UIAlertController alert:@"感谢您的支持！" message:nil];
@@ -128,7 +118,7 @@
     
     if ([kIAPProductCoke isEqualToString:transaction.payment.productIdentifier]){
         NSLog(@"coke 不验证");
-        [[IAPShare sharedHelper].iap provideContentWithTransaction:transaction];
+        [SPIAP provideContentWithTransaction:transaction];
         [SPIAPViewCtrl uploadCheckResponse:@"target ad. Don't need check 'coke' product" transaction:transaction];
         [SPIAPViewCtrl refreshState];
         [UIAlertController alert:@"感谢您的支持！" message:nil];
@@ -139,7 +129,7 @@
     [SVProgressHUD showWithStatus:@"验证中..."];
     NSData *data = transaction.transactionReceipt;
     NSLog(@"支付凭据内容：\n\n%@\n\n",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    [[IAPShare sharedHelper].iap checkReceipt:data onCompletion:^(NSString *response, NSError *error) {
+    [SPIAP checkReceipt:data onCompletion:^(NSString *response, NSError *error) {
         NSLog(@"验证结果：\n\n%@\n\n",response);
         if (error) {
             NSLog(@"验证出错！%@",error);
@@ -156,11 +146,11 @@
                     //验证成功
                     NSLog(@"验证 ok");
                     [UIAlertController alert:@"感谢您的支持！" message:@"广告已去除"];
-                    [[IAPShare sharedHelper].iap provideContentWithTransaction:transaction];
+                    [SPIAP provideContentWithTransaction:transaction];
                 }else{
                     NSLog(@"验证失败！");
                     [UIAlertController alert:@"验证失败！" message:@"您的购买凭据未能通过验证。请重新购买或点击“恢复购买”。不会重复扣款。"];
-                    [[IAPShare sharedHelper].iap clearSavedPurchasedProductByID:kIAPProductAD];
+                    [SPIAP clearSavedPurchasedProductByID:kIAPProductAD];
                 }
             }
             
@@ -211,7 +201,7 @@
     [cell.iapMoneyBtn setTitle:formattedString forState:UIControlStateNormal];
     
     if ([kIAPProductAD isEqualToString:product.productIdentifier] &&
-        [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductAD]) {
+        [SPIAP isPurchasedProductsIdentifier:kIAPProductAD]) {
         [cell.iapMoneyBtn setTitle:@"已购买" forState:UIControlStateNormal];
     }
     
@@ -224,7 +214,7 @@
     self.HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
     NSLog(@"准备购买：%@",self.products[indexPath.row]);
     ygweakify(self);
-    [[IAPShare sharedHelper].iap buyProduct:self.products[indexPath.row] onCompletion:^(SKPaymentTransaction *transcation) {
+    [SPIAP buyProduct:self.products[indexPath.row] onCompletion:^(SKPaymentTransaction *transcation) {
         ygstrongify(self);
         switch (transcation.transactionState) {
             case SKPaymentTransactionStatePurchasing:{

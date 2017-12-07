@@ -58,16 +58,30 @@ static BOOL kIsProduction = YES;
     return self;
 }
 
++ (instancetype)getIAP
+{
+    SPIAPHelper *helper = (SPIAPHelper *)[IAPShare sharedHelper].iap;
+    if (!helper || ![helper isKindOfClass:[SPIAPHelper class]]){
+        NSMutableSet *set = [NSMutableSet set];
+        kIAPProductAD       ? [set addObject:kIAPProductAD]     : 0;
+        kIAPProductCoke     ? [set addObject:kIAPProductCoke]   : 0;
+        kIAPProductCoffee   ? [set addObject:kIAPProductCoffee] : 0;
+        helper = [[SPIAPHelper alloc] initWithProductIdentifiers:set];
+        [IAPShare sharedHelper].iap = helper;
+    }
+    return helper;
+}
+
 + (BOOL)isPurchased
 {
 #if TARGET_PRO
     return YES;
 #else
     return
-    [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kOLDProductID] ||
-    [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductAD] ||
-//    [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoke] || //购买可乐不再去除广告
-    [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoffee];
+    [SPIAP isPurchasedProductsIdentifier:kOLDProductID] ||
+    [SPIAP isPurchasedProductsIdentifier:kIAPProductAD] ||
+//    [SPIAP isPurchasedProductsIdentifier:kIAPProductCoke] || //购买可乐不再去除广告
+    [SPIAP isPurchasedProductsIdentifier:kIAPProductCoffee];
 #endif
 }
 

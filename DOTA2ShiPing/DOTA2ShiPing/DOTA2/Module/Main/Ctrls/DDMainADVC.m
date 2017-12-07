@@ -116,7 +116,7 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 #elif InHouseVersion
     return NO;
 #else
-    return !IS_5_8_INCH_SCREEN &&  ![SPIAPHelper isPurchased];
+    return !IS_5_8_INCH_SCREEN && ![SPIAPHelper isPurchased];
 #endif
 }
 
@@ -137,17 +137,23 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 - (void)updateAdView
 {
     if ([self shouldLoadAd]) {
+        NSLog(@"app带广告！");
 #if !TARGET_PRO
         [self setAdViewDisplay:[self isAdReady]];
         
         if (self.googleAdReady) {
+            NSLog(@"Google广告就位");
             [self.adView bringSubviewToFront:self.googleAd];
         }else if (self.tencentAdReady){
+            NSLog(@"广点通广告就位");
             [self.adView bringSubviewToFront:self.tencentAd];
+        }else{
+            NSLog(@"没有可显示的广告内容");
         }
         [self.adView setHidden:NO animated:YES];
 #endif
     }else{
+        NSLog(@"app不带广告！");
         [self setAdViewDisplay:NO];
         [self.adView setHidden:YES];
     }

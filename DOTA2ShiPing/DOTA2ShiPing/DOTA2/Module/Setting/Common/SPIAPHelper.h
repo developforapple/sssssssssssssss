@@ -15,7 +15,11 @@ YG_EXTERN NSString *const kIAPProductAD;
 YG_EXTERN NSString *const kIAPProductCoke;
 YG_EXTERN NSString *const kIAPProductCoffee;
 
+#define SPIAP [SPIAPHelper getIAP]
+
 @interface SPIAPHelper : IAPHelper
+
++ (instancetype)getIAP;
 
 + (void)setProduction:(BOOL)isProduction;
 
