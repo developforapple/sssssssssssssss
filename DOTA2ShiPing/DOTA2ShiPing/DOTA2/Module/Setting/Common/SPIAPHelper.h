@@ -17,6 +17,8 @@ YG_EXTERN NSString *const kIAPProductCoffee;
 
 @interface SPIAPHelper : IAPHelper
 
++ (void)setProduction:(BOOL)isProduction;
+
 + (BOOL)isPurchased;
 
 + (void)sendNotification;

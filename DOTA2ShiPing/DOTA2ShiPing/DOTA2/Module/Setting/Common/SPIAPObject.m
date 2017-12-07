@@ -36,7 +36,7 @@
         AVFile *file = [AVFile fileWithData:data];
         [object setObject:file forKey:@"transactionReceipt"];
         NSLog(@"上传购买凭据:");
-        NSLog(@"transactionState: %d",transaction.transactionState);
+        NSLog(@"transactionState: %d",(int)transaction.transactionState);
         NSLog(@"transactionIdentifier : %@",transaction.transactionIdentifier);
         NSLog(@"UUID : %@",[FCUUID uuidForDevice]);
         

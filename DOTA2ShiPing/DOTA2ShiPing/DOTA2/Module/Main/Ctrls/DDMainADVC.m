@@ -136,7 +136,6 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 
 - (void)updateAdView
 {
-
     if ([self shouldLoadAd]) {
 #if !TARGET_PRO
         [self setAdViewDisplay:[self isAdReady]];

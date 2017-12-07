@@ -38,9 +38,9 @@
     IAPHelper *helper = [IAPShare sharedHelper].iap;
     if (!helper) {
         NSMutableSet *set = [NSMutableSet set];
-        kIAPProductAD ? [set addObject:kIAPProductAD] : 0;
-        kIAPProductCoke ? [set addObject:kIAPProductCoke] : 0;
-        kIAPProductCoffee ? [set addObject:kIAPProductCoffee] : 0;
+        kIAPProductAD       ? [set addObject:kIAPProductAD]     : 0;
+        kIAPProductCoke     ? [set addObject:kIAPProductCoke]   : 0;
+        kIAPProductCoffee   ? [set addObject:kIAPProductCoffee] : 0;
         helper = [[SPIAPHelper alloc] initWithProductIdentifiers:set];
         [IAPShare sharedHelper].iap = helper;
     }
@@ -77,14 +77,17 @@
 {
     BOOL old = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kOLDProductID];
     BOOL ad = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductAD];
-    BOOL coke = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoke];
-    BOOL coffee = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoffee];
+    
+    // 下面两个不会出现在恢复列表中
+//    BOOL coke = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoke];
+//    BOOL coffee = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoffee];
     
     if (old) {
         NSLog(@"旧版本专业版用户");
         [UIAlertController alert:@"您是旧版本专业版用户" message:@"新版已不再需要购买专业版内容。现已去除了广告。感谢您的支持！"];
         [SPIAPViewCtrl refreshState];
     }else if (ad){
+#if !TARGET_PRO
         // 验证
         SKPaymentTransaction *transaction;
         for (SKPaymentTransaction *aTransaction in paymentQueue.transactions) {
@@ -98,22 +101,10 @@
         if (transaction) {
             [SPIAPViewCtrl checkReceipt:transaction];
         }else{
-#if TARGET_PRO
-            [UIAlertController alert:@"感谢您的支持！" message:nil];
-#else
             [UIAlertController alert:@"感谢您的支持！" message:@"广告已去除"];
-#endif
             [SPIAPViewCtrl refreshState];
         }
-        
-    }else if (coke || coffee){
-        NSLog(@"coke or coffee");
-#if TARGET_PRO
-        [UIAlertController alert:@"感谢您的支持！" message:nil];
-#else
-        [UIAlertController alert:@"感谢您的支持！" message:@"广告已去除"];
 #endif
-        [SPIAPViewCtrl refreshState];
     }else if(paymentQueue.transactions.count == 0){
         NSLog(@"队列为空");
         [SVProgressHUD showInfoWithStatus:@"无恢复项目"];
@@ -125,6 +116,25 @@
 
 + (void)checkReceipt:(SKPaymentTransaction *)transaction
 {
+    
+#if TARGET_PRO
+    NSLog(@"PRO版本，不验证凭据");
+    [[IAPShare sharedHelper].iap provideContentWithTransaction:transaction];
+    [SPIAPViewCtrl uploadCheckResponse:@"target pro. Don't need check" transaction:transaction];
+    [SPIAPViewCtrl refreshState];
+    [UIAlertController alert:@"感谢您的支持！" message:nil];
+    return;
+#endif
+    
+    if ([kIAPProductCoke isEqualToString:transaction.payment.productIdentifier]){
+        NSLog(@"coke 不验证");
+        [[IAPShare sharedHelper].iap provideContentWithTransaction:transaction];
+        [SPIAPViewCtrl uploadCheckResponse:@"target ad. Don't need check 'coke' product" transaction:transaction];
+        [SPIAPViewCtrl refreshState];
+        [UIAlertController alert:@"感谢您的支持！" message:nil];
+        return;
+    }
+    
     NSLog(@"准备验证支付凭据");
     [SVProgressHUD showWithStatus:@"验证中..."];
     NSData *data = transaction.transactionReceipt;
@@ -144,16 +154,12 @@
                 int status = [dict[@"status"] intValue];
                 if (status == 0) {
                     //验证成功
-                    //刷新状态即可
                     NSLog(@"验证 ok");
-#if TARGET_PRO
-                    [UIAlertController alert:@"感谢您的支持！" message:nil];
-#else
                     [UIAlertController alert:@"感谢您的支持！" message:@"广告已去除"];
-#endif
+                    [[IAPShare sharedHelper].iap provideContentWithTransaction:transaction];
                 }else{
                     NSLog(@"验证失败！");
-                    [UIAlertController alert:@"验证失败！" message:@"您的购买凭据未通过验证。请重新购买或点击“恢复购买”。"];
+                    [UIAlertController alert:@"验证失败！" message:@"您的购买凭据未能通过验证。请重新购买或点击“恢复购买”。不会重复扣款。"];
                     [[IAPShare sharedHelper].iap clearSavedPurchasedProductByID:kIAPProductAD];
                 }
             }

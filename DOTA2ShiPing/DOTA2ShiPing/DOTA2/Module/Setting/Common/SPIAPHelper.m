@@ -9,6 +9,7 @@
 #import "SPIAPHelper.h"
 #import "SPIAPObject.h"
 @import IAPHelper;
+@import AVOSCloud;
 
 NSString *const kSPPurchaseUpdateNotification = @"SPPurchasedNotification";
 
@@ -38,7 +39,24 @@ NSString *const kIAPProductCoke     ;
 NSString *const kIAPProductCoffee   ;
 #endif
 
+static BOOL kIsProduction = YES;
+
 @implementation SPIAPHelper
+
++ (void)setProduction:(BOOL)isProduction
+{
+    NSLog(@"当前为%@环境",isProduction?@"生产":@"开发");
+    kIsProduction = isProduction;
+}
+
+- (id)initWithProductIdentifiers:(NSSet *)productIdentifiers
+{
+    self = [super initWithProductIdentifiers:productIdentifiers];
+    if (self){
+        self.production = kIsProduction;
+    }
+    return self;
+}
 
 + (BOOL)isPurchased
 {
@@ -48,7 +66,7 @@ NSString *const kIAPProductCoffee   ;
     return
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kOLDProductID] ||
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductAD] ||
-    [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoke] ||
+//    [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoke] || //购买可乐不再去除广告
     [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:kIAPProductCoffee];
 #endif
 }
