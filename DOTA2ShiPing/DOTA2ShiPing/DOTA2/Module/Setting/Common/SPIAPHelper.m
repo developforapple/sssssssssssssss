@@ -60,6 +60,13 @@ static BOOL kIsProduction = YES;
 
 + (instancetype)getIAP
 {
+    static dispatch_semaphore_t semaphore ;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        semaphore = dispatch_semaphore_create(1);
+    });
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     SPIAPHelper *helper = (SPIAPHelper *)[IAPShare sharedHelper].iap;
     if (!helper || ![helper isKindOfClass:[SPIAPHelper class]]){
         NSMutableSet *set = [NSMutableSet set];
@@ -69,6 +76,7 @@ static BOOL kIsProduction = YES;
         helper = [[SPIAPHelper alloc] initWithProductIdentifiers:set];
         [IAPShare sharedHelper].iap = helper;
     }
+    dispatch_semaphore_signal(semaphore);
     return helper;
 }
 

@@ -72,5 +72,6 @@ YG_EXTERN NSString *const kAdMobLaunchADUnitID;
 // 腾讯广告联盟
 YG_EXTERN NSString *const kTencentGDTAppKey;
 YG_EXTERN NSString *const kTencentGDTLaunchPOSID;
+YG_EXTERN NSString *const kTencentGDTBannerPOSID;
 
 #endif /* Config_ThirdParty_h */

@@ -74,6 +74,8 @@ YYModelDefaultCode
     _sp_config_item_detail_load_extra_data_auto = YES;
     _sp_config_item_detail_load_price_auto = YES;
     _sp_config_item_detail_load_image_failed_counter = 0;
+    _sp_config_open_counter = 0;
+    _sp_config_appstore_review_flag = NO;
     
     [self save];
 }
@@ -91,5 +93,7 @@ Config_BOOL_Option_Setter(item_detail_show_loading_tips)
 Config_BOOL_Option_Setter(item_detail_load_extra_data_auto)
 Config_BOOL_Option_Setter(item_detail_load_price_auto)
 Config_NSInteger_Option_Setter(item_detail_load_image_failed_counter)
+Config_NSInteger_Option_Setter(open_counter)
+Config_BOOL_Option_Setter(appstore_review_flag)
 
 @end

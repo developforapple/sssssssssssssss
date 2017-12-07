@@ -142,22 +142,27 @@
     [AVOSCloud handleRemoteNotificationsWithDeviceToken:helper.deviceToken constructingInstallationWithBlock:^(AVInstallation *currentInstallation) {
         
 #if TARGET_PRO
-        [currentInstallation addUniqueObject:@"Pro_Channel" forKey:@"channels"];
+        [currentInstallation addUniqueObject:@"Pro" forKey:@"channels"];
 #elif TARGET_AD
-        [currentInstallation addUniqueObject:@"Ad_Channel" forKey:@"channels"];
+        [currentInstallation addUniqueObject:@"Ad" forKey:@"channels"];
 #else
-        [currentInstallation addUniqueObject:@"Old_Channel" forKey:@"channels"];
+        [currentInstallation addUniqueObject:@"Old" forKey:@"channels"];
 #endif
         if ([SPIAPHelper isPurchased]) {
-            [currentInstallation addUniqueObject:@"Pur_Channel" forKey:@"channels"];
+            [currentInstallation addUniqueObject:@"Pur" forKey:@"channels"];
         }
         [currentInstallation setObject:Device_UUID forKey:@"UUID"];
+        [currentInstallation setObject:@YES forKey:@"On"];
+        
+        NSLog(@"注册APNS成功");
+        NSLog(@"DeviceToken:%@",str);
+        NSLog(@"UUID:%@",Device_UUID);
     }];
 }
 
 - (void)notificationHelper:(YGRemoteNotificationHelper *)helper didReceivedRemoteNotification:(NSDictionary *)userInfo
 {
-    NSLog(@"");
+    NSLog(@"收到推送通知：%@",userInfo);
 }
 
 - (void)_loadSplashAd

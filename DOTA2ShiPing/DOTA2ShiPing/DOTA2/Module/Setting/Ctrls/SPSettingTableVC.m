@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *updateCell;
 @property (weak, nonatomic) IBOutlet UIView *updateIndicator;
 @property (weak, nonatomic) IBOutlet UITableViewCell *payCell;
+@property (weak, nonatomic) IBOutlet UILabel *payLabel;
 @property (weak, nonatomic) IBOutlet UITableViewCell *communityCell;
 @property (weak, nonatomic) IBOutlet UILabel *diskCacheLabel;
 @property (weak, nonatomic) IBOutlet UITableViewCell *appStoreCell;
@@ -37,6 +38,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+#if TARGET_PRO
+    self.payLabel.text = @"打赏";
+#elif TARGET_AD
+    self.payLabel.text = @"去除广告";
+#else
+    self.payLabel.text = @"内购项目";
+#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated

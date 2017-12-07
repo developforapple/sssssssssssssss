@@ -84,6 +84,13 @@ NSString *const kAdMobRewardVideoUnitID = @"ca-app-pub-3317628345096940/65272692
 NSString *const kAdMobLaunchADUnitID = @"ca-app-pub-3317628345096940/4910935239";
 #endif
 
-
+#if TARGET_AD
+NSString *const kTencentGDTAppKey = @"1106592268";
+NSString *const kTencentGDTLaunchPOSID = @"7000325834304018";
+NSString *const kTencentGDTBannerPOSID = @"5080728864708037";
+#else
 NSString *const kTencentGDTAppKey = @"1106570472";
-NSString *const kTencentGDTLaunchPOSID = @"8020528862264174";
+NSString *const kTencentGDTLaunchPOSID = @"";
+NSString *const kTencentGDTBannerPOSID = @"";
+#endif
+

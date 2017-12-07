@@ -38,5 +38,11 @@ Config_BOOL_Option(item_detail_load_price_auto)
 // 饰品详情页获取图片失败的计数器。默认为0。当获取图片失败时，手动使这个值+1
 Config_NSInteger_Option(item_detail_load_image_failed_counter)
 
+// 打开应用的次数
+Config_NSInteger_Option(open_counter)
+
+// 是否前往AppStore评价过
+Config_BOOL_Option(appstore_review_flag)
+
 @end
 

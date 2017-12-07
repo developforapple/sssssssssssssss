@@ -7,7 +7,15 @@
 
 #include "Config_Archive.h"
 
-NSString *const kAppAppleID = @"767324842";
+#if TARGET_PRO
+    NSString *const kAppAppleID = @"1320759350";
+#elif TARGET_AD
+    NSString *const kAppAppleID = @"1133984826";
+#elif TARGET_OLD
+    NSString *const kAppAppleID = @"767324842";
+#else
+    NSString *const kAppAppleID = @"1133984826";
+#endif
 
 #if InHouseVersion
 NSString *const kAppChannel = @"InHouse";
@@ -16,8 +24,3 @@ NSString *const kAppChannelID = @"0";
 NSString *const kAppChannel = @"AppStore";
 NSString *const kAppChannelID = @"1";
 #endif
-
-
-YG_EXTERN BOOL isProVersion(void){
-    return [AppBundleID isEqualToString:@"com.wwwbbat.sp.pro"];
-}

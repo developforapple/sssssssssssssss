@@ -64,7 +64,7 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 
         self.tencentAd = [[GDTMobBannerView alloc] initWithFrame:self.adView.bounds
                                                           appkey:kTencentGDTAppKey
-                                                     placementId:kTencentGDTLaunchPOSID];
+                                                     placementId:kTencentGDTBannerPOSID];
         self.tencentAd.currentViewController = self;
         self.tencentAd.delegate = self;
         self.tencentAd.isGpsOn = YES;

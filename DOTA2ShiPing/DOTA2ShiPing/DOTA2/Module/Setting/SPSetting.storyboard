@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="d3H-xA-HVG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="d3H-xA-HVG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -371,6 +371,7 @@
                         <outlet property="diskCacheLabel" destination="bwi-uN-2vN" id="Cif-kc-rAF"/>
                         <outlet property="historyCell" destination="KSC-xz-esj" id="lrm-Dg-2Jc"/>
                         <outlet property="payCell" destination="r86-JU-26S" id="fYq-4q-4Sk"/>
+                        <outlet property="payLabel" destination="KRs-dZ-KOS" id="nBU-tB-DfD"/>
                         <outlet property="starredCell" destination="HP0-iX-5cF" id="dbt-2E-Bp9"/>
                         <outlet property="updateCell" destination="gtm-eZ-4DR" id="ezg-FC-Orh"/>
                         <outlet property="updateIndicator" destination="3ES-Sy-gAj" id="4Gx-oJ-lZk"/>
@@ -859,24 +860,30 @@
                                 <rect key="frame" x="285" y="0.0" width="90" height="322"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2R-2U-IdT">
-                                <rect key="frame" x="90" y="246.5" width="195" height="174"/>
+                                <rect key="frame" x="90" y="254.5" width="195" height="158"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f4L-27-UAK">
-                                        <rect key="frame" x="53.5" y="0.0" width="88" height="88"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sp_icon" translatesAutoresizingMaskIntoConstraints="NO" id="f4L-27-UAK">
+                                        <rect key="frame" x="61.5" y="0.0" width="72" height="72"/>
                                         <color key="backgroundColor" red="0.65490196079999996" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="88" id="AXa-FI-1Xh"/>
-                                            <constraint firstAttribute="height" constant="88" id="Wmn-wd-Ggw"/>
+                                            <constraint firstAttribute="width" constant="72" id="AXa-FI-1Xh"/>
+                                            <constraint firstAttribute="height" constant="72" id="Wmn-wd-Ggw"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds_" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius_">
+                                                <real key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刀塔饰品 for Dota2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1me-fn-cud">
-                                        <rect key="frame" x="-3.5" y="108" width="202.5" height="29"/>
+                                        <rect key="frame" x="-3.5" y="92" width="202.5" height="29"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v 1.0 build 1.0.65" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1R5-93-fZC">
-                                        <rect key="frame" x="44" y="157" width="107" height="17"/>
+                                        <rect key="frame" x="44" y="141" width="107" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1151,5 +1158,6 @@
         <image name="about_right" width="90" height="322"/>
         <image name="icon_back_light_2" width="32" height="32"/>
         <image name="icon_tab_me" width="24" height="24"/>
+        <image name="sp_icon" width="512" height="512"/>
     </resources>
 </document>
