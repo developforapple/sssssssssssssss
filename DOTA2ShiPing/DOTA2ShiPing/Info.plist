@@ -27,7 +27,15 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>spzhbeta</string>
+				<string>spzhdev</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>spzh</string>
 			</array>
 		</dict>
 	</array>
