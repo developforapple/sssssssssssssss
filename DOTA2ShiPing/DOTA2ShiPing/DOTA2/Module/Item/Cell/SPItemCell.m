@@ -9,8 +9,9 @@
 #import "SPItemCell.h"
 #import "SPItemImageLoader.h"
 #import "SPDataManager.h"
-
 #import "SPPlayerItems.h"
+
+@import ChameleonFramework;
 
 @interface SPItemCell ()
 
@@ -114,11 +115,10 @@
     if (self.nameLayer) {
         [CATransaction begin];
         [CATransaction setDisableActions:YES];
-//        _nameLayer.string = nil;
         _nameLayer.bounds = CGRectMake(0, 0, _model.nameSize.width-4.f, _model.nameSize.height);
         _nameLayer.position = _model.namePosition;
         _nameLayer.string = _model.name;
-        _nameLayer.backgroundColor = item.itemColor.CGColor;
+        _nameLayer.backgroundColor = self.contentView.backgroundColor.CGColor;
         [CATransaction commit];
     }
     

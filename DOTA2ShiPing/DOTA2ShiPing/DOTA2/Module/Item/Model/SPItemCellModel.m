@@ -10,6 +10,7 @@
 #import "SPItem.h"
 #import "SPItemColor.h"
 #import "SPDataManager.h"
+@import ChameleonFramework;
 
 @implementation SPItemLayout
 
@@ -128,6 +129,9 @@
     
 
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:item.nameWithQualtity attributes:attributes];
+    if ([item.item_rarity isEqualToString:@"seasonal"]){
+        [string addAttribute:NSForegroundColorAttributeName value:FlatBlack range:NSMakeRange(0, string.length)];
+    }
     CGFloat height = [self boundingHeightForWidth:gridLayout.itemSize.width withAttributedString:string];
     
     if (height <= fontSize + 4.1f) {

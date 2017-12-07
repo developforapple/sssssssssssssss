@@ -54,7 +54,7 @@
     if (hero) {
         [self.imageView sd_setImageWithURL:[NSURL URLWithString:[hero vertImageURL]] placeholderImage:placeholderImage(self.imageView.bounds.size) options:SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageContinueInBackground];
     }else{
-        self.imageView.image = placeholderImage(self.imageView.bounds.size);
+        self.imageView.collapsed = YES;
     }
     
     UIColor *color = FlatGrayDark;//self.itemData.color;

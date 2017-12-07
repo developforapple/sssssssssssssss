@@ -1,0 +1,13 @@
+Check List
+
+1、检查iTunesConnect内容
+
+2、检查 iTunesConnect 的 iap 相关内容
+
+3、检查 Config_Define.h 设置
+
+4、检查 Target 设置
+
+5、提交审核
+
+6、通过后上线前手动修改 Availability 的 MaxVersion 为下一个开发版
