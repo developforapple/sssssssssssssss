@@ -34,11 +34,16 @@
     #define Screen_Scale            ([UIScreen mainScreen].scale)
     #define Screen_Width            (CGRectGetWidth([UIScreen mainScreen].bounds))          //当前屏幕宽
     #define Screen_Height           (CGRectGetHeight([UIScreen mainScreen].bounds))         //当前屏幕高
+    #define Screen_Size             ([UIScreen mainScreen].bounds.size)
 
     //设备宽高，旋转时不会变化
     #define Device_Scale            ([UIScreen mainScreen].nativeScale)
     #define Device_Width            (CGRectGetWidth([UIScreen mainScreen].nativeBounds)/Device_Scale)    //设备屏幕宽
     #define Device_Height           (CGRectGetHeight([UIScreen mainScreen].nativeBounds)/Device_Scale)    //设备屏幕高
+    #define Device_Size             (CGSizeMake(Device_Width,Device_Height))
+
+    // 是否是横屏状态
+    #define IS_Landscape            (Device_Width != Screen_Width)
 
     //状态栏高度，一般为20，在iPhoneX上是44，隐藏状态栏时为0
     #define StatusBar_Height        (CGRectGetHeight([UIApplication sharedApplication].statusBarFrame))

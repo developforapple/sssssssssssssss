@@ -302,6 +302,13 @@
     }
 }
 
+- (void)transitionLayoutToSize:(CGSize)size
+{
+    RunAfter(.5f, ^{
+       [self.chartView reloadDataAnimated:YES];
+    });
+}
+
 #pragma mark - JBLineChartView dataSource
 
 - (BOOL)shouldExtendSelectionViewIntoHeaderPaddingForChartView:(JBChartView *)chartView

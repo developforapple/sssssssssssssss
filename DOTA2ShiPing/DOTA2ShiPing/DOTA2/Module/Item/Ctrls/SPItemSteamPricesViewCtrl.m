@@ -66,6 +66,11 @@
     [self.tableView reloadData];
 }
 
+- (void)transitionLayoutToSize:(CGSize)size
+{
+    [self.tableView reloadData];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.priceList.count;

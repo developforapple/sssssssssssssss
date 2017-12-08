@@ -41,6 +41,7 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 @property (strong, nonatomic) UITabBarController *tabBarCtrl;
 
 @property (weak, nonatomic) IBOutlet UIView *adView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *adViewHeightConstraint;
 
 #if TARGET_PRO
 @property (weak, nonatomic) IBOutlet UIView *googleAd;
@@ -63,9 +64,14 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
     if ([self shouldLoadAd]) {
 
 #if !TARGET_PRO
+        if (IS_iPad) {
+            self.adViewHeightConstraint.constant = 60;
+        }
+        
         self.googleAd.autoloadEnabled = YES;
         self.googleAd.adUnitID = kAdMobBannerUnitID;
 
+        
         self.tencentAd = [[GDTMobBannerView alloc] initWithFrame:self.adView.bounds
                                                           appkey:kTencentGDTAppKey
                                                      placementId:kTencentGDTBannerPOSID];

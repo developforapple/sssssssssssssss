@@ -67,6 +67,7 @@
                     </view>
                     <connections>
                         <outlet property="adView" destination="WMQ-7R-IIf" id="qn2-sF-uIf"/>
+                        <outlet property="adViewHeightConstraint" destination="6Le-PL-AxL" id="yqS-cY-5QK"/>
                         <outlet property="googleAd" destination="3ME-OU-Ag2" id="i5V-ai-7im"/>
                         <outlet property="mainContainer" destination="u7Y-YS-8Sq" id="JYC-P5-JA2"/>
                         <outlet property="mainContainerFullSizeConstraint" destination="Bir-t4-J8s" id="tps-9C-pfW"/>

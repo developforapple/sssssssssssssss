@@ -11,17 +11,20 @@
 
 @class SPItem;
 
-@interface SPItemLayout : SPObject
-@property (nonatomic) CGFloat lineSpacing;
-@property (nonatomic) CGFloat interitemSpacing;
-@property (nonatomic) CGSize itemSize;
-@property (nonatomic) UIEdgeInsets sectionInset;
-@property (nonatomic) CGSize preferImageSize;
-@property (nonatomic) CGSize preferNameSize;
+typedef struct SPItemLayout {
+    CGSize containerSize;
+    SPItemListMode mode;
+    float lineSpacing;
+    float interitemSpacing;
+    CGSize itemSize;
+    UIEdgeInsets sectionInset;
+    CGSize preferImageSize;
+    CGSize preferNameSize;
+} SPItemLayout;
 
-+ (SPItemLayout *)layoutWithMode:(SPItemListMode)mode;
-
-@end
+YG_EXTERN
+SPItemLayout
+createItemLayout(SPItemListMode mode, CGSize containerSize);
 
 @interface SPItemCellModel : DDViewModel
 

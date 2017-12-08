@@ -235,6 +235,15 @@
     [self _noLeftNavButton];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self transitionLayoutToSize:size];
+}
+
+- (void)transitionLayoutToSize:(CGSize)size
+{}
+
 @end
 
 @implementation YGBaseTableViewCtrl
@@ -319,6 +328,15 @@
     [self _noLeftNavButton];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self transitionLayoutToSize:size];
+}
+
+- (void)transitionLayoutToSize:(CGSize)size
+{}
+
 @end
 
 @implementation YGBaseCollectionViewCtrl
@@ -402,4 +420,14 @@
 {
     [self _noLeftNavButton];
 }
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self transitionLayoutToSize:size];
+}
+
+- (void)transitionLayoutToSize:(CGSize)size
+{}
+
 @end

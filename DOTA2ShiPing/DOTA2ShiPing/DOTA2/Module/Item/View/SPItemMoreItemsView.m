@@ -14,11 +14,11 @@
 #import "SPItemListVC.h"
 
 // 一行显示多少个物品
-static const NSInteger kItemsPerLine = 3;
+static NSInteger kItemsPerLine = 3;
 // 最大多少行
-static const NSInteger kMaxLines = 3;
+static NSInteger kMaxLines = 3;
 // 最多显示多少个物品
-static const NSInteger kMaxItems = 3 * 3;
+#define kMaxItems (kItemsPerLine * kMaxLines)
 
 @interface SPItemMoreItemsView () <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -35,14 +35,29 @@ static const NSInteger kMaxItems = 3 * 3;
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    [self layoutIfNeeded];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
     [self initUI];
+    [self update];
 }
 
 - (void)initUI
 {
     self.mode = SPItemListModeGrid;
     
-    [self.superview layoutIfNeeded];
+    if (IS_iPad) {
+        kItemsPerLine = 4;
+        kMaxLines = 2;
+    }else{
+        kItemsPerLine = 3;
+        kMaxLines = 3;
+    }
+    
     CGFloat containerWidth = CGRectGetWidth(self.itemsView.frame);
 
     CGFloat width = 0.f;

@@ -64,7 +64,11 @@ static NSString *const kLoadingTappedTipFlag = @"item_loading_tip_flag";
     
     self.scrollView.parallaxHeader.delegate = self;
     self.scrollView.parallaxHeader.view = self.bannerPanel;
-    self.scrollView.parallaxHeader.height = 2.0 / 3.0 * Device_Width;
+    if (IS_iPad) {
+        self.scrollView.parallaxHeader.height = 2.0 / 4.0 * Device_Width;
+    }else{
+        self.scrollView.parallaxHeader.height = 2.0 / 3.0 * Device_Width;
+    }
     self.scrollView.parallaxHeader.mode = MXParallaxHeaderModeFill;
     self.scrollView.parallaxHeader.minimumHeight = 20.0;
 }

@@ -32,18 +32,29 @@
 
 - (void)initUI
 {
-    CGFloat width = Device_Width/2-0.5f;
-    CGFloat height = width;// width * 340 / 512.f;
+    [self setupLayout:Screen_Size];
+    [SPLogoHeader setLogoHeaderInScrollView:self.collectionView];
+}
+
+- (void)setupLayout:(CGSize)size
+{
+    int itemPerLine = IS_iPad ? (IS_Landscape ? 4 : 3) : 2;
+    CGFloat width = (size.width - 0.5 * (itemPerLine - 1)) / itemPerLine;
+    CGFloat height = width;
     self.flowlayout.itemSize = CGSizeMake(width, height);
     self.flowlayout.minimumLineSpacing = 1.f;
     self.flowlayout.minimumInteritemSpacing = 0.f;
-    
-    [SPLogoHeader setLogoHeaderInScrollView:self.collectionView];
 }
 
 - (void)loadEvents
 {
     self.events = [SPDataManager shared].events;
+}
+
+- (void)transitionLayoutToSize:(CGSize)size
+{
+    [self setupLayout:size];
+    [self.collectionView setCollectionViewLayout:self.flowlayout animated:NO];
 }
 
 #pragma mark UICollectionView

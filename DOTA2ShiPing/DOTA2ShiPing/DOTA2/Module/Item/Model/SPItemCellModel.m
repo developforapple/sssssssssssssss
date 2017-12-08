@@ -12,23 +12,13 @@
 #import "SPDataManager.h"
 @import ChameleonFramework;
 
-@implementation SPItemLayout
-
-+ (SPItemLayout *)layoutWithMode:(SPItemListMode)mode
+SPItemLayout
+createItemLayout(SPItemListMode mode, CGSize size)
 {
-    static SPItemLayout *tableLayout;
-    static SPItemLayout *gridLayout;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        {
-            tableLayout = [SPItemLayout new];
-            tableLayout.preferImageSize = CGSizeMake(90, 60);
-            tableLayout.itemSize = CGSizeMake(Device_Width, 64);
-            tableLayout.sectionInset = UIEdgeInsetsZero;
-            tableLayout.lineSpacing = 0.f;
-            tableLayout.interitemSpacing = 0.f;
-        }
-        {
+    SPItemLayout layout;
+    switch (mode) {
+        case SPItemListModeGrid:{
+            
             CGFloat width = 0.f;
             CGFloat height = 0.f;
             UIEdgeInsets sectionInset;
@@ -37,28 +27,29 @@
             
             CGFloat textHeight = 26.f;
             
-            width = floorf(Device_Width/4);
+            width = floorf(size.width/4);
             height = ceilf(width/1.5f + textHeight);
-            CGFloat margin = (Device_Width - width * 4 ) /2;
+            CGFloat margin = (size.width - width * 4 ) /2;
             sectionInset = UIEdgeInsetsMake(0, margin, 0, margin);
             
-            gridLayout = [SPItemLayout new];
-            gridLayout.preferImageSize = CGSizeMake(width, height - textHeight);
-            gridLayout.itemSize = CGSizeMake(width, height);
-            gridLayout.sectionInset = sectionInset;
-            gridLayout.lineSpacing = lineSpacing;
-            gridLayout.interitemSpacing = itemSpacing;
-            gridLayout.preferNameSize = CGSizeMake(width, textHeight);
-        }
-    });
-    switch (mode) {
-        case SPItemListModeTable:   return tableLayout;
-        case SPItemListModeGrid:    return gridLayout;
+            layout.preferImageSize = CGSizeMake(width, height - textHeight);
+            layout.itemSize = CGSizeMake(width, height);
+            layout.sectionInset = sectionInset;
+            layout.lineSpacing = lineSpacing;
+            layout.interitemSpacing = itemSpacing;
+            layout.preferNameSize = CGSizeMake(width, textHeight);
+            
+        }   break;
+        case SPItemListModeTable:{
+            layout.preferImageSize = CGSizeMake(90, 60);
+            layout.itemSize = CGSizeMake(size.width, 64);
+            layout.sectionInset = UIEdgeInsetsZero;
+            layout.lineSpacing = 0.f;
+            layout.interitemSpacing = 0.f;
+        }   break;
     }
-    return nil;
+    return layout;
 }
-
-@end
 
 @interface SPItemCellModel ()
 {
@@ -108,7 +99,7 @@
 
 - (void)createWithGridMode
 {
-    SPItemLayout *gridLayout = [SPItemLayout layoutWithMode:SPItemListModeGrid];
+    SPItemLayout gridLayout = createItemLayout(SPItemListModeGrid, Device_Size);
     
     SPItem *item = self.entity;
     

@@ -25,6 +25,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import <SafariServices/SafariServices.h>
 
+NSInteger itemPerRow = 2;
+
 static NSString *const kSPWorkshopFilterSegueID = @"SPWorkshopFilterSegueID";
 static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueID";
 
@@ -42,6 +44,9 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
 @property (strong, nonatomic) DDProgressHUD *HUD;
 @property (assign, nonatomic) BOOL isLoading;
 
+@property (weak, nonatomic) SPFocusVisualEffectVC *cellFocusVC;
+@property (weak, nonatomic) RWDropdownMenu *cellFocusMenu;
+
 @end
 
 @implementation SPWorkshopVC
@@ -55,7 +60,7 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
     [self.navigationController.barHideOnSwipeGestureRecognizer addTarget:self action:@selector(navigationBarChangedOnSwip:)];
     
     self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(mjrefreshAction:)];
-    self.flowLayout.itemSize = CGSizeMake(Device_Width/2, Device_Width/2);
+    [self setupLayout:Screen_Size];
     [SPLogoHeader setLogoHeaderInScrollView:self.collectionView];
     
     ygweakify(self);
@@ -82,6 +87,14 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
     self.isLoading = YES;
     self.HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
     [self.workshop loadWorkshopSection:SPWorkshopSectionItem ignoreCache:YES];
+}
+
+- (void)setupLayout:(CGSize)size
+{
+    itemPerRow = IS_iPad ? (IS_Landscape ? 4 : 3) : 2 ;
+    CGFloat width = size.width / itemPerRow;
+    CGFloat height = width;
+    self.flowLayout.itemSize = CGSizeMake(width, height);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -116,6 +129,18 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
     self.isLoading = YES;
     self.HUD = [DDProgressHUD showAnimatedLoadingInView:self.view];
     [self.workshop filter:tags];
+}
+
+- (void)transitionLayoutToSize:(CGSize)size
+{
+    ygweakify(self);
+    [self.cellFocusMenu.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        ygstrongify(self);
+        [self.cellFocusVC dismiss];
+        
+        [self setupLayout:size];
+        [self.collectionView setCollectionViewLayout:self.flowLayout animated:NO];
+    }];
 }
 
 #pragma mark - Action
@@ -261,24 +286,38 @@ static NSString *const kSPWorkshopResourcesSegueID = @"SPWorkshopResourcesSegueI
                        ];
     
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    BOOL isLeftItem = indexPath.row%2==0;
-    CGRect rect = CGRectZero;
-    if (isLeftItem) {
-        rect.origin.x = CGRectGetWidth(cell.frame);
-        rect.origin.y = CGRectGetHeight(cell.frame)/2;
-    }else{
-        rect.origin.y = CGRectGetHeight(cell.frame)/2;
+    NSInteger item = indexPath.item;
+    
+    BOOL inLeft = NO;
+    if (itemPerRow == 2) {
+        inLeft = item % 2 == 1;
+    }else if (itemPerRow == 3){
+        inLeft = item % 3 == 2;
+    }else if (itemPerRow == 4){
+        inLeft = item % 4 == 2 || item % 4 == 3;
     }
     
-    SPFocusVisualEffectVC *vc = [SPFocusVisualEffectVC instanceFromStoryboard];
-    [vc showFocusView:cell completion:^(SPFocusVisualEffectVC *focusVC,UIView *focusView) {
-        UIPopoverArrowDirection direction = isLeftItem?UIPopoverArrowDirectionLeft:UIPopoverArrowDirectionRight;
-        RWDropdownMenuCellAlignment algin = isLeftItem?RWDropdownMenuCellAlignmentLeft:RWDropdownMenuCellAlignmentRight;
-
-        __weak typeof(focusVC) weakVC = focusVC;
-        [RWDropdownMenu presentInPopoverFromView:focusView position:rect direction:direction align:algin presentingFrom:focusVC withItems:items completion:nil dismiss:^{
-            __strong typeof(weakVC) strongVC = weakVC;
-            [strongVC dismiss];
+    CGRect rect = CGRectZero;
+    UIPopoverArrowDirection direction;
+    RWDropdownMenuCellAlignment alignment;
+    if (inLeft) {
+        rect.origin.x = 0;
+        rect.origin.y = CGRectGetHeight(cell.frame)/2;
+        direction = UIPopoverArrowDirectionRight;
+        alignment = RWDropdownMenuCellAlignmentRight;
+    }else{
+        rect.origin.x = CGRectGetWidth(cell.frame);;
+        rect.origin.y = CGRectGetHeight(cell.frame)/2;
+        direction = UIPopoverArrowDirectionLeft;
+        alignment = RWDropdownMenuCellAlignmentLeft;
+    }
+    
+    [[SPFocusVisualEffectVC instanceFromStoryboard] showFocusView:cell completion:^(SPFocusVisualEffectVC *focusVC,UIView *focusView) {
+        ygweakify(self);
+        self.cellFocusVC = focusVC;
+        self.cellFocusMenu = [RWDropdownMenu presentInPopoverFromView:focusView position:rect direction:direction align:alignment presentingFrom:focusVC withItems:items completion:nil dismiss:^{
+            ygstrongify(self);
+            [self.cellFocusVC dismiss];
         }];
     }];
 }

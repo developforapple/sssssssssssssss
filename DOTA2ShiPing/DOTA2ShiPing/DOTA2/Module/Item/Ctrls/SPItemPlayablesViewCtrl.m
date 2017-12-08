@@ -20,11 +20,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initUI];
+    [self setupLayout:Screen_Size];
 }
 
-- (void)initUI
+- (void)setupLayout:(CGSize)size
 {
+    NSInteger itemPerLine = IS_iPad ? (IS_Landscape ? 4 : 3) : 2;
+    CGFloat leftMargin = self.collectionView.contentInset.left + self.layout.sectionInset.left;
+    CGFloat rightMargin = self.collectionView.contentInset.right + self.layout.sectionInset.right;
+    CGFloat width = (size.width - leftMargin - rightMargin - self.layout.minimumInteritemSpacing * (itemPerLine-1)) / itemPerLine;
+    CGFloat height = 44.f;
+    self.layout.itemSize = CGSizeMake(floorf(width), height);
+}
+
+- (void)transitionLayoutToSize:(CGSize)size
+{
+    [self setupLayout:size];
+    [self.collectionView setCollectionViewLayout:self.layout animated:YES];
 }
 
 #pragma mark - UICollectionView
@@ -36,18 +48,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SPItemPlayableCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSPItemPlayableCell forIndexPath:indexPath];
-//    [cell setMaxWidth:CGRectGetWidth(collectionView.bounds) - collectionView.contentInset.left - collectionView.contentInset.right - self.layout.sectionInset.left - self.layout.sectionInset.right];
     cell.nameLabel.text = self.playables[indexPath.item].title;
     return cell;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat leftMargin = collectionView.contentInset.left + self.layout.sectionInset.left;
-    CGFloat rightMargin = collectionView.contentInset.right + self.layout.sectionInset.right;
-    CGFloat width = (CGRectGetWidth(collectionView.bounds) - leftMargin - rightMargin - self.layout.minimumInteritemSpacing) / 2;
-    CGFloat height = 44.f;
-    return CGSizeMake(width, height);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

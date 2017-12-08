@@ -30,21 +30,7 @@
 
 - (void)initUI
 {
-    CGFloat width = 0.f;
-    CGFloat height = 0.f;
-    UIEdgeInsets sectionInset;
-    CGFloat itemSpacing = 0.f;
-    CGFloat lineSpacing = 0.5f;
-    
-    width = floorf(Device_Width/4);
-    height = ceilf(width * 144.f / 256.f);
-    CGFloat margin = (Device_Width - width * 4 ) /2;
-    sectionInset = UIEdgeInsetsMake(0.5, margin, 0, margin);
-    
-    self.flowlayout.itemSize = CGSizeMake(width, height);
-    self.flowlayout.sectionInset = sectionInset;
-    self.flowlayout.minimumLineSpacing = lineSpacing;
-    self.flowlayout.minimumInteritemSpacing = itemSpacing;
+    [self setupLayout:Screen_Size];
     
     if (iOS11){}else {
         self.collectionView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);
@@ -61,6 +47,26 @@
     [self loadData];
     [self.collectionView reloadData];
     [self.collectionView reloadEmptyDataSet];
+}
+
+- (void)setupLayout:(CGSize)size
+{
+    int itemPerLine = IS_iPad ? (IS_Landscape ? 6 : 5 ) : 4;
+    CGFloat width = floorf((size.width - 0.5 * (itemPerLine - 1)) / itemPerLine);
+    CGFloat height = ceilf(width * 144.f / 256.f);
+    CGFloat margin = (size.width - width * itemPerLine - 0.5 * (itemPerLine - 1)) / 2;
+    UIEdgeInsets sectionInset = UIEdgeInsetsMake(0.5f, margin, 0.5, margin);
+    
+    self.flowlayout.itemSize = CGSizeMake(width, height);
+    self.flowlayout.sectionInset = sectionInset;
+    self.flowlayout.minimumLineSpacing = 0.5;
+    self.flowlayout.minimumInteritemSpacing = 0.5;
+}
+
+- (void)transitionLayoutToSize:(CGSize)size
+{
+    [self setupLayout:size];
+    [self.collectionView setCollectionViewLayout:self.flowlayout animated:NO];
 }
 
 #pragma mark - Data

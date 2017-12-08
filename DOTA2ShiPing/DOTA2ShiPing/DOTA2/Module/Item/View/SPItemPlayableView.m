@@ -34,9 +34,23 @@ static NSInteger kMaxPlayableCount = 6;
     [self initUI];
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    [self initUI];
+    [self update];
+}
+
 - (void)initUI
 {
-    
+    NSInteger itemPerLine = IS_iPad ? 3 : 2;
+    kMaxPlayableCount = itemPerLine * (IS_iPad ? 2 : 3);
+    CGFloat leftMargin = self.itemsView.contentInset.left + self.layout.sectionInset.left;
+    CGFloat rightMargin = self.itemsView.contentInset.right + self.layout.sectionInset.right;
+    CGFloat width = (CGRectGetWidth(self.itemsView.bounds) - leftMargin - rightMargin - self.layout.minimumInteritemSpacing * (itemPerLine-1)) / itemPerLine;
+    CGFloat height = 44.f;
+    self.layout.itemSize = CGSizeMake(floorf(width), height);
 }
 
 - (void)setItemData:(SPItemSharedData *)itemData
@@ -93,14 +107,16 @@ static NSInteger kMaxPlayableCount = 6;
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat leftMargin = self.itemsView.contentInset.left + self.layout.sectionInset.left;
-    CGFloat rightMargin = self.itemsView.contentInset.right + self.layout.sectionInset.right;
-    CGFloat width = (CGRectGetWidth(self.itemsView.bounds) - leftMargin - rightMargin - self.layout.minimumInteritemSpacing) / 2;
-    CGFloat height = 44.f;
-    return CGSizeMake(width, height);
-}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSInteger itemPerLine = IS_iPad ? 3 : 2;
+//
+//    CGFloat leftMargin = self.itemsView.contentInset.left + self.layout.sectionInset.left;
+//    CGFloat rightMargin = self.itemsView.contentInset.right + self.layout.sectionInset.right;
+//    CGFloat width = (CGRectGetWidth(self.itemsView.bounds) - leftMargin - rightMargin - self.layout.minimumInteritemSpacing) / itemPerLine;
+//    CGFloat height = 44.f;
+//    return CGSizeMake(width, height);
+//}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {

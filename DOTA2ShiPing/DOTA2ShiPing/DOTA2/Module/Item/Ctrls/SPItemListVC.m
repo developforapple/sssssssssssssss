@@ -124,7 +124,7 @@
     [self.navigationController presentViewController:navi animated:YES completion:nil];
 }
 
-- (void)filter:(SPBaseFilter *)filter didCompleted:(NSArray<SPFilterUnit *> *)units
+- (void)filter:(SPBaseFilter *)filter didCompleted:(NSArray<__kindof SPFilterUnit *> *)units
 {
     self.filterUnits = units;
     [self update];

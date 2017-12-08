@@ -15,9 +15,11 @@
 - (void)rightNavButtonTemplateImg:(NSString *)img;
 - (void)rightNavButtonText:(NSString *)text;
 - (void)rightNavSystemItem:(UIBarButtonSystemItem)item;
-- (void)doLeftNaviBarItemAction;
-- (void)doRightNaviBarItemAction;
+- (void)doLeftNaviBarItemAction YG_Abstract_Method;
+- (void)doRightNaviBarItemAction YG_Abstract_Method;
 - (void)noLeftNavButton;
+
+- (void)transitionLayoutToSize:(CGSize)size YG_Abstract_Method;
 
 @end
 

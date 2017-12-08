@@ -65,12 +65,12 @@ SPItemListMode const kSPItemListModeAuto = 10086;
         self.collectionView.prefetchDataSource = self;
     }
     
-    [self updateLayout];
+    [self setupLayout:Device_Size];
 }
 
-- (void)updateLayout
+- (void)setupLayout:(CGSize)size
 {
-    SPItemLayout *layout = [SPItemLayout layoutWithMode:self.mode];
+    SPItemLayout layout = createItemLayout(self.mode, size);
     self.flowlayout.itemSize = layout.itemSize;
     self.flowlayout.sectionInset = layout.sectionInset;
     self.flowlayout.minimumInteritemSpacing = layout.interitemSpacing;
@@ -101,7 +101,7 @@ SPItemListMode const kSPItemListModeAuto = 10086;
         }
     }];
     self.cellModels = cellModels;
-    [self updateLayout];
+    [self setupLayout:Device_Size];
     [self.collectionView endFooterRefreshing];
     [self.collectionView reloadData];
 }
