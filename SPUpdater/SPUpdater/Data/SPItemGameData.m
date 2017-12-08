@@ -22,16 +22,16 @@
 static NSString *pwd = @"wwwbbat.DOTA2.19880920";
 
 @interface SPItemGameModel ()
-- (void)createItems:(VDFNode *)data;
-- (void)createRarities:(VDFNode *)data;
-- (void)createPrefabs:(VDFNode *)data;
-- (void)createQualities:(VDFNode *)data;
-- (void)createHeroes;
-- (void)createEvents;
-- (void)createColors:(VDFNode *)data;
-- (void)createSlots:(VDFNode *)data;
-- (void)createLootList:(VDFNode *)lootList;
-- (void)createItemSets:(VDFNode *)sets;
+- (BOOL)createItems:(VDFNode *)data;
+- (BOOL)createRarities:(VDFNode *)data;
+- (BOOL)createPrefabs:(VDFNode *)data;
+- (BOOL)createQualities:(VDFNode *)data;
+- (BOOL)createHeroes;
+- (BOOL)createEvents;
+- (BOOL)createColors:(VDFNode *)data;
+- (BOOL)createSlots:(VDFNode *)data;
+- (BOOL)createLootList:(VDFNode *)lootList;
+- (BOOL)createItemSets:(VDFNode *)sets;
 @end
 
 @implementation SPItemGameData
@@ -47,27 +47,39 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     return shared;
 }
 
-- (void)dataWithRootNode:(VDFNode *)root
+- (BOOL)dataWithRootNode:(VDFNode *)root
 {
-    VDFNode *prefabs = [root firstChildWithKey:@"prefabs"];
-    VDFNode *qualities = [root firstChildWithKey:@"qualities"];
-    VDFNode *rarities = [root firstChildWithKey:@"rarities"];
-    VDFNode *colors = [root firstChildWithKey:@"colors"];
-    VDFNode *items = [root firstChildWithKey:@"items"];
-    VDFNode *slots = [root firstChildWithKey:@"player_loadout_slots"];
-    VDFNode *item_sets = [root firstChildWithKey:@"item_sets"];
-    VDFNode *loot_lists = [root firstChildWithKey:@"loot_lists"];
+    // hero
+    BOOL a = [self.model createHeroes];
     
-    [self.model createHeroes];
-    [self.model createEvents];
-    [self.model createRarities:rarities];
-    [self.model createQualities:qualities];
-    [self.model createColors:colors];
-    [self.model createSlots:slots];
-    [self.model createPrefabs:prefabs];
-    [self.model createItemSets:item_sets];
-    [self.model createLootList:loot_lists];
-    [self.model createItems:items];
+    // events
+    BOOL b = a && [self.model createEvents];
+    
+    VDFNode *rarities = [root firstChildWithKey:@"rarities"];
+    BOOL c = b && [self.model createRarities:rarities];
+    
+    VDFNode *qualities = [root firstChildWithKey:@"qualities"];
+    BOOL d = c && [self.model createQualities:qualities];
+    
+    VDFNode *colors = [root firstChildWithKey:@"colors"];
+    BOOL e = d && [self.model createColors:colors];
+    
+    VDFNode *slots = [root firstChildWithKey:@"player_loadout_slots"];
+    BOOL f = e && [self.model createSlots:slots];
+    
+    VDFNode *prefabs = [root firstChildWithKey:@"prefabs"];
+    BOOL g = f && [self.model createPrefabs:prefabs];
+    
+    VDFNode *item_sets = [root firstChildWithKey:@"item_sets"];
+    BOOL h = g && [self.model createItemSets:item_sets];
+    
+    VDFNode *loot_lists = [root firstChildWithKey:@"loot_lists"];
+    BOOL i = h && [self.model createLootList:loot_lists];
+    
+    VDFNode *items = [root firstChildWithKey:@"items"];
+    BOOL j = i && [self.model createItems:items];
+    
+    return j;
 }
 
 @end
@@ -76,7 +88,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
 
 // Done
 
-- (void)createHeroes
+- (BOOL)createHeroes
 {
     SPLog(@"正在生成英雄列表");
     
@@ -85,8 +97,8 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     NSString *string = [NSString stringWithContentsOfFile:heroPath encoding:NSUTF8StringEncoding error:&error];
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     if (error) {
-        SPLog(@"error: %@",error);
-        NSAssert(NO, @"error");
+        SPLog(@"读取英雄列表文件失败: %@",error);
+        return NO;
     }
     
     VDFNode *root = [VDFParser parse:data];
@@ -106,15 +118,16 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         if (aHero) {
             [heroArray addObject:aHero];
         }else{
-            SPLog(@"读取英雄出错了：%@",name);
-            NSAssert(NO, @"error");
+            SPLog(@"读取一个英雄出错了：%@",name);
+            return NO;
         }
     }
     SPLog(@"创建英雄列表完成，共%d个英雄",heroArray.count);
     self.heroes = heroArray;
+    return YES;
 }
 
-- (void)createEvents
+- (BOOL)createEvents
 {
     // 先生成各种事件。所有事件类型在一个特殊的文件中 名字为 event_definitions.txt 需要打开
     // 在下一步中 会将有 event_id 字段的饰品，从事件列表中查找本地字符串。如果没找到，出现警告：“有新的事件类型” 表示事件文件需要更新
@@ -135,50 +148,56 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
       @{@"id":@10,  @"event_id":@"EVENT_ID_PWRD_DAC_2015",          @"event_name":@"PWRD DAC 2015"                   , @"image_name":@"dac_2015"},];
     NSArray *events = [NSArray yy_modelArrayWithClass:[SPDotaEvent class] json:eventArray];
     self.events = events;
-    SPLog(@"创建事件列表完成：%@",events);
+    SPLog(@"创建事件列表完成：数量：%d",events.count);
+    return YES;
 }
 
-- (void)createRarities:(VDFNode *)data
+- (BOOL)createRarities:(VDFNode *)data
 {
     SPLog(@"正在生成稀有度列表");
     NSArray *rarities = [SPItemRarity raritiesWithArray:data.children];
-    SPLog(@"生成稀有度列表完成，%@",rarities);
+    SPLog(@"生成稀有度列表完成，数量：%d",rarities.count);
     self.rarities = rarities;
+    return YES;
 }
 
-- (void)createQualities:(VDFNode *)data
+- (BOOL)createQualities:(VDFNode *)data
 {
     SPLog(@"正在生成前缀列表");
     NSArray *qualities = [SPItemQuality qualitiesWithArray:data.children];
-    SPLog(@"生成前缀列表完成，%@",qualities);
+    SPLog(@"生成前缀列表完成，数量：%d",qualities.count);
     self.qualities = qualities;
+    return YES;
 }
 
-- (void)createColors:(VDFNode *)data
+- (BOOL)createColors:(VDFNode *)data
 {
     SPLog(@"正在生成颜色列表");
     NSArray *colors = [SPItemColor colorsFromArray:data.children];
-    SPLog(@"生成颜色列表完成，%@",colors);
+    SPLog(@"生成颜色列表完成，数量：%d",colors.count);
     self.colors = colors;
+    return YES;
 }
 
-- (void)createSlots:(VDFNode *)data
+- (BOOL)createSlots:(VDFNode *)data
 {
     SPLog(@"正在生成槽位列表");
     NSArray *slots = [SPItemSlot loadoutSlots:data];
-    SPLog(@"生成槽位列表完成，%@",slots);
+    SPLog(@"生成槽位列表完成，数量：%d",slots.count);
     self.slots = slots;
+    return YES;
 }
 
-- (void)createPrefabs:(VDFNode *)data
+- (BOOL)createPrefabs:(VDFNode *)data
 {
     SPLog(@"正在生成饰品类型列表");
     NSArray *prefabs = [SPItemPrefab prefabsWithArray:data.children];
-    SPLog(@"生成饰品类型列表完成，%@",prefabs);
+    SPLog(@"生成饰品类型列表完成，数量：%d",prefabs.count);
     self.prefabs = prefabs;
+    return YES;
 }
 
-- (void)createItemSets:(VDFNode *)data
+- (BOOL)createItemSets:(VDFNode *)data
 {
     SPLog(@"正在生成包列表");
     NSArray *itemSets = [SPItemSets itemSets:data.children];
@@ -200,17 +219,18 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     
     SPLog(@"生成包列表完成，共%d个包",(int)itemSets.count);
     SPLog(@"生成饰品-包映射完成，共%d条映射",(int)mapping.count);
+    return YES;
 }
 
-- (void)createLootList:(VDFNode *)data
+- (BOOL)createLootList:(VDFNode *)data
 {
     SPLog(@"正在生成掉落列表");
-    
     NSArray *lootList = [SPLootList lootList:data.children];
     self.loot_list = lootList;
+    return YES;
 }
 
-- (void)createItems:(VDFNode *)data
+- (BOOL)createItems:(VDFNode *)data
 {
     SPLog(@"正在创建饰品列表");
     
@@ -257,6 +277,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         }
     }
     SPLog(@"生成饰品列表完成");
+    return YES;
 }
 
 
@@ -385,7 +406,6 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     NSString *path = [self jsondataPath];
     [FileManager removeItemAtPath:path error:nil];
     BOOL suc = [self.jsonData writeToFile:path atomically:YES];
-    NSAssert(suc, @"保存失败！");
     SPLog(@"jsonData 保存完成！");
 }
 
@@ -413,7 +433,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     SPLog(@"保存版本文件完成");
 }
 
-- (void)save
+- (BOOL)save
 {
     [FileManager removeItemAtPath:[self tmpDBPath] error:nil];
 
@@ -432,9 +452,12 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     
     NSError *error;
     BOOL suc = [FileManager moveItemAtPath:[self tmpDBPath] toPath:[self dbPath] error:&error];
-    NSAssert(suc && !error, @"保存出错！");
+    if (!suc || error) {
+        SPLog(@"保存出错！");
+        return NO;
+    }
     
-    NSLog(@"开始计算更新的内容");
+    SPLog(@"开始计算更新的内容");
     [self calculateDif:archivePath];
     
     // 删除旧文件
@@ -445,7 +468,8 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     [self saveVersion:@{@"version":@(thisVersion)}];
     SPLog(@"数据更新完成，版本：%lld",thisVersion);
     
-    [self createZipFile];
+    BOOL a = [self createZipFile];
+    return a;
 }
 
 - (void)calculateDif:(NSString *)archivePath
@@ -543,12 +567,9 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     
     NSDictionary *change = @{@"add":add,@"modify":modify};
     NSData *data = [NSJSONSerialization dataWithJSONObject:change options:kNilOptions error:nil];
-    NSAssert(data, @"解析出错了！");
     NSString *path = [self changeLogPath];
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
-    BOOL suc = [data writeToFile:path atomically:YES];
-    NSAssert(suc, @"保存出错了！");
-    
+    [data writeToFile:path atomically:YES];
     self.addCount = add.count;
     self.modifyCount = modify.count;
 }
@@ -580,12 +601,16 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     return zipPath;
 }
 
-- (void)createZipFile
+- (BOOL)createZipFile
 {
     NSString *zipPath = [self zipFilePath];
     [FileManager removeItemAtPath:zipPath error:nil];
     BOOL suc = [SSZipArchive createZipFileAtPath:zipPath withFilesAtPaths:@[[self jsondataPath],[self dbPath],[self changeLogPath]] withPassword:pwd];
-    NSAssert(suc, @"创建压缩文件失败！");
+    if (!suc) {
+        SPLog(@"创建压缩文件失败！");
+        return NO;
+    }
+    return YES;
 }
 
 - (void)fetchItemImageInventory:(SPItem *)item

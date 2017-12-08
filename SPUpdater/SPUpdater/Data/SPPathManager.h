@@ -19,4 +19,6 @@
 + (NSString *)langRoot;
 + (NSString *)langPath:(NSString *)lang;
 
++ (NSString *)dotaManifestPath;
+
 @end

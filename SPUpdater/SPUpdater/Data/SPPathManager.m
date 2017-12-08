@@ -83,5 +83,9 @@
     return path;
 }
 
++ (NSString *)dotaManifestPath
+{
+    return @"/Applications/SteamLibrary/SteamApps/appmanifest_570.acf";
+}
 
 @end

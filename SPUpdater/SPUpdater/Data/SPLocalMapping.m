@@ -63,17 +63,23 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     SPLog(@"保存主文件版本完成");
 }
 
-+ (void)updateLangDataIfNeed:(NSString *)lang
++ (BOOL)updateLangDataIfNeed:(NSString *)lang
 {
     // 生成最新的本地化数据
-    SPLog(@"准备更新本地化文件，语言：%@",lang);
+    SPLog(@"准备读取本地化文件，语言：%@",lang);
     NSDictionary *newLangDict = [self loadLocalDataWithLang:lang];
+    if (!newLangDict) {
+        SPLog(@"读取本地化文件出错了。中断。");
+        return NO;
+    }
     
     long long time = [[NSDate date] timeIntervalSince1970] * 1000;
     // 主版本号，如果需要更新主文件，就用此版本号。不需要更新主文件，依然用旧主版本号
     long long mainVersion = time - kMagicNumber;
     // 补丁版本号，更新后总是使用此版本号
     long long patchVersion = time - kMagicNumber;
+    
+    BOOL langMainFileSuc = YES;
     
     NSString *langPath = [self langMainFilePath:lang];
     if (![FileManager fileExistsAtPath:langPath]) {
@@ -83,21 +89,36 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         
         NSError *error;
         NSData *data = [NSJSONSerialization dataWithJSONObject:newLangDict options:kNilOptions error:&error];
-        NSAssert(data && !error, @"创建本地化二进制数据失败！！！");
+        if (!data || error) {
+            SPLog(@"创建本地化二进制数据失败！！！");
+            return NO;
+        }
+        
         BOOL created = [data writeToFile:langPath atomically:YES];
-        NSAssert(created, @"创建主文件失败！");
-        SPLog(@"创建主文件成功！");
+        if (!created) {
+            SPLog(@"保存主语言文件失败！");
+            return NO;
+        }
+        
+        SPLog(@"保存主语言文件成功！");
         
         // 创建一个空的补丁文件
         SPLog(@"准备创建补丁文件");
         NSDictionary *dif = @{};
         NSData *difData = [NSJSONSerialization dataWithJSONObject:dif options:kNilOptions error:&error];
-        NSAssert(difData && !error, @"生成补丁文件失败！");
+        if (!difData || error) {
+            SPLog(@"生成补丁文件失败！");
+            return NO;
+        }
+
         NSString *langPatchFilePath = [self langPatchFilePath:lang version:patchVersion];
         [FileManager removeItemAtPath:langPatchFilePath error:nil];
         BOOL suc = [difData writeToFile:langPatchFilePath atomically:YES];
-        NSAssert(suc, @"补丁文件保存失败！");
-        SPLog(@"创建补丁文件完成");
+        if (!suc) {
+            SPLog(@"补丁文件保存失败！");
+            return NO;
+        }
+        SPLog(@"保存补丁文件完成");
         
         // 更新版本号
         SPLog(@"更新语言版本号");
@@ -107,7 +128,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         SPLog(@"文件版本：%@",langVersion);
         [self saveLangVersion:langVersion];
         
-        [self createLangMainZipFile:lang];
+        langMainFileSuc = [self createLangMainZipFile:lang];
         
     }else{
         // 主文件存在，比较差异
@@ -115,7 +136,10 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         NSError *error;
         NSData *oldLangData = [NSData dataWithContentsOfFile:langPath];
         NSDictionary *oldLangDict = [NSJSONSerialization JSONObjectWithData:oldLangData options:kNilOptions error:&error];
-        NSAssert(!error, @"读取旧本地化文件失败！");
+        if (error) {
+            SPLog(@"读取旧本地化文件失败！");
+            return NO;
+        }
         
         // 新增部分
         NSMutableSet *add = [NSMutableSet set];
@@ -147,11 +171,17 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         {
             SPLog(@"准备创建补丁文件");
             NSData *patchData = [NSJSONSerialization dataWithJSONObject:newPatch options:kNilOptions error:&error];
-            NSAssert( patchData && !error, @"生成补丁文件失败！");
+            if (!patchData || error) {
+                SPLog(@"生成补丁文件失败！");
+                return NO;
+            }
             NSString *langPatchFilePath = [self langPatchFilePath:lang version:patchVersion];
             [FileManager removeItemAtPath:langPatchFilePath error:nil];
             BOOL suc = [patchData writeToFile:langPatchFilePath atomically:YES];
-            NSAssert(suc, @"补丁文件保存失败！");
+            if (!suc) {
+                SPLog(@"补丁文件保存失败！");
+                return NO;
+            }
             SPLog(@"创建补丁文件完成");
         }
         
@@ -164,11 +194,13 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
             changeLog[@"add"] = [add objectEnumerator].allObjects;
             changeLog[@"modify"] = [modify objectEnumerator].allObjects;
             NSData *changeLogData = [NSJSONSerialization dataWithJSONObject:changeLog options:kNilOptions error:nil];
-            NSAssert(changeLogData, @"出错了！");
             NSString *changeLogPath = [self changeLogFilePath:lang version:patchVersion];
             [FileManager removeItemAtPath:changeLogPath error:nil];
             BOOL suc = [changeLogData writeToFile:changeLogPath atomically:YES];
-            NSAssert(suc, @"保存 Change Log出错");
+            if (!suc) {
+                SPLog(@"保存 Change Log出错");
+                return NO;
+            }
         }
         
         // 更新版本号
@@ -180,8 +212,18 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
             SPLog(@"文件版本：%@",langVersion);
         }
     }
-
-    [self createLangPatchZipFile:lang version:patchVersion];
+    if (!langMainFileSuc) {
+        SPLog(@"主文件出错。中断。");
+        return NO;
+    }
+    
+    BOOL langPatchFileSuc = [self createLangPatchZipFile:lang version:patchVersion];
+    if (!langPatchFileSuc) {
+        SPLog(@"语言补丁出错。中断。");
+        return NO;
+    }
+    
+    return YES;
 }
 
 + (NSDictionary *)loadLocalDataWithLang:(NSString *)lang
@@ -201,12 +243,17 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         //file 1
         NSString *filePath = [dotaPath stringByAppendingPathComponent:[NSString stringWithFormat:@"panorama/localization/dota_%@.txt",lang]];
         SPLog(@"文件1：%@",filePath);
-        
-        NSAssert([fm fileExistsAtPath:filePath], @"找不到文件路径：%@",filePath);
+        if (![fm fileExistsAtPath:filePath]) {
+            SPLog(@"找不到文件路径：%@",filePath);
+            return nil;
+        }
         
         NSError *error;
         NSString *txt = [NSString stringWithContentsOfFile:filePath encoding:NSUTF16LittleEndianStringEncoding error:&error];
-        NSAssert(!error, @"读取文件出错：%@",error);
+        if (error || txt.length == 0) {
+            SPLog(@"读取文件出错：%@",error);
+            return nil;
+        }
 
         NSData *data = [txt dataUsingEncoding:NSUTF8StringEncoding];
         VDFNode *root = [VDFParser parse:data];
@@ -221,11 +268,17 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         // file 2
         NSString *filePath = [dotaPath stringByAppendingPathComponent:[NSString stringWithFormat:@"resource/dota_%@.txt",lang]];
         SPLog(@"文件2：%@",filePath);
-        NSAssert([fm fileExistsAtPath:filePath], @"找不到文件路径：%@",filePath);
+        if (![fm fileExistsAtPath:filePath]) {
+            SPLog(@"找不到文件路径：%@",filePath);
+            return nil;
+        }
         
         NSError *error;
         NSString *txt = [NSString stringWithContentsOfFile:filePath encoding:NSUTF16LittleEndianStringEncoding error:&error];
-        NSAssert(!error, @"读取文件出错：%@",error);
+        if (error || txt.length == 0) {
+            SPLog(@"读取文件出错：%@",error);
+            return nil;
+        }
         
         NSData *data = [txt dataUsingEncoding:NSUTF8StringEncoding];
         VDFNode *root = [VDFParser parse:data];
@@ -240,11 +293,17 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         // file 3
         NSString *filePath = [dotaPath stringByAppendingPathComponent:[NSString stringWithFormat:@"resource/items_%@.txt",lang]];
         SPLog(@"文件3：%@",filePath);
-        NSAssert([fm fileExistsAtPath:filePath], @"找不到文件路径：%@",filePath);
+        if (![fm fileExistsAtPath:filePath]) {
+            SPLog(@"找不到文件路径：%@",filePath);
+            return nil;
+        }
         
         NSError *error;
         NSString *txt = [NSString stringWithContentsOfFile:filePath encoding:NSUTF16LittleEndianStringEncoding error:&error];
-        NSAssert(!error, @"读取文件出错：%@",error);
+        if (error || txt.length == 0) {
+            SPLog(@"读取文件出错：%@",error);
+            return nil;
+        }
         
         NSData *data = [txt dataUsingEncoding:NSUTF8StringEncoding];
         VDFNode *root = [VDFParser parse:data];
@@ -259,34 +318,51 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     return dict;
 }
 
-+ (void)createLangMainZipFile:(NSString *)lang
++ (BOOL)createLangMainZipFile:(NSString *)lang
 {
     SPLog(@"创建主文件压缩包：%@",lang);
     NSString *filePath = [self langMainFilePath:lang];
-    NSAssert([FileManager fileExistsAtPath:filePath], @"主文件不存在！");
+    if (![FileManager fileExistsAtPath:filePath]) {
+        SPLog(@"主文件不存在！");
+        return NO;
+    }
     NSString *zipPath = [self langMainFileZipPath:lang];
     [FileManager removeItemAtPath:zipPath error:nil];
     BOOL suc = [SSZipArchive createZipFileAtPath:zipPath withFilesAtPaths:@[filePath] withPassword:pwd];
-    NSAssert(suc, @"创建主文件压缩包失败！");
+    if (!suc) {
+        SPLog(@"创建主文件压缩包失败！");
+        return NO;
+    }
     SPLog(@"创建主文件压缩包完成");
+    return YES;
 }
 
-+ (void)createLangPatchZipFile:(NSString *)lang version:(long long )version
++ (BOOL)createLangPatchZipFile:(NSString *)lang version:(long long )version
 {
     SPLog(@"创建补丁文件压缩包：%@",lang);
     NSString *filePath = [self langPatchFilePath:lang version:version];
-    NSAssert([FileManager fileExistsAtPath:filePath], @"补丁文件不存在！");
+    if (![FileManager fileExistsAtPath:filePath]) {
+        SPLog(@"补丁文件不存在！");
+        return NO;
+    }
     
     NSString *renameFilePath = [self langPatchFilePath:lang];
     [FileManager removeItemAtPath:renameFilePath error:nil];
     [FileManager copyItemAtPath:filePath toPath:renameFilePath error:nil];
-    NSAssert([FileManager fileExistsAtPath:renameFilePath], @"补丁文件复制出错！");
+    if (![FileManager fileExistsAtPath:renameFilePath]) {
+        SPLog(@"补丁文件复制出错！");
+        return NO;
+    }
     
     NSString *zipPath = [self langPatchFileZipPath:lang];
     [FileManager removeItemAtPath:zipPath error:nil];
     BOOL suc = [SSZipArchive createZipFileAtPath:zipPath withFilesAtPaths:@[renameFilePath] withPassword:pwd];
-    NSAssert(suc, @"创建补丁文件压缩包失败！");
+    if (!suc) {
+        SPLog(@"创建补丁文件压缩包失败！");
+        return NO;
+    }
     SPLog(@"创建补丁文件压缩包完成");
+    return YES;
 }
 
 + (NSString *)langMainFileZipPath:(NSString *)lang

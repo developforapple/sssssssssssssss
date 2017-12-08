@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		45192865E619340FBC0805A6 /* libPods-SPUpdater.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 012F4F6120CF6059E80031C0 /* libPods-SPUpdater.a */; };
+		690B7E781FDA713A0042C283 /* SPInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 690B7E771FDA713A0042C283 /* SPInfoManager.m */; };
+		690B7E7B1FDA7B4C0042C283 /* SPUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 690B7E7A1FDA7B4C0042C283 /* SPUpdater.m */; };
+		690B7E7E1FDA990A0042C283 /* SPLogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 690B7E7D1FDA990A0042C283 /* SPLogHelper.m */; };
 		69E0267F1FD67A1A00FB14A3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E0267E1FD67A1A00FB14A3 /* AppDelegate.m */; };
 		69E026821FD67A1A00FB14A3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E026811FD67A1A00FB14A3 /* ViewController.m */; };
 		69E026841FD67A1A00FB14A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69E026831FD67A1A00FB14A3 /* Assets.xcassets */; };
@@ -40,6 +43,12 @@
 		012F4F6120CF6059E80031C0 /* libPods-SPUpdater.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SPUpdater.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D2C634FE33F998C3B6AB11D /* Pods-SPUpdater.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPUpdater.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SPUpdater/Pods-SPUpdater.debug.xcconfig"; sourceTree = "<group>"; };
 		4AEB4A34450FFDAB79658412 /* Pods-SPUpdater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPUpdater.release.xcconfig"; path = "Pods/Target Support Files/Pods-SPUpdater/Pods-SPUpdater.release.xcconfig"; sourceTree = "<group>"; };
+		690B7E761FDA713A0042C283 /* SPInfoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPInfoManager.h; sourceTree = "<group>"; };
+		690B7E771FDA713A0042C283 /* SPInfoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPInfoManager.m; sourceTree = "<group>"; };
+		690B7E791FDA7B4C0042C283 /* SPUpdater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPUpdater.h; sourceTree = "<group>"; };
+		690B7E7A1FDA7B4C0042C283 /* SPUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPUpdater.m; sourceTree = "<group>"; };
+		690B7E7C1FDA990A0042C283 /* SPLogHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPLogHelper.h; sourceTree = "<group>"; };
+		690B7E7D1FDA990A0042C283 /* SPLogHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPLogHelper.m; sourceTree = "<group>"; };
 		69E0267A1FD67A1A00FB14A3 /* SPUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69E0267D1FD67A1A00FB14A3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		69E0267E1FD67A1A00FB14A3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -154,6 +163,12 @@
 		69E026931FD67E8500FB14A3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				690B7E791FDA7B4C0042C283 /* SPUpdater.h */,
+				690B7E7A1FDA7B4C0042C283 /* SPUpdater.m */,
+				690B7E7C1FDA990A0042C283 /* SPLogHelper.h */,
+				690B7E7D1FDA990A0042C283 /* SPLogHelper.m */,
+				690B7E761FDA713A0042C283 /* SPInfoManager.h */,
+				690B7E771FDA713A0042C283 /* SPInfoManager.m */,
 				69E026B21FD67E8500FB14A3 /* SPPathManager.h */,
 				69E026B31FD67E8500FB14A3 /* SPPathManager.m */,
 				69E026AE1FD67E8500FB14A3 /* SPLocalMapping.h */,
@@ -362,14 +377,17 @@
 				69E026C01FD67E8500FB14A3 /* SPItemSets.m in Sources */,
 				69E026BC1FD67E8500FB14A3 /* SPItemImageDownloader.m in Sources */,
 				69E0268A1FD67A1A00FB14A3 /* main.m in Sources */,
+				690B7E7B1FDA7B4C0042C283 /* SPUpdater.m in Sources */,
 				69E026BD1FD67E8500FB14A3 /* SPItemPrefab.m in Sources */,
 				69E026B81FD67E8500FB14A3 /* SPHeroImageDownloader.m in Sources */,
 				69E026BB1FD67E8500FB14A3 /* SPItemGameData.m in Sources */,
 				69E026C31FD67E8500FB14A3 /* SPLocalMapping.m in Sources */,
 				69E026C21FD67E8500FB14A3 /* SPItemStyle.m in Sources */,
 				69E026BF1FD67E8500FB14A3 /* SPItemRarity.m in Sources */,
+				690B7E781FDA713A0042C283 /* SPInfoManager.m in Sources */,
 				69E026C41FD67E8500FB14A3 /* SPLootList.m in Sources */,
 				69E026D01FD67EE100FB14A3 /* KeyValueParser.m in Sources */,
+				690B7E7E1FDA990A0042C283 /* SPLogHelper.m in Sources */,
 				69E026BE1FD67E8500FB14A3 /* SPItemQuality.m in Sources */,
 				69E026B71FD67E8500FB14A3 /* SPHero.m in Sources */,
 				69E026C51FD67E8500FB14A3 /* SPPathManager.m in Sources */,

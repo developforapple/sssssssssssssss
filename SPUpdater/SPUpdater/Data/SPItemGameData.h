@@ -15,7 +15,7 @@
 
 + (instancetype)shared;
 
-- (void)dataWithRootNode:(VDFNode *)root;
+- (BOOL)dataWithRootNode:(VDFNode *)root;
 
 @property (strong, nonatomic) SPItemGameModel *model;
 
@@ -81,7 +81,7 @@
 @property (assign, nonatomic) NSInteger addCount;
 @property (assign, nonatomic) NSInteger modifyCount;
 
-- (void)save;
+- (BOOL)save;
 
 - (NSString *)versionPath;
 - (NSDictionary *)version;
