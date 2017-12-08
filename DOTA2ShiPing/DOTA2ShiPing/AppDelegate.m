@@ -178,10 +178,10 @@
 - (void)_loadSplashAd
 {
 #if !TARGET_PRO
-    self.ad = [[GDTSplashAd alloc] initWithAppkey:kTencentGDTAppKey placementId:kTencentGDTLaunchPOSID];
-    self.ad.fetchDelay = 3;
-    self.ad.delegate = self;
-    [self.ad loadAdAndShowInWindow:self.window];
+//    self.ad = [[GDTSplashAd alloc] initWithAppkey:kTencentGDTAppKey placementId:kTencentGDTLaunchPOSID];
+//    self.ad.fetchDelay = 3;
+//    self.ad.delegate = self;
+//    [self.ad loadAdAndShowInWindow:self.window];
 #endif
 }
 
