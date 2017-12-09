@@ -39,11 +39,11 @@
 - (FMDatabase *)createDatabaseIfNeed
 {
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *dbFolder = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@".spzh.star.v1"];
+    NSString *dbFolder = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@".com.wwwbbat.sp.star"];
     if (![fm fileExistsAtPath:dbFolder]) {
         [fm createDirectoryAtPath:dbFolder withIntermediateDirectories:YES attributes:nil error:nil];
     }
-    NSString *dbPath = [dbFolder stringByAppendingPathComponent:@"history.db"];
+    NSString *dbPath = [dbFolder stringByAppendingPathComponent:@"star.db"];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
     [db executeUpdate:@"CREATE TABLE IF NOT EXISTS star (  token text PRIMARY KEY,\

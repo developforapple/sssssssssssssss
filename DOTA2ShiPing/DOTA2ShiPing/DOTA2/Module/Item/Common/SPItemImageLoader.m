@@ -24,7 +24,7 @@ normalImageCache(){
     static YYCache *_kDefaultCache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *path = [AppDocumentsPath stringByAppendingPathComponent:@".itemImageCache.small"];
+        NSString *path = [AppDocumentsPath stringByAppendingPathComponent:@".com.wwwbbat.sp.itemImageCache.small"];
         _kDefaultCache = [[YYCache alloc] initWithPath:path];
     });
     return _kDefaultCache;
@@ -35,7 +35,7 @@ largeImageCache(){
     static YYCache *_kDefaultCache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *path = [AppDocumentsPath stringByAppendingPathComponent:@".itemImageCache.large"];
+        NSString *path = [AppDocumentsPath stringByAppendingPathComponent:@".com.wwwbbat.sp.itemImageCache.large"];
         _kDefaultCache = [[YYCache alloc] initWithPath:path];
     });
     return _kDefaultCache;
@@ -57,7 +57,7 @@ qiniuCache(){
     static YYCache *_kQiniuUnuploadItemsCache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *path = [AppDocumentsPath stringByAppendingPathComponent:@".QiniuItemCache.cache"];
+        NSString *path = [AppDocumentsPath stringByAppendingPathComponent:@".com.wwwbbat.sp.QiniuItemCache.cache"];
         _kQiniuUnuploadItemsCache = [[YYCache alloc] initWithPath:path];
         
         // 上传没有图片的token记录

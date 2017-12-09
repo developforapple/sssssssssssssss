@@ -160,12 +160,19 @@ NSString *maskterKeyForServiceType(ServiceType type){
                 [self beginUpdate];
             });
         }else{
-            // 检查游戏版本是否有更新
-            SPLog(@"items_game_url 未变动。继续检查游戏版本");
+            // 不检查游戏版本更新
+            SPLog(@"items_game_url 未变动。不检查游戏版本。");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self checkDotaUpdate];
+                [self waitNextCheck];
             });
         }
+//        }else{
+//            // 检查游戏版本是否有更新
+//            SPLog(@"items_game_url 未变动。继续检查游戏版本");
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self checkDotaUpdate];
+//            });
+//        }
     });
 }
 

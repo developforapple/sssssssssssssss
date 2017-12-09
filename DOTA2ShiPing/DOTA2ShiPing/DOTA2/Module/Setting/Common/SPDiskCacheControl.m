@@ -20,7 +20,7 @@
     dispatch_once(&onceToken, ^{
         NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
                                                                    NSUserDomainMask, YES) firstObject];
-        cachePath = [cachePath stringByAppendingPathComponent:@"com.wwwbbat.Dota2.imageCache"];
+        cachePath = [cachePath stringByAppendingPathComponent:@"com.wwwbbat.sp.imageCache"];
         folder = cachePath;
     });
     return folder;
@@ -33,7 +33,7 @@
     dispatch_once(&onceToken, ^{
         NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
                                                                    NSUserDomainMask, YES) firstObject];
-        cachePath = [cachePath stringByAppendingPathComponent:@"com.wwwbbat.Dota2.dataCache"];
+        cachePath = [cachePath stringByAppendingPathComponent:@"com.wwwbbat.sp.dataCache"];
         folder = cachePath;
     });
     return folder;

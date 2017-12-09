@@ -41,7 +41,7 @@
 - (FMDatabase *)createDatabaseIfNeed
 {
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *dbFolder = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@".com.wwwbbat.player.v1"];
+    NSString *dbFolder = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@".com.wwwbbat.sp.player"];
     if (![fm fileExistsAtPath:dbFolder]) {
         [fm createDirectoryAtPath:dbFolder withIntermediateDirectories:YES attributes:nil error:nil];
     }
@@ -167,7 +167,7 @@
 // 库存数据保存的文件夹
 - (NSString *)folderPath
 {
-    NSString *folder = [[UIApplication sharedApplication].documentsPath stringByAppendingPathComponent:@".com.wwwbbat.inventory.v1"];
+    NSString *folder = [[UIApplication sharedApplication].documentsPath stringByAppendingPathComponent:@".com.wwwbbat.sp.inventory"];
     [self createFolderIfNeedArPath:folder];
     return folder;
 }

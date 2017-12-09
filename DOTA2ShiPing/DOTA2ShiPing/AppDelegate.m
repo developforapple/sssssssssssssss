@@ -131,7 +131,7 @@
     #if DEBUG_MODE
         [BuglyLog initLogger:BuglyLogLevelInfo consolePrint:YES];
     #else
-        [BuglyLog initLogger:BuglyLogLevelInfo consolePrint:NO]
+        [BuglyLog initLogger:BuglyLogLevelInfo consolePrint:NO];
     #endif
     
 #endif //BuglySDK_Enabled

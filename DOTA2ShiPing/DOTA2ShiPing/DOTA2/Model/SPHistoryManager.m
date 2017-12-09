@@ -38,7 +38,7 @@
 - (FMDatabase *)createDatabaseIfNeed
 {
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *dbFolder = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@".spzh.history.v1"];
+    NSString *dbFolder = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@".com.wwwbbat.sp.history"];
     if (![fm fileExistsAtPath:dbFolder]) {
         [fm createDirectoryAtPath:dbFolder withIntermediateDirectories:YES attributes:nil error:nil];
     }
