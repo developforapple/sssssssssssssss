@@ -87,10 +87,6 @@
                             NSString *v = [NSString stringWithUTF8String:tempStr];
                             NSString *k = [[NSString stringWithUTF8String:tempK] lowercaseString];
                             
-                            if ([k isEqualToString:@"tool"]) {
-                                SPLog(@"");
-                            }
-                            
                             curNode.data[k] = v;
                         }
                         isKey = !isKey;

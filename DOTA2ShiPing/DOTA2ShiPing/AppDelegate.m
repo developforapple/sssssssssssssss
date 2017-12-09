@@ -60,6 +60,7 @@
     [self _setup3rdParty];
     [self _loadSplashAd];
     [self _setupNotificaiton:launchOptions];
+    [self _setupBackupSetting];
     return YES;
 }
 
@@ -183,6 +184,12 @@
 //    self.ad.delegate = self;
 //    [self.ad loadAdAndShowInWindow:self.window];
 #endif
+}
+
+- (void)_setupBackupSetting
+{
+    NSURL *url = [NSURL fileURLWithPath:AppDocumentsPath];
+    [url setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:nil];
 }
 
 @end

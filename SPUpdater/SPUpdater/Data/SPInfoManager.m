@@ -9,6 +9,7 @@
 #import "SPInfoManager.h"
 #import "SPPathManager.h"
 #import "VDFParser.h"
+#import "SPLogHelper.h"
 
 static NSString *kInfoKeyItemGameURL = @"item_game_url";
 static NSString *kInfoKeyLastUpdate = @"lastupdate";

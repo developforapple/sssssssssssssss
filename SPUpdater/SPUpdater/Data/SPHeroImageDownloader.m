@@ -8,6 +8,7 @@
 
 #import "SPHeroImageDownloader.h"
 #import "SPPathManager.h"
+#import "SPLogHelper.h"
 
 @implementation SPHeroImageDownloader
 

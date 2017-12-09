@@ -10,7 +10,13 @@
 
 @class NSTextView;
 
-FOUNDATION_EXPORT void SPLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
+#define SPLog(...) { \
+    NSString *text = [NSString stringWithFormat: __VA_ARGS__ ];        \
+    NSLog(__VA_ARGS__);    \
+    [[SPLogHelper helper] log:text];    \
+}
+
+//FOUNDATION_EXPORT void SPLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 
 @interface SPLogHelper : NSObject
 

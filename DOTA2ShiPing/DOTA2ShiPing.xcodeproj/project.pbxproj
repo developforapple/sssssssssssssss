@@ -4961,7 +4961,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -5040,7 +5040,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -5119,7 +5119,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -5197,7 +5197,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -5273,7 +5273,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -5348,7 +5348,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DOTA2ShiPing/DOTA2/Module/Item/Ctrls/DOTA2ShiPing-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				VALID_ARCHS = "arm64 armv7";
 			};

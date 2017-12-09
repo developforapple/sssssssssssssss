@@ -264,9 +264,9 @@ NSString *maskterKeyForServiceType(ServiceType type){
             long long total = downloadProgress.totalUnitCount;
             double downloaded = downloadProgress.completedUnitCount;
             int progress = downloaded / total * 100;
-            if (progress % 10 == 0) {
-                SPLog(@"%.0f%%, total: %lld",progress,total);
-            }
+//            if (progress % 10 == 0) {
+                SPLog(@"%d%%, total: %lld",progress,total);
+//            }
             
         } destination:^NSURL *(NSURL * targetPath, NSURLResponse *response) {
             

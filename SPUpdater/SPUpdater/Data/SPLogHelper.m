@@ -15,18 +15,19 @@
 @property (strong, nonatomic) NSFileHandle *file;
 @end
 
-void SPLog(NSString *format, ...){
-    @try{
-        va_list args;
-        va_start(args, format);
-        NSLogv(format, args);
-        NSString *text = [[NSString alloc] initWithFormat:format arguments:args];
-        va_end(args);
-        [[SPLogHelper helper] log:text];
-    }@catch(NSException *e){
-        
-    }
-}
+//void SPLog(NSString *format, ...){
+//    @try{
+//        va_list args;
+//        va_start(args, format);
+////        NSLogv(format, args);
+//        [NSString stringWithFormat:<#(nonnull NSString *), ...#>];
+//        NSString *text = [[NSString alloc] initWithFormat:format arguments:args];
+//        va_end(args);
+//        [[SPLogHelper helper] log:text];
+//    }@catch(NSException *e){
+//        
+//    }
+//}
 
 @implementation SPLogHelper
 

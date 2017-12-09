@@ -8,6 +8,7 @@
 
 #import "SPItemImageDownloader.h"
 #import <FMDatabase.h>
+#import "SPLogHelper.h"
 //#import <AssetsLibrary/AssetsLibrary.h>
 
 @import AppKit;

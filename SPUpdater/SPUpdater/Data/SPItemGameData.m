@@ -16,6 +16,7 @@
 #import "SPDotaEvent.h"
 #import "SPPathManager.h"
 #import <SSZipArchive.h>
+#import "SPLogHelper.h"
 
 #define FileManager [NSFileManager defaultManager]
 

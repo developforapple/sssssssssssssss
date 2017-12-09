@@ -19,6 +19,7 @@
 
 @interface DDMainTBC () <SKStoreProductViewControllerDelegate>
 @property (assign, nonatomic) NSTimeInterval lastCheckTime;
+@property (weak, nonatomic) SPUpdateViewCtrl *updateViewCtrl;
 @end
 
 @implementation DDMainTBC
@@ -52,7 +53,7 @@
                  if (!x) {
                      return;
                  }
-                 if ([x boolValue]) {
+                 if ([x boolValue] && !self.updateViewCtrl) {
                      [self noticeNeedUpdate];
                  }
              }];
@@ -78,7 +79,8 @@
 
 - (void)beginUpdateData
 {
-    [[SPUpdateViewCtrl instanceFromStoryboard] show];
+    self.updateViewCtrl = [SPUpdateViewCtrl instanceFromStoryboard];
+    [self.updateViewCtrl show];
 }
 
 - (void)addNeedUpdateBadge

@@ -10,6 +10,7 @@
 #import "VDFParser.h"
 #import <SSZipArchive.h>
 #import "SPPathManager.h"
+#import "SPLogHelper.h"
 
 const long long kMagicNumber = 1010110203019LL;
 
