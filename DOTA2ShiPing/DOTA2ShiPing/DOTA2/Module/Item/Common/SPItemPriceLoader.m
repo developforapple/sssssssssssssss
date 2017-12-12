@@ -111,7 +111,7 @@
         
         RunOnMainQueue(^{
             if (price.length == 0 && originPrice.length == 0) {
-                completion([SPItemDota2Price error:@"未找到该物品"]);
+                completion([SPItemDota2Price error:@"商城无此物品"]);
             }else{
                 completion([[SPItemDota2Price alloc] initWithPrice:price originPrice:originPrice]);
             }
@@ -152,7 +152,7 @@
             return;
         }
         if (!overview.success) {
-            completion([SPItemSteamPrice error:@"未找到该物品"]);
+            completion([SPItemSteamPrice error:@"无此物品出售"]);
             return;
         }
         

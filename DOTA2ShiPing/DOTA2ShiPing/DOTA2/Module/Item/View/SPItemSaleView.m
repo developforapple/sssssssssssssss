@@ -147,11 +147,31 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
 - (IBAction)bgAction:(UIView *)bg
 {
     if ([self.dota2View containView:bg]) {
-        [SPWebHelper openURL:[NSURL URLWithString:[self.itemData.item dota2MarketURL]] from:self.viewController.navigationController];
+        if (self.dota2View.isNoload) {
+            [self.itemData loadDota2Price:YES];
+            [self updateDota2Price:YES];
+        }else{
+            BOOL failed = self.itemData.dota2Price.error.length;
+            if (failed) {
+                [SVProgressHUD showInfoWithStatus:self.itemData.dota2Price.error];
+            }else{
+                [SPWebHelper openURL:[NSURL URLWithString:[self.itemData.item dota2MarketURL]] from:self.viewController.navigationController];
+            }
+        }
     }else if ([self.steamView containView:bg]){
-        SPItemSteamPricesViewCtrl *vc = [SPItemSteamPricesViewCtrl instanceFromStoryboard];
-        vc.item = self.itemData.item;
-        [self.viewController.navigationController pushViewController:vc animated:YES];
+        if (self.steamView.isNoload) {
+            [self.itemData loadSteamPrice:YES];
+            [self updateSteamPrice:YES];
+        }else{
+            BOOL failed = self.itemData.steamPrice.error.length;
+            if (failed) {
+                [SVProgressHUD showInfoWithStatus:self.itemData.steamPrice.error];
+            }else{
+                SPItemSteamPricesViewCtrl *vc = [SPItemSteamPricesViewCtrl instanceFromStoryboard];
+                vc.item = self.itemData.item;
+                [self.viewController.navigationController pushViewController:vc animated:YES];
+            }
+        }
     }
 }
 
@@ -162,14 +182,24 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
             [self.itemData loadDota2Price:YES];
             [self updateDota2Price:YES];
         }else{
-            [SPWebHelper openURL:[NSURL URLWithString:[self.itemData.item dota2MarketURL]] from:self.viewController.navigationController];
+            BOOL failed = self.itemData.dota2Price.error.length;
+            if (failed) {
+                [SVProgressHUD showInfoWithStatus:self.itemData.dota2Price.error];
+            }else{
+                [SPWebHelper openURL:[NSURL URLWithString:[self.itemData.item dota2MarketURL]] from:self.viewController.navigationController];
+            }
         }
     }else if ([self.steamView containView:btn]){
         if (self.steamView.isNoload) {
             [self.itemData loadSteamPrice:YES];
             [self updateSteamPrice:YES];
         }else{
-            [SPWebHelper openURL:[NSURL URLWithString:[self.itemData.item steamMarketURL]] from:self.viewController.navigationController];
+            BOOL failed = self.itemData.steamPrice.error.length;
+            if (failed) {
+                [SVProgressHUD showInfoWithStatus:self.itemData.steamPrice.error];
+            }else{
+                [SPWebHelper openURL:[NSURL URLWithString:[self.itemData.item steamMarketURL]] from:self.viewController.navigationController];
+            }
         }
     }
 }
