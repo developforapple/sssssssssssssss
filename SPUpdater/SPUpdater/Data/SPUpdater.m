@@ -240,7 +240,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
     // 开始更新流程
     
     SPLog(@"读取语言文件");
-    BOOL suc = [SPLocalMapping updateLangDataIfNeed:kSPLanguageSchinese];
+    BOOL suc = [SPLocalMapping updateLangDataIfNeed:kSPLanguageSchinese state:self.state];
     if (!suc){
         [self updateFailed:@"读取语言文件失败"];
         return;
