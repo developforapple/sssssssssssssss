@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SPInfoManager.h"
+#import "SPUpdaterState.h"
 
 @class NSTextView;
 
@@ -17,6 +18,8 @@
 #define kTimeout (5*60)
 
 @interface SPUpdater : NSObject
+
+@property (strong) SPUpdaterState *state;
 
 @property (strong, readonly, nonatomic) SPInfoManager *info;
 
@@ -29,10 +32,6 @@
 
 // 是否正在更新
 @property (assign, readonly, getter=isUpdating, nonatomic) BOOL updating;
-// 本次更新的时间点
-@property (assign, readonly, nonatomic) NSTimeInterval checkTime;
-// 预计下一次更新的时间点
-@property (assign, readonly, nonatomic) NSTimeInterval nextTime;
 
 - (void)setLogOutputTextView:(NSTextView *)textView;
 

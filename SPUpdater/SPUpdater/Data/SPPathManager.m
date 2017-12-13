@@ -43,6 +43,11 @@
     return path;
 }
 
++ (NSString *)statePath
+{
+    return [[self rootPath] stringByAppendingPathComponent:@"State.json"];
+}
+
 + (NSString *)downloadPath
 {
 //    @"${SRCROOT}/Files/download"

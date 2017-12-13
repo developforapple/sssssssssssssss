@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SPUpdaterState.h"
 
 extern const long long kMagicNumber ;
 
@@ -18,7 +19,7 @@ extern const long long kMagicNumber ;
 // 1：从游戏目录中提取指定语言的全部本地化文件
 // 2：如果主文件不存在，创建主文件，创建空补丁文件
 // 3：如果主文件存在，比较差异，创建补丁文件
-+ (BOOL)updateLangDataIfNeed:(NSString *)lang;
++ (BOOL)updateLangDataIfNeed:(NSString *)lang state:(SPUpdaterState *)state;
 
 // key: schinese 语言主文件版本
 // key: schinese_patch 语言补丁版本

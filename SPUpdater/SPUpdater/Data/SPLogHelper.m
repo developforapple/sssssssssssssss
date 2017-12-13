@@ -11,23 +11,12 @@
 #import "SPPathManager.h"
 
 @interface SPLogHelper ()
-@property (strong, nonatomic) NSTextView *textView;
+@property (assign) NSTimeInterval lastCheckLogFileTime;
+@property (strong) NSDateFormatter *formatter;
+@property (weak, nonatomic) NSTextView *textView;
 @property (strong, nonatomic) NSFileHandle *file;
+@property (strong) dispatch_queue_t queue;
 @end
-
-//void SPLog(NSString *format, ...){
-//    @try{
-//        va_list args;
-//        va_start(args, format);
-////        NSLogv(format, args);
-//        [NSString stringWithFormat:<#(nonnull NSString *), ...#>];
-//        NSString *text = [[NSString alloc] initWithFormat:format arguments:args];
-//        va_end(args);
-//        [[SPLogHelper helper] log:text];
-//    }@catch(NSException *e){
-//        
-//    }
-//}
 
 @implementation SPLogHelper
 
@@ -37,30 +26,43 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [SPLogHelper new];
+        instance.formatter = [[NSDateFormatter alloc] init];
+        instance.formatter.dateStyle = NSDateFormatterMediumStyle;
+        instance.formatter.timeStyle = NSDateFormatterMediumStyle;
+        instance.formatter.locale = [NSLocale currentLocale];
+        instance.lastCheckLogFileTime = [[NSDate date] timeIntervalSince1970];
+
+        instance.queue = dispatch_queue_create("LogFileWriteQueue", NULL);
+
         NSString *path = [[SPPathManager rootPath] stringByAppendingPathComponent:@"log.txt"];
         if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
             [[NSFileManager defaultManager] createFileAtPath:path contents:[NSData data] attributes:nil];
         }
         NSFileHandle *file = [NSFileHandle fileHandleForWritingAtPath:path];
+        [file seekToEndOfFile];
         instance.file = file;
     });
     return instance;
 }
 
-- (void)setFile:(NSFileHandle *)file
-{
-    _file = file;
-    [file seekToEndOfFile];
-}
-
 - (void)log:(NSString *)text
 {
-    text = [text stringByAppendingString:@"\n"];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.textView.string = [text stringByAppendingString:self.textView.string];;
-    });
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self.file writeData:[text dataUsingEncoding:NSUTF8StringEncoding]];
+    NSString *time = [self.formatter stringFromDate:[NSDate date]];
+    NSString *log = [NSString stringWithFormat:@"%@ : %@\n",time,text];
+    
+    if (self.textView) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *textViewString = [log stringByAppendingString:self.textView.string];
+            if (textViewString.length > 1024 * 1024) {
+                self.textView.string = [textViewString substringToIndex:1024*1024];
+            }else{
+                self.textView.string = textViewString;
+            }
+        });
+    }
+
+    dispatch_async(self.queue, ^{
+        [self.file writeData:[log dataUsingEncoding:NSUTF8StringEncoding]];
     });
 }
 

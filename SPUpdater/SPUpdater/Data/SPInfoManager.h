@@ -18,27 +18,12 @@
 - (long long)langFileVersion:(NSString *)lang;
 - (long long)langPatchFileVersion:(NSString *)lang;
 
-// 更新信息
-- (void)saveItemGameURL:(NSString *)url
-             lastUpdate:(NSNumber *)lastUpdate
-                buildid:(NSNumber *)buildid
-        baseDataVersion:(NSNumber *)baseDataVersion;
-
-- (void)saveLangVersion:(long long *)langVersion
-                  patch:(long long *)patch
-                   lang:(NSString *)lang;
-
 // 获取最新的item_game_url
 - (NSString *)latestItemGameURL;
 
-// 获取最新的lastupdate和buildid
+// 获取最新的lastupdate和buildid。 当配置文件的state不为4时，返回NO。
 - (BOOL)latestDotaInfo:(long long *)lastupdate
                buildid:(long long *)buildid;
-
-// 只有更新完成后才有用
-@property (strong, nonatomic) NSString *tmpURL;
-@property (strong, nonatomic) NSNumber *tmpLastUpdate;
-@property (strong, nonatomic) NSNumber *tmpBuildid;
 
 - (void)reset;
 

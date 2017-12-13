@@ -64,8 +64,6 @@ NSString *maskterKeyForServiceType(ServiceType type){
 @property (strong, readwrite, nonatomic) SPInfoManager *info;
 
 @property (assign, readwrite, getter=isUpdating, nonatomic) BOOL updating;
-@property (assign, readwrite, nonatomic) NSTimeInterval checkTime;
-@property (assign, readwrite, nonatomic) NSTimeInterval nextTime;
 
 @property (strong, nonatomic) dispatch_source_t timer;
 @property (strong, nonatomic) dispatch_block_t timerBlock;
@@ -83,6 +81,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [SPUpdater new];
+        instance.state = [SPUpdaterState lastState];
         instance.info = [[SPInfoManager alloc] init];
     });
     return instance;
@@ -131,86 +130,91 @@ NSString *maskterKeyForServiceType(ServiceType type){
     [self cancelTimer];
 }
 
+#define NEED_UPDATE 1
+#define NOT_UPDATE 0
+#define CHECK_FAILED -1
+
 #pragma mark - CheckUpdate
 - (void)checkUpdate
 {
+    SPLog(@"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+    SPLog(@"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     SPLog(@"开始检查更新");
     
     // Step 1
     // 检查 items_game_url 是否有更新
     
-    self.checkTime = [[NSDate date] timeIntervalSince1970];
-    self.nextTime = self.checkTime + kUpdateDuration;
+    self.state.lastCheckTime = [[NSDate date] timeIntervalSince1970];
+    self.state.nextCheckTime = self.state.lastCheckTime + kUpdateDuration;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *latestURL = [self.info latestItemGameURL];
-        if (!latestURL) {
-            //获取失败，下次再试
-            [self checkUpdateFailed:@"items_game_url为空。更新中断。等待下次检查。"];
+        
+        int c1 = [self checkDotaUpdate];
+        int c2 = [self checkItemGameURLUpdate];
+        
+        if (c1 == CHECK_FAILED || c2 == CHECK_FAILED ) {
+            // 在其他地方退出了
             return;
         }
-        self.info.tmpURL = latestURL;
-        NSString *curURL = [self.info itemGameURL];
-        BOOL needUpdateURL = !curURL || ![latestURL isEqualToString:curURL];
-        if (needUpdateURL) {
-            // 直接开启更新流程
-            SPLog(@"items_game_url 发生变动。开始执行更新流程。");
-            dispatch_async(dispatch_get_main_queue(), ^{
-                SPLog(@"跳过 Step 2");
-                [self beginUpdate];
-            });
+        
+        if (c1 || c2) {
+            SPLog(@"开始更新流程");
+            [self beginUpdate];
         }else{
-            // 不检查游戏版本更新
-            SPLog(@"items_game_url 未变动。不检查游戏版本。");
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self waitNextCheck];
-            });
+            SPLog(@"不需要更新。等待下次检查");
+            [self waitNextCheck];
         }
-//        }else{
-//            // 检查游戏版本是否有更新
-//            SPLog(@"items_game_url 未变动。继续检查游戏版本");
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self checkDotaUpdate];
-//            });
-//        }
     });
 }
 
-- (void)checkDotaUpdate
+- (int)checkItemGameURLUpdate
+{
+    NSString *latestURL = [self.info latestItemGameURL];
+    if (!latestURL || latestURL.length == 0) {
+        [self checkUpdateFailed:@"获取items_game_url失败。停止更新。"];
+        return CHECK_FAILED;
+    }
+    
+    BOOL needUpdate = ![self.state.url isEqualToString:latestURL];
+    self.state.url = latestURL;
+    return needUpdate ? NEED_UPDATE : NOT_UPDATE;
+}
+
+- (int)checkDotaUpdate
 {
     // Step 2
     // 检查游戏版本是否有更新
-    long long lastupdate = 0;
-    long long buildid = 0;
+    long long lastupdate = NSNotFound;
+    long long buildid = NSNotFound;
     BOOL ok = [self.info latestDotaInfo:&lastupdate buildid:&buildid];
     if (!ok) {
-        [self checkUpdateFailed:@"检查游戏版本出错了。更新中断。等待下次检查。"];
-        return;
+        [self checkUpdateFailed:@"检查游戏版本出错了。更新中断。"];
+        return CHECK_FAILED;
     }
-    self.info.tmpLastUpdate = @(lastupdate);
-    self.info.tmpBuildid = @(buildid);
-    BOOL c1 = lastupdate != self.info.lastUpdate;
-    BOOL c2 = buildid != self.info.buildid;
-    if (c1 || c2) {
-        SPLog(@"游戏版本发生了变动。开始执行更新流程。");
-        [self beginUpdate];
-    }else{
-        SPLog(@"游戏版本未变动。更新停止。等待下次检查。");
-        [self waitNextCheck];
-    }
+
+    BOOL c1 = lastupdate != self.state.dota2LastUpdated;
+    BOOL c2 = buildid != self.state.dota2Buildid;
+    
+    self.state.dota2Buildid = buildid;
+    self.state.dota2LastUpdated = lastupdate;
+    
+    return (c1 || c2) ? NEED_UPDATE : NOT_UPDATE;
 }
 
 - (void)checkUpdateFailed:(NSString *)msg
 {
     SPLog(@"%@",msg);
+    [self.state reset];
     [self.info reset];
     [self waitNextCheck];
 }
 
 - (void)waitNextCheck
 {
-    SPLog(@"进入休眠");
-    SPLog(@"SPUpdater END TAG------------------%@------------------",[NSDate date]);
+    [self.state save];
+    SPLog(@"等待下次检查更新");
+    SPLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    SPLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 }
 
 #pragma mark - Begin Update
@@ -245,7 +249,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
     // 从steam服务器下载饰品数据
     SPLog(@"获取 饰品基础数据 ");
 
-    NSURL *URL = [NSURL URLWithString:self.info.tmpURL];
+    NSURL *URL = [NSURL URLWithString:self.state.url];
     NSString *name = [URL lastPathComponent];
     
     NSString *path = [[SPPathManager downloadPath] stringByAppendingPathComponent:name];
@@ -271,9 +275,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
             long long total = downloadProgress.totalUnitCount;
             double downloaded = downloadProgress.completedUnitCount;
             int progress = downloaded / total * 100;
-//            if (progress % 10 == 0) {
-                SPLog(@"%d%%, total: %lld",progress,total);
-//            }
+            SPLog(@"%d%%\t%.0f\t/\t%lld",progress,downloaded,total);
             
         } destination:^NSURL *(NSURL * targetPath, NSURLResponse *response) {
             

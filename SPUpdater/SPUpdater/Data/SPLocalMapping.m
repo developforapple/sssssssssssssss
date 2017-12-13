@@ -64,81 +64,95 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     SPLog(@"保存主文件版本完成");
 }
 
-+ (BOOL)updateLangDataIfNeed:(NSString *)lang
++ (BOOL)updateLangDataIfNeed:(NSString *)lang state:(SPUpdaterState *)state
 {
     // 生成最新的本地化数据
-    SPLog(@"准备读取本地化文件，语言：%@",lang);
+    SPLog(@"准备处理语言数据，语言：%@",lang);
+    
     NSDictionary *newLangDict = [self loadLocalDataWithLang:lang];
     if (!newLangDict) {
         SPLog(@"读取本地化文件出错了。中断。");
         return NO;
     }
     
-    long long time = [[NSDate date] timeIntervalSince1970] * 1000;
     // 主版本号，如果需要更新主文件，就用此版本号。不需要更新主文件，依然用旧主版本号
-    long long mainVersion = time - kMagicNumber;
+    long long mainVersion = [[NSDate date] timeIntervalSince1970] * 1000 - kMagicNumber;
     // 补丁版本号，更新后总是使用此版本号
-    long long patchVersion = time - kMagicNumber;
-    
-    BOOL langMainFileSuc = YES;
+    long long patchVersion = [[NSDate date] timeIntervalSince1970] * 1000 - kMagicNumber;
     
     NSString *langPath = [self langMainFilePath:lang];
     if (![FileManager fileExistsAtPath:langPath]) {
-        //主文件不存在，重新生成
+
+        SPLog(@"没有发现主文件！准备生成主文件...");
         
-        SPLog(@"没有发现主文件！重新创建");
-        
+        SPLog(@"解析...");
         NSError *error;
         NSData *data = [NSJSONSerialization dataWithJSONObject:newLangDict options:kNilOptions error:&error];
         if (!data || error) {
-            SPLog(@"创建本地化二进制数据失败！！！");
+            SPLog(@"解析主语言数据失败！error:%@",error);
             return NO;
         }
-        
-        BOOL created = [data writeToFile:langPath atomically:YES];
-        if (!created) {
-            SPLog(@"保存主语言文件失败！");
+        SPLog(@"保存...");
+        [FileManager removeItemAtPath:langPath error:nil];
+        BOOL created = [data writeToFile:langPath options:NSDataWritingAtomic error:&error];
+        if (!created || error) {
+            SPLog(@"保存主语言文件失败！error:%@",error);
             return NO;
         }
+        SPLog(@"保存主语言文件完成！");
         
-        SPLog(@"保存主语言文件成功！");
         
-        // 创建一个空的补丁文件
-        SPLog(@"准备创建补丁文件");
-        NSDictionary *dif = @{};
-        NSData *difData = [NSJSONSerialization dataWithJSONObject:dif options:kNilOptions error:&error];
+        SPLog(@"准备创建空补丁文件...");
+        NSData *difData = [NSJSONSerialization dataWithJSONObject:@{} options:kNilOptions error:&error];
         if (!difData || error) {
-            SPLog(@"生成补丁文件失败！");
+            SPLog(@"生成补丁文件失败！error:%@",error);
             return NO;
         }
-
+        SPLog(@"保存...");
         NSString *langPatchFilePath = [self langPatchFilePath:lang version:patchVersion];
         [FileManager removeItemAtPath:langPatchFilePath error:nil];
-        BOOL suc = [difData writeToFile:langPatchFilePath atomically:YES];
-        if (!suc) {
-            SPLog(@"补丁文件保存失败！");
+        BOOL suc = [difData writeToFile:langPatchFilePath options:NSDataWritingAtomic error:&error];
+        if (!suc || error) {
+            SPLog(@"补丁文件保存失败！error:%@",error);
             return NO;
         }
         SPLog(@"保存补丁文件完成");
         
-        // 更新版本号
-        SPLog(@"更新语言版本号");
-        NSMutableDictionary *langVersion = [NSMutableDictionary dictionaryWithDictionary:[self langVersion]];
-        langVersion[lang] = @(mainVersion);
-        langVersion[[NSString stringWithFormat:@"%@_patch",lang]] = @(patchVersion);
-        SPLog(@"文件版本：%@",langVersion);
-        [self saveLangVersion:langVersion];
         
-        langMainFileSuc = [self createLangMainZipFile:lang];
+        BOOL langMainFileSuc = [self createLangMainZipFile:lang];
+        if (!langMainFileSuc) {
+            SPLog(@"主文件出错。中断。");
+            return NO;
+        }
+        
+        BOOL langPatchFileSuc = [self createLangPatchZipFile:lang version:patchVersion];
+        if (!langPatchFileSuc) {
+            SPLog(@"补丁文件出错。中断。");
+            return NO;
+        }
+        
+        SPLog(@"更新语言版本号:");
+        SPLog(@"更新主语言文件版本至：%lld",mainVersion);
+        SPLog(@"更新语言补丁版本至：%lld",patchVersion);
+        [state setLangVersion:mainVersion lang:lang];
+        [state setPatchVersion:patchVersion lang:lang];
         
     }else{
         // 主文件存在，比较差异
-        SPLog(@"主文件已存在");
+        SPLog(@"主文件已存在。准备生成补丁...");
         NSError *error;
-        NSData *oldLangData = [NSData dataWithContentsOfFile:langPath];
+        
+        SPLog(@"读取旧主语言文件...");
+        NSData *oldLangData = [NSData dataWithContentsOfFile:langPath options:NSDataReadingMappedIfSafe error:&error];
+        if (!oldLangData || error) {
+            SPLog(@"读取旧主语言文件失败! error:%@",error);
+            return NO;
+        }
+        
+        SPLog(@"解析旧主语言文件...");
         NSDictionary *oldLangDict = [NSJSONSerialization JSONObjectWithData:oldLangData options:kNilOptions error:&error];
-        if (error) {
-            SPLog(@"读取旧本地化文件失败！");
+        if (!oldLangDict || error || ![oldLangDict isKindOfClass:[NSDictionary class]]) {
+            SPLog(@"解析旧主语言文件失败！error:%@",error);
             return NO;
         }
         
@@ -148,7 +162,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         NSMutableSet *modify = [NSMutableSet set];
         
         // 比较旧主文件和新主文件的差异，差异部分即为此次的补丁内容。
-        SPLog(@"比较旧主文件和新主文件差异");
+        SPLog(@"比较差异内容...");
         NSMutableDictionary *newPatch = [NSMutableDictionary dictionary];
         {
             for (NSString *newKey in newLangDict) {
@@ -165,65 +179,68 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
                 }
             }
         }
-        SPLog(@"共有%d条补丁条目",(int)newPatch.count);
-        
+        SPLog(@"比较得到 %d 条结果。新增 %d 条。修改 %d 条",(int)newPatch.count,(int)add.count,(int)modify.count);
         
         // 保存补丁到文件
         {
-            SPLog(@"准备创建补丁文件");
+            SPLog(@"准备创建补丁文件...");
             NSData *patchData = [NSJSONSerialization dataWithJSONObject:newPatch options:kNilOptions error:&error];
             if (!patchData || error) {
-                SPLog(@"生成补丁文件失败！");
+                SPLog(@"生成补丁文件失败！error:%@",error);
                 return NO;
             }
+            SPLog(@"准备保存补丁文件...");
             NSString *langPatchFilePath = [self langPatchFilePath:lang version:patchVersion];
             [FileManager removeItemAtPath:langPatchFilePath error:nil];
-            BOOL suc = [patchData writeToFile:langPatchFilePath atomically:YES];
-            if (!suc) {
-                SPLog(@"补丁文件保存失败！");
+            BOOL suc = [patchData writeToFile:langPatchFilePath options:NSDataWritingAtomic error:&error];
+            if (!suc || error) {
+                SPLog(@"保存补丁文件失败！error:%@",error);
                 return NO;
             }
-            SPLog(@"创建补丁文件完成");
+            SPLog(@"生成补丁文件完成");
         }
         
 
-        // 对比旧patch和新patch，计算本次更新的更新内容
+        // 保存本次更新的更新内容
         {
             // 保存
-            SPLog(@"保存 Change Log");
+            SPLog(@"准备生成语言文件更新记录...");
             NSMutableDictionary *changeLog = [NSMutableDictionary dictionary];
             changeLog[@"add"] = [add objectEnumerator].allObjects;
             changeLog[@"modify"] = [modify objectEnumerator].allObjects;
-            NSData *changeLogData = [NSJSONSerialization dataWithJSONObject:changeLog options:kNilOptions error:nil];
-            NSString *changeLogPath = [self changeLogFilePath:lang version:patchVersion];
-            [FileManager removeItemAtPath:changeLogPath error:nil];
-            BOOL suc = [changeLogData writeToFile:changeLogPath atomically:YES];
-            if (!suc) {
-                SPLog(@"保存 Change Log出错");
+            NSData *changeLogData = [NSJSONSerialization dataWithJSONObject:changeLog options:kNilOptions error:&error];
+            if (!changeLogData || error) {
+                SPLog(@"生成语言文件更新记录失败！error:%@",error);
                 return NO;
             }
+            
+            SPLog(@"保存语言文件更新记录...");
+            NSString *changeLogPath = [self changeLogFilePath:lang version:patchVersion];
+            [FileManager removeItemAtPath:changeLogPath error:nil];
+            BOOL suc = [changeLogData writeToFile:changeLogPath options:NSDataWritingAtomic error:&error];
+            if (!suc || error) {
+                SPLog(@"保存语言文件更新记录失败！error:%@",error);
+                return NO;
+            }
+            SPLog(@"保存语言文件更新记录完成");
+        }
+        
+        BOOL langPatchFileSuc = [self createLangPatchZipFile:lang version:patchVersion];
+        if (!langPatchFileSuc) {
+            SPLog(@"补丁文件出错。中断。");
+            return NO;
         }
         
         // 更新版本号
         {
-            SPLog(@"更新版本号");
-            NSMutableDictionary *langVersion = [NSMutableDictionary dictionaryWithDictionary:[self langVersion]];
-            langVersion[[NSString stringWithFormat:@"%@_patch",lang]] = @(patchVersion);
-            [self saveLangVersion:langVersion];
-            SPLog(@"文件版本：%@",langVersion);
+            SPLog(@"更新语言版本号:");
+            SPLog(@"主语言文件版本不变：%lld",[state getLangVersion:lang]);
+            SPLog(@"更新语言补丁版本：%lld",patchVersion);
+            [state setPatchVersion:patchVersion lang:lang];
         }
     }
-    if (!langMainFileSuc) {
-        SPLog(@"主文件出错。中断。");
-        return NO;
-    }
     
-    BOOL langPatchFileSuc = [self createLangPatchZipFile:lang version:patchVersion];
-    if (!langPatchFileSuc) {
-        SPLog(@"语言补丁出错。中断。");
-        return NO;
-    }
-    
+    SPLog(@"语言数据处理完成！");
     return YES;
 }
 

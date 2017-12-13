@@ -13,6 +13,7 @@
 + (void)createFolderIfNeed:(NSString *)path;
 
 + (NSString *)rootPath;
++ (NSString *)statePath;
 + (NSString *)downloadPath;
 + (NSString *)imagePath;
 + (NSString *)baseDataPath;

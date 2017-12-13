@@ -11,10 +11,11 @@
 		690B7E781FDA713A0042C283 /* SPInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 690B7E771FDA713A0042C283 /* SPInfoManager.m */; };
 		690B7E7B1FDA7B4C0042C283 /* SPUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 690B7E7A1FDA7B4C0042C283 /* SPUpdater.m */; };
 		690B7E7E1FDA990A0042C283 /* SPLogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 690B7E7D1FDA990A0042C283 /* SPLogHelper.m */; };
+		69391FFF1FE0FECA00F072CD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69391FFE1FE0FECA00F072CD /* MainMenu.xib */; };
+		693920011FE0FEE100F072CD /* StatusMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 693920001FE0FEE100F072CD /* StatusMenu.xib */; };
+		693920041FE109EF00F072CD /* SPUpdaterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 693920031FE109EF00F072CD /* SPUpdaterState.m */; };
 		69E0267F1FD67A1A00FB14A3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E0267E1FD67A1A00FB14A3 /* AppDelegate.m */; };
-		69E026821FD67A1A00FB14A3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E026811FD67A1A00FB14A3 /* ViewController.m */; };
 		69E026841FD67A1A00FB14A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69E026831FD67A1A00FB14A3 /* Assets.xcassets */; };
-		69E026871FD67A1A00FB14A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69E026851FD67A1A00FB14A3 /* Main.storyboard */; };
 		69E0268A1FD67A1A00FB14A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E026891FD67A1A00FB14A3 /* main.m */; };
 		69E026B61FD67E8500FB14A3 /* SPDotaEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E026951FD67E8500FB14A3 /* SPDotaEvent.m */; };
 		69E026B71FD67E8500FB14A3 /* SPHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E026971FD67E8500FB14A3 /* SPHero.m */; };
@@ -49,13 +50,14 @@
 		690B7E7A1FDA7B4C0042C283 /* SPUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPUpdater.m; sourceTree = "<group>"; };
 		690B7E7C1FDA990A0042C283 /* SPLogHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPLogHelper.h; sourceTree = "<group>"; };
 		690B7E7D1FDA990A0042C283 /* SPLogHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPLogHelper.m; sourceTree = "<group>"; };
+		69391FFE1FE0FECA00F072CD /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		693920001FE0FEE100F072CD /* StatusMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusMenu.xib; sourceTree = "<group>"; };
+		693920021FE109EF00F072CD /* SPUpdaterState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPUpdaterState.h; sourceTree = "<group>"; };
+		693920031FE109EF00F072CD /* SPUpdaterState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPUpdaterState.m; sourceTree = "<group>"; };
 		69E0267A1FD67A1A00FB14A3 /* SPUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69E0267D1FD67A1A00FB14A3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		69E0267E1FD67A1A00FB14A3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		69E026801FD67A1A00FB14A3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		69E026811FD67A1A00FB14A3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		69E026831FD67A1A00FB14A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		69E026861FD67A1A00FB14A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		69E026881FD67A1A00FB14A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69E026891FD67A1A00FB14A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		69E0268B1FD67A1A00FB14A3 /* SPUpdater.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SPUpdater.entitlements; sourceTree = "<group>"; };
@@ -149,10 +151,9 @@
 				69E026931FD67E8500FB14A3 /* Data */,
 				69E0267D1FD67A1A00FB14A3 /* AppDelegate.h */,
 				69E0267E1FD67A1A00FB14A3 /* AppDelegate.m */,
-				69E026801FD67A1A00FB14A3 /* ViewController.h */,
-				69E026811FD67A1A00FB14A3 /* ViewController.m */,
+				69391FFE1FE0FECA00F072CD /* MainMenu.xib */,
+				693920001FE0FEE100F072CD /* StatusMenu.xib */,
 				69E026831FD67A1A00FB14A3 /* Assets.xcassets */,
-				69E026851FD67A1A00FB14A3 /* Main.storyboard */,
 				69E026881FD67A1A00FB14A3 /* Info.plist */,
 				69E026891FD67A1A00FB14A3 /* main.m */,
 				69E0268B1FD67A1A00FB14A3 /* SPUpdater.entitlements */,
@@ -204,6 +205,8 @@
 		69E026D41FD681B600FB14A3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				693920021FE109EF00F072CD /* SPUpdaterState.h */,
+				693920031FE109EF00F072CD /* SPUpdaterState.m */,
 				69E026941FD67E8500FB14A3 /* SPDotaEvent.h */,
 				69E026951FD67E8500FB14A3 /* SPDotaEvent.m */,
 				69E026961FD67E8500FB14A3 /* SPHero.h */,
@@ -299,8 +302,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				693920011FE0FEE100F072CD /* StatusMenu.xib in Resources */,
 				69E026841FD67A1A00FB14A3 /* Assets.xcassets in Resources */,
-				69E026871FD67A1A00FB14A3 /* Main.storyboard in Resources */,
+				69391FFF1FE0FECA00F072CD /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,10 +370,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				69E026C61FD67E8500FB14A3 /* SPVDFResponseSerializer.m in Sources */,
-				69E026821FD67A1A00FB14A3 /* ViewController.m in Sources */,
 				69E026BA1FD67E8500FB14A3 /* SPItemColor.m in Sources */,
 				69E026D31FD67EE100FB14A3 /* VDFParser.m in Sources */,
 				69E026B61FD67E8500FB14A3 /* SPDotaEvent.m in Sources */,
+				693920041FE109EF00F072CD /* SPUpdaterState.m in Sources */,
 				69E026B91FD67E8500FB14A3 /* SPItem.m in Sources */,
 				69E026D21FD67EE100FB14A3 /* VDFNode.m in Sources */,
 				69E026D11FD67EE100FB14A3 /* TreeNode.m in Sources */,
@@ -396,17 +400,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		69E026851FD67A1A00FB14A3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				69E026861FD67A1A00FB14A3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		69E0268C1FD67A1A00FB14A3 /* Debug */ = {

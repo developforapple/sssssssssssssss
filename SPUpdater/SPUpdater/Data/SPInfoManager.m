@@ -175,16 +175,16 @@ static NSString *kInfoKeyLangPatch = @"langpatch";
 {
     SPLog(@"获取 items_game_url ");
     NSString *apiURL = @"https://api.steampowered.com/IEconItems_570/GetSchemaURL/v1?key=CD9010FD71FA1583192F9BDB87ED8164";
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:apiURL]];
-    if (!data) {
-        SPLog(@"获取schemaURL失败！");
+    NSError *error;
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:apiURL] options:NSDataReadingMappedIfSafe error:&error];
+    if (!data || error) {
+        SPLog(@"获取schemaURL失败！error:%@",error);
         return nil;
     }
     
-    NSError *error;
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    if (!(json && !error && [json isKindOfClass:[NSDictionary class]])) {
-        SPLog(@"items_game数据错误");
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( !json || error || ![json isKindOfClass:[NSDictionary class]]) {
+        SPLog(@"items_game数据错误。data:%@\nerror:%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding],error);
         return nil;
     }
     
@@ -199,18 +199,25 @@ static NSString *kInfoKeyLangPatch = @"langpatch";
 {
     NSData *data = [NSData dataWithContentsOfFile:[SPPathManager dotaManifestPath]];
     if (!data) {
-        SPLog(@"Manifest文件读取失败！");
+        SPLog(@"读取 appmanifest_570.acf 文件失败！");
         return NO;
     }
 
     VDFNode *root = [VDFParser parse:data];
     if (!root) {
-        SPLog(@"解析Manifest文件失败！");
+        SPLog(@"解析 appmanifest_570.acf 文件失败！");
         return NO;
     }
     
     NSDictionary *dict = [root allDict];
-    NSString *lastupdateInfo = dict[@"AppState"][@"LastUpdated"];
+    int state = [dict[@"AppState"][@"stateflags"] intValue];
+    if (state != 4) {
+        SPLog(@"StateFlags 不是 4 ? appmanifest_570.acf 内容：");
+        SPLog(@"{\n%@\n}",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        SPLog(@"读取 appmanifest_570.acf 提前退出！");
+        return NO;
+    }
+    NSString *lastupdateInfo = dict[@"AppState"][@"lastupdated"];
     NSString *buildidInfo = dict[@"AppState"][@"buildid"];
     
     if (lastupdate) {
