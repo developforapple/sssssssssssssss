@@ -61,7 +61,9 @@ NSString *maskterKeyForServiceType(ServiceType type){
 }
 
 @interface SPUpdater ()
-@property (strong, readwrite, nonatomic) SPInfoManager *info;
+
+@property (strong, nonatomic) SPLocalMapping *langData;
+@property (strong, nonatomic) SPItemGameModel *itemData;
 
 @property (assign, readwrite, getter=isUpdating, nonatomic) BOOL updating;
 
@@ -81,10 +83,32 @@ NSString *maskterKeyForServiceType(ServiceType type){
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [SPUpdater new];
-        instance.state = [SPUpdaterState lastState];
-        instance.info = [[SPInfoManager alloc] init];
     });
     return instance;
+}
+
+- (SPUpdaterState *)state
+{
+    if (!_state) {
+        _state = [SPUpdaterState lastState];
+    }
+    return _state;
+}
+
+- (SPLocalMapping *)langData
+{
+    if (!_langData) {
+        _langData = [[SPLocalMapping alloc] init:self.state lang:kSPLanguageSchinese];
+    }
+    return _langData;
+}
+
+- (SPItemGameModel *)itemData
+{
+    if (!_itemData) {
+        _itemData = [[SPItemGameModel alloc] init:self.state];
+    }
+    return _itemData;
 }
 
 - (void)setLogOutputTextView:(NSTextView *)textView
@@ -169,7 +193,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
 
 - (int)checkItemGameURLUpdate
 {
-    NSString *latestURL = [self.info latestItemGameURL];
+    NSString *latestURL = [SPInfoManager latestItemGameURL];
     if (!latestURL || latestURL.length == 0) {
         [self checkUpdateFailed:@"获取items_game_url失败。停止更新。"];
         return CHECK_FAILED;
@@ -186,7 +210,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
     // 检查游戏版本是否有更新
     long long lastupdate = NSNotFound;
     long long buildid = NSNotFound;
-    BOOL ok = [self.info latestDotaInfo:&lastupdate buildid:&buildid];
+    BOOL ok = [SPInfoManager latestDotaInfo:&lastupdate buildid:&buildid];
     if (!ok) {
         [self checkUpdateFailed:@"检查游戏版本出错了。更新中断。"];
         return CHECK_FAILED;
@@ -205,7 +229,6 @@ NSString *maskterKeyForServiceType(ServiceType type){
 {
     SPLog(@"%@",msg);
     [self.state reset];
-    [self.info reset];
     [self waitNextCheck];
 }
 
@@ -222,7 +245,6 @@ NSString *maskterKeyForServiceType(ServiceType type){
 - (void)updateFailed:(NSString *)msg
 {
     SPLog(@"%@",msg);
-    [self.info reset];
     // TODO 其他 reset 操作
     [self waitNextCheck];
 }
@@ -230,7 +252,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
 
 - (void)updateDone
 {
-    [self.info saveItemGameURL:self.info.tmpURL lastUpdate:self.info.tmpLastUpdate buildid:self.info.tmpBuildid baseDataVersion:nil];
+    SPLog(@"全部上传完毕！");
     [self waitNextCheck];
 }
 
@@ -240,8 +262,8 @@ NSString *maskterKeyForServiceType(ServiceType type){
     // 开始更新流程
     
     SPLog(@"读取语言文件");
-    BOOL suc = [SPLocalMapping updateLangDataIfNeed:kSPLanguageSchinese state:self.state];
-    if (!suc){
+    BOOL langDone = [self.langData update];
+    if (!langDone){
         [self updateFailed:@"读取语言文件失败"];
         return;
     }
@@ -252,8 +274,9 @@ NSString *maskterKeyForServiceType(ServiceType type){
     NSURL *URL = [NSURL URLWithString:self.state.url];
     NSString *name = [URL lastPathComponent];
     
-    NSString *path = [[SPPathManager downloadPath] stringByAppendingPathComponent:name];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    NSString *path = [SPTmpPathManager itemsGameTxtFilePath:name];
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    if (NO) { // 这里总是下载最新的items_game.txt
         
         SPLog(@"items_game_url 文件已存在，跳过下载过程。开始解析。");
         NSData *data = [NSData dataWithContentsOfFile:path];
@@ -279,7 +302,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
             
         } destination:^NSURL *(NSURL * targetPath, NSURLResponse *response) {
             
-            NSString *path = [[SPPathManager downloadPath] stringByAppendingPathComponent:name];
+            [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
             return [NSURL fileURLWithPath:path];
             
         } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
@@ -290,10 +313,15 @@ NSString *maskterKeyForServiceType(ServiceType type){
             }
             
             SPLog(@"下载items_game.txt结束，文件保存到：%@",filePath);
-            SPLog(@"开始解析");
-            NSData *data = [NSData dataWithContentsOfURL:filePath];
-            VDFNode *node = [VDFParser parse:data];
-            [self parseItemsGameData:node];
+            SPLog(@"读取...");
+            NSData *data = [NSData dataWithContentsOfURL:filePath options:NSDataReadingMappedIfSafe error:&error];
+            if (!data || error) {
+                [self updateFailed:[NSString stringWithFormat:@"读取items_game.txt出错！error:%@",error]];
+            }else{
+                SPLog(@"解析...");
+                VDFNode *node = [VDFParser parse:data];
+                [self parseItemsGameData:node];
+            };
             
         }];
         [task resume];
@@ -303,19 +331,22 @@ NSString *maskterKeyForServiceType(ServiceType type){
 
 - (void)parseItemsGameData:(VDFNode *)node
 {
-    SPLog(@"step3：创建数据model");
-    BOOL suc = [[SPItemGameData shared] dataWithRootNode:[node firstChildWithKey:@"items_game"]];
-    if (!suc) {
-        [self updateFailed:@"创建数据model出错！中断。"];
+    SPLog(@"创建数据Model...");
+    
+    BOOL itemDataDone = [self.itemData build:[node firstChildWithKey:@"items_game"]];
+    if (!itemDataDone) {
+        [self updateFailed:@"创建数据 Model 出错！中断。"];
         return;
     }
     
-    SPLog(@"step4：创建数据文件");
-    suc = [[SPItemGameData shared].model save];
-    if (!suc) {
+    SPLog(@"保存数据...");
+    itemDataDone = [self.itemData save];
+    if (!itemDataDone) {
         [self updateFailed:@"创建数据文件出错！中断。"];
         return;
     }
+    
+    SPLog(@"准备上传数据...");
     
     // 将数据库上传到服务器
     // none -> old -> ad -> pro -> 完成
@@ -326,10 +357,13 @@ NSString *maskterKeyForServiceType(ServiceType type){
 {
     ServiceType next = kNoneType;
     if (type == kNoneType) {
+        SPLog(@"准备上传数据到 old service");
         next = ServiceTypeOld;
     }else if (type == ServiceTypeOld){
+        SPLog(@"准备上传数据到 ad service");
         next = ServiceTypeAd;
     }else if (type == ServiceTypeAd){
+        SPLog(@"准备上传数据到 pro service");
         next = ServiceTypePro;
     }else if (type == ServiceTypePro){
         next = kDoneType;
@@ -360,29 +394,17 @@ NSString *maskterKeyForServiceType(ServiceType type){
 
 - (void)upload:(ServiceType)type
 {
-    SPLog(@"准备更新语言文件");
-    
-    
     [self uploadLangFileTo:type completion:^(ServiceType type2) {
-        
-        
         [self uploadLangPatchFileTo:type2 completion:^(ServiceType type3) {
-            
-            
             [self uploadBaseData:type3];
-            
-            
         }];
-        
-        
     }];
-    
 }
 
 - (void)uploadLangFileTo:(ServiceType )type
               completion:(void (^)(ServiceType type))completion
 {
-    SPLog(@"检查主语言文件更新");
+    SPLog(@"检查主语言文件是否需要更新");
     
     NSString *lang = kSPLanguageSchinese;
     long long langVersion = 0;
@@ -397,23 +419,23 @@ NSString *maskterKeyForServiceType(ServiceType type){
             return;
         }
         langVersion = [[object objectForKey:@"version"] longLongValue];
-        SPLog(@"服务器主语言版本： %lld",langVersion);
+        SPLog(@"服务器中的主语言版本： %lld",langVersion);
         langVersionObject = object;
     }
     
     {
-        long long curLangVersion = [[SPLocalMapping langVersion][lang] longLongValue];
-        SPLog(@"新的主语言文件版本为:%lld",curLangVersion);
-        if (curLangVersion <= langVersion) {
+        long long curLangVersion = [self.state getLangVersion:lang];
+        SPLog(@"当前主语言文件版本:%lld",curLangVersion);
+        if (curLangVersion != langVersion) {
             SPLog(@"不需要更新主语言文件");
             if (completion) {
                 completion(type);
             }
             return;
         }
-        SPLog(@"上传主语言文件 开始");
+        SPLog(@"需要更新主语言文件，准备上传...");
         {
-            NSString *langMainFilePath = [SPLocalMapping langMainFileZipPath:kSPLanguageSchinese];
+            NSString *langMainFilePath = [SPTmpPathManager langMainZipFilePath:lang version:curLangVersion];
             AVFile *file = [AVFile fileWithName:langMainFilePath.lastPathComponent contentsAtPath:langMainFilePath];
             
             [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -468,9 +490,10 @@ NSString *maskterKeyForServiceType(ServiceType type){
     }
     
     {
-        long long curLangPatchVersion = [[SPLocalMapping langVersion][[NSString stringWithFormat:@"%@_patch",lang]] longLongValue];
+        long long curLangVersion = [self.state getLangVersion:lang];
+        long long curLangPatchVersion = [self.state getPatchVersion:lang];
         SPLog(@"新的语言补丁版本为:%lld",curLangPatchVersion);
-        if (curLangPatchVersion <= langPatchVersion) {
+        if (curLangPatchVersion != langPatchVersion) {
             SPLog(@"不需要更新语言补丁文件");
             if (completion) {
                 completion(type);
@@ -480,7 +503,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
         
         SPLog(@"上传语言补丁文件 开始");
         {
-            NSString *langPatchFilePath = [SPLocalMapping langPatchFileZipPath:kSPLanguageSchinese];
+            NSString *langPatchFilePath = [SPTmpPathManager langPatchZipFilePath:lang version:curLangVersion patch:curLangPatchVersion];;
             AVFile *file = [AVFile fileWithName:langPatchFilePath.lastPathComponent contentsAtPath:langPatchFilePath];
             
             [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -519,7 +542,8 @@ NSString *maskterKeyForServiceType(ServiceType type){
 {
     SPLog(@"准备上传基础数据");
     {
-        NSString *dataPath = [[[SPItemGameData shared] model] zipFilePath];
+        long long version = [self.state baseDataVersion];
+        NSString *dataPath = [SPTmpPathManager baseDataZipFilePath:version];
         AVFile *file = [AVFile fileWithName:dataPath.lastPathComponent contentsAtPath:dataPath];
         
         [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -531,8 +555,6 @@ NSString *maskterKeyForServiceType(ServiceType type){
             
             SPLog(@"准备上传基础数据版本");
             {
-                NSNumber *version = [[SPItemGameData shared].model version][@"version"];
-                
                 AVQuery *query = [AVQuery queryWithClassName:@"Version"];
                 [query whereKey:@"name" equalTo:@"base_data_version"];
                 AVObject *object = [query findObjects:&error].firstObject;
@@ -541,7 +563,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
                     return;
                 }
                 
-                [object setObject:version forKey:@"version"];
+                [object setObject:@(version) forKey:@"version"];
                 BOOL suc = [object save:&error];
                 if (!suc || error) {
                     [self updateFailed:[NSString stringWithFormat:@"上传基础数据版本出错！%@",error]];
@@ -556,8 +578,8 @@ NSString *maskterKeyForServiceType(ServiceType type){
             
             
             // 发送推送通知
-            NSInteger addCount = [SPItemGameData shared].model.addCount;
-            NSInteger modifyCount = [SPItemGameData shared].model.modifyCount;
+            NSInteger addCount = self.itemData.addCount;
+            NSInteger modifyCount = self.itemData.modifyCount;
             // TODO
             
             [self uploadToServiceNextOf:type];

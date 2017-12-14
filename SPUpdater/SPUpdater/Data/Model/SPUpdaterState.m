@@ -15,7 +15,7 @@
 
 + (instancetype)lastState
 {
-    NSString *path = [SPPathManager statePath];
+    NSString *path = [SPPathManager stateFilePath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         
         NSData *data = [NSData dataWithContentsOfFile:path];
@@ -74,7 +74,7 @@
     if (!jsonObject) return;
     SPLog(@"保存 Updater 状态：%@",jsonObject);
     NSData *data = [NSJSONSerialization dataWithJSONObject:jsonObject options:0 error:NULL];
-    NSString *path = [SPPathManager statePath];
+    NSString *path = [SPPathManager stateFilePath];
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
     [data writeToFile:path atomically:YES];
 }

@@ -34,7 +34,7 @@
 
         instance.queue = dispatch_queue_create("LogFileWriteQueue", NULL);
 
-        NSString *path = [[SPPathManager rootPath] stringByAppendingPathComponent:@"log.txt"];
+        NSString *path = [SPPathManager logFilePath];
         if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
             [[NSFileManager defaultManager] createFileAtPath:path contents:[NSData data] attributes:nil];
         }

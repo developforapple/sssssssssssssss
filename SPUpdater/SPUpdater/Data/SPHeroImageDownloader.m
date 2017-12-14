@@ -14,7 +14,7 @@
 
 + (NSString *)heroPath
 {
-    NSString *path = [[SPPathManager imagePath] stringByAppendingPathComponent:@"hero"];
+    NSString *path = [[SPPathManager imageDir] stringByAppendingPathComponent:@"hero"];
     [SPPathManager createFolderIfNeed:path];
     return path;
 }
@@ -22,7 +22,7 @@
 + (void)downloadImages
 {
     NSString *folder = [self heroPath];
-    NSString *dataPath = [[SPPathManager baseDataPath] stringByAppendingPathComponent:@"data.json"];
+    NSString *dataPath = [[SPArchivePathManager baseDataFilePath] stringByAppendingPathComponent:@"data.json"];
     
     NSData *data = [NSData dataWithContentsOfFile:dataPath];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];

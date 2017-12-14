@@ -19,11 +19,9 @@
 
 @interface SPUpdater : NSObject
 
-@property (strong) SPUpdaterState *state;
-
-@property (strong, readonly, nonatomic) SPInfoManager *info;
-
 + (instancetype)updater;
+
+@property (strong, nonatomic) SPUpdaterState *state;
 
 // 启动
 - (void)start;

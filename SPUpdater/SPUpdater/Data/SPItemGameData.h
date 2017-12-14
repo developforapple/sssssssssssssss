@@ -8,44 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "VDFNode.h"
-
-@class SPItemGameModel;
-
-@interface SPItemGameData : NSObject
-
-+ (instancetype)shared;
-
-- (BOOL)dataWithRootNode:(VDFNode *)root;
-
-@property (strong, nonatomic) SPItemGameModel *model;
-
-//@property (strong, nonatomic) NSDictionary *prefabs;             //部位
-//@property (strong, nonatomic) NSDictionary *qualities;           //前缀
-//@property (strong, nonatomic) NSDictionary *rarities;            //稀有度
-//@property (strong, nonatomic) NSDictionary *colors;              //颜色
-//@property (strong, nonatomic) NSDictionary *player_loadout_slots;//通用部位
-//
-//@property (strong, nonatomic) NSDictionary *items;               //物品
-//@property (strong, nonatomic) NSDictionary *item_sets;           //物品集合
-//
-//@property (strong, nonatomic) NSDictionary *items_autographs;    //签名
-//@property (strong, nonatomic) NSDictionary *asset_modifiers;     //动能
-//
-//@property (strong, nonatomic) NSDictionary *loot_lists;          //掉落列表
-//@property (strong, nonatomic) NSDictionary *attributes;
-//@property (strong, nonatomic) NSDictionary *store_currency_pricepoints;
-
-//@property (strong, nonatomic) NSDictionary *upgradeable_base_items;
-//@property (strong, nonatomic) NSDictionary *game_info;
-//@property (strong, nonatomic) NSDictionary *web_resources;
-//@property (strong, nonatomic) NSDictionary *item_levels;
-//@property (strong, nonatomic) NSDictionary *sound_materials;
-//@property (strong, nonatomic) NSDictionary *attribute_controlled_attached_particles;
-//@property (strong, nonatomic) NSDictionary *partners;
-//@property (strong, nonatomic) NSDictionary *kill_eater_score_types;
-
-@end
-
 #import "SPItem.h"
 #import "SPItemRarity.h"
 #import "SPItemPrefab.h"
@@ -56,8 +18,11 @@
 #import "SPItemSets.h"
 #import "SPDotaEvent.h"
 #import "SPLootList.h"
+#import "SPUpdaterState.h"
 
 @interface SPItemGameModel : NSObject
+
+- (instancetype)init:(SPUpdaterState *)state;
 
 @property (strong, nonatomic) NSArray<SPHero *> *heroes;
 @property (strong, nonatomic) NSArray<SPDotaEvent *> *events;
@@ -76,15 +41,12 @@
 @property (strong, nonatomic) NSArray<SPLootList *> *loot_list;
 
 @property (strong, nonatomic) NSString *dbPath;
-@property (strong, nonatomic) NSData *jsonData;
 
 @property (assign, nonatomic) NSInteger addCount;
 @property (assign, nonatomic) NSInteger modifyCount;
 
-- (BOOL)save;
+- (BOOL)build:(VDFNode *)root;
 
-- (NSString *)versionPath;
-- (NSDictionary *)version;
-- (NSString *)zipFilePath;
+- (BOOL)save;
 
 @end

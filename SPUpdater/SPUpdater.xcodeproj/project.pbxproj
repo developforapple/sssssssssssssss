@@ -14,6 +14,7 @@
 		69391FFF1FE0FECA00F072CD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69391FFE1FE0FECA00F072CD /* MainMenu.xib */; };
 		693920011FE0FEE100F072CD /* StatusMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 693920001FE0FEE100F072CD /* StatusMenu.xib */; };
 		693920041FE109EF00F072CD /* SPUpdaterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 693920031FE109EF00F072CD /* SPUpdaterState.m */; };
+		693920071FE259B100F072CD /* NSData+SP.m in Sources */ = {isa = PBXBuildFile; fileRef = 693920061FE259B100F072CD /* NSData+SP.m */; };
 		69E0267F1FD67A1A00FB14A3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E0267E1FD67A1A00FB14A3 /* AppDelegate.m */; };
 		69E026841FD67A1A00FB14A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69E026831FD67A1A00FB14A3 /* Assets.xcassets */; };
 		69E0268A1FD67A1A00FB14A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E026891FD67A1A00FB14A3 /* main.m */; };
@@ -54,6 +55,8 @@
 		693920001FE0FEE100F072CD /* StatusMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusMenu.xib; sourceTree = "<group>"; };
 		693920021FE109EF00F072CD /* SPUpdaterState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPUpdaterState.h; sourceTree = "<group>"; };
 		693920031FE109EF00F072CD /* SPUpdaterState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPUpdaterState.m; sourceTree = "<group>"; };
+		693920051FE259B100F072CD /* NSData+SP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+SP.h"; sourceTree = "<group>"; };
+		693920061FE259B100F072CD /* NSData+SP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+SP.m"; sourceTree = "<group>"; };
 		69E0267A1FD67A1A00FB14A3 /* SPUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69E0267D1FD67A1A00FB14A3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		69E0267E1FD67A1A00FB14A3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 				69E026991FD67E8500FB14A3 /* SPHeroImageDownloader.m */,
 				69E026B41FD67E8500FB14A3 /* SPVDFResponseSerializer.h */,
 				69E026B51FD67E8500FB14A3 /* SPVDFResponseSerializer.m */,
+				693920051FE259B100F072CD /* NSData+SP.h */,
+				693920061FE259B100F072CD /* NSData+SP.m */,
 				69E026D41FD681B600FB14A3 /* Model */,
 			);
 			path = Data;
@@ -392,6 +397,7 @@
 				69E026C41FD67E8500FB14A3 /* SPLootList.m in Sources */,
 				69E026D01FD67EE100FB14A3 /* KeyValueParser.m in Sources */,
 				690B7E7E1FDA990A0042C283 /* SPLogHelper.m in Sources */,
+				693920071FE259B100F072CD /* NSData+SP.m in Sources */,
 				69E026BE1FD67E8500FB14A3 /* SPItemQuality.m in Sources */,
 				69E026B71FD67E8500FB14A3 /* SPHero.m in Sources */,
 				69E026C51FD67E8500FB14A3 /* SPPathManager.m in Sources */,

@@ -33,14 +33,14 @@ static NSString *getQiniuName(NSString *inventory){
 
 + (NSString *)normalPath
 {
-    NSString *path = [[SPPathManager imagePath] stringByAppendingPathComponent:@"normal"];
+    NSString *path = [[SPPathManager imageDir] stringByAppendingPathComponent:@"normal"];
     [SPPathManager createFolderIfNeed:path];
     return path;
 }
 
 + (NSString *)largePath
 {
-    NSString *path = [[SPPathManager imagePath] stringByAppendingPathComponent:@"large"];
+    NSString *path = [[SPPathManager imageDir] stringByAppendingPathComponent:@"large"];
     [SPPathManager createFolderIfNeed:path];
     return path;
 }
@@ -142,7 +142,7 @@ static NSString *getQiniuName(NSString *inventory){
 + (void)downloadThread:(NSDictionary *)map identifier:(NSString *)identifier
 {
     //    NSString *normalDonePath = [[self root] stringByAppendingPathComponent:[NSString stringWithFormat:@"normalDone_%@",identifier]];
-    NSString *largeDonePath = [[SPPathManager imagePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"largeDone_%@",identifier]];
+    NSString *largeDonePath = [[SPPathManager imageDir] stringByAppendingPathComponent:[NSString stringWithFormat:@"largeDone_%@",identifier]];
     //    NSMutableArray *normalDone = [NSMutableArray arrayWithArray:[NSArray arrayWithContentsOfFile:normalDonePath]];
     NSMutableArray *largeDone = [NSMutableArray arrayWithArray:[NSArray arrayWithContentsOfFile:largeDonePath]];
     
