@@ -31,6 +31,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     self = [super init];
     if (self) {
         self.state = state;
+        self.lang = lang;
         
         [self copyFilesIfNeed];
     }

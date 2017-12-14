@@ -15,6 +15,9 @@ extern const long long kMagicNumber ;
 
 @interface SPLocalMapping : NSObject
 
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)init:(SPUpdaterState *)state
                 lang:(NSString *)lang;
 

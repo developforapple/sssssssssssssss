@@ -165,6 +165,8 @@ NSString *maskterKeyForServiceType(ServiceType type){
     SPLog(@"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     SPLog(@"开始检查更新");
     
+    _updating = YES;
+    
     // Step 1
     // 检查 items_game_url 是否有更新
     
@@ -235,9 +237,18 @@ NSString *maskterKeyForServiceType(ServiceType type){
 - (void)waitNextCheck
 {
     [self.state save];
+    [self clean];
     SPLog(@"等待下次检查更新");
     SPLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     SPLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+}
+
+- (void)clean
+{
+    _state = nil;
+    _langData = nil;
+    _itemData = nil;
+    _updating = NO;
 }
 
 #pragma mark - Begin Update
@@ -245,14 +256,27 @@ NSString *maskterKeyForServiceType(ServiceType type){
 - (void)updateFailed:(NSString *)msg
 {
     SPLog(@"%@",msg);
-    // TODO 其他 reset 操作
+    [self.state reset];
     [self waitNextCheck];
 }
-
 
 - (void)updateDone
 {
     SPLog(@"全部上传完毕！");
+    
+    NSString *tmpDir = [SPTmpPathManager workDir];
+    NSString *dir = [SPArchivePathManager workDir];
+    
+    NSString *tmpSafeDir = [dir stringByAppendingPathComponent:@".tmp"];
+    
+    NSError *error;
+    // 先将旧存档转移到临时目录
+    BOOL a = [[NSFileManager defaultManager] moveItemAtPath:dir toPath:tmpSafeDir error:&error];
+    // 再将新数据保存为存档目录
+    BOOL b = [[NSFileManager defaultManager] moveItemAtPath:tmpDir toPath:dir error:&error];
+    // 删除旧存档的临时目录
+    BOOL c = [[NSFileManager defaultManager] removeItemAtPath:tmpSafeDir error:&error];
+    
     [self waitNextCheck];
 }
 
@@ -426,7 +450,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
     {
         long long curLangVersion = [self.state getLangVersion:lang];
         SPLog(@"当前主语言文件版本:%lld",curLangVersion);
-        if (curLangVersion != langVersion) {
+        if (curLangVersion == langVersion) {
             SPLog(@"不需要更新主语言文件");
             if (completion) {
                 completion(type);
@@ -493,7 +517,7 @@ NSString *maskterKeyForServiceType(ServiceType type){
         long long curLangVersion = [self.state getLangVersion:lang];
         long long curLangPatchVersion = [self.state getPatchVersion:lang];
         SPLog(@"新的语言补丁版本为:%lld",curLangPatchVersion);
-        if (curLangPatchVersion != langPatchVersion) {
+        if (curLangPatchVersion == langPatchVersion) {
             SPLog(@"不需要更新语言补丁文件");
             if (completion) {
                 completion(type);

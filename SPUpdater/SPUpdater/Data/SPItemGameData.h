@@ -22,6 +22,9 @@
 
 @interface SPItemGameModel : NSObject
 
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)init:(SPUpdaterState *)state;
 
 @property (strong, nonatomic) NSArray<SPHero *> *heroes;

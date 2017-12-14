@@ -363,11 +363,13 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     
     int count = (int)self.items.count;
     int counter = 0;
+    int lastP = -1;
     
     for (SPItem *item in self.items) {
         
-        int p = counter / (float)count * 100;
-        if (p % 10 == 0) {
+        int p = (int)(counter * 100.f / count);
+        if (p % 10 == 0 && lastP != p) {
+            lastP = p;
             SPLog(@"进度：%d%%",p);
         }
         counter++;
@@ -435,11 +437,13 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     
     int count = (int)self.item_sets.count;
     int counter = 0;
+    int lastP = -1;
     
     for (SPItemSets *sets in self.item_sets) {
         
         int p = counter / (float)count * 100;
-        if (p % 10 == 0) {
+        if (p % 10 == 0 && lastP != p) {
+            lastP = p;
             SPLog(@"进度：%d%%",p);
         }
         counter++;
