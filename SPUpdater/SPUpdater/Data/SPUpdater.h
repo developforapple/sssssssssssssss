@@ -28,9 +28,13 @@
 // 关闭
 - (void)stop;
 
+- (void)beginUpdate;
+
 // 是否正在更新
 @property (assign, readonly, getter=isUpdating, nonatomic) BOOL updating;
 
 - (void)setLogOutputTextView:(NSTextView *)textView;
+
+@property (copy) void (^stateRefresh)(SPUpdaterState *state);
 
 @end

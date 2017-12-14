@@ -18,6 +18,9 @@
 + (NSString *)stateFilePath;                            // ../Files/State.json
 + (NSString *)logFilePath;                              // ../Files/log.txt
 
+// 在根目录下的随机目录
++ (NSString *)randomDir;
+
 // 工作目录。需要子类来确定是哪个文件夹。
 + (NSString *)workDir;                                  // ?
 + (NSString *)downloadDir;                              // ${workDir}/download/

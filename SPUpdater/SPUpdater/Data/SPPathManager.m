@@ -53,6 +53,11 @@
     return [[self rootDir] stringByAppendingPathComponent:@"log.txt"];
 }
 
++ (NSString *)randomDir
+{
+    return [[self rootDir] stringByAppendingPathComponent:[NSString stringWithFormat:@".tmp_%lld",(long long)arc4random_uniform(99999999)]];
+}
+
 + (NSString *)workDir
 {
     // 子类来决定

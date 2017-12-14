@@ -10,6 +10,7 @@
 #import "SPLogHelper.h"
 #import "SPPathManager.h"
 #import <YYModel.h>
+#import "NSData+SP.h"
 
 @implementation SPUpdaterState
 
@@ -75,8 +76,7 @@
     SPLog(@"保存 Updater 状态：%@",jsonObject);
     NSData *data = [NSJSONSerialization dataWithJSONObject:jsonObject options:0 error:NULL];
     NSString *path = [SPPathManager stateFilePath];
-    [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
-    [data writeToFile:path atomically:YES];
+    [data spSafeWriteToFile:path error:nil];
 }
 
 - (long long)getLangVersion:(NSString *)lang

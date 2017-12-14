@@ -237,6 +237,9 @@ NSString *maskterKeyForServiceType(ServiceType type){
 - (void)waitNextCheck
 {
     [self.state save];
+    if (self.stateRefresh) {
+        self.stateRefresh(self.state);
+    }
     [self clean];
     SPLog(@"等待下次检查更新");
     SPLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -245,7 +248,6 @@ NSString *maskterKeyForServiceType(ServiceType type){
 
 - (void)clean
 {
-    _state = nil;
     _langData = nil;
     _itemData = nil;
     _updating = NO;
@@ -264,10 +266,12 @@ NSString *maskterKeyForServiceType(ServiceType type){
 {
     SPLog(@"全部上传完毕！");
     
+    self.state.lastUpdateTime = [[NSDate date] timeIntervalSince1970];
+    
     NSString *tmpDir = [SPTmpPathManager workDir];
     NSString *dir = [SPArchivePathManager workDir];
     
-    NSString *tmpSafeDir = [dir stringByAppendingPathComponent:@".tmp"];
+    NSString *tmpSafeDir = [SPPathManager randomDir];
     
     NSError *error;
     // 先将旧存档转移到临时目录
@@ -308,13 +312,21 @@ NSString *maskterKeyForServiceType(ServiceType type){
         [self parseItemsGameData:node];
         
     }else{
-        SPLog(@"准备下载 items_game.txt");
+        SPLog(@"准备下载 items_game.txt : %@",URL);
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
         [request setValue:@"gzip,deflate" forHTTPHeaderField:@"Accept-Encoding"];
         [request setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/603.2.4 (KHTML, like Gecko) Version/10.1.1 Safari/603.2.4" forHTTPHeaderField:@"User-Agent"];
         [request setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
         
-        AFURLSessionManager *manager = [AFURLSessionManager new];
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"SPUpdaterDownloader"];
+        config.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+        config.timeoutIntervalForRequest = 1 * 60;
+        config.timeoutIntervalForResource = 1 * 60;
+        AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:config];
+        
+        __block int lastP = -1;
+        __block NSTimeInterval lasttime = [[NSDate date] timeIntervalSince1970];
+        __block long long lastdownloaded = 0;
         
         NSURLSessionDownloadTask *task =
         [manager downloadTaskWithRequest:request progress:^(NSProgress *downloadProgress) {
@@ -322,7 +334,19 @@ NSString *maskterKeyForServiceType(ServiceType type){
             long long total = downloadProgress.totalUnitCount;
             double downloaded = downloadProgress.completedUnitCount;
             int progress = downloaded / total * 100;
-            SPLog(@"%d%%\t%.0f\t/\t%lld",progress,downloaded,total);
+            if (lastP != progress) {
+                lastP = progress;
+                
+                NSTimeInterval t = [[NSDate date] timeIntervalSince1970];
+                NSTimeInterval interval = t - lasttime;
+                long long d = downloaded - lastdownloaded;
+                double speed = d / 1024.f / interval;
+                
+                lasttime = t;
+                lastdownloaded = downloaded;
+                
+                SPLog(@"%d%%\t%.0f\t/\t%lld %.2fkb/s",progress,downloaded,total,speed);
+            }
             
         } destination:^NSURL *(NSURL * targetPath, NSURLResponse *response) {
             
@@ -331,21 +355,24 @@ NSString *maskterKeyForServiceType(ServiceType type){
             
         } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
             
-            if (error) {
-                [self updateFailed:error.localizedDescription];
-                return;
-            }
-            
-            SPLog(@"下载items_game.txt结束，文件保存到：%@",filePath);
-            SPLog(@"读取...");
-            NSData *data = [NSData dataWithContentsOfURL:filePath options:NSDataReadingMappedIfSafe error:&error];
-            if (!data || error) {
-                [self updateFailed:[NSString stringWithFormat:@"读取items_game.txt出错！error:%@",error]];
-            }else{
-                SPLog(@"解析...");
-                VDFNode *node = [VDFParser parse:data];
-                [self parseItemsGameData:node];
-            };
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                if (error) {
+                    [self updateFailed:error.localizedDescription];
+                    return;
+                }
+                
+                SPLog(@"下载items_game.txt结束，文件保存到：%@",filePath);
+                SPLog(@"读取...");
+                NSError *aError;
+                NSData *data = [NSData dataWithContentsOfURL:filePath options:NSDataReadingMappedIfSafe error:&aError];
+                if (!data || aError) {
+                    [self updateFailed:[NSString stringWithFormat:@"读取items_game.txt出错！error:%@",aError]];
+                }else{
+                    SPLog(@"解析...");
+                    VDFNode *node = [VDFParser parse:data];
+                    [self parseItemsGameData:node];
+                };
+            });
             
         }];
         [task resume];
