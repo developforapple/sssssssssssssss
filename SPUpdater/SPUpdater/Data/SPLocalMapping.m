@@ -13,7 +13,8 @@
 #import "SPLogHelper.h"
 #import "NSData+SP.h"
 
-const long long kMagicNumber = 1010110203019LL;
+  const long long kMagicNumber = 1010110203019LL;
+//const long long kMagicNumber = 1413261661000LL;
 
 static NSString *pwd = @"wwwbbat.DOTA2.19880920";
 #define FileManager [NSFileManager defaultManager]
@@ -32,10 +33,16 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     if (self) {
         self.state = state;
         self.lang = lang;
+        self.langDict = [NSMutableDictionary dictionary];
         
         [self copyFilesIfNeed];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    SPLog(@"SPLocalMapping 释放");
 }
 
 - (void)copyFilesIfNeed
@@ -60,6 +67,8 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         SPLog(@"读取本地化文件出错了。中断。");
         return NO;
     }
+    
+    self.langDict[lang] = newLangDict;
     
     // 主版本号，如果需要更新主文件，就用此版本号。不需要更新主文件，依然用旧主版本号
     long long mainVersion;

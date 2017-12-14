@@ -9,7 +9,9 @@
 #import "AppDelegate.h"
 #import "SPUpdater.h"
 #import "SPLogHelper.h"
+#import "SPItemImageDownloader.h"
 #import "SPLocalMapping.h"
+#import "SPPathManager.h"
 
 @interface AppDelegate () < NSMenuDelegate>
 @property (strong) NSStatusItem *statusItem;
@@ -165,7 +167,7 @@
 
 - (IBAction)openLogFile:(id)sender
 {
-    
+    [SPItemImageDownloader downloadAllItems:[SPArchivePathManager itemDatabaseFilePath]];
 }
 
 - (IBAction)showCurLog:(id)sender

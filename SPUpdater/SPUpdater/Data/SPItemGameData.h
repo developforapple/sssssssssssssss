@@ -47,6 +47,7 @@
 
 @property (assign, nonatomic) NSInteger addCount;
 @property (assign, nonatomic) NSInteger modifyCount;
+@property (strong) NSArray *addItemsInfo;
 
 - (BOOL)build:(VDFNode *)root;
 

@@ -32,6 +32,11 @@
     return tmp.root;
 }
 
+- (void)dealloc
+{
+    NSLog(@"VDFParser 释放");
+}
+
 - (void)parse
 {
     @autoreleasepool {

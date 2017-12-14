@@ -1,0 +1,15 @@
+{
+   "src_dir"            :   "/Users/wangbo/Desktop/DOTA.tmp/image/hero",
+   "bucket"             :   "items-3-0",
+   "ignore_dir"         :   true,
+   "overwrite"          :   true,
+   "check_exists"       :   false,
+   "check_hash"         :   false,
+   "check_size"         :   false,
+   "rescan_local"       :   true,
+   "log_file"           :   "/Users/wangbo/Desktop/DOTA.tmp/image/hero_upload.log",
+   "log_level"          :   "info",
+   "log_rotate"         :   1,
+   "log_stdout"         :   true,
+   "file_type"          :   0
+}

@@ -42,6 +42,11 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     return self;
 }
 
+- (void)dealloc
+{
+    SPLog(@"SPItemGameModel 释放");
+}
+
 - (void)copyDatabaseIfNeed
 {
     NSString *dbPath = [SPArchivePathManager itemDatabaseFilePath];
@@ -507,6 +512,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     
     NSString *archivePath = olddbFile;
     
+    NSMutableArray *addItemsInfo = [NSMutableArray array];
     NSMutableArray *add = [NSMutableArray array];
     NSMutableArray *modify = [NSMutableArray array];
     
@@ -540,7 +546,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
         {
             FMDatabase *db = [FMDatabase databaseWithPath:newdbFile];
             [db open];
-            FMResultSet *result = [db executeQuery:@"SELECT token,item_description,item_name,item_type_name FROM items"];
+            FMResultSet *result = [db executeQuery:@"SELECT token,item_description,image_inventory,item_name,name,item_type_name FROM items"];
             int tokenIndex = [result columnIndexForName:@"token"];
             int descIndex = [result columnIndexForName:@"item_description"];
             int nameIndex = [result columnIndexForName:@"item_name"];
@@ -550,6 +556,8 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
                 BOOL isNew = ![oldTokens containsObject:token];
                 if (isNew) {
                     // 新饰品
+                    NSDictionary *itemInfo = [result resultDictionary];
+                    [addItemsInfo addObject:itemInfo];
                     [add addObject:token];
                     continue;
                 }
@@ -597,12 +605,13 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
             }
         }
     }
-    
+    SPLog(@"新增 %d 件，%d 件发生了变动",(int)add.count,(int)modify.count);
     NSDictionary *change = @{@"add":add,@"modify":modify};
     NSData *data = [NSJSONSerialization dataWithJSONObject:change options:kNilOptions error:nil];
     [data spSafeWriteToFile:[SPTmpPathManager itemChangeLogFilePath] error:nil];
     self.addCount = add.count;
     self.modifyCount = modify.count;
+    self.addItemsInfo = addItemsInfo;
 }
 
 - (NSString *)tmpDBPath

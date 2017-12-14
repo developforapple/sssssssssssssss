@@ -21,6 +21,8 @@ extern const long long kMagicNumber ;
 - (instancetype)init:(SPUpdaterState *)state
                 lang:(NSString *)lang;
 
+@property (strong) NSMutableDictionary<NSString *,NSDictionary *> *langDict;
+
 // 做的事情：
 // 1：从游戏目录中提取指定语言的全部本地化文件
 // 2：如果主文件不存在，创建主文件，创建空补丁文件

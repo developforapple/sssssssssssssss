@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		45192865E619340FBC0805A6 /* libPods-SPUpdater.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 012F4F6120CF6059E80031C0 /* libPods-SPUpdater.a */; };
-		690B7E781FDA713A0042C283 /* SPInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 690B7E771FDA713A0042C283 /* SPInfoManager.m */; };
 		690B7E7B1FDA7B4C0042C283 /* SPUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 690B7E7A1FDA7B4C0042C283 /* SPUpdater.m */; };
 		690B7E7E1FDA990A0042C283 /* SPLogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 690B7E7D1FDA990A0042C283 /* SPLogHelper.m */; };
 		69391FFF1FE0FECA00F072CD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69391FFE1FE0FECA00F072CD /* MainMenu.xib */; };
@@ -45,8 +44,6 @@
 		012F4F6120CF6059E80031C0 /* libPods-SPUpdater.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SPUpdater.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D2C634FE33F998C3B6AB11D /* Pods-SPUpdater.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPUpdater.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SPUpdater/Pods-SPUpdater.debug.xcconfig"; sourceTree = "<group>"; };
 		4AEB4A34450FFDAB79658412 /* Pods-SPUpdater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPUpdater.release.xcconfig"; path = "Pods/Target Support Files/Pods-SPUpdater/Pods-SPUpdater.release.xcconfig"; sourceTree = "<group>"; };
-		690B7E761FDA713A0042C283 /* SPInfoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPInfoManager.h; sourceTree = "<group>"; };
-		690B7E771FDA713A0042C283 /* SPInfoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPInfoManager.m; sourceTree = "<group>"; };
 		690B7E791FDA7B4C0042C283 /* SPUpdater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPUpdater.h; sourceTree = "<group>"; };
 		690B7E7A1FDA7B4C0042C283 /* SPUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPUpdater.m; sourceTree = "<group>"; };
 		690B7E7C1FDA990A0042C283 /* SPLogHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPLogHelper.h; sourceTree = "<group>"; };
@@ -120,6 +117,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DA378D71FE2B3BE00B70130 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				690B7E791FDA7B4C0042C283 /* SPUpdater.h */,
+				690B7E7A1FDA7B4C0042C283 /* SPUpdater.m */,
+				690B7E7C1FDA990A0042C283 /* SPLogHelper.h */,
+				690B7E7D1FDA990A0042C283 /* SPLogHelper.m */,
+				69E026B21FD67E8500FB14A3 /* SPPathManager.h */,
+				69E026B31FD67E8500FB14A3 /* SPPathManager.m */,
+				69E026A01FD67E8500FB14A3 /* SPItemImageDownloader.h */,
+				69E026A11FD67E8500FB14A3 /* SPItemImageDownloader.m */,
+				69E026981FD67E8500FB14A3 /* SPHeroImageDownloader.h */,
+				69E026991FD67E8500FB14A3 /* SPHeroImageDownloader.m */,
+				69E026B41FD67E8500FB14A3 /* SPVDFResponseSerializer.h */,
+				69E026B51FD67E8500FB14A3 /* SPVDFResponseSerializer.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		3A2CB5AF7408CA4507295211 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +166,8 @@
 		69E0267C1FD67A1A00FB14A3 /* SPUpdater */ = {
 			isa = PBXGroup;
 			children = (
+				2DA378D71FE2B3BE00B70130 /* Tool */,
+				69E026D41FD681B600FB14A3 /* Model */,
 				69E026C71FD67EE000FB14A3 /* VDF */,
 				69E026931FD67E8500FB14A3 /* Data */,
 				69E0267D1FD67A1A00FB14A3 /* AppDelegate.h */,
@@ -167,27 +185,14 @@
 		69E026931FD67E8500FB14A3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				690B7E791FDA7B4C0042C283 /* SPUpdater.h */,
-				690B7E7A1FDA7B4C0042C283 /* SPUpdater.m */,
-				690B7E7C1FDA990A0042C283 /* SPLogHelper.h */,
-				690B7E7D1FDA990A0042C283 /* SPLogHelper.m */,
-				690B7E761FDA713A0042C283 /* SPInfoManager.h */,
-				690B7E771FDA713A0042C283 /* SPInfoManager.m */,
-				69E026B21FD67E8500FB14A3 /* SPPathManager.h */,
-				69E026B31FD67E8500FB14A3 /* SPPathManager.m */,
+				693920021FE109EF00F072CD /* SPUpdaterState.h */,
+				693920031FE109EF00F072CD /* SPUpdaterState.m */,
 				69E026AE1FD67E8500FB14A3 /* SPLocalMapping.h */,
 				69E026AF1FD67E8500FB14A3 /* SPLocalMapping.m */,
 				69E0269E1FD67E8500FB14A3 /* SPItemGameData.h */,
 				69E0269F1FD67E8500FB14A3 /* SPItemGameData.m */,
-				69E026A01FD67E8500FB14A3 /* SPItemImageDownloader.h */,
-				69E026A11FD67E8500FB14A3 /* SPItemImageDownloader.m */,
-				69E026981FD67E8500FB14A3 /* SPHeroImageDownloader.h */,
-				69E026991FD67E8500FB14A3 /* SPHeroImageDownloader.m */,
-				69E026B41FD67E8500FB14A3 /* SPVDFResponseSerializer.h */,
-				69E026B51FD67E8500FB14A3 /* SPVDFResponseSerializer.m */,
 				693920051FE259B100F072CD /* NSData+SP.h */,
 				693920061FE259B100F072CD /* NSData+SP.m */,
-				69E026D41FD681B600FB14A3 /* Model */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -210,8 +215,6 @@
 		69E026D41FD681B600FB14A3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				693920021FE109EF00F072CD /* SPUpdaterState.h */,
-				693920031FE109EF00F072CD /* SPUpdaterState.m */,
 				69E026941FD67E8500FB14A3 /* SPDotaEvent.h */,
 				69E026951FD67E8500FB14A3 /* SPDotaEvent.m */,
 				69E026961FD67E8500FB14A3 /* SPHero.h */,
@@ -393,7 +396,6 @@
 				69E026C31FD67E8500FB14A3 /* SPLocalMapping.m in Sources */,
 				69E026C21FD67E8500FB14A3 /* SPItemStyle.m in Sources */,
 				69E026BF1FD67E8500FB14A3 /* SPItemRarity.m in Sources */,
-				690B7E781FDA713A0042C283 /* SPInfoManager.m in Sources */,
 				69E026C41FD67E8500FB14A3 /* SPLootList.m in Sources */,
 				69E026D01FD67EE100FB14A3 /* KeyValueParser.m in Sources */,
 				690B7E7E1FDA990A0042C283 /* SPLogHelper.m in Sources */,
