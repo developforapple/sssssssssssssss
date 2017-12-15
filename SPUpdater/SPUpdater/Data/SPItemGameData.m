@@ -121,7 +121,8 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
     
     SPLog(@"正在创建事件列表...");
     NSArray *eventArray =
-    @[@{@"id":@3,   @"event_id":@"EVENT_ID_INTERNATIONAL_2017",     @"event_name":@"DOTA_EventName_International2017", @"image_name":@"TI7"},
+    @[@{@"id":@11,  @"event_id":@"EVENT_ID_FROSTIVUS_2017",         @"event_name":@""                                , @"image_name":@"frostivus_2017"},
+      @{@"id":@3,   @"event_id":@"EVENT_ID_INTERNATIONAL_2017",     @"event_name":@"DOTA_EventName_International2017", @"image_name":@"TI7"},
       @{@"id":@2,   @"event_id":@"EVENT_ID_INTERNATIONAL_2016",     @"event_name":@"DOTA_EventName_International2016", @"image_name":@"TI6"},
       @{@"id":@1,   @"event_id":@"EVENT_ID_INTERNATIONAL_2015",     @"event_name":@"DOTA_EventName_International2015", @"image_name":@"TI5"},
       @{@"id":@0,   @"event_id":@"EVENT_ID_COMPENDIUM_2014",        @"event_name":@"DOTA_EventName_International2014", @"image_name":@"TI4"},
@@ -131,7 +132,7 @@ static NSString *pwd = @"wwwbbat.DOTA2.19880920";
       @{@"id":@5,   @"event_id":@"EVENT_ID_FALL_MAJOR_2016",        @"event_name":@"DOTA_EventName_FallMajor2016"    , @"image_name":@"fall_2016"},
       @{@"id":@4,   @"event_id":@"EVENT_ID_FALL_MAJOR_2015",        @"event_name":@"DOTA_EventName_FallMajor2015"    , @"image_name":@"frankfut_major_2015"},
       @{@"id":@9,   @"event_id":@"EVENT_ID_NEXON_PC_BANG",          @"event_name":@"NEXON PC BANG"                   , @"image_name":@"nexon_pc_bang"},
-      @{@"id":@10,  @"event_id":@"EVENT_ID_PWRD_DAC_2015",          @"event_name":@"PWRD DAC 2015"                   , @"image_name":@"dac_2015"},];
+      @{@"id":@10,  @"event_id":@"EVENT_ID_PWRD_DAC_2015",          @"event_name":@"PWRD DAC 2015"                   , @"image_name":@"dac_2015"}];
     NSArray *events = [NSArray yy_modelArrayWithClass:[SPDotaEvent class] json:eventArray];
     self.events = events;
     SPLog(@"创建事件列表完成：数量：%d",(int)events.count);

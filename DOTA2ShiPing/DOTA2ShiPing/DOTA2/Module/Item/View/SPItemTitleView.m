@@ -111,17 +111,12 @@
     }
     
     self.tags = tags;
+
     [self.tagView reloadData];
-    
-    ygweakify(self);
-    [self.tagView performBatchUpdates:^{
-        ygstrongify(self);
-        [self.tagView reloadData];
-    } completion:^(BOOL finished) {
-        ygstrongify(self);
+    RunAfter(.5f, ^{
         self.tagViewHeightConstraint.constant = self.tagView.contentSize.height;
         [self layoutIfNeeded];
-    }];
+    });
 }
 
 #pragma mark - UICollectionView

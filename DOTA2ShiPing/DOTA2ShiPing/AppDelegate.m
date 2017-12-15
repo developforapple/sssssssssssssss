@@ -21,7 +21,6 @@
 
 #if !TARGET_PRO
     #import <GoogleMobileAds/GoogleMobileAds.h>
-    #import "GDTSplashAd.h"
 #endif
 
 #if PgySDK_Enabled
@@ -41,10 +40,6 @@
 @interface AppDelegate () <YGRemoteNotificationHelperDelegate>
 @property (strong, nonatomic) SPLaunchADVC *adVC;
 
-#if !TARGET_PRO
-@property (strong, nonatomic) GDTSplashAd *ad;
-#endif
-
 @end
 
 @implementation AppDelegate
@@ -58,7 +53,6 @@
 {
     [self _setupUIAppearance];
     [self _setup3rdParty];
-    [self _loadSplashAd];
     [self _setupNotificaiton:launchOptions];
     [self _setupBackupSetting];
     return YES;
@@ -176,16 +170,6 @@
     SPLog(@"收到推送通知：%@",userInfo);
 }
 
-- (void)_loadSplashAd
-{
-#if !TARGET_PRO
-//    self.ad = [[GDTSplashAd alloc] initWithAppkey:kTencentGDTAppKey placementId:kTencentGDTLaunchPOSID];
-//    self.ad.fetchDelay = 3;
-//    self.ad.delegate = self;
-//    [self.ad loadAdAndShowInWindow:self.window];
-#endif
-}
-
 - (void)_setupBackupSetting
 {
     NSURL *url = [NSURL fileURLWithPath:AppDocumentsPath];
@@ -193,98 +177,3 @@
 }
 
 @end
-
-
-#if !TARGET_PRO
-@interface AppDelegate (GDTSplashAd) <GDTSplashAdDelegate>
-@end
-
-@implementation AppDelegate (GDTSplashAd)
--(void)splashAdSuccessPresentScreen:(GDTSplashAd *)splashAd
-{
-    SPLog(@"成功展示启动广告");
-}
-
-/**
- *  开屏广告展示失败
- */
--(void)splashAdFailToPresent:(GDTSplashAd *)splashAd withError:(NSError *)error
-{
-    SPLog(@"展示启动广告失败！%@",error);
-}
-
-/**
- *  应用进入后台时回调
- *  详解: 当点击下载应用时会调用系统程序打开，应用切换到后台
- */
-- (void)splashAdApplicationWillEnterBackground:(GDTSplashAd *)splashAd
-{
-    SPLog(@"启动广告进入后台");
-}
-
-/**
- *  开屏广告点击回调
- */
-- (void)splashAdClicked:(GDTSplashAd *)splashAd
-{
-    SPLog(@"点击启动广告");
-}
-
-/**
- *  开屏广告将要关闭回调
- */
-- (void)splashAdWillClosed:(GDTSplashAd *)splashAd
-{
-    SPLog(@"启动广告将要关闭");
-}
-
-/**
- *  开屏广告关闭回调
- */
-- (void)splashAdClosed:(GDTSplashAd *)splashAd
-{
-    SPLog(@"启动广告已关闭");
-}
-
-/**
- *  开屏广告点击以后即将弹出全屏广告页
- */
-- (void)splashAdWillPresentFullScreenModal:(GDTSplashAd *)splashAd
-{
-    SPLog(@"启动广告点击后展示全屏广告页");
-}
-
-/**
- *  开屏广告点击以后弹出全屏广告页
- */
-- (void)splashAdDidPresentFullScreenModal:(GDTSplashAd *)splashAd
-{
-    SPLog(@"启动广告点击后展示全屏广告页成功");
-}
-
-/**
- *  点击以后全屏广告页将要关闭
- */
-- (void)splashAdWillDismissFullScreenModal:(GDTSplashAd *)splashAd
-{
-    SPLog(@"启动广告点击后展示全屏广告页将要关闭");
-}
-
-/**
- *  点击以后全屏广告页已经关闭
- */
-- (void)splashAdDidDismissFullScreenModal:(GDTSplashAd *)splashAd
-{
-    SPLog(@"启动广告点击后展示全屏广告页已关闭");
-}
-
-/**
- * 开屏广告剩余时间回调
- */
-- (void)splashAdLifeTime:(NSUInteger)time
-{
-    SPLog(@"全屏广告还剩%d秒",(int)time);
-}
-
-@end
-#endif // !TARGET_PRO

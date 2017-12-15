@@ -11,7 +11,6 @@ abstract_target '_' do
     pod 'YYModel'         #https://github.com/ibireme/YYModel
     pod 'YYCategories'
     pod 'YYCache'
-
     pod 'MBProgressHUD'     #http://www.bukovinski.com
     pod 'DZNEmptyDataSet'   #https://github.com/dzenbot/DZNEmptyDataSet
     pod 'FMDB/standalone'              #https://github.com/ccgus/fmdb
@@ -21,32 +20,22 @@ abstract_target '_' do
     pod 'PinYin4Objc'              #https://github.com/kimziv/PinYin4Obj
     pod 'JZNavigationExtension', '1.5.0.1' #https://github.com/JazysYu/JZNavigationExtension
     pod 'AMPopTip'          #https://github.com/andreamazz/AMPopTip
-
     pod 'SAMKeychain'
     pod 'DZNWebViewController'          #https://github.com/dzenbot/DZNWebViewController
-
     pod 'DACircularProgress'
-    pod 'pop'
     pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
     pod 'IQKeyboardManager'
-
     pod 'SDWebImage/GIF'
     pod 'SDWebImage/WebP'
-
-    pod 'AFNetworking'      #https://github.com/AFNetworking/AFNetworking
-
+    pod 'AFNetworking'
     pod 'SSZipArchive'
     pod 'AVOSCloud'
 
     #解决依赖SDWebImage版本问题
     pod 'IDMPhotoBrowser', :git => 'https://github.com/developforapple/IDMPhotoBrowser.git'
     pod 'JBChartView' , :git => 'https://github.com/developforapple/JBChartView.git'
-    #pod 'ZLSwipeableViewSwift', :git => 'https://github.com/zhxnlai/ZLSwipeableViewSwift.git'
-
     pod 'ChameleonFramework'
-
     pod 'MXParallaxHeader'
-
     pod 'FCUUID'
     
     target 'SPDev' do

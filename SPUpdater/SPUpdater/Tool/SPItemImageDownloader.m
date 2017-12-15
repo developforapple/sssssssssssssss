@@ -184,7 +184,7 @@ static NSString *getQiniuName(NSString *inventory){
     
     SPLog(@"有 %d 个饰品的图片需要下载",(int)needDownloadItems.count);
     
-    if (needDownloadImages.count > 200) {
+    if (needDownloadImages.count > 400) {
         //超过200个 需要开多个线程
         
         // todo
@@ -205,7 +205,7 @@ static NSString *getQiniuName(NSString *inventory){
             NSString *conf =  @ "{\"bucket\"            :\"items-3-0\","
                                 "\"ignore_dir\"         :true,"
                                 "\"overwrite\"          :false,"
-                                "\"check_exists\"       :true,"
+                                "\"check_exists\"       :false,"
                                 "\"check_hash\"         :false,"
                                 "\"check_size\"         :false,"
                                 "\"rescan_local\"       :true,"

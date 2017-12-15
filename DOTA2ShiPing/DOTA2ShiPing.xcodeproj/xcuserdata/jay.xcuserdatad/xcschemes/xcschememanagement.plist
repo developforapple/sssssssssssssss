@@ -21,22 +21,22 @@
 		<key>SPAd.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>42</integer>
+			<integer>41</integer>
 		</dict>
 		<key>SPDev.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>40</integer>
+			<integer>2</integer>
 		</dict>
 		<key>SPOld.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>43</integer>
+			<integer>42</integer>
 		</dict>
 		<key>SPPro.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>41</integer>
+			<integer>40</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

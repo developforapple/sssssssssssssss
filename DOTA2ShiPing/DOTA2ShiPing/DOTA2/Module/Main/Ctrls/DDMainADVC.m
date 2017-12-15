@@ -18,7 +18,6 @@
     @end
 #else
     #import <GoogleMobileAds/GoogleMobileAds.h>
-    #import "GDTMobBannerView.h"
 #endif
 
 static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
@@ -28,8 +27,7 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 #if !TARGET_PRO
 <
     GADAdSizeDelegate,
-    GADBannerViewDelegate,
-    GDTMobBannerViewDelegate
+    GADBannerViewDelegate
 >
 #endif
 {
@@ -47,11 +45,9 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 @property (weak, nonatomic) IBOutlet UIView *googleAd;
 #else
 @property (weak, nonatomic) IBOutlet GADBannerView *googleAd;
-@property (strong, nonatomic) GDTMobBannerView *tencentAd;
 #endif
 
 @property (assign, nonatomic) BOOL googleAdReady;
-@property (assign, nonatomic) BOOL tencentAdReady;
 @end
 
 @implementation DDMainADVC
@@ -70,16 +66,6 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
         
         self.googleAd.autoloadEnabled = YES;
         self.googleAd.adUnitID = kAdMobBannerUnitID;
-
-        
-        self.tencentAd = [[GDTMobBannerView alloc] initWithFrame:self.adView.bounds
-                                                          appkey:kTencentGDTAppKey
-                                                     placementId:kTencentGDTBannerPOSID];
-        self.tencentAd.currentViewController = self;
-        self.tencentAd.delegate = self;
-        self.tencentAd.isGpsOn = YES;
-        [self.tencentAd loadAdAndShow];
-        [self addTencentAdConstraint];
 #endif
         
     }else{
@@ -104,16 +90,6 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
             });
         }
     }
-}
-
-- (void)addTencentAdConstraint
-{
-#if !TARGET_PRO
-    [self.adView addSubview:self.tencentAd];
-    self.tencentAd.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.adView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":self.tencentAd}]];
-    [self.adView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:kNilOptions metrics:nil views:@{@"view":self.tencentAd}]];
-#endif
 }
 
 - (void)addTabBarCtrlConstraint
@@ -146,7 +122,7 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
 
 - (BOOL)isAdReady
 {
-    return self.googleAdReady || self.tencentAdReady;
+    return self.googleAdReady;
 }
 
 - (void)setAdViewDisplay:(BOOL)display
@@ -168,9 +144,6 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
         if (self.googleAdReady) {
             SPLog(@"Google广告就位");
             [self.adView bringSubviewToFront:self.googleAd];
-        }else if (self.tencentAdReady){
-            SPLog(@"广点通广告就位");
-            [self.adView bringSubviewToFront:self.tencentAd];
         }else{
             SPLog(@"没有可显示的广告内容");
         }
@@ -231,70 +204,7 @@ static NSString *const kMainTabBarCtrlSegueID = @"MainTabBarCtrlSegueID";
     SPBP(Event_AdMob, Label_AdMob_Tapped);
 }
 
-#pragma mark - GDT
-- (void)bannerViewMemoryWarning
-{
-    SPLog(@"GDT Banner 内存警告");
-}
-
-- (void)bannerViewDidReceived
-{
-    SPLog(@"GDT Banner 收到了广告");
-    self.tencentAdReady = YES;
-    [self updateAdView];
-    SPBP(Event_GDT, Label_GDT_Received);
-}
-
-- (void)bannerViewFailToReceived:(NSError *)error
-{
-    SPLog(@"GDT Banner 接收广告失败！%@",error);
-    self.tencentAdReady = NO;
-    [self updateAdView];
-    SPBP(Event_GDT, Label_GDT_Failed);
-}
-
-- (void)bannerViewWillLeaveApplication
-{
-    SPLog(@"GDT Banner 点击广告离开应用");
-    SPBP(Event_GDT, Label_GDT_Tapped);
-}
-
-- (void)bannerViewWillClose
-{
-    SPLog(@"GDT Banner 被手动关闭");
-}
-
-- (void)bannerViewWillExposure
-{
-    SPLog(@"GDT Banner 曝光回调");
-}
-
-- (void)bannerViewClicked
-{
-    SPLog(@"GDT Banner 被点击");
-}
-
-- (void)bannerViewWillPresentFullScreenModal
-{
-    SPLog(@"GDT Banner 被点击 将要显示全屏广告页");
-    SPBP(Event_GDT, Label_GDT_Present);
-}
-
-- (void)bannerViewDidPresentFullScreenModal
-{
-    SPLog(@"GDT Banner 被点击 已显示全屏广告页");
-}
-
-- (void)bannerViewWillDismissFullScreenModal
-{
-    SPLog(@"GDT Banner 全屏广告页 将被关闭");
-}
-
-- (void)bannerViewDidDismissFullScreenModal
-{
-    SPLog(@"GDT Banner 全屏广告页 已关闭");
-}
-#endif // !TARGET_PRO
+#endif
 
 #pragma mark -
 - (UIViewController *)childViewControllerForStatusBarStyle

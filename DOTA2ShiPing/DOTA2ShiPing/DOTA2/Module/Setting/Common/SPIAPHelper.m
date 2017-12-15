@@ -47,6 +47,7 @@ static BOOL kIsProduction = YES;
 {
     SPLog(@"当前为%@环境",isProduction?@"生产":@"开发");
     kIsProduction = isProduction;
+    [SPIAP setProduction:isProduction];
 }
 
 - (id)initWithProductIdentifiers:(NSSet *)productIdentifiers

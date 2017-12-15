@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "nexon_pc_bang.jpeg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "nexon_pc_bang.jpeg",
       "scale" : "2x"
     },
     {
