@@ -20,5 +20,6 @@
 #include "Inline.h"
 #include "Statistic.h"
 #include "Steam.h"
+#include "Deploy.h"
 
 #endif /* Common_h */

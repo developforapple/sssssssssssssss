@@ -13,7 +13,7 @@
 @implementation SPBaseFilter
 
 - (instancetype)init
-{[[NSNotificationCenter defaultCenter] addObserver:<#(nonnull id)#> selector:<#(nonnull SEL)#> name:<#(nullable NSNotificationName)#> object:<#(nullable id)#>];
+{
     SPFilterConfig *config = [SPFilterConfig defaultConfig];
     return [self initWithConfig:config];
 }

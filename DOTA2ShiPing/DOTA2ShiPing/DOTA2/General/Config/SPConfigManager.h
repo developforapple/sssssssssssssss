@@ -22,7 +22,7 @@
 
 #define Config [SPConfigManager manager]
 
-@interface SPConfigManager : SPObject 
+@interface SPConfigManager : SPObject
 
 + (instancetype)manager;
 

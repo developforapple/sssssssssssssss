@@ -1503,6 +1503,7 @@
 		692A558C1F4D712F006914BF /* SPItemSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPItemSearchOption.h; sourceTree = "<group>"; };
 		692A558D1F4D712F006914BF /* SPItemSearchOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPItemSearchOption.m; sourceTree = "<group>"; };
 		692A558F1F4D853F006914BF /* SPItemSearchCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemSearchCommon.h; sourceTree = "<group>"; };
+		692C2B8F1FFF6CA3000B9514 /* Deploy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Deploy.h; sourceTree = "<group>"; };
 		693062C61FBC30D3005987A1 /* SPItemPlayableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemPlayableView.h; sourceTree = "<group>"; };
 		693062C71FBC30D3005987A1 /* SPItemPlayableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPItemPlayableView.m; sourceTree = "<group>"; };
 		693062C91FBC3883005987A1 /* SPItemPlayableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPItemPlayableCell.h; sourceTree = "<group>"; };
@@ -1882,6 +1883,7 @@
 				2DF9B64E1F1361640012950A /* Warning.h */,
 				2DF9B8E01F13639E0012950A /* Steam.h */,
 				2D675BC51FD97E2C00C6E541 /* Log.h */,
+				692C2B8F1FFF6CA3000B9514 /* Deploy.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";

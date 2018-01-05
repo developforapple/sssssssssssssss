@@ -105,6 +105,7 @@
         
         id minV = [object objectForKey:@"MinVersion"];
         id maxV = [object objectForKey:@"MaxVersion"];
+        id latestV = [object objectForKey:@"LatestVersion"];
         
         SPLog(@"当前app版本：%lld",curVersion);
         SPLog(@"最小支持版本：%@",minV);
