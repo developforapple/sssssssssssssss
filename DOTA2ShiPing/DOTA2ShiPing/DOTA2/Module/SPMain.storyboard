@@ -77,55 +77,6 @@
             </objects>
             <point key="canvasLocation" x="-1266" y="1160"/>
         </scene>
-        <!--LaunchADVC-->
-        <scene sceneID="IAJ-3w-LaT">
-            <objects>
-                <viewController storyboardIdentifier="SPLaunchADVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7V0-nQ-sQp" customClass="SPLaunchADVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="32p-xa-zqO"/>
-                        <viewControllerLayoutGuide type="bottom" id="Zxg-rw-iQt"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="TTh-cZ-PyR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fya-u5-lh7">
-                                <rect key="frame" x="0.0" y="20" width="414" height="414"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="fya-u5-lh7" secondAttribute="height" id="o7T-cc-MpP"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刀塔饰品 for Dota2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aaw-91-Awh">
-                                <rect key="frame" x="130" y="346" width="154" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="oYi-pn-aCM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Aaw-91-Awh" firstAttribute="centerY" secondItem="TTh-cZ-PyR" secondAttribute="centerY" priority="950" id="4fl-2Y-ZRh"/>
-                            <constraint firstItem="fya-u5-lh7" firstAttribute="top" secondItem="32p-xa-zqO" secondAttribute="bottom" id="9o5-W2-acb"/>
-                            <constraint firstAttribute="trailing" secondItem="fya-u5-lh7" secondAttribute="trailing" id="NEu-5w-hAS"/>
-                            <constraint firstItem="fya-u5-lh7" firstAttribute="leading" secondItem="TTh-cZ-PyR" secondAttribute="leading" id="exH-ee-8K2"/>
-                            <constraint firstItem="Zxg-rw-iQt" firstAttribute="top" secondItem="Aaw-91-Awh" secondAttribute="bottom" priority="900" constant="64" id="kO7-E5-2oN"/>
-                            <constraint firstItem="Aaw-91-Awh" firstAttribute="centerX" secondItem="TTh-cZ-PyR" secondAttribute="centerX" id="kWe-I1-Bbz"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="adContainer" destination="fya-u5-lh7" id="wsB-0y-08m"/>
-                        <outlet property="appTitleBottomConstraint" destination="kO7-E5-2oN" id="uc5-o7-tIg"/>
-                        <outlet property="appTitleCenterYContraint" destination="4fl-2Y-ZRh" id="a1R-cd-tTe"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oqt-U2-jvt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1266" y="1925"/>
-        </scene>
         <!--MainTBC-->
         <scene sceneID="RK1-wk-pK1">
             <objects>

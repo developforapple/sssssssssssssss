@@ -13,6 +13,7 @@
 #import "SPWebHelper.h"
 #import "SPItemSteamPricesViewCtrl.h"
 #import "SPConfigManager.h"
+#import "SPDeploy.h"
 @import ReactiveObjC;
 @import ChameleonFramework;
 
@@ -99,6 +100,10 @@ typedef NS_ENUM(NSUInteger, SPItemPlatform) {
     self.dota2View.platform = SPItemPlatformDota2;
     self.steamView.platform = SPItemPlatformSteam;
     self.taobaoView.platform = SPItemPlatformTaobao;
+    
+    self.dota2View.btn.userInteractionEnabled = NO;
+    self.steamView.btn.userInteractionEnabled = NO;
+    self.taobaoView.btn.userInteractionEnabled = NO;
 }
 
 - (void)setItemData:(SPItemSharedData *)itemData

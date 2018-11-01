@@ -8,12 +8,12 @@
 
 #import "AppDelegate.h"
 #import "UIImage+ImageEffects.h"
-#import "SPLaunchADVC.h"
 #import "SPSteamAPI.h"
 #import "SPItemImageLoader.h"
 #import "YGRemoteNotificationHelper.h"
 #import "SPIAPHelper.h"
 #import "SPDataManager.h"
+#import "SPDeploy.h"
 
 #if LeanCloudSDK_Enabled
     #import "AVOSCloud.h"
@@ -38,8 +38,6 @@
 @import SDWebImage;
 
 @interface AppDelegate () <YGRemoteNotificationHelperDelegate>
-@property (strong, nonatomic) SPLaunchADVC *adVC;
-
 @end
 
 @implementation AppDelegate
@@ -94,6 +92,7 @@
     [AVOSCloud setAllLogsEnabled:NO];
     [AVOSCloud setVerbosePolicy:kAVVerboseNone];
     [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
+    [self _checkAppDeploy];
     
     // 使用YYMemoryCache 代替 SDWebImage 默认的内存缓存。不修改文件缓存。
     [SPItemImageLoader setSDWebImageUseYYMemoryCache];
@@ -174,6 +173,11 @@
 {
     NSURL *url = [NSURL fileURLWithPath:AppDocumentsPath];
     [url setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:nil];
+}
+
+- (void)_checkAppDeploy
+{
+    [[SPDeploy instance] update];
 }
 
 @end

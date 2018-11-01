@@ -42,7 +42,7 @@
         if (iOS9) {
             configure.applicationNameForUserAgent = @"Safari";
         }
-        self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(-10, -10, 10, 10) configuration:configure];
+        self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(-50, -50, 5, 5) configuration:configure];
         self.webView.navigationDelegate = self;
         self.webView.alpha = 0;
     }
@@ -55,8 +55,7 @@
     self.url = url;
     self.completion = completion;
     if (!self.webView.superview) {
-        UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        [window addSubview:self.webView];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.webView];
     }
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
@@ -99,7 +98,7 @@
 {
     SPLog(@"didFinishNavigation");
     
-    if ([webView.URL.absoluteString isEqualToString:self.url.absoluteString]) {
+    if ([[webView.URL.absoluteString stringByRemovingPercentEncoding] isEqualToString:[self.url.absoluteString stringByRemovingPercentEncoding]]) {
         ygweakify(self);
         [webView evaluateJavaScript:@"document.body.outerText" completionHandler:^(id object, NSError *error) {
             
@@ -185,36 +184,6 @@
             [self handleFetchResult:dict ofItem:item completion:completion];
         }
     }];
-    
-    return;
-    
-    
-//    ygweakify(self);
-//    [self.manager GET:@"api.php" parameters:dict progress:^(NSProgress *downloadProgress) {
-//        SPLog(@"GamepediaAPI progress: %@",downloadProgress.localizedAdditionalDescription);
-//    } success:^(NSURLSessionDataTask *task, id responseObject) {
-//        AsyncBenchmarkTestEnd(SPGamepediaAPI)
-//        ygstrongify(self);
-//        SPLog(@"Did load Gamepedia content");
-//        [self handleFetchResult:responseObject ofItem:item completion:completion];
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        AsyncBenchmarkTestEnd(SPGamepediaAPI)
-//        NSHTTPURLResponse *resp = (NSHTTPURLResponse *)task.response;
-//        if (resp.statusCode == 503) {
-//            // 需要跳过DDoS防护
-//            SPLog(@"需要跳过DDoS防护");
-//
-//            NSData *data = error.userInfo[@"com.alamofire.serialization.response.error.data"];
-//            NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//
-//
-//
-//        }else{
-//
-//            SPLog(@"Failed load Gamepedia content. error: %@",error);
-//            completion(NO,[SPGamepediaData error:error]);
-//        }
-//    }];
 }
 
 - (void)handleFetchResult:(id)responseObject ofItem:(SPItem *)item completion:(SPGamepediaAPICompletion)completion

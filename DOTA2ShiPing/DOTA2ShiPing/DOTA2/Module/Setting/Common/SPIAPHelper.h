@@ -21,8 +21,6 @@ YG_EXTERN NSString *const kIAPProductCoffee;
 
 + (instancetype)getIAP;
 
-+ (void)setProduction:(BOOL)isProduction;
-
 + (BOOL)isPurchased;
 
 + (void)sendNotification;

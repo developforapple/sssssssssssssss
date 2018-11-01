@@ -8,6 +8,7 @@
 
 #import "SPIAPHelper.h"
 #import "SPIAPObject.h"
+#import "SPDeploy.h"
 @import IAPHelper;
 @import AVOSCloud;
 
@@ -39,24 +40,13 @@ NSString *const kIAPProductCoke     ;
 NSString *const kIAPProductCoffee   ;
 #endif
 
-static BOOL kIsProduction = YES;
-
 @implementation SPIAPHelper
 
-+ (void)setProduction:(BOOL)isProduction
+- (BOOL)production
 {
-    SPLog(@"当前为%@环境",isProduction?@"生产":@"开发");
-    kIsProduction = isProduction;
-    [SPIAP setProduction:isProduction];
-}
-
-- (id)initWithProductIdentifiers:(NSSet *)productIdentifiers
-{
-    self = [super initWithProductIdentifiers:productIdentifiers];
-    if (self){
-        self.production = kIsProduction;
-    }
-    return self;
+    BOOL p = [SPDeploy instance].deploy == YGAppDeployProduction;
+    SPLog(@"当前为%@环境",p?@"生产":@"开发");
+    return p;
 }
 
 + (instancetype)getIAP

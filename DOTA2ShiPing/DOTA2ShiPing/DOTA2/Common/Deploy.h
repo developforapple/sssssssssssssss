@@ -16,4 +16,14 @@ typedef NS_ENUM(NSUInteger, YGAppDeploy) {
     YGAppDeployObsolete,        // 废弃版本 version < min
 };
 
+YG_INLINE NSString *deploy_desc(YGAppDeploy deploy){
+    switch (deploy) {
+        case YGAppDeployProduction: return @"上线版本";
+        case YGAppDeployReview: return @"审核版本";
+        case YGAppDeployDev:    return @"开发版本";
+        case YGAppDeployObsolete:   return @"废弃版本";
+    }
+    return @"";
+}
+
 #endif /* Deploy_h */

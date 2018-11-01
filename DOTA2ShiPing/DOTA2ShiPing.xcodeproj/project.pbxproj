@@ -50,6 +50,10 @@
 		2D5A2A9F1FD18A0A0021FCC9 /* SPWorkshop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D5A2A9E1FD18A0A0021FCC9 /* SPWorkshop.storyboard */; };
 		2D5A2AA21FD198820021FCC9 /* SPIAPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2AA11FD198820021FCC9 /* SPIAPObject.m */; };
 		2D5A2AA51FD25D960021FCC9 /* SPRewardADView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A2AA41FD25D960021FCC9 /* SPRewardADView.m */; };
+		2D61B8FF20009C6400BFC8ED /* SPDeploy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D61B8FE20009C6400BFC8ED /* SPDeploy.m */; };
+		2D61B90020009C6900BFC8ED /* SPDeploy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D61B8FE20009C6400BFC8ED /* SPDeploy.m */; };
+		2D61B90120009C6A00BFC8ED /* SPDeploy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D61B8FE20009C6400BFC8ED /* SPDeploy.m */; };
+		2D61B90220009C6A00BFC8ED /* SPDeploy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D61B8FE20009C6400BFC8ED /* SPDeploy.m */; };
 		2D6F1CA11F1E6EE600E8F614 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */; };
 		2D6F1CAB1F1F3D4200E8F614 /* SPItemTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAA1F1F3D4200E8F614 /* SPItemTransition.m */; };
 		2D6F1CAE1F20D72500E8F614 /* UIViewController+yg_StatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F1CAD1F20D72500E8F614 /* UIViewController+yg_StatusBar.m */; };
@@ -243,7 +247,6 @@
 		2D8081B11FD5B92500078A50 /* SPPlayerInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C71F1361640012950A /* SPPlayerInventoryVC.m */; };
 		2D8081B21FD5B92500078A50 /* Config_ThirdParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B65A1F1361640012950A /* Config_ThirdParty.m */; settings = {COMPILER_FLAGS = "-D'MACRO_BUGLY_APP_ID=@\"$(BUGLY_APP_ID)\""; }; };
 		2D8081B31FD5B92500078A50 /* SPSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7E01F1361640012950A /* SPSearchBar.m */; };
-		2D8081B41FD5B92500078A50 /* SPLaunchADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AE1F1361640012950A /* SPLaunchADVC.m */; };
 		2D8081B51FD5B92500078A50 /* CDTUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6DB1F1361640012950A /* CDTUserSession.m */; };
 		2D8081B61FD5B92500078A50 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6C41F1361640012950A /* API.m */; };
 		2D8081B71FD5B92500078A50 /* SPWorkshopResourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B80E1F1361640012950A /* SPWorkshopResourceCell.m */; };
@@ -506,7 +509,6 @@
 		2DD663981FD57D62000E7223 /* SPPlayerInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C71F1361640012950A /* SPPlayerInventoryVC.m */; };
 		2DD663991FD57D62000E7223 /* Config_ThirdParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B65A1F1361640012950A /* Config_ThirdParty.m */; settings = {COMPILER_FLAGS = "-D'MACRO_BUGLY_APP_ID=@\"$(BUGLY_APP_ID)\""; }; };
 		2DD6639A1FD57D62000E7223 /* SPSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7E01F1361640012950A /* SPSearchBar.m */; };
-		2DD6639B1FD57D62000E7223 /* SPLaunchADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AE1F1361640012950A /* SPLaunchADVC.m */; };
 		2DD6639C1FD57D62000E7223 /* CDTUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6DB1F1361640012950A /* CDTUserSession.m */; };
 		2DD6639D1FD57D62000E7223 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6C41F1361640012950A /* API.m */; };
 		2DD6639E1FD57D62000E7223 /* SPWorkshopResourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B80E1F1361640012950A /* SPWorkshopResourceCell.m */; };
@@ -751,7 +753,6 @@
 		2DD664A11FD57D83000E7223 /* SPPlayerInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7C71F1361640012950A /* SPPlayerInventoryVC.m */; };
 		2DD664A21FD57D83000E7223 /* Config_ThirdParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B65A1F1361640012950A /* Config_ThirdParty.m */; settings = {COMPILER_FLAGS = "-D'MACRO_BUGLY_APP_ID=@\"$(BUGLY_APP_ID)\""; }; };
 		2DD664A31FD57D83000E7223 /* SPSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7E01F1361640012950A /* SPSearchBar.m */; };
-		2DD664A41FD57D83000E7223 /* SPLaunchADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AE1F1361640012950A /* SPLaunchADVC.m */; };
 		2DD664A51FD57D83000E7223 /* CDTUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6DB1F1361640012950A /* CDTUserSession.m */; };
 		2DD664A61FD57D83000E7223 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B6C41F1361640012950A /* API.m */; };
 		2DD664A71FD57D83000E7223 /* SPWorkshopResourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B80E1F1361640012950A /* SPWorkshopResourceCell.m */; };
@@ -929,7 +930,6 @@
 		2DF9B8A61F1361640012950A /* SPItemOffPriceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7A21F1361640012950A /* SPItemOffPriceVC.m */; };
 		2DF9B8A81F1361640012950A /* DDMainADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AA1F1361640012950A /* DDMainADVC.m */; };
 		2DF9B8A91F1361640012950A /* DDMainTBC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AC1F1361640012950A /* DDMainTBC.m */; };
-		2DF9B8AA1F1361640012950A /* SPLaunchADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7AE1F1361640012950A /* SPLaunchADVC.m */; };
 		2DF9B8AC1F1361640012950A /* SPPlayer+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7B51F1361640012950A /* SPPlayer+More.m */; };
 		2DF9B8AD1F1361640012950A /* SPPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7B81F1361640012950A /* SPPlayerManager.m */; };
 		2DF9B8AF1F1361640012950A /* SPPlayerAliasesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9B7BD1F1361640012950A /* SPPlayerAliasesVC.m */; };
@@ -1088,6 +1088,8 @@
 		2D5A2AA11FD198820021FCC9 /* SPIAPObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPIAPObject.m; sourceTree = "<group>"; };
 		2D5A2AA31FD25D960021FCC9 /* SPRewardADView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPRewardADView.h; sourceTree = "<group>"; };
 		2D5A2AA41FD25D960021FCC9 /* SPRewardADView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPRewardADView.m; sourceTree = "<group>"; };
+		2D61B8FD20009C6400BFC8ED /* SPDeploy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPDeploy.h; sourceTree = "<group>"; };
+		2D61B8FE20009C6400BFC8ED /* SPDeploy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPDeploy.m; sourceTree = "<group>"; };
 		2D675BC51FD97E2C00C6E541 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		2D6F1C9E1F1E6D5100E8F614 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "DerivedData/DOTA2ShiPing/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		2D6F1CA01F1E6EE600E8F614 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -1382,8 +1384,6 @@
 		2DF9B7AA1F1361640012950A /* DDMainADVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMainADVC.m; sourceTree = "<group>"; };
 		2DF9B7AB1F1361640012950A /* DDMainTBC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMainTBC.h; sourceTree = "<group>"; };
 		2DF9B7AC1F1361640012950A /* DDMainTBC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMainTBC.m; sourceTree = "<group>"; };
-		2DF9B7AD1F1361640012950A /* SPLaunchADVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLaunchADVC.h; sourceTree = "<group>"; };
-		2DF9B7AE1F1361640012950A /* SPLaunchADVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLaunchADVC.m; sourceTree = "<group>"; };
 		2DF9B7B41F1361640012950A /* SPPlayer+More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPPlayer+More.h"; sourceTree = "<group>"; };
 		2DF9B7B51F1361640012950A /* SPPlayer+More.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPPlayer+More.m"; sourceTree = "<group>"; };
 		2DF9B7B61F1361640012950A /* SPPlayerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayerCommon.h; sourceTree = "<group>"; };
@@ -1770,6 +1770,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2D61B8FC20009C5200BFC8ED /* Deploy */ = {
+			isa = PBXGroup;
+			children = (
+				2D61B8FD20009C6400BFC8ED /* SPDeploy.h */,
+				2D61B8FE20009C6400BFC8ED /* SPDeploy.m */,
+			);
+			path = Deploy;
+			sourceTree = "<group>";
+		};
 		2D91EB711F1626270038B49C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -1910,6 +1919,7 @@
 		2DF9B65C1F1361640012950A /* General */ = {
 			isa = PBXGroup;
 			children = (
+				2D61B8FC20009C5200BFC8ED /* Deploy */,
 				2DFE1C1A1FBDD50000FEDE5C /* Config */,
 				2D91EB781F1731570038B49C /* Localization */,
 				2D91EB711F1626270038B49C /* Resource */,
@@ -2574,8 +2584,6 @@
 				2DF9B7AA1F1361640012950A /* DDMainADVC.m */,
 				2DF9B7AB1F1361640012950A /* DDMainTBC.h */,
 				2DF9B7AC1F1361640012950A /* DDMainTBC.m */,
-				2DF9B7AD1F1361640012950A /* SPLaunchADVC.h */,
-				2DF9B7AE1F1361640012950A /* SPLaunchADVC.m */,
 			);
 			path = Ctrls;
 			sourceTree = "<group>";
@@ -3835,6 +3843,7 @@
 				2DF9B82C1F1361640012950A /* NSArray+YYModelExt.m in Sources */,
 				2D24516B1FC995DC00EF5438 /* SPFilterHeader.m in Sources */,
 				2DF9B86E1F1361640012950A /* KDCycleBannerView.m in Sources */,
+				2D61B8FF20009C6400BFC8ED /* SPDeploy.m in Sources */,
 				2DF9B8961F1361640012950A /* SPItemSlot.m in Sources */,
 				2DF9B89C1F1361640012950A /* YGTabBarCtrl.m in Sources */,
 				2D93507E1FCF0C0500719EC5 /* SPFeedbackViewCtrl.m in Sources */,
@@ -4001,7 +4010,6 @@
 				2DF9B8B41F1361640012950A /* SPPlayerInventoryVC.m in Sources */,
 				2DF9B8201F1361640012950A /* Config_ThirdParty.m in Sources */,
 				2DF9B8BC1F1361640012950A /* SPSearchBar.m in Sources */,
-				2DF9B8AA1F1361640012950A /* SPLaunchADVC.m in Sources */,
 				2DF9B8551F1361640012950A /* CDTUserSession.m in Sources */,
 				2DF9B84C1F1361640012950A /* API.m in Sources */,
 				2DF9B8CF1F1361640012950A /* SPWorkshopResourceCell.m in Sources */,
@@ -4064,6 +4072,7 @@
 				2D80810A1FD5B92500078A50 /* NSArray+YYModelExt.m in Sources */,
 				2D80810B1FD5B92500078A50 /* SPFilterHeader.m in Sources */,
 				2D80810C1FD5B92500078A50 /* KDCycleBannerView.m in Sources */,
+				2D61B90220009C6A00BFC8ED /* SPDeploy.m in Sources */,
 				2D80810D1FD5B92500078A50 /* SPItemSlot.m in Sources */,
 				2D80810E1FD5B92500078A50 /* YGTabBarCtrl.m in Sources */,
 				2D80810F1FD5B92500078A50 /* SPFeedbackViewCtrl.m in Sources */,
@@ -4230,7 +4239,6 @@
 				2D8081B11FD5B92500078A50 /* SPPlayerInventoryVC.m in Sources */,
 				2D8081B21FD5B92500078A50 /* Config_ThirdParty.m in Sources */,
 				2D8081B31FD5B92500078A50 /* SPSearchBar.m in Sources */,
-				2D8081B41FD5B92500078A50 /* SPLaunchADVC.m in Sources */,
 				2D8081B51FD5B92500078A50 /* CDTUserSession.m in Sources */,
 				2D8081B61FD5B92500078A50 /* API.m in Sources */,
 				2D8081B71FD5B92500078A50 /* SPWorkshopResourceCell.m in Sources */,
@@ -4293,6 +4301,7 @@
 				2DD662F11FD57D62000E7223 /* NSArray+YYModelExt.m in Sources */,
 				2DD662F21FD57D62000E7223 /* SPFilterHeader.m in Sources */,
 				2DD662F31FD57D62000E7223 /* KDCycleBannerView.m in Sources */,
+				2D61B90020009C6900BFC8ED /* SPDeploy.m in Sources */,
 				2DD662F41FD57D62000E7223 /* SPItemSlot.m in Sources */,
 				2DD662F51FD57D62000E7223 /* YGTabBarCtrl.m in Sources */,
 				2DD662F61FD57D62000E7223 /* SPFeedbackViewCtrl.m in Sources */,
@@ -4459,7 +4468,6 @@
 				2DD663981FD57D62000E7223 /* SPPlayerInventoryVC.m in Sources */,
 				2DD663991FD57D62000E7223 /* Config_ThirdParty.m in Sources */,
 				2DD6639A1FD57D62000E7223 /* SPSearchBar.m in Sources */,
-				2DD6639B1FD57D62000E7223 /* SPLaunchADVC.m in Sources */,
 				2DD6639C1FD57D62000E7223 /* CDTUserSession.m in Sources */,
 				2DD6639D1FD57D62000E7223 /* API.m in Sources */,
 				2DD6639E1FD57D62000E7223 /* SPWorkshopResourceCell.m in Sources */,
@@ -4522,6 +4530,7 @@
 				2DD663FA1FD57D83000E7223 /* NSArray+YYModelExt.m in Sources */,
 				2DD663FB1FD57D83000E7223 /* SPFilterHeader.m in Sources */,
 				2DD663FC1FD57D83000E7223 /* KDCycleBannerView.m in Sources */,
+				2D61B90120009C6A00BFC8ED /* SPDeploy.m in Sources */,
 				2DD663FD1FD57D83000E7223 /* SPItemSlot.m in Sources */,
 				2DD663FE1FD57D83000E7223 /* YGTabBarCtrl.m in Sources */,
 				2DD663FF1FD57D83000E7223 /* SPFeedbackViewCtrl.m in Sources */,
@@ -4688,7 +4697,6 @@
 				2DD664A11FD57D83000E7223 /* SPPlayerInventoryVC.m in Sources */,
 				2DD664A21FD57D83000E7223 /* Config_ThirdParty.m in Sources */,
 				2DD664A31FD57D83000E7223 /* SPSearchBar.m in Sources */,
-				2DD664A41FD57D83000E7223 /* SPLaunchADVC.m in Sources */,
 				2DD664A51FD57D83000E7223 /* CDTUserSession.m in Sources */,
 				2DD664A61FD57D83000E7223 /* API.m in Sources */,
 				2DD664A71FD57D83000E7223 /* SPWorkshopResourceCell.m in Sources */,
